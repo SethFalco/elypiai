@@ -1,0 +1,29 @@
+package com.elypia.elypiai.yugioh.data;
+
+public enum MonsterType {
+
+	DRAGON,
+	SPELLCASTER,
+	ZOMBIE,
+	WARRIOR,
+	BEAST_WARRIOR,
+	BEAST,
+	WINGEDBEAT,
+	FIEND,
+	FAIRY,
+	INSECT,
+	DINOSAUR,
+	REPTILE,
+	FISH,
+	SEA_SERPENT,
+	MACHINE,
+	THUNDER,
+	AQUA,
+	PYRO,
+	ROCK,
+	PLANT,
+	PSYCHIC,
+	DIVINE_BEAST,
+	CREATOR_GOD,
+	WYRM;
+}

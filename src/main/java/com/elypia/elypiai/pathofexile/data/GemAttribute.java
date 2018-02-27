@@ -1,0 +1,39 @@
+package com.elypia.elypiai.pathofexile.data;
+
+public enum GemAttribute {
+
+	STRENGTH(GemColor.RED, "S"),
+	DEXTERITY(GemColor.GREEN, "D"),
+	INTELLIGANCE(GemColor.BLUE, "I");
+
+	private GemColor color;
+	private String apiName;
+
+	GemAttribute(GemColor color, String apiName) {
+		this.color = color;
+		this.apiName = apiName;
+	}
+
+	public GemColor getAssociatedColor() {
+		return color;
+	}
+
+	public String getApiName() {
+		return apiName;
+	}
+
+	@Override
+	public String toString() {
+		return apiName;
+	}
+
+	public static GemAttribute getTypeByApiName(String apiName) {
+
+		for (GemAttribute attr : GemAttribute.values()) {
+			if (attr.getApiName().equals(apiName))
+				return attr;
+		}
+
+		return null;
+	}
+}
