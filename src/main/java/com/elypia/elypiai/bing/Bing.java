@@ -1,11 +1,11 @@
 package com.elypia.elypiai.bing;
 
+import com.elypia.elypiai.ElyUtils;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.sethsutopia.utopiai.UtopiaiUtils;
 import org.apache.commons.codec.Charsets;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
@@ -27,7 +27,7 @@ public class Bing {
 	 * Bing object for making calls for Bing Search API
 	 * and Bing Image Search API.
 	 *
-	 * @param	api_key		API key obtained from Bing.
+	 * @param	apiKey		API key obtained from Bing.
 	 * @return				Bing object.
 	 * @see <a href="https://www.microsoft.com/cognitive-services/en-us/apis">Bing Cognitive Services</a>
 	 */
@@ -42,8 +42,6 @@ public class Bing {
 	 * Errors to look out for: <br>
 	 * 403 - Rate Limit
 	 *
-	 * @throws RestfulException
-	 *
 	 * @param	search 		The term to search on Bing.
 	 * @param	safeSearch 	Should safeSearch be Strict or off.
 	 * @return				The url of the top result.
@@ -53,7 +51,7 @@ public class Bing {
 		Map<String, Object> queryParams = new HashMap<>();
 		queryParams.put("q", search);
 		queryParams.put("safesearch", safeSearch ? "Strict" : "off");
-		queryParams.put("count", random ? UtopiaiUtils.RAND.nextInt(50) + 1 : 1);
+		queryParams.put("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
 
 		Map<String, String> headers = new HashMap<>();
 		headers.put("mkt", "en-us");
@@ -107,7 +105,7 @@ public class Bing {
 		Map<String, Object> queryParams = new HashMap<>();
 		queryParams.put("q", search);
 		queryParams.put("safesearch", safeSearch ? "Strict" : "off");
-		queryParams.put("count", random ? UtopiaiUtils.RAND.nextInt(50) + 1 : 1);
+		queryParams.put("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
 
 		Map<String, String> headers = new HashMap<>();
 		headers.put("mkt", "en-us");

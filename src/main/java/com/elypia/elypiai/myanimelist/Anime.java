@@ -1,6 +1,5 @@
 package com.elypia.elypiai.myanimelist;
 
-import com.sethsutopia.utopiai.ElypiaiUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -24,17 +23,17 @@ public class Anime {
 	private String image;
 
 	/**
-	 * See: {@link MyAnimeList#getAnime(String)}
+	 * See: {@link MyAnimeList#getAnime(String, Consumer<Anime>, Consumer<UnirestException)}
 	 */
 
 	Anime(Document document) {
 		Element element = document.getElementsByTag("anime").first().getElementsByTag("entry").first();
 
-		id = ElypiaiUtils.parseIntOrDefault(element.getElementsByTag("id").first().text(), -1);
+		id = ElyUtils.parseIntOrDefault(element.getElementsByTag("id").first().text(), -1);
 		title = element.getElementsByTag("title").first().text();
 		englishTitle = element.getElementsByTag("english").first().text();
-		episodes = ElypiaiUtils.parseIntOrDefault(element.getElementsByTag("episodes").first().text(), -1);
-		score = ElypiaiUtils.parseDoubleOrDefault(element.getElementsByTag("score").first().text(), -1);
+		episodes = ElyUtils.parseIntOrDefault(element.getElementsByTag("episodes").first().text(), -1);
+		score = ElyUtils.parseDoubleOrDefault(element.getElementsByTag("score").first().text(), -1);
 		type = element.getElementsByTag("type").first().text();
 		status = element.getElementsByTag("status").first().text();
 		startDate = element.getElementsByTag("start_date").first().text();

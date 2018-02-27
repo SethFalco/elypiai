@@ -9,12 +9,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.function.Consumer;
 
 public class Amazon {
@@ -22,7 +19,7 @@ public class Amazon {
 	private String accessKey;
 	private String id;
 	private AmazonEndpoint endpoint;
-	private DateFormat dateFormat;
+
 	private RequestSigner signer;
 
 	public Amazon(String accessKey, String secret, String id) {
@@ -35,18 +32,15 @@ public class Amazon {
 		this.endpoint = endpoint;
 
 		signer = new RequestSigner(secret);
-
-		dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
 	/**
 	 * Searches Amazon with the selected endpoint
-	 * {@link #setEndpoint(String) setEndPoint(String)} and grabs the
+	 * {@link #setEndpoint} and grabs the
 	 * url of the most relevant result.
 	 *
 	 * @param	product 	Product to search for.
-	 * @return				URL of most relevant product.
+	 * @return				URL of top result product.
 	 */
 
 	public void fetchProduct(String product, Consumer<String> success, Consumer<UnirestException> failure) {
@@ -57,7 +51,7 @@ public class Amazon {
 		queryParams.put("Operation", "ItemSearch");
 		queryParams.put("SearchIndex", "All");
 		queryParams.put("Service", "AWSECommerceService");
-		queryParams.put("Timestamp", dateFormat.format(Calendar.getInstance().getTime()));
+		queryParams.put("Timestamp", Instant.now());
 		queryParams.put("Version", "2013-08-01");
 
 		String url = signer.sign(endpoint, queryParams);

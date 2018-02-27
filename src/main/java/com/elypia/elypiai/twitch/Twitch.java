@@ -7,8 +7,6 @@ import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.async.Callback;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.sethsutopia.utopiai.UtopiaiUtils;
-import com.sethsutopia.utopiai.twitch.events.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,7 +31,7 @@ public class Twitch {
 	 * Allows calls to the Twitch API, can call various information
 	 * on users, or get stream information if the user is live.
 	 *
-	 * @param 	api_key		API key obtained from Twitch website.
+	 * @param 	apiKey		API key obtained from Twitch website.
 	 * @return 				Twitch
 	 */
 
