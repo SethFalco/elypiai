@@ -30,7 +30,7 @@ public enum AscendancyClass {
 		this.apiName = apiName;
 	}
 
-	public AscendancyType getClassType() {
+	public AscendancyType getAscendancyType() {
 		return type;
 	}
 
