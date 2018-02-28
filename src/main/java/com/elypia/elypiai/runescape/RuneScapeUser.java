@@ -1,6 +1,6 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.RuneScapeSkill;
+import com.elypia.elypiai.runescape.data.RSSkill;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -24,12 +24,7 @@ public class RuneScapeUser {
 	private boolean loggedIn;
 
 	private List<String> activities;
-	private Map<RuneScapeSkill, RuneScapeStat> stats;
-
-	/**
-	 * See {@link RuneScape#getPlayer(String)}
-	 * @throws RestException
-	 */
+	private Map<RSSkill, RuneScapeStat> stats;
 
 	public RuneScapeUser(JSONObject object) {
 		activities = new ArrayList<>();
@@ -195,11 +190,11 @@ public class RuneScapeUser {
 	 * @return	Returns a Map of skills to stats.
 	 */
 
-	public Map<RuneScapeSkill, RuneScapeStat> getStats() {
+	public Map<RSSkill, RuneScapeStat> getStats() {
 		return stats;
 	}
 
-	public RuneScapeStat getStat(RuneScapeSkill skill) {
+	public RuneScapeStat getStat(RSSkill skill) {
 		return stats.get(skill);
 	}
 }

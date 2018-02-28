@@ -39,13 +39,11 @@ dependencies {
 	testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.0'
 	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.15.0'
 
+	// Test runtime
 	testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.0.1'
 	testRuntime 'org.junit.platform:junit-platform-runner:1.0.0'
-	
 	testRuntime group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.9.1'
 	testRuntime group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.9.1'
-	
-	testCompile group: 'commons-dbutils', name: 'commons-dbutils', version: '1.7'
 }
 
 junitPlatform {

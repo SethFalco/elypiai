@@ -2,7 +2,7 @@ package com.elypia.elypiai.runescape.events;
 
 import com.elypia.elypiai.runescape.RuneScapeStat;
 import com.elypia.elypiai.runescape.RuneScapeUser;
-import com.elypia.elypiai.runescape.data.RuneScapeSkill;
+import com.elypia.elypiai.runescape.data.RSSkill;
 
 public class MaxXpEvent {
 
@@ -11,7 +11,7 @@ public class MaxXpEvent {
 	private RuneScapeUser user;
 	private RuneScapeStat stat;
 	private RuneScapeStat previous;
-	private RuneScapeSkill skill;
+	private RSSkill skill;
 	private int xpGain;
 	private String description;
 
@@ -36,7 +36,7 @@ public class MaxXpEvent {
 		return previous;
 	}
 
-	public RuneScapeSkill getSkill() {
+	public RSSkill getSkill() {
 		return skill;
 	}
 

@@ -1,7 +1,7 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.RuneScapeEndpoint;
-import com.elypia.elypiai.runescape.data.RuneScapeSkill;
+import com.elypia.elypiai.runescape.data.RSEndpoint;
+import com.elypia.elypiai.runescape.data.RSSkill;
 import com.elypia.elypiai.runescape.events.Level120Event;
 import com.elypia.elypiai.runescape.events.LevelUpEvent;
 import com.elypia.elypiai.runescape.events.MaxXpEvent;
@@ -49,7 +49,9 @@ public class RuneScape {
 	 */
 
 	public void getUser(String username, Consumer<RuneScapeUser> success, Consumer<UnirestException> failure) {
-		Unirest.get(PROFILE_ENDPOINT).queryString("user", username).asJsonAsync(new Callback<JsonNode>() {
+		String endpoint = RSEndpoint.RUNEMETRICS_PROFILE.getEndpoint();
+
+	    Unirest.get(endpoint).queryString("user", username).asJsonAsync(new Callback<JsonNode>() {
 
 			@Override
 			public void completed(HttpResponse<JsonNode> response) {
@@ -126,16 +128,18 @@ public class RuneScape {
 	}
 
 	private void update() {
+        String endpoint = RSEndpoint.RUNEMETRICS_PROFILE.getEndpoint();
+
 		users.forEach(user -> {
-			Unirest.get(PROFILE_ENDPOINT).queryString("user", user.getUsername()).asJsonAsync(new Callback<JsonNode>() {
+			Unirest.get(endpoint).queryString("user", user.getUsername()).asJsonAsync(new Callback<JsonNode>() {
 
 				@Override
 				public void completed(HttpResponse<JsonNode> response) {
-					Map<RuneScapeSkill, RuneScapeStat> stats = user.getStats();
+					Map<RSSkill, RuneScapeStat> stats = user.getStats();
 
 					user.update(response.getBody().getObject());
 
-					for (RuneScapeSkill skill : RuneScapeSkill.values()) {
+					for (RSSkill skill : RSSkill.values()) {
 						RuneScapeStat previous = stats.get(skill);
 						RuneScapeStat current = user.getStat(skill);
 
@@ -172,35 +176,14 @@ public class RuneScape {
 		});
 	}
 
-	public void getTotalUsers(Consumer<Integer> success, Consumer<UnirestException> failure) {
-		Unirest.get(TOTAL_USERS).asStringAsync(new Callback<String>() {
-
-			@Override
-			public void completed(HttpResponse<String> response) {
-				String result = response.getBody();
-				result = result.substring(result.indexOf("{"), result.lastIndexOf("}") + 1);
-				JSONObject object = new JSONObject(result);
-				success.accept(object.getInt("accounts"));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
-		});
-	}
-
 	/**
 	 * @return	Get the number of players currently online.
 	 */
 
 	public void getOnlineUserCount(Consumer<String> success, Consumer<UnirestException> failure) {
-		Unirest.get(ONLINE_USERS).asStringAsync(new Callback<String>() {
+        String endpoint = RSEndpoint.PLAYER_COUNT.getEndpoint();
+
+		Unirest.get(endpoint).asStringAsync(new Callback<String>() {
 
 			@Override
 			public void completed(HttpResponse<String> response) {
@@ -222,7 +205,7 @@ public class RuneScape {
 	}
 
 	public void getQuestStatuses(String user, Consumer<QuestsStatus> success, Consumer<UnirestException> failure) {
-		String endpoint = RuneScapeEndpoint.RUNEMETRICS_QUESTS.getEndpoint();
+		String endpoint = RSEndpoint.RUNEMETRICS_QUESTS.getEndpoint();
 
 		HttpRequest req = Unirest.get(endpoint).queryString("user", user);
 		req.asJsonAsync(new Callback<JsonNode>( ) {
@@ -257,48 +240,79 @@ public class RuneScape {
 		return users;
 	}
 
-	/**
-	 * @param	The xp to convert to level.
-	 * @param	elite	Convert as an elite skill or standard skill.
-	 * @return	Uses the RuneScape leveling system to convert
-	 * 			the int provided (xp) to what level the user would
-	 * 			have in a standard skill.
-	 */
+    /**
+     * Convert XP to the level equivilent. <br>
+     * Exactly the same as calling {@link #convertXpToLevel(int, boolean)},
+     * with parameter boolean as <strong>false</strong>.
+     *
+     * @param	xp      The xp to convert to level.
+     * @return	        The level a player would be with the XP provided.
+     */
 
-	public static int convertXpToLevel(int xp, boolean elite) {
-		int level = 1;
+    public static int convertXpToLevel(int xp) {
+        return convertXpToLevel(xp, false);
+    }
 
-		while (xp > convertLevelToXp(level, elite))
-			level++;
+    /**
+     * Convert XP to the level equivilent.
+     *
+     * @param	xp      The xp to convert to level.
+     * @param	elite	Convert as an elite skill or standard skill.
+     * @return	        The level a player would be with the XP provided.
+     */
 
-		return level;
-	}
+    public static int convertXpToLevel(int xp, boolean elite) {
+        int level = 1;
 
-	/**
-	 * @param 	level	The level to convert to XP.
-	 * @param	elite	Convert as an elite skill or standard skill.
-	 * @return			Uses the RuneScape leveling system to convert
-	 * 					the int provided (level) to the XP required
-	 * 					to reach that level.
-	 */
+        while (xp > convertLevelToXp(level, elite))
+            level++;
 
-	public static int convertLevelToXp(int level, boolean elite) {
-		double xp = 0;
+        return level;
+    }
 
-		for (int count = 1; count < level; count++) {
-			xp += (int)(count + 300 * Math.pow(2, (double)count / 7));
+    /**
+     * Convert a level, or virtual level to the XP equivilent using
+     * RuneScapes XP formula. <br>
+     * <strong</>Note: Returns -1 if the level is too high. <br>
+     * Exactly the same as calling {@link #convertLevelToXp(int, boolean)},
+     * with parameter boolean as <strong>false</strong>.
+     *
+     * @param	level   The xp to convert to level.
+     * @return	        The level a player would be with the XP provided.
+     */
 
-			// We return int so max value we can return is Integer.MAX_VALUE
-			// thus if xp is greater than Integer.MAX_VALUE * 4
-			// (* 4 because at the end of this equation we divide by 4)
-			// No point doing any more since after casting the double (xp)
-			// to an int it will always return what will equate to Integer.MAX_VALUE.
-			// (Cast Integer.MAX_VALUE to double since int can't get bigger than there max! XD)
+    public static int convertLevelToXp(int level) {
+        return convertLevelToXp(level, false);
+    }
 
-			if (xp >= (double)Integer.MAX_VALUE * 4)
-				break;
-		}
+    /**
+     * Convert a level, or virtual level to the XP equivilent using
+     * RuneScapes XP formula. <br>
+     * Note: Returns -1 if the level is too high.
+     *
+     * @param   level	The level to convert to XP.
+     * @param	elite	Convert as an elite skill or standard skill.
+     * @return			The XP required to attain this level.
+     */
 
-		return (int)(xp / 4);
-	}
+    public static int convertLevelToXp(int level, boolean elite) {
+        double xp = 0;
+
+        for (int count = 1; count < level; count++) {
+            xp += (int)(count + 300 * Math.pow(2, (double)count / 7));
+
+            /*
+                We're returning a long, so the max value that can be returned is
+                Integer.MAX_VALUE. This means if the XP after the step above is greater
+                than (Integer.MAX_VALUE * 4), there is no point calculating further
+                as after the final step, (xp / 4), it will be cast down from a double,
+                and if the double is larger than Integer.MAX_VALUE, it will round to it anyways.
+             */
+
+            if (xp >= (double)Integer.MAX_VALUE * 4)
+                return -1;
+        }
+
+        return (int)(xp / 4);
+    }
 }

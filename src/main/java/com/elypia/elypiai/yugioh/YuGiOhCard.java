@@ -3,11 +3,6 @@ package com.elypia.elypiai.yugioh;
 import com.elypia.elypiai.yugioh.data.CardType;
 import com.elypia.elypiai.yugioh.data.MonsterAttribute;
 import com.elypia.elypiai.yugioh.data.MonsterType;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONObject;
 
 public class YuGiOhCard {
@@ -27,37 +22,19 @@ public class YuGiOhCard {
 	 */
 
 	protected YuGiOhCard(JSONObject object) {
-		Unirest.get(INFO_LINK + cardName).asJsonAsync(new Callback<JsonNode>() {
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				if(!resp.getContent().contains("No cards matching this name")) {
-					JSONObject object = resp.getJSONObject().getJSONObject("data");
-					name = object.getString("name");
-					text = object.getString("text");
-					cardType = YuGiOhCardType.valueOf(object.getString("card_type").toUpperCase());
+		name = object.getString("name");
+		text = object.getString("text");
+		cardType = CardType.valueOf(object.getString("card_type").toUpperCase());
 
-					type = MonsterType.valueOf(object.getString("type").toUpperCase());
+		type = MonsterType.valueOf(object.getString("type").toUpperCase());
 
-					// If does not have Type, assume is not a monster.
-					if (type != null) {
-						family = YuGiOhAttribute.valueOf(object.getString("family").toUpperCase());
-						attack = object.getInt("atk");
-						defense = object.getInt("def");
-						level = object.getInt("level");
-					}
-				}
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
-		});
+		// If does not have Type, assume is not a monster.
+		if (type != null) {
+			family = MonsterAttribute.valueOf(object.getString("family").toUpperCase());
+			attack = object.getInt("atk");
+			defense = object.getInt("def");
+			level = object.getInt("level");
+		}
 	}
 
 	/**

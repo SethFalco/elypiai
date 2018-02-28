@@ -2,7 +2,7 @@ package com.elypia.elypiai.runescape.events;
 
 import com.elypia.elypiai.runescape.RuneScapeStat;
 import com.elypia.elypiai.runescape.RuneScapeUser;
-import com.elypia.elypiai.runescape.data.RuneScapeSkill;
+import com.elypia.elypiai.runescape.data.RSSkill;
 
 public class LevelUpEvent {
 
@@ -11,7 +11,7 @@ public class LevelUpEvent {
 	private RuneScapeUser user;
 	private RuneScapeStat stat;
 	private RuneScapeStat previous;
-	private RuneScapeSkill skill;
+	private RSSkill skill;
 	private String description;
 
 	public LevelUpEvent(RuneScapeUser user, RuneScapeStat stat, RuneScapeStat previous) {
@@ -34,7 +34,7 @@ public class LevelUpEvent {
 		return previous;
 	}
 
-	public RuneScapeSkill getSkill() {
+	public RSSkill getSkill() {
 		return skill;
 	}
 

@@ -1,5 +1,6 @@
 package com.elypia.elypiai.myanimelist;
 
+import com.elypia.elypiai.ElyUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -22,11 +23,7 @@ public class Anime {
 	private String synopsis;
 	private String image;
 
-	/**
-	 * See: {@link MyAnimeList#getAnime(String, Consumer<Anime>, Consumer<UnirestException)}
-	 */
-
-	Anime(Document document) {
+	public Anime(Document document) {
 		Element element = document.getElementsByTag("anime").first().getElementsByTag("entry").first();
 
 		id = ElyUtils.parseIntOrDefault(element.getElementsByTag("id").first().text(), -1);

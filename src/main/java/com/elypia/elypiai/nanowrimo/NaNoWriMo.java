@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class NaNoWriMo {
+public class Nanowrimo {
 
 	public static final String PUT_WORDCOUNT_ENDPOINT = "https://nanowrimo.org/api/wordcount";
 	public static final String GET_USER_ENDPOINT = "https://nanowrimo.org/wordcount_api/wc/{username}";
@@ -52,7 +52,7 @@ public class NaNoWriMo {
 		});
 	}
 
-	public void getNaNoUser(String username, Consumer<NaNoUser> success, Consumer<UnirestException> failure) {
+	public void getNanoUser(String username, Consumer<NanoUser> success, Consumer<UnirestException> failure) {
 		username = username.replace(" ", "-");
 
 		HttpRequestWithBody request = Unirest.put(GET_USER_ENDPOINT).routeParam("username", username);
@@ -71,7 +71,7 @@ public class NaNoWriMo {
 						exists = false;
 				}
 
-				NaNoUser user = exists ? new NaNoUser(document) : null;
+				NanoUser user = exists ? new NanoUser(document) : null;
 				success.accept(user);
 			}
 

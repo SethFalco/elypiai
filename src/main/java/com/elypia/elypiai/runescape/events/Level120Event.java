@@ -2,7 +2,7 @@ package com.elypia.elypiai.runescape.events;
 
 import com.elypia.elypiai.runescape.RuneScapeStat;
 import com.elypia.elypiai.runescape.RuneScapeUser;
-import com.elypia.elypiai.runescape.data.RuneScapeSkill;
+import com.elypia.elypiai.runescape.data.RSSkill;
 
 public class Level120Event {
 
@@ -10,7 +10,7 @@ public class Level120Event {
 
 	private RuneScapeUser user;
 	private RuneScapeStat stat;
-	private RuneScapeSkill skill;
+	private RSSkill skill;
 	private String description;
 
 
@@ -18,7 +18,7 @@ public class Level120Event {
 		this.user = user;
 		this.stat = stat;
 		this.skill = stat.getSkill();
-		description = String.format(DESC_FORMAT, user.getName(), skill, stat.getXp());
+		description = String.format(DESC_FORMAT, user.getUsername(), skill, stat.getXp());
 	}
 
 	public RuneScapeUser getUser() {
@@ -29,7 +29,7 @@ public class Level120Event {
 		return stat;
 	}
 
-	public RuneScapeSkill getSkill() {
+	public RSSkill getSkill() {
 		return skill;
 	}
 

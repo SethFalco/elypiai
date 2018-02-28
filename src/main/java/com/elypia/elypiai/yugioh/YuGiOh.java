@@ -1,5 +1,12 @@
 package com.elypia.elypiai.yugioh;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.async.Callback;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONObject;
+
 public class YuGiOh {
 
 	public static final String INFO_ENDPOINT = "http://yugiohprices.com/api/card_data/";
@@ -16,8 +23,28 @@ public class YuGiOh {
 	 * 					a function to download the card image.
 	 */
 
-	public YuGiOhCard getCard(String term) {
-		YuGiOhCard card = new YuGiOhCard(term);
-		return card.getName() != null ? card : null;
+	public void getCard(String term) {
+		Unirest.get(INFO_ENDPOINT + term).asJsonAsync(new Callback<JsonNode>() {
+			@Override
+			public void completed(HttpResponse<JsonNode> response) {
+                JSONObject object = response.getBody().getObject();
+
+				if(!object.toString().contains("No cards matching this name")) {
+					JSONObject data = object.getJSONObject("data");
+
+					YuGiOhCard card = new YuGiOhCard(data);
+				}
+			}
+
+			@Override
+			public void failed(UnirestException e) {
+
+			}
+
+			@Override
+			public void cancelled() {
+
+			}
+		});
 	}
 }

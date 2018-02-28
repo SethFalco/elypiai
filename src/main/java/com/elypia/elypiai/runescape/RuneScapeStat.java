@@ -1,22 +1,22 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.RuneScapeSkill;
+import com.elypia.elypiai.runescape.data.RSSkill;
 import org.json.JSONObject;
 
 public class RuneScapeStat {
 
-	private RuneScapeSkill skill;
+	private RSSkill skill;
 	private int level;
 	private int virtualLevel;
 	private int xp;
 	private int rank;
 
 	RuneScapeStat(JSONObject object) {
-		skill = RuneScapeSkill.getById(object.getInt("id"));
+		skill = RSSkill.getById(object.getInt("id"));
 		level = object.getInt("level");
 		xp = object.getInt("xp") / 10;
 		rank = object.optInt("rank", -1);
-		virtualLevel = RuneScape.calcLevelFromXp(xp);
+		virtualLevel = RuneScape.convertXpToLevel(xp);
 	}
 
 	/**
@@ -24,7 +24,7 @@ public class RuneScapeStat {
 	 * 			the stats on.
 	 */
 
-	public RuneScapeSkill getSkill() {
+	public RSSkill getSkill() {
 		return skill;
 	}
 

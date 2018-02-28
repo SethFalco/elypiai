@@ -1,5 +1,6 @@
 package com.elypia.elypiai.twitch;
 
+import com.elypia.elypiai.ElyUtils;
 import com.elypia.elypiai.twitch.events.StreamerLiveEvent;
 import com.elypia.elypiai.twitch.events.StreamerOfflineEvent;
 import com.mashape.unirest.http.HttpResponse;
@@ -45,8 +46,7 @@ public class Twitch {
 
 	/**
 	 * Recieved Twitch information on a user, this only recieved general
-	 * information. See {@link Twitch#updateTwitchUsers()} to recieved
-	 * Stream information on each user also.
+	 * information.
 	 *
 	 * @param 	username	The username of the user to get.
 	 * @return 				TwitchUser object with general channel info.
@@ -109,8 +109,6 @@ public class Twitch {
 	/**
 	 * Recieved Twitch information on a user and caches the user,
 	 * this only recieved general information.
-	 * See {@link Twitch#updateTwitchUsers()} to recieved Stream
-	 * information on each user also.
 	 * Intended for a notification system.
 	 *
 	 * @param 	username	The username of the user to get.
@@ -170,14 +168,6 @@ public class Twitch {
 		}, usernames);
 	}
 
-	/**
-	 * See {@link #initiateNotifier()}
-	 * Add the listener of an object implementing the {@link TwitchListener}
-	 * interface, this allows events to execute when a streamer goes online
-	 * or offline.
-	 * @throws RestException
-	 */
-
 	public void addListener(TwitchListener listener) {
 		listeners.add(listener);
 
@@ -207,7 +197,7 @@ public class Twitch {
 			return;
 
 		List<String> ids = users.keySet().stream().map(Object::toString).collect(Collectors.toList());
-		List<List<String>> update = UtopiaiUtils.splitList(ids, 100);
+		List<List<String>> update = ElyUtils.splitList(ids, 100);
 
 		Map<String, Object> queryParams = new HashMap<>();
 		queryParams.put("limit", 100);
