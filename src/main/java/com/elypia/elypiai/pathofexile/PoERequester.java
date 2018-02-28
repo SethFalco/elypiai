@@ -86,7 +86,7 @@ class PoERequester {
 		});
 	}
 
-	public void getLeagueRules(String id, Consumer<LeagueRule> success, Consumer<UnirestException> failure) {
+	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<UnirestException> failure) {
 		String endpoint = PoEEndpoint.LEAGUE_RULES.getEndpoint();
 
 		HttpRequest request = Unirest.get(endpoint).queryString("id", id);

@@ -23,8 +23,8 @@ public class PathOfExile {
 		requester.getLeagueRules(success, failure);
 	}
 
-	public void getLeagueRules(String id, Consumer<LeagueRule> success, Consumer<UnirestException> failure) {
-		requester.getLeagueRules(id, success, failure);
+	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<UnirestException> failure) {
+		requester.getLeagueRule(id, success, failure);
 	}
 
 	/**
