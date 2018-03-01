@@ -263,9 +263,14 @@ public class RuneScape {
 
     public static int convertXpToLevel(int xp, boolean elite) {
         int level = 1;
+        int result;
 
-        while (xp > convertLevelToXp(level, elite))
+        while (xp > (result = convertLevelToXp(level, elite))) {
+            if (result == -1)
+                break;
+
             level++;
+        }
 
         return level;
     }
