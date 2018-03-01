@@ -1,7 +1,5 @@
 package com.elypia.elypiai;
 
-import org.apache.commons.lang3.math.NumberUtils;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
@@ -72,15 +70,22 @@ public final class ElyUtils {
 	/**
 	 * Try to pass a String to a numerical value, however
 	 * if that String provided is not a number, use the default
-	 * instead.
+	 * provided instead.
 	 *
 	 * @param	string			String to parse.
 	 * @param	elseDefault		Default value if string is not a number.
 	 * @return					String as an int.
 	 */
 
-	public static int parseIntOrDefault(String string, int elseDefault) {
-		return NumberUtils.isCreatable(string) ? Integer.parseInt(string) : elseDefault;
+	public static int optInt(String string, int elseDefault) {
+		if (Regex.NUMBER.matches(string)) {
+			double d = Double.parseDouble(string);
+
+			if (d % 1 == 0 && d <= Integer.MAX_VALUE)
+				return (int)d;
+		}
+
+		return elseDefault;
 	}
 
 	/**
@@ -94,7 +99,7 @@ public final class ElyUtils {
 	 */
 
 	public static double parseDoubleOrDefault(String string, double elseDefault) {
-		return NumberUtils.isCreatable(string) ? Double.parseDouble(string) : elseDefault;
+		return Regex.NUMBER.matches(string) ? Integer.parseInt(string) : elseDefault;
 	}
 
 	/**
