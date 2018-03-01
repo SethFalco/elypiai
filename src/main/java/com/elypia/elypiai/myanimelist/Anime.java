@@ -26,10 +26,10 @@ public class Anime {
 	public Anime(Document document) {
 		Element element = document.getElementsByTag("anime").first().getElementsByTag("entry").first();
 
-		id = ElyUtils.parseIntOrDefault(element.getElementsByTag("id").first().text(), -1);
+		id = ElyUtils.optInt(element.getElementsByTag("id").first().text(), -1);
 		title = element.getElementsByTag("title").first().text();
 		englishTitle = element.getElementsByTag("english").first().text();
-		episodes = ElyUtils.parseIntOrDefault(element.getElementsByTag("episodes").first().text(), -1);
+		episodes = ElyUtils.optInt(element.getElementsByTag("episodes").first().text(), -1);
 		score = ElyUtils.parseDoubleOrDefault(element.getElementsByTag("score").first().text(), -1);
 		type = element.getElementsByTag("type").first().text();
 		status = element.getElementsByTag("status").first().text();
