@@ -12,6 +12,11 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
+jar {
+	baseName = 'Elypiai'
+	version = '1.0.0'
+}
+
 repositories {
 	jcenter()
 }
@@ -30,21 +35,19 @@ dependencies {
 
 	testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.1.0'
 	testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.1.0'
-	testRuntimeOnly group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'
-	testRuntimeOnly group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.10.0'
 }
+
 
 compileJava {
 	options.compilerArgs += '-Xlint:unchecked'
 }
 
-jar {
-	baseName = 'Elypiai'
-	version = '1.0.0'
+junitPlatform {
+	details 'tree'
 }
 
 test {
-	useJUnit()
+	useJUnitPlatform()
 
 	testLogging {
 		showStandardStreams = true
@@ -52,11 +55,7 @@ test {
 	}
 }
 
-junitPlatform {
-	enableStandardTestTask true
-	logManager 'org.apache.logging.log4j.jul.LogManager'
-}
-
-wrapper {
-	distributionType = Wrapper.DistributionType.ALL
+task wrapper(type: Wrapper) {
+	description = 'Generates gradlew[.bat] scripts'
+	gradleVersion = '4.6'
 }
