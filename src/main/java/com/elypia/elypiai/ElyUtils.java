@@ -169,8 +169,8 @@ public final class ElyUtils {
 		return builder.toString();
 	}
 
-	public static <T> boolean arrayContains(T item, T... items) {
-		for (T t : items) {
+	public static <T> boolean arrayContains(T item, Object... items) {
+		for (Object t : items) {
 			if (item == t || item.equals(t))
 				return true;
 		}
@@ -178,16 +178,7 @@ public final class ElyUtils {
 		return false;
 	}
 
-	public static <T> boolean containsAny(Iterable<T> iter, T... items) {
-		for (T t : iter) {
-			if (arrayContains(t, items))
-				return true;
-		}
-
-		return false;
-	}
-
-	public static <T> boolean containsAny(T[] array, T... items) {
+	public static <T> boolean containsAny(T[] array, Object... items) {
 		for (T t : array) {
 			if (arrayContains(t, items))
 				return true;
