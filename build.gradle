@@ -50,7 +50,3 @@ dependencies {
 wrapper {
 	distributionType = Wrapper.DistributionType.ALL
 }
-
-task wrapper(type: Wrapper) {
-	gradleVersion = '4.6'
-}
