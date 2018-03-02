@@ -40,7 +40,6 @@ public class Amazon {
 	 * url of the most relevant result.
 	 *
 	 * @param	product 	Product to search for.
-	 * @return				URL of top result product.
 	 */
 
 	public void fetchProduct(String product, Consumer<String> success, Consumer<UnirestException> failure) {
