@@ -6,6 +6,8 @@
 build/
 
 # IntelliJ
+workspace.xml
+tasks.xml
 out/
 
 # Output Files
