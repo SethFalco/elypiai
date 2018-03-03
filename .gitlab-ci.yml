@@ -17,7 +17,7 @@ build:
       - .gradle
   artifacts:
     paths:
-      - binaries/
+      - build/libs/
 
 test:
   stage: test
