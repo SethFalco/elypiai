@@ -249,7 +249,7 @@ public class RuneScape {
      * @return	        The level a player would be with the XP provided.
      */
 
-    public static int convertXpToLevel(int xp) {
+    public static int convertXpToLevel(long xp) {
         return convertXpToLevel(xp, false);
     }
 
@@ -261,19 +261,22 @@ public class RuneScape {
      * @return	        The level a player would be with the XP provided.
      */
 
-    public static int convertXpToLevel(int xp, boolean elite) {
-        int level = 1;
-        int result;
+	public static int convertXpToLevel(long xp, boolean elite) {
+		if (xp < 0)
+			throw new IllegalArgumentException("XP (long) can not be of a negative value.");
 
-        while (xp > (result = convertLevelToXp(level, elite))) {
-            if (result == -1)
-                break;
+		int level = 1;
+		long result;
 
-            level++;
-        }
+		while (xp >= (result = convertLevelToXp(level + 1, elite))) {
+			if (result == -1)
+				break;
 
-        return level;
-    }
+			level++;
+		}
+
+		return level;
+	}
 
     /**
      * Convert a level, or virtual level to the XP equivilent using
@@ -286,38 +289,33 @@ public class RuneScape {
      * @return	        The level a player would be with the XP provided.
      */
 
-    public static int convertLevelToXp(int level) {
+    public static long convertLevelToXp(int level) {
         return convertLevelToXp(level, false);
     }
 
-    /**
-     * Convert a level, or virtual level to the XP equivilent using
-     * RuneScapes XP formula. <br>
-     * Note: Returns -1 if the level is too high.
-     *
-     * @param   level	The level to convert to XP.
-     * @param	elite	Convert as an elite skill or standard skill.
-     * @return			The XP required to attain this level.
-     */
+	/**
+	 * Convert a level, or virtual level to the XP equivilent using
+	 * RuneScapes XP formula. <br>
+	 * Note: Returns -1 if the level is too high.
+	 *
+	 * @param   level	The level to convert to XP.
+	 * @param	elite	Convert as an elite skill or standard skill.
+	 * @return			The XP required to attain this level.
+	 */
 
-    public static int convertLevelToXp(int level, boolean elite) {
-        double xp = 0;
+	public static long convertLevelToXp(int level, boolean elite) {
+		if (level < 1)
+			throw new IllegalArgumentException("Level (int) can not be zero or a negative value.");
 
-        for (int count = 1; count < level; count++) {
-            xp += (int)(count + 300 * Math.pow(2, (double)count / 7));
+		double xp = 0;
 
-            /*
-                We're returning a long, so the max value that can be returned is
-                Integer.MAX_VALUE. This means if the XP after the step above is greater
-                than (Integer.MAX_VALUE * 4), there is no point calculating further
-                as after the final step, (xp / 4), it will be cast down from a double,
-                and if the double is larger than Integer.MAX_VALUE, it will round to it anyways.
-             */
+		for (int count = 1; count < level; count++) {
+			xp += (long)(count + 300 * Math.pow(2, (double)count / 7));
 
-            if (xp >= (double)Integer.MAX_VALUE * 4)
-                return -1;
-        }
+			if (xp >= (double)Long.MAX_VALUE * 4)
+				return -1;
+		}
 
-        return (int)(xp / 4);
-    }
+		return (long)(xp / 4);
+	}
 }
