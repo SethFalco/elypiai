@@ -1,6 +1,6 @@
 package com.elypia.elypiai.bing;
 
-import com.elypia.elypiai.ElyUtils;
+import com.elypia.elypiai.utils.ElyUtils;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;

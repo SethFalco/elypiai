@@ -1,9 +1,10 @@
-package com.elypia.elypiai;
+package com.elypia.elypiai.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -23,6 +24,20 @@ public final class ElyUtils {
 		String formats = String.join("|", ImageIO.getReaderFileSuffixes());
 		return url.matches("(?i)^https?:\\/\\/.+\\/.+\\.(" + formats + ")$");
 	}
+
+	public static <T> T requireNonNull(T t, String name) {
+		return Objects.requireNonNull(t, String.format("Argument %s must not be null.", name));
+	}
+
+    public static <T> String join(String delimiter, T[] items) {
+        int length = items.length;
+        String[] strings = new String[length];
+
+        for (int i = 0; i < length; i++)
+            strings[i] = items[i].toString();
+
+        return String.join(delimiter, strings);
+    }
 
 	/**
 	 * Checks if the text provided starts with the prefix provided

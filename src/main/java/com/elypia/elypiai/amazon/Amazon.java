@@ -1,98 +1,77 @@
 package com.elypia.elypiai.amazon;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
+import com.elypia.elypiai.amazon.data.AmazonEndpoint;
+import com.elypia.elypiai.amazon.data.AmazonGroup;
+import com.elypia.elypiai.amazon.data.AmazonIndex;
+import com.elypia.elypiai.utils.ElyUtils;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.parser.Parser;
-import org.jsoup.select.Elements;
 
-import java.time.Instant;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Amazon {
 
+	private final static AmazonGroup[] DEFAULT_GROUPS = {
+		AmazonGroup.IMAGES,
+		AmazonGroup.ITEM_ATTRIBUTES,
+		AmazonGroup.OFFERS
+	};
+
 	private String accessKey;
+	private String secret;
 	private String id;
+	private AmazonRequester requester;
 	private AmazonEndpoint endpoint;
 
-	private RequestSigner signer;
+	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException, NoSuchAlgorithmException {
+		this.accessKey 	= ElyUtils.requireNonNull(accessKey, "Access key");
+		this.secret 	= ElyUtils.requireNonNull(secret, "Secret");
+		this.id 		= ElyUtils.requireNonNull(id, "ID");
+		this.endpoint 	= ElyUtils.requireNonNull(endpoint, "Endpoint");
 
-	public Amazon(String accessKey, String secret, String id) {
-		this(accessKey, secret, id, AmazonEndpoint.US);
+		requester = new AmazonRequester(this);
 	}
 
-	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) {
-		this.accessKey = accessKey;
-		this.id = id;
-		this.endpoint = endpoint;
-
-		signer = new RequestSigner(secret);
+	public void getItem(String product, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
+		getItem(product, DEFAULT_GROUPS, success, failure);
 	}
 
-	/**
-	 * Searches Amazon with the selected endpoint
-	 * {@link #setEndpoint} and grabs the
-	 * url of the most relevant result.
-	 *
-	 * @param	product 	Product to search for.
-	 */
+	public void getItem(String product, AmazonGroup[] groups, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
+		getItem(product, groups, AmazonIndex.ALL, success, failure);
+	}
 
-	public void fetchProduct(String product, Consumer<String> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new LinkedHashMap<>();
-		queryParams.put("AWSAccessKeyId", accessKey);
-		queryParams.put("AssociateTag", id);
-		queryParams.put("Keywords", product);
-		queryParams.put("Operation", "ItemSearch");
-		queryParams.put("SearchIndex", "All");
-		queryParams.put("Service", "AWSECommerceService");
-		queryParams.put("Timestamp", Instant.now());
-		queryParams.put("Version", "2013-08-01");
+	public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
+		requester.getItem(product, groups, index, success, failure);
+	}
 
-		String url = signer.sign(endpoint, queryParams);
+	public String getAccessKey() {
+		return accessKey;
+	}
 
-		Unirest.get(url).asStringAsync(new Callback<String>() {
+	public String getSecret() {
+		return secret;
+	}
 
-			@Override
-			public void completed(HttpResponse<String> response) {
-				Document document = Jsoup.parse(response.getBody(), url, Parser.xmlParser());
-				Elements elements = document.getElementsByTag("Message");
-				String string = null;
+	public String getId() {
+		return id;
+	}
 
-				if (elements.size() > 0) {
-					if (elements.first().text().equals("We did not find any matches for your request."))
-						string = null;
-				} else {
-					string = String.format("%s/dp/%s?tag%s", endpoint.getShoppingUrl(), document.getElementsByTag("ASIN").get(0).text(), id);
-				}
-
-				success.accept(string);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
-		});
-     }
+	public AmazonEndpoint getEndpoint() {
+		return endpoint;
+	}
 
 	/**
 	 * Changed the selected endpoint to do requests for
 	 * Amazon.
 	 *
+	 * @param	id			Amazon user / tracking id.
 	 * @param	endpoint	Endpoint to use for Amazon requests.
 	 */
 
-	public void setEndpoint(AmazonEndpoint endpoint) {
+	public void setEndpoint(String id, AmazonEndpoint endpoint) {
+		this.id = id;
 		this.endpoint = endpoint;
 	}
 }

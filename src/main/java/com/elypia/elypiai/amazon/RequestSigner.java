@@ -1,16 +1,19 @@
 package com.elypia.elypiai.amazon;
 
+import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import org.apache.commons.codec.Charsets;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 
 public class RequestSigner {
 
@@ -19,13 +22,9 @@ public class RequestSigner {
 
 	private Mac mac;
 
-	public RequestSigner(String secret) {
-		try {
-			mac = Mac.getInstance("HmacSHA256");
-			mac.init(new SecretKeySpec(secret.getBytes(charset), mac.getAlgorithm()));
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+	public RequestSigner(String secret) throws NoSuchAlgorithmException, InvalidKeyException {
+		mac = Mac.getInstance("HmacSHA256");
+		mac.init(new SecretKeySpec(secret.getBytes(charset), mac.getAlgorithm()));
 	}
 
 	public String sign(AmazonEndpoint endpoint, Map<String, Object> queryParams) {
@@ -34,8 +33,10 @@ public class RequestSigner {
 
 		while (iterator.hasNext()) {
 			Entry<String, Object> entry = iterator.next();
+			String key = urlEncode(entry.getKey());
+			Object value = urlEncode(entry.getValue());
 
-			builder.append(String.format("%s=%s", urlEncode(entry.getKey()), urlEncode(entry.getValue())));
+			builder.append(String.format("%s=%s", key, value));
 
 			if (iterator.hasNext())
 				builder.append("&");
@@ -49,15 +50,21 @@ public class RequestSigner {
 		return String.format("http://%s%s?%s&Signature=%s", endpoint, URI, builder, signature);
 	}
 
-	private String urlEncode(Object encode) {
+	private <T> String urlEncode(T encode) {
+		Objects.requireNonNull(encode, "Can not encode a null value.");
+
 		String string = encode.toString();
 
 		try {
 			string = URLEncoder.encode(encode.toString(), charset.toString());
-			string = string.replace("+", "%20").replace("*", "%2A").replace("%7E", "~");
-			return string;
-		} catch (UnsupportedEncodingException ex) {
-			return string;
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
+
+		string = string.replace("+", "%20");
+		string = string.replace("*", "%2A");
+		string = string.replace("%7E", "~");
+
+		return string;
 	}
 }

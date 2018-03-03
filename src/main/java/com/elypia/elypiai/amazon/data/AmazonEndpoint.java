@@ -1,7 +1,7 @@
-package com.elypia.elypiai.amazon;
+package com.elypia.elypiai.amazon.data;
 
 public enum AmazonEndpoint {
-	
+
 	US("amazon.com"),
 	BRAZIL("amazon.com.br"),
 	CANADA("amazon.ca"),
@@ -14,17 +14,21 @@ public enum AmazonEndpoint {
 	JAPAN("amazon.co.jp"),
 	MEXICO("amazon.com.mx"),
 	UK("amazon.co.uk");
-	
+
 	private String url;
-	
+
 	AmazonEndpoint(String url) {
 		this.url = url;
 	}
-	
+
 	public String getShoppingUrl() {
 		return String.format("https://%s/", url);
 	}
-	
+
+    public String getProductUrl(String asin) {
+        return String.format(getShoppingUrl() + "dp/" + asin);
+    }
+
 	@Override
 	public String toString() {
 		return "webservices." + url;

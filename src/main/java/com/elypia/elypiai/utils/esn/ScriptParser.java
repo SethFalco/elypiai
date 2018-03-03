@@ -1,6 +1,6 @@
 package com.elypia.elypiai.utils.esn;
 
-import com.elypia.elypiai.Regex;
+import com.elypia.elypiai.utils.Regex;
 
 import java.util.Arrays;
 import java.util.List;

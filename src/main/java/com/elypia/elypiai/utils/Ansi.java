@@ -1,4 +1,4 @@
-package com.elypia.elypiai;
+package com.elypia.elypiai.utils;
 
 public enum Ansi {
 

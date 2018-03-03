@@ -1,6 +1,6 @@
 package com.elypia.elypiai.myanimelist;
 
-import com.elypia.elypiai.ElyUtils;
+import com.elypia.elypiai.utils.ElyUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 

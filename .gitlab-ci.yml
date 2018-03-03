@@ -31,3 +31,5 @@ test:
   artifacts:
     paths:
       - build/test-results/
+
+# Later append this with Code Coverage when it's not gonna be a pain.

@@ -1,4 +1,4 @@
-package com.elypia.elypiai;
+package com.elypia.elypiai.utils;
 
 import javax.imageio.ImageIO;
 import java.util.regex.Matcher;
@@ -10,32 +10,18 @@ public enum Regex {
 	 * Message Parser Regexes
 	 */
 
-	// (?i)(?:^\{\?(?<args>[A-Z|]*)\})
 	MSGML_ARGS("(?i)(?:^\\{\\?(?<args>[A-Z|]*)\\})"),
-
-	// (?:(?<!\!)\{(?<select>[^?][^\{\}\[\]]+)\}(?!\[))
 	MSGML_SELECT("(?:(?<!\\!)\\{(?<select>[^?][^\\{\\}\\[\\]]+)\\}(?!\\[))"),
-
-	// (?:\{(?<repeat>[^\{\}]+)\}\[(?<repmin>\d+)\,(?<repmax>\d+)\])
 	MSGML_REPEAT("(?:\\{(?<repeat>[^\\{\\}]+)\\}\\[(?<repmin>\\d+)\\,(?<repmax>\\d+)\\])"),
-
-	// (?:\{(?<optional>[^\{\}]+)\}\[\?\])
 	MSGML_OPTIONAL("(?:\\{(?<optional>[^\\{\\}]+)\\}\\[\\?\\])"),
-
-	// (?:\{\[(?<random>(?<randmin>\d+)-(?<randmax>\d+)))\]\}
 	MSGML_RANDOM("(?:\\{\\[(?<random>(?<randmin>\\d+)-(?<randmax>\\d+)))\\]\\}"),
-
-	// (?:\!\{(?<ignore>[^\{\}]+)\})
 	MSGML_IGNORE("(?:\\!\\{(?<ignore>[^\\{\\}]+)\\})"),
 
 	/*
 	 * Markdown Regexes
 	 */
 
-	// (?:^|[\n\r])(?<header>\#{1,6})\ (?<text>.+)
 	MD_HEADING("(?:^|[\\n\\r])(?<header>\\#{1,6})\\ (?<text>.+)"),
-
-	// \[(?<display>.*[^\\])\]\((?<url>.*[^\\])\)
 	MD_URL("\\[(?<display>.*[^\\\\])\\]\\((?<url>.*[^\\\\])\\)"),
 
 	/*
@@ -58,7 +44,7 @@ public enum Regex {
 	private String regex;
 	private Pattern pattern;
 
-	private Regex(String regex) {
+	Regex(String regex) {
 		this.regex = regex;
 		pattern = Pattern.compile(regex);
 	}

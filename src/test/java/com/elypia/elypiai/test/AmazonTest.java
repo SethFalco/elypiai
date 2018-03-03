@@ -1,6 +1,6 @@
 package com.elypia.elypiai.test;
 
-import com.elypia.elypiai.amazon.AmazonEndpoint;
+import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;

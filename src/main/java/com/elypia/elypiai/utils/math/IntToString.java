@@ -1,4 +1,6 @@
-package com.elypia.elypiai;
+package com.elypia.elypiai.utils.math;
+
+import com.elypia.elypiai.utils.Regex;
 
 import java.util.regex.Matcher;
 

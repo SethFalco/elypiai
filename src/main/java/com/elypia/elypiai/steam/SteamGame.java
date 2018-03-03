@@ -1,6 +1,6 @@
 package com.elypia.elypiai.steam;
 
-import com.elypia.elypiai.ElyUtils;
+import com.elypia.elypiai.utils.ElyUtils;
 import org.json.JSONObject;
 
 import java.util.concurrent.TimeUnit;

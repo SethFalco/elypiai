@@ -1,6 +1,6 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.elypia.elypiai.ElyUtils;
+import com.elypia.elypiai.utils.ElyUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

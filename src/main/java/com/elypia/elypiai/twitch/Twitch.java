@@ -1,8 +1,8 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.ElyUtils;
 import com.elypia.elypiai.twitch.events.StreamerLiveEvent;
 import com.elypia.elypiai.twitch.events.StreamerOfflineEvent;
+import com.elypia.elypiai.utils.ElyUtils;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
