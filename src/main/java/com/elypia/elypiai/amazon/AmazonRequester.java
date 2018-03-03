@@ -61,7 +61,7 @@ public class AmazonRequester {
 
         String url = signer.sign(endpoint, queryParams);
 
-        Unirest.get(url).asStringAsync(new Callback<>() {
+        Unirest.get(url).asStringAsync(new Callback<String>() {
 
             @Override
             public void completed(HttpResponse<String> response) {
