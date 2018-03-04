@@ -1,4 +1,4 @@
-package com.elypia.elypiai.utils;
+package com.elypia.elypiai;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,12 +45,12 @@ public final class Brainfuck {
     private int params;
 
     public Brainfuck() {
-        this(1028);
+        this(10);
     }
 
-    public Brainfuck(int maxIterations) {
-        cells = new ArrayList<>();
-        prints = new ArrayList<>();
+    public Brainfuck(int initialCapacity) {
+        cells = new ArrayList<>(initialCapacity);
+        prints = new ArrayList<>(initialCapacity);
 
         cells.add(CELL_INIT);
     }
@@ -149,5 +149,19 @@ public final class Brainfuck {
             default:
                 return ++position;
         }
+    }
+
+    private boolean isValid(char[] brainfuck) {
+        int depth = 0;
+
+        for (char c : brainfuck) {
+            if (c == '[')
+                depth++;
+
+            else if (c == ']')
+                depth--;
+        }
+
+        return depth == 0;
     }
 }
