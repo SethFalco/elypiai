@@ -6,9 +6,7 @@ import java.util.regex.Pattern;
 
 public enum Regex {
 
-	/*
-	 * Message Parser Regexes
-	 */
+	// Message Parser Regexes
 
 	MSGML_ARGS("(?i)(?:^\\{\\?(?<args>[A-Z|]*)\\})"),
 	MSGML_SELECT("(?:(?<!\\!)\\{(?<select>[^?][^\\{\\}\\[\\]]+)\\}(?!\\[))"),
@@ -17,16 +15,18 @@ public enum Regex {
 	MSGML_RANDOM("(?:\\{\\[(?<random>(?<randmin>\\d+)-(?<randmax>\\d+)))\\]\\}"),
 	MSGML_IGNORE("(?:\\!\\{(?<ignore>[^\\{\\}]+)\\})"),
 
-	/*
-	 * Markdown Regexes
-	 */
+	// Markdown Regexes
 
 	MD_HEADING("(?:^|[\\n\\r])(?<header>\\#{1,6})\\ (?<text>.+)"),
 	MD_URL("\\[(?<display>.*[^\\\\])\\]\\((?<url>.*[^\\\\])\\)"),
 
-	/*
-	 * General Purpose Regexes
-	 */
+
+	// Amazon
+
+	AMAZON_ACCESS_KEY("AKIA[IJ][A-Z2-7]{14}[AQ]"),
+	AMAZON_SECRET("(?i)[A-Z\\d\\/+]{40}"),
+
+	// General Purpose Regexes
 
 	NUMBER("^(?<minus>-)?(?=\\.?\\d)(?<int>\\d*)?(?:\\.(?<float>\\d*))?$"),
 	TIME(""),

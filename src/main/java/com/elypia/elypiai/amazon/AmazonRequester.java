@@ -47,13 +47,14 @@ public class AmazonRequester {
     public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
         String id = amazon.getId();
         AmazonEndpoint endpoint = amazon.getEndpoint();
+        String[] groupString = ElyUtils.toStringArray(groups);
 
         Map<String, Object> queryParams = new LinkedHashMap<>();
         queryParams.put("AWSAccessKeyId", accessKey);
         queryParams.put("AssociateTag", id);
         queryParams.put("Keywords", product);
         queryParams.put("Operation", "ItemSearch");
-        queryParams.put("ResponseGroup", ElyUtils.join(",", groups));
+        queryParams.put("ResponseGroup", String.join(",", groupString));
         queryParams.put("SearchIndex", index.getApiName());
         queryParams.put("Service", "AWSECommerceService");
         queryParams.put("Timestamp", Instant.now());

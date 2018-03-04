@@ -3,12 +3,13 @@ package com.elypia.elypiai.amazon;
 import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import com.elypia.elypiai.amazon.data.AmazonGroup;
 import com.elypia.elypiai.amazon.data.AmazonIndex;
-import com.elypia.elypiai.utils.ElyUtils;
+import com.elypia.elypiai.utils.Regex;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Amazon {
@@ -26,10 +27,16 @@ public class Amazon {
 	private AmazonEndpoint endpoint;
 
 	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException, NoSuchAlgorithmException {
-		this.accessKey 	= ElyUtils.requireNonNull(accessKey, "Access key");
-		this.secret 	= ElyUtils.requireNonNull(secret, "Secret");
-		this.id 		= ElyUtils.requireNonNull(id, "ID");
-		this.endpoint 	= ElyUtils.requireNonNull(endpoint, "Endpoint");
+		this.accessKey 	= Objects.requireNonNull(accessKey);
+		this.secret 	= Objects.requireNonNull(secret);
+		this.id 		= Objects.requireNonNull(id);
+		this.endpoint 	= Objects.requireNonNull(endpoint);
+
+		if (!Regex.AMAZON_ACCESS_KEY.matches(accessKey))
+			throw new IllegalArgumentException("Invalid Amazon Access Key provided.");
+
+		if (!Regex.AMAZON_SECRET.matches(secret))
+			throw new IllegalArgumentException("Invalid Amazon Secret provided.");
 
 		requester = new AmazonRequester(this);
 	}

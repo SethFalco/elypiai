@@ -23,34 +23,23 @@ public class QuestsStatus {
 
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject quest = array.getJSONObject(i);
+			QuestStats stats = new QuestStats(runescape, quest);
+
+			switch (stats.getStatus()) {
+				case COMPLETED: 	completed++; 	break;
+				case STARTED: 		started++; 		break;
+				case NOT_STARTED: 	notStarted++; 	break;
+			}
+
 			quests.add(new QuestStats(runescape, quest));
 		}
 	}
 
 	public Collection<QuestStats> getQuests(QuestStatus status) {
-		Stream<QuestStats> completed = quests.stream();
+		Stream<QuestStats> quests = this.quests.stream();
+		quests = quests.filter(o -> o.getStatus() == status);
 
-		completed = completed.filter(o -> {
-			return o.getStatus() == status;
-		});
-
-		return completed.collect(Collectors.toCollection(ArrayList::new));
-	}
-
-	public Collection<String> getQuestsNames(QuestStatus status) {
-		Collection<QuestStats> stats = getQuests(status);
-		Stream<QuestStats> streamQuests = stats.stream();
-		Stream<String> streamNames = streamQuests.map(QuestStats::getTitle);
-
-		return streamNames.collect(Collectors.toCollection(ArrayList::new));
-	}
-
-	private Stream<QuestStats> getStreamOfStatus(QuestStatus status) {
-		Stream<QuestStats> completed = quests.stream();
-
-		return completed.filter(o -> {
-			return o.getStatus() == status;
-		});
+		return quests.collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	public String getUsername() {
