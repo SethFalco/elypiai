@@ -18,7 +18,8 @@ public class BrainfuckTest {
             () -> assertEquals("3", new Brainfuck().compileToString("+++++++++++++++++++++++++++++++++++++++++++++++++++.")),
             () -> assertEquals("4", new Brainfuck().compileToString("++++++++++++++++++++++++++++++++++++++++++++++++++++.")),
             () -> assertEquals("12", new Brainfuck().compileToString("+++++++++++++++++++++++++++++++++++++++++++++++++.>++++++++++++++++++++++++++++++++++++++++++++++++++.")),
-            () -> assertEquals("11111", new Brainfuck().compileToString("+++++++++++++++++++++++++++++++++++++++++++++++++....."))
+            () -> assertEquals("11111", new Brainfuck().compileToString("+++++++++++++++++++++++++++++++++++++++++++++++++.....")),
+            () -> assertEquals("0123456789", new Brainfuck().compileToString("++++++++++++++++++++++++++++++++++++++++++++++++>++++++++++[<.+>-]"))
         );
     }
 
