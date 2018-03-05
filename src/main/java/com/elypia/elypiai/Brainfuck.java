@@ -85,12 +85,6 @@ public final class Brainfuck {
     }
 
     private int intepretCommand(final char[] brainfuck, int position) {
-        char c = brainfuck[position];
-        int p = position++;
-
-        while (c == brainfuck[p++])
-            p++;
-
         switch (brainfuck[position]) {
             case '>':
                 if (cells.size() == selectedCell + 1)
