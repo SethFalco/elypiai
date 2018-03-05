@@ -57,10 +57,10 @@ public final class Brainfuck {
 
     public List<Byte> compile(final String brainfuck, final byte... input) {
         Objects.requireNonNull(brainfuck);
-        return compile(brainfuck.toCharArray(), input);
+        return compile(brainfuck.getBytes(), input);
     }
 
-    public List<Byte> compile(final char[] brainfuck, final byte... input) {
+    public List<Byte> compile(final byte[] brainfuck, final byte... input) {
         Objects.requireNonNull(brainfuck);
         this.input = input;
 
@@ -74,18 +74,17 @@ public final class Brainfuck {
 
     public String compileToString(final String brainfuck, final byte... input) {
         List<Byte> list = compile(brainfuck, input);
+        StringBuffer buffer = new StringBuffer();
 
-        int length = list.size();
-        byte[] bytes = new byte[length];
+        list.forEach(o -> buffer.append((char)o.byteValue()));
 
-        for (int i = 0; i < length; i++)
-            bytes[i] = list.get(i);
-
-        return new String(bytes);
+        return buffer.toString();
     }
 
-    private int intepretCommand(final char[] brainfuck, int position) {
-        switch (brainfuck[position]) {
+    private int intepretCommand(final byte[] brainfuck, int position) {
+        byte command = brainfuck[position];
+
+        switch (command) {
             case '>':
                 if (cells.size() == selectedCell + 1)
                     cells.add(CELL_INIT);
@@ -96,13 +95,13 @@ public final class Brainfuck {
             case '<':
                 if (selectedCell == 0)
                     cells.add(0, CELL_INIT);
+
                 else
                     selectedCell--;
-
                 return ++position;
 
             case '+':
-                cells.set(selectedCell, (byte)(cells.get(selectedCell) + 1));
+                cells.set(selectedCell, (byte) (cells.get(selectedCell) + 1));
                 return ++position;
 
             case '-':
@@ -125,21 +124,16 @@ public final class Brainfuck {
                 int depth = 1;
 
                 while (depth != 0) {
-                    switch (brainfuck[matching++]) {
-                        case '[':
-                            depth++;
-                            break;
+                    byte b = brainfuck[matching++];
 
-                        case ']':
-                            depth--;
-                            break;
+                    if (b == '[')
+                        depth++;
 
-                        default:
-                            break;
-                    }
+                    else if (b == ']')
+                        depth--;
                 }
 
-                char[] array = Arrays.copyOfRange(brainfuck, position, matching - 1);
+                byte[] array = Arrays.copyOfRange(brainfuck, position, matching - 1);
 
                 while (cells.get(selectedCell) != 0)
                     compile(array, input);
@@ -151,10 +145,10 @@ public final class Brainfuck {
         }
     }
 
-    private boolean isValid(char[] brainfuck) {
+    private boolean isValid(byte[] brainfuck) {
         int depth = 0;
 
-        for (char c : brainfuck) {
+        for (byte c : brainfuck) {
             if (c == '[')
                 depth++;
 
