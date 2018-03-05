@@ -26,6 +26,32 @@ public class Amazon {
 	private AmazonRequester requester;
 	private AmazonEndpoint endpoint;
 
+	/**
+	 * Calls {@link #Amazon(String, String, String, AmazonEndpoint)}
+	 * with AmazonEndpoint set to {@link AmazonEndpoint#US} by default.
+	 *
+	 * @param accessKey
+	 * @param secret
+	 * @param id
+	 * @throws InvalidKeyException
+	 * @throws NoSuchAlgorithmException
+	 */
+
+	public Amazon(String accessKey, String secret, String id) throws InvalidKeyException, NoSuchAlgorithmException {
+		this(accessKey, secret, id, AmazonEndpoint.US);
+	}
+
+	/**
+	 * Creates a new instance of Amazon for the id and endpoint provided.
+	 *
+	 * @param accessKey
+	 * @param secret
+	 * @param id
+	 * @param endpoint
+	 * @throws InvalidKeyException
+	 * @throws NoSuchAlgorithmException
+	 */
+
 	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException, NoSuchAlgorithmException {
 		this.accessKey 	= Objects.requireNonNull(accessKey);
 		this.secret 	= Objects.requireNonNull(secret);
