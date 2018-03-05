@@ -44,13 +44,16 @@ public final class Brainfuck {
 
     private int params;
 
+    private boolean valid;
+
     public Brainfuck() {
         this(10);
     }
 
     public Brainfuck(int initialCapacity) {
         cells = new ArrayList<>(initialCapacity);
-        prints = new ArrayList<>(initialCapacity);
+        prints = new ArrayList<>();
+        valid = false;
 
         cells.add(CELL_INIT);
     }
@@ -62,7 +65,15 @@ public final class Brainfuck {
 
     public List<Byte> compile(final byte[] brainfuck, final byte... input) {
         Objects.requireNonNull(brainfuck);
-        this.input = input;
+
+        if (!valid) {
+            this.input = input;
+
+            if (!isValid(brainfuck))
+                throw new IllegalArgumentException("Brainfuck should always have equal number of open ([) and close (]) brackets.");
+
+            valid = true;
+        }
 
         int position = 0;
 
