@@ -85,7 +85,7 @@ public final class Brainfuck {
 
     public String compileToString(final String brainfuck, final byte... input) {
         List<Byte> list = compile(brainfuck, input);
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
 
         list.forEach(o -> buffer.append((char)o.byteValue()));
 

@@ -46,7 +46,8 @@ public class RegexTest {
             () -> assertTrue(regex.matches("AKIAIWGBCMPGZZLEB6SQ")),
             () -> assertTrue(regex.matches("AKIAIVSFA7YIPDTQRU5Q")),
             () -> assertTrue(regex.matches("AKIAIZ65HTWXRQNHXCOA")),
-            () -> assertTrue(regex.matches("AKIAI6KGFB6XST5W6RWQ"))
+            () -> assertTrue(regex.matches("AKIAI6KGFB6XST5W6RWQ")),
+            () -> assertTrue(regex.matches("AKIAIW53ZILBUOZARGFQ"))
         );
     }
 
@@ -81,7 +82,8 @@ public class RegexTest {
             () -> assertTrue(regex.matches("qbIdPaon1S56McAVWluIf6E6UFDryNjhSUFsmYfO")),
             () -> assertTrue(regex.matches("hIUSPi//Fm9VGLXxjL1fMVYSNjUG2UGeWUTCRSf9")),
             () -> assertTrue(regex.matches("OzSgyq0R6UqAoUzyAednLmiGngqYHuGnthFP0JeT")),
-            () -> assertTrue(regex.matches("gICANS9xP0L46IrpqDh5+H8JYJF6X3nnCNTq0ize"))
+            () -> assertTrue(regex.matches("gICANS9xP0L46IrpqDh5+H8JYJF6X3nnCNTq0ize")),
+            () -> assertTrue(regex.matches("SzfTNKynKjnMFGMsBAk2BedIrIY8TaeDelAl/orw"))
         );
     }
 
