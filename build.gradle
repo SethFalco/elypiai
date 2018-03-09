@@ -34,7 +34,7 @@ bintray {
 	configurations = ['archives']
 
 	pkg {
-		repo = 'maven'
+		repo = projectName
 		name = projectName
 		userOrg = 'Elypia'
 		licenses = ['Apache-2.0']
