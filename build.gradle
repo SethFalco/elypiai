@@ -8,16 +8,43 @@ buildscript {
 	}
 }
 
+plugins {
+	id "com.jfrog.bintray" version "1.7.3"
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
+
+projectName = 'Elypiai'
+projectVersion = '1.0.0'
 
 jar {
 	from sourceSets.main.allSource
 
 	manifest {
-		attributes 	'Implementation-Title'	 : 'Elypiai',
-					'Implementation-Version' : '1.0.0'
+		attributes 	'Implementation-Title'	 : projectName,
+					'Implementation-Version' : projectVersion
+	}
+}
+
+bintray {
+	user = System.getenv('BINTRAY_USER')
+	key = System.getenv('BINTRAY_KEY')
+	configurations = ['archives']
+
+	pkg {
+		repo = 'maven'
+		name = projectName
+		userOrg = 'Elypia'
+		licenses = ['Apache-2.0']
+		vcsUrl = 'https://gitlab.com/Elypia/Elypiai.git'
+
+		version {
+			name = projectVersion
+			desc = 'All in one API wrapper.'
+			released = new Date()
+		}
 	}
 }
 
