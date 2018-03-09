@@ -2,8 +2,9 @@ package com.elypia.elypiai.cleverbot;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class CleverResponse {
 
@@ -29,21 +30,17 @@ public class CleverResponse {
 		errorLine			= object.getString("errorline");
 		timeTaken			= object.optInt("time_taken");
 		timeElapsed			= object.optLong("time_elapsed");
-		callback			= object.optString("callback");
-
-		// Convert empty Strings to null when apt
-		if (callback.isEmpty())
-			callback = null;
+		callback			= object.optString("callback", null);
 
 		// Start collecting passed interactions
-		interactions = new HashMap<>();
-		String interaction;
+		interactions = new TreeMap<>();
 
 		for (int i = 50; i > 0; i--) {
-			interaction = "interaction_" + i + "_other";
+			String interaction = "interaction_" + i;
+			String otherInteraction = interaction + "_other";
 
-			if (object.has(interaction))
-				interactions.put(object.getString("interaction_" + i), object.getString(interaction));
+			if (object.has(otherInteraction))
+				interactions.put(object.getString(interaction), object.getString(otherInteraction));
 		}
 
 		// Other variables are unused by Cleverbot but a part of Cleverscript
@@ -130,6 +127,24 @@ public class CleverResponse {
 
 	public Map<String, String> getHistory() {
 		return interactions;
+	}
+
+	public String getHistoryScript() {
+		StringBuilder builder = new StringBuilder();
+		Iterator<Map.Entry<String, String>> it = interactions.entrySet().iterator();
+
+		while (it.hasNext()) {
+			Map.Entry<String, String> entry = it.next();
+
+			builder.append("User: " + entry.getKey());
+			builder.append("\n");
+			builder.append("Cleverbot: " + entry.getValue());
+
+			if (it.hasNext())
+				builder.append("\n");
+		}
+
+		return builder.substring(0, builder.length() - 1);
 	}
 
 	/**

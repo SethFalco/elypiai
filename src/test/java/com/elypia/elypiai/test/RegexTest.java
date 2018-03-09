@@ -8,6 +8,52 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RegexTest {
 
     @Test
+    public void testDiscordBotTokens() {
+        Regex regex = Regex.DISCORD_BOT_TOKEN;
+
+        assertAll("Test Valid Discord Bot Tokens",
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYL_dw.SAlofzaD-_9uNx_AJajp13p3ML4")),
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYL_xw.BsIzAYD_V0wUL9dkuYawU--TLyc")),
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYL_zg.92i0q4TP41HYUu-XmALcZcdxlWA")),
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYL_2w.5Lvwen7Oc6DkJibwTLNJtIRcjFc")),
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYL_4g.w1UC_PtTUFiBRaq5gLlBIBarqpE")),
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYL_-w.vxstDtBw9yPxDIcoMhwh6s5VMXg")),
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYMAAw.pCaAI1WcO2DzYNZMvWkB6aH07Mk")),
+            () -> assertTrue(regex.matches("MjQxMzk1NzI1ODUyNzM3NTM2.DYMACQ.FGfaBlePAy7wJO48hfMq-hRsmWw")),
+            () -> assertTrue(regex.matches("NDIxMzU0MTMxNjY0NTM1NTcz.DYMAKw.FEKd4-CNVp8N7dqBGsKXNCqEGR0")),
+            () -> assertTrue(regex.matches("NDIxMzU0MTMxNjY0NTM1NTcz.DYMANw.bvMRNujFigPJX54GKPWf8vsRlxY")),
+            () -> assertTrue(regex.matches("NDIxMzU0MTMxNjY0NTM1NTcz.DYMAQQ.hLT02la6ap4IMhmXq4lNBZc6oPs")),
+            () -> assertTrue(regex.matches("NDIxMzU0MTMxNjY0NTM1NTcz.DYMASg.sirHnLaqqbN8b6oUywLZ496QrOs")),
+            () -> assertTrue(regex.matches("NDIxMzU0MTMxNjY0NTM1NTcz.DYMAaQ.ORNgDYGwxr6bgTqqM1mQKwi2PAc")),
+            () -> assertTrue(regex.matches("NDIxMzU0NTIxNjQ2ODU4MjUx.DYMAfA.vlUrNwZc5VFLgxyuWe9e8kNNKrQ")),
+            () -> assertTrue(regex.matches("NDIxMzU0NTIxNjQ2ODU4MjUx.DYMAhw.rw-dvWYg1j3D08juIlNxOdxxmAQ")),
+            () -> assertTrue(regex.matches("NDIxMzU0NTIxNjQ2ODU4MjUx.DYMAjQ.0ZyVG81e-aiOspV4qdr0SSFYQTg")),
+            () -> assertTrue(regex.matches("NDIxMzU0NTIxNjQ2ODU4MjUx.DYMAlQ.w5syXon2UPmEV00mmGtlSG5keFQ")),
+            () -> assertTrue(regex.matches("NDIxMzU0NTIxNjQ2ODU4MjUx.DYMAmw.-0tF5lrhgy_2j4boTzdc9E6DuWU")),
+            () -> assertTrue(regex.matches("NDIxMzU0NTIxNjQ2ODU4MjUx.DYMAoQ.TEJNny4xCnV6sN2OluQ91cJyc8o")),
+            () -> assertTrue(regex.matches("NDIxMzU0NTIxNjQ2ODU4MjUx.DYMApw.QFukR5BEDqvNmVqVI19_ZEFX_Fw"))
+        );
+    }
+
+    @Test
+    public void testSteamApiKeys() {
+        Regex regex = Regex.STEAM_API_KEY;
+
+        assertAll("Test Valid Steam API Keys",
+            () -> assertTrue(regex.matches("DCA56FE963FE3D2CE23DF7DF30AAA579")),
+            () -> assertTrue(regex.matches("821A060BC2096B8CDC223A82E177CD09")),
+            () -> assertTrue(regex.matches("37FB0B7399A85F1547180F3B1385BF3A")),
+            () -> assertTrue(regex.matches("98CC1C851F39F7E0E218265B8F3C2F40")),
+            () -> assertTrue(regex.matches("B168F3455086D0C48AFD2BD94853067B")),
+            () -> assertTrue(regex.matches("5904A063F905D60500776269B4DA5473")),
+            () -> assertTrue(regex.matches("4A6E6F6C273237E2FDAC51E2437C4B3B")),
+            () -> assertTrue(regex.matches("BC61EF783D54C781B6C10827F473B4F5")),
+            () -> assertTrue(regex.matches("6D05D8C54F2C01504D01392307958EFF")),
+            () -> assertTrue(regex.matches("2225347F769BA331D0C0B0BB4536507B"))
+        );
+    }
+
+    @Test
     public void testAmazonAccessKeys() {
         Regex regex = Regex.AMAZON_ACCESS_KEY;
 
@@ -55,7 +101,7 @@ public class RegexTest {
     public void testAmazonSecret() {
         Regex regex = Regex.AMAZON_SECRET;
 
-        assertAll("Amazon Access Keys",
+        assertAll("Amazon Secrets",
             () -> assertTrue(regex.matches("7285o+OxlLfUoBCQOUupX0QX0VBfpx+cS4Q1LZjx")),
             () -> assertTrue(regex.matches("wEVCd5VVmDyuno41B+KUquQQAOJ+In0q5kXMVD+q")),
             () -> assertTrue(regex.matches("111XNyDTSZfTNTUuDRf7HQQeU4HMnNDaY2v7GQul")),

@@ -6,6 +6,13 @@ import java.util.regex.Pattern;
 
 public enum Regex {
 
+	// Secret Matching
+
+	DISCORD_BOT_TOKEN("(?i)[A-Z\\d]{24}\\.[A-Z\\d-_]{6}\\.[A-Z\\d-_]{27}"),
+	AMAZON_ACCESS_KEY("AKIA[IJ][A-Z2-7]{14}[AQ]"),
+	AMAZON_SECRET("(?i)[A-Z\\d\\/+]{40}"),
+	STEAM_API_KEY("[A-F\\d]{32}"),
+
 	// Message Parser Regexes
 
 	MSGML_ARGS("(?i)(?:^\\{\\?(?<args>[A-Z|]*)\\})"),
@@ -19,12 +26,6 @@ public enum Regex {
 
 	MD_HEADING("(?:^|[\\n\\r])(?<header>\\#{1,6})\\ (?<text>.+)"),
 	MD_URL("\\[(?<display>.*[^\\\\])\\]\\((?<url>.*[^\\\\])\\)"),
-
-
-	// Amazon
-
-	AMAZON_ACCESS_KEY("AKIA[IJ][A-Z2-7]{14}[AQ]"),
-	AMAZON_SECRET("(?i)[A-Z\\d\\/+]{40}"),
 
 	// General Purpose Regexes
 

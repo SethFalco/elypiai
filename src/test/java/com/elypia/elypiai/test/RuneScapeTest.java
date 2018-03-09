@@ -3,6 +3,7 @@ package com.elypia.elypiai.test;
 import com.elypia.elypiai.runescape.RuneScape;
 import org.junit.jupiter.api.Test;
 
+import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RuneScapeTest {
@@ -83,6 +84,6 @@ public class RuneScapeTest {
 
 	@Test
 	public void xpToLevelLoopTest() {
-		RuneScape.convertXpToLevel(Long.MAX_VALUE);
+		assertTimeout(ofSeconds(30), () -> RuneScape.convertXpToLevel(Long.MAX_VALUE));
 	}
 }
