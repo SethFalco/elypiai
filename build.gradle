@@ -16,8 +16,8 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
-projectName = 'Elypiai'
-projectVersion = '1.0.0'
+def projectName = 'Elypiai'
+def projectVersion = '1.0.0'
 
 jar {
 	from sourceSets.main.allSource
