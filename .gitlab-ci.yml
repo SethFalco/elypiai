@@ -32,4 +32,12 @@ test:
     paths:
       - build/test-results/
 
-# Later append this with Code Coverage when it's not gonna be a pain.
+deploy:
+  stage: deploy
+  script: gradle bintray
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: pull
+    paths:
+      - build
+      - .gradle
