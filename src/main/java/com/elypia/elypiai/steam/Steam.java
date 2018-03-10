@@ -24,8 +24,7 @@ public class Steam {
 	 * as well as user information such as query the inventory
 	 * or obtaining stats.
 	 *
-	 * @param 	api_key		API key obtained from Steam.
-	 * @return				Steam object.
+	 * @param 	apiKey		API key obtained from Steam.
 	 */
 
 	public Steam(String apiKey) {
@@ -37,8 +36,7 @@ public class Steam {
 	 * as well as user information such as query the inventory
 	 * or obtaining stats.
 	 *
-	 * @param 	username	Username of the player to get.
-	 * @return				SteamProfile, containing all user information.
+	 * @param 	steamid	Username of the player to get.
 	 */
 
 	public void getUser(long steamid, Consumer<SteamUser> success, Consumer<UnirestException> failure) {
@@ -85,12 +83,12 @@ public class Steam {
 	 * (or has played for free games) sorted from RecentPlaytime, and
 	 * when RecentPlaytime is 0, from TotalPlaytime.
 	 *
-	 * @return	List of {@link SteamGame}s the SteamUser owns.
+	 * @param user Steam user to obtain library for.
+	 * @param success What to do with the result.
+	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
 	public void getLibrary(SteamUser user, Consumer<List<SteamGame>> success, Consumer<UnirestException> failure) {
-		try {
-
 		List<SteamGame> library = new ArrayList<>();
 
 		Map<String, Object> queryParams = new HashMap<>();
@@ -123,9 +121,6 @@ public class Steam {
 
 			}
 		});
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
 	}
 
 	public void getIdFromVanityUrl(String vanityUrl, Consumer<String> success, Consumer<UnirestException> failure) {

@@ -28,7 +28,6 @@ public class Bing {
 	 * and Bing Image Search API.
 	 *
 	 * @param	apiKey		API key obtained from Bing.
-	 * @return				Bing object.
 	 * @see <a href="https://www.microsoft.com/cognitive-services/en-us/apis">Bing Cognitive Services</a>
 	 */
 
@@ -44,7 +43,6 @@ public class Bing {
 	 *
 	 * @param	search 		The term to search on Bing.
 	 * @param	safeSearch 	Should safeSearch be Strict or off.
-	 * @return				The url of the top result.
 	 */
 
 	public void webSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<UnirestException> failure) {
@@ -98,7 +96,6 @@ public class Bing {
 	 * @param	search 		The term to search on Bing.
 	 * @param	safeSearch 	Should safeSearch be Strict or off.
 	 * @param	random		Grab a random result, or first.
-	 * @return				The url of the top result.
 	 */
 
 	public void imageSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<UnirestException> failure) {

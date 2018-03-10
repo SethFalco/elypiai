@@ -19,6 +19,8 @@ public class YuGiOhCard {
 
 	/**
 	 * See {@link YuGiOh#getCard(String)}
+	 *
+	 * @param object The JSONObject from the request for parsing.
 	 */
 
 	protected YuGiOhCard(JSONObject object) {
@@ -57,8 +59,6 @@ public class YuGiOhCard {
 	/**
 	 * @return	Return what kind of this card this is,
 	 * 			can be a Spell, Trap, or Monster.
-	 * 			If Monster, can be casted to a {@link MonsterCard}
-	 * 			for access to additional fields.
 	 */
 
 	public CardType getCardType() {
@@ -66,7 +66,7 @@ public class YuGiOhCard {
 	}
 
 	/**
-	 * @return	Get the monsters type. See {@link YuGiOhMonsterType}
+	 * @return	Get the monsters type.
 	 */
 
 	public MonsterType getType() {
@@ -75,7 +75,6 @@ public class YuGiOhCard {
 
 	/**
 	 * @return	Get the family/attribute of the card.
-	 * 			See {@link YuGiOhAttribute}
 	 */
 
 	public MonsterAttribute getFamily() {

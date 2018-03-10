@@ -37,7 +37,6 @@ public class MyAnimeList {
 	 * @param	auth	To prevent storing password in code or file, can provide
 	 * 					pre encoded auth string for authorisation in the format {username}:{password}.
 	 * 					(Do note it's just as easy to decode as it is to encode a Base64 String.)
-	 * @return			MyAnimeList object.
 	 */
 
 	public MyAnimeList(String auth) {

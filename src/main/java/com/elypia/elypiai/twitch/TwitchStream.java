@@ -15,7 +15,7 @@ public class TwitchStream {
 	private String thumbnail;
 
 	/**
-	 * See {@link Twitch#updateTwitchUsers()} and
+	 * See {@link Twitch#update()} and
 	 * {@link TwitchUser#getStream()}
 	 */
 

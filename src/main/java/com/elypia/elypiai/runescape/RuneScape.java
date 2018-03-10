@@ -44,8 +44,9 @@ public class RuneScape {
 	 * but has their profile set to private, name will be "PROFILE_PRIVATE"
 	 * and the rest of the object will be effectively null.
 	 *
-	 * @param username	The username of the player to get.
-	 * @return			RuneScapePlayer
+	 * @param username The username of the player to get.
+	 * @param success What do to with the result.
+	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
 	public void getUser(String username, Consumer<RuneScapeUser> success, Consumer<UnirestException> failure) {
@@ -80,7 +81,6 @@ public class RuneScape {
 	 * Intended for leaderboard notifier system.
 	 *
 	 * @param username	The username of the player to get.
-	 * @return			RuneScapePlayer
 	 */
 
 	public void cacheUser(String username) {
@@ -176,10 +176,6 @@ public class RuneScape {
 		});
 	}
 
-	/**
-	 * @return	Get the number of players currently online.
-	 */
-
 	public void getOnlineUserCount(Consumer<String> success, Consumer<UnirestException> failure) {
         String endpoint = RSEndpoint.PLAYER_COUNT.getEndpoint();
 
@@ -242,7 +238,7 @@ public class RuneScape {
 
     /**
      * Convert XP to the level equivilent. <br>
-     * Exactly the same as calling {@link #convertXpToLevel(int, boolean)},
+     * Exactly the same as calling {@link #convertXpToLevel(long, boolean)},
      * with parameter boolean as <strong>false</strong>.
      *
      * @param	xp      The xp to convert to level.
@@ -281,7 +277,7 @@ public class RuneScape {
     /**
      * Convert a level, or virtual level to the XP equivilent using
      * RuneScapes XP formula. <br>
-     * <strong</>Note: Returns -1 if the level is too high. <br>
+     * Note: Returns -1 if the level is too high. <br>
      * Exactly the same as calling {@link #convertLevelToXp(int, boolean)},
      * with parameter boolean as <strong>false</strong>.
      *

@@ -34,8 +34,7 @@ public class Osu {
 	 * Using this you can call information on each user, as well
 	 * as beatmaps, and recentplay data for users.
 	 *
-	 * @param 	apikey	The API obtained from the osu! website.
-	 * @return 			OSU object
+	 * @param 	apiKey	The API obtained from the osu! website.
 	 */
 
 	public Osu(String apiKey) {
@@ -49,7 +48,6 @@ public class Osu {
 	 *
 	 * @param 	username	The players username.
 	 * @param	mode		The gamemode to view data for.
-	 * @return 				OSUPlayer, contains all information on the user.
 	 */
 
 	public void getUser(String username, OsuMode mode, Consumer<OsuUser> success, Consumer<UnirestException> failure) {
@@ -65,7 +63,6 @@ public class Osu {
 	 *
 	 * @param 	id		The players id.
 	 * @param	mode	The gamemode to view data for.
-	 * @return 			OSUPlayer, contains all information on the user.
 	 */
 
 	public void getUser(int id, OsuMode mode, Consumer<OsuUser> success, Consumer<UnirestException> failure) {
@@ -105,11 +102,10 @@ public class Osu {
 	 * Calls the OSU API for the osuplayer by username and caches
 	 * the data internally for later use. Primarily for local
 	 * leaderboards or a notifier system. If user is not needed
-	 * again see: {@link #getUser(String, int)}.
+	 * again see: {@link #getUser(int, OsuMode, Consumer, Consumer)}}.
 	 *
 	 * @param 	username	The players username.
 	 * @param	mode		The gamemode to view data for.
-	 * @return 				OSUPlayer, contains all information on the user.
 	 */
 
 	public void cacheUser(String username, OsuMode mode) {
@@ -124,11 +120,10 @@ public class Osu {
 	 * Calls the OSU API for the osuplayer by id and caches
 	 * the data internally for later use. Primarily for local
 	 * leaderboards or a notifier system. If user is not needed
-	 * again see: {@link #getUser(int, int)}.
+	 * again see: {@link #getUser(int, OsuMode, Consumer, Consumer)}.
 	 *
 	 * @param 	id		The players id.
 	 * @param	mode	The gamemode to view data for.
-	 * @return 			OSUPlayer, contains all information on the user.
 	 */
 
 	public void cacheUser(int id, OsuMode mode) {
@@ -140,7 +135,6 @@ public class Osu {
 	}
 
 	/**
-	 * See {@link #initiateNotifier(double)}
 	 * Add the listener of an object implementing the OSUListener
 	 * interface, this allows events to execute when a user gains PP.
 	 */
@@ -213,7 +207,6 @@ public class Osu {
 	 * Get the all BeatMap information associated with a RecentPlay.
 	 *
 	 * @param	play	RecentPlay object from an OSUPlayer
-	 * @return 			BeatMap, contains all information on the BeatMap.
 	 */
 
 	public void getBeatMap(RecentPlay play, Consumer<BeatMap> success, Consumer<UnirestException> failure) {
@@ -224,7 +217,6 @@ public class Osu {
 	 * Get the all BeatMap information associated with a BeatMap id.
 	 *
 	 * @param	id	The id of the beatmap to search grab.
-	 * @return 		BeatMap, contains all information on the BeatMap.
 	 */
 
 	public void getBeatMap(String id, Consumer<BeatMap> success, Consumer<UnirestException> failure) {

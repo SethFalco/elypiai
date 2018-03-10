@@ -28,8 +28,7 @@ public class YouTube {
 	 * videos or playlists or grabbing all videos under
 	 * a playlist.
 	 *
-	 * @param	apikey 		The apikey obtained from Google Console.
-	 * @return				YouTube object.
+	 * @param apiKey The apikey obtained from Google Console.
 	 */
 
 	public YouTube(String apiKey) {
@@ -52,13 +51,13 @@ public class YouTube {
 	 * Search YouTube for a video and returns the top
 	 * result only with all information.
 	 *
-	 * @throws RestException
-	 *
-	 * @param	term	Term to search on YouTube.
-	 * @return			Media object with all video information.
+	 * @param term Term to search on YouTube.
+	 * @param type Type of YouTube object.
+	 * @param success What to do with the result.
+	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	private void getData(String term, YouTubeType type, Consumer<YouTubeData> success, Consumer<UnirestException> failure) {
+	public void getData(String term, YouTubeType type, Consumer<YouTubeData> success, Consumer<UnirestException> failure) {
 		Map<String, Object> queryParams = new HashMap<>();
 		queryParams.put("key", API_KEY);
 		queryParams.put("part", "snippet");

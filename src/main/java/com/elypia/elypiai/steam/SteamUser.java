@@ -2,6 +2,8 @@ package com.elypia.elypiai.steam;
 
 import org.json.JSONObject;
 
+import java.util.function.Consumer;
+
 public class SteamUser {
 
 	private long steamid;
@@ -22,7 +24,7 @@ public class SteamUser {
 	private boolean isPrivate;
 
 	/**
-	 * See {@link Steam#getUser(String)}
+	 * See {@link Steam#getUser(String, Consumer, Consumer)}
 	 */
 
 	public SteamUser(JSONObject object) {

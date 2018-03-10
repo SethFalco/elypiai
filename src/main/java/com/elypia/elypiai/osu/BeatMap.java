@@ -6,6 +6,8 @@ import com.elypia.elypiai.osu.data.MapStatus;
 import com.elypia.elypiai.osu.data.OsuMode;
 import org.json.JSONObject;
 
+import java.util.function.Consumer;
+
 public class BeatMap {
 
 	private MapStatus status;
@@ -37,7 +39,7 @@ public class BeatMap {
 	private int max_combo;
 
 	/**
-	 * See {@link OSU#getBeatMap(String)}
+	 * See {@link Osu#getBeatMap(String, Consumer, Consumer)}
 	 */
 
 	public BeatMap(JSONObject object) {

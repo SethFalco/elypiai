@@ -21,11 +21,10 @@ public class SpellCheck {
 	/**
 	 * SpellCheck object for making calls for Bing SpellCheck API,
 	 * this corrects spelling for Strings passed.
-	 * More infromation can be found here: <a href="https://www.microsoft.com/cognitive-servi
-	 * ces/en-us/bing-spell-check-api/documentation">API Overview</a> <br>
+	 * More infromation can be found here:
+	 * <a href="https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api/documentation">API Overview</a>
 	 *
-	 * @param	api_key		API key obtained from Bing.
-	 * @return				SpellCheck object.
+	 * @param	apiKey		API key obtained from Bing.
 	 * @see <a href="https://www.microsoft.com/cognitive-services/en-us/apis">Bing Cognitive Services</a>
 	 */
 
@@ -37,8 +36,9 @@ public class SpellCheck {
 	 * Proof reads the provided String and makes all suggested
 	 * corrections before returning.
 	 *
-	 * @param	body	The body of text to proof read.
-	 * @return			The body with all suggested corrections.
+	 * @param body The body of text to proof read.
+	 * @param success What to perform with the result.
+	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
 	public void proofRead(String body, Consumer<String> success, Consumer<UnirestException> failure) {

@@ -14,7 +14,6 @@ import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
 import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -28,7 +27,15 @@ public class AmazonRequester {
     private String accessKey;
     private RequestSigner signer;
 
-    public AmazonRequester(Amazon amazon) throws InvalidKeyException, NoSuchAlgorithmException {
+    /**
+     * Create an instance of the request helper. This performs the HTTP
+     * requests.
+     *
+     * @param amazon    Parent Amazon instance.
+     * @throws InvalidKeyException  If the key provided is invalid or null.
+     */
+
+    public AmazonRequester(Amazon amazon) throws InvalidKeyException {
         this.amazon = amazon;
 
         signer = new RequestSigner(amazon.getSecret());
@@ -41,7 +48,11 @@ public class AmazonRequester {
      * {@link Amazon#setEndpoint} and grabs the
      * url of the most relevant result.
      *
-     * @param	product 	Product to search for.
+     * @param	product Search query to find products.
+     * @param   groups  What type of data Amazon should return.
+     * @param   index   The department to search in.
+     * @param   success What to perform on the result if succesful.
+     * @param   failure What to do should the request fail, eg timeout.
      */
 
     public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {

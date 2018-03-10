@@ -34,6 +34,7 @@ public class YouTubeData {
 			case CHANNEL: {
 				id = object.getJSONObject("id").getString("channelId");
 				mediaUrl = YouTube.CHANNEL_URL + id;
+				break;
 			}
 		}
 

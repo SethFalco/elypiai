@@ -17,8 +17,9 @@ public class UrbanDictionary {
 	 * are found matching exactly the word or phrase provided. <br>
 	 * Possible null: Returns null if no definitions are found.
 	 *
-	 * @param	term 	The word or phrase to be defined.
-	 * @return			All definitions and other information on the word.
+	 * @param term The word or phrase to be defined.
+	 * @param success What to do with the result of this call.
+	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
 	public void define(String term, Consumer<UrbanResult> success, Consumer<UnirestException> failure) {

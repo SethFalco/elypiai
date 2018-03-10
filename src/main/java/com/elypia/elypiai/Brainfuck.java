@@ -46,9 +46,24 @@ public final class Brainfuck {
 
     private boolean valid;
 
+    /**
+     * Initalise the brainfuck instance with the default number of cells. (10)
+     * Do note this is a dynamic session, all code will still compile however
+     * see {@link Brainfuck(int)} to specify inital number of cells which may
+     * result in better speed.
+     */
+
     public Brainfuck() {
         this(10);
     }
+
+    /**
+     * Initalise the brainfuck instance with the number of
+     * cells provided. This can help speed up interpretting
+     * extremely longs code.
+     *
+     * @param initialCapacity   Default array length before having to expand for more cells.
+     */
 
     public Brainfuck(int initialCapacity) {
         cells = new ArrayList<>(initialCapacity);
@@ -83,6 +98,16 @@ public final class Brainfuck {
         return prints;
     }
 
+    /**
+     * Compile the brainfuck code, then convert the resulting bytes
+     * to a String. <br>
+     * Possible error: If code requests more input than provided.
+     *
+     * @param brainfuck The brainfuck code to interpret.
+     * @param input An array of input bytes for any of input (, command).
+     * @return  A {@link String} result of all printed (. command) {@link byte}s.
+     */
+
     public String compileToString(final String brainfuck, final byte... input) {
         List<Byte> list = compile(brainfuck, input);
         StringBuilder buffer = new StringBuilder();
@@ -91,6 +116,14 @@ public final class Brainfuck {
 
         return buffer.toString();
     }
+
+    /**
+     * Intepret a single command from brainfuck code.
+     *
+     * @param brainfuck The brainfuck we're intepretting.
+     * @param position  The possition of the command.
+     * @return  The possition to go to once complete.
+     */
 
     private int intepretCommand(final byte[] brainfuck, int position) {
         byte command = brainfuck[position];

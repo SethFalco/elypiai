@@ -21,9 +21,18 @@ public enum AmazonEndpoint {
 		this.url = url;
 	}
 
+	/**
+	 * @return	The Amazon homepage for this endpoint / country.
+	 */
+
 	public String getShoppingUrl() {
 		return String.format("https://%s/", url);
 	}
+
+	/**
+	 * @param asin	The ASIN ID of the product.
+	 * @return	The product URL.
+	 */
 
     public String getProductUrl(String asin) {
         return String.format(getShoppingUrl() + "dp/" + asin);

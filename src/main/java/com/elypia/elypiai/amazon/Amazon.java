@@ -7,12 +7,16 @@ import com.elypia.elypiai.utils.Regex;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Amazon {
+
+	/**
+	 * The default {@link AmazonGroup}s to request Amazon for
+	 * while getting product data.
+	 */
 
 	private final static AmazonGroup[] DEFAULT_GROUPS = {
 		AmazonGroup.IMAGES,
@@ -23,36 +27,44 @@ public class Amazon {
 	private String accessKey;
 	private String secret;
 	private String id;
+
+	/**
+	 * Request helper to make API calls for us.
+	 */
+
 	private AmazonRequester requester;
+
+	/**
+	 *	The selected endpoint to make requests.
+	 */
+
 	private AmazonEndpoint endpoint;
 
 	/**
 	 * Calls {@link #Amazon(String, String, String, AmazonEndpoint)}
 	 * with AmazonEndpoint set to {@link AmazonEndpoint#US} by default.
 	 *
-	 * @param accessKey
-	 * @param secret
-	 * @param id
-	 * @throws InvalidKeyException
-	 * @throws NoSuchAlgorithmException
+	 * @param accessKey	Amazon Access Key obtained from AWS.
+	 * @param secret	Amazon Secret obtained from AWS.
+	 * @param id	Amazon Affiliate ID obtained from the Amazon Affiliate Programme.
+	 * @throws InvalidKeyException	If an invalid key is provided.
 	 */
 
-	public Amazon(String accessKey, String secret, String id) throws InvalidKeyException, NoSuchAlgorithmException {
+	public Amazon(String accessKey, String secret, String id) throws InvalidKeyException {
 		this(accessKey, secret, id, AmazonEndpoint.US);
 	}
 
 	/**
 	 * Creates a new instance of Amazon for the id and endpoint provided.
 	 *
-	 * @param accessKey
-	 * @param secret
-	 * @param id
-	 * @param endpoint
-	 * @throws InvalidKeyException
-	 * @throws NoSuchAlgorithmException
+	 * @param accessKey Amazon Access Key obtained from AWS.
+	 * @param secret Amazon Secret obtained from AWS.
+	 * @param id Amazon Affiliate ID obtained from the Amazon Affiliate Programme.
+	 * @param endpoint The {@link AmazonEndpoint} / service this ID is associated with.
+	 * @throws InvalidKeyException	If an invalid key is provided.
 	 */
 
-	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException, NoSuchAlgorithmException {
+	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException {
 		this.accessKey 	= Objects.requireNonNull(accessKey);
 		this.secret 	= Objects.requireNonNull(secret);
 		this.id 		= Objects.requireNonNull(id);

@@ -10,7 +10,7 @@ public enum Ansi {
 
 	/**
 	 * Turn on high-intensity colors.
-	 * Useful for dark backgrounds. <3
+	 * Useful for dark backgrounds. &lt;3
 	 * See also {@link #BOLD_OFF} to disable.
 	 */
 

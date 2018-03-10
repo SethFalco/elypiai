@@ -18,9 +18,7 @@ public class YuGiOh {
 	 * must be perfect, including hythens (-) and spacing.
 	 * Can return a monster or spell/trap card.
 	 *
-	 * @param 	term	The YuGiOh card to search up.
-	 * @return			Card with all information on the card and
-	 * 					a function to download the card image.
+	 * @param 	term	The YuGiOh card to search up, must match card name exactly.
 	 */
 
 	public void getCard(String term) {

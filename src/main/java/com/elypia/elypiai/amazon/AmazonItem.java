@@ -7,14 +7,56 @@ import java.util.Currency;
 
 public class AmazonItem {
 
+    /**
+     * Parent Amazon object that produced this item.
+     */
+
     private Amazon amazon;
 
+    /**
+     * Amazon Standard Identification Number (ASIN)
+     * A unique identifer used by Amazon to identify products
+     * or product models / colors.
+     */
+
     private String asin;
+
+    /**
+     * The Amazon Standard Identifcation Number (ASIN) as a whole
+     * product, regardless of model. Products with multiple versions
+     * or colors will have the same parent ASIN.
+     */
+
     private String parentAsin;
+
+    /**
+     * The product URL of the item.
+     */
+
     private String url;
+
+    /**
+     * A large copy of the default presented image.
+     */
+
     private String largeImage;
+
+    /**
+     * The price of the item.
+     */
+
     private double price;
+
+    /**
+     * The currency this item is listed in.
+     */
+
     private Currency currency;
+
+    /**
+     * @param amazon The parent Amazon item.
+     * @param element Raw format of an item for parsing.
+     */
 
     public AmazonItem(Amazon amazon, Element element) {
         this.amazon = amazon;
@@ -28,6 +70,10 @@ public class AmazonItem {
         Element largeImageEle = JsoupUtils.getElementByTag(element, "LargeImage");
         largeImage = JsoupUtils.getTextByTag(largeImageEle, "URL");
     }
+
+    /**
+     * @return Get the perant Amazon instance that produced this item.
+     */
 
     public Amazon getAmazon() {
         return amazon;

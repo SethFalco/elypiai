@@ -33,7 +33,6 @@ public class Twitch {
 	 * on users, or get stream information if the user is live.
 	 *
 	 * @param 	apiKey		API key obtained from Twitch website.
-	 * @return 				Twitch
 	 */
 
 	public Twitch(String apiKey) {
@@ -49,7 +48,6 @@ public class Twitch {
 	 * information.
 	 *
 	 * @param 	username	The username of the user to get.
-	 * @return 				TwitchUser object with general channel info.
 	 */
 
 	public void getUserAsync(String username, Consumer<TwitchUser> success, Consumer<UnirestException> failure) {
@@ -112,7 +110,6 @@ public class Twitch {
 	 * Intended for a notification system.
 	 *
 	 * @param 	username	The username of the user to get.
-	 * @return 				TwitchUser object with general channel info.
 	 */
 
 	public void cacheUser(String username) {

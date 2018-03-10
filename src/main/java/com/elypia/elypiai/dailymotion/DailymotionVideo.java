@@ -61,9 +61,8 @@ public class DailymotionVideo {
 	 * id provided, may also provide url. <br>
 	 * Do note: This makes a seperate request.
 	 *
-	 * @param videoId
-	 * @return
-	 * @throws RestException
+	 * @param success What to do with the url once complete.
+	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
 	public void getDownloadUrl(Consumer<String> success, Consumer<UnirestException> failure) {

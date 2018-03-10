@@ -17,7 +17,7 @@ public class TwitchUser {
 	private TwitchStream stream;
 
 	/**
-	 * See {@link Twitch#getUser()}
+	 * See {@link Twitch#getUser(String)}}
 	 */
 
 	public TwitchUser(JSONObject user) {
@@ -33,7 +33,7 @@ public class TwitchUser {
 	}
 
 	/**
-	 * See {@link Twitch#updateTwitchUsers()}
+	 * See {@link Twitch#update()}
 	 */
 
 	public void setStreamInfo(JSONObject object) {

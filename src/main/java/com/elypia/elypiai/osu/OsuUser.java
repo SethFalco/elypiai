@@ -7,6 +7,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.net.URL;
+import java.util.function.Consumer;
 
 public class OsuUser {
 
@@ -34,7 +35,7 @@ public class OsuUser {
 	private String profileUrl;
 
 	/**
-	 * See {@link OSU#getUser(String, int)}
+	 * See {@link Osu#getUser(String, OsuMode, Consumer, Consumer)}}
 	 */
 
 	public OsuUser(OsuMode mode, JSONObject object) {

@@ -22,9 +22,13 @@ public class RequestSigner {
 
 	private Mac mac;
 
-	public RequestSigner(String secret) throws NoSuchAlgorithmException, InvalidKeyException {
-		mac = Mac.getInstance("HmacSHA256");
-		mac.init(new SecretKeySpec(secret.getBytes(charset), mac.getAlgorithm()));
+	public RequestSigner(String secret) throws InvalidKeyException {
+		try {
+			mac = Mac.getInstance("HmacSHA256");
+			mac.init(new SecretKeySpec(secret.getBytes(charset), mac.getAlgorithm()));
+		} catch (NoSuchAlgorithmException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	public String sign(AmazonEndpoint endpoint, Map<String, Object> queryParams) {

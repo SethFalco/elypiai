@@ -28,11 +28,10 @@ public class TextAnalytics {
 	 * pull significant information such as topics and key phrases
 	 * or find the sentiment behind a message as a numeric value.
 	 *
-	 * More infromation can be found here: <a href="https://www.microsoft.com/cogn
-	 * itive-services/en-us/text-analytics/documentation">API Overview</a> <br>
+	 * More infromation can be found here:
+	 * <a href="https://www.microsoft.com/cognitive-services/en-us/text-analytics/documentation">API Overview</a>
 	 *
-	 * @param	api_key		API key obtained from Bing.
-	 * @return				TextAnalytics object.
+	 * @param	apiKey		API key obtained from Bing.
 	 * @see <a href="https://www.microsoft.com/cognitive-services/en-us/apis">Bing Cognitive Services</a>
 	 */
 
@@ -46,10 +45,11 @@ public class TextAnalytics {
 	 * and value as the Languages detected.
 	 *
 	 * @param	array	Strings to detect language from.
-	 * @return			A Map of string to language.
+	 * @param success What to perform with the result.
+	 * @param failure What to perform in case of failure, eg timeout.
 	 */
 
-	public void detectLanguages(Consumer<Map<String, String>> success, Consumer<UnirestException> failure, String... array) {
+	public void detectLanguages(String[] array, Consumer<Map<String, String>> success, Consumer<UnirestException> failure) {
 		JSONArray documents = new JSONArray();
 
 		for (int i = 0; i < array.length; i++)
@@ -88,8 +88,9 @@ public class TextAnalytics {
 	/**
 	 * Returns the language detected from the String provided.
 	 *
-	 * @param	body	String to detect language from.
-	 * @return			The language name.
+	 * @param body String to detect language from.
+	 * @param success What to perform with the result.
+	 * @param failure What to perform in case of failure, eg timeout.
 	 */
 
 	public void detectLanguage(String body, Consumer<String> success, Consumer<UnirestException> failure) {
@@ -126,9 +127,9 @@ public class TextAnalytics {
 	 * detection. This will NOT return the topics found. This method
 	 * will post the request to Bing to begin processing of the data
 	 * provided in order to return the topics later.
-	 * Expected to do: {@link #detectTopicsStatus(String)} periodically
+	 * Expected to do: {@link #detectTopicsStatus(String, Consumer, Consumer)} periodically
 	 * using the recieved operation ID in order to check if the
-	 * documents have finished processing yet, then {@link #getDetectedTopics(String)}
+	 * documents have finished processing yet, then {@link #getDetectedTopics(String, Consumer, Consumer)}
 	 * to collect the result. <br>
 	 * Do note: <br>
 	 * The documents can take a long time to process. <br>
@@ -136,9 +137,7 @@ public class TextAnalytics {
 	 *
 	 * @param	documents			Array of documents to search detect topics.
 	 * @param	topicsToExclude		Topics to ignore if found.
-	 * @param	stopWords			Words ignored entirely from the topics
-	 * 								(Includes similar and pluruls.).
-	 * @return						The operationId to recieve result later.
+	 * @param	stopWords			Words ignored entirely from the topics (Includes similar and pluruls.).
 	 */
 
 	public void detectTopics(String[] documents, String[] topicsToExclude, String[] stopWords, Consumer<String> success, Consumer<UnirestException> failure)  {
@@ -187,13 +186,12 @@ public class TextAnalytics {
 	}
 
 	/**
-	 * Expected after {@link #detectTopics(String[], String[], String[])}
+	 * Expected after {@link #detectTopics(String[], String[], String[], Consumer, Consumer)}
 	 * Will retrn if the operation provided has completed.
-	 * If true follow with {@link #getDetectedTopics(String)} to return topics.
+	 * If true follow with {@link #getDetectedTopics(String, Consumer, Consumer)} to return topics.
 	 *
 	 * @param	operation	The operationId provided from
-	 * 						{@link #detectTopics(String[], String[], String[])}.
-	 * @return				If the operation is complete. (Documents have been processed.)
+	 * 						{@link #detectTopics(String[], String[], String[], Consumer, Consumer)}.
 	 */
 
 	public void detectTopicsStatus (String operation, Consumer<Boolean> success, Consumer<UnirestException> failure) {
@@ -218,14 +216,13 @@ public class TextAnalytics {
 	}
 
 	/**
-	 * Expected after {@link #detectTopicsStatus(String)}
+	 * Expected after {@link #detectTopicsStatus(String, Consumer, Consumer)}}
 	 * Will return the {@link Collection} of topics detected from
 	 * the documents provided. <br>
 	 * Possible null: if operation is incomplete or invalid.
 	 *
 	 * @param	operation	The operationId provided from
-	 * 						{@link #detectTopics(String[], String[], String[])}.
-	 * @return				A collection of topics returned.
+	 * 						{@link #detectTopics(String[], String[], String[], Consumer, Consumer)}}.
 	 */
 
 	public void getDetectedTopics(String operation, Consumer<Collection<String>> success, Consumer<UnirestException> failure) {
@@ -266,7 +263,6 @@ public class TextAnalytics {
 	 * as a {@link Collection}.
 	 *
 	 * @param	body	String to check keyphrases for.
-	 * @return			A collection of keyphrases returned.
 	 */
 
 	public void keyPhrases(String body, Consumer<Collection<String>> success, Consumer<UnirestException> failure) {
@@ -313,8 +309,9 @@ public class TextAnalytics {
 	 * in the form of a numerican value between 0 and 1;
 	 * a value representing better.
 	 *
-	 * @param	body	String to check.
-	 * @return			A double between 0 and 1.
+	 * @param body String to check.
+	 * @param success What to do with the result.
+	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
 	public void sentiment(String body, Consumer<Double> success, Consumer<UnirestException> failure) {

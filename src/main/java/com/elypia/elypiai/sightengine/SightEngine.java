@@ -25,7 +25,6 @@ public class SightEngine {
 	 *
 	 * @param user		The user name from the SightEnginer API.
 	 * @param secret	The Secret from the SightEngine API.
-	 * @return			SightEngine object.
 	 */
 
 	public SightEngine(String user, String secret) {
@@ -40,7 +39,6 @@ public class SightEngine {
 	 * makes it unsafe.
 	 *
 	 * @param 	url		The url of an image to check for.
-	 * @return			NudityResponse with all information and scores.
 	 */
 
 	public void nudityDetection(String url, Consumer<NudityResponse> success, Consumer<UnirestException> failure) {

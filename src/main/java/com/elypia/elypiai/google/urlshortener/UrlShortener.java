@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class UrlShortener {
+public class URLShortener {
 
 	private static final String SHORTEN_ENDPOINT = "https://www.googleapis.com/urlshortener/v1/url";
 
@@ -20,18 +20,19 @@ public class UrlShortener {
 	 * Shortens urls provided using the Google
 	 * URL Shortener API.
 	 *
-	 * @param	apikey	API key obtained from Google console.
+	 * @param apiKey API key obtained from Google console.
 	 */
 
-	public UrlShortener(String apiKey) {
+	public URLShortener(String apiKey) {
 		API_KEY = apiKey;
 	}
 
 	/**
 	 * Takes in a url and shortens it.
 	 *
-	 * @param	url		Url to shorten.
-	 * @return			Shortened url.
+	 * @param url URL to shorten.
+	 * @param success Method to consume the result.
+	 * @param failure Method to consume a failure, eg timeout.
 	 */
 
 	public void shorten(String url, Consumer<String> success, Consumer<UnirestException> failure) {
@@ -66,6 +67,12 @@ public class UrlShortener {
 			}
 		});
 	}
+
+	/**
+	 * @param url The Google shorted url, to obatin stats of.
+	 * @param success What to perform with result.
+	 * @param failure What to perform in case of failure, eg timeout.
+	 */
 
 	public void shortenedLinkInfo(String url, Consumer<ShortUrlAnalytics> success, Consumer<UnirestException> failure) {
 		Map<String, Object> queryParams = new HashMap<>();

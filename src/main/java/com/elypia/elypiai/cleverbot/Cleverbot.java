@@ -45,7 +45,6 @@ public class Cleverbot {
 	 *
 	 * @param cs		The Cleverbot state from previously.
 	 * @param input		The text to send to cleverbot.
-	 * @return			The cleverbot response.
 	 */
 
 	public void say(String input, String cs, Consumer<CleverResponse> result, Consumer<UnirestException> failure) {
