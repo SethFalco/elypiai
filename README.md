@@ -41,7 +41,6 @@ Module | About
 
 ###### * You'll need an API key or authentiacation to access this API.
 
-<img align="right" src="https://elypia.com/resources/logo_pic.png" height="200" width="200">
 ### Support
 Should any problems occur, come visit us over on [Discord](https://discord.gg/hprGMaM)! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
 
