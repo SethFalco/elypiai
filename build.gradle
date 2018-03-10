@@ -26,12 +26,12 @@ jar {
 		attributes 	'Implementation-Title'	 : projectName,
 					'Implementation-Version' : projectVersion
 	}
+}
 
-	doLast {
-		copy {
-			from './build/libs/Elypiai.jar'
-			into './'
-		}
+task jarToWorkingDir(dependsOn: 'jar') {
+	copy {
+		into './'
+		from './build/libs/Elypiai.jar'
 	}
 }
 
