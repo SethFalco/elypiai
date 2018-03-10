@@ -21,7 +21,7 @@ build:
       - .gradle
   artifacts:
     paths:
-      - build/libs/
+      - ./Elypiai.jar
 
 test:
   stage: test

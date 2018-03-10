@@ -26,16 +26,18 @@ jar {
 		attributes 	'Implementation-Title'	 : projectName,
 					'Implementation-Version' : projectVersion
 	}
+
+	doLast {
+		copy {
+			from './build/libs/Elypiai.jar'
+			into './'
+		}
+	}
 }
 
 bintray {
 	user = System.getenv('BINTRAY_USER')
 	key = System.getenv('BINTRAY_KEY')
-
-	filesSpec {
-		from 'build/libs'
-		into '.'
-	}
 
 	pkg {
 		repo = projectName
