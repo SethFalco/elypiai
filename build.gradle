@@ -15,6 +15,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 String projectName = 'Elypiai'
@@ -27,6 +28,21 @@ jar {
 		attributes 	'Implementation-Title'	 : projectName,
 					'Implementation-Version' : projectVersion
 	}
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
 }
 
 bintray {
@@ -52,22 +68,22 @@ bintray {
 def pomConfig = {
 	licenses {
 		license {
-			name "The Apache Software License, Version 2.0"
-			url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+			name 'The Apache Software License, Version 2.0'
+			url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
 			distribution projectName
 		}
 	}
 
 	developers {
 		developer {
-			id "developer-id"
-			name "Seth"
+			id 'Seth'
+			name 'Seth'
 			email "seth@elypia.com"
 		}
 	}
 
 	scm {
-		url "https://github.com/yourgithubaccount/example"
+		url 'https://gitlab.com/Elypia/Elypiai'
 	}
 }
 
