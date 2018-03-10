@@ -49,13 +49,45 @@ bintray {
 	}
 }
 
+def pomConfig = {
+	licenses {
+		license {
+			name "The Apache Software License, Version 2.0"
+			url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+			distribution projectName
+		}
+	}
+
+	developers {
+		developer {
+			id "developer-id"
+			name "Seth"
+			email "seth@elypia.com"
+		}
+	}
+
+	scm {
+		url "https://github.com/yourgithubaccount/example"
+	}
+}
+
 publishing {
 	publications {
 		Elypiai(MavenPublication) {
 			from components.java
+			artifact sourcesJar
+			artifact javadocJar
 			groupId 'com.elypia'
 			artifactId 'elypiai'
 			version projectVersion
+
+			pom.withXml {
+				def root = asNode()
+				root.appendNode('description', 'All in one API wrapper.')
+				root.appendNode('name', projectName)
+				root.appendNode('url', 'https://elypia.com/')
+				root.children().last() + pomConfig
+			}
 		}
 	}
 }
