@@ -15,6 +15,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
+apply plugin: 'maven-publish'
 
 String projectName = 'Elypiai'
 String projectVersion = '1.0.0'
@@ -31,6 +32,7 @@ jar {
 bintray {
 	user = System.getenv('BINTRAY_USER')
 	key = System.getenv('BINTRAY_KEY')
+	publications = ['Elypiai']
 
 	pkg {
 		repo = projectName
@@ -43,6 +45,17 @@ bintray {
 			name = projectVersion
 			desc = 'All in one API wrapper.'
 			released = new Date()
+		}
+	}
+}
+
+publishing {
+	publications {
+		Elypiai(MavenPublication) {
+			from components.java
+			groupId 'com.elypia.elypiai'
+			artifactId 'elypiai'
+			version projectVersion
 		}
 	}
 }
