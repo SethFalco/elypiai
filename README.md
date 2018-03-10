@@ -1,50 +1,48 @@
-# Utopiai
-## Importing to your project
-### Download
-You can download the this by getting the [Utopiai.jar file](https://github.com/SethX3/Utopiai/raw/master/Utopiai.jar) in the Git and importing it as an External JAR in your IDE.
-### Mavens/Gradle (or Other)
-[Jitpack](https://jitpack.io/#SethX3/Utopiai/master) can compile and provide this project a dependency however this does not come with sources or javadocs.
+## Elypiai
+[![Bintray Download](https://api.bintray.com/packages/elypia/Elypiai/Elypiai/images/download.svg)](https://bintray.com/elypia/Elypiai/Elypiai/_latestVersion)
+[![GitLab Pipeline Status](https://gitlab.com/Elypia/Elypiai/badges/master/pipeline.svg)](https://gitlab.com/Elypia/Elypiai/commits/master)
+[![GitLab Coverage Report](https://gitlab.com/Elypia/Elypiai/badges/master/coverage.svg)](https://gitlab.com/Elypia/Elypiai/commits/master)
+[![Discord](https://discordapp.com/api/guilds/184657525990359041/widget.png)](https://discord.gg/hprGMaM)
 
-## About
-During my time programming I've used many APIs, primiarly in [Alexis](https://github.com/SethX3/Alexis), my Discord chatbot. All APIs I've used have been wrapped into a single seperate project for easy importing to any other project they may be needed in.
+### Importing
+#### [Gradle](https://gradle.org/)
+```gradle
+implementation 'com.elypia:elypiai:{VERSION}'
+```
 
-### Wrapped APIs / Utilities
+#### [Maven](https://maven.apache.org/)
+```xml
+<dependency>
+  <groupId>com.elypia</groupId>
+  <artifactId>elypiai</artifactId>
+  <version>{VERSION}</version>
+</dependency>
+```
 
-#### APIs
-[Amazon Product API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html) - Search Amazon for products and earn commision on purchases. <br>
-[Cleverbot](https://www.cleverbot.com/api/) - Query Cleverbot and hold a conversation with it. You can have up to 5,000 calls/month for free. <br>
-[Bing Cognative Services](https://www.microsoft.com/cognitive-services) - Search the internet for websites or images, spell check text or get text analytics. <br>
-[YouTube Data](https://console.developers.google.com/) - Search YouTube for videos of playlists. <br>
-[Google LinkShortener](https://console.developers.google.com/) - Shorten a URL using Google's link shortening service. <br>
-[SightEngine](https://sightengine.com/) - Nudity Detection, recieve a score on how safe an image is. <br>
-[MyAnimeList](https://myanimelist.net/modules.php?go=api) - Search MyAnimeList and get information on an anime or anime movie. <br>
-[Urban Dictionary](http://api.urbandictionary.com/v0/define?term=api) - Search Urban Dictionary and return the top voted or random definition. <br>
-[Twitch](https://dev.twitch.tv/docs) - Get information on Twitch Streamers, has premade Notifier via event listeners. <br>
-[Steam](https://steamcommunity.com/dev) - Steam API get user information and user game libraries. <br>
-[League of Legends](https://developer.riotgames.com/) - Currently only provides current Free Champion Rotation. <br>
-[osu!](https://osu.ppy.sh/p/api) - Get info on players for all modes and beatmaps. Also contains pre-made notifier via event listeners. <br>
-[RuneScape](http://runescape.wikia.com/wiki/Application_programming_interface) - Get information on users, plus a notifier for significant events such as 200m XP or Level 99. <br>
-[Yu-Gi-Oh! Prices](http://docs.yugiohprices.apiary.io/) - Get information on Yu-Gi-Oh! cards and download card images. <br>
-[StackExchange](https://api.stackexchange.com/) - Query StackOverflow with a question and tags and return the top result. <br>
+### APIs and Utilities
+Module | About
+------- | -----
+[Amazon Product API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html) | Generate links and monetize with the [Amazon Affiliate Program](https://affiliate-program.amazon.com/). *
+[Bing Cognative Services](https://www.microsoft.com/cognitive-services) | Search for sites and images, spell check, and text analytics. *
+[Brainfuck Interpretter](https://en.wikipedia.org/wiki/Brainfuck) | Interpret brainfuck to a `byte[]` or `String`, compatible with input.
+[Cleverbot](https://www.cleverbot.com/api/) | Chat with cleverbot! *
+[Google LinkShortener](https://console.developers.google.com/) | Shorten a URL and query information on existing ones. *
+[MyAnimeList](https://myanimelist.net/modules.php?go=api) | Get information on mangas and animes as they appear on MyAnimeList. *
+[osu!](https://osu.ppy.sh/p/api) | Call user and play data, with notifier for significant events. *
+[Regex](https://regex101.com/) | `Enum` of regexs ready to validate or parse any common data such as email addresses or API keys.
+[RuneScape](http://runescape.wikia.com/wiki/Application_programming_interface) | Get information on users, plus a notifier for significant events.
+[SightEngine](https://sightengine.com/) | Image detection, check for celebrities, nudity or otherwise inappropriate images. *
+[StackExchange](https://api.stackexchange.com/) | Query StackOverflow with a question and optional tags. *
+[Steam](https://steamcommunity.com/dev) | Steam API get user information and user game libraries. *
+[Twitch](https://dev.twitch.tv/docs) | Get information on Twitch users and streams, with notifer. *
+[Urban Dictionary](http://api.urbandictionary.com/v0/define?term=api) | Search Urban Dictionary and return the top voted or random definition.
+[Yu-Gi-Oh! Prices](http://docs.yugiohprices.apiary.io/) | Get information on Yu-Gi-Oh! cards and download card images.
+[YouTube Data](https://console.developers.google.com/) | Search YouTube for videos, playlists or channels. *
 
-###### Many of these require you sign up for an API key.
+###### * You'll need an API key or authentiacation to access this API.
 
-#### Utilities
-[Bi-Directional Draconic Translator](http://draconic.twilightrealm.com/) - Translate from English to Draconic and vice versa. <br>
-[Pun Generator](http://www.sugartoast.com/game/terrible-pun-generator) - Generates a random pun. <br>
-SUtils - Basic Utility class. <br>
-HttpRequest Helper - Helper Class for making Http Requests. <br>
-MySQL Wrapper - Make creating requests to a MySQL database relativly easier. <br>
-Table Builder - Grab a list of any object and generate a table.
+<img align="right" src="https://elypia.com/resources/logo_pic.png" height="200" width="200">
+### Support
+Should any problems occur, come visit us over on [Discord](https://discord.gg/hprGMaM)! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
 
-###### If applicable - linked to website used to function.
-
-##### Please visit the Wiki for documentation for Utopiai or the website as linked for info.
-
-### Required Dependencies
-[org.json](https://mvnrepository.com/artifact/org.json/json/20160810) - For parsing JSON <br>
-[JSoup](https://mvnrepository.com/artifact/org.jsoup/jsoup/1.10.2) - For webscrapping and parsing XML <br>
-[Apache Commons Lang](https://mvnrepository.com/artifact/org.apache.commons/commons-lang3/3.5) <br>
-[Apache Commons Collections](https://mvnrepository.com/artifact/org.apache.commons/commons-collections4/4.1) <br>
-[Apache Commons HttpClient](https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient/4.5.3)
-##### Please note that the provided .jar does _NOT_ come with dependencies.
+This project is _heavily_ relied on by [Alexis, the Discord bot](https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot). If you are on Discord feel free to join our guild as well and check her out so you can see Elypiai in action.
