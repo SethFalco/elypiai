@@ -39,7 +39,7 @@ bintray {
 		name = projectName
 		userOrg = 'elypia'
 		licenses = ['Apache-2.0']
-		vcsUrl = 'https://gitlab.com/Elypia/Elypiai.git'
+		vcsUrl = 'https://gitlab.com/Elypia/' + projectName + '.git'
 
 		version {
 			name = projectVersion
