@@ -32,12 +32,9 @@ bintray {
 	user = System.getenv('BINTRAY_USER')
 	key = System.getenv('BINTRAY_KEY')
 
-	copySpec  {
-		into('standalone_files/level1')
-
-		from {
-			'build/libs/Elypiai.jar'
-		}
+	filesSpec {
+		from 'build/libs'
+		into '.'
 	}
 
 	pkg {
