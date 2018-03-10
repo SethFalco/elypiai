@@ -54,6 +54,98 @@ public class RegexTest {
     }
 
     @Test
+    public void testYandexApiKeys() {
+        Regex regex = Regex.YANDEX_API_KEY;
+
+        assertAll("Test Valid Yandex API Keys",
+            () -> assertTrue(regex.matches("trnsl.1.1.20170220T173803Z.737da74618485447.8b810aeb3bd80c41f13f2cb27d1cae082b3373ef")),
+            () -> assertTrue(regex.matches("trnsl.1.1.20180309T092933Z.8c3a2482975ec1d5.1d5f4530bb85b618d4ed8476ee42c9cc7fc1efe5")),
+            () -> assertTrue(regex.matches("trnsl.1.1.20180309T093008Z.9295f7482689a713.a831b608277ef7b6828b0211520efd27185700ae")),
+            () -> assertTrue(regex.matches("trnsl.1.1.20180309T093019Z.e9f126e78eb7ba85.8ffcd290e1aa7f605a55957071a844875cf13310")),
+            () -> assertTrue(regex.matches("trnsl.1.1.20180309T093027Z.35460d379d5867bf.5afea4f55f76090058a967f4efafb66cb308f04a")),
+            () -> assertTrue(regex.matches("trnsl.1.1.20180309T093035Z.db5b1d61df219a66.0cf9302b1e1a467f9d81ae9aa8f3b4ca146cb9da")),
+            () -> assertTrue(regex.matches("trnsl.1.1.20180309T093044Z.c0790c3816440d3d.9b4b63d4f50cb5b518b55430a0fab6a335595921")),
+            () -> assertTrue(regex.matches("trnsl.1.1.20180309T093051Z.1e8942f97cf8c1ce.e24fafa3939670dd8df63cdff08d95dc808c0663"))
+        );
+    }
+
+    @Test
+    public void testOsuApiKeys() {
+        Regex regex = Regex.OSU_API_KEY;
+
+        assertAll("Test Valid osu! API Keys",
+            () -> assertTrue(regex.matches("0a73573363aed3fb9512e8f7e64812de0aa0eb7f")),
+            () -> assertTrue(regex.matches("69c0b6bd9e2265ec9879b1002e1a3402f9c833bb")),
+            () -> assertTrue(regex.matches("76fde4f8805605d6e437470e0bf81edd8d61903c")),
+            () -> assertTrue(regex.matches("ec47d3fbec2d2009514f10843b8fb436887d5124")),
+            () -> assertTrue(regex.matches("acdd3e5c46bbc0aa596f32fe63463d74c7396f66")),
+            () -> assertTrue(regex.matches("2fc41254cc8c8393be49c4ef91868ef987ae27f9")),
+            () -> assertTrue(regex.matches("2bfa90a77c0d02bc706ba1089a976568bb3fb4b3")),
+            () -> assertTrue(regex.matches("bb3ece55184596419b8fdfcf73c83aa16206e098")),
+            () -> assertTrue(regex.matches("98782d0adc7e0cd51fa49d37d7017cfa9ee46146")),
+            () -> assertTrue(regex.matches("3cc15f79fe96bb03f14a5371c3dec95aa30d1353"))
+        );
+    }
+
+    @Test
+    public void testLeagueOfLegendsApiKeys() {
+        Regex regex = Regex.LEAGUE_OF_LEGENDS_API_KEY;
+
+        assertAll("Test Valid League of Legends API Keys",
+            () -> assertTrue(regex.matches("RGAPI-6ab4023a-eac1-431c-a3ca-a9be7d369d26")),
+            () -> assertTrue(regex.matches("RGAPI-d20458a7-519e-4069-9b49-978a753fd59f")),
+            () -> assertTrue(regex.matches("RGAPI-eff6c9f8-b0cb-4c8d-b314-eea6f1acaac1")),
+            () -> assertTrue(regex.matches("RGAPI-dd45e928-1107-4708-b3c1-be705f53963e")),
+            () -> assertTrue(regex.matches("RGAPI-d392e866-a56c-4d6f-9a87-e4693b54ae0d")),
+            () -> assertTrue(regex.matches("RGAPI-334ceebd-1e82-416b-9fc2-e9a3b33abde4")),
+            () -> assertTrue(regex.matches("RGAPI-4d63bf38-e273-4d0c-8678-3b30a67eb6e0")),
+            () -> assertTrue(regex.matches("RGAPI-03a6d507-d863-4f63-b40f-1de11eb661f7")),
+            () -> assertTrue(regex.matches("RGAPI-a5a2fc27-8876-45fd-b49f-466cda33a70c")),
+            () -> assertTrue(regex.matches("RGAPI-0cd32620-e821-46b2-b4c3-691bfb2c919c"))
+        );
+    }
+
+    @Test
+    public void testTwitchSecrets() {
+        Regex regex = Regex.TWITCH_SECRET;
+
+        assertAll("Test Valid Twitch Secrets Secrets",
+            () -> assertTrue(regex.matches("uj03bz9l56n9kylf2p0za1yt8o9m3j")),
+            () -> assertTrue(regex.matches("3njgo97a5031gbutxljfn06dmrvoto")),
+            () -> assertTrue(regex.matches("6fnqxoga6sgzv3mmh1i29rouv327lo")),
+            () -> assertTrue(regex.matches("z3vtl7363jfo5ptpygo9tfmtacv99q")),
+            () -> assertTrue(regex.matches("gg0zqbbjqo4s4527dthrv966wo70bv")),
+            () -> assertTrue(regex.matches("b35z7t2war7j3u967f2pl1rif340lt")),
+            () -> assertTrue(regex.matches("ejrtuvxrg6bb3u5l49wtotwgtnro0m")),
+            () -> assertTrue(regex.matches("yoxenrj6kr35q34p8h5lmiaay9vav7")),
+            () -> assertTrue(regex.matches("pb7wqfoy7rclngeqmmfn93edv74zqs"))
+        );
+    }
+
+    @Test
+    public void testGoogleApiKeys() {
+        Regex regex = Regex.GOOGLE_API_KEY;
+
+        assertAll("Test Valid League of Legends API Keys",
+            () -> assertTrue(regex.matches("AIzaSyAbtg-iHXRUFN_b-ElT-07fKemXe__x320")),
+            () -> assertTrue(regex.matches("AIzaSyBSXpt4aMDRs-6qu37mazTGqdyXq1yvEFI")),
+            () -> assertTrue(regex.matches("AIzaSyBrMeXxJyHPYg1GFei7JtsIYibcN5ghvzU")),
+            () -> assertTrue(regex.matches("AIzaSyBfcE5hQoUeWmhPm83Jc0SCBD5LpF7oDHg")),
+            () -> assertTrue(regex.matches("AIzaSyCvAZ5FrcMVHbfsY9O8NnjGS0rYRItDFoY")),
+            () -> assertTrue(regex.matches("AIzaSyCMcbrpdDnPdp9qNc6dtniMd-Z9NQqNgu8")),
+            () -> assertTrue(regex.matches("AIzaSyBH7dUcWI9LGpEfOFFLa_PNJU6ELn7Z71s")),
+            () -> assertTrue(regex.matches("AIzaSyAhPqRL68PcSXWbKXU8AKlydufV4wl42Zs")),
+            () -> assertTrue(regex.matches("AIzaSyBVLIA-hvr5Til0fybkHEaJwtQtW_ysUNo")),
+            () -> assertTrue(regex.matches("AIzaSyAqonbXQfhFTsk_OWdI_csSDHhdnaASI6E")),
+            () -> assertTrue(regex.matches("AIzaSyADbhb5UPOCG0DFdLmavZX7HWzE0l_Gjpo")),
+            () -> assertTrue(regex.matches("AIzaSyAVSmoTDNIlNFWMNHX2U1gVTgvFphTc72E")),
+            () -> assertTrue(regex.matches("AIzaSyBiwY_MwgSpbwy3w3IQzxTRXLrDHPNmfxs")),
+            () -> assertTrue(regex.matches("AIzaSyB95drER65QN1tkUrI90P_n5zVr0gzeScA")),
+            () -> assertTrue(regex.matches("AIzaSyCrV1SsXJMGbIZN_YFEh0KMCZR391vvUwU"))
+        );
+    }
+
+    @Test
     public void testAmazonAccessKeys() {
         Regex regex = Regex.AMAZON_ACCESS_KEY;
 

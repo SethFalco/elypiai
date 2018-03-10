@@ -79,3 +79,61 @@ task wrapper(type: Wrapper) {
 	description = 'Generates gradlew[.bat] scripts'
 	gradleVersion = '4.6'
 }
+
+import groovy.io.FileType
+
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+class SecretTask extends DefaultTask {
+
+	@TaskAction
+	void search() {
+		final File currentDirectory = new File(".")
+		final List<File> files = new ArrayList<>()
+
+		currentDirectory.eachFileRecurse(FileType.FILES) { file ->
+			String name = file.getCanonicalPath()
+
+			if (!name.contains("Test") && name.endsWith(".java"))
+				files << file
+		}
+
+		files.each { file ->
+			boolean failed
+			List<String> lines
+
+			try {
+				lines = file.readLines()
+			} catch (IOException) {
+				System.err.printf("Unable to read: '%s'%n", file.getCanonicalPath())
+				return
+			}
+
+			Map<String, Pattern> patterns = new HashMap<>()
+			patterns.put("Discord Bot Token", Pattern.compile(/(?i)[A-Z\d]{24}\.[A-Z\d-_]{6}\.[A-Z\d-_]{27}/))
+			patterns.put("Amazon Access Key", Pattern.compile(/AKIA[IJ][A-Z2-7]{14}[AQ]/))
+			patterns.put("Amazon Secret", Pattern.compile(/(?i)\b[A-Z\d\/+]{40}\b/))
+			patterns.put("Steam API Key", Pattern.compile(/[A-F\d]{32}/))
+
+			for (int i = 0; i < lines.size(); i++) {
+				patterns.forEach { name, pattern ->
+					Matcher match = pattern.matcher(lines[i])
+
+					while (match.find()) {
+						String message = "Found %s at: '%s' line: %d%n"
+						System.err.printf(message, name, file.getCanonicalPath(), i + 1)
+						failed = true
+					}
+				}
+			}
+
+			if (failed) {
+				String message = "Found secrets in the code, read logs and revoke these ASAP."
+				throw new GradleScriptException(message, null)
+			}
+		}
+	}
+}
+
+task search(type: SecretTask)

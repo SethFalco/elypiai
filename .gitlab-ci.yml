@@ -6,6 +6,10 @@ variables:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
+search:
+  stage: build
+  script: gradle search
+
 build:
   stage: build
   script: gradle --build-cache assemble

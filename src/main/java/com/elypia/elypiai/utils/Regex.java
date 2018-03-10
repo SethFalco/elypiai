@@ -9,9 +9,14 @@ public enum Regex {
 	// Secret Matching
 
 	DISCORD_BOT_TOKEN("(?i)[A-Z\\d]{24}\\.[A-Z\\d-_]{6}\\.[A-Z\\d-_]{27}"),
-	AMAZON_ACCESS_KEY("AKIA[IJ][A-Z2-7]{14}[AQ]"),
+	AMAZON_ACCESS_KEY("AKIA[IJ][A-Z\\d]{14}[AQ]"),
 	AMAZON_SECRET("(?i)[A-Z\\d\\/+]{40}"),
 	STEAM_API_KEY("[A-F\\d]{32}"),
+	GOOGLE_API_KEY("AIzaSy[A-C][A-Za-z\\d-_]{32}"),
+	TWITCH_SECRET("[a-z\\d]{30}"),
+	LEAGUE_OF_LEGENDS_API_KEY("RGAPI-[a-f\\d]{8}(?:-[a-f\\d]{4}){3}-[a-f\\d]{12}"),
+	OSU_API_KEY("[a-f\\d]{40}"),
+	YANDEX_API_KEY("trnsl(?:\\.\\d){2}\\.\\d{8}T\\d{6}Z\\.[a-z\\d]{16}\\.[a-z\\d]{40}"),
 
 	// Message Parser Regexes
 
