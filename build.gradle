@@ -36,7 +36,7 @@ bintray {
 	pkg {
 		repo = projectName
 		name = projectName
-		userOrg = 'Elypia'
+		userOrg = 'elypia'
 		licenses = ['Apache-2.0']
 		vcsUrl = 'https://gitlab.com/Elypia/Elypiai.git'
 
