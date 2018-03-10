@@ -31,7 +31,14 @@ jar {
 bintray {
 	user = System.getenv('BINTRAY_USER')
 	key = System.getenv('BINTRAY_KEY')
-	configurations = ['archives']
+
+	copySpec  {
+		into('standalone_files/level1')
+
+		from {
+			'build/libs/Elypiai.jar'
+		}
+	}
 
 	pkg {
 		repo = projectName
