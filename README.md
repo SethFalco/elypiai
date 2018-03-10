@@ -26,9 +26,12 @@ Module | About
 [Bing Cognative Services](https://www.microsoft.com/cognitive-services) | Search for sites and images, spell check, and text analytics. *
 [Brainfuck Interpretter](https://en.wikipedia.org/wiki/Brainfuck) | Interpret brainfuck to a `byte[]` or `String`, compatible with input.
 [Cleverbot](https://www.cleverbot.com/api/) | Chat with cleverbot! *
+[Elypian Script Notation](https://gitlab.com/Elypia/Elyversity/wikis/Elypian-Script-Notation) | Create dynamic text following a set of rules dictated in a single `String`. 
 [Google LinkShortener](https://console.developers.google.com/) | Shorten a URL and query information on existing ones. *
 [MyAnimeList](https://myanimelist.net/modules.php?go=api) | Get information on mangas and animes as they appear on MyAnimeList. *
+[NaNoWriMo](https://nanowrimo.org/wordcount_api) | Get scores or create applications or plugins to push word counts for users!
 [osu!](https://osu.ppy.sh/p/api) | Call user and play data, with notifier for significant events. *
+[Path of Exile](https://www.pathofexile.com/developer/docs/api-resources) | User data, stashes (items), league scores and ladders.
 [Regex](https://regex101.com/) | `Enum` of regexs ready to validate or parse any common data such as email addresses or API keys.
 [RuneScape](http://runescape.wikia.com/wiki/Application_programming_interface) | Get information on users, plus a notifier for significant events.
 [SightEngine](https://sightengine.com/) | Image detection, check for celebrities, nudity or otherwise inappropriate images. *
