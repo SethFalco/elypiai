@@ -37,12 +37,12 @@ Module | About
 [SightEngine](https://sightengine.com/) | Image detection, check for celebrities, nudity or otherwise inappropriate images. *
 [StackExchange](https://api.stackexchange.com/) | Query StackOverflow with a question and optional tags. *
 [Steam](https://steamcommunity.com/dev) | Steam API get user information and user game libraries. *
-[Twitch](https://dev.twitch.tv/docs) | Get information on Twitch users and streams, with notifer. *
+[Twitch](https://dev.twitch.tv/docs) | Get information on Twitch users and streams, with notifier. *
 [Urban Dictionary](http://api.urbandictionary.com/v0/define?term=api) | Search Urban Dictionary and return the top voted or random definition.
 [Yu-Gi-Oh! Prices](http://docs.yugiohprices.apiary.io/) | Get information on Yu-Gi-Oh! cards and download card images.
 [YouTube Data](https://console.developers.google.com/) | Search YouTube for videos, playlists or channels. *
 
-###### * You'll need an API key or authentiacation to access this API.
+###### * You'll need an API key or authentication to access this API.
 
 ### Support
 Should any problems occur, come visit us over on [Discord](https://discord.gg/hprGMaM)! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
