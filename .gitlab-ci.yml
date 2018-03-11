@@ -6,31 +6,12 @@ variables:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-stages:
-  - build
-  - validation
-  - test
-  - deploy
-
 build:
   stage: build
-  script: gradle --build-cache assemble
+  script: gradle --build-cache assemble | gradle search
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
-    paths:
-      - build
-      - .gradle
-  artifacts:
-    paths:
-      - build/libs/Elypiai.jar
-
-search:
-  stage: validation
-  script: gradle search
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
     paths:
       - build
       - .gradle
@@ -44,9 +25,6 @@ test:
     paths:
       - build
       - .gradle
-  artifacts:
-    paths:
-      - build/test-results/
 
 deploy:
   stage: deploy
