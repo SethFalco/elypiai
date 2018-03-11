@@ -26,7 +26,7 @@ test:
       - build
       - .gradle
 
-deploy:
+.deploy:
   stage: deploy
   script: gradle bintray
   cache:
