@@ -1,7 +1,6 @@
 package com.elypia.elypiai.pathofexile;
 
-import com.mashape.unirest.http.exceptions.UnirestException;
-
+import java.io.IOException;
 import java.util.Collection;
 import java.util.function.Consumer;
 
@@ -15,15 +14,15 @@ public class PathOfExile {
 		requester = new PoERequester(this);
 	}
 
-	public void getStashTabs(Consumer<StashTabs> success, Consumer<UnirestException> failure) {
+	public void getStashTabs(Consumer<StashTabs> success, Consumer<IOException> failure) {
 		requester.getStashTabs(success, failure);
 	}
 
-	public void getLeagueRules(Consumer<Collection<LeagueRule>> success, Consumer<UnirestException> failure) {
+	public void getLeagueRules(Consumer<Collection<LeagueRule>> success, Consumer<IOException> failure) {
 		requester.getLeagueRules(success, failure);
 	}
 
-	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<UnirestException> failure) {
+	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<IOException> failure) {
 		requester.getLeagueRule(id, success, failure);
 	}
 

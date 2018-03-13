@@ -4,8 +4,8 @@ import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import com.elypia.elypiai.amazon.data.AmazonGroup;
 import com.elypia.elypiai.amazon.data.AmazonIndex;
 import com.elypia.elypiai.utils.Regex;
-import com.mashape.unirest.http.exceptions.UnirestException;
 
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.util.List;
 import java.util.Objects;
@@ -79,15 +79,15 @@ public class Amazon {
 		requester = new AmazonRequester(this);
 	}
 
-	public void getItem(String product, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
+	public void getItem(String product, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
 		getItem(product, DEFAULT_GROUPS, success, failure);
 	}
 
-	public void getItem(String product, AmazonGroup[] groups, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
+	public void getItem(String product, AmazonGroup[] groups, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
 		getItem(product, groups, AmazonIndex.ALL, success, failure);
 	}
 
-	public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
+	public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
 		requester.getItem(product, groups, index, success, failure);
 	}
 

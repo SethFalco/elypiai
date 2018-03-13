@@ -1,114 +1,72 @@
 package com.elypia.elypiai.pathofexile;
 
 import com.elypia.elypiai.pathofexile.data.PoEEndpoint;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.HttpRequest;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Consumer;
 
 class PoERequester {
 
-	private PathOfExile poe;
+	private final PathOfExile POE;
 
 	public PoERequester(PathOfExile poe) {
-		this.poe = poe;
+		this.POE = poe;
 	}
 
-	// Stash Tabs
 
-	public void getStashTabs(Consumer<StashTabs> success, Consumer<UnirestException> failure) {
+	public void getStashTabs(Consumer<StashTabs> success, Consumer<IOException> failure) {
 		String endpoint = PoEEndpoint.PUBLIC_STASH_TABS.getEndpoint();
+		ElyRequest req = new ElyRequest(endpoint);
 
-		Unirest.get(endpoint).asJsonAsync(new Callback<JsonNode>( ) {
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			POE.stashTabs = new StashTabs(POE, object);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-
-				StashTabs stashTabs = new StashTabs(poe, object);
-
-				poe.stashTabs = stashTabs;
-				success.accept(poe.stashTabs);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(POE.stashTabs);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
-	// Rules
-
-	public void getLeagueRules(Consumer<Collection<LeagueRule>> success, Consumer<UnirestException> failure) {
+	public void getLeagueRules(Consumer<Collection<LeagueRule>> success, Consumer<IOException> failure) {
 		String endpoint = PoEEndpoint.LEAGUE_RULES.getEndpoint();
+		ElyRequest req = new ElyRequest(endpoint);
 
-		Unirest.get(endpoint).asJsonAsync(new Callback<JsonNode>( ) {
+		req.get(result -> {
+			Collection<LeagueRule> rules = new ArrayList<>();
+			JSONArray array = result.asJSONArray();
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONArray array = response.getBody().getArray();
+			for (int i = 0; i < array.length(); i++) {
+				JSONObject ruleObject = array.getJSONObject(i);
+				LeagueRule rule = new LeagueRule(POE, ruleObject);
 
-				Collection<LeagueRule> rules = new ArrayList<>();
-
-				for (int i = 0; i < array.length(); i++) {
-					JSONObject ruleObject = array.getJSONObject(i);
-					LeagueRule rule = new LeagueRule(poe, ruleObject);
-
-					rules.add(rule);
-				}
-
-				success.accept(rules);
+				rules.add(rule);
 			}
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(rules);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
-	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<UnirestException> failure) {
+	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<IOException> failure) {
 		String endpoint = PoEEndpoint.LEAGUE_RULES.getEndpoint();
 
-		HttpRequest request = Unirest.get(endpoint).queryString("id", id);
-		request.asJsonAsync(new Callback<JsonNode>( ) {
+		ElyRequest req = new ElyRequest(endpoint);
+		req.addParam("id", id);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				LeagueRule rule = new LeagueRule(poe, object);
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			LeagueRule rule = new LeagueRule(POE, object);
 
-				success.accept(rule);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(rule);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

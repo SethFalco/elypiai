@@ -1,12 +1,12 @@
 package com.elypia.elypiai.amazon;
 
 import com.elypia.elypiai.amazon.data.AmazonEndpoint;
-import org.apache.commons.codec.Charsets;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -18,7 +18,7 @@ import java.util.Objects;
 public class RequestSigner {
 
 	private static final String URI = "/onca/xml";
-	private static final Charset charset = Charsets.UTF_8;
+	private static final Charset charset = StandardCharsets.UTF_8;
 
 	private Mac mac;
 

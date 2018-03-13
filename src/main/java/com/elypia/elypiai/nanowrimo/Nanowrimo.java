@@ -1,89 +1,58 @@
 package com.elypia.elypiai.nanowrimo;
 
 import com.elypia.elypiai.nanowrimo.data.WordCountError;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.HttpRequestWithBody;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class Nanowrimo {
 
 	public static final String PUT_WORDCOUNT_ENDPOINT = "https://nanowrimo.org/api/wordcount";
-	public static final String GET_USER_ENDPOINT = "https://nanowrimo.org/wordcount_api/wc/{username}";
+	public static final String GET_USER_ENDPOINT = "https://nanowrimo.org/wordcount_api/wc/%s";
 
-	public void updateWordCount(String secret, String name, int wordCount, Consumer<WordCountError> success, Consumer<UnirestException> failure) {
-		secret = String.format("%s%s%s", secret, name, wordCount);
+	public void updateWordCount(String secret, String name, int wordCount, Consumer<WordCountError> success, Consumer<IOException> failure) {
+		secret = secret + name + wordCount;
 		secret = DigestUtils.sha1Hex(secret);
 		name = name.replace(" ", "%20");
 
 		String body = String.format("hash=%s&name=%s&wordcount=%d", secret, name, wordCount);
 
-		Map<String, String> headers = new HashMap<>();
-		headers.put("content-type", "application/x-www-form-urlencoded");
+		ElyRequest req = new ElyRequest(PUT_WORDCOUNT_ENDPOINT);
+		req.setFormData(body);
 
-		Unirest.put(PUT_WORDCOUNT_ENDPOINT).headers(headers).body(body).asStringAsync(new Callback<String>() {
-
-			@Override
-			public void completed(HttpResponse<String> response) {
-				String resp = response.getBody().toUpperCase().replace(" ", "_");
-				success.accept(WordCountError.valueOf(resp));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		req.put(result -> {
+			String resp = result.toString().toUpperCase().replace(" ", "_");
+			success.accept(WordCountError.valueOf(resp));
+		}, err ->{
+			failure.accept(err);
 		});
 	}
 
-	public void getNanoUser(String username, Consumer<NanoUser> success, Consumer<UnirestException> failure) {
+	public void getNanoUser(String username, Consumer<NanoUser> success, Consumer<IOException> failure) {
 		username = username.replace(" ", "-");
+		ElyRequest req = new ElyRequest(GET_USER_ENDPOINT, username);
 
-		HttpRequestWithBody request = Unirest.put(GET_USER_ENDPOINT).routeParam("username", username);
-		String url = request.getUrl();
+		req.get(result -> {
+			Document document = result.asDocument(Parser.xmlParser());
 
-		request.asStringAsync(new Callback<String>() {
+			Elements elements = document.getElementsByTag("error");
+			boolean exists = true;
 
-			@Override
-			public void completed(HttpResponse<String> response) {
-				Document document = Jsoup.parse(response.getBody(), url, Parser.xmlParser());
-				Elements elements = document.getElementsByTag("error");
-				boolean exists = true;
-
-				for (Element element : elements) {
-					if (element.text().equals("user does not exist"))
-						exists = false;
-				}
-
-				NanoUser user = exists ? new NanoUser(document) : null;
-				success.accept(user);
+			for (Element element : elements) {
+				if (element.text().equals("user does not exist"))
+					exists = false;
 			}
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			NanoUser user = exists ? new NanoUser(document) : null;
+			success.accept(user);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

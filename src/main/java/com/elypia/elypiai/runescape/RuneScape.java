@@ -1,25 +1,16 @@
 package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.runescape.data.RSEndpoint;
-import com.elypia.elypiai.runescape.data.RSSkill;
-import com.elypia.elypiai.runescape.events.Level120Event;
-import com.elypia.elypiai.runescape.events.LevelUpEvent;
-import com.elypia.elypiai.runescape.events.MaxXpEvent;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.HttpRequest;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import javafx.util.Callback;
+import jdk.incubator.http.HttpRequest;
+import jdk.incubator.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class RuneScape {
@@ -30,7 +21,6 @@ public class RuneScape {
 
 	private Collection<RuneScapeUser> users;
 	private Collection<RuneScapeListener> listeners;
-	private ScheduledExecutorService service;
 
 	public RuneScape() {
 		users = new ArrayList<>();
@@ -49,46 +39,19 @@ public class RuneScape {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void getUser(String username, Consumer<RuneScapeUser> success, Consumer<UnirestException> failure) {
+	public void getUser(String username, Consumer<RuneScapeUser> success, Consumer<IOException> failure) {
 		String endpoint = RSEndpoint.RUNEMETRICS_PROFILE.getEndpoint();
 
-	    Unirest.get(endpoint).queryString("user", username).asJsonAsync(new Callback<JsonNode>() {
+		ElyRequest req = new ElyRequest(endpoint);
+		req.addParam("user", username);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				RuneScapeUser user = new RuneScapeUser(response.getBody().getObject());
-				success.accept(user);
-			}
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			RuneScapeUser user = new RuneScapeUser(object);
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
-		});
-	}
-
-	/**
-	 * Returns and caches the RuneScape player with the username provided.
-	 * Possible null, if user doesn't exist. If the user does exist
-	 * but has their profile set to private, name will be "PROFILE_PRIVATE"
-	 * and the rest of the object will be effectively null. <br>
-	 * Will not cache if null or PRIVATE. <br>
-	 * Intended for leaderboard notifier system.
-	 *
-	 * @param username	The username of the player to get.
-	 */
-
-	public void cacheUser(String username) {
-		getUser(username, result -> {
-			if (!isPrivate(result))
-				users.add(result);
-		}, ex -> {
-			ex.printStackTrace();
+			success.accept(user);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -103,81 +66,10 @@ public class RuneScape {
 		return (player.getUsername().equals(PROFILE_PRIVATE));
 	}
 
-	public void addListener(RuneScapeListener listener) {
-		listeners.add(listener);
-
-		if (service == null) {
-			service = Executors.newSingleThreadScheduledExecutor();
-
-			service.scheduleAtFixedRate(new Runnable() {
-
-				@Override
-				public void run() {
-					update();
-				}
-			}, 0, 2, TimeUnit.MINUTES);
-		}
-	}
-
-	/**
-	 * Disable the notifier system to stop receiving events.
-	 */
-
-	public void removeListener(RuneScapeListener listener) {
-		listeners.remove(listener);
-	}
-
-	private void update() {
-        String endpoint = RSEndpoint.RUNEMETRICS_PROFILE.getEndpoint();
-
-		users.forEach(user -> {
-			Unirest.get(endpoint).queryString("user", user.getUsername()).asJsonAsync(new Callback<JsonNode>() {
-
-				@Override
-				public void completed(HttpResponse<JsonNode> response) {
-					Map<RSSkill, RuneScapeStat> stats = user.getStats();
-
-					user.update(response.getBody().getObject());
-
-					for (RSSkill skill : RSSkill.values()) {
-						RuneScapeStat previous = stats.get(skill);
-						RuneScapeStat current = user.getStat(skill);
-
-						if (current.getLevel() > previous.getLevel()) {
-							listeners.forEach(listener -> {
-								listener.onLevelUp(new LevelUpEvent(user, current, previous));
-							});
-						}
-
-						if (current.getVirtualLevel() == 120 && previous.getVirtualLevel() < 120) {
-							listeners.forEach(listener -> {
-								listener.onLevel120(new Level120Event(user, current));
-							});
-						}
-
-						if (current.getXp() == 200000000 && previous.getXp() < 200000000) {
-							listeners.forEach(listener -> {
-								listener.onMaxXP(new MaxXpEvent(user, current, previous));
-							});
-						}
-					}
-				}
-
-				@Override
-				public void failed(UnirestException e) {
-					// Background task, fail silently and update next time.
-				}
-
-				@Override
-				public void cancelled() {
-
-				}
-			});
-		});
-	}
-
-	public void getOnlineUserCount(Consumer<String> success, Consumer<UnirestException> failure) {
+	public void getOnlineUserCount(Consumer<String> success, Consumer<IOException> failure) {
         String endpoint = RSEndpoint.PLAYER_COUNT.getEndpoint();
+
+        ElyRequest.
 
 		Unirest.get(endpoint).asStringAsync(new Callback<String>() {
 
@@ -200,7 +92,7 @@ public class RuneScape {
 		});
 	}
 
-	public void getQuestStatuses(String user, Consumer<QuestsStatus> success, Consumer<UnirestException> failure) {
+	public void getQuestStatuses(String user, Consumer<QuestsStatus> success, Consumer<IOException> failure) {
 		String endpoint = RSEndpoint.RUNEMETRICS_QUESTS.getEndpoint();
 
 		HttpRequest req = Unirest.get(endpoint).queryString("user", user);

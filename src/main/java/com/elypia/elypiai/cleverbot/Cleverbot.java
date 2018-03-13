@@ -1,12 +1,9 @@
 package com.elypia.elypiai.cleverbot;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -33,7 +30,7 @@ public class Cleverbot {
 		cache = new HashMap<>();
 	}
 
-	public void say(String input, Consumer<CleverResponse> result, Consumer<UnirestException> failure) {
+	public void say(String input, Consumer<CleverResponse> result, Consumer<IOException> failure) {
 		say(input, null, result, failure);
 	}
 
@@ -47,39 +44,27 @@ public class Cleverbot {
 	 * @param input		The text to send to cleverbot.
 	 */
 
-	public void say(String input, String cs, Consumer<CleverResponse> result, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("key", API_KEY);
-		queryParams.put("wrapper", "Elypiai");
-		queryParams.put("input", input);
+	public void say(String input, String cs, Consumer<CleverResponse> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(GET_REPLY_ENDPOINT);
+		req.addParam("key", API_KEY);
+		req.addParam("wrapper", "Elypiai");
+		req.addParam("input", input);
 
 		if (cs != null)
-			queryParams.put("cs", cs);
+			req.addParam("cs", cs);
 
-		Unirest.get(GET_REPLY_ENDPOINT).queryString(queryParams).asJsonAsync(new Callback<JsonNode>() {
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			CleverResponse response = new CleverResponse(object);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				CleverResponse cleverResponse = new CleverResponse(object);
+			success.accept(response);
 
-				result.accept(cleverResponse);
+			if (cs != null)
+				cache.remove(cs);
 
-				if (cs != null)
-					cache.remove(cs);
-
-				cache.put(cleverResponse.getCS(), cleverResponse);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				e.printStackTrace();
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			cache.put(response.getCS(), response);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 

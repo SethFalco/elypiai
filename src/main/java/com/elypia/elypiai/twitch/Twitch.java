@@ -3,6 +3,7 @@ package com.elypia.elypiai.twitch;
 import com.elypia.elypiai.twitch.events.StreamerLiveEvent;
 import com.elypia.elypiai.twitch.events.StreamerOfflineEvent;
 import com.elypia.elypiai.utils.ElyUtils;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -11,6 +12,7 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,13 +22,14 @@ import java.util.stream.Collectors;
 
 public class Twitch {
 
-	public static final String USERS_ENDPOINT = "https://api.twitch.tv/kraken/users";
-	public static final String STREAMS_ENDPOINT = "https://api.twitch.tv/kraken/streams";
+	public static final String USERS_ENDPOINT = "https://api.twitch.tv/kraken/users/";
+	public static final String STREAMS_ENDPOINT = "https://api.twitch.tv/kraken/streams/";
+
+	private final String API_KEY;
 
 	private Map<Integer, TwitchUser> users;
 	private List<TwitchListener> listeners;
 	private ScheduledExecutorService service;
-	private Map<String, String> headers;
 
 	/**
 	 * Allows calls to the Twitch API, can call various information
@@ -36,11 +39,9 @@ public class Twitch {
 	 */
 
 	public Twitch(String apiKey) {
+		API_KEY = apiKey;
 		users = new HashMap<>();
 		listeners = new ArrayList<>();
-		headers = new HashMap<>();
-		headers.put("Accept", "application/vnd.twitchtv.v5+json");
-		headers.put("Client-Id", apiKey);
 	}
 
 	/**
@@ -50,119 +51,62 @@ public class Twitch {
 	 * @param 	username	The username of the user to get.
 	 */
 
-	public void getUserAsync(String username, Consumer<TwitchUser> success, Consumer<UnirestException> failure) {
-		Unirest.get(USERS_ENDPOINT).queryString("login", username).headers(headers).asJsonAsync(new Callback<JsonNode>() {
+	public void getUser(String username, Consumer<TwitchUser> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(USERS_ENDPOINT);
+		req.addParam("login", username);
+		req.addHeader("Accept", "application/vnd.twitchtv.v5+json");
+		req.addHeader("Client-Id", API_KEY);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONArray users = response.getBody().getObject().getJSONArray("users");
-				success.accept(new TwitchUser(users.getJSONObject(0)));
-			}
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			JSONArray users = object.getJSONArray("users");
+			JSONObject user = users.getJSONObject(0);
+			TwitchUser twitchUser = new TwitchUser(user);
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(twitchUser);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
-	public TwitchUser getUser(String username) throws UnirestException {
-		HttpResponse<JsonNode> res = Unirest.get(USERS_ENDPOINT).queryString("login", username).headers(headers).asJson();
-		JSONArray users = res.getBody().getObject().getJSONArray("users");
-		return new TwitchUser(users.getJSONObject(0));
-	}
+	public void getUser(int id, Consumer<TwitchUser> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(USERS_ENDPOINT + "/%s", id);
+		req.addHeader("Accept", "application/vnd.twitchtv.v5+json");
+		req.addHeader("Client-Id", API_KEY);
 
-	public void getUserAsync(int id, Consumer<TwitchUser> success, Consumer<UnirestException> failure) {
-		Unirest.get(USERS_ENDPOINT + "/" + id).headers(headers).asJsonAsync(new Callback<JsonNode>() {
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			TwitchUser user = new TwitchUser(object);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				success.accept(new TwitchUser(object));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(user);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
-	public TwitchUser getUser(int id) throws UnirestException {
-		HttpResponse<JsonNode> res = Unirest.get(USERS_ENDPOINT + "/" + id).headers(headers).asJson();
-		JSONArray users = res.getBody().getObject().getJSONArray("users");
-		return new TwitchUser(users.getJSONObject(0));
-	}
+	public void getUsers(String[] usernames, Consumer<Collection<TwitchUser>> success, Consumer<IOException> failure) {
+		String param = String.join(",", usernames);
 
-	/**
-	 * Recieved Twitch information on a user and caches the user,
-	 * this only recieved general information.
-	 * Intended for a notification system.
-	 *
-	 * @param 	username	The username of the user to get.
-	 */
+		ElyRequest req = new ElyRequest(USERS_ENDPOINT);
+		req.addParam("login", param);
+		req.addHeader("Accept", "application/vnd.twitchtv.v5+json");
+		req.addHeader("Client-Id", API_KEY);
 
-	public void cacheUser(String username) {
-		getUserAsync(username, result -> {
-			users.put(result.getId(), result);
-		}, ex -> {
-			ex.printStackTrace();
-		});
-	}
+		req.get(result -> {
+			Collection<TwitchUser> users = new ArrayList<>();
+			JSONObject object = result.asJSONObject();
+			JSONArray usersArray = object.getJSONArray("users");
 
-	public void cacheUser(int id) {
-		getUserAsync(id, result -> {
-			users.put(result.getId(), result);
-		}, ex -> {
-			ex.printStackTrace();
-		});
-	}
-
-	public void getUsers(Consumer<Collection<TwitchUser>> success, Consumer<UnirestException> failure, String...usernames) {
-		Collection<TwitchUser> collection = new ArrayList<>();
-
-		Unirest.get(USERS_ENDPOINT).queryString("login", String.join(",", usernames)).headers(headers).asJsonAsync(new Callback<JsonNode>() {
-
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONArray users = response.getBody().getObject().getJSONArray("users");
-
-				for (int i = 0; i < users.length(); i++)
-					collection.add(new TwitchUser(users.getJSONObject(i)));
-
-				success.accept(collection);
+			for (int i = 0; i < usersArray.length(); i++) {
+				JSONObject userObject = usersArray.getJSONObject(i);
+				TwitchUser user = new TwitchUser(userObject);
+				users.add(user);
 			}
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(users);
+		}, err -> {
+			failure.accept(err);
 		});
-	}
-
-	public void cacheUsers(String...usernames) {
-		getUsers(result -> {
-			result.forEach(o -> {
-				users.put(o.getId(), o);
-			});
-		}, ex -> {
-			ex.printStackTrace();
-		}, usernames);
 	}
 
 	public void addListener(TwitchListener listener) {

@@ -1,16 +1,15 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
 
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class UrbanDictionary {
 
-	public static final String GET_DEFINE_ENDPOINT = "http://api.urbandictionary.com/v0/define";
+	public static final String DEFINE = "http://api.urbandictionary.com/v0/define";
 
 	/**
 	 * Returns a defintion from Urban Dictionary if result(s)
@@ -22,23 +21,17 @@ public class UrbanDictionary {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void define(String term, Consumer<UrbanResult> success, Consumer<UnirestException> failure) {
-		Unirest.get(GET_DEFINE_ENDPOINT).queryString("term", term).asJsonAsync(new Callback<JsonNode>() {
+	public void define(String term, Consumer<UrbanResult> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(DEFINE);
+		req.addParam("term", term);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				success.accept(new UrbanResult(response.getBody().getObject(), term));
-			}
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			UrbanResult urbanResult = new UrbanResult(object, term);
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(urbanResult);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

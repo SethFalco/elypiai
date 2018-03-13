@@ -21,8 +21,8 @@ public class OsuUser {
 	private int count100;
 	private int count50;
 	private int playcount;
-	private double ranked_score;
-	private double total_score;
+	private long ranked_score;
+	private long total_score;
 	private int pp_rank;
 	private double level;
 	private double pp_raw;
@@ -51,8 +51,8 @@ public class OsuUser {
 		count100        = object.optInt("count100", 0);
 		count50         = object.optInt("count50", 0);
 		playcount       = object.optInt("playcount", 0);
-		ranked_score    = object.optDouble("ranked_score", 0);
-		total_score     = object.optDouble("total_score", 0);
+		ranked_score    = object.optLong("ranked_score", 0);
+		total_score     = object.optLong("total_score", 0);
 		pp_rank         = object.optInt("pp_rank", 0);
 		level           = object.optDouble("level", 0);
 		pp_raw          = object.optDouble("pp_raw", 0.);
@@ -120,7 +120,7 @@ public class OsuUser {
 	 * @return 	The total score of the user, ranked maps only.
 	 */
 
-	public double getRankedScore() {
+	public long getRankedScore() {
 		return ranked_score;
 	}
 

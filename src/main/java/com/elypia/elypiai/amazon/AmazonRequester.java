@@ -4,15 +4,12 @@ import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import com.elypia.elypiai.amazon.data.AmazonGroup;
 import com.elypia.elypiai.amazon.data.AmazonIndex;
 import com.elypia.elypiai.utils.ElyUtils;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import org.jsoup.Jsoup;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -55,7 +52,7 @@ public class AmazonRequester {
      * @param   failure What to do should the request fail, eg timeout.
      */
 
-    public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<UnirestException> failure) {
+    public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
         String id = amazon.getId();
         AmazonEndpoint endpoint = amazon.getEndpoint();
         String[] groupString = ElyUtils.toStringArray(groups);
@@ -73,35 +70,25 @@ public class AmazonRequester {
 
         String url = signer.sign(endpoint, queryParams);
 
-        Unirest.get(url).asStringAsync(new Callback<String>() {
+        ElyRequest req = new ElyRequest(url);
 
-            @Override
-            public void completed(HttpResponse<String> response) {
-                Document document = Jsoup.parse(response.getBody(), url, Parser.xmlParser());
+        req.get(result -> {
+            Document document = result.asDocument(Parser.xmlParser());
 
-                List<AmazonItem> list = new ArrayList<>();
+            List<AmazonItem> list = new ArrayList<>();
 
-                if (document.getElementsByTag("Error").size() == 0) {
-                    Elements items = document.getElementsByTag("Item");
+            if (document.getElementsByTag("Error").size() == 0) {
+                Elements items = document.getElementsByTag("Item");
 
-                    items.forEach(element -> {
-                        AmazonItem item = new AmazonItem(amazon, element);
-                        list.add(item);
-                    });
-                }
-
-                success.accept(list);
+                items.forEach(element -> {
+                    AmazonItem item = new AmazonItem(amazon, element);
+                    list.add(item);
+                });
             }
 
-            @Override
-            public void failed(UnirestException ex) {
-                failure.accept(ex);
-            }
-
-            @Override
-            public void cancelled() {
-
-            }
+            success.accept(list);
+        }, err -> {
+            failure.accept(err);
         });
     }
 }

@@ -1,6 +1,7 @@
 package com.elypia.elypiai.bing;
 
 import com.elypia.elypiai.utils.ElyUtils;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
@@ -12,6 +13,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -45,35 +47,41 @@ public class Bing {
 	 * @param	safeSearch 	Should safeSearch be Strict or off.
 	 */
 
-	public void webSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("q", search);
-		queryParams.put("safesearch", safeSearch ? "Strict" : "off");
-		queryParams.put("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
+	public void webSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(GET_SEARCH_ENDPOINT);
+		req.addParam("q", search);
+		req.addParam("safesearch", safeSearch ? "Strict" : "off");
+		req.addParam("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
 
-		Map<String, String> headers = new HashMap<>();
-		headers.put("mkt", "en-us");
-		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
+		req.addHeader("mkt", "en-us");
+		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
+
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+
+			if (safeSearch && object.has("queryContext")) {
+				success.accept("ADULT_INTENT");
+				return;
+			}
+
+			if (!object.has("webPages")) {
+				success.accept("NO_RESULTS");
+				return;
+			}
+
+			JSONObject webPages = object.getJSONObject("webPages");
+			JSONArray values = webPages.getJSONArray("value");
+			String link = values.getJSONObject(values.length() - 1).getString("displayUrl");
+			success.accept(!link.startsWith("http") ? "http://" + search : search);
+		}, err -> {
+			failure.accept(err);
+		});
 
 		Unirest.get(GET_SEARCH_ENDPOINT).queryString(queryParams).headers(headers).asJsonAsync(new Callback<JsonNode>() {
 
 			@Override
 			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject result = response.getBody().getObject();
 
-				if (safeSearch && result.has("queryContext")) {
-					success.accept("ADULT_INTENT");
-					return;
-				}
-
-				if (!result.has("webPages")) {
-					success.accept("NO_RESULTS");
-					return;
-				}
-
-				JSONArray values = result.getJSONObject("webPages").getJSONArray("value");
-				String link = values.getJSONObject(values.length() - 1).getString("displayUrl");
-				success.accept(!link.startsWith("http") ? "http://" + search : search);
 			}
 
 			@Override
