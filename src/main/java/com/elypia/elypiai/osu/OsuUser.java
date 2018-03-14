@@ -14,24 +14,134 @@ public class OsuUser {
 	private static final String BASE_PROFILE_URL = "https://osu.ppy.sh/u/";
 	private static final String DEFAULT_AVATAR = "http://w.ppy.sh/c/c9/Logo.png";
 
-	private int user_id;
+	/**
+	 * The identifier for the user, this will never change.
+	 */
+
+	private int userId;
+
+	/**
+	 * The {@link OsuMode} this user is for.
+	 * A user can have different stats per mode, this is the
+	 * mode this instance of the user is representing.
+	 */
+
 	private OsuMode mode;
+
+	/**
+	 * The username of the player, this can be changed so is not
+	 * good for storing identity of the player and should just be
+	 * for display purposes. See {@link #userId} for an identifier.
+	 */
+
 	private String username;
+
+	/**
+	 * The number of times the player has clicked and scored a 300.
+	 */
+
 	private int count300;
+
+	/**
+	 * The number of times the player has clicked and scored a 100.
+	 */
+
 	private int count100;
+
+	/**
+	 * The number of times the player has clicked and scored a 50.
+	 */
+
 	private int count50;
+
+	/**
+	 * The total number of songs the user has played altogether.
+	 */
+
 	private int playcount;
-	private long ranked_score;
-	private long total_score;
-	private int pp_rank;
+
+	/**
+	 * The total score the player has obtained from ranked maps only.
+	 */
+
+	private long rankedScore;
+
+	/**
+	 * The total score the player has obtained on any map.
+	 */
+
+	private long totalScore;
+
+	/**
+	 * The leaderboard ranking of the player determined by {@link #pp PP}.
+	 */
+
+	private int rank;
+
+	/**
+	 * The level of the player.
+	 */
+
 	private double level;
-	private double pp_raw;
+
+	/**
+	 * The total PP of the player, obtained from playing ranked maps.
+	 */
+
+	private double pp;
+
+	/**
+	 * The average accuracy of the player, formatted as: 92.789.
+	 */
+
 	private double accuracy;
-	private int count_rank_ss;
-	private int count_rank_s;
-	private int count_rank_a;
+
+	/**
+	 * The total number of times the player has obtained a rank of SS.
+	 */
+
+	private int countSS;
+
+	/**
+	 * The total number of times the player has obtained a rank of SSH.
+	 */
+
+	private int countSSH;
+
+	/**
+	 * The total number of times the player has obtained a rank of S.
+	 */
+
+	private int countS;
+
+	/**
+	 * The total number of times the player has obtained a rank of SH.
+	 */
+
+	private int countSH;
+
+	/**
+	 * The total number of times the player has obtained a rank of A.
+	 */
+
+	private int countA;
+
+	/**
+	 * The country code of the player displayed as XY.
+	 */
+
 	private String country;
-	private int pp_country_rank;
+
+	/**
+	 * The national leaderboard rank of the player determined by {@link #pp PP}.
+	 */
+
+	private int nationalRank;
+
+	/**
+	 * The URL to the players osu! user profile.
+	 */
+
 	private String profileUrl;
 
 	/**
@@ -41,35 +151,37 @@ public class OsuUser {
 	public OsuUser(OsuMode mode, JSONObject object) {
 		this.mode = mode;
 		update(object);
-		profileUrl = BASE_PROFILE_URL + user_id;
+		profileUrl = BASE_PROFILE_URL + userId;
 	}
 
 	public void update(JSONObject object) {
-		user_id         = object.getInt("user_id");
-		username        = object.getString("username");
-		count300        = object.optInt("count300", 0);
-		count100        = object.optInt("count100", 0);
-		count50         = object.optInt("count50", 0);
-		playcount       = object.optInt("playcount", 0);
-		ranked_score    = object.optLong("ranked_score", 0);
-		total_score     = object.optLong("total_score", 0);
-		pp_rank         = object.optInt("pp_rank", 0);
-		level           = object.optDouble("level", 0);
-		pp_raw          = object.optDouble("pp_raw", 0.);
-		accuracy        = object.optDouble("accuracy", 0);
-		count_rank_ss   = object.optInt("count_rank_ss", 0);
-		count_rank_s    = object.optInt("count_rank_s", 0);
-		count_rank_a    = object.optInt("count_rank_a", 0);
-		country         = object.getString("country");
-		pp_country_rank = object.getInt("pp_country_rank");
+		userId = object.getInt("user_id");
+		username = object.getString("username");
+		count300 = object.optInt("count300", 0);
+		count100 = object.optInt("count100", 0);
+		count50 = object.optInt("count50", 0);
+		playcount = object.optInt("playcount", 0);
+		rankedScore = object.optLong("ranked_score", 0);
+		totalScore = object.optLong("total_score", 0);
+		rank = object.optInt("pp_rank", 0);
+		level = object.optDouble("level", 0);
+		pp = object.optDouble("pp_raw", 0.);
+		accuracy = object.optDouble("accuracy", 0);
+		countSS = object.optInt("count_rank_ss", 0);
+		countSSH = object.optInt("count_rank_ssh", 0);
+		countS = object.optInt("count_rank_s", 0);
+		countSH = object.optInt("count_rank_sh", 0);
+		countA = object.optInt("count_rank_a", 0);
+		country = object.getString("country");
+		nationalRank = object.getInt("pp_country_rank");
 	}
 
 	/**
-	 * @return 	The id for the user. The id never changes.
+	 * @return 	The id for the user. The ID never changes.
 	 */
 
-	public int getUserID() {
-		return user_id;
+	public int getId() {
+		return userId;
 	}
 
 	public OsuMode getGameMode() {
@@ -121,7 +233,7 @@ public class OsuUser {
 	 */
 
 	public long getRankedScore() {
-		return ranked_score;
+		return rankedScore;
 	}
 
 	/**
@@ -129,15 +241,15 @@ public class OsuUser {
 	 */
 
 	public double getTotalScore() {
-		return total_score;
+		return totalScore;
 	}
 
 	/**
 	 * @return 	Get the users current leaderboard ranking, global.
 	 */
 
-	public int getLeaderboardRank() {
-		return pp_rank;
+	public int getRank() {
+		return rank;
 	}
 
 	/**
@@ -152,8 +264,8 @@ public class OsuUser {
 	 * @return 	The total PP of the user, unrounded.
 	 */
 
-	public double getPP() {
-		return pp_raw;
+	public double getPp() {
+		return pp;
 	}
 
 	/**
@@ -169,7 +281,11 @@ public class OsuUser {
 	 */
 
 	public int getCountRankSS() {
-		return count_rank_ss;
+		return countSS;
+	}
+
+	public int getCountSSH() {
+		return countSSH;
 	}
 
 	/**
@@ -177,7 +293,11 @@ public class OsuUser {
 	 */
 
 	public int getCountRankS() {
-		return count_rank_s;
+		return countS;
+	}
+
+	public int getCountSH() {
+		return countSH;
 	}
 
 	/**
@@ -185,7 +305,7 @@ public class OsuUser {
 	 */
 
 	public int getCountRankA() {
-		return count_rank_a;
+		return countA;
 	}
 
 	/**
@@ -200,8 +320,8 @@ public class OsuUser {
 	 * @return 	Get current leaderboard rank, country.
 	 */
 
-	public int getPPCountryRank() {
-		return pp_country_rank;
+	public int getCountryRank() {
+		return nationalRank;
 	}
 
 	/**
@@ -217,7 +337,7 @@ public class OsuUser {
 	 * 			players accuracy.
 	 */
 
-	public String getAccuracyPretty() {
+	public String getAccuracyString() {
 		return String.format("%05.2f%%", accuracy);
 	}
 
@@ -226,8 +346,8 @@ public class OsuUser {
 	 * 			players total PP.
 	 */
 
-	public String getPpPretty() {
-		return String.format("%,.2f", pp_raw);
+	public String getPpString() {
+		return String.format("%,.2f", pp);
 	}
 
 	/**
@@ -235,8 +355,8 @@ public class OsuUser {
 	 * 			players ranked score.
 	 */
 
-	public String getRankedScorePretty() {
-		return String.format("%,d", ranked_score);
+	public String getRankedScoreString() {
+		return String.format("%,d", rankedScore);
 	}
 
 	/**
@@ -244,8 +364,8 @@ public class OsuUser {
 	 * 			players total score including unranked.
 	 */
 
-	public String getTotalScorePretty() {
-		return String.format("%,d", total_score);
+	public String getTotalScoreString() {
+		return String.format("%,d", totalScore);
 	}
 
 	/**
@@ -269,6 +389,6 @@ public class OsuUser {
 
 	@Override
 	public String toString() {
-		return String.format("ID: %d%nUsername: %s%nPP: %s", user_id, username, getPpPretty());
+		return String.format("ID: %d%nUsername: %s%nPP: %s", userId, username, getPpString());
 	}
 }

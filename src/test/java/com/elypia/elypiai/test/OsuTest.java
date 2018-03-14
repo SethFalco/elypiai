@@ -17,27 +17,27 @@ public class OsuTest {
         OsuUser user = new OsuUser(OsuMode.OSU, new JSONObject(json));
 
         assertAll("Check values of osu! player.",
-            () -> assertEquals(4185808, user.getUserID()),
+            () -> assertEquals(4185808, user.getId()),
             () -> assertEquals("SethX3", user.getUsername()),
             () -> assertEquals(3226099, user.getCount300()),
             () -> assertEquals(877006, user.getCount100()),
             () -> assertEquals(149600, user.getCount50()),
             () -> assertEquals(21875, user.getPlayCount()),
             () -> assertEquals(4432289277L, user.getRankedScore()),
-            () -> assertEquals("4,432,289,277", user.getRankedScorePretty()),
+            () -> assertEquals("4,432,289,277", user.getRankedScoreString()),
             () -> assertEquals(13387268671L, user.getTotalScore()),
-            () -> assertEquals("13,387,268,671", user.getTotalScorePretty()),
-            () -> assertEquals(74300, user.getLeaderboardRank()),
+            () -> assertEquals("13,387,268,671", user.getTotalScoreString()),
+            () -> assertEquals(74300, user.getRank()),
             () -> assertEquals(98.171, user.getLevel()),
-            () -> assertEquals(2653.35, user.getPP()),
-            () -> assertEquals("2,653.35", user.getPpPretty()),
+            () -> assertEquals(2653.35, user.getPp()),
+            () -> assertEquals("2,653.35", user.getPpString()),
             () -> assertEquals(94.21471405029297, user.getAccuracy()),
-            () -> assertEquals("94.21%", user.getAccuracyPretty()),
+            () -> assertEquals("94.21%", user.getAccuracyString()),
             () -> assertEquals(9, user.getCountRankSS()),
             () -> assertEquals(202, user.getCountRankS()),
             () -> assertEquals(327, user.getCountRankA()),
             () -> assertEquals("GB", user.getCountry()),
-            () -> assertEquals(2376, user.getPPCountryRank())
+            () -> assertEquals(2376, user.getCountryRank())
         );
     }
 

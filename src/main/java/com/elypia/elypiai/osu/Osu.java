@@ -112,7 +112,7 @@ public class Osu {
 	public void getRecentPlays(OsuUser user, int limit, Consumer<Collection<RecentPlay>> success, Consumer<IOException> failure) {
 		ElyRequest req = new ElyRequest(BEATMAP_ENDPOINT);
 		req.addParam("k", API_KEY);
-		req.addParam("u", user.getUserID());
+		req.addParam("u", user.getId());
 		req.addParam("limit", limit);
 		req.addParam("type", "id");
 

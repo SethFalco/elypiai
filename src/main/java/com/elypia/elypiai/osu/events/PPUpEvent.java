@@ -2,7 +2,7 @@ package com.elypia.elypiai.osu.events;
 
 import com.elypia.elypiai.osu.OsuUser;
 
-public class PPUpEvent {
+public class PpUpEvent {
 
 	private static final String DESC_FORMAT = "%s just gained %,.2f pp and went up %d ranks on the leaderboard!";
 
@@ -11,10 +11,10 @@ public class PPUpEvent {
 	private int rankChange;
 	private String description;
 
-	public PPUpEvent(OsuUser user, double previousPP, int rank) {
+	public PpUpEvent(OsuUser user, double previousPP, int rank) {
 		this.user = user;
-		earnedPP = user.getPP() - previousPP;
-		rankChange = user.getLeaderboardRank() - rank;
+		earnedPP = user.getPp() - previousPP;
+		rankChange = user.getRank() - rank;
 		description = String.format(DESC_FORMAT, user.getUsername(), earnedPP, rankChange);
 	}
 
