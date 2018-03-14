@@ -16,10 +16,6 @@ public class TwitchUser {
 	private String url;
 	private TwitchStream stream;
 
-	/**
-	 * See {@link Twitch#getUser(String)}}
-	 */
-
 	public TwitchUser(JSONObject user) {
 		displayName = user.getString("display_name");
 		id 			= user.optInt("_id");
@@ -31,10 +27,6 @@ public class TwitchUser {
 		logo 		= user.optString("logo", null);
 		url 		= TWITCH_URL + displayName;
 	}
-
-	/**
-	 * See {@link Twitch#update()}
-	 */
 
 	public void setStreamInfo(JSONObject object) {
 		if (object == null) {

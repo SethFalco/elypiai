@@ -18,8 +18,6 @@ public class YuGiOhCard {
 	protected int level;
 
 	/**
-	 * See {@link YuGiOh#getCard(String)}
-	 *
 	 * @param object The JSONObject from the request for parsing.
 	 */
 
