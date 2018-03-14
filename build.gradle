@@ -19,7 +19,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
 String projectName = 'Elypiai'
-String projectVersion = '1.0.3'
+String projectVersion = '1.0.4'
 
 jar {
 	from sourceSets.main.allSource
