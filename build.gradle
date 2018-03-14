@@ -20,13 +20,14 @@ apply plugin: 'maven-publish'
 
 String projectName = 'Elypiai'
 String projectVersion = '1.0.4'
+String projectDescription = "All in one API wrapper."
+String projectGit = 'https://gitlab.com/Elypia/Elypiai.git'
 
 jar {
 	from sourceSets.main.allSource
 
 	manifest {
-		attributes 	'Implementation-Title'	 : projectName,
-					'Implementation-Version' : projectVersion
+		attributes 'Implementation-Title': projectName, 'Implementation-Version' : projectVersion
 	}
 }
 
@@ -55,11 +56,11 @@ bintray {
 		name = projectName
 		userOrg = 'elypia'
 		licenses = ['Apache-2.0']
-		vcsUrl = 'https://gitlab.com/Elypia/' + projectName + '.git'
+		vcsUrl = projectGit
 
 		version {
 			name = projectVersion
-			desc = 'All in one API wrapper.'
+			desc = projectDescription
 			released = new Date()
 		}
 	}
@@ -83,7 +84,7 @@ def pomConfig = {
 	}
 
 	scm {
-		url 'https://gitlab.com/Elypia/Elypiai.git'
+		url projectGit
 	}
 }
 
@@ -99,7 +100,7 @@ publishing {
 
 			pom.withXml {
 				def root = asNode()
-				root.appendNode('description', 'All in one API wrapper.')
+				root.appendNode('description', projectDescription)
 				root.appendNode('name', projectName)
 				root.appendNode('url', 'https://elypia.com/')
 				root.children().last() + pomConfig
