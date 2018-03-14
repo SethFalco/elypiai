@@ -2,14 +2,11 @@ package com.elypia.elypiai.google.translate;
 
 import com.elypia.elypiai.google.translate.data.GoogleTranslateEndpoint;
 import com.elypia.elypiai.utils.Language;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,42 +22,33 @@ public class TranslationRequester {
         this.apiKey = apiKey;
     }
 
-    public void getSupportedLanguages(Consumer<List<Language>> success, Consumer<UnirestException> failure) {
+    public void getSupportedLanguages(Consumer<List<Language>> success, Consumer<IOException> failure) {
         String endpoint = GoogleTranslateEndpoint.LANGUAGES.getEndpoint();
 
-        Unirest.get(endpoint).queryString("key", apiKey).asJsonAsync(new Callback<JsonNode>() {
+        ElyRequest req = new ElyRequest(endpoint);
+        req.addParam("key", apiKey);
 
-            @Override
-            public void completed(HttpResponse<JsonNode> response) {
-                List<Language> results = new ArrayList<>();
+        req.get(result -> {
+            List<Language> results = new ArrayList<>();
 
-                JSONObject object = response.getBody().getObject();
-                JSONArray languages = object.getJSONObject("data").getJSONArray("languages");
+            JSONObject object = result.asJSONObject();
+            JSONArray languages = object.getJSONObject("data").getJSONArray("languages");
 
-                for (int i = 0; i < languages.length(); i++) {
-                    String language = languages.getJSONObject(i).getString("language");
-                    Language l = Language.getByCode(language);
+            for (int i = 0; i < languages.length(); i++) {
+                String language = languages.getJSONObject(i).getString("language");
+                Language l = Language.getByCode(language);
 
-                    if (l != null)
-                        results.add(l);
-                }
-
-                success.accept(results);
+                if (l != null)
+                    results.add(l);
             }
 
-            @Override
-            public void failed(UnirestException e) {
-                failure.accept(e);
-            }
-
-            @Override
-            public void cancelled() {
-
-            }
+            success.accept(results);
+        }, err -> {
+            failure.accept(err);
         });
     }
 
-    public void translate(String body, Language source, Language target, Consumer<Translation> success, Consumer<UnirestException> failure) {
+    public void translate(String body, Language source, Language target, Consumer<Translation> success, Consumer<IOException> failure) {
         Objects.requireNonNull(body);
         Objects.requireNonNull(target);
 
@@ -81,27 +69,19 @@ public class TranslationRequester {
         if (source != null)
             formdata.put("source", source);
 
-        Unirest.post(endpoint).queryString("key", apiKey).body(formdata).asJsonAsync(new Callback<JsonNode>() {
+        ElyRequest req = new ElyRequest(endpoint);
+        req.addParam("key", apiKey);
+        req.setFormData(formdata);
 
-            @Override
-            public void completed(HttpResponse<JsonNode> response) {
-                JSONObject object = response.getBody().getObject();
-                JSONArray translations = object.getJSONObject("data").getJSONArray("translations");
-                JSONObject translation = translations.getJSONObject(0);
-                Translation trans = new Translation(googleTranslate, body, target, translation);
+        req.post(result -> {
+            JSONObject object = result.asJSONObject();
+            JSONArray translations = object.getJSONObject("data").getJSONArray("translations");
+            JSONObject translation = translations.getJSONObject(0);
+            Translation trans = new Translation(googleTranslate, body, target, translation);
 
-                success.accept(trans);
-            }
-
-            @Override
-            public void failed(UnirestException e) {
-                failure.accept(e);
-            }
-
-            @Override
-            public void cancelled() {
-
-            }
+            success.accept(trans);
+        }, err -> {
+            failure.accept(err);
         });
     }
 }

@@ -14,7 +14,6 @@ public class OsuTest {
     public void testOsuPlayer() {
         String json = "{\"user_id\":\"4185808\",\"username\":\"SethX3\",\"count300\":\"3226099\",\"count100\":\"877006\",\"count50\":\"149600\",\"playcount\":\"21875\",\"ranked_score\":\"4432289277\",\"total_score\":\"13387268671\",\"pp_rank\":\"74300\",\"level\":\"98.171\",\"pp_raw\":\"2653.35\",\"accuracy\":\"94.21471405029297\",\"count_rank_ss\":\"9\",\"count_rank_ssh\":\"1\",\"count_rank_s\":\"202\",\"count_rank_sh\":\"1\",\"count_rank_a\":\"327\",\"country\":\"GB\",\"pp_country_rank\":\"2376\",\"events\":[]}";
         JSONObject object = new JSONObject(json);
-
         OsuUser user = new OsuUser(OsuMode.OSU, new JSONObject(json));
 
         assertAll("Check values of osu! player.",

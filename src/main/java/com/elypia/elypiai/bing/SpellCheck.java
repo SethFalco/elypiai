@@ -1,15 +1,10 @@
 package com.elypia.elypiai.bing;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class SpellCheck {
@@ -41,40 +36,28 @@ public class SpellCheck {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void proofRead(String body, Consumer<String> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("mode", "proof");
-		queryParams.put("text", body);
+	public void proofRead(String body, Consumer<String> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(SPELLCHECK_ENDPOINT);
+		req.addParam("mode", "proof");
+		req.addParam("text", body);
+		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
 
-		Map<String, String> headers = new HashMap<>();
-		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			JSONArray array = object.getJSONArray("flaggedTokens");
+			StringBuilder builder = new StringBuilder(body);
 
-		Unirest.get(SPELLCHECK_ENDPOINT).queryString(queryParams).headers(headers).asJsonAsync(new Callback<JsonNode>() {
-
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				JSONArray result = object.getJSONArray("flaggedTokens");
-				StringBuilder builder = new StringBuilder(body);
-
-				for(int count = result.length() - 1; count >= 0; count--) {
-					object = result.getJSONObject(count);
-					int offset = object.getInt("offset");
-					builder.replace(offset, offset + object.getString("token").length(), object.getJSONArray("suggestions").getJSONObject(0).getString("suggestion"));
-				}
-
-				success.accept(builder.toString());
+			for (int i = array.length() - 1; i >= 0; i--) {
+				JSONObject typo = array.getJSONObject(i);
+				int offset = typo.getInt("offset");
+				String wrong = typo.getString("token");
+				String corrected = typo.getJSONArray("suggestions").getJSONObject(0).getString("suggestion");
+				builder.replace(offset, offset + wrong.length(), corrected);
 			}
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(builder.toString());
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

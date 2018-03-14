@@ -1,15 +1,10 @@
 package com.elypia.elypiai.stackexchange.stackoverflow;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class StackExchange {
@@ -22,7 +17,7 @@ public class StackExchange {
         this.apiKey = apiKey;
 	}
 
-	public void ask(Consumer<String> success, Consumer<UnirestException> failure, String question) {
+	public void ask(Consumer<String> success, Consumer<IOException> failure, String question) {
 	    ask(question, null, success, failure);
     }
 
@@ -37,40 +32,29 @@ public class StackExchange {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void ask(String question, String[] tags, Consumer<String> success, Consumer<UnirestException> failure) {
-	    Map<String, Object> params = new HashMap<>();
-	    params.put("key", apiKey);
-	    params.put("order", "desc");
-	    params.put("sort", "relevance");
-	    params.put("site", "stackoverflow");
-	    params.put("accepted", true);
-	    params.put("title", question);
+	public void ask(String question, String[] tags, Consumer<String> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(SIMILAR_ENDPOINT);
+	    req.addParam("key", apiKey);
+		req.addParam("order", "desc");
+		req.addParam("sort", "relevance");
+		req.addParam("site", "stackoverflow");
+		req.addParam("accepted", true);
+		req.addParam("title", question);
 
 	    if (tags != null) {
 			if (tags.length > 0)
-				params.put("C", String.join(";", tags));
+				req.addParam("C", String.join(";", tags));
 		}
 
-        Unirest.get(SIMILAR_ENDPOINT).queryString(params).asJsonAsync(new Callback<JsonNode>() {
-            @Override
-            public void completed(HttpResponse<JsonNode> response) {
-                JSONObject object = response.getBody().getObject();
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
 
-                JSONArray items = object.getJSONArray("items");
-                JSONObject item = items.getJSONObject(0);
+			JSONArray items = object.getJSONArray("items");
+			JSONObject item = items.getJSONObject(0);
 
-                success.accept(item.getString("link"));
-            }
-
-            @Override
-            public void failed(UnirestException e) {
-                failure.accept(e);
-            }
-
-            @Override
-            public void cancelled() {
-
-            }
-        });
+			success.accept(item.getString("link"));
+		}, err -> {
+			failure.accept(err);
+		});
 	}
 }

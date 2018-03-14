@@ -2,9 +2,6 @@ package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.runescape.data.RSEndpoint;
 import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import javafx.util.Callback;
-import jdk.incubator.http.HttpRequest;
-import jdk.incubator.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -69,54 +66,32 @@ public class RuneScape {
 	public void getOnlineUserCount(Consumer<String> success, Consumer<IOException> failure) {
         String endpoint = RSEndpoint.PLAYER_COUNT.getEndpoint();
 
-        ElyRequest.
+        ElyRequest req = new ElyRequest(endpoint);
 
-		Unirest.get(endpoint).asStringAsync(new Callback<String>() {
-
-			@Override
-			public void completed(HttpResponse<String> response) {
-				String result = response.getBody();
-				result = result.substring(result.indexOf("(") + 1, result.lastIndexOf("}"));
-				success.accept(result);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+        req.get(result -> {
+			String string = result.asString();
+			string = string.substring(string.indexOf("(") + 1, string.lastIndexOf("}"));
+			success.accept(string);
+		}, err -> {
+        	failure.accept(err);
 		});
 	}
 
 	public void getQuestStatuses(String user, Consumer<QuestsStatus> success, Consumer<IOException> failure) {
 		String endpoint = RSEndpoint.RUNEMETRICS_QUESTS.getEndpoint();
 
-		HttpRequest req = Unirest.get(endpoint).queryString("user", user);
-		req.asJsonAsync(new Callback<JsonNode>( ) {
+		ElyRequest req = new ElyRequest(endpoint);
+		req.addParam("user", user);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				JSONArray quests = object.getJSONArray("quests");
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			JSONArray quests = object.getJSONArray("quests");
 
-				QuestsStatus questsStatus = new QuestsStatus(runescape, user, quests);
+			QuestsStatus questsStatus = new QuestsStatus(runescape, user, quests);
 
-				success.accept(questsStatus);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(questsStatus);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 

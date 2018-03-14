@@ -1,8 +1,8 @@
 package com.elypia.elypiai.google.translate;
 
 import com.elypia.elypiai.utils.Language;
-import com.mashape.unirest.http.exceptions.UnirestException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -24,15 +24,15 @@ public class GoogleTranslate {
         });
     }
 
-    public void getSupportedLanguages(Consumer<List<Language>> success, Consumer<UnirestException> failure) {
+    public void getSupportedLanguages(Consumer<List<Language>> success, Consumer<IOException> failure) {
         requester.getSupportedLanguages(success, failure);
     }
 
-    public void translate(String body, Language target, Consumer<Translation> success, Consumer<UnirestException> failure) {
+    public void translate(String body, Language target, Consumer<Translation> success, Consumer<IOException> failure) {
         translate(body, null, target, success, failure);
     }
 
-    public void translate(String body, Language source, Language target, Consumer<Translation> success, Consumer<UnirestException> failure) {
+    public void translate(String body, Language source, Language target, Consumer<Translation> success, Consumer<IOException> failure) {
         requester.translate(body, source, target, success, failure);
     }
 

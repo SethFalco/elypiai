@@ -1,14 +1,9 @@
 package com.elypia.elypiai.google.youtube;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class YouTube {
@@ -35,15 +30,15 @@ public class YouTube {
 		API_KEY = apiKey;
 	}
 
-	public void getVideo(String term, Consumer<YouTubeData> success, Consumer<UnirestException> failure) {
+	public void getVideo(String term, Consumer<YouTubeData> success, Consumer<IOException> failure) {
 		getData(term, YouTubeType.VIDEO, success, failure);
 	}
 
-	public void getPlaylist(String term, Consumer<YouTubeData> success, Consumer<UnirestException> failure) {
+	public void getPlaylist(String term, Consumer<YouTubeData> success, Consumer<IOException> failure) {
 		getData(term, YouTubeType.PLAYLIST, success, failure);
 	}
 
-	public void getChannel(String term, Consumer<YouTubeData> success, Consumer<UnirestException> failure) {
+	public void getChannel(String term, Consumer<YouTubeData> success, Consumer<IOException> failure) {
 		getData(term, YouTubeType.CHANNEL, success, failure);
 	}
 
@@ -57,36 +52,24 @@ public class YouTube {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void getData(String term, YouTubeType type, Consumer<YouTubeData> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("key", API_KEY);
-		queryParams.put("part", "snippet");
-		queryParams.put("maxResult", 1);
-		queryParams.put("prettyPrint", false);
-		queryParams.put("q", term);
-		queryParams.put("type", type.toString());
+	public void getData(String term, YouTubeType type, Consumer<YouTubeData> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(MEDIA_ENDPOINT);
+		req.addParam("key", API_KEY);
+		req.addParam("part", "snippet");
+		req.addParam("maxResult", 1);
+		req.addParam("prettyPrint", false);
+		req.addParam("q", term);
+		req.addParam("type", type.toString());
 
-		Unirest.get(MEDIA_ENDPOINT).queryString(queryParams).asJsonAsync(new Callback<JsonNode>() {
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-
-				if (object.getJSONObject("pageInfo").getInt("totalResults") == 0)
-					success.accept(null);
-				else
-					success.accept(new YouTubeData(object, type));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			if (object.getJSONObject("pageInfo").getInt("totalResults") == 0)
+				success.accept(null);
+			else
+				success.accept(new YouTubeData(object, type));
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 

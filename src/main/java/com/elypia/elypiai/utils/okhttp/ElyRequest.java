@@ -99,8 +99,14 @@ public class ElyRequest {
 
             @Override
             public void onResponse(Call call, Response response) {
-                ElyResponse resp = new ElyResponse(call, response);
-                success.accept(resp);
+                try {
+                    ElyResponse resp = new ElyResponse(call, response);
+                    success.accept(resp);
+                } catch (IOException ex) {
+                    onFailure(call, ex);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         });
     }

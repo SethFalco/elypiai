@@ -1,13 +1,10 @@
 package com.elypia.elypiai.bing;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -49,7 +46,7 @@ public class TextAnalytics {
 	 * @param failure What to perform in case of failure, eg timeout.
 	 */
 
-	public void detectLanguages(String[] array, Consumer<Map<String, String>> success, Consumer<UnirestException> failure) {
+	public void detectLanguages(String[] array, Consumer<Map<String, String>> success, Consumer<IOException> failure) {
 		JSONArray documents = new JSONArray();
 
 		for (int i = 0; i < array.length; i++)
@@ -57,31 +54,24 @@ public class TextAnalytics {
 
 		JSONObject formdata = new JSONObject().put("documents", documents);
 
-		Map<String, String> headers = new HashMap<>();
-		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
+		ElyRequest req = new ElyRequest(POST_DETECTLANGUAGES);
+		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
+		req.setFormData(formdata);
 
-		Unirest.post(POST_DETECTLANGUAGES).headers(headers).body(formdata).asJsonAsync(new Callback<JsonNode>() {
+		req.post(result -> {
+			JSONObject object = result.asJSONObject();
+			JSONArray docs = object.getJSONArray("documents");
+			Map<String, String> map = new HashMap<>();
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONArray documents = response.getBody().getObject().getJSONArray("documents");
-				Map<String, String> map = new HashMap<>();
-
-				for (int i = 0; i < documents.length(); i++)
-					map.put(array[i], documents.getJSONObject(i).getJSONArray("detectedLanguages").getJSONObject(0).getString("name"));
-
-				success.accept(map);
+			for (int i = 0; i < documents.length(); i++) {
+				JSONObject o = docs.getJSONObject(i).getJSONArray("detectedLanguages").getJSONObject(0);
+				String name = o.getString("name");
+				map.put(array[i], name);
 			}
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(map);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -93,32 +83,13 @@ public class TextAnalytics {
 	 * @param failure What to perform in case of failure, eg timeout.
 	 */
 
-	public void detectLanguage(String body, Consumer<String> success, Consumer<UnirestException> failure) {
-		JSONArray documents = new JSONArray();
-		documents.put(new JSONObject().put("text", body).put("id", body));
+	public void detectLanguage(String body, Consumer<String> success, Consumer<IOException> failure) {
+		String[] array = new String[] {body};
 
-		JSONObject formdata = new JSONObject().put("documents", documents);
-
-		Map<String, String> headers = new HashMap<>();
-		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
-
-		Unirest.post(POST_DETECTLANGUAGES).headers(headers).body(formdata).asJsonAsync(new Callback<JsonNode>() {
-
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONArray documents = response.getBody().getObject().getJSONArray("documents");
-				success.accept(documents.getJSONObject(0).getJSONArray("detectedLanguages").getJSONObject(0).getString("name"));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		detectLanguages(array, result -> {
+			String language = result.get(body);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -140,11 +111,9 @@ public class TextAnalytics {
 	 * @param	stopWords			Words ignored entirely from the topics (Includes similar and pluruls.).
 	 */
 
-	public void detectTopics(String[] documents, String[] topicsToExclude, String[] stopWords, Consumer<String> success, Consumer<UnirestException> failure)  {
-		if (documents.length < 100) {
-			success.accept("UNDER_100");
-			return;
-		}
+	public void detectTopics(String[] documents, String[] topicsToExclude, String[] stopWords, Consumer<String> success, Consumer<IOException> failure)  {
+		if (documents.length < 100)
+			throw new IllegalArgumentException("This request requires a minimum of 100 documents.");
 
 		JSONArray stopWordsJson = new JSONArray();
 		for (String s : stopWords)
@@ -163,25 +132,15 @@ public class TextAnalytics {
 		formdata.put("stopWords", stopWordsJson);
 		formdata.put("topicsToExclude", topicsToExcludeJson);
 
-		Map<String, String> headers = new HashMap<>();
-		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
+		ElyRequest req = new ElyRequest(POST_DETECTTOPICS);
+		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
+		req.setFormData(formdata);
 
-		Unirest.post(POST_DETECTTOPICS).headers(headers).body(formdata).asJsonAsync(new Callback<JsonNode>() {
-
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				success.accept(response.getHeaders().getFirst("Location"));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		req.post(result -> {
+			String location = result.getHeader("Location");
+			success.accept(location);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -194,24 +153,17 @@ public class TextAnalytics {
 	 * 						{@link #detectTopics(String[], String[], String[], Consumer, Consumer)}.
 	 */
 
-	public void detectTopicsStatus (String operation, Consumer<Boolean> success, Consumer<UnirestException> failure) {
-		Unirest.get(operation).asJsonAsync(new Callback<JsonNode>() {
+	public void detectTopicsStatus (String operation, Consumer<Boolean> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(operation);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				success.accept(object.getString("status").equals("Succeeded"));
-			}
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			String status = object.getString("status");
+			boolean succesful = status.equals("Succeeded");
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(succesful);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -225,36 +177,20 @@ public class TextAnalytics {
 	 * 						{@link #detectTopics(String[], String[], String[], Consumer, Consumer)}}.
 	 */
 
-	public void getDetectedTopics(String operation, Consumer<Collection<String>> success, Consumer<UnirestException> failure) {
-		detectTopicsStatus(operation, complete -> {
-			if (complete) {
-				Unirest.get(operation).asJsonAsync(new Callback<JsonNode>() {
+	public void getDetectedTopics(String operation, Consumer<Collection<String>> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(operation);
 
-					@Override
-					public void completed(HttpResponse<JsonNode> response) {
-						JSONObject object = response.getBody().getObject();
-						JSONArray topics = object.getJSONObject("operationProcessingResult").getJSONArray("topics");
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			JSONArray topics = object.getJSONObject("operationProcessingResult").getJSONArray("topics");
 
-						Collection<String> keyPhrases = new ArrayList<>();
-						for (int i = 0; i < topics.length(); i++)
-							keyPhrases.add(topics.getJSONObject(i).getString("keyPhrase"));
+			Collection<String> keyPhrases = new ArrayList<>();
+			for (int i = 0; i < topics.length(); i++)
+				keyPhrases.add(topics.getJSONObject(i).getString("keyPhrase"));
 
-						success.accept(keyPhrases);
-					}
-
-					@Override
-					public void failed(UnirestException e) {
-						failure.accept(e);
-					}
-
-					@Override
-					public void cancelled() {
-
-					}
-				});
-			}
-		}, failed -> {
-			failure.accept(failed);
+			success.accept(keyPhrases);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -265,7 +201,7 @@ public class TextAnalytics {
 	 * @param	body	String to check keyphrases for.
 	 */
 
-	public void keyPhrases(String body, Consumer<Collection<String>> success, Consumer<UnirestException> failure) {
+	public void keyPhrases(String body, Consumer<Collection<String>> success, Consumer<IOException> failure) {
 		JSONObject object = new JSONObject();
 		object.put("text", body);
 		object.put("id", body);
@@ -276,31 +212,20 @@ public class TextAnalytics {
 		JSONObject formdata = new JSONObject();
 		formdata.put("documents", documents);
 
-		Map<String, String> headers = new HashMap<>();
-		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
+		ElyRequest req = new ElyRequest(POST_KEYPHRASES);
+		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
+		req.setFormData(formdata);
 
-		Unirest.post(POST_KEYPHRASES).headers(headers).body(formdata).asJsonAsync(new Callback<JsonNode>() {
+		req.post(result -> {
+			JSONArray array = result.asJSONObject().getJSONArray("documents").getJSONObject(0).getJSONArray("keyPhrases");
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONArray array = response.getBody().getObject().getJSONArray("documents").getJSONObject(0).getJSONArray("keyPhrases");
+			Collection<String> keyPhrases = new ArrayList<>();
+			for (int i = 0; i < array.length(); i++)
+				keyPhrases.add(array.getString(i));
 
-				Collection<String> keyPhrases = new ArrayList<>();
-				for (int i = 0; i < array.length(); i++)
-					keyPhrases.add(array.getString(i));
-
-				success.accept(keyPhrases);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			success.accept(keyPhrases);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -314,7 +239,7 @@ public class TextAnalytics {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void sentiment(String body, Consumer<Double> success, Consumer<UnirestException> failure) {
+	public void sentiment(String body, Consumer<Double> success, Consumer<IOException> failure) {
 		JSONArray documents = new JSONArray();
 
 		JSONObject object = new JSONObject();
@@ -326,23 +251,15 @@ public class TextAnalytics {
 		JSONObject formdata = new JSONObject();
 		formdata.put("documents", documents);
 
-		Unirest.post(POST_SENTIMENT).body(formdata).asJsonAsync(new Callback<JsonNode>() {
+		ElyRequest req = new ElyRequest(POST_SENTIMENT);
+		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
+		req.setFormData(formdata);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				success.accept(object.getJSONArray("documents").getJSONObject(0).getDouble("score"));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		req.post(result -> {
+			JSONObject obj = result.asJSONObject();
+			success.accept(obj.getJSONArray("documents").getJSONObject(0).getDouble("score"));
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

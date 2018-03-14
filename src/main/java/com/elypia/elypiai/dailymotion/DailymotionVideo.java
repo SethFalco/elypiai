@@ -1,14 +1,9 @@
 package com.elypia.elypiai.dailymotion;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class DailymotionVideo {
@@ -65,44 +60,32 @@ public class DailymotionVideo {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void getDownloadUrl(Consumer<String> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("fields", DOWNLOAD_FIELDS);
+	public void getDownloadUrl(Consumer<String> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(DOWNLOAD_ENDPOINT);
+		req.addParam("fields", DOWNLOAD_FIELDS);
 
-		Unirest.get(DOWNLOAD_ENDPOINT).routeParam(":id", id).queryString(queryParams).asJsonAsync(new Callback<JsonNode>() {
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
+			if (object.get("stream_h264_hd1080_url") != JSONObject.NULL)
+				success.accept(object.getString("stream_h264_hd1080_url"));
 
-				if (object.get("stream_h264_hd1080_url") != JSONObject.NULL)
-					success.accept(object.getString("stream_h264_hd1080_url"));
+			else if (object.get("stream_h264_hd_url") != JSONObject.NULL)
+				success.accept(object.getString("stream_h264_hd_url"));
 
-				else if (object.get("stream_h264_hd_url") != JSONObject.NULL)
-					success.accept(object.getString("stream_h264_hd_url"));
+			else if (object.get("stream_h264_hq_url") != JSONObject.NULL)
+				success.accept(object.getString("stream_h264_hq_url"));
 
-				else if (object.get("stream_h264_hq_url") != JSONObject.NULL)
-					success.accept(object.getString("stream_h264_hq_url"));
+			else if (object.get("stream_h264_ld_url") != JSONObject.NULL)
+				success.accept(object.getString("stream_h264_ld_url"));
 
-				else if (object.get("stream_h264_ld_url") != JSONObject.NULL)
-					success.accept(object.getString("stream_h264_ld_url"));
+			else if (object.get("stream_h264_url") != JSONObject.NULL)
+				success.accept(object.getString("stream_h264_url"));
 
-				else if (object.get("stream_h264_url") != JSONObject.NULL)
-					success.accept(object.getString("stream_h264_url"));
-
-				else
-					success.accept(null);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			else
+				success.accept(null);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

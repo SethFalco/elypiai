@@ -1,14 +1,13 @@
 package com.elypia.elypiai.steam;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Steam {
@@ -39,39 +38,26 @@ public class Steam {
 	 * @param 	steamid	Username of the player to get.
 	 */
 
-	public void getUser(long steamid, Consumer<SteamUser> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("key", API_KEY);
-		queryParams.put("steamids", steamid);
+	public void getUser(long steamid, Consumer<SteamUser> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(GET_USER);
+
+		req.addParam("key", API_KEY);
+		req.addParam("steamids", steamid);
+
+		req.get(result -> {
+			JSONArray players = result.asJSONObject().getJSONObject("response").getJSONArray("players");
+			SteamUser user = new SteamUser(players.getJSONObject(0));
+			success.accept(user);
+		}, err -> {
+			failure.accept(err);
+		});
 	}
 
-	public void getUser(String username, Consumer<SteamUser> success, Consumer<UnirestException> failure) {
+	public void getUser(String username, Consumer<SteamUser> success, Consumer<IOException> failure) {
 		getIdFromVanityUrl(username, result -> {
-			Map<String, Object> queryParams = new HashMap<>();
-			queryParams.put("key", API_KEY);
-			queryParams.put("steamids", result);
-
-			Unirest.get(GET_USER).queryString(queryParams).asJsonAsync(new Callback<JsonNode>() {
-
-				@Override
-				public void completed(HttpResponse<JsonNode> response) {
-					JSONArray players = response.getBody().getObject().getJSONObject("response").getJSONArray("players");
-					SteamUser user = new SteamUser(players.getJSONObject(0));
-					success.accept(user);
-				}
-
-				@Override
-				public void failed(UnirestException e) {
-					failure.accept(e);
-				}
-
-				@Override
-				public void cancelled() {
-
-				}
-			});
-		}, ex -> {
-			failure.accept(ex);
+			getUser(result, success, failure);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
@@ -88,63 +74,39 @@ public class Steam {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void getLibrary(SteamUser user, Consumer<List<SteamGame>> success, Consumer<UnirestException> failure) {
-		List<SteamGame> library = new ArrayList<>();
+	public void getLibrary(SteamUser user, Consumer<List<SteamGame>> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(GET_LIB);
+		req.addParam("steamid", user.getSteamId());
+		req.addParam("format", "json");
+		req.addParam("key", API_KEY);
+		req.addParam("include_appinfo", 1);
+		req.addParam("include_played_free_games", 1);
 
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("steamid", user.getSteamId());
-		queryParams.put("format", "json");
-		queryParams.put("key", API_KEY);
-		queryParams.put("include_appinfo", 1);
-		queryParams.put("include_played_free_games", 1);
+		req.get(result -> {
+			JSONArray array = result.asJSONObject().getJSONObject("response").getJSONArray("games");
 
-		Unirest.get(GET_LIB).queryString(queryParams).asJsonAsync(new Callback<JsonNode>() {
+			List<SteamGame> library = new ArrayList<>();
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONArray array = response.getBody().getObject().getJSONObject("response").getJSONArray("games");
+			for (int i = 0; i < array.length(); i++)
+				library.add(new SteamGame(user, array.getJSONObject(i)));
 
-				for (int i = 0; i < array.length(); i++)
-					library.add(new SteamGame(user, array.getJSONObject(i)));
-
-				Collections.sort(library);
-				success.accept(library);
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+			Collections.sort(library);
+			success.accept(library);
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
-	public void getIdFromVanityUrl(String vanityUrl, Consumer<String> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("key", API_KEY);
-		queryParams.put("vanityUrl", vanityUrl);
+	public void getIdFromVanityUrl(String vanityUrl, Consumer<Long> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(GET_STEAM_ID);
+		req.addParam("key", API_KEY);
+		req.addParam("vanityUrl", vanityUrl);
 
-		Unirest.get(GET_STEAM_ID).queryString(queryParams).asJsonAsync(new Callback<JsonNode>() {
-
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject().getJSONObject("response");
-				success.accept(object.getString("steamid"));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		req.get(result -> {
+			JSONObject object = result.asJSONObject().getJSONObject("response");
+			success.accept(object.getLong("steamid"));
+		}, err ->{
+			failure.accept(err);
 		});
 	}
 }

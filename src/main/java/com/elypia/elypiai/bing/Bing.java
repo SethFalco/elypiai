@@ -2,14 +2,6 @@ package com.elypia.elypiai.bing;
 
 import com.elypia.elypiai.utils.ElyUtils;
 import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import org.apache.commons.codec.Charsets;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -76,24 +68,6 @@ public class Bing {
 		}, err -> {
 			failure.accept(err);
 		});
-
-		Unirest.get(GET_SEARCH_ENDPOINT).queryString(queryParams).headers(headers).asJsonAsync(new Callback<JsonNode>() {
-
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
-		});
 	}
 
 	/**
@@ -106,7 +80,7 @@ public class Bing {
 	 * @param	random		Grab a random result, or first.
 	 */
 
-	public void imageSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<UnirestException> failure) {
+	public void imageSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<IOException> failure) {
 		Map<String, Object> queryParams = new HashMap<>();
 		queryParams.put("q", search);
 		queryParams.put("safesearch", safeSearch ? "Strict" : "off");
@@ -116,44 +90,33 @@ public class Bing {
 		headers.put("mkt", "en-us");
 		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
 
-		Unirest.get(GET_SEARCH_ENDPOINT).queryString(queryParams).headers(headers).asJsonAsync(new Callback<JsonNode>() {
+		ElyRequest req = new ElyRequest(GET_SEARCH_ENDPOINT);
+		req.addParam("q", search);
+		req.addParam("safesearch", safeSearch ? "Strict" : "off");
+		req.addParam("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
+		req.addHeader("mkt", "en-us");
+		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
 
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject result = response.getBody().getObject();
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
 
-				if (safeSearch && result.has("queryContext")) {
-					success.accept("ADULT_INTENT");
-					return;
-				}
-
-				JSONArray values = result.getJSONArray("value");
-
-				if (values.length() == 0) {
-					success.accept("NO_RESULTS");
-					return;
-				}
-
-				result = values.getJSONObject(values.length() - 1);
-
-				for(NameValuePair pair : URLEncodedUtils.parse(result.getString("contentUrl"), Charsets.UTF_8)) {
-					if(pair.getName().equals("r")) {
-						String link = pair.getValue();
-						success.accept(!link.startsWith("http") ? "http://" + search : search);
-						break;
-					}
-				}
+			if (safeSearch && object.has("queryContext")) {
+				success.accept("ADULT_INTENT");
+				return;
 			}
 
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
+			JSONArray values = object.getJSONArray("value");
+
+			if (values.length() == 0) {
+				success.accept("NO_RESULTS");
+				return;
 			}
 
-			@Override
-			public void cancelled() {
+			object = values.getJSONObject(values.length() - 1);
 
-			}
+			success.accept(object.getString("contentUrl"));
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

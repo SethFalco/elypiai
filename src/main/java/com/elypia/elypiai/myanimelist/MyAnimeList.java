@@ -1,14 +1,11 @@
 package com.elypia.elypiai.myanimelist;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.apache.commons.codec.Charsets;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 
+import java.io.IOException;
 import java.util.Base64;
 import java.util.function.Consumer;
 
@@ -46,56 +43,29 @@ public class MyAnimeList {
 			AUTH = "Basic " + auth;
 	}
 
-	public void getAnime(String q, Consumer<Anime> success, Consumer<UnirestException> failure) {
-		Unirest.get(GET_SEARCH_ANIME).queryString("q", q).header("Authorization", AUTH).asStringAsync(new Callback<String>() {
+	public void getAnime(String q, Consumer<Anime> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(GET_SEARCH_ANIME);
+		req.addParam("q", q);
+		req.addHeader("Authorization", AUTH);
 
-			@Override
-			public void completed(HttpResponse<String> response) {
-				if (response.getBody() == null) {
-					success.accept(null);
-					return;
-				}
-
-				Document doc = Jsoup.parse(response.getBody(), "", Parser.xmlParser());
-				success.accept(new Anime(doc));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		req.get(result -> {
+			Document document = result.asDocument(Parser.xmlParser());
+			success.accept(new Anime(document));
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 
-	public void getManga(String q, Consumer<Manga> success, Consumer<UnirestException> failure) {
-		Unirest.get(GET_SEARCH_MANGA).queryString("q", q).header("Authorization", AUTH).asStringAsync(new Callback<String>() {
+	public void getManga(String q, Consumer<Manga> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(GET_SEARCH_MANGA);
+		req.addParam("q", q);
+		req.addHeader("Authorization", AUTH);
 
-			@Override
-			public void completed(HttpResponse<String> response) {
-
-				if (response.getBody() == null) {
-					success.accept(null);
-					return;
-				}
-
-				Document doc = Jsoup.parse(response.getBody(), "", Parser.xmlParser());
-				success.accept(new Manga(doc));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		req.get(result -> {
+			Document document = result.asDocument(Parser.xmlParser());
+			success.accept(new Manga(document));
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

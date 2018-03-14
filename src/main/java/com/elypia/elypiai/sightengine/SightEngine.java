@@ -1,14 +1,9 @@
 package com.elypia.elypiai.sightengine;
 
-import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
-import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.async.Callback;
-import com.mashape.unirest.http.exceptions.UnirestException;
+import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
 import java.util.function.Consumer;
 
 public class SightEngine {
@@ -41,29 +36,17 @@ public class SightEngine {
 	 * @param 	url		The url of an image to check for.
 	 */
 
-	public void nudityDetection(String url, Consumer<NudityResponse> success, Consumer<UnirestException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("api_user", USER);
-		queryParams.put("api_secret", SECRET);
-		queryParams.put("url", url);
+	public void nudityDetection(String url, Consumer<NudityResponse> success, Consumer<IOException> failure) {
+		ElyRequest req = new ElyRequest(NUDITY_ENDPOINT);
+		req.addParam("api_user", USER);
+		req.addParam("api_secret", SECRET);
+		req.addParam("url", url);
 
-		Unirest.get(NUDITY_ENDPOINT).queryString(queryParams).asJsonAsync(new Callback<JsonNode>() {
-
-			@Override
-			public void completed(HttpResponse<JsonNode> response) {
-				JSONObject object = response.getBody().getObject();
-				success.accept(new NudityResponse(object));
-			}
-
-			@Override
-			public void failed(UnirestException e) {
-				failure.accept(e);
-			}
-
-			@Override
-			public void cancelled() {
-
-			}
+		req.get(result -> {
+			JSONObject object = result.asJSONObject();
+			success.accept(new NudityResponse(object));
+		}, err -> {
+			failure.accept(err);
 		});
 	}
 }

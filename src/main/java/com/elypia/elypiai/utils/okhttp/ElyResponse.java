@@ -10,7 +10,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Objects;
 
 public class ElyResponse {
@@ -24,16 +23,15 @@ public class ElyResponse {
     private JSONArray array;
     private Document document;
 
-    public ElyResponse(Call call, Response response) {
+    public ElyResponse(Call call, Response response) throws IOException {
         this.response = response;
         this.call = call;
 
         responseBody = response.body();
+        body = responseBody.string();
     }
 
     public JSONObject asJSONObject() {
-        body = toString();
-
         if (object == null)
             object = new JSONObject(body);
 
@@ -41,8 +39,6 @@ public class ElyResponse {
     }
 
     public JSONArray asJSONArray() {
-        body = toString();
-
         if (array == null)
             array = new JSONArray(body);
 
@@ -55,31 +51,14 @@ public class ElyResponse {
 
     public Document asDocument(Parser parser) {
         Objects.requireNonNull(parser);
-
-        if (document == null) {
-            try (InputStream input = responseBody.byteStream()) {
-                String uri = call.request().url().uri().toString();
-                document = Jsoup.parse(input, "UTF-8", uri, parser);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
+        String uri = call.request().url().uri().toString();
+        document = Jsoup.parse(body, uri, parser);
 
         return document;
     }
 
-    @Override
-    public String toString() {
-        if (body == null) {
-            try {
-                body = responseBody.string();
-                return body;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
+    public String asString() {
+        return body;
     }
 
     public String getHeader(String header) {
