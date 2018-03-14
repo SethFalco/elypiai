@@ -56,7 +56,7 @@ public class OsuUser {
 		pp_rank         = object.optInt("pp_rank", 0);
 		level           = object.optDouble("level", 0);
 		pp_raw          = object.optDouble("pp_raw", 0.);
-		accuracy        = object.optDouble("accuracy", 0) / 100;
+		accuracy        = object.optDouble("accuracy", 0);
 		count_rank_ss   = object.optInt("count_rank_ss", 0);
 		count_rank_s    = object.optInt("count_rank_s", 0);
 		count_rank_a    = object.optInt("count_rank_a", 0);
@@ -218,7 +218,7 @@ public class OsuUser {
 	 */
 
 	public String getAccuracyPretty() {
-		return String.format("%05.2f", accuracy);
+		return String.format("%05.2f%%", accuracy);
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class OsuUser {
 	 */
 
 	public String getPpPretty() {
-		return String.format("%,.3f", pp_raw);
+		return String.format("%,.2f", pp_raw);
 	}
 
 	/**
