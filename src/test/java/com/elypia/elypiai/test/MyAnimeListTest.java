@@ -1,6 +1,7 @@
 package com.elypia.elypiai.test;
 
 import com.elypia.elypiai.myanimelist.Anime;
+import com.elypia.elypiai.myanimelist.data.AnimeType;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
@@ -22,7 +23,7 @@ public class MyAnimeListTest {
             () -> assertEquals("Full Metal Panic!", anime.getTitle()),
             () -> assertEquals(24, anime.getEpisodes()),
             () -> assertEquals(7.76, anime.getScore()),
-            () -> assertEquals("TV", anime.getType()),
+            () -> assertEquals(AnimeType.TV, anime.getType()),
             () -> assertEquals("https://myanimelist.cdn-dena.com/images/anime/2/75259.jpg", anime.getImageUrl())
         );
     }

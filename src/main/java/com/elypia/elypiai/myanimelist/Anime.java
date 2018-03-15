@@ -1,5 +1,6 @@
 package com.elypia.elypiai.myanimelist;
 
+import com.elypia.elypiai.myanimelist.data.AnimeType;
 import com.elypia.elypiai.utils.ElyUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -16,7 +17,7 @@ public class Anime {
 	private String englishTitle;
 	private int episodes;
 	private double score;
-	private String type;
+	private AnimeType type;
 	private String status;
 	private String startDate;
 	private String endDate;
@@ -31,7 +32,7 @@ public class Anime {
 		englishTitle = element.getElementsByTag("english").first().text();
 		episodes = ElyUtils.optInt(element.getElementsByTag("episodes").first().text(), -1);
 		score = ElyUtils.parseDoubleOrDefault(element.getElementsByTag("score").first().text(), -1);
-		type = element.getElementsByTag("type").first().text();
+		type = AnimeType.getTypeByName(element.getElementsByTag("type").first().text());
 		status = element.getElementsByTag("status").first().text();
 		startDate = element.getElementsByTag("start_date").first().text();
 		endDate = element.getElementsByTag("end_date").first().text();
@@ -89,7 +90,7 @@ public class Anime {
 	 * 			TV, Special or Movie.
 	 */
 
-	public String getType() {
+	public AnimeType getType() {
 		return type;
 	}
 
