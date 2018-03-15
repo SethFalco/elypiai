@@ -6,8 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Consumer;
 
 public class Bing {
@@ -43,7 +41,7 @@ public class Bing {
 		ElyRequest req = new ElyRequest(GET_SEARCH_ENDPOINT);
 		req.addParam("q", search);
 		req.addParam("safesearch", safeSearch ? "Strict" : "off");
-		req.addParam("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
+		req.addParam("count", random ? ElyUtils.RANDOM.nextInt(50) + 1 : 1);
 
 		req.addHeader("mkt", "en-us");
 		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
@@ -81,19 +79,10 @@ public class Bing {
 	 */
 
 	public void imageSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<IOException> failure) {
-		Map<String, Object> queryParams = new HashMap<>();
-		queryParams.put("q", search);
-		queryParams.put("safesearch", safeSearch ? "Strict" : "off");
-		queryParams.put("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
-
-		Map<String, String> headers = new HashMap<>();
-		headers.put("mkt", "en-us");
-		headers.put("Ocp-Apim-Subscription-Key", API_KEY);
-
 		ElyRequest req = new ElyRequest(GET_SEARCH_ENDPOINT);
 		req.addParam("q", search);
 		req.addParam("safesearch", safeSearch ? "Strict" : "off");
-		req.addParam("count", random ? ElyUtils.RAND.nextInt(50) + 1 : 1);
+		req.addParam("count", random ? ElyUtils.RANDOM.nextInt(50) + 1 : 1);
 		req.addHeader("mkt", "en-us");
 		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
 

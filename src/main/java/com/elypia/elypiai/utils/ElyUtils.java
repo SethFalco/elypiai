@@ -1,6 +1,5 @@
 package com.elypia.elypiai.utils;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,18 +10,13 @@ import java.util.concurrent.TimeUnit;
 public final class ElyUtils {
 
 	private ElyUtils() {
-		// Don't instatiate this class.
+
 	}
 
-	public static final Random RAND = new Random();
+	public static final Random RANDOM = new Random();
 
-	public static boolean isValidUrl(String url) {
-		return url.matches("^https?:\\/\\/.+\\..+$");
-	}
-
-	public static boolean isValidImageUrl(String url) {
-		String formats = String.join("|", ImageIO.getReaderFileSuffixes());
-		return url.matches("(?i)^https?:\\/\\/.+\\/.+\\.(" + formats + ")$");
+	public static <T> String[] toStringArray(Collection<T> items) {
+		return toStringArray(items.toArray());
 	}
 
     public static <T> String[] toStringArray(T[] items) {
@@ -33,10 +27,6 @@ public final class ElyUtils {
             strings[i] = items[i].toString();
 
         return strings;
-    }
-
-    public static <T> String[] toStringArray(Collection<T> items) {
-        return toStringArray(items.toArray());
     }
 
 	/**
@@ -54,10 +44,6 @@ public final class ElyUtils {
 			return false;
 
 		return text.toLowerCase().startsWith(prefix.toLowerCase());
-	}
-
-	public static String mdUrl(String text, String url) {
-		return String.format("[%s](%s)", text, url);
 	}
 
 	/**
@@ -114,7 +100,7 @@ public final class ElyUtils {
 	 */
 
 	public static double parseDoubleOrDefault(String string, double elseDefault) {
-		return Regex.NUMBER.matches(string) ? Integer.parseInt(string) : elseDefault;
+		return Regex.NUMBER.matches(string) ? Double.parseDouble(string) : elseDefault;
 	}
 
 	/**
@@ -122,7 +108,7 @@ public final class ElyUtils {
 	 */
 
 	public static Color getRandomColor() {
-		return new Color(RAND.nextInt(256), RAND.nextInt(256), RAND.nextInt(256));
+		return new Color(RANDOM.nextInt(256), RANDOM.nextInt(256), RANDOM.nextInt(256));
 	}
 
 	public static long convertTime(long time, TimeUnit current, TimeUnit desired) {
@@ -153,35 +139,6 @@ public final class ElyUtils {
 			lists.add(listClone);
 
 		return lists;
-	}
-
-	public static String makeMarkdown(String text, String url) {
-		return String.format("[%s](%s)", text, url);
-	}
-
-	public static String generateTable(String format, Object[]... objects) {
-		return generateTable(format, -1, objects);
-	}
-
-	public static String generateTable(String format, int limit, Object[]... objects) {
-		return generateTable(format, false, limit, objects);
-	}
-
-	public static String generateTable(String format, boolean ascii, int limit, Object[]... objects) {
-		StringBuilder builder = new StringBuilder();
-
-		builder.append(String.format(format, objects[0][0], objects[0][1], objects[0][2]));
-
-		for (int i = 1; i < objects.length; i++) {
-			String line = String.format(format, objects[i][0], objects[i][1], objects[i][2]);
-
-			if (builder.length() + line.length() > limit && limit != -1)
-				break;
-
-			builder.append(line);
-		}
-
-		return builder.toString();
 	}
 
 	public static <T> boolean arrayContains(T item, Object... items) {

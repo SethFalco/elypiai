@@ -117,7 +117,7 @@ public class UrbanResult {
 	 */
 
 	public UrbanDefinition getRandomResult() {
-		return definitions.get(ElyUtils.RAND.nextInt(definitions.size()));
+		return definitions.get(ElyUtils.RANDOM.nextInt(definitions.size()));
 	}
 
 	/**

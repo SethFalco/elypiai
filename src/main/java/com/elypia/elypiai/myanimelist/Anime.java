@@ -72,7 +72,7 @@ public class Anime {
 	 * @return	The number of episodes.
 	 */
 
-	public int getNumOfEpisodes() {
+	public int getEpisodes() {
 		return episodes;
 	}
 
