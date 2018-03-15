@@ -4,6 +4,8 @@ import com.elypia.elypiai.runescape.data.RSSkill;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,20 +15,23 @@ public class RuneScapeUser {
 
 	private static final String RANK_URL = "http://services.runescape.com/m=hiscore/compare";
 
+	private RuneScape runescape;
+
 	private String username;
 	private int questsStarted;
 	private int totalLevel;
 	private int questsComplete;
 	private int questsNotStarted;
 	private long totalXp;
-	private String rank;
+	private int rank;
 	private int combatLevel;
 	private boolean loggedIn;
 
-	private List<String> activities;
+	private List<Activity> activities;
 	private Map<RSSkill, RuneScapeStat> stats;
 
-	public RuneScapeUser(JSONObject object) {
+	public RuneScapeUser(RuneScape runescape, JSONObject object) {
+		this.runescape = runescape;
 		activities = new ArrayList<>();
 		stats = new HashMap<>();
 		update(object);
@@ -40,27 +45,31 @@ public class RuneScapeUser {
 			return;
 		}
 
-		loggedIn		 	= !object.getString("loggedIn").equals("false");
-		username			= object.getString("name");
-		questsStarted	 	= object.getInt("questsstarted");
-		questsComplete	 	= object.getInt("questscomplete");
-		questsNotStarted	= object.getInt("questsnotstarted");
-		totalLevel		 	= object.getInt("totalskill");
-		totalXp				= object.getLong("totalxp");
-		rank			 	= object.optString("rank", "Unranked");
-		combatLevel		 	= object.getInt("combatlevel");
+		loggedIn = object.optBoolean("loggedIn");
+		username = object.getString("name");
+		questsStarted = object.getInt("questsstarted");
+		questsComplete = object.getInt("questscomplete");
+		questsNotStarted = object.getInt("questsnotstarted");
+		totalLevel = object.getInt("totalskill");
+		totalXp	= object.getLong("totalxp");
+		combatLevel	= object.getInt("combatlevel");
 
-		JSONArray array = object.getJSONArray("skillvalues");
-		for (int i = 0; i < array.length(); i++) {
-			object = array.getJSONObject(i);
-			RuneScapeStat stat = new RuneScapeStat(object);
+		String rankString = object.optString("rank", "-1");
+		rankString = rankString.replace(",", "");
+		rank = Integer.parseInt(rankString);
+
+		JSONArray skillvalues = object.getJSONArray("skillvalues");
+		for (int i = 0; i < skillvalues.length(); i++) {
+			JSONObject skill = skillvalues.getJSONObject(i);
+			RuneScapeStat stat = new RuneScapeStat(skill);
 			stats.put(stat.getSkill(), stat);
 		}
 
-		array = object.getJSONArray("activities");
-
-		for (int i = 0; i < array.length(); i++)
-			activities.add(array.getJSONObject(i).getString("details"));
+		JSONArray activitiesArray = object.getJSONArray("activities");
+		for (int i = 0; i < activitiesArray.length(); i++) {
+			JSONObject activity = activitiesArray.getJSONObject(i);
+			activities.add(new Activity(runescape, activity));
+		}
 	}
 
 	/**
@@ -107,7 +116,6 @@ public class RuneScapeUser {
 
 	/**
 	 * @return	The total amount of XP the user has.
-	 * 			(Max XP is: 5,400,000,000)
 	 */
 
 	public long getTotalXp() {
@@ -115,11 +123,10 @@ public class RuneScapeUser {
 	}
 
 	/**
-	 * @return	Get the overall leaderboard ranking for
-	 * 			this user.
+	 * @return	Get the overall leaderboard ranking for this user.
 	 */
 
-	public String getRank() {
+	public int getRank() {
 		return rank;
 	}
 
@@ -135,7 +142,7 @@ public class RuneScapeUser {
 		return loggedIn;
 	}
 
-	public List<String> getActivities() {
+	public List<Activity> getActivities() {
 		return activities;
 	}
 
@@ -144,16 +151,23 @@ public class RuneScapeUser {
 	 */
 
 	public String getLeaderboardUrl() {
-		return RANK_URL + "?user1=" + username;
+		String encoded = username;
+
+		try {
+			encoded = URLEncoder.encode(username, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		return RANK_URL + "?user1=" + encoded;
 	}
 
 	/**
-	 * @return	Get the leaderboard ranking url for this
-	 * 			user compared to the user provided.
+	 * @return	Get the leaderboard ranking url for this user compared to the user provided.
 	 */
 
 	public String getLeaderboardUrl(RuneScapeUser user) {
-		return getLeaderboardUrl() + "&user2=" + user.getUsername();
+		return getLeaderboardUrl(user.getUsername());
 	}
 
 	/**
@@ -162,7 +176,18 @@ public class RuneScapeUser {
 	 */
 
 	public String getLeaderboardUrl(String username) {
-		return getLeaderboardUrl() + "&user2" + username;
+		if (username.equalsIgnoreCase(this.username))
+			return getLeaderboardUrl();
+
+		String encoded = username;
+
+		try {
+			encoded = URLEncoder.encode(username, "UTF-8");
+		} catch (UnsupportedEncodingException ex) {
+			ex.printStackTrace();
+		}
+
+		return getLeaderboardUrl() + "&user2=" + encoded;
 	}
 
 	/**
@@ -170,7 +195,7 @@ public class RuneScapeUser {
 	 * 			as a String.
 	 */
 
-	public String getTotalXpPretty() {
+	public String getTotalXpString() {
 		return String.format("%,d", totalXp);
 	}
 
@@ -179,7 +204,7 @@ public class RuneScapeUser {
 	 * 			as a String.
 	 */
 
-	public String getTotalLevelAsString() {
+	public String getTotalLevelString() {
 		return String.format("%,d", totalLevel);
 	}
 

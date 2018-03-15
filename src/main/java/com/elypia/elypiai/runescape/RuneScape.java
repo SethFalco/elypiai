@@ -20,6 +20,7 @@ public class RuneScape {
 	private Collection<RuneScapeListener> listeners;
 
 	public RuneScape() {
+		runescape = this;
 		users = new ArrayList<>();
 		listeners = new ArrayList<>();
 		runescape = this;
@@ -44,7 +45,7 @@ public class RuneScape {
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();
-			RuneScapeUser user = new RuneScapeUser(object);
+			RuneScapeUser user = new RuneScapeUser(runescape, object);
 
 			success.accept(user);
 		}, err -> {
