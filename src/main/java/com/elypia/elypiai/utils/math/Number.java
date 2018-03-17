@@ -33,41 +33,41 @@ public enum Number {
 	HUNDRED(100),
 	THOUSAND(1000),
 	MILLION(1000000),
-	BILLION(1000000000);
+	BILLION(1000000000),
+	TRILLION(1000000000000L),
+	QUADRILLION(1000000000000000L),
+	QUINTILLION(1000000000000000000L);
 
-	int number;
+	private long value;
 
-	Number(int number) {
-		this.number = number;
+	Number(long number) {
+		this.value = number;
 	}
 
-	public int getNumber() {
-		return number;
+	public long asNumeric() {
+		return value;
 	}
 
-	@Override
-	public String toString() {
-		return name().toLowerCase();
+	public String getName() {
+		return toString().toLowerCase();
 	}
 
-	public static String toString(int i) {
-		for (Number num : Number.values()) {
-			if (num.getNumber() == i)
-				return num.toString();
+	public static Number[] of(char... chars) {
+		int length = chars.length;
+		Number[] numbers = new Number[chars.length];
+
+		for (int i = 0; i < length; i++)
+			numbers[i] = of(chars[i] - 48);
+
+		return numbers;
+	}
+
+	public static Number of(long i) {
+		for (Number num : values()) {
+			if (num.asNumeric() == i)
+				return num;
 		}
 
 		return null;
-	}
-
-	public static String toString(String string) {
-		return toString(Integer.parseInt(string));
-	}
-
-	public static String toString(char u) {
-		return toString(Character.getNumericValue(u));
-	}
-
-	public static String toString(char tens, char units) {
-		return toString(String.format("%c%c", tens, units));
 	}
 }
