@@ -1,6 +1,6 @@
 package com.elypia.elypiai.yugioh.data;
 
-public enum MonsterType {
+public enum YGOMonsterType {
 
 	DRAGON,
 	SPELLCASTER,

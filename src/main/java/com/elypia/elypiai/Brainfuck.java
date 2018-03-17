@@ -5,13 +5,51 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public final class Brainfuck {
+public class Brainfuck {
 
     /**
      * The default value when a new cell is created.
      */
 
     private static final byte CELL_INIT = 0;
+
+    /**
+     * Converts the String to bytes and overloads {@link #compile(byte[], byte...)}.
+     * See {@link #compile(byte[], byte...)}
+     *
+     * @param brainfuck The brainfuck code to execute.
+     * @param input Any input to provide to the code exection on demand.
+     * @return A new {@link Brainfuck} instance with the validated code.
+     */
+
+    public static Brainfuck compile(final String brainfuck, final byte... input) {
+        return Brainfuck.compile(brainfuck.getBytes(), input);
+    }
+
+    /**
+     * Creates a new Brainfuck object, prepares all variables for
+     * interpretting the code and validates the Brainfuck is valid.
+     *
+     * @param brainfuck The brainfuck code to execute.
+     * @param input Any input to provide to the code exection on demand.
+     * @return A new {@link Brainfuck} instance with the validated code.
+     */
+
+    public static Brainfuck compile(final byte[] brainfuck, final byte... input) {
+        return new Brainfuck(brainfuck, input);
+    }
+
+    /**
+     * The full brainfuck code to execute.
+     */
+
+    private final byte[] BRAINFUCK;
+
+    /**
+     * All input provided to use call from as data is prompted.
+     */
+
+    private final byte[] INPUT;
 
     /**
      * Set of cells uses to store brainfuck bytes.
@@ -32,70 +70,36 @@ public final class Brainfuck {
     private int selectedCell;
 
     /**
-     * Input parameters for any input required.
-     * Number of input bytes must match number of input commands (,).
-     */
-
-    private byte[] input;
-
-    /**
      * The number of times input has been required.
      */
 
     private int params;
-
-    private boolean valid;
-
-    /**
-     * Initalise the brainfuck instance with the default number of cells. (10)
-     * Do note this is a dynamic session, all code will still compile however
-     * see {@link Brainfuck(int)} to specify inital number of cells which may
-     * result in better speed.
-     */
-
-    public Brainfuck() {
-        this(10);
-    }
 
     /**
      * Initalise the brainfuck instance with the number of
      * cells provided. This can help speed up interpretting
      * extremely longs code.
      *
-     * @param initialCapacity   Default array length before having to expand for more cells.
+     * @param brainfuck The brainfuck code to compile.
+     * @param input Input bytes for any required input. (,)
      */
 
-    public Brainfuck(int initialCapacity) {
-        cells = new ArrayList<>(initialCapacity);
+    private Brainfuck(final byte[] brainfuck, final byte... input) {
+        BRAINFUCK = Objects.requireNonNull(brainfuck);
+
+        if (!isValid())
+            throw new IllegalArgumentException("Brainfuck should always have an equal number of [ and ].");
+
+        INPUT = Objects.requireNonNull(input);
+
+        cells = new ArrayList<>();
         prints = new ArrayList<>();
-        valid = false;
 
         cells.add(CELL_INIT);
     }
 
-    public List<Byte> compile(final String brainfuck, final byte... input) {
-        Objects.requireNonNull(brainfuck);
-        return compile(brainfuck.getBytes(), input);
-    }
-
-    public List<Byte> compile(final byte[] brainfuck, final byte... input) {
-        Objects.requireNonNull(brainfuck);
-
-        if (!valid) {
-            this.input = input;
-
-            if (!isValid(brainfuck))
-                throw new IllegalArgumentException("Brainfuck should always have equal number of open ([) and close (]) brackets.");
-
-            valid = true;
-        }
-
-        int position = 0;
-
-        while (position < brainfuck.length)
-            position = intepretCommand(brainfuck, position);
-
-        return prints;
+    public List<Byte> interpretBytes() {
+        return interpret(BRAINFUCK);
     }
 
     /**
@@ -103,18 +107,25 @@ public final class Brainfuck {
      * to a String. <br>
      * Possible error: If code requests more input than provided.
      *
-     * @param brainfuck The brainfuck code to interpret.
-     * @param input An array of input bytes for any of input (, command).
      * @return  A {@link String} result of all printed (. command) {@link byte}s.
      */
 
-    public String compileToString(final String brainfuck, final byte... input) {
-        List<Byte> list = compile(brainfuck, input);
-        StringBuilder buffer = new StringBuilder();
+    public String interpret() {
+        List<Byte> list = interpretBytes();
+        StringBuilder builder = new StringBuilder();
 
-        list.forEach(o -> buffer.append((char)o.byteValue()));
+        list.forEach(o -> builder.append((char)o.byteValue()));
 
-        return buffer.toString();
+        return builder.toString();
+    }
+
+    private List<Byte> interpret(final byte[] brainfuck) {
+        int position = 0;
+
+        while (position < brainfuck.length)
+            position = intepretCommand(brainfuck, position);
+
+        return prints;
     }
 
     /**
@@ -134,14 +145,15 @@ public final class Brainfuck {
                     cells.add(CELL_INIT);
 
                 selectedCell++;
+
                 return ++position;
 
             case '<':
                 if (selectedCell == 0)
                     cells.add(0, CELL_INIT);
-
                 else
                     selectedCell--;
+
                 return ++position;
 
             case '+':
@@ -157,10 +169,10 @@ public final class Brainfuck {
                 return ++position;
 
             case ',':
-                if (input.length < params + 1)
-                    throw new IllegalArgumentException("Not enough input was provided.");
+                if (INPUT.length <= params)
+                    throw new IndexOutOfBoundsException("Not enough input was provided.");
 
-                cells.set(selectedCell, input[params++]);
+                cells.set(selectedCell, INPUT[params++]);
                 return ++position;
 
             case '[':
@@ -180,7 +192,7 @@ public final class Brainfuck {
                 byte[] array = Arrays.copyOfRange(brainfuck, position, matching - 1);
 
                 while (cells.get(selectedCell) != 0)
-                    compile(array, input);
+                    interpret(array);
 
                 return matching;
 
@@ -189,10 +201,10 @@ public final class Brainfuck {
         }
     }
 
-    private boolean isValid(byte[] brainfuck) {
+    private boolean isValid() {
         int depth = 0;
 
-        for (byte c : brainfuck) {
+        for (byte c : BRAINFUCK) {
             if (c == '[')
                 depth++;
 

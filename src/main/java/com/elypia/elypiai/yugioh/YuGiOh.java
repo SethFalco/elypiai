@@ -25,13 +25,14 @@ public class YuGiOh {
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();
+			YuGiOhCard card = null;
 
-			if (!object.toString().contains("No cards matching this name")) {
+			if (object.getString("status").equals("success")) {
 				JSONObject data = object.getJSONObject("data");
-				YuGiOhCard card = new YuGiOhCard(data);
-
-				success.accept(card);
+				card = new YuGiOhCard(data);
 			}
+
+			success.accept(card);
 		}, err -> {
 			failure.accept(err);
 		});

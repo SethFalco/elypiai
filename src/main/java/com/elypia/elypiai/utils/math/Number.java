@@ -67,7 +67,7 @@ public enum Number {
 		return toString(Character.getNumericValue(u));
 	}
 
-	public static String toString(char t, char u) {
-		return toString(String.format("%c%c", t, u));
+	public static String toString(char tens, char units) {
+		return toString(String.format("%c%c", tens, units));
 	}
 }

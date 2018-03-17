@@ -1,18 +1,18 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.yugioh.data.CardType;
-import com.elypia.elypiai.yugioh.data.MonsterAttribute;
-import com.elypia.elypiai.yugioh.data.MonsterType;
+import com.elypia.elypiai.yugioh.data.YGOCardType;
+import com.elypia.elypiai.yugioh.data.YGOFamily;
+import com.elypia.elypiai.yugioh.data.YGOMonsterType;
 import org.json.JSONObject;
 
 public class YuGiOhCard {
 
 	private String name;
 	private String text;
-	private CardType cardType;
+	private YGOCardType cardType;
 
-	protected MonsterType type;
-	protected MonsterAttribute family;
+	protected YGOMonsterType type;
+	protected YGOFamily family;
 	protected int attack;
 	protected int defense;
 	protected int level;
@@ -21,16 +21,18 @@ public class YuGiOhCard {
 	 * @param object The JSONObject from the request for parsing.
 	 */
 
-	protected YuGiOhCard(JSONObject object) {
+	public YuGiOhCard(JSONObject object) {
 		name = object.getString("name");
 		text = object.getString("text");
-		cardType = CardType.valueOf(object.getString("card_type").toUpperCase());
+		cardType = YGOCardType.getByName(object.getString("card_type"));
 
-		type = MonsterType.valueOf(object.getString("type").toUpperCase());
+		String typeString = object.optString("type", null);
 
-		// If does not have Type, assume is not a monster.
-		if (type != null) {
-			family = MonsterAttribute.valueOf(object.getString("family").toUpperCase());
+		if (typeString != null) {
+			String[] split = typeString.split("\\s*\\/\\s*");
+			type = YGOMonsterType.valueOf(split[0].toUpperCase());
+
+			family = YGOFamily.valueOf(object.getString("family").toUpperCase());
 			attack = object.getInt("atk");
 			defense = object.getInt("def");
 			level = object.getInt("level");
@@ -59,7 +61,7 @@ public class YuGiOhCard {
 	 * 			can be a Spell, Trap, or Monster.
 	 */
 
-	public CardType getCardType() {
+	public YGOCardType getCardType() {
 		return cardType;
 	}
 
@@ -67,7 +69,7 @@ public class YuGiOhCard {
 	 * @return	Get the monsters type.
 	 */
 
-	public MonsterType getType() {
+	public YGOMonsterType getTypes() {
 		return type;
 	}
 
@@ -75,7 +77,7 @@ public class YuGiOhCard {
 	 * @return	Get the family/attribute of the card.
 	 */
 
-	public MonsterAttribute getFamily() {
+	public YGOFamily getFamily() {
 		return family;
 	}
 

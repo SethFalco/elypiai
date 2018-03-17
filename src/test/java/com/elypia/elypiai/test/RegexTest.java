@@ -249,11 +249,11 @@ public class RegexTest {
         );
     }
 
+    @Test
     public void testInvalidNumber() {
         Regex regex = Regex.NUMBER;
 
         assertAll("Test Invalid Numbers",
-            () -> assertFalse(regex.matches("1000.")),
             () -> assertFalse(regex.matches("")),
             () -> assertFalse(regex.matches("    ")),
             () -> assertFalse(regex.matches("Hello world!")),

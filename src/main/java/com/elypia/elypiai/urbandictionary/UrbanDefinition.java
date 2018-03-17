@@ -23,6 +23,11 @@ public class UrbanDefinition {
 		definitionId = object.getInt("defid");
 		example = object.getString("example");
 		thumbsDown = object.getInt("thumbs_down");
+
+		currentVote = object.getString("current_vote");
+
+		if (currentVote.equals(""))
+			currentVote = null;
 	}
 
 	/**
