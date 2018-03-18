@@ -162,7 +162,7 @@ public class SteamUser {
 	}
 
 	/**
-	 * @return	Returns the ID of the user. See {@link #getName()}
+	 * @return	Returns the ID of the user. See {@link #getUsername()}
 	 * 			for name of the user instead.
 	 */
 
