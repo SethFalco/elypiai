@@ -4,6 +4,7 @@ import okhttp3.*;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -16,24 +17,39 @@ public class ElyRequest {
     private Request.Builder reqBuilder;
     private RequestBody body;
 
+    private String url;
+    private Map<String, String> params;
+    private Map<String, String> headers;
+
+    public ElyRequest(ElyRequest req) {
+        this(req, req.url);
+    }
+
+    public ElyRequest(ElyRequest req, String url, Object... routes) {
+        this(url, routes);
+
+        req.params.forEach(this::addParam);
+        req.headers.forEach(this::addHeader);
+    }
+
     public ElyRequest(String url, Object... routes) {
         if (routes.length > 0)
-            url = String.format(url, routes);
+            this.url = String.format(url, routes);
 
-        urlBuilder = HttpUrl.parse(url).newBuilder();
+        urlBuilder = HttpUrl.parse(this.url).newBuilder();
         reqBuilder = new Request.Builder();
+        params = new HashMap<>();
+        headers = new HashMap<>();
     }
 
     public <T> void addParam(String key, T value) {
         urlBuilder.addQueryParameter(key, value.toString());
-    }
-
-    public void addHeaders(Map<String, String> headers) {
-        headers.forEach(this::addHeader);
+        params.put(key, value.toString());
     }
 
     public void addHeader(String key, String value) {
         reqBuilder.addHeader(key, value);
+        headers.put(key, value);
     }
 
     public void setFormData(JSONObject object) {

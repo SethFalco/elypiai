@@ -1,9 +1,11 @@
 package com.elypia.elypiai.amazon;
 
+import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import com.elypia.elypiai.utils.JsoupUtils;
 import org.jsoup.nodes.Element;
 
 import java.util.Currency;
+import java.util.Locale;
 
 public class AmazonItem {
 
@@ -12,6 +14,12 @@ public class AmazonItem {
      */
 
     private Amazon amazon;
+
+    /**
+     * The endpoint used to generate this item result.
+     */
+
+    private AmazonEndpoint endpoint;
 
     /**
      * Amazon Standard Identification Number (ASIN)
@@ -60,10 +68,11 @@ public class AmazonItem {
 
     public AmazonItem(Amazon amazon, Element element) {
         this.amazon = amazon;
+        endpoint = amazon.getEndpoint();
 
         asin = JsoupUtils.getTextByTag(element, "ASIN");
         parentAsin = JsoupUtils.getTextByTag(element, "ParentASIN");
-        url = amazon.getEndpoint().getProductUrl(asin);
+        url = String.format("%s/dp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
         price = Double.parseDouble(JsoupUtils.optTextByTag(element, "Amount", 0)) / 100;
         currency = Currency.getInstance(JsoupUtils.getTextByTag(element, "CurrencyCode"));
 
@@ -79,6 +88,10 @@ public class AmazonItem {
         return amazon;
     }
 
+    public AmazonEndpoint getEndpoint() {
+        return endpoint;
+    }
+
     public String getAsin() {
         return asin;
     }
@@ -91,7 +104,7 @@ public class AmazonItem {
         return url;
     }
 
-    public String getLargeImage() {
+    public String getImage() {
         return largeImage;
     }
 
@@ -99,11 +112,11 @@ public class AmazonItem {
         return price;
     }
 
-    public String getPricePretty() {
+    public String getPriceString() {
         int decimalDigits = currency.getDefaultFractionDigits();
-        String symbol = currency.getSymbol();
+        String symbol = currency.getSymbol(Locale.US);
 
-        return String.format("%s%,f." + decimalDigits, symbol, price);
+        return String.format("%s%,." + decimalDigits + "f", symbol, price);
     }
 
     public Currency getCurrency() {

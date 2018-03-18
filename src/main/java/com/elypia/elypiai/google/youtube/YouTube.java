@@ -1,9 +1,9 @@
 package com.elypia.elypiai.google.youtube;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import org.json.JSONObject;
+import com.elypia.elypiai.google.youtube.data.YouTubeType;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class YouTube {
@@ -13,9 +13,9 @@ public class YouTube {
 	public static final String CHANNEL_URL = "https://www.youtube.com/channel/";
 	public static final String THUMBNAIL_URL = "http://img.youtube.com/vi/<ID>/hqdefault.jpg";
 
-	private static final String MEDIA_ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
-
 	private final String API_KEY;
+
+	private YouTubeRequester requester;
 
 	/**
 	 * Create instance of YouTube object to make api calls
@@ -28,49 +28,39 @@ public class YouTube {
 
 	public YouTube(String apiKey) {
 		API_KEY = apiKey;
+		requester = new YouTubeRequester(this);
 	}
 
-	public void getVideo(String term, Consumer<YouTubeData> success, Consumer<IOException> failure) {
-		getData(term, YouTubeType.VIDEO, success, failure);
+	public void getVideo(String term, Consumer<YouTubeItem> success, Consumer<IOException> failure) {
+		getVideos(term, 1, result -> {
+			YouTubeItem item = result.isEmpty() ? null : result.get(0);
+			success.accept(item);
+		}, failure);
 	}
 
-	public void getPlaylist(String term, Consumer<YouTubeData> success, Consumer<IOException> failure) {
-		getData(term, YouTubeType.PLAYLIST, success, failure);
+	public void getVideos(String term, int count, Consumer<List<YouTubeItem>> success, Consumer<IOException> failure) {
+		if (count < 1 || count > 50)
+			throw new IllegalArgumentException("YouTube search endpoint can only return between 0 and 50 results.");
+
+		requester.getData(term, count, YouTubeType.VIDEO, success, failure);
 	}
 
-	public void getChannel(String term, Consumer<YouTubeData> success, Consumer<IOException> failure) {
-		getData(term, YouTubeType.CHANNEL, success, failure);
+	public void getPlaylist(String term, Consumer<YouTubeItem> success, Consumer<IOException> failure) {
+		requester.getData(term, 1, YouTubeType.PLAYLIST, result -> {
+			YouTubeItem item = result.isEmpty() ? null : result.get(0);
+			success.accept(item);
+		}, failure);
 	}
 
-	/**
-	 * Search YouTube for a video and returns the top
-	 * result only with all information.
-	 *
-	 * @param term Term to search on YouTube.
-	 * @param type Type of YouTube object.
-	 * @param success What to do with the result.
-	 * @param failure What to do in case of failure, eg timeout.
-	 */
+	public void getChannel(String term, Consumer<YouTubeItem> success, Consumer<IOException> failure) {
+		requester.getData(term, 1, YouTubeType.CHANNEL, result -> {
+			YouTubeItem item = result.isEmpty() ? null : result.get(0);
+			success.accept(item);
+		}, failure);
+	}
 
-	public void getData(String term, YouTubeType type, Consumer<YouTubeData> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(MEDIA_ENDPOINT);
-		req.addParam("key", API_KEY);
-		req.addParam("part", "snippet");
-		req.addParam("maxResult", 1);
-		req.addParam("prettyPrint", false);
-		req.addParam("q", term);
-		req.addParam("type", type.toString());
-
-		req.get(result -> {
-			JSONObject object = result.asJSONObject();
-
-			if (object.getJSONObject("pageInfo").getInt("totalResults") == 0)
-				success.accept(null);
-			else
-				success.accept(new YouTubeData(object, type));
-		}, err -> {
-			failure.accept(err);
-		});
+	public String getApiKey() {
+		return API_KEY;
 	}
 
 	/**
@@ -82,7 +72,7 @@ public class YouTube {
 	 * @return		Url to the video id provided.
 	 */
 
-	public static String formVideoUrl(String id) {
+	public static String getVideoUrl(String id) {
 		return VIDEO_URL + id;
 	}
 
@@ -95,7 +85,7 @@ public class YouTube {
 	 * @return		Url to the high quality youtube thumbnail.
 	 */
 
-	public static String formThumbnailUrl(String id) {
+	public static String getThumbnailUrl(String id) {
 		return THUMBNAIL_URL.replace("<ID>", id);
 	}
 }

@@ -19,15 +19,15 @@ public class MarkdownTest {
                         img("My useless image.", "https://useless.com/image.png");
 
         String expected = "# My Markdown Class\n**" +
-                           "Doesn't this seem somewhat useful?**  \n" +
-                           "_No? Figures... Tbh I just made it cause it seems easy._\n" +
-                           "\n" +
-                           "---\n" +
-                           "* [x] Hey I'm ticked!  \n" +
-                           "* [ ] But I'm not!\n" +
-                           "\n" +
-                           "---\n" +
-                           "![My useless image.](https://useless.com/image.png)";
+                          "Doesn't this seem somewhat useful?**  \n" +
+                          "_No? Figures... Tbh I just made it cause it seems easy._\n" +
+                          "\n" +
+                          "---\n" +
+                          "* [x] Hey I'm ticked!  \n" +
+                          "* [ ] But I'm not!\n" +
+                          "\n" +
+                          "---\n" +
+                          "![My useless image.](https://useless.com/image.png)";
 
         assertEquals(expected, actual);
     }

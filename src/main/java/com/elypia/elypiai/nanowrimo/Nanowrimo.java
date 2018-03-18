@@ -26,7 +26,7 @@ public class Nanowrimo {
 		ElyRequest req = new ElyRequest(PUT_WORDCOUNT_ENDPOINT);
 		req.setFormData(body);
 
-		req.put(result -> {
+		req.post(result -> {
 			String resp = result.toString().toUpperCase().replace(" ", "_");
 			success.accept(WordCountError.valueOf(resp));
 		}, err ->{

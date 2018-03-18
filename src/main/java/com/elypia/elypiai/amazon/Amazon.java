@@ -79,16 +79,16 @@ public class Amazon {
 		requester = new AmazonRequester(this);
 	}
 
-	public void getItem(String product, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
-		getItem(product, DEFAULT_GROUPS, success, failure);
+	public void getItems(String product, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
+		getItems(product, DEFAULT_GROUPS, success, failure);
 	}
 
-	public void getItem(String product, AmazonGroup[] groups, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
-		getItem(product, groups, AmazonIndex.ALL, success, failure);
+	public void getItems(String product, AmazonGroup[] groups, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
+		getItems(product, groups, AmazonIndex.ALL, success, failure);
 	}
 
-	public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
-		requester.getItem(product, groups, index, success, failure);
+	public void getItems(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
+		requester.getItems(product, groups, index, success, failure);
 	}
 
 	public String getAccessKey() {

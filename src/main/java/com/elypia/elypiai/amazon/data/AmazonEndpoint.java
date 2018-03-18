@@ -1,45 +1,41 @@
 package com.elypia.elypiai.amazon.data;
 
+import com.elypia.elypiai.amazon.AmazonItem;
+
 public enum AmazonEndpoint {
 
-	US("amazon.com"),
-	BRAZIL("amazon.com.br"),
-	CANADA("amazon.ca"),
-	CHINA("amazon.cn"),
-	GERMANY("amazon.de"),
-	SPAIN("amazon.es"),
-	FRANCE("amazon.fr"),
-	INDIA("amazon.in"),
-	ITALY("amazon.it"),
-	JAPAN("amazon.co.jp"),
-	MEXICO("amazon.com.mx"),
-	UK("amazon.co.uk");
+	US(".com"),
+	BRAZIL(".com.br"),
+	CANADA(".ca"),
+	CHINA(".cn"),
+	GERMANY(".de"),
+	SPAIN(".es"),
+	FRANCE(".fr"),
+	INDIA(".in"),
+	ITALY(".it"),
+	JAPAN(".co.jp"),
+	MEXICO(".com.mx"),
+	UK(".co.uk");
 
-	private String url;
+	private String tld;
 
-	AmazonEndpoint(String url) {
-		this.url = url;
+	AmazonEndpoint(String tld) {
+		this.tld = tld;
 	}
 
 	/**
+	 * Do <strong>NOT</strong> use this to to display product data
+	 * results, use the URL provided with {@link AmazonItem} for monetization.
+	 *
 	 * @return	The Amazon homepage for this endpoint / country.
 	 */
 
 	public String getShoppingUrl() {
-		return String.format("https://%s/", url);
+		return String.format("https://amazon%s", tld);
 	}
-
-	/**
-	 * @param asin	The ASIN ID of the product.
-	 * @return	The product URL.
-	 */
-
-    public String getProductUrl(String asin) {
-        return String.format(getShoppingUrl() + "dp/" + asin);
-    }
 
 	@Override
 	public String toString() {
-		return "webservices." + url;
+		return "webservices.amazon" + tld;
 	}
 }

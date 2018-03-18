@@ -7,16 +7,15 @@ public class Dimension3D {
     private double height;
     private double weight;
 
-    public Dimension3D(double length, double width, double height, double weight) {
-        this(length, width, height);
-
-        this.weight = weight;
+    public Dimension3D(double length, double width, double height) {
+        this(length, width, height, 0);
     }
 
-    public Dimension3D(double length, double width, double height) {
+    public Dimension3D(double length, double width, double height, double weight) {
         this.length = length;
         this.width = width;
         this.height = height;
+        this.weight = weight;
     }
 
     public double getVolume() {

@@ -52,7 +52,7 @@ public class AmazonRequester {
      * @param   failure What to do should the request fail, eg timeout.
      */
 
-    public void getItem(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
+    public void getItems(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
         String id = amazon.getId();
         AmazonEndpoint endpoint = amazon.getEndpoint();
         String[] groupString = ElyUtils.toStringArray(groups);

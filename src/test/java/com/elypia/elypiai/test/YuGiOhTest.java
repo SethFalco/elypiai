@@ -20,7 +20,6 @@ public class YuGiOhTest {
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician", card.getName()),
-            () -> assertEquals("Dark Magician", card.getName()),
             () -> assertEquals("The ultimate wizard in terms of attack and defense.", card.getText()),
             () -> assertEquals(YGOCardType.MONSTER, card.getCardType()),
             () -> assertEquals(YGOMonsterType.SPELLCASTER, card.getTypes()),
@@ -28,6 +27,26 @@ public class YuGiOhTest {
             () -> assertEquals(2500, card.getAttack()),
             () -> assertEquals(2100, card.getDefense()),
             () -> assertEquals(7, card.getLevel())
+        );
+    }
+
+    @Test
+    public void cardType() {
+        assertAll("Verify getByName",
+            () -> assertEquals(null, YGOCardType.getByName("")),
+            () -> assertEquals(null, YGOCardType.getByName("monnster")),
+            () -> assertEquals(YGOCardType.MONSTER, YGOCardType.getByName("monster")),
+            () -> assertEquals(YGOCardType.SPELL, YGOCardType.getByName("spell")),
+            () -> assertEquals(YGOCardType.TRAP, YGOCardType.getByName("trap"))
+        );
+    }
+
+    @Test
+    public void cardTypeApiNames() {
+        assertAll("Verify getByName",
+            () -> assertEquals("monster", YGOCardType.MONSTER.getApiName()),
+            () -> assertEquals("spell", YGOCardType.SPELL.getApiName()),
+            () -> assertEquals("trap", YGOCardType.TRAP.getApiName())
         );
     }
 }
