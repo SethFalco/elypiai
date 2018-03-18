@@ -15,15 +15,8 @@ public class YouTubeRequester {
 
     private final YouTube youtube;
 
-    private ElyRequest mediaReq;
-
     public YouTubeRequester(YouTube youtube) {
         this.youtube = youtube;
-
-        mediaReq = new ElyRequest(YouTubeEndpoint.GET_MEDIA.getEndpoint());
-        mediaReq.addParam("key", youtube.getApiKey());
-        mediaReq.addParam("part", "snippet");
-        mediaReq.addParam("prettyPrint", false);
     }
 
     /**
@@ -37,10 +30,15 @@ public class YouTubeRequester {
      */
 
     public void getData(String term, int count, YouTubeType type, Consumer<List<YouTubeItem>> success, Consumer<IOException> failure) {
-        ElyRequest req = new ElyRequest(mediaReq);
+        String endpoint = YouTubeEndpoint.GET_MEDIA.getEndpoint();
+
+        ElyRequest req = new ElyRequest(endpoint);
         req.addParam("maxResults", count);
         req.addParam("q", term);
         req.addParam("type", type.toString());
+        req.addParam("key", youtube.getApiKey());
+        req.addParam("part", "snippet");
+        req.addParam("prettyPrint", false);
 
         req.get(result -> {
             List<YouTubeItem> list = new ArrayList<>();

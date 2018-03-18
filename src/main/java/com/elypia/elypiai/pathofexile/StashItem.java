@@ -49,18 +49,18 @@ public class StashItem extends PoEObject {
 		icon = object.getString("icon");
 		league = object.getString("league");
 		id = object.getString("id");
-		name = object.getString("name");
+		name = object.getString("name").replaceAll("^(?:<<set:[MS]+>>)+", "");
 		typeLine = object.getString("typeLine");
 		identified = object.getBoolean("identified");
 		setDescription = object.optString("secDescrText");
 		description = object.optString("descrText");
-		note = object.getString("note");
+		note = object.optString("note", null);
 		frameType = object.getInt("frameType");
 		xPos = object.getInt("x");
 		yPos = object.getInt("y");
 		inventoryId = object.getString("inventoryId");
 
-		JSONArray socketsArray = object.getJSONArray("sockets");
+		JSONArray socketsArray = object.optJSONArray("sockets");
 
 		if (socketsArray != null) {
 			sockets = new ArrayList<>();
@@ -71,12 +71,15 @@ public class StashItem extends PoEObject {
 			}
 		}
 
-		JSONArray propertiesArray = object.getJSONArray("properties");
+		if (object.has("properties")) {
+			JSONArray propertiesArray = object.getJSONArray("properties");
 
-		for (int i = 0; i < propertiesArray.length(); i++) {
-			ItemProperty property = new ItemProperty(poe, propertiesArray.getJSONObject(i));
-			properties.add(property);
+			for (int i = 0; i < propertiesArray.length(); i++) {
+				ItemProperty property = new ItemProperty(poe, propertiesArray.getJSONObject(i));
+				properties.add(property);
+			}
 		}
+
 
 		JSONArray additionalPropertiesArray = object.optJSONArray("additionalProperties");
 
@@ -89,11 +92,13 @@ public class StashItem extends PoEObject {
 			}
 		}
 
-		JSONArray requirementsArray = object.getJSONArray("requirements");
+		JSONArray requirementsArray = object.optJSONArray("requirements");
 
-		for (int i = 0; i < requirementsArray.length(); i++) {
-			ItemProperty property = new ItemProperty(poe, requirementsArray.getJSONObject(i));
-			requirements.add(property);
+		if (requirementsArray != null) {
+			for (int i = 0; i < requirementsArray.length(); i++) {
+				ItemProperty property = new ItemProperty(poe, requirementsArray.getJSONObject(i));
+				requirements.add(property);
+			}
 		}
 
 		JSONArray socketedItemsArray = object.optJSONArray("socketedItems");
@@ -211,11 +216,11 @@ public class StashItem extends PoEObject {
 		return frameType;
 	}
 
-	public int getxPos() {
+	public int getXPos() {
 		return xPos;
 	}
 
-	public int getyPos() {
+	public int getYPos() {
 		return yPos;
 	}
 

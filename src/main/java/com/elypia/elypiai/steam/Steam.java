@@ -1,22 +1,15 @@
 package com.elypia.elypiai.steam;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class Steam {
 
-	public static final String GET_STEAM_ID = "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/";
-	public static final String GET_USER = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
-	public static final String GET_LIB = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/";
-
 	private final String API_KEY;
+
+	private SteamRequester requester;
 
 	/**
 	 * The Steam API allows calls to basic Steam information
@@ -28,6 +21,13 @@ public class Steam {
 
 	public Steam(String apiKey) {
 		API_KEY = apiKey;
+		requester = new SteamRequester(this);
+	}
+
+	public void getUser(String username, Consumer<SteamUser> success, Consumer<IOException> failure) {
+		getIdFromVanityUrl(username, result -> {
+			getUser(result, success, failure);
+		}, failure);
 	}
 
 	/**
@@ -35,30 +35,24 @@ public class Steam {
 	 * as well as user information such as query the inventory
 	 * or obtaining stats.
 	 *
-	 * @param 	steamid	Username of the player to get.
+	 * @param id Username of the player to get.
 	 */
 
-	public void getUser(long steamid, Consumer<SteamUser> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_USER);
+	public void getUser(long id, Consumer<SteamUser> success, Consumer<IOException> failure) {
+		long[] ids = new long[] {id};
 
-		req.addParam("key", API_KEY);
-		req.addParam("steamids", steamid);
+		getUsers(ids, result -> {
+			SteamUser user = null;
 
-		req.get(result -> {
-			JSONArray players = result.asJSONObject().getJSONObject("response").getJSONArray("players");
-			SteamUser user = new SteamUser(players.getJSONObject(0));
+			if (!result.isEmpty())
+				user = result.iterator().next();
+
 			success.accept(user);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
-	public void getUser(String username, Consumer<SteamUser> success, Consumer<IOException> failure) {
-		getIdFromVanityUrl(username, result -> {
-			getUser(result, success, failure);
-		}, err -> {
-			failure.accept(err);
-		});
+	public void getUsers(long[] ids, Consumer<Collection<SteamUser>> success, Consumer<IOException> failure) {
+		requester.getUsers(ids, success, failure);
 	}
 
 	/**
@@ -75,38 +69,14 @@ public class Steam {
 	 */
 
 	public void getLibrary(SteamUser user, Consumer<List<SteamGame>> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_LIB);
-		req.addParam("steamid", user.getSteamId());
-		req.addParam("format", "json");
-		req.addParam("key", API_KEY);
-		req.addParam("include_appinfo", 1);
-		req.addParam("include_played_free_games", 1);
-
-		req.get(result -> {
-			JSONArray array = result.asJSONObject().getJSONObject("response").getJSONArray("games");
-
-			List<SteamGame> library = new ArrayList<>();
-
-			for (int i = 0; i < array.length(); i++)
-				library.add(new SteamGame(user, array.getJSONObject(i)));
-
-			Collections.sort(library);
-			success.accept(library);
-		}, err -> {
-			failure.accept(err);
-		});
+		requester.getLibrary(user, success, failure);
 	}
 
 	public void getIdFromVanityUrl(String vanityUrl, Consumer<Long> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_STEAM_ID);
-		req.addParam("key", API_KEY);
-		req.addParam("vanityUrl", vanityUrl);
+		requester.getIdFromVanityUrl(vanityUrl, success, failure);
+	}
 
-		req.get(result -> {
-			JSONObject object = result.asJSONObject().getJSONObject("response");
-			success.accept(object.getLong("steamid"));
-		}, err ->{
-			failure.accept(err);
-		});
+	public String getApiKey() {
+		return API_KEY;
 	}
 }

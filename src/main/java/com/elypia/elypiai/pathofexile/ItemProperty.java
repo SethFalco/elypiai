@@ -6,7 +6,7 @@ import org.json.JSONObject;
 public class ItemProperty extends PoEObject {
 
 	private String name;
-	private String[] values;
+	private String value;
 	private int displayMode;
 	private int type;
 
@@ -14,25 +14,23 @@ public class ItemProperty extends PoEObject {
 		super(poe);
 
 		name = object.getString("name");
-
-		JSONArray valuesArray = object.getJSONArray("values");
-		int length = valuesArray.length();
-
-		values = new String[length];
-
-		for (int i = 0; i < length; i++)
-			values[i] = valuesArray.getString(i);
-
 		displayMode = object.getInt("displayMode");
 		type = object.optInt("type", Integer.MIN_VALUE);
+
+		JSONArray valuesArray = object.getJSONArray("values");
+
+		if (valuesArray.length() > 0) {
+			JSONArray valueArray = valuesArray.getJSONArray(0);
+			value = valueArray.getString(0);
+		}
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String[] getValues() {
-		return values;
+	public String getValues() {
+		return value;
 	}
 
 	public int getDisplayMode() {

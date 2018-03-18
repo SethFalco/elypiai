@@ -1,6 +1,7 @@
-package com.elypia.elypiai.steam;
+package com.elypia.elypiai.steam.data;
 
-public enum SteamUserState {
+public enum PersonaState {
+
 	OFFLINE,
 	ONLINE,
 	BUSY,

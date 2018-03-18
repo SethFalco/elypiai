@@ -7,10 +7,12 @@ import java.util.concurrent.TimeUnit;
 
 public class SteamGame implements Comparable<SteamGame> {
 
-	public static final String GAME_URL_FORMAT = "http://store.steampowered.com/app/%d";
-	public static final String IMAGE_FORMAT = "http://media.steampowered.com/steamcommunity/public/images/apps/%s/%s.jpg";
+	private static final String GAME_URL_FORMAT = "http://store.steampowered.com/app/%d";
+	private static final String IMAGE_FORMAT = "http://media.steampowered.com/steamcommunity/public/images/apps/%s/%s.jpg";
 
+	private Steam steam;
 	private SteamUser user;
+
 	private int id;
 	private String url;
 	private String name;
@@ -18,10 +20,12 @@ public class SteamGame implements Comparable<SteamGame> {
 	private long recentPlaytime;
 	private String imgIconUrl;
 	private String imgLogoUrl;
-	private boolean communityVisibleStats;
+	private boolean statsVisible;
 
 	public SteamGame(SteamUser user, JSONObject game) {
+		steam = user.getSteam();
 		this.user = user;
+
 		id = game.getInt("appid");
 		url = String.format(GAME_URL_FORMAT, id);
 		name = game.getString("name");
@@ -29,7 +33,7 @@ public class SteamGame implements Comparable<SteamGame> {
 		recentPlaytime = game.optLong("playtime_2weeks", 0);
 		imgIconUrl = String.format(IMAGE_FORMAT, id, game.getString("img_icon_url"));
 		imgLogoUrl = String.format(IMAGE_FORMAT, id, game.getString("img_logo_url"));
-		communityVisibleStats = game.optBoolean("has_community_visible_stats", false);
+		statsVisible = game.optBoolean("has_community_visible_stats", false);
 	}
 
 	public SteamUser getUser() {
@@ -56,9 +60,16 @@ public class SteamGame implements Comparable<SteamGame> {
 		return name;
 	}
 
+	public long getTotalPlaytime() {
+		return getTotalPlaytime(TimeUnit.HOURS);
+	}
 
 	public long getTotalPlaytime(TimeUnit unit) {
 		return ElyUtils.convertTime(totalPlaytime, TimeUnit.MINUTES, unit);
+	}
+
+	public long getRecentPlaytime() {
+		return getRecentPlaytime(TimeUnit.HOURS);
 	}
 
 	public long getRecentPlaytime(TimeUnit unit) {
@@ -73,8 +84,8 @@ public class SteamGame implements Comparable<SteamGame> {
 		return imgLogoUrl;
 	}
 
-	public boolean isCommunityStatsVisible() {
-		return communityVisibleStats;
+	public boolean isStatsVisible() {
+		return statsVisible;
 	}
 
 	/**
