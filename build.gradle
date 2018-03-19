@@ -1,3 +1,4 @@
+// Get JUnit plugin for Gradle before running out build script.
 buildscript {
 	repositories {
 		mavenCentral()
@@ -8,22 +9,37 @@ buildscript {
 	}
 }
 
+// Plugins provide more functions to our build script.
+
+// Bintray plugin for automatic deployment
 plugins {
 	id "com.jfrog.bintray" version "1.8.0"
 }
 
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
+// Build project, src, and JavaDoc .jar packages
+apply plugin: 'java'
+
+// Utilised by IDEA (IntelliJ) IDE
+apply plugin: 'idea'
+
+// Execute unit tests
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+// Code coverage reports
+apply plugin: 'jacoco'
+
+// Global variables, used in various parts of the script.
 String projectName = 'Elypiai'
 String projectVersion = '1.0.4'
 String projectDescription = "All in one API wrapper."
 String projectGit = 'https://gitlab.com/Elypia/Elypiai.git'
 
+// Configure task to compile our project into a .jar package for import.
 jar {
+	// When uses in a project, we only want `main`, not `test` or `example`.
 	from sourceSets.main.allSource
 
 	manifest {
@@ -31,11 +47,13 @@ jar {
 	}
 }
 
+// Create seperate .jar for only sources as .java files, required for Bintray.
 task sourcesJar(type: Jar, dependsOn: classes) {
 	classifier = 'sources'
 	from sourceSets.main.allSource
 }
 
+// Create seperate .jar package for javadocs, required for Bintray.
 task javadocJar(type: Jar, dependsOn: javadoc) {
 	classifier = 'javadoc'
 	from javadoc.destinationDir
@@ -46,7 +64,9 @@ artifacts {
 	archives javadocJar
 }
 
+// Bintray configuration
 bintray {
+	// Grabs BINTRAY_USER and KEY from System Environment Variables
 	user = System.getenv('BINTRAY_USER')
 	key = System.getenv('BINTRAY_KEY')
 	publications = ['Elypiai']
@@ -109,90 +129,66 @@ publishing {
 	}
 }
 
+// Repositories to get dependencies from.
 repositories {
 	jcenter()
 }
 
+// Dependencies our project relies on.
 dependencies {
+	// We need these, and need the sources to use them.
 	implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.2'
 	implementation group: 'org.json', name: 'json', version: '20180130'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+	implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 	implementation group: 'commons-codec', name: 'commons-codec', version: '1.11'
 
+	// We need these but only for testing, not live, and need the source fo them.
 	testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.15.0'
 	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.1.0'
 
+	// We need these but only for testing, not live, and don't need the source either, they are used by a dependency.
 	testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.1.0'
 	testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.1.0'
 }
 
+// When compiling print the full stack for unchecked exceptions.
 compileJava {
 	options.compilerArgs += '-Xlint:unchecked'
 }
 
+// Print test results and execute the normal test task.
 junitPlatform {
 	details 'tree'
+	enableStandardTestTask true
 }
+
+test {
+	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+
+	/*
+     * We don't need any kind of test reporting.
+     * The build will fail whenever even a single test fails.
+     * The results will still print in console both locally and in CI.
+     */
+
+	reports {
+		html.enabled = false
+	}
+}
+
+// Configure JaCoCo (Our test coverage tool.)
+jacoco {
+	// This is the version of JaCoCo to download.
+	toolVersion = "0.8.0"
+}
+
+/*
+ * Specify a version of Gradle to use in order to override
+ * Any System or IDE settings.
+ */
 
 task wrapper(type: Wrapper) {
 	description = 'Generates gradlew[.bat] scripts'
 	gradleVersion = '4.6'
 }
-
-import groovy.io.FileType
-
-import java.util.regex.Matcher
-import java.util.regex.Pattern
-
-class SecretTask extends DefaultTask {
-
-	@TaskAction
-	void search() {
-		final File currentDirectory = new File(".")
-		final List<File> files = new ArrayList<>()
-
-		currentDirectory.eachFileRecurse(FileType.FILES) { file ->
-			String name = file.getCanonicalPath()
-
-			if (!name.contains("Test") && name.endsWith(".java"))
-				files << file
-		}
-
-		files.each { file ->
-			boolean failed
-			List<String> lines
-
-			try {
-				lines = file.readLines()
-			} catch (IOException) {
-				System.err.printf("Unable to read: '%s'%n", file.getCanonicalPath())
-				return
-			}
-
-			Map<String, Pattern> patterns = new HashMap<>()
-			patterns.put("Discord Bot Token", Pattern.compile(/(?i)[A-Z\d]{24}\.[A-Z\d-_]{6}\.[A-Z\d-_]{27}/))
-			patterns.put("Amazon Access Key", Pattern.compile(/AKIA[IJ][A-Z2-7]{14}[AQ]/))
-			patterns.put("Amazon Secret", Pattern.compile(/(?i)\b[A-Z\d\/+]{40}\b/))
-			patterns.put("Steam API Key", Pattern.compile(/[A-F\d]{32}/))
-
-			for (int i = 0; i < lines.size(); i++) {
-				patterns.forEach { name, pattern ->
-					Matcher match = pattern.matcher(lines[i])
-
-					while (match.find()) {
-						String message = "Found %s at: '%s' line: %d%n"
-						System.err.printf(message, name, file.getCanonicalPath(), i + 1)
-						failed = true
-					}
-				}
-			}
-
-			if (failed) {
-				String message = "Found secrets in the code, read logs and revoke these ASAP."
-				throw new GradleScriptException(message, null)
-			}
-		}
-	}
-}
-
-task search(type: SecretTask)

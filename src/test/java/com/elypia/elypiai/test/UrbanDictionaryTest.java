@@ -2,7 +2,7 @@ package com.elypia.elypiai.test;
 
 import com.elypia.elypiai.urbandictionary.UrbanDefinition;
 import com.elypia.elypiai.urbandictionary.UrbanResult;
-import com.elypia.elypiai.urbandictionary.UrbanResultType;
+import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ public class UrbanDictionaryTest {
             () -> assertEquals(0, result.getSounds().length)
         );
 
-        UrbanDefinition definition = result.getTopResult();
+        UrbanDefinition definition = result.getResult(false);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("Gorgeous, amazing, perfect everything. The girl who has always been my best friend, the girl who I should've been chasing this whole time. I love her. <333\r\n\r\n- Sugarlips", definition.getDefinition()),

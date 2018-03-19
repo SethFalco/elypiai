@@ -1,4 +1,4 @@
-package com.elypia.elypiai.utils.esml;
+package com.elypia.elypiai.utils.esn;
 
 import com.elypia.elypiai.utils.Regex;
 

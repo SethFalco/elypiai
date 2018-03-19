@@ -1,5 +1,6 @@
 package com.elypia.elypiai.urbandictionary;
 
+import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
 import com.elypia.elypiai.utils.ElyUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -103,21 +104,21 @@ public class UrbanResult {
 	}
 
 	/**
-	 * @return	The top resulting definition that appears on
-	 * 			UrbanDictionary for this search.
+	 * @return	The top resulting definition that appears on UrbanDictionary for this search.
 	 */
 
-	public UrbanDefinition getTopResult() {
-		return definitions.get(0);
+	public UrbanDefinition getResult() {
+		return getResult(false);
 	}
 
 	/**
-	 * @return	A random result of all the returned definitions
-	 * 			of the search term.
+	 * @param random If to get the top definition or a random one.
+	 * @return	A random result of all the returned definitions of the search term.
 	 */
 
-	public UrbanDefinition getRandomResult() {
-		return definitions.get(ElyUtils.RANDOM.nextInt(definitions.size()));
+	public UrbanDefinition getResult(boolean random) {
+		int index = random ? ElyUtils.RANDOM.nextInt(definitions.size()) : 0;
+		return definitions.get(index);
 	}
 
 	/**

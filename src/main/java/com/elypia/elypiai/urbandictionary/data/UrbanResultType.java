@@ -1,4 +1,4 @@
-package com.elypia.elypiai.urbandictionary;
+package com.elypia.elypiai.urbandictionary.data;
 
 public enum UrbanResultType {
 

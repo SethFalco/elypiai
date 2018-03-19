@@ -8,7 +8,7 @@ before_script:
 
 build:
   stage: build
-  script: gradle search | gradle --build-cache assemble
+  script: gradle --build-cache assemble
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -18,7 +18,9 @@ build:
 
 test:
   stage: test
-  script: gradle check
+  script:
+    - gradle check
+    - cat build/reports/jacoco/test/html/index.html
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull
