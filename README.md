@@ -25,7 +25,7 @@ Should any problems occur, come visit us over on [Discord](https://discord.gg/hp
 This project is _heavily_ relied on by [Alexis, the Discord bot](https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot). If you are on Discord feel free to join our guild as well and check her out so you can see Elypiai in action.
 
 ### About
-Elypiai is a all-in-one utility library which provides an interface to communicate with many online services such as YouTube, Twitch, and Steam, or even games like RuneScape, or osu!. We've made sure to wrap API's beyond just getting the data, with notifiers for significant events or static utility functions. It also inclues miscellaneous local functionality like a Brainfuck intepreter, an `enum` of ready made regular expressions for common matches, and other basic utilities that may come in handy for anyone, especially new developers..
+Elypiai is a all-in-one utility library which provides an interface to communicate with many online services such as YouTube, Twitch, and Steam, or even games like RuneScape, or osu!. We've made sure to wrap API's beyond just getting the data, with notifiers for significant events or static utility functions. It also inclues miscellaneous local functionality like a Brainfuck intepreter, an `enum` of ready made regular expressions for common matches, and other basic utilities that may come in handy for anyone, especially new developers.
 
 Elypiai is designed to be the quick and easy dependency away from having lots of functionality for any project.
 
