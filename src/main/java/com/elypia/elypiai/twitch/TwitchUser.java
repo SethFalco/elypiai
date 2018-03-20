@@ -1,51 +1,48 @@
 package com.elypia.elypiai.twitch;
 
+import com.elypia.elypiai.twitch.data.AccountType;
+import com.elypia.elypiai.twitch.data.BroadcasterType;
 import org.json.JSONObject;
 
 public class TwitchUser {
+
 	private static final String TWITCH_URL = "https://www.twitch.tv/";
 
-	private String displayName;
+	private Twitch twitch;
+
 	private int id;
-	private String name;
-	private String type;
-	private String bio;
-	private String createdAt;
-	private String updatedAt;
-	private String logo;
+	private String username;
+	private String displayName;
+	private AccountType type;
+	private BroadcasterType broadcasterType;
+	private String description;
+	private String avatarUrl;
+	private String offlineImageUrl;
+	private int viewCount;
 	private String url;
-	private TwitchStream stream;
 
-	public TwitchUser(JSONObject user) {
-		displayName = user.getString("display_name");
-		id 			= user.optInt("_id");
-		name 		= user.getString("name");
-		type 		= user.getString("type");
-		createdAt 	= user.getString("created_at");
-		updatedAt 	= user.getString("updated_at");
-		bio 		= user.optString("bio", null);
-		logo 		= user.optString("logo", null);
-		url 		= TWITCH_URL + displayName;
+	public TwitchUser(Twitch twitch, JSONObject object) {
+		this.twitch = twitch;
+
+		id = object.optInt("id");
+		username = object.getString("login");
+		displayName = object.getString("display_name");
+		type = AccountType.getByName(object.getString("type"));
+		broadcasterType = BroadcasterType.getByName(object.getString("broadcaster_type"));
+		avatarUrl = object.getString("profile_image_url");
+		offlineImageUrl = object.getString("offline_image_url");
+		viewCount = object.optInt("view_count");
+
+		description = object.getString("description");
+
+		if (description.isEmpty())
+			description = null;
+
+		url = TWITCH_URL + username;
 	}
 
-	public void setStreamInfo(JSONObject object) {
-		if (object == null) {
-			stream = null;
-		} else {
-			if (stream == null)
-				stream = new TwitchStream(object);
-			else
-				stream.update(object);
-		}
-	}
-
-	/**
-	 * @return	Get's the display name of the user
-	 * 			including capitilisation.
-	 */
-
-	public String getDisplayName() {
-		return displayName;
+	public Twitch getTwitch() {
+		return twitch;
 	}
 
 	/**
@@ -60,12 +57,25 @@ public class TwitchUser {
 	 * @return	Return the username of the user, all lower case.
 	 */
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public String getType() {
+	/**
+	 * @return	Get's the display name of the user
+	 * 			including capitilisation.
+	 */
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public AccountType getAccountType() {
 		return type;
+	}
+
+	public BroadcasterType getBroadcasterType() {
+		return broadcasterType;
 	}
 
 	/**
@@ -73,59 +83,27 @@ public class TwitchUser {
 	 * 			Possible null, if user hasn't set a bio.
 	 */
 
-	public String getBio() {
-		return bio;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
 	 * @return	The date the user created their account.
 	 */
 
-	public String getCreatedDate() {
-		return createdAt;
+	public String getAvatar() {
+		return avatarUrl;
 	}
 
-	public String getUpdatedDate() {
-		return updatedAt;
+	public String getOfflineImage() {
+		return offlineImageUrl;
 	}
 
-	/**
-	 * @return	The users profile picture. Possible
-	 * 			null; if user doesn't have a profile picture.
-	 */
-
-	public String getLogo() {
-		return logo;
+	public int getViewCount() {
+		return viewCount;
 	}
-
-	/**
-	 * @return	The url of the streamers channel.
-	 */
 
 	public String getUrl() {
 		return url;
-	}
-
-	/**
-	 * @return	Return the stream object containing any information
-	 * 			on their current stream. Possible null; if
-	 * 			not streaming.
-	 */
-
-	public TwitchStream getStream() {
-		return stream;
-	}
-
-	/**
-	 * @return	If the user is live or not.
-	 */
-
-	public boolean isLive() {
-		return stream != null;
-	}
-
-	@Override
-	public String toString() {
-		return displayName;
 	}
 }

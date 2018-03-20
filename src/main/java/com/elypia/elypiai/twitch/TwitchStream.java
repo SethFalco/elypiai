@@ -1,37 +1,53 @@
 package com.elypia.elypiai.twitch;
 
+import com.elypia.elypiai.twitch.data.StreamType;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.time.Instant;
 
 public class TwitchStream {
 
-	private long streamId;
-	private String game;
-	private int viewers;
-	private int videoHeight;
-	private int fps;
-	private int delay;
-	private String streamCreatedAt;
-	private boolean isPlaylist;
+	private Twitch twitch;
+	private TwitchUser user;
+
+	private long id;
+	private int gameId;
+	private String[] communityIds;
+	private StreamType type;
+	private String title;
+	private int viewerCount;
+	private Instant startDate;
+	private String language;
 	private String thumbnail;
 
-	/**
-	 * {@link TwitchUser#getStream()}
-	 */
+	public TwitchStream(TwitchUser user, JSONObject object) {
+		this.user = user;
+		twitch = user.getTwitch();
 
-	public TwitchStream(JSONObject object) {
 		update(object);
 	}
 
 	public void update(JSONObject object) {
-		streamId 		= object.getLong("_id");
-		viewers  		= object.getInt("viewers");
-		videoHeight 	= object.getInt("video_height");
-		fps 			= object.getInt("average_fps");
-		delay 			= object.getInt("delay");
-		streamCreatedAt = object.getString("created_at");
-		game     		= object.getString("game");
-		isPlaylist 		= object.getBoolean("is_playlist");
-		thumbnail 		= object.getJSONObject("preview").getString("large");
+		id = object.optLong("id");
+		gameId = object.optInt("game_id");
+		type = StreamType.getByName(object.getString("type"));
+		title = object.getString("title");
+		viewerCount = object.getInt("viewer_count");
+		startDate = Instant.parse(object.getString("started_at"));
+		language = object.getString("language");
+		thumbnail = object.getString("thumbnail_url");
+
+		JSONArray array = object.getJSONArray("community_ids");
+		communityIds = array.toList().toArray(new String[array.length()]);
+	}
+
+	public Twitch getTwitch() {
+		return twitch;
+	}
+
+	public TwitchUser getUser() {
+		return user;
 	}
 
 	/**
@@ -40,67 +56,62 @@ public class TwitchStream {
 	 * 			id of the streamer.
 	 */
 
-	public long getStreamId() {
-		return streamId;
+	public long getId() {
+		return id;
 	}
 
 	/**
 	 * @return	Get the game the streamer is currently playing.
 	 */
 
-	public String getGame() {
-		return game;
+	public int getGameId() {
+		return gameId;
+	}
+
+	public String[] getCommunityIds() {
+		return communityIds;
+	}
+
+	public StreamType getType() {
+		return type;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 	/**
 	 * @return	Get the current number of viewers of the streamer.
 	 */
 
-	public int getViewers() {
-		return viewers;
-	}
-
-	/**
-	 * @return	Get the video height of the stream.
-	 */
-
-	public int getVideoHeight() {
-		return videoHeight;
-	}
-
-	/**
-	 * @return	Get the FPS of the stream.
-	 */
-
-	public int getFPS() {
-		return fps;
-	}
-
-	/**
-	 * @return	Get the delay of the stream.
-	 */
-
-	public int getDelay() {
-		return delay;
+	public int getViewerCount() {
+		return viewerCount;
 	}
 
 	/**
 	 * @return	Get the time and date the user started streaming.
 	 */
 
-	public String getStreamCreatedDate() {
-		return streamCreatedAt;
+	public Instant getStartDate() {
+		return startDate;
 	}
 
-	public boolean isPlaylist() {
-		return isPlaylist;
+	public String getLanguage() {
+		return language;
 	}
-
-	/**
-	 * @return	Get the thumbnail of the stream in the form of a url.
-	 */
 
 	public String getThumbnail() {
-		return thumbnail;
+		return getThumbnail(1600);
+	}
+
+	public String getThumbnail(int width) {
+		return getThumbnail(width, width / 16 * 9);
+	}
+
+	public String getThumbnail(int width, int height) {
+		String url = thumbnail.replace("{width}", String.valueOf(width));
+		url = url.replace("{height}", String.valueOf(height));
+
+		return url;
 	}
 }
