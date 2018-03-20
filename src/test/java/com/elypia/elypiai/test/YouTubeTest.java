@@ -1,14 +1,27 @@
 package com.elypia.elypiai.test;
 
+import com.elypia.elypiai.google.youtube.YouTube;
 import com.elypia.elypiai.google.youtube.YouTubeItem;
 import com.elypia.elypiai.google.youtube.data.YouTubeType;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class YouTubeTest {
+
+    @Test
+    public void youtubeTest() {
+        YouTube youtube = new YouTube("AIzaSyBSXpt4aMDRs-6qu37mazTGqdyXq1yvEFI");
+
+        assertNotNull(youtube);
+        assertEquals("AIzaSyBSXpt4aMDRs-6qu37mazTGqdyXq1yvEFI", youtube.getApiKey());
+    }
+
+    @Test
+    public void invalidYouTube() {
+        assertThrows(NullPointerException.class, () -> new YouTube(null));
+    }
 
     @Test
     public void parseYouTubeItem() {

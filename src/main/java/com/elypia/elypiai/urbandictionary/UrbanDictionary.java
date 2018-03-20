@@ -30,8 +30,6 @@ public class UrbanDictionary {
 			UrbanResult urbanResult = new UrbanResult(object, term);
 
 			success.accept(urbanResult);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 }

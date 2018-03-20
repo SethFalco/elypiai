@@ -71,11 +71,6 @@ public enum Regex {
 		return regex;
 	}
 
-	@Override
-	public String toString() {
-		return regex;
-	}
-
 	public static Pattern compileTogether(Regex... regexs) {
 		String[] strings = new String[regexs.length];
 

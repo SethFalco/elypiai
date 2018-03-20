@@ -12,19 +12,10 @@ public enum LadderType {
 		this.apiName = apiName;
 	}
 
-	public String getApiName() {
-		return apiName;
-	}
-
-	@Override
-	public String toString() {
-		return apiName;
-	}
-
 	public static LadderType getTypeByApiName(String apiName) {
 
 		for (LadderType type : LadderType.values()) {
-			if (type.getApiName().equals(apiName))
+			if (type.apiName.equals(apiName))
 				return type;
 		}
 

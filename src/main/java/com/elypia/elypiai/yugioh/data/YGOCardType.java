@@ -12,10 +12,6 @@ public enum YGOCardType {
 		this.apiName = apiName;
 	}
 
-	public String getApiName() {
-		return apiName;
-	}
-
 	public static YGOCardType getByName(String apiName) {
 		for (YGOCardType type : values()) {
 			if (type.apiName.equalsIgnoreCase(apiName))

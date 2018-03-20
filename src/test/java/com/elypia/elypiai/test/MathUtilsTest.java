@@ -1,6 +1,7 @@
 package com.elypia.elypiai.test;
 
 import com.elypia.elypiai.utils.math.MathUtils;
+import com.elypia.elypiai.utils.math.Numeral;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -26,6 +27,14 @@ public class MathUtilsTest {
             () -> assertEquals("one million and one", MathUtils.asWritten(1000001)),
             () -> assertEquals("zero", MathUtils.asWritten(-0)),
             () -> assertEquals("one billion two hundred and thirty-four million five hundred and sixty-seven thousand eight hundred and ninety", MathUtils.asWritten(1234567890))
+        );
+    }
+
+    @Test
+    public void parseNumbers() {
+        assertAll("Write Numbers from Values",
+            () -> assertEquals(Numeral.ONE, Numeral.of(1)),
+            () -> assertEquals(null, Numeral.of(1234))
         );
     }
 }

@@ -18,19 +18,10 @@ public enum GemAttribute {
 		return color;
 	}
 
-	public String getApiName() {
-		return apiName;
-	}
-
-	@Override
-	public String toString() {
-		return apiName;
-	}
-
 	public static GemAttribute getTypeByApiName(String apiName) {
 
 		for (GemAttribute attr : GemAttribute.values()) {
-			if (attr.getApiName().equals(apiName))
+			if (attr.apiName.equals(apiName))
 				return attr;
 		}
 

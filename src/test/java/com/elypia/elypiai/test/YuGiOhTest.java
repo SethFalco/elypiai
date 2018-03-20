@@ -1,5 +1,6 @@
 package com.elypia.elypiai.test;
 
+import com.elypia.elypiai.yugioh.YuGiOh;
 import com.elypia.elypiai.yugioh.YuGiOhCard;
 import com.elypia.elypiai.yugioh.data.YGOCardType;
 import com.elypia.elypiai.yugioh.data.YGOFamily;
@@ -7,10 +8,15 @@ import com.elypia.elypiai.yugioh.data.YGOMonsterType;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class YuGiOhTest {
+
+    @Test
+    public void yugiohTest() {
+        YuGiOh ygo = new YuGiOh();
+        assertNotNull(ygo);
+    }
 
     @Test
     public void parseCardData() {
@@ -38,15 +44,6 @@ public class YuGiOhTest {
             () -> assertEquals(YGOCardType.MONSTER, YGOCardType.getByName("monster")),
             () -> assertEquals(YGOCardType.SPELL, YGOCardType.getByName("spell")),
             () -> assertEquals(YGOCardType.TRAP, YGOCardType.getByName("trap"))
-        );
-    }
-
-    @Test
-    public void cardTypeApiNames() {
-        assertAll("Verify getByName",
-            () -> assertEquals("monster", YGOCardType.MONSTER.getApiName()),
-            () -> assertEquals("spell", YGOCardType.SPELL.getApiName()),
-            () -> assertEquals("trap", YGOCardType.TRAP.getApiName())
         );
     }
 }

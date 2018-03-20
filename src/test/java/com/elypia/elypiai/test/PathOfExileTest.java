@@ -1,15 +1,22 @@
 package com.elypia.elypiai.test;
 
+import com.elypia.elypiai.pathofexile.League;
+import com.elypia.elypiai.pathofexile.PathOfExile;
 import com.elypia.elypiai.pathofexile.Stash;
 import com.elypia.elypiai.pathofexile.StashItem;
 import com.elypia.elypiai.pathofexile.data.StashType;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PathOfExileTest {
+
+    @Test
+    public void pathOfExile() {
+        PathOfExile poe = new PathOfExile();
+        assertNotNull(poe);
+    }
 
     @Test
     public void parseSinglePublicStash() {
@@ -49,6 +56,24 @@ public class PathOfExileTest {
             () -> assertEquals(10, item.getXPos()),
             () -> assertEquals(0, item.getYPos()),
             () -> assertEquals("Stash1", item.getInventoryId())
+        );
+    }
+
+    @Test
+    public void parseSingleLeague() {
+        String json = "{\"id\":\"Hardcore\",\"description\":\"#LeagueHardcore\",\"registerAt\":null,\"event\":false,\"url\":\"http://pathofexile.com/forum/view-thread/71276\",\"startAt\":\"2013-01-23T21:00:00Z\",\"endAt\":null,\"rules\":[{\"id\":4,\"name\":\"Hardcore\",\"description\":\"A character killed in Hardcore is moved to its parent league.\"}]}";
+        JSONObject object = new JSONObject(json);
+        League league = new League(null, object);
+
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("Hardcore", league.getId()),
+            () -> assertEquals("#LeagueHardcore", league.getDescription()),
+            () -> assertEquals(null, league.getRegisterAt()),
+            () -> assertEquals(false, league.isEvent()),
+            () -> assertEquals("http://pathofexile.com/forum/view-thread/71276", league.getUrl()),
+            () -> assertEquals("2013-01-23T21:00:00Z", league.getStartAt().toString()),
+            () -> assertEquals(null, league.getEndAt()),
+            () -> assertEquals(1, league.getRules().size())
         );
     }
 }

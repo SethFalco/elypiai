@@ -10,19 +10,10 @@ public enum StashType {
 		this.apiName = apiName;
 	}
 
-	public String getApiName() {
-		return apiName;
-	}
-
-	@Override
-	public String toString() {
-		return apiName;
-	}
-
 	public static StashType getTypeByApiName(String apiName) {
 
 		for (StashType type : StashType.values()) {
-			if (type.getApiName().equals(apiName))
+			if (type.apiName.equals(apiName))
 				return type;
 		}
 

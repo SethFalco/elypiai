@@ -13,19 +13,10 @@ public enum GemColor {
 		this.apiName = apiName;
 	}
 
-	public String getApiName() {
-		return apiName;
-	}
-
-	@Override
-	public String toString() {
-		return apiName;
-	}
-
 	public static GemColor getTypeByApiName(String apiName) {
 
 		for (GemColor color : GemColor.values()) {
-			if (color.getApiName().equals(apiName))
+			if (color.apiName.equals(apiName))
 				return color;
 		}
 

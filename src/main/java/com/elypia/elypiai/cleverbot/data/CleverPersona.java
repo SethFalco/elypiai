@@ -1,6 +1,7 @@
-package com.elypia.elypiai.cleverbot;
+package com.elypia.elypiai.cleverbot.data;
 
 public enum CleverPersona {
+
     WACKY("Tweak1"),
     TALKITIVE("Tweak2"),
     ATTENTIVE("Tweak3");

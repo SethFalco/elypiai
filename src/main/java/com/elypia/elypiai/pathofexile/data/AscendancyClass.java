@@ -34,19 +34,10 @@ public enum AscendancyClass {
 		return type;
 	}
 
-	public String getApiName() {
-		return apiName;
-	}
-
-	@Override
-	public String toString() {
-		return apiName;
-	}
-
 	public static AscendancyClass getTypeByApiName(String apiName) {
 
 		for (AscendancyClass ascendancy : AscendancyClass.values()) {
-			if (ascendancy.getApiName().equals(apiName))
+			if (ascendancy.apiName.equals(apiName))
 				return ascendancy;
 		}
 

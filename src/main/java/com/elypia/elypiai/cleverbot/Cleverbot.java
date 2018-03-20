@@ -14,6 +14,8 @@ public class Cleverbot {
 
 	private final String API_KEY;
 
+	private Cleverbot cleverbot;
+
 	private Map<String, CleverResponse> cache;
 
 	/**
@@ -26,6 +28,7 @@ public class Cleverbot {
 	 */
 
 	public Cleverbot(String apiKey) {
+		cleverbot = this;
 		API_KEY = apiKey;
 		cache = new HashMap<>();
 	}
@@ -55,7 +58,7 @@ public class Cleverbot {
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();
-			CleverResponse response = new CleverResponse(object);
+			CleverResponse response = new CleverResponse(cleverbot, object);
 
 			success.accept(response);
 
@@ -63,9 +66,7 @@ public class Cleverbot {
 				cache.remove(cs);
 
 			cache.put(response.getCS(), response);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	public CleverResponse getCleverResponse(String cs) {
@@ -75,7 +76,7 @@ public class Cleverbot {
 		return cache.get(cs);
 	}
 
-	public String getHistoryScript(String cs) {
+	public String getHistory(String cs) {
 		CleverResponse response = getCleverResponse(cs);
 
 		if (response != null)

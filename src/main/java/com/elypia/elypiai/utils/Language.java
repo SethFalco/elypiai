@@ -4,112 +4,118 @@ import java.util.Objects;
 
 public enum Language {
 
-    AFRIKAANS("af"),
-    AMHARIC("am"),
-    ARABIC("ar"),
-    AZERVAIKANI("ar"),
-    BERLARUSIAN("be"),
-    BULGARIAN("bg"),
-    BENGALI("bn"),
-    BOSNIAN("bs"),
-    CATALAN("ca"),
-    BENUANO("ceb"),
-    CORSICAN("co"),
-    CZECH("cs"),
-    WELSH("cy"),
-    DANISH("da"),
-    GERMAN("de"),
-    GREEK("el"),
-    ENGLISH("en", "\uD83C\uDDEC\uD83C\uDDE7", "\uD83C\uDDFA\uD83C\uDDF8"),
-    ESPERANTO("eo"),
-    ESTONIAN("et"),
-    BASQUE("eu"),
-    PERSIAN("fa"),
-    FINNISH("fi"),
-    FRENCH("fr", "\uD83C\uDDEB\uD83C\uDDF7"),
-    WESTERN_FRISTIAN("fy"),
-    IRISH("ga"),
-    GAELIC("gd"),
-    GALICAN("gl"),
-    GUJARATI("gu"),
-    HAUSA("ha"),
-    HAWAIIAN("haw"),
-    HINDI("hi"),
-    HMONG("hmn"),
-    CROATION("hr"),
-    HUNGARIAN("hu"),
-    ARMENIAN("hy"),
-    INDONESIAN("id"),
-    IGBO("ig"),
-    ICELANDIC("is"),
-    ITALIAN("it"),
-    JAPANESE("ja"),
-    GEORGIAN("ka"),
-    KAZAKH("kk"),
-    CENTRAL_KHMER("km"),
-    KOREAN("ko"),
-    KURDISH("ku"),
-    LATIN("la"),
-    LUXEMBOURGISH("lb"),
-    LITHUANIAN("lt"),
-    MALAGASY("mg"),
-    MAORI("mi"),
-    NEPALI("ne"),
-    DUTCH("nl"),
-    NORWEGIAN("no"),
-    CHICHEWA("ny"),
-    PANJABI("pa"),
-    POLISH("pl"),
-    PUSHTO("ps"),
-    ROMANIAN("ro"),
-    RUSSIAN("ru"),
-    SINHALA("si"),
-    SLOVAK("sk"),
-    SLOVENIAN("sl"),
-    SAMOAN("sm"),
-    SHONA("sn"),
-    SOMALI("so"),
-    ALBANIAN("sq"),
-    SERBIAN("sr"),
-    SUNDANESE("su"),
-    SWEDISH("sv"),
-    SWAHILI("sw"),
-    TAMIL("ta"),
-    TELUGU("te"),
-    TAJIK("tg"),
-    TAGALOG("tl"),
-    TURKISH("tr"),
-    UKRAINIAN("uk"),
-    URDU("ur"),
-    UZBEK("uz"),
-    VIETNAMESE("vi"),
-    XHOSA("xh"),
-    YIDDISH("yi"),
-    YARUBA("yo"),
-    CHINESE("zh"),
-    ZULU("zu");
+    AFRIKAANS(null, "AF"),
+    AMHARIC(null, "AM"),
+    ARABIC(null, "AR"),
+    AZERVAIKANI(null, "AZ"),
+    BERLARUSIAN(null, "BE"),
+    BULGARIAN(null, "BG"),
+    BENGALI(null, "BN"),
+    BOSNIAN(null, "BS"),
+    CATALAN(null, "CA"),
+    CEBUANO(null, "CEB"),
+    CORSICAN(null, "CO"),
+    CZECH(null, "CS"),
+    WELSH(null, "CY"),
+    DANISH(null, "DA"),
+    GERMAN(null, "DE"),
+    GREEK(null, "EL"),
+    ENGLISH(null, "EN"),
+    ESPERANTO(null, "EO"),
+    ESTONIAN(null, "ET"),
+    BASQUE(null, "EU"),
+    PERSIAN(null, "FA"),
+    FINNISH(null, "FI"),
+    FRENCH(null, "FR"),
+    WESTERN_FRISTIAN(null, "FY"),
+    IRISH(null, "GA"),
+    GAELIC(null, "GD"),
+    GALICAN(null, "GL"),
+    GUJARATI(null, "GU"),
+    HAUSA(null, "HA"),
+    HAWAIIAN(null, "HAW"),
+    HINDI(null, "HI"),
+    HMONG(null, "HMN"),
+    CROATION(null, "HR"),
+    HUNGARIAN(null, "HU"),
+    ARMENIAN(null, "HY"),
+    INDONESIAN(null, "ID"),
+    IGBO(null, "IG"),
+    ICELANDIC(null, "IS"),
+    ITALIAN(null, "IT"),
+    JAPANESE(null, "JA"),
+    GEORGIAN(null, "KA"),
+    KAZAKH(null, "KK"),
+    CENTRAL_KHMER(null, "KM"),
+    KOREAN(null, "KO"),
+    KURDISH(null, "KU"),
+    LATIN(null, "LA"),
+    LUXEMBOURGISH(null, "LB"),
+    LITHUANIAN(null, "LT"),
+    MALAGASY(null, "MG"),
+    MAORI(null, "MI"),
+    NEPALI(null, "NE"),
+    DUTCH(null, "NL"),
+    NORWEGIAN(null, "NO"),
+    CHICHEWA(null, "NY"),
+    PANJABI(null, "PA"),
+    POLISH(null, "PL"),
+    PUSHTO(null, "PS"),
+    ROMANIAN(null, "RO"),
+    RUSSIAN(null, "RU"),
+    SINHALA(null, "SI"),
+    SLOVAK(null, "SK"),
+    SLOVENIAN(null, "SL"),
+    SAMOAN(null, "SM"),
+    SHONA(null, "SN"),
+    SOMALI(null, "SO"),
+    ALBANIAN(null, "SQ"),
+    SERBIAN(null, "SR"),
+    SUNDANESE(null, "SU"),
+    SWEDISH(null, "SV"),
+    SWAHILI(null, "SW"),
+    TAMIL(null, "TA"),
+    TELUGU(null, "TE"),
+    TAJIK(null, "TG"),
+    TAGALOG(null, "TL"),
+    TURKISH(null, "TR"),
+    UKRAINIAN(null, "UK"),
+    URDU(null, "UR"),
+    UZBEK(null, "UZ"),
+    VIETNAMESE(null, "VI"),
+    XHOSA(null, "XH"),
+    YIDDISH(null, "YI"),
+    YARUBA(null, "YO"),
+    CHINESE(null, "ZH"),
+    ZULU(null, "ZU");
 
-    private String code;
-    private String[] flags;
+    private final String LANGUAGE;
+    private final String CODE;
+    private final Country[] COUNTRIES;
 
-    Language(String code, String... flags) {
-        this.code = code;
-        this.flags = flags;
+    Language(String language, String code, Country... countries) {
+        LANGUAGE = language;
+        CODE = code;
+        COUNTRIES = countries;
+    }
+
+    public String getLanguageName() {
+        return LANGUAGE;
     }
 
     public String getCode() {
-        return code;
+        return CODE;
     }
 
-    public String[] getFlags() {
-        return flags;
+    public Country[] getCountries() {
+        return COUNTRIES;
     }
 
     public static Language getByCode(String code) {
-        Objects.requireNonNull("code");
+        Objects.requireNonNull(code);
 
         for (Language language : values()) {
-            if (language.code == code || language.code.equals(code))
+            if (language.CODE.equalsIgnoreCase(code))
                 return language;
         }
 

@@ -28,9 +28,7 @@ class PoERequester {
 			POE.stashTabs = new StashTabs(POE, object);
 
 			success.accept(POE.stashTabs);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	public void getLeagueRules(Consumer<Collection<LeagueRule>> success, Consumer<IOException> failure) {
@@ -49,9 +47,7 @@ class PoERequester {
 			}
 
 			success.accept(rules);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<IOException> failure) {
@@ -65,8 +61,6 @@ class PoERequester {
 			LeagueRule rule = new LeagueRule(POE, object);
 
 			success.accept(rule);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 }

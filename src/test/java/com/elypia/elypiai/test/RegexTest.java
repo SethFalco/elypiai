@@ -3,6 +3,9 @@ package com.elypia.elypiai.test;
 import com.elypia.elypiai.utils.Regex;
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RegexTest {
@@ -264,5 +267,31 @@ public class RegexTest {
             () -> assertFalse(regex.matches("123,,456")),
             () -> assertFalse(regex.matches("1234,567"))
         );
+    }
+
+    @Test
+    public void regexMethods() {
+        Regex regex = Regex.DISCORD_BOT_TOKEN;
+        Pattern pattern = regex.getPattern();
+        String string = regex.getRegex();
+        Matcher matcher = regex.getMatcher("MjQxMzk1NzI1ODUyNzM3NTM2.DYL_dw.SAlofzaD-_9uNx_AJajp13p3ML4");
+
+        assertNotNull(pattern);
+        assertNotNull(string);
+        assertNotNull(matcher);
+    }
+
+    @Test
+    public void compileTogetherTest() {
+        Pattern pattern = Regex.compileTogether(
+            Regex.MSGML_ARGS,
+            Regex.MSGML_IGNORE,
+            Regex.MSGML_OPTIONAL,
+            Regex.MSGML_RANDOM,
+            Regex.MSGML_REPEAT,
+            Regex.MSGML_SELECT
+        );
+
+        assertNotNull(pattern);
     }
 }

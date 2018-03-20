@@ -12,19 +12,9 @@ public enum MatchStyle {
 		this.apiName = apiName;
 	}
 
-	public String getApiName() {
-		return apiName;
-	}
-
-	@Override
-	public String toString() {
-		return apiName;
-	}
-
 	public static MatchStyle getTypeByApiName(String apiName) {
-
 		for (MatchStyle style : MatchStyle.values()) {
-			if (style.getApiName().equals(apiName))
+			if (style.apiName.equals(apiName))
 				return style;
 		}
 

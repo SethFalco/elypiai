@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Twitch {
@@ -22,7 +23,7 @@ public class Twitch {
 	 */
 
 	public Twitch(String apiKey) {
-		API_KEY = apiKey;
+		API_KEY = Objects.requireNonNull(apiKey);
 		requester = new TwitchRequester(this);
 		users = new HashMap<>();
 	}

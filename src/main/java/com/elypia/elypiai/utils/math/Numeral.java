@@ -1,6 +1,6 @@
 package com.elypia.elypiai.utils.math;
 
-public enum Number {
+public enum Numeral {
 
 	ZERO(0),
 	ONE(1),
@@ -40,7 +40,7 @@ public enum Number {
 
 	private long value;
 
-	Number(long number) {
+	Numeral(long number) {
 		this.value = number;
 	}
 
@@ -52,9 +52,18 @@ public enum Number {
 		return toString().toLowerCase();
 	}
 
-	public static Number[] of(char... chars) {
+	/**
+	 * Convert each character in the array into the
+	 * Number that character is representing. <br>
+	 * Example: '1' becomes {@link #ONE}.
+	 *
+	 * @param chars The character array of values to parse.
+	 * @return a Number array of the values.
+	 */
+
+	public static Numeral[] of(char... chars) {
 		int length = chars.length;
-		Number[] numbers = new Number[chars.length];
+		Numeral[] numbers = new Numeral[chars.length];
 
 		for (int i = 0; i < length; i++)
 			numbers[i] = of(chars[i] - 48);
@@ -62,8 +71,8 @@ public enum Number {
 		return numbers;
 	}
 
-	public static Number of(long i) {
-		for (Number num : values()) {
+	public static Numeral of(long i) {
+		for (Numeral num : values()) {
 			if (num.asNumeric() == i)
 				return num;
 		}

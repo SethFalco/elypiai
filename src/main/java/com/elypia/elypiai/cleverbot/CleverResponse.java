@@ -8,6 +8,8 @@ import java.util.TreeMap;
 
 public class CleverResponse {
 
+	private Cleverbot cleverbot;
+
 	private String cs;
 	private int interactionCount;
 	private String input;
@@ -21,7 +23,7 @@ public class CleverResponse {
 
 	private ScriptResponse script;
 
-	public CleverResponse(JSONObject object) {
+	public CleverResponse(Cleverbot cleverbot, JSONObject object) {
 		cs 					= object.getString("cs");
 		interactionCount	= object.optInt("interaction_count");
 		input 				= object.getString("input");
@@ -116,7 +118,7 @@ public class CleverResponse {
 	 * 			interaction of this conversation.
 	 */
 
-	public long getTimeElapsed() {
+	public long getLifetime() {
 		return timeElapsed;
 	}
 
@@ -144,7 +146,7 @@ public class CleverResponse {
 				builder.append("\n");
 		}
 
-		return builder.substring(0, builder.length() - 1);
+		return builder.substring(0, builder.length());
 	}
 
 	/**

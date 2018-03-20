@@ -1,13 +1,26 @@
 package com.elypia.elypiai.test;
 
+import com.elypia.elypiai.steam.Steam;
 import com.elypia.elypiai.steam.SteamUser;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SteamTest {
+
+    @Test
+    public void steamTest() {
+        Steam steam = new Steam("DCA56FE963FE3D2CE23DF7DF30AAA579");
+
+        assertNotNull(steam);
+        assertEquals("DCA56FE963FE3D2CE23DF7DF30AAA579", steam.getApiKey());
+    }
+
+    @Test
+    public void invalidSteam() {
+        assertThrows(NullPointerException.class, () -> new Steam(null));
+    }
 
     @Test
     public void parseSteamUser() {

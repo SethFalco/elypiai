@@ -1,5 +1,6 @@
 package com.elypia.elypiai.test;
 
+import com.elypia.elypiai.twitch.Twitch;
 import com.elypia.elypiai.twitch.TwitchStream;
 import com.elypia.elypiai.twitch.TwitchUser;
 import com.elypia.elypiai.twitch.data.AccountType;
@@ -8,10 +9,22 @@ import com.elypia.elypiai.twitch.data.StreamType;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TwitchTest {
+
+    @Test
+    public void twitchTest() {
+        Twitch twitch = new Twitch("uj03bz9l56n9kylf2p0za1yt8o9m3j");
+
+        assertNotNull(twitch);
+        assertEquals("uj03bz9l56n9kylf2p0za1yt8o9m3j", twitch.getApiKey());
+    }
+
+    @Test
+    public void invalidTwitch() {
+        assertThrows(NullPointerException.class, () -> new Twitch(null));
+    }
 
     @Test
     public void parseTwitchUser() {

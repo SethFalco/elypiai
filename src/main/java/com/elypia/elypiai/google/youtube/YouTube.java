@@ -4,6 +4,7 @@ import com.elypia.elypiai.google.youtube.data.YouTubeType;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class YouTube {
@@ -27,7 +28,7 @@ public class YouTube {
 	 */
 
 	public YouTube(String apiKey) {
-		API_KEY = apiKey;
+		API_KEY = Objects.requireNonNull(apiKey);
 		requester = new YouTubeRequester(this);
 	}
 

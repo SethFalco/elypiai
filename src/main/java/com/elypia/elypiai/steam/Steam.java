@@ -3,6 +3,7 @@ package com.elypia.elypiai.steam;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Steam {
@@ -20,7 +21,7 @@ public class Steam {
 	 */
 
 	public Steam(String apiKey) {
-		API_KEY = apiKey;
+		API_KEY = Objects.requireNonNull(apiKey);
 		requester = new SteamRequester(this);
 	}
 

@@ -1,15 +1,21 @@
 package com.elypia.elypiai.test;
 
 import com.elypia.elypiai.urbandictionary.UrbanDefinition;
+import com.elypia.elypiai.urbandictionary.UrbanDictionary;
 import com.elypia.elypiai.urbandictionary.UrbanResult;
 import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UrbanDictionaryTest {
+
+    @Test
+    public void urbanDictionaryTest() {
+        UrbanDictionary ud = new UrbanDictionary();
+        assertNotNull(ud);
+    }
 
     @Test
     public void testParsingDefinition() {
