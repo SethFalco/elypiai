@@ -16,6 +16,7 @@ public enum Country {
     BENGLADESH("Bengladesh", "BGD", "BD", "🇧🇩"),
     BOSNIA("Bosnia", "BIH", "BA", "🇧🇦"),
     BULGARIA("Bulgaria", "BGR", "BG", "🇧🇬"),
+    CANADA("Canada", "CAN", "CA", "\uD83C\uDDE8\uD83C\uDDE6"),
     CAMBODIA("Cambodia", "KHM", "KH", "🇰🇭"),
     CHAD("Chad", "TCD", "TD", "🇹🇩"),
     CHINA("China", "CHN", "CN", "🇨🇳"),

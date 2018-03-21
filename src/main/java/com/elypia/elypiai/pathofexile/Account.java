@@ -6,6 +6,7 @@ public class Account extends PoEObject {
 
 	private String name;
 	private int challenges;
+	private Guild guild;
 	private String twitch;
 
 	public Account(PathOfExile poe, JSONObject object) {
@@ -13,6 +14,9 @@ public class Account extends PoEObject {
 
 		name = object.getString("name");
 		challenges = object.getJSONObject("challenges").getInt("total");
+
+		if (object.has("guild"))
+			guild = new Guild(poe, object.getJSONObject("guild"));
 
 		if (object.has("twitch"))
 			twitch = object.getJSONObject("twitch").getString("name");
@@ -24,6 +28,10 @@ public class Account extends PoEObject {
 
 	public int getChallenges() {
 		return challenges;
+	}
+
+	public Guild getGuild() {
+		return guild;
 	}
 
 	public String getTwitch() {

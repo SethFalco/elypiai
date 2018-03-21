@@ -63,9 +63,7 @@ public class Bing {
 			JSONArray values = webPages.getJSONArray("value");
 			String link = values.getJSONObject(values.length() - 1).getString("displayUrl");
 			success.accept(!link.startsWith("http") ? "http://" + search : search);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	/**
@@ -104,8 +102,6 @@ public class Bing {
 			object = values.getJSONObject(values.length() - 1);
 
 			success.accept(object.getString("contentUrl"));
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 }

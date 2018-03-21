@@ -1,9 +1,7 @@
 package com.elypia.elypiai.test;
 
-import com.elypia.elypiai.pathofexile.League;
-import com.elypia.elypiai.pathofexile.PathOfExile;
-import com.elypia.elypiai.pathofexile.Stash;
-import com.elypia.elypiai.pathofexile.StashItem;
+import com.elypia.elypiai.pathofexile.*;
+import com.elypia.elypiai.pathofexile.data.AscendancyType;
 import com.elypia.elypiai.pathofexile.data.StashType;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -74,6 +72,51 @@ public class PathOfExileTest {
             () -> assertEquals("2013-01-23T21:00:00Z", league.getStartAt().toString()),
             () -> assertEquals(null, league.getEndAt()),
             () -> assertEquals(1, league.getRules().size())
+        );
+    }
+
+    @Test
+    public void parseLadderEntry() {
+        String json = "{\"rank\":2,\"dead\":false,\"online\":true,\"character\":{\"name\":\"TaylorSwiftVEVO\",\"level\":100,\"class\":\"Scion\",\"id\":\"b23f488245ffebc87616c9acf76fbbb3d534e0490a8b30a9be48f8fcc3941be0\",\"experience\":4250334444},\"account\":{\"name\":\"PeakingDuck\",\"challenges\":{\"total\":28},\"twitch\":{\"name\":\"peakingduck\"}}}";
+        JSONObject object = new JSONObject(json);
+        LadderEntry entry = new LadderEntry(null, object);
+
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals(2, entry.getRank()),
+            () -> assertEquals(false, entry.isDead()),
+            () -> assertEquals(true, entry.isOnline()),
+            () -> assertEquals("TaylorSwiftVEVO", entry.getExile().getName()),
+            () -> assertEquals(100, entry.getExile().getLevel()),
+            () -> assertEquals(AscendancyType.SCION, entry.getExile().getAscendancy()),
+            () -> assertEquals(4250334444L, entry.getExile().getExperience()),
+            () -> assertEquals("PeakingDuck", entry.getAccount().getName()),
+            () -> assertEquals(28, entry.getAccount().getChallenges()),
+            () -> assertEquals("peakingduck", entry.getAccount().getTwitch())
+        );
+    }
+
+    @Test
+    public void parseLadderEntryWithGuild() {
+        String json = "{\"rank\":4,\"dead\":false,\"online\":false,\"character\":{\"name\":\"VaalMulliSpark\",\"level\":100,\"class\":\"Scion\",\"experience\":4250334444},\"account\":{\"name\":\"spinzter\",\"guild\":{\"id\":\"28542\",\"name\":\"Kiinnosted\",\"tag\":\"\",\"createdAt\":\"2013-10-27T14:29:25Z\",\"statusMessage\":\"paras glaani :D\"},\"challenges\":{\"total\":14},\"twitch\":{\"name\":\"gourangaa\"}}}";
+        JSONObject object = new JSONObject(json);
+        LadderEntry entry = new LadderEntry(null, object);
+
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals(4, entry.getRank()),
+            () -> assertEquals(false, entry.isDead()),
+            () -> assertEquals(false, entry.isOnline()),
+            () -> assertEquals("VaalMulliSpark", entry.getExile().getName()),
+            () -> assertEquals(100, entry.getExile().getLevel()),
+            () -> assertEquals(AscendancyType.SCION, entry.getExile().getAscendancy()),
+            () -> assertEquals(4250334444L, entry.getExile().getExperience()),
+            () -> assertEquals("spinzter", entry.getAccount().getName()),
+            () -> assertEquals(14, entry.getAccount().getChallenges()),
+            () -> assertEquals("gourangaa", entry.getAccount().getTwitch()),
+            () -> assertEquals(28542, entry.getAccount().getGuild().getId()),
+            () -> assertEquals("Kiinnosted", entry.getAccount().getGuild().getName()),
+            () -> assertEquals(null, entry.getAccount().getGuild().getTag()),
+            () -> assertEquals("2013-10-27T14:29:25Z", entry.getAccount().getGuild().getCreationDate().toString()),
+            () -> assertEquals("paras glaani :D", entry.getAccount().getGuild().getStatus())
         );
     }
 }

@@ -87,8 +87,6 @@ public class AmazonRequester {
             }
 
             success.accept(list);
-        }, err -> {
-            failure.accept(err);
-        });
+        }, failure);
     }
 }

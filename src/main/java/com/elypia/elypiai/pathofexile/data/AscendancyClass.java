@@ -30,11 +30,11 @@ public enum AscendancyClass {
 		this.apiName = apiName;
 	}
 
-	public AscendancyType getAscendancyType() {
+	public AscendancyType getType() {
 		return type;
 	}
 
-	public static AscendancyClass getTypeByApiName(String apiName) {
+	public static AscendancyClass getByName(String apiName) {
 
 		for (AscendancyClass ascendancy : AscendancyClass.values()) {
 			if (ascendancy.apiName.equals(apiName))

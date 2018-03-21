@@ -1,5 +1,7 @@
 package com.elypia.elypiai.utils;
 
+import org.json.JSONArray;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -157,5 +159,10 @@ public final class ElyUtils {
 		}
 
 		return false;
+	}
+
+	public static void arrayToString(JSONArray array, Collection<String> collection) {
+		for (int i = 0; i < array.length(); i++)
+			collection.add(array.getString(i));
 	}
 }

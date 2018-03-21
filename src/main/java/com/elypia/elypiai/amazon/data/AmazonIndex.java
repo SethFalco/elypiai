@@ -54,9 +54,4 @@ public enum AmazonIndex {
     public String getApiName() {
         return apiName;
     }
-
-    @Override
-    public String toString() {
-        return apiName;
-    }
 }

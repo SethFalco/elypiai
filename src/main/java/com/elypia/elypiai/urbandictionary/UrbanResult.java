@@ -5,36 +5,44 @@ import com.elypia.elypiai.utils.ElyUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class UrbanResult {
 
 	private UrbanResultType type;
-	private String[] tags;
-	private String[] sounds;
+	private Collection<String> tags;
 	private List<UrbanDefinition> definitions;
+	private List<String> sounds;
 	private String term;
 
 	public UrbanResult(JSONObject object, String term) {
 		this.term = term;
 
-		type = UrbanResultType.valueOf(object.getString("result_type").toUpperCase());
+		type = UrbanResultType.getByName(object.getString("result_type"));
 
 		if (type == UrbanResultType.NO_RESULTS)
 			return;
 
+		tags = new ArrayList<>();
+		definitions = new ArrayList<>();
+		sounds = new ArrayList<>();
+
 		JSONArray array = object.getJSONArray("tags");
-		tags = array.toList().toArray(new String[array.length()]);
+		ElyUtils.arrayToString(array, tags);
 
 		array = object.getJSONArray("sounds");
-		sounds = array.toList().toArray(new String[array.length()]);
+		ElyUtils.arrayToString(array, sounds);
 
 		array = object.getJSONArray("list");
 
-		definitions = new ArrayList<>();
-
-		for (int i = 0; i < array.length(); i++)
-			definitions.add(new UrbanDefinition(array.getJSONObject(i)));
+		for (int i = 0; i < array.length(); i++) {
+			JSONObject def = array.getJSONObject(i);
+			UrbanDefinition definition = new UrbanDefinition(def);
+			definitions.add(definition);
+		}
 	}
 
 	/**
@@ -49,7 +57,7 @@ public class UrbanResult {
 	 * @return	Tags deemed associated with the word defined.
 	 */
 
-	public String[] getTags() {
+	public Collection<String> getTags() {
 		return tags;
 	}
 
@@ -57,20 +65,15 @@ public class UrbanResult {
 	 * @return Tags with duplicates removed.
 	 */
 
-	public String[] getTagsDistinct() {
-		Set<String> set = new HashSet<>();
-
-		for (String string : tags)
-			set.add(string);
-
-		return set.toArray(new String[set.size()]);
+	public Collection<String> getTagsDistinct() {
+		return tags.stream().distinct().collect(Collectors.toList());
 	}
 
 	/**
 	 * @return	Sounds related to this defintion as urls linking to audio files.
 	 */
 
-	public String[] getSounds() {
+	public Collection<String> getSounds() {
 		return sounds;
 	}
 
@@ -79,19 +82,18 @@ public class UrbanResult {
 	 * @return			A randomised list of sounds.
 	 */
 
-	public String[] getRandomSounds(int amount) {
-		List<String> randomSounds = Arrays.asList(sounds);
-		Collections.shuffle(randomSounds);
+	public Collection<String> getRandomSounds(int amount) {
+		if (sounds.size() <= amount)
+			return sounds;
 
-		if (sounds.length <= amount)
-			return randomSounds.toArray(new String[sounds.length]);
+		List<String> randomSounds = new ArrayList<>();
 
-		String[] toReturn = new String[amount];
+		for (int i = 0; i < amount; i++) {
+			int index = ElyUtils.RANDOM.nextInt(sounds.size());
+			randomSounds.add(sounds.get(index));
+		}
 
-		for (int i = 0; i < amount; i++)
-			toReturn[i] = randomSounds.get(i);
-
-		return toReturn;
+		return randomSounds;
 	}
 
 	/**

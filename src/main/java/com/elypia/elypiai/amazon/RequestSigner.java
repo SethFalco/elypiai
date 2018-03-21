@@ -4,6 +4,7 @@ import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +23,7 @@ public class RequestSigner {
 
 	private Mac mac;
 
-	public RequestSigner(String secret) throws InvalidKeyException {
+	protected RequestSigner(String secret) throws InvalidKeyException {
 		try {
 			mac = Mac.getInstance("HmacSHA256");
 			mac.init(new SecretKeySpec(secret.getBytes(charset), mac.getAlgorithm()));
@@ -31,7 +32,7 @@ public class RequestSigner {
 		}
 	}
 
-	public String sign(AmazonEndpoint endpoint, Map<String, Object> queryParams) {
+	protected String sign(AmazonEndpoint endpoint, Map<String, Object> queryParams) {
 		StringBuilder builder = new StringBuilder();
 		Iterator<Entry<String, Object>> iterator = queryParams.entrySet().iterator();
 
@@ -61,7 +62,7 @@ public class RequestSigner {
 
 		try {
 			string = URLEncoder.encode(encode.toString(), charset.toString());
-		} catch (Exception ex) {
+		} catch (UnsupportedEncodingException ex) {
 			ex.printStackTrace();
 		}
 

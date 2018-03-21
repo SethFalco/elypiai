@@ -13,10 +13,29 @@ import org.junit.jupiter.api.Test;
 import java.security.InvalidKeyException;
 import java.util.Currency;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AmazonTest {
+
+	@Test
+	public void invalidAmazon() {
+		assertThrows(IllegalArgumentException.class, () -> new Amazon("fake key", "fake secret", "id", AmazonEndpoint.US));
+		assertThrows(IllegalArgumentException.class, () -> new Amazon("AKIAJAKAC6MNKA34345A", "fake", "id", AmazonEndpoint.US));
+		assertThrows(IllegalArgumentException.class, () -> new Amazon("fake key", "jz+FRGuufOCxQLJNGRHOUcKzLe8TZPi5p0CXVDED", "id", AmazonEndpoint.US));
+	}
+
+	@Test
+	public void changeEndpoint() throws InvalidKeyException {
+		Amazon amazon = new Amazon("AKIAJAKAC6MNKA34345A", "jz+FRGuufOCxQLJNGRHOUcKzLe8TZPi5p0CXVDED", "youset21-20");
+
+		assertEquals("youset21-20", amazon.getId());
+		assertEquals(AmazonEndpoint.US, amazon.getEndpoint());
+
+		amazon.setEndpoint("elypia-21", AmazonEndpoint.UK);
+
+		assertEquals("elypia-21", amazon.getId());
+		assertEquals(AmazonEndpoint.UK, amazon.getEndpoint());
+	}
 
 	@Test
 	public void parseItem() throws InvalidKeyException {
@@ -27,6 +46,7 @@ class AmazonTest {
 		AmazonItem item = new AmazonItem(amazon, document);
 
 		assertAll("Endpoint Strings",
+			() -> assertNotNull(item.getAmazon()),
 			() -> assertEquals(AmazonEndpoint.US, item.getEndpoint()),
 			() -> assertEquals("B01FJLA9IM", item.getAsin()),
 			() -> assertEquals("B0719HXT7M", item.getParentAsin()),

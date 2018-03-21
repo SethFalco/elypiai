@@ -48,9 +48,4 @@ public enum AmazonGroup {
     public String getApiName() {
         return apiName;
     }
-
-    @Override
-    public String toString() {
-        return apiName;
-    }
 }

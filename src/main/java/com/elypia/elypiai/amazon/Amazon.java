@@ -42,7 +42,8 @@ public class Amazon {
 
 	/**
 	 * Calls {@link #Amazon(String, String, String, AmazonEndpoint)}
-	 * with AmazonEndpoint set to {@link AmazonEndpoint#US} by default.
+	 * with AmazonEndpoint set to {@link AmazonEndpoint#US} by default if it
+	 * ends with "20" otherwise {@link AmazonEndpoint#UK}.
 	 *
 	 * @param accessKey	Amazon Access Key obtained from AWS.
 	 * @param secret	Amazon Secret obtained from AWS.
@@ -51,7 +52,7 @@ public class Amazon {
 	 */
 
 	public Amazon(String accessKey, String secret, String id) throws InvalidKeyException {
-		this(accessKey, secret, id, AmazonEndpoint.US);
+		this(accessKey, secret, id, id.endsWith("20") ? AmazonEndpoint.US : AmazonEndpoint.UK);
 	}
 
 	/**
@@ -65,10 +66,10 @@ public class Amazon {
 	 */
 
 	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException {
-		this.accessKey 	= Objects.requireNonNull(accessKey);
-		this.secret 	= Objects.requireNonNull(secret);
-		this.id 		= Objects.requireNonNull(id);
-		this.endpoint 	= Objects.requireNonNull(endpoint);
+		this.accessKey = Objects.requireNonNull(accessKey);
+		this.secret = Objects.requireNonNull(secret);
+		this.id = Objects.requireNonNull(id);
+		this.endpoint = Objects.requireNonNull(endpoint);
 
 		if (!Regex.AMAZON_ACCESS_KEY.matches(accessKey))
 			throw new IllegalArgumentException("Invalid Amazon Access Key provided.");

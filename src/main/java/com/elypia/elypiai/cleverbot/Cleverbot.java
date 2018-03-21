@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 public class Cleverbot {
 
-	public static final String GET_REPLY_ENDPOINT = "https://www.cleverbot.com/getreply";
+	private static final String GET_REPLY_ENDPOINT = "https://www.cleverbot.com/getreply";
 
 	private final String API_KEY;
 
