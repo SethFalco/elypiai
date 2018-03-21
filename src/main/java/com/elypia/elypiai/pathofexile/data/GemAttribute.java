@@ -14,11 +14,7 @@ public enum GemAttribute {
 		this.apiName = apiName;
 	}
 
-	public GemColor getAssociatedColor() {
-		return color;
-	}
-
-	public static GemAttribute getTypeByApiName(String apiName) {
+	public static GemAttribute getByName(String apiName) {
 
 		for (GemAttribute attr : GemAttribute.values()) {
 			if (attr.apiName.equals(apiName))

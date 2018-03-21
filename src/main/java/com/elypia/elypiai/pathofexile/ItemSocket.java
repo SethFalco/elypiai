@@ -14,8 +14,8 @@ public class ItemSocket extends PoEObject {
 		super(poe);
 
 		group = object.getInt("group");
-		attribute = GemAttribute.getTypeByApiName(object.getString("attr"));
-		color = GemColor.getTypeByApiName(object.getString("sColour"));
+		attribute = GemAttribute.getByName(object.getString("attr"));
+		color = GemColor.getByName(object.getString("sColour"));
 	}
 
 	public int getGroup() {

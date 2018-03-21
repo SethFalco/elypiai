@@ -35,11 +35,11 @@ public class PvPMatch extends PoEObject {
 		return id;
 	}
 
-	public Instant getStartAt() {
+	public Instant getStartDate() {
 		return startAt;
 	}
 
-	public Instant getEndAt() {
+	public Instant getEndDate() {
 		return endAt;
 	}
 
@@ -63,7 +63,7 @@ public class PvPMatch extends PoEObject {
 		return style;
 	}
 
-	public Instant getRegisterAt() {
+	public Instant getRegisterDate() {
 		return registerAt;
 	}
 }

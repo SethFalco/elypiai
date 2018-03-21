@@ -18,7 +18,6 @@ class PoERequester {
 		this.POE = poe;
 	}
 
-
 	public void getStashTabs(Consumer<StashTabs> success, Consumer<IOException> failure) {
 		String endpoint = PoEEndpoint.PUBLIC_STASH_TABS.getEndpoint();
 		ElyRequest req = new ElyRequest(endpoint);

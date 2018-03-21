@@ -26,7 +26,7 @@ public class Stash extends PoEObject {
 		accountName = object.optString("accountName", null);
 		lastCharacterName = object.optString("lastCharacterName", null);
 		name = object.optString("stash", null);
-		stashType = StashType.getTypeByApiName(object.getString("stashType"));
+		stashType = StashType.getByName(object.getString("stashType"));
 
 		JSONArray itemsArray = object.getJSONArray("items");
 

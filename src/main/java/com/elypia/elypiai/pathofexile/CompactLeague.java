@@ -15,7 +15,7 @@ public class CompactLeague extends PoEObject {
 		super(poe);
 
 		id = object.getString("id");
-		url = object.getString("url");
+		url = object.optString("url", null);
 
 		String startDate = object.optString("startAt", null);
 
@@ -36,11 +36,11 @@ public class CompactLeague extends PoEObject {
 		return url;
 	}
 
-	public Instant getStartAt() {
+	public Instant getStartDate() {
 		return startAt;
 	}
 
-	public Instant getEndAt() {
+	public Instant getEndDate() {
 		return endAt;
 	}
 }

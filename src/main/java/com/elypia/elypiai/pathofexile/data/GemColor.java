@@ -13,7 +13,7 @@ public enum GemColor {
 		this.apiName = apiName;
 	}
 
-	public static GemColor getTypeByApiName(String apiName) {
+	public static GemColor getByName(String apiName) {
 
 		for (GemColor color : GemColor.values()) {
 			if (color.apiName.equals(apiName))

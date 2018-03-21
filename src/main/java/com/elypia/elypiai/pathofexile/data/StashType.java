@@ -10,7 +10,7 @@ public enum StashType {
 		this.apiName = apiName;
 	}
 
-	public static StashType getTypeByApiName(String apiName) {
+	public static StashType getByName(String apiName) {
 
 		for (StashType type : StashType.values()) {
 			if (type.apiName.equals(apiName))

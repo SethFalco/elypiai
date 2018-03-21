@@ -1,8 +1,7 @@
 package com.elypia.elypiai.test;
 
 import com.elypia.elypiai.pathofexile.*;
-import com.elypia.elypiai.pathofexile.data.AscendancyType;
-import com.elypia.elypiai.pathofexile.data.StashType;
+import com.elypia.elypiai.pathofexile.data.*;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +13,7 @@ public class PathOfExileTest {
     public void pathOfExile() {
         PathOfExile poe = new PathOfExile();
         assertNotNull(poe);
+        assertNull(poe.getStashTabs());
     }
 
     @Test
@@ -28,7 +28,8 @@ public class PathOfExileTest {
             () -> assertEquals("5a4oK", stash.getAccountName()),
             () -> assertEquals("temniypoputchik_Oni", stash.getLastCharacterName()),
             () -> assertEquals("What i need", stash.getName()),
-            () -> assertEquals(StashType.PREMIUM_STASH, stash.getStashType())
+            () -> assertEquals(StashType.PREMIUM_STASH, stash.getStashType()),
+            () -> assertEquals(false, stash.getItems().isEmpty())
         );
     }
 
@@ -69,9 +70,34 @@ public class PathOfExileTest {
             () -> assertEquals(null, league.getRegisterAt()),
             () -> assertEquals(false, league.isEvent()),
             () -> assertEquals("http://pathofexile.com/forum/view-thread/71276", league.getUrl()),
-            () -> assertEquals("2013-01-23T21:00:00Z", league.getStartAt().toString()),
-            () -> assertEquals(null, league.getEndAt()),
+            () -> assertEquals("2013-01-23T21:00:00Z", league.getStartDate().toString()),
+            () -> assertEquals(null, league.getEndDate()),
             () -> assertEquals(1, league.getRules().size())
+        );
+    }
+
+    @Test
+    public void parseSingleLeagueWithEndDate() {
+        String json = "{\"id\":\"Jan30 3h Rush HC\",\"description\":\"A 3 hour hardcore ladder rush with prizes. See the forum for details.\",\"registerAt\":null,\"event\":false,\"url\":null,\"startAt\":\"2012-01-29T21:00:00Z\",\"endAt\":\"2012-01-30T00:00:00Z\",\"rules\":[{\"id\":4,\"name\":\"Hardcore\",\"description\":\"A character killed in Hardcore is moved to its parent league.\"}]}";
+        JSONObject object = new JSONObject(json);
+
+        League league = new League(null, object);
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("Jan30 3h Rush HC", league.getId()),
+            () -> assertEquals("A 3 hour hardcore ladder rush with prizes. See the forum for details.", league.getDescription()),
+            () -> assertEquals(null, league.getRegisterAt()),
+            () -> assertEquals(false, league.isEvent()),
+            () -> assertEquals(null, league.getUrl()),
+            () -> assertEquals("2012-01-29T21:00:00Z", league.getStartDate().toString()),
+            () -> assertEquals("2012-01-30T00:00:00Z", league.getEndDate().toString()),
+            () -> assertEquals(1, league.getRules().size())
+        );
+
+        LeagueRule rule = league.getRules().iterator().next();
+        assertAll("League Rules",
+            () -> assertEquals(4, rule.getId()),
+            () -> assertEquals("Hardcore", rule.getName()),
+            () -> assertEquals("A character killed in Hardcore is moved to its parent league.", rule.getDescription())
         );
     }
 
@@ -96,27 +122,121 @@ public class PathOfExileTest {
     }
 
     @Test
-    public void parseLadderEntryWithGuild() {
-        String json = "{\"rank\":4,\"dead\":false,\"online\":false,\"character\":{\"name\":\"VaalMulliSpark\",\"level\":100,\"class\":\"Scion\",\"experience\":4250334444},\"account\":{\"name\":\"spinzter\",\"guild\":{\"id\":\"28542\",\"name\":\"Kiinnosted\",\"tag\":\"\",\"createdAt\":\"2013-10-27T14:29:25Z\",\"statusMessage\":\"paras glaani :D\"},\"challenges\":{\"total\":14},\"twitch\":{\"name\":\"gourangaa\"}}}";
+    public void parseLadderEntryUserWithSubClass() {
+        String json = "{\"rank\":3,\"dead\":false,\"online\":false,\"character\":{\"name\":\"Dear_Santa_UA\",\"level\":100,\"class\":\"Occultist\",\"experience\":4250334444},\"account\":{\"name\":\"Valerchik\",\"challenges\":{\"total\":0}}}";
         JSONObject object = new JSONObject(json);
         LadderEntry entry = new LadderEntry(null, object);
 
         assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertEquals(4, entry.getRank()),
+            () -> assertEquals(3, entry.getRank()),
             () -> assertEquals(false, entry.isDead()),
             () -> assertEquals(false, entry.isOnline()),
-            () -> assertEquals("VaalMulliSpark", entry.getExile().getName()),
+            () -> assertEquals("Dear_Santa_UA", entry.getExile().getName()),
             () -> assertEquals(100, entry.getExile().getLevel()),
-            () -> assertEquals(AscendancyType.SCION, entry.getExile().getAscendancy()),
+            () -> assertEquals(AscendancyType.WITCH, entry.getExile().getAscendancy()),
+            () -> assertEquals(AscendancyClass.OCCULTIST, entry.getExile().getAscendancyClass()),
             () -> assertEquals(4250334444L, entry.getExile().getExperience()),
-            () -> assertEquals("spinzter", entry.getAccount().getName()),
-            () -> assertEquals(14, entry.getAccount().getChallenges()),
-            () -> assertEquals("gourangaa", entry.getAccount().getTwitch()),
-            () -> assertEquals(28542, entry.getAccount().getGuild().getId()),
-            () -> assertEquals("Kiinnosted", entry.getAccount().getGuild().getName()),
-            () -> assertEquals(null, entry.getAccount().getGuild().getTag()),
-            () -> assertEquals("2013-10-27T14:29:25Z", entry.getAccount().getGuild().getCreationDate().toString()),
-            () -> assertEquals("paras glaani :D", entry.getAccount().getGuild().getStatus())
+            () -> assertEquals("Valerchik", entry.getAccount().getName()),
+            () -> assertEquals(0, entry.getAccount().getChallenges())
         );
+    }
+
+    @Test
+    public void parseLadderEntryWithGuild() {
+        String json = "{\"rank\":4,\"dead\":false,\"online\":false,\"character\":{\"name\":\"VaalMulliSpark\",\"level\":100,\"class\":\"Scion\",\"experience\":4250334444},\"account\":{\"name\":\"spinzter\",\"guild\":{\"id\":\"28542\",\"name\":\"Kiinnosted\",\"tag\":\"\",\"createdAt\":\"2013-10-27T14:29:25Z\",\"statusMessage\":\"paras glaani :D\"},\"challenges\":{\"total\":14},\"twitch\":{\"name\":\"gourangaa\"}}}";
+        JSONObject object = new JSONObject(json);
+
+        LadderEntry entry = new LadderEntry(null, object);
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals(4, entry.getRank()),
+            () -> assertEquals(false, entry.isDead()),
+            () -> assertEquals(false, entry.isOnline())
+        );
+
+        Exile exile = entry.getExile();
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("VaalMulliSpark", exile.getName()),
+            () -> assertEquals(100, exile.getLevel()),
+            () -> assertEquals(AscendancyType.SCION, exile.getAscendancy()),
+            () -> assertEquals(4250334444L, exile.getExperience())
+        );
+
+        Account account = entry.getAccount();
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("spinzter", account.getName()),
+            () -> assertEquals(14, account.getChallenges()),
+            () -> assertEquals("gourangaa", account.getTwitch())
+        );
+
+        Guild guild = entry.getAccount().getGuild();
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals(28542, guild.getId()),
+            () -> assertEquals("Kiinnosted", guild.getName()),
+            () -> assertEquals(null, guild.getTag()),
+            () -> assertEquals("2013-10-27T14:29:25Z", guild.getCreationDate().toString()),
+            () -> assertEquals("paras glaani :D", guild.getStatus())
+        );
+    }
+
+    @Test
+    public void parseLadderEntryWithId() {
+        PathOfExile poe = new PathOfExile();
+        String json = "{\"rank\":6,\"dead\":false,\"online\":false,\"character\":{\"name\":\"xVisco\",\"level\":100,\"class\":\"Templar\",\"id\":\"b96614016b65e349212a77a9996edc34faa3c164529141064a2cef24ca132277\",\"experience\":4250334444},\"account\":{\"name\":\"xVisco\",\"challenges\":{\"total\":0}}}";
+        JSONObject object = new JSONObject(json);
+
+        LadderEntry entry = new LadderEntry(poe, object);
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals(6, entry.getRank()),
+            () -> assertEquals(false, entry.isDead()),
+            () -> assertEquals(false, entry.isOnline())
+        );
+
+        Exile exile = entry.getExile();
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("xVisco", exile.getName()),
+            () -> assertEquals(100, exile.getLevel()),
+            () -> assertEquals(AscendancyType.TEMPLAR, exile.getAscendancy()),
+            () -> assertEquals("b96614016b65e349212a77a9996edc34faa3c164529141064a2cef24ca132277", exile.getId()),
+            () -> assertEquals(4250334444L, exile.getExperience())
+        );
+
+        Account account = entry.getAccount();
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("xVisco", account.getName()),
+            () -> assertEquals(0, account.getChallenges()),
+            () -> assertEquals(null, account.getTwitch())
+        );
+
+        Guild guild = entry.getAccount().getGuild();
+        assertNull(guild);
+
+        assertEquals(account.getPoE(), poe);
+    }
+
+    @Test
+    public void parsePvpMatch() {
+        String json = "{\"id\":\"EU01-73-STD Swiss\",\"startAt\":\"2015-01-11T15:00:00Z\",\"endAt\":\"2015-01-11T16:24:00Z\",\"url\":\"http://pathofexile.com/forum/view-thread/1170447\",\"description\":\"Best of Seven Low Level Dueling\",\"glickoRatings\":false,\"pvp\":true,\"style\":\"Swiss\",\"registerAt\":\"2015-01-11T14:30:00Z\"}";
+        JSONObject object = new JSONObject(json);
+        PvPMatch match = new PvPMatch(null, object);
+
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("EU01-73-STD Swiss", match.getId()),
+            () -> assertEquals("2015-01-11T15:00:00Z", match.getStartDate().toString()),
+            () -> assertEquals("2015-01-11T16:24:00Z", match.getEndDate().toString()),
+            () -> assertEquals("http://pathofexile.com/forum/view-thread/1170447", match.getUrl()),
+            () -> assertEquals("Best of Seven Low Level Dueling", match.getDescription()),
+            () -> assertEquals(false, match.isGlickoRatings()),
+            () -> assertEquals(true, match.isPvp()),
+            () -> assertEquals(MatchStyle.SWISS, match.getStyle()),
+            () -> assertEquals("2015-01-11T14:30:00Z", match.getRegisterDate().toString())
+        );
+    }
+
+    @Test
+    public void invalidEnumCases() {
+        assertNull(AscendancyType.getByName("random shit lol"));
+        assertNull(GemAttribute.getByName("random shit lol"));
+        assertNull(GemColor.getByName("random shit lol"));
+        assertNull(StashType.getByName("random shit lol"));
     }
 }
