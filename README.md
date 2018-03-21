@@ -2,6 +2,7 @@
 [![Bintray Download](https://api.bintray.com/packages/elypia/Elypiai/Elypiai/images/download.svg)](https://bintray.com/elypia/Elypiai/Elypiai/_latestVersion)
 [![GitLab Pipeline Status](https://gitlab.com/Elypia/Elypiai/badges/master/pipeline.svg)](https://gitlab.com/Elypia/Elypiai/commits/master)
 [![GitLab Coverage Report](https://gitlab.com/Elypia/Elypiai/badges/master/coverage.svg)](https://gitlab.com/Elypia/Elypiai/commits/master)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WLA5BMC34SJVG)
 [![Discord](https://discordapp.com/api/guilds/184657525990359041/widget.png)](https://discord.gg/hprGMaM)
 
 ### Importing
@@ -19,15 +20,10 @@ implementation 'com.elypia:elypiai:{VERSION}'
 </dependency>
 ```
 
-### Support
-Should any problems occur, come visit us over on [Discord](https://discord.gg/hprGMaM)! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
-
-This project is _heavily_ relied on by [Alexis, the Discord bot](https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot). If you are on Discord feel free to join our guild as well and check her out so you can see Elypiai in action.
-
 ### About
 Elypiai is a all-in-one utility library which provides an interface to communicate with many online services such as YouTube, Twitch, and Steam, or even games like RuneScape, or osu!. We've made sure to wrap API's beyond just getting the data, with notifiers for significant events or static utility functions. It also inclues miscellaneous local functionality like a Brainfuck intepreter, an `enum` of ready made regular expressions for common matches, and other basic utilities that may come in handy for anyone, especially new developers.
 
-Elypiai is designed to be the quick and easy dependency away from having lots of functionality for any project.
+Elypiai is the dependency away from adding ample functionality to any project.
 
 #### APIs and Utilities
 Module | About | Authentication
@@ -51,3 +47,8 @@ Module | About | Authentication
 [Urban Dictionary](http://api.urbandictionary.com/v0/define?term=api) | Search Urban Dictionary and return the top voted or random definition. | ✖
 [Yu-Gi-Oh! Prices](http://docs.yugiohprices.apiary.io/) | Get information on Yu-Gi-Oh! cards and download card images. | ✖
 [YouTube Data](https://console.developers.google.com/) | Search YouTube for videos, playlists or channels. | ✔
+
+### Support
+Should any problems occur, come visit us over on [Discord](https://discord.gg/hprGMaM)! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
+
+This project is _heavily_ relied on by [Alexis, the Discord bot](https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot). Feel free to check her out or join our guild so you can see Elypiai in action.
