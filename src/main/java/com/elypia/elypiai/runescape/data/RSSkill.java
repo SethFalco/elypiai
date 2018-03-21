@@ -30,9 +30,9 @@ public enum RSSkill {
 	DIVINATION(24, "Divination", false),
 	INVENTION(25, "Invention", true);
 
-	private int id;
-	private String display;
-	private boolean elite;
+	private final int id;
+	private final String display;
+	private final boolean elite;
 
 	RSSkill(int id, String display, boolean elite) {
 		this.id = id;
@@ -44,13 +44,12 @@ public enum RSSkill {
 		return id;
 	}
 
-	public boolean isElite() {
-		return elite;
+	public String getDisplay() {
+		return display;
 	}
 
-	@Override
-	public String toString() {
-		return display;
+	public boolean isElite() {
+		return elite;
 	}
 
 	public static RSSkill getById(int id) {

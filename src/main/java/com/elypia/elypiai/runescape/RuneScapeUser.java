@@ -72,6 +72,10 @@ public class RuneScapeUser {
 		}
 	}
 
+	public RuneScape getRunescape() {
+		return runescape;
+	}
+
 	/**
 	 * @return	Returns the name of the user, or "PROFILE_PRIVATE"
 	 * 			if the users account is set to private.

@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 
 public class QuestsStatus {
 
+	private RuneScape runescape;
+
 	private String username;
 	private Collection<QuestStats> quests;
 	private int completed;
@@ -18,8 +20,10 @@ public class QuestsStatus {
 	private int notStarted;
 
 	public QuestsStatus(RuneScape runescape, String username, JSONArray array) {
-		quests = new ArrayList<>();
+		this.runescape = runescape;
 		this.username = username;
+
+		quests = new ArrayList<>();
 
 		for (int i = 0; i < array.length(); i++) {
 			JSONObject quest = array.getJSONObject(i);
@@ -33,6 +37,14 @@ public class QuestsStatus {
 
 			quests.add(new QuestStats(runescape, quest));
 		}
+	}
+
+	public RuneScape getRunescape() {
+		return runescape;
+	}
+
+	public Collection<QuestStats> getQuests() {
+		return quests;
 	}
 
 	public Collection<QuestStats> getQuests(QuestStatus status) {

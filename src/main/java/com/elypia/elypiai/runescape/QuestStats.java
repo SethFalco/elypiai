@@ -52,9 +52,4 @@ public class QuestStats {
 	public boolean isUserEligible() {
 		return userEligible;
 	}
-
-	@Override
-	public String toString() {
-		return title;
-	}
 }

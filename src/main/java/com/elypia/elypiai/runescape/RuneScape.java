@@ -16,14 +16,11 @@ public class RuneScape {
 
 	private RuneScape runescape;
 
-	private Collection<RuneScapeUser> users;
-	private Collection<RuneScapeListener> listeners;
+	private Collection<RuneScapeUser> cache;
 
 	public RuneScape() {
 		runescape = this;
-		users = new ArrayList<>();
-		listeners = new ArrayList<>();
-		runescape = this;
+		cache = new ArrayList<>();
 	}
 
 	/**
@@ -48,9 +45,7 @@ public class RuneScape {
 			RuneScapeUser user = new RuneScapeUser(runescape, object);
 
 			success.accept(user);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	/**
@@ -73,9 +68,7 @@ public class RuneScape {
 			String string = result.asString();
 			string = string.substring(string.indexOf("(") + 1, string.lastIndexOf("}"));
 			success.accept(string);
-		}, err -> {
-        	failure.accept(err);
-		});
+		}, failure);
 	}
 
 	public void getQuestStatuses(String user, Consumer<QuestsStatus> success, Consumer<IOException> failure) {
@@ -91,9 +84,7 @@ public class RuneScape {
 			QuestsStatus questsStatus = new QuestsStatus(runescape, user, quests);
 
 			success.accept(questsStatus);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	/**
@@ -101,7 +92,7 @@ public class RuneScape {
 	 */
 
 	public Collection<RuneScapeUser> getUsers() {
-		return users;
+		return cache;
 	}
 
     /**
