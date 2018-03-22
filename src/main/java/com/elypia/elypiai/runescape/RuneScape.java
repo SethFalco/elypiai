@@ -12,8 +12,6 @@ import java.util.function.Consumer;
 
 public class RuneScape {
 
-	public static final String PROFILE_PRIVATE = "PROFILE_PRIVATE";
-
 	private RuneScape runescape;
 
 	private Collection<RuneScapeUser> cache;
@@ -46,17 +44,6 @@ public class RuneScape {
 
 			success.accept(user);
 		}, failure);
-	}
-
-	/**
-	 * @return If the player's profile was set to private.
-	 */
-
-	public boolean isPrivate(RuneScapeUser player) {
-		if (player == null)
-			return false;
-
-		return (player.getUsername().equals(PROFILE_PRIVATE));
 	}
 
 	public void getOnlineUserCount(Consumer<String> success, Consumer<IOException> failure) {

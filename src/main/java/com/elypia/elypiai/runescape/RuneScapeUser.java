@@ -26,6 +26,7 @@ public class RuneScapeUser {
 	private int rank;
 	private int combatLevel;
 	private boolean loggedIn;
+	private boolean isPrivate;
 
 	private List<Activity> activities;
 	private Map<RSSkill, RuneScapeStat> stats;
@@ -39,8 +40,10 @@ public class RuneScapeUser {
 
 	public void update(JSONObject object) {
 		if(object.has("error")) {
-			if (object.getString("error").equals(RuneScape.PROFILE_PRIVATE))
-				username = RuneScape.PROFILE_PRIVATE;
+			String error = object.getString("error");
+
+			if (error.equals("PROFILE_PRIVATE"))
+				isPrivate = true;
 
 			return;
 		}
@@ -67,8 +70,9 @@ public class RuneScapeUser {
 
 		JSONArray activitiesArray = object.getJSONArray("activities");
 		for (int i = 0; i < activitiesArray.length(); i++) {
-			JSONObject activity = activitiesArray.getJSONObject(i);
-			activities.add(new Activity(runescape, activity));
+			JSONObject activityObj = activitiesArray.getJSONObject(i);
+			Activity activity = new Activity(runescape, activityObj);
+			activities.add(activity);
 		}
 	}
 
@@ -225,5 +229,9 @@ public class RuneScapeUser {
 
 	public RuneScapeStat getStat(RSSkill skill) {
 		return stats.get(skill);
+	}
+
+	public boolean isPrivate() {
+		return isPrivate;
 	}
 }

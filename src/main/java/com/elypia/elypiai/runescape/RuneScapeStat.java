@@ -11,12 +11,12 @@ public class RuneScapeStat {
 	private int xp;
 	private int rank;
 
-	RuneScapeStat(JSONObject object) {
+	public RuneScapeStat(JSONObject object) {
 		skill = RSSkill.getById(object.getInt("id"));
 		level = object.getInt("level");
 		xp = object.getInt("xp") / 10;
 		rank = object.optInt("rank", -1);
-		virtualLevel = RuneScape.convertXpToLevel(xp);
+		virtualLevel = RuneScape.convertXpToLevel(xp, skill.isElite());
 	}
 
 	/**
