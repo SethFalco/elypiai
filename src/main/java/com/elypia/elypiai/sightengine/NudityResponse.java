@@ -2,56 +2,61 @@ package com.elypia.elypiai.sightengine;
 
 import org.json.JSONObject;
 
+import java.time.Instant;
+
 public class NudityResponse {
+
+	private SightEngine engine;
 
 	private boolean success;
 
 	private String requestId;
-	private double timestamp;
-	private int numberOfOperations;
+	private Instant timestamp;
+	private int operations;
 
 	// Only non-null when success is true
-	private double nudityRaw;
-	private double nudityPartial;
-	private String partial_tag;
-	private double nuditySafe;
+	private double raw;
+	private double partial;
+	private String tag;
+	private double safe;
 	private String mediaId;
 	private String mediaUri;
 
 	// Only non-null when success is false.
-	private String type;
-	private int code;
-	private String message;
+	private SightEngineError error;
 
-	NudityResponse(JSONObject object) {
+	public NudityResponse(SightEngine engine, JSONObject object) {
+		this.engine = engine;
+
 		success = object.getString("status").equals("success");
 
 		JSONObject temp = object.getJSONObject("request");
 
 		requestId = temp.getString("id");
-		timestamp = temp.getDouble("timestamp");
-		numberOfOperations = temp.getInt("operations");
+		timestamp = Instant.ofEpochSecond(temp.getLong("timestamp"));
+		operations = temp.getInt("operations");
 
-		if (success) {
-			temp = object.getJSONObject("nudity");
-
-			partial_tag   	= temp.optString("partial_tag", null);
-			nuditySafe 		= temp.getDouble("safe");
-			nudityRaw 		= temp.getDouble("raw");
-			nudityPartial	= temp.getDouble("partial");
-
-			temp = object.getJSONObject("media");
-
-			mediaId = temp.getString("id");
-			mediaUri = temp.getString("uri");
-
-		} else {
+		if (!success) {
 			temp = object.getJSONObject("error");
-
-			type = temp.getString("type");
-			code = temp.getInt("code");
-			message = temp.getString("message");
+			error = new SightEngineError(engine, object.getJSONObject("error"));
+			return;
 		}
+
+		temp = object.getJSONObject("nudity");
+
+		tag = temp.optString("partial_tag", null);
+		safe = temp.getDouble("safe");
+		raw = temp.getDouble("raw");
+		partial = temp.getDouble("partial");
+
+		temp = object.getJSONObject("media");
+
+		mediaId = temp.getString("id");
+		mediaUri = temp.getString("uri");
+	}
+
+	public SightEngine getSightEngine() {
+		return engine;
 	}
 
 	/**
@@ -66,20 +71,20 @@ public class NudityResponse {
 		return requestId;
 	}
 
-	public double getTimestamp() {
+	public Instant getTimestamp() {
 		return timestamp;
 	}
 
-	public int getNumberOfOperations() {
-		return numberOfOperations;
+	public int getOperations() {
+		return operations;
 	}
 
 	/**
 	 * @return	The probability that the image has raw nudity.
 	 */
 
-	public double getNudityRawScore() {
-		return nudityRaw;
+	public double getRawNudityScore() {
+		return raw;
 	}
 
 	/**
@@ -87,7 +92,7 @@ public class NudityResponse {
 	 */
 
 	public double getNudityPartialScore() {
-		return nudityPartial;
+		return partial;
 	}
 
 	/**
@@ -95,15 +100,26 @@ public class NudityResponse {
 	 */
 
 	public String getPartialTag() {
-		return partial_tag;
+		return tag;
 	}
 
 	/**
 	 * @return	The probability that the image does not contain nudity.
 	 */
 
-	public double getNuditySafeScore() {
-		return nuditySafe;
+	public double getSafeScore() {
+		return safe;
+	}
+
+	public boolean isSafe() {
+		return isSafe(true);
+	}
+
+	public boolean isSafe(boolean allowPartial) {
+		if (allowPartial)
+			return partial > raw || safe > raw;
+
+		return safe > raw && safe > partial;
 	}
 
 	public String getMediaId() {
@@ -118,15 +134,7 @@ public class NudityResponse {
 		return mediaUri;
 	}
 
-	public String getErrorType() {
-		return type;
-	}
-
-	public int getErrorCode() {
-		return code;
-	}
-
-	public String getErrorMessage() {
-		return message;
+	public SightEngineError getError() {
+		return error;
 	}
 }

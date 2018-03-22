@@ -10,6 +10,8 @@ public class SightEngine {
 
 	public static final String NUDITY_ENDPOINT = "https://api.sightengine.com/1.0/nudity.json";
 
+	private SightEngine engine;
+
 	private final String USER;
 	private final String SECRET;
 
@@ -23,6 +25,7 @@ public class SightEngine {
 	 */
 
 	public SightEngine(String user, String secret) {
+		engine = this;
 		USER = user;
 		SECRET = secret;
 	}
@@ -44,9 +47,9 @@ public class SightEngine {
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();
-			success.accept(new NudityResponse(object));
-		}, err -> {
-			failure.accept(err);
-		});
+			NudityResponse nudity = new NudityResponse(engine, object);
+
+			success.accept(nudity);
+		}, failure);
 	}
 }

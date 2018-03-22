@@ -245,5 +245,6 @@ public class RuneScapeTest {
 		assertEquals("Cooking", RSSkill.COOKING.getDisplay());
 		assertEquals("https://secure.runescape.com/m=itemdb_rs/api/info.json", RSEndpoint.RUNEDATE.getEndpoint());
 
+		assertNull(RSSkill.getById(343));
 	}
 }
