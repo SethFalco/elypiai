@@ -6,7 +6,8 @@ import com.elypia.elypiai.osu.data.MapStatus;
 import com.elypia.elypiai.osu.data.OsuMode;
 import org.json.JSONObject;
 
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class BeatMap {
 
@@ -14,17 +15,17 @@ public class BeatMap {
 	private MapGenre genre;
 	private MapLanguage language;
 	private OsuMode mode;
-	private String[] tags;
+	private Collection<String> tags;
 	private String approved_date;
 	private String last_update;
 	private String artist;
-	private String beatmap_id;
-	private String beatmapset_id;
+	private int id;
+	private int setId;
 	private int bpm;
 	private String creator;
 	private double difficultyrating;
 	private double diff_size;
-	private double diff_overall;
+	private double difficulty;
 	private double diff_approach;
 	private double diff_drain;
 	private int hit_length;
@@ -38,38 +39,42 @@ public class BeatMap {
 	private int passcount;
 	private int max_combo;
 
-	/**
-	 * See {@link Osu#getBeatMap(String, Consumer, Consumer)}
-	 */
-
 	public BeatMap(JSONObject object) {
-		genre 				= MapGenre.getById(object.optInt("genre_id"));
-		status 		 		= MapStatus.getById(object.optInt("approved"));
-		language 			= MapLanguage.getById(object.optInt("language_id"));
-		mode             	= OsuMode.getById(object.optInt("mode"));
-		difficultyrating 	= object.optDouble("difficultyrating");
-		bpm 			 	= object.optInt("bpm");
-		favourite_count  	= object.optInt("favourite_count");
-		playcount		 	= object.optInt("playcount");
-		passcount		 	= object.optInt("passcount");
-		max_combo		 	= object.optInt("max_combo");
-		diff_size 		 	= object.optDouble("diff_size");
-		diff_overall 	 	= object.optDouble("diff_overall");
-		diff_approach	 	= object.optDouble("diff_approach");
-		diff_drain 		 	= object.optDouble("diff_drain");
-		hit_length		 	= object.optInt("hit_length");
-		total_length	 	= object.optInt("total_length");
-		tags			 	= object.getString("tags").split(" ");
-		approved_date    	= object.getString("approved_date");
-		last_update 	 	= object.getString("last_update");
-		artist 			 	= object.getString("artist");
-		beatmap_id 		 	= object.getString("beatmap_id");
-		beatmapset_id 	 	= object.getString("beatmapset_id");
-		creator 			= object.getString("creator");
-		source 				= object.getString("source");
-		title				= object.getString("title");
-		version			 	= object.getString("version");
-		file_md5		 	= object.getString("file_md5");
+		tags = new ArrayList<>();
+
+		genre = MapGenre.getById(object.optInt("genre_id"));
+		status = MapStatus.getById(object.optInt("approved"));
+		language = MapLanguage.getById(object.optInt("language_id"));
+		mode = OsuMode.getById(object.optInt("mode"));
+		difficultyrating = object.optDouble("difficultyrating");
+		bpm = object.optInt("bpm");
+		favourite_count = object.optInt("favourite_count");
+		playcount = object.optInt("playcount");
+		passcount = object.optInt("passcount");
+		max_combo = object.optInt("max_combo");
+		diff_size = object.optDouble("diff_size");
+		difficulty = object.optDouble("diff_overall");
+		diff_approach = object.optDouble("diff_approach");
+		diff_drain = object.optDouble("diff_drain");
+		hit_length = object.optInt("hit_length");
+		total_length = object.optInt("total_length");
+		approved_date = object.optString("approved_date", null);
+		last_update = object.getString("last_update");
+		artist = object.getString("artist");
+		id = object.optInt("beatmap_id");
+		setId = object.optInt("beatmapset_id");
+		creator = object.getString("creator");
+		source = object.getString("source");
+		title = object.getString("title");
+		version	= object.getString("version");
+		file_md5 = object.getString("file_md5");
+
+		String[] strings = object.getString("tags").split("\\s+");
+
+		for (String string : strings) {
+			if (!string.isEmpty())
+				tags.add(string);
+		}
 	}
 
 	/**
@@ -87,7 +92,7 @@ public class BeatMap {
 	 * @return 	Date the map was approved.
 	 */
 
-	public String getApprovedData() {
+	public String getApprovedDate() {
 		return approved_date;
 	}
 
@@ -114,16 +119,16 @@ public class BeatMap {
 	 * @return 	The beatmap id.
 	 */
 
-	public String getBeatMapID() {
-		return beatmap_id;
+	public int getId() {
+		return id;
 	}
 
 	/**
 	 * @return 	The id of the beatmap set. (All difficulties)
 	 */
 
-	public String getBeatMapSetID() {
-		return beatmapset_id;
+	public int getSetId() {
+		return setId;
 	}
 
 	/**
@@ -163,8 +168,8 @@ public class BeatMap {
 	 * @return 	The overall difficulty (OD) of the beatmap.
 	 */
 
-	public double getDiffOverall() {
-		return diff_overall;
+	public double getDifficulty() {
+		return difficulty;
 	}
 
 	/**
@@ -249,7 +254,7 @@ public class BeatMap {
 	 * @return	Tags associated with this beatmap.
 	 */
 
-	public String[] getTags() {
+	public Collection<String> getTags() {
 		return tags;
 	}
 

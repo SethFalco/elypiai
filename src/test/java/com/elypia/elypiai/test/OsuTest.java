@@ -1,14 +1,24 @@
 package com.elypia.elypiai.test;
 
+import com.elypia.elypiai.osu.BeatMap;
+import com.elypia.elypiai.osu.Osu;
 import com.elypia.elypiai.osu.OsuUser;
+import com.elypia.elypiai.osu.data.MapGenre;
+import com.elypia.elypiai.osu.data.MapLanguage;
+import com.elypia.elypiai.osu.data.MapStatus;
 import com.elypia.elypiai.osu.data.OsuMode;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OsuTest {
+
+    @Test
+    public void testOsu() {
+        Osu osu = new Osu("api key");
+        assertNotNull(osu);
+    }
 
     @Test
     public void testOsuPlayer() {
@@ -18,6 +28,7 @@ public class OsuTest {
 
         assertAll("Check values of osu! player.",
             () -> assertEquals(4185808, user.getId()),
+            () -> assertEquals(OsuMode.OSU, user.getGameMode()),
             () -> assertEquals("SethX3", user.getUsername()),
             () -> assertEquals(3226099, user.getCount300()),
             () -> assertEquals(877006, user.getCount100()),
@@ -33,35 +44,51 @@ public class OsuTest {
             () -> assertEquals("2,653.35", user.getPpString()),
             () -> assertEquals(94.21471405029297, user.getAccuracy()),
             () -> assertEquals("94.21%", user.getAccuracyString()),
-            () -> assertEquals(9, user.getCountRankSS()),
-            () -> assertEquals(202, user.getCountRankS()),
-            () -> assertEquals(327, user.getCountRankA()),
+            () -> assertEquals(9, user.getCountSS()),
+            () -> assertEquals(1, user.getCountSSH()),
+            () -> assertEquals(202, user.getCountS()),
+            () -> assertEquals(1, user.getCountSH()),
+            () -> assertEquals(327, user.getCountA()),
             () -> assertEquals("GB", user.getCountry()),
-            () -> assertEquals(2376, user.getCountryRank())
+            () -> assertEquals(2376, user.getCountryRank()),
+            () -> assertEquals("https://osu.ppy.sh/u/4185808", user.getProfileUrl())
         );
     }
 
     @Test
-    public void testTaikoPlayer() {
-        String json = "{\"user_id\":\"4185808\",\"username\":\"SethX3\",\"count300\":\"15063\",\"count100\":\"5574\",\"count50\":\"0\",\"playcount\":\"162\",\"ranked_score\":\"9484570\",\"total_score\":\"16288190\",\"pp_rank\":\"57265\",\"level\":\"13.7146\",\"pp_raw\":\"618.092\",\"accuracy\":\"94.16777801513672\",\"count_rank_ss\":\"3\",\"count_rank_ssh\":\"0\",\"count_rank_s\":\"21\",\"count_rank_sh\":\"0\",\"count_rank_a\":\"14\",\"country\":\"GB\",\"pp_country_rank\":\"1218\",\"events\":[]}";
+    public void testOsuBeapMap() {
+        String json = "{\"beatmapset_id\":\"301125\",\"beatmap_id\":\"675314\",\"approved\":\"-2\",\"total_length\":\"88\",\"hit_length\":\"87\",\"version\":\"Easy\",\"file_md5\":\"82b0e82610c192e97266b4f5ef9f0bf5\",\"diff_size\":\"3\",\"diff_overall\":\"2\",\"diff_approach\":\"3\",\"diff_drain\":\"2\",\"mode\":\"0\",\"approved_date\":null,\"last_update\":\"2015-04-07 05:34:34\",\"artist\":\"EXO K\",\"title\":\"Call me baby\",\"creator\":\"mr_missgirl\",\"bpm\":\"120\",\"source\":\"\",\"tags\":\"\",\"genre_id\":\"1\",\"language_id\":\"1\",\"favourite_count\":\"6\",\"playcount\":\"0\",\"passcount\":\"0\",\"max_combo\":\"101\",\"difficultyrating\":\"2.328305244445801\"}";
         JSONObject object = new JSONObject(json);
+        BeatMap map = new BeatMap(new JSONObject(json));
 
-        OsuUser user = new OsuUser(OsuMode.TAIKO, new JSONObject(json));
-    }
-
-    @Test
-    public void testCatchTheBeatPlayer() {
-        String json = "{\"user_id\":\"4185808\",\"username\":\"SethX3\",\"count300\":\"2107\",\"count100\":\"704\",\"count50\":\"3945\",\"playcount\":\"17\",\"ranked_score\":\"2126650\",\"total_score\":\"5965390\",\"pp_rank\":\"205717\",\"level\":\"9.89204\",\"pp_raw\":\"36.5134\",\"accuracy\":\"99.18384552001953\",\"count_rank_ss\":\"2\",\"count_rank_ssh\":\"0\",\"count_rank_s\":\"2\",\"count_rank_sh\":\"0\",\"count_rank_a\":\"1\",\"country\":\"GB\",\"pp_country_rank\":\"3331\",\"events\":[]}";
-        JSONObject object = new JSONObject(json);
-
-        OsuUser user = new OsuUser(OsuMode.CATCH_THE_BEAT, new JSONObject(json));
-    }
-
-    @Test
-    public void testManiaPlayer() {
-        String json = "{\"user_id\":\"4185808\",\"username\":\"SethX3\",\"count300\":\"345059\",\"count100\":\"216845\",\"count50\":\"14336\",\"playcount\":\"1362\",\"ranked_score\":\"201252615\",\"total_score\":\"382471822\",\"pp_rank\":\"135538\",\"level\":\"38.8182\",\"pp_raw\":\"381.165\",\"accuracy\":\"93.89826965332031\",\"count_rank_ss\":\"1\",\"count_rank_ssh\":\"0\",\"count_rank_s\":\"23\",\"count_rank_sh\":\"0\",\"count_rank_a\":\"60\",\"country\":\"GB\",\"pp_country_rank\":\"2041\",\"events\":[]}";
-        JSONObject object = new JSONObject(json);
-
-        OsuUser user = new OsuUser(OsuMode.MANIA, new JSONObject(json));
+        assertAll("Check values of osu! Beatmap.",
+            () -> assertEquals(301125, map.getSetId()),
+            () -> assertEquals(675314, map.getId()),
+            () -> assertEquals(MapStatus.GRAVEYARD, map.getStatus()),
+            () -> assertEquals(88, map.getTotalLength()),
+            () -> assertEquals(87, map.getHitLength()),
+            () -> assertEquals("Easy", map.getVersion()),
+            () -> assertEquals("82b0e82610c192e97266b4f5ef9f0bf5", map.getFileMD5()),
+            () -> assertEquals(3, map.getCircleSize()),
+            () -> assertEquals(2, map.getDifficulty()),
+            () -> assertEquals(3, map.getApproachRate()),
+            () -> assertEquals(2, map.getHealthDrain()),
+            () -> assertEquals(OsuMode.OSU, map.getMode()),
+            () -> assertEquals(null, map.getApprovedDate()),
+            () -> assertEquals("2015-04-07 05:34:34", map.getLastUpdate()),
+            () -> assertEquals("EXO K", map.getArtist()),
+            () -> assertEquals("Call me baby", map.getTitle()),
+            () -> assertEquals("mr_missgirl", map.getCreator()),
+            () -> assertEquals(120, map.getBPM()),
+            () -> assertEquals("", map.getSource()),
+            () -> assertEquals(0, map.getTags().size()),
+            () -> assertEquals(MapGenre.UNSPECIFIED, map.getGenre()),
+            () -> assertEquals(MapLanguage.OTHER, map.getLanguage()),
+            () -> assertEquals(6, map.getFavCount()),
+            () -> assertEquals(0, map.getPlayCount()),
+            () -> assertEquals(0, map.getPassCount()),
+            () -> assertEquals(101, map.getMaxCombo()),
+            () -> assertEquals(2.328305244445801, map.getDiffRating())
+        );
     }
 }

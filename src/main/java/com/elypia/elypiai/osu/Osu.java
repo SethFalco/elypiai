@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.concurrent.ScheduledExecutorService;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Osu {
@@ -19,9 +19,7 @@ public class Osu {
 
 	private final String API_KEY;
 
-	private Collection<OsuUser> users;
-	private Collection<OsuListener> listeners;
-	private ScheduledExecutorService service;
+	private Collection<OsuUser> cache;
 
 	/**
 	 * Creates an OSU object for making calls to the osu API.
@@ -33,8 +31,7 @@ public class Osu {
 
 	public Osu(String apiKey) {
 		API_KEY = apiKey;
-		users = new ArrayList<>();
-		listeners = new ArrayList<>();
+		cache = new ArrayList<>();
 	}
 
 	/**
@@ -81,9 +78,7 @@ public class Osu {
 			}
 
 			success.accept(user);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	/**
@@ -92,11 +87,16 @@ public class Osu {
 	 * @param	id	The id of the beatmap to search grab.
 	 */
 
-	public void getBeatMap(String id, Consumer<BeatMap> success, Consumer<IOException> failure) {
+	public void getBeatMap(String id, int limit, Consumer<BeatMap> success, Consumer<IOException> failure) {
+		Objects.requireNonNull(id);
+
+		if (limit < 1)
+			throw new IllegalArgumentException("Limit can not be lower than 1.");
+
 		ElyRequest req = new ElyRequest(BEATMAP_ENDPOINT);
 		req.addParam("k", API_KEY);
 		req.addParam("b", id);
-		req.addParam("limit", 1);
+		req.addParam("limit", limit);
 
 		req.get(result -> {
 			JSONArray array = result.asJSONArray();
@@ -104,9 +104,7 @@ public class Osu {
 			BeatMap map = new BeatMap(object);
 
 			success.accept(map);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 
 	public void getRecentPlays(OsuUser user, int limit, Consumer<Collection<RecentPlay>> success, Consumer<IOException> failure) {
@@ -128,8 +126,6 @@ public class Osu {
 			}
 
 			success.accept(plays);
-		}, err -> {
-			failure.accept(err);
-		});
+		}, failure);
 	}
 }

@@ -280,7 +280,7 @@ public class OsuUser {
 	 * @return 	Get total number of beatmaps with an SS rank.
 	 */
 
-	public int getCountRankSS() {
+	public int getCountSS() {
 		return countSS;
 	}
 
@@ -292,7 +292,7 @@ public class OsuUser {
 	 * @return 	Get total number of beatmaps with an S rank.
 	 */
 
-	public int getCountRankS() {
+	public int getCountS() {
 		return countS;
 	}
 
@@ -304,7 +304,7 @@ public class OsuUser {
 	 * @return 	Get total number of beatmaps with an A rank.
 	 */
 
-	public int getCountRankA() {
+	public int getCountA() {
 		return countA;
 	}
 
@@ -385,10 +385,5 @@ public class OsuUser {
 		}
 
 		return DEFAULT_AVATAR;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("ID: %d%nUsername: %s%nPP: %s", userId, username, getPpString());
 	}
 }

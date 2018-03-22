@@ -1,8 +1,7 @@
 package com.elypia.elypiai.utils.math;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.StringJoiner;
 
 import static com.elypia.elypiai.utils.math.Numeral.*;
 
@@ -26,10 +25,10 @@ public final class MathUtils {
         if (value == 0)
             return Numeral.ZERO.getName();
 
-        List<String> tokens = new ArrayList<>();
+        StringJoiner joiner = new StringJoiner(" ");
 
         if (value < 0) {
-            tokens.add("negative");
+            joiner.add("negative");
             value *= -1;
         }
 
@@ -44,7 +43,7 @@ public final class MathUtils {
 
             switch (digits.length) {
                 case 3:
-                    tokens.add(digits[0].getName() + " hundred");
+                    joiner.add(digits[0].getName() + " hundred");
 
                     if (digits[1] == Numeral.ZERO && digits[2] == Numeral.ZERO)
                         break;
@@ -53,17 +52,17 @@ public final class MathUtils {
 
                 case 2:
                     if (digits[0] != Numeral.ZERO) {
-                        if (tokens.size() > 0)
-                            tokens.add("and");
+                        if (joiner.length() > 0)
+                            joiner.add("and");
 
                         if (digits[0] == Numeral.ONE)
-                            tokens.add(Numeral.of(digits[1].asNumeric() + 10).getName());
+                            joiner.add(Numeral.of(digits[1].asNumeric() + 10).getName());
 
                         else if (digits[1] == Numeral.ZERO)
-                            tokens.add(Numeral.of(digits[0].asNumeric() * 10).getName());
+                            joiner.add(Numeral.of(digits[0].asNumeric() * 10).getName());
 
                         else
-                            tokens.add(Numeral.of(digits[0].asNumeric() * 10).getName() + "-" + digits[1].getName());
+                            joiner.add(Numeral.of(digits[0].asNumeric() * 10).getName() + "-" + digits[1].getName());
 
                         break;
                     }
@@ -72,21 +71,21 @@ public final class MathUtils {
 
                 case 1:
                     if (digits[0] != Numeral.ZERO) {
-                        if (tokens.size() > 0)
-                            tokens.add("and");
+                        if (joiner.length() > 0)
+                            joiner.add("and");
 
-                        tokens.add(digits[0].getName());
+                        joiner.add(digits[0].getName());
                     }
 
                     break;
             }
 
             if (number != Numeral.ONE)
-                tokens.add(number.getName());
+                joiner.add(number.getName());
 
             value -= num * number.asNumeric();
         }
 
-        return String.join(" ", tokens);
+        return joiner.toString();
     }
 }
