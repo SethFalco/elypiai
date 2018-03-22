@@ -80,8 +80,6 @@ public class TranslationRequester {
             Translation trans = new Translation(googleTranslate, body, target, translation);
 
             success.accept(trans);
-        }, err -> {
-            failure.accept(err);
-        });
+        }, failure);
     }
 }

@@ -19,9 +19,7 @@ public class GoogleTranslate {
 
         requester.getSupportedLanguages(o -> {
             supportedLanguages = o;
-        }, failure -> {
-            failure.printStackTrace();
-        });
+        }, IOException::printStackTrace);
     }
 
     public void getSupportedLanguages(Consumer<List<Language>> success, Consumer<IOException> failure) {
