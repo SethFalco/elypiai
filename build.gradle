@@ -33,7 +33,7 @@ apply plugin: 'jacoco'
 
 // Global variables, used in various parts of the script.
 String projectName = 'Elypiai'
-String projectVersion = '1.0.4'
+String projectVersion = '1.0.5'
 String projectDescription = "All in one API wrapper."
 String projectGit = 'https://gitlab.com/Elypia/Elypiai.git'
 
