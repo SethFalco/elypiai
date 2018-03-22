@@ -92,7 +92,7 @@ public class SteamUser {
 	 * The time the player's account was created.
 	 */
 
-	private double timeCreated;
+	private Instant timeCreated;
 
 	/**
 	 * <strong>Only non-null if profile is not private.</strong><br>
@@ -100,7 +100,7 @@ public class SteamUser {
 	 * this value will be returned and set to the gameid of that game.
 	 */
 
-	public int gameId;
+	private int gameId;
 
 	/**
 	 * <strong>Only non-null if profile is not private.</strong><br>
@@ -108,7 +108,7 @@ public class SteamUser {
 	 * if they are playing on-line in a game using Steam matchmaking.
 	 */
 
-	public String serverAddress;
+	private String serverAddress;
 
 	/**
 	 * If the user is currently in-game,
@@ -116,7 +116,7 @@ public class SteamUser {
 	 * This may be the name of a non-Steam game shortcut.
 	 */
 
-	public String gameStatus;
+	private String gameStatus;
 
 	/**
 	 * If set on the user's Steam Community profile,
@@ -140,7 +140,7 @@ public class SteamUser {
 
 		id = object.optLong("steamid");
 		state = PersonaState.values()[object.getInt("personastate")];
-		lastLogOff = Instant.ofEpochMilli(object.getLong("lastlogoff"));
+		lastLogOff = Instant.ofEpochSecond(object.getInt("lastlogoff"));
 		hasProfile = object.getInt("profilestate") == 1;
 		avatar = object.getString("avatarfull");
 		url = object.getString("profileurl");
@@ -151,7 +151,7 @@ public class SteamUser {
 		if (!isPrivate) {
 			realName = object.optString("realname", null);
 			primaryClan = object.getString("primaryclanid");
-			timeCreated = object.getDouble("timecreated");
+			timeCreated = Instant.ofEpochSecond(object.getInt("timecreated"));
 			countryCode = object.optString("loccountrycode", null);
 			stateCode = object.optString("locstatecode", null);
 		}
@@ -242,7 +242,7 @@ public class SteamUser {
 	 * 			Possible null; if userprofile is private.
 	 */
 
-	public double getTimeCreated() {
+	public Instant getTimeCreated() {
 		return timeCreated;
 	}
 

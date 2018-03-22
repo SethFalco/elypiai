@@ -36,6 +36,10 @@ public class SteamGame implements Comparable<SteamGame> {
 		statsVisible = game.optBoolean("has_community_visible_stats", false);
 	}
 
+	public Steam getSteam() {
+		return steam;
+	}
+
 	public SteamUser getUser() {
 		return user;
 	}

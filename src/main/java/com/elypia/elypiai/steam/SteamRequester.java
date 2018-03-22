@@ -95,8 +95,6 @@ public class SteamRequester {
 
             Collections.sort(library);
             success.accept(library);
-        }, err -> {
-            failure.accept(err);
-        });
+        }, failure);
     }
 }
