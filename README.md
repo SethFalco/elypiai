@@ -32,8 +32,8 @@ Module | About | Authentication
 [Bing Cognative Services](https://www.microsoft.com/cognitive-services) | Search for sites and images, spell check, and text analytics. | ✔
 [Brainfuck Interpretter](https://en.wikipedia.org/wiki/Brainfuck) | Interpret brainfuck to a `byte[]` or `String`, compatible with input. | ✖
 [Cleverbot](https://www.cleverbot.com/api/) | Chat with cleverbot! | ✔
-[Elypian Script Notation](https://gitlab.com/Elypia/Elyversity/wikis/Elypian-Script-Notation) | Create dynamic text following a set of rules dictated in a single `String`. | ✖
-[Google LinkShortener](https://console.developers.google.com/) | Shorten a URL and query information on existing ones. | ✔
+[ElyScript](https://gitlab.com/Elypia/Elyversity/wikis/ElyScript) | Create dynamic text following a set of rules dictated in a single `String`. | ✖
+[Google Link Shortener](https://console.developers.google.com/) | Shorten a URL or query information on existing ones. | ✔
 [MyAnimeList](https://myanimelist.net/modules.php?go=api) | Get information on mangas and animes as they appear on MyAnimeList. | ✔
 [NaNoWriMo](https://nanowrimo.org/wordcount_api) | Get scores or create applications or plugins to push word counts for users! | ✖
 [osu!](https://osu.ppy.sh/p/api) | Call user and play data, with notifier for significant events. | ✔
