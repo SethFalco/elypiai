@@ -57,6 +57,28 @@ bintray {
 }
 
 publishing {
+    def details = {
+        licenses{
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution projectName
+            }
+        }
+
+        developers{
+            developer {
+                id 'Seth'
+                name 'Seth'
+                email "seth@elypia.com"
+            }
+        }
+
+        scm{
+            url projectGit
+        }
+    }
+
     publications {
         Elypiai(MavenPublication) {
             from components.java
@@ -72,27 +94,7 @@ publishing {
                 root.appendNode('description', projectDescription)
                 root.appendNode('name', projectName)
                 root.appendNode('url', 'https://elypia.com/')
-                root.children().last() + {
-                    licenses(MavenPublication) {
-                        license {
-                            name 'The Apache Software License, Version 2.0'
-                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                            distribution projectName
-                        }
-                    }
-
-                    developers(MavenPublication) {
-                        developer {
-                            id 'Seth'
-                            name 'Seth'
-                            email "seth@elypia.com"
-                        }
-                    }
-
-                    scm(MavenPublication) {
-                        url projectGit
-                    }
-                }
+                root.children().last() + details
             }
         }
     }
