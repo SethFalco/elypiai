@@ -7,11 +7,10 @@ build:
   stage: build
   script: gradle --build-cache assemble
   cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: push
+    key: $CI_COMMIT_REF_NAME
     paths:
-      - build
       - .gradle
+      - build
 
 test:
   stage: test
@@ -19,18 +18,17 @@ test:
     - gradle check
     - cat build/reports/jacoco/test/html/index.html
   cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
+    key: $CI_COMMIT_REF_NAME
     paths:
-      - build
       - .gradle
+      - build
 
 deploy:
   stage: deploy
   script: gradle bintray
   cache:
-    key: "$CI_COMMIT_REF_NAME"
+    key: $CI_COMMIT_REF_NAME
     policy: pull
     paths:
-      - build
       - .gradle
+      - build
