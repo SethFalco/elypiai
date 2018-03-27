@@ -10,7 +10,7 @@ build:
   stage: build
   script: gradle --build-cache assemble
   cache:
-    key: $CI_COMMIT_REF_NAME
+    key: $CI_PROJECT_ID
     paths:
       - .gradle
       - build
@@ -21,16 +21,38 @@ test:
     - gradle --build-cache check
     - cat build/reports/jacoco/test/html/index.html
   cache:
+    key: $CI_JOB_NAME
     paths:
       - .gradle
       - build
 
-deploy:
+bintray:
+  only:
+    - master
   stage: deploy
   script: gradle bintray
   cache:
-    key: $CI_COMMIT_REF_NAME
+    key: $CI_PROJECT_ID
     policy: pull
     paths:
       - .gradle
+      - build
+     
+.docs:
+  only:
+    - master
+  image: alpine:3.6
+  stage: deploy
+  script:
+    - apk update
+    - apk add openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - mkdir -p ~/.ssh
+    - ssh-keyscan $SSH_ADDRESS >> ~/.ssh/known_hosts
+    - sftp -oPort=$SSH_PORT $SSH_USER@$SSH_ADDRESS
+  cache:
+    key: $CI_PROJECT_ID
+    policy: pull
+    paths:
       - build
