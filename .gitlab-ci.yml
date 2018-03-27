@@ -37,7 +37,7 @@ bintray:
     paths:
       - .gradle
       - build
-     
+
 .docs:
   only:
     - master
@@ -49,8 +49,7 @@ bintray:
     - eval $(ssh-agent -s)
     - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - mkdir -p ~/.ssh
-    - ssh-keyscan $SSH_ADDRESS >> ~/.ssh/known_hosts
-    - sftp -oPort=$SSH_PORT $SSH_USER@$SSH_ADDRESS
+    - sftp StrictHostKeyChecking=no -oPort=$SSH_PORT $SSH_USER@$SSH_ADDRESS
     - sftp put build/docs/javadoc/
   cache:
     key: $CI_PROJECT_ID
