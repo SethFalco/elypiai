@@ -50,7 +50,7 @@ docs:
     - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
     - mkdir -p ~/.ssh
     - ssh-keyscan -p $SSH_PORT $SSH_ADDRESS >> ~/.ssh/known_hosts
-    - echo "put -r build/docs/javadocs /var/www/elypiai" > run.sh
+    - echo "put -r build/docs/javadoc /var/www/elypiai" > run.sh
     - sftp -b run.sh -oPort=$SSH_PORT $SSH_USER@$SSH_ADDRESS
   cache:
     key: $CI_PROJECT_ID

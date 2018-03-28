@@ -7,7 +7,7 @@ import static com.elypia.elypiai.utils.math.Numeral.*;
 
 public final class MathUtils {
 
-    private static final Numeral[] NUMERALS = {
+    private static final Numeral[] AS_WRITTEN_ARRAY = {
         QUINTILLION,
         QUADRILLION,
         TRILLION,
@@ -15,6 +15,36 @@ public final class MathUtils {
         MILLION,
         THOUSAND,
         ONE
+    };
+
+    private static final Numeral[] AS_NUMERIC_ARRAY_MULTIPLIER = {
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        SEVEN,
+        EIGHT,
+        NINE,
+        TEN,
+        ELEVEN,
+        TWELVE,
+        THIRTEEN,
+        FOURTEEN,
+        FIFTEEN,
+        SIXTEEN,
+        SEVENTEEN,
+        EIGHTEEN,
+        NINETEEN,
+        TWENTY,
+        THIRTY,
+        FOURTY,
+        FIFTY,
+        SIXTY,
+        SEVENTY,
+        EIGHTY,
+        NINETY
     };
 
     private MathUtils() {
@@ -32,7 +62,7 @@ public final class MathUtils {
             value *= -1;
         }
 
-        for (Numeral number : NUMERALS) {
+        for (Numeral number : AS_WRITTEN_ARRAY) {
             long num = value / number.asNumeric();
 
             if (num == 0)
@@ -87,5 +117,43 @@ public final class MathUtils {
         }
 
         return joiner.toString();
+    }
+
+    public static long asNumeric(String value) {
+        if (value == null)
+            return 0;
+
+        // two hundred and twenty-four
+        // one hundred and twenty-four million five hundred thousand
+        // 1, 100, 24, 1000000, 5, 100, 1000
+        // seventy-six million
+        // 76, 1000000
+
+        StringBuilder builder = new StringBuilder();
+
+        String[] split = value.split("\\s+");
+        int length = split.length;
+        long[] values = new long[length];
+
+        for (int i = 0; i < length; i++) {
+            String it = split[i].toUpperCase();
+
+            if (it.equals("AND"))
+                continue;
+
+            String[] components = it.split("-");
+            long check = 0;
+
+            for (String s : components)
+                check += Numeral.valueOf(s).asNumeric();
+
+            values[i] = check;
+        }
+
+        for (int i = 0; i < values.length; i++) {
+
+        }
+
+        return 0;
     }
 }
