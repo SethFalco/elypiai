@@ -38,22 +38,17 @@ bintray:
       - .gradle
       - build
 
-docs:
+pages:
   only:
     - master
-  image: alpine:3.6
   stage: deploy
-  script:
-    - apk update
-    - apk add openssh-client
-    - eval $(ssh-agent -s)
-    - echo "$SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - mkdir -p ~/.ssh
-    - ssh-keyscan -p $SSH_PORT $SSH_ADDRESS >> ~/.ssh/known_hosts
-    - echo "put -r build/docs/javadoc/* /var/www/elypiai" > run.sh
-    - sftp -b run.sh -oPort=$SSH_PORT $SSH_USER@$SSH_ADDRESS
+  script: echo "Hello, world!"
+  artifacts:
+    paths:
+      - build/docs/javadoc/*
   cache:
     key: $CI_PROJECT_ID
     policy: pull
     paths:
+      - .gradle
       - build
