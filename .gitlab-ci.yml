@@ -44,7 +44,7 @@ pages:
   stage: deploy
   script: echo "Hello, world!"
   artifacts:
-    path:
+    paths:
       - build/docs/javadoc/*
   cache:
     key: $CI_PROJECT_ID
