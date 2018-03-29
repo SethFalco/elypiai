@@ -29,8 +29,6 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
-
-    javadoc.options.jFlags("-link http://docs.oracle.com/javase/9/docs/api/")
 }
 
 artifacts {
