@@ -42,9 +42,10 @@ pages:
   only:
     - master
   stage: deploy
+  script: echo "Hello, world!"
   artifacts:
     path:
-      - build/docs/javadoc/
+      - build/docs/javadoc/*
   cache:
     key: $CI_PROJECT_ID
     policy: pull
