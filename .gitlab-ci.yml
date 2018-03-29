@@ -42,13 +42,12 @@ pages:
   only:
     - master
   stage: deploy
-  script: echo "Hello, world!"
+  script: mv build/docs/javadoc public
   artifacts:
     paths:
-      - build/docs/javadoc/*
+      - public
   cache:
     key: $CI_PROJECT_ID
     policy: pull
     paths:
-      - .gradle
-      - build
+      - build/docs/
