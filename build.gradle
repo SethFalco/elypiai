@@ -140,5 +140,5 @@ jacoco {
 
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.6'
+    gradleVersion = '4.7'
 }
