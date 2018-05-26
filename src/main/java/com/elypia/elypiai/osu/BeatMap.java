@@ -11,6 +11,8 @@ import java.util.Collection;
 
 public class BeatMap {
 
+	private static final String PREVIEW_FORMAT = "https://b.ppy.sh/preview/%d.mp3";
+
 	private MapStatus status;
 	private MapGenre genre;
 	private MapLanguage language;
@@ -38,6 +40,7 @@ public class BeatMap {
 	private int playcount;
 	private int passcount;
 	private int max_combo;
+	private String previewUrl;
 
 	public BeatMap(JSONObject object) {
 		tags = new ArrayList<>();
@@ -68,6 +71,7 @@ public class BeatMap {
 		title = object.getString("title");
 		version	= object.getString("version");
 		file_md5 = object.getString("file_md5");
+		previewUrl = String.format(PREVIEW_FORMAT, setId);
 
 		String[] strings = object.getString("tags").split("\\s+");
 
@@ -289,5 +293,13 @@ public class BeatMap {
 
 	public int getMaxCombo() {
 		return max_combo;
+	}
+
+	/**
+	 * @return The audio file preview as displayed on the website.
+	 */
+
+	public String getPreviewUrl() {
+		return previewUrl;
 	}
 }

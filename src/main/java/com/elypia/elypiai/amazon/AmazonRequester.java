@@ -3,7 +3,6 @@ package com.elypia.elypiai.amazon;
 import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import com.elypia.elypiai.amazon.data.AmazonGroup;
 import com.elypia.elypiai.amazon.data.AmazonIndex;
-import com.elypia.elypiai.utils.ElyUtils;
 import com.elypia.elypiai.utils.okhttp.ElyRequest;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
@@ -12,10 +11,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class AmazonRequester {
@@ -55,14 +51,17 @@ public class AmazonRequester {
     public void getItems(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
         String id = amazon.getId();
         AmazonEndpoint endpoint = amazon.getEndpoint();
-        String[] groupString = ElyUtils.toStringArray(groups);
+        StringJoiner joinedGroups = new StringJoiner(",");
+
+        for (AmazonGroup g : groups)
+            joinedGroups.add(g.getApiName());
 
         Map<String, Object> queryParams = new LinkedHashMap<>();
         queryParams.put("AWSAccessKeyId", accessKey);
         queryParams.put("AssociateTag", id);
         queryParams.put("Keywords", product);
         queryParams.put("Operation", "ItemSearch");
-        queryParams.put("ResponseGroup", String.join(",", groupString));
+        queryParams.put("ResponseGroup", joinedGroups.toString());
         queryParams.put("SearchIndex", index.getApiName());
         queryParams.put("Service", "AWSECommerceService");
         queryParams.put("Timestamp", Instant.now());
