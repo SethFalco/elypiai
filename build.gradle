@@ -8,7 +8,7 @@ plugins {
 }
 
 String projectName = 'Elypiai'
-String projectVersion = '1.0.5'
+String projectVersion = '1.0.6'
 String projectDescription = "All in one API wrapper."
 String projectGit = 'https://gitlab.com/Elypia/Elypiai.git'
 
@@ -29,7 +29,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
-    
+
     javadoc {
         options {
             links += [
