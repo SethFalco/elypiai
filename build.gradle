@@ -113,16 +113,16 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.2'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
     implementation group: 'org.json', name: 'json', version: '20180130'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.11'
 
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.15.0'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.1.0'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.18.3'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
 
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.1.0'
-    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.1.0'
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
+    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.2.0'
 }
 
 test {
@@ -135,10 +135,10 @@ test {
 }
 
 jacoco {
-    toolVersion = "0.8.0"
+    toolVersion = "0.8.1"
 }
 
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.6'
+    gradleVersion = '4.7'
 }

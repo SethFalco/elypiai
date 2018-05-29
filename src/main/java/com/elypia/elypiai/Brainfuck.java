@@ -1,9 +1,6 @@
 package com.elypia.elypiai;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Brainfuck {
 
@@ -43,37 +40,27 @@ public class Brainfuck {
      * The full brainfuck code to execute.
      */
 
-    private final byte[] BRAINFUCK;
+    private final byte[] brainfuck;
 
-    /**
-     * All input provided to use call from as data is prompted.
-     */
-
-    private final byte[] INPUT;
+    private final Queue<Byte> input;
 
     /**
      * Set of cells uses to store brainfuck bytes.
      */
 
-    private List<Byte> cells;
+    private final List<Byte> cells;
 
     /**
      * While compiling brainfuck code, all prints (.) are stored.
      */
 
-    private List<Byte> prints;
+    private final List<Byte> prints;
 
     /**
      * The currently selected cell from {@link #cells}.
      */
 
     private int selectedCell;
-
-    /**
-     * The number of times input has been required.
-     */
-
-    private int params;
 
     /**
      * Initalise the brainfuck instance with the number of
@@ -85,12 +72,14 @@ public class Brainfuck {
      */
 
     private Brainfuck(final byte[] brainfuck, final byte... input) {
-        BRAINFUCK = Objects.requireNonNull(brainfuck);
+        this.brainfuck = Objects.requireNonNull(brainfuck);
+        this.input = new LinkedList<>();
+
+        for (byte b : input)
+            this.input.add(b);
 
         if (!isValid())
             throw new IllegalArgumentException("Brainfuck should always have an equal number of [ and ].");
-
-        INPUT = Objects.requireNonNull(input);
 
         cells = new ArrayList<>();
         prints = new ArrayList<>();
@@ -99,7 +88,7 @@ public class Brainfuck {
     }
 
     public List<Byte> interpretBytes() {
-        return interpret(BRAINFUCK);
+        return interpret(brainfuck);
     }
 
     /**
@@ -169,10 +158,10 @@ public class Brainfuck {
                 return ++position;
 
             case ',':
-                if (INPUT.length <= params)
+                if (input.isEmpty())
                     throw new IndexOutOfBoundsException("Not enough input was provided.");
 
-                cells.set(selectedCell, INPUT[params++]);
+                cells.set(selectedCell, input.remove());
                 return ++position;
 
             case '[':
@@ -204,12 +193,15 @@ public class Brainfuck {
     private boolean isValid() {
         int depth = 0;
 
-        for (byte c : BRAINFUCK) {
-            if (c == '[')
+        for (byte c : brainfuck) {
+            if (c == '[') {
                 depth++;
-
-            else if (c == ']')
+            } else if (c == ']') {
                 depth--;
+
+                if (depth < 0)
+                    return false;
+            }
         }
 
         return depth == 0;
