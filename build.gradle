@@ -33,7 +33,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     javadoc {
         options {
             links += [
-                'https://docs.oracle.com/javase/9/docs/api/'
+                'https://docs.oracle.com/javase/8/docs/api/'
             ]
         }
     }
