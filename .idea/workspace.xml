@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce42436e-a6e6-4daa-b08b-11cc5ec79f58" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/../Commandler/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_neovisionaries_nv_websocket_client_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_13_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_dv8tion_JDA_3_6_0_367.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_java_dev_jna_jna_4_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_sf_trove4j_trove4j_3_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_commons_commons_collections4_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_logging_log4j_log4j_api_2_11_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_json_json_20160810.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Commandler.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Commandler_example.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Commandler_main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Commandler_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Commandler/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Commandler/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Commandler/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Commandler/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Commandler/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/../Commandler/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/ExampleModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/ExampleModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Commandler/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../Commandler/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -89,24 +63,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LICENSE" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Commandler/LICENSE">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -119,29 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandlerBot.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/CommandlerBot.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="1" lean-forward="true" selection-start-line="10" selection-end-line="26" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExampleModule.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/ExampleModule.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="8" selection-start-line="8" selection-end-line="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="UtilModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/UtilModule.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -150,7 +88,16 @@
         <entry file="file://$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/VoiceModule.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="343">
+              <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -177,19 +124,60 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../Commandler/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
+            <state relative-caret-position="335">
+              <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitlab-ci.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Commandler/.gitlab-ci.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Commandler/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="153">
+                <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+                <folding>
+                  <element signature="e#289#290#0" expanded="true" />
+                  <element signature="e#319#320#0" expanded="true" />
+                </folding>
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandlerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Commandler/src/test/java/com/elypia/commandler/test/CommandlerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../Commandler" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -647,9 +635,9 @@
         <entry key="$PROJECT_DIR$/../Alexis/build.gradle" value="1164264983" />
         <entry key="$PROJECT_DIR$/../Alexis/gradle/wrapper/gradle-wrapper.properties" value="1502267862" />
         <entry key="$PROJECT_DIR$/../Alexis/settings.gradle" value="4008644613" />
-        <entry key="$PROJECT_DIR$/../Commandler" value="3055188342507" />
+        <entry key="$PROJECT_DIR$/../Commandler" value="3055193144954" />
         <entry key="$PROJECT_DIR$/../Commandler/.gradle" value="0" />
-        <entry key="$PROJECT_DIR$/../Commandler/build.gradle" value="4125583583" />
+        <entry key="$PROJECT_DIR$/../Commandler/build.gradle" value="1376262587" />
         <entry key="$PROJECT_DIR$" value="4582360250526" />
         <entry key="$PROJECT_DIR$/.gradle" value="0" />
         <entry key="$PROJECT_DIR$/build.gradle" value="3821043876" />
@@ -1093,9 +1081,11 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/com/elypia/elypiai/urbandictionary/UrbanResult.java" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/ExampleModule.java" />
         <option value="$PROJECT_DIR$/../Commandler/README.md" />
+        <option value="$PROJECT_DIR$/../Commandler/src/test/java/com/elypia/commandler/test/CommandlerTest.java" />
+        <option value="$PROJECT_DIR$/../Commandler/build.gradle" />
+        <option value="$PROJECT_DIR$/build.gradle" />
       </list>
     </option>
   </component>
@@ -1542,7 +1532,54 @@
             </path>
             <path>
               <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Commandler" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Commandler" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Commandler" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
               <item name="Elypiai" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Elypiai" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Elypiai" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Elypiai" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Elypiai" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Elypiai" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1774,7 +1811,56 @@
       <option name="project" value="LOCAL" />
       <updated>1526250780031</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- Deleted settings&#10;- Incremented version&#10;- Removed authentication column from table">
+      <created>1527595970341</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1527595970341</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- removed limit from example&#10;- renamed multimessage to spam&#10;- populated readme with some bullshit for now&#10;- added license">
+      <created>1527596032520</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1527596032520</updated>
+    </task>
+    <task id="LOCAL-00007" summary="- copied elypiai CI script over to commandler (same should be fine... I think?)">
+      <created>1527596112115</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1527596112115</updated>
+    </task>
+    <task id="LOCAL-00008" summary="- Corrected some of the links in the read me to point to commandler instead of elypiai (yes, I copy and pasted lots of this as well, am lazy)">
+      <created>1527596359261</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1527596359261</updated>
+    </task>
+    <task id="LOCAL-00009" summary="- Created temp test class">
+      <created>1527596487432</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1527596487432</updated>
+    </task>
+    <task id="LOCAL-00010" summary="- (Was using Junit 4 instead of Junit 5 by mistake)">
+      <created>1527596808760</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1527596808760</updated>
+    </task>
+    <task id="LOCAL-00011" summary="- Updated Commandler javadocs to include link to java 9 docs">
+      <created>1527597643997</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1527597643997</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1883,24 +1969,17 @@
     <MESSAGE value="Updated build.gradle" />
     <MESSAGE value="- Updated dependencies" />
     <MESSAGE value="- Updated gradle wrapper version" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Updated gradle wrapper version" />
+    <MESSAGE value="- Deleted settings&#10;- Incremented version&#10;- Removed authentication column from table" />
+    <MESSAGE value="- removed limit from example&#10;- renamed multimessage to spam&#10;- populated readme with some bullshit for now&#10;- added license" />
+    <MESSAGE value="- copied elypiai CI script over to commandler (same should be fine... I think?)" />
+    <MESSAGE value="- Corrected some of the links in the read me to point to commandler instead of elypiai (yes, I copy and pasted lots of this as well, am lazy)" />
+    <MESSAGE value="- Created temp test class" />
+    <MESSAGE value="- (Was using Junit 4 instead of Junit 5 by mistake)" />
+    <MESSAGE value="- Updated Commandler javadocs to include link to java 9 docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Updated Commandler javadocs to include link to java 9 docs" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/elypia/elypiai/test/RuneScapeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/elypia/elypiai/bing/TextAnalytics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -2169,13 +2248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Commandler/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -2203,14 +2275,14 @@
     <entry file="file://$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/UtilModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/VoiceModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -2231,16 +2303,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Commandler/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="318">
-            <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Commandler/src/example/java/com/elypia/commandlerbot/modules/BotModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -2252,10 +2314,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Commandler/.gitlab-ci.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Commandler/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="153">
+            <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+            <folding>
+              <element signature="e#289#290#0" expanded="true" />
+              <element signature="e#319#320#0" expanded="true" />
+            </folding>
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Commandler/src/test/java/com/elypia/commandler/test/CommandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../Commandler/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="134" lean-forward="true" selection-start-line="134" selection-end-line="134" />
+        <state relative-caret-position="335">
+          <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -2314,7 +2411,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Commandler</last-edited>
+          <last-edited>Commandler_test|Commandler</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
