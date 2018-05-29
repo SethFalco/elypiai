@@ -18,8 +18,8 @@ public class Ingredient {
     private double weight;
 
     public Ingredient(JSONObject object) {
-        this.name = object.getString("text");
-        this.weight = object.getDouble("weight");
+        name = object.getString("text");
+        weight = object.getDouble("weight");
     }
 
     public String getName() {
