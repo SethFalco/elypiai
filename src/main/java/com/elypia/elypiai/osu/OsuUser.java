@@ -4,7 +4,7 @@ import com.elypia.elypiai.osu.data.OsuMode;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+import org.jsoup.nodes.Element;
 
 import java.net.URL;
 import java.util.function.Consumer;
@@ -12,7 +12,7 @@ import java.util.function.Consumer;
 public class OsuUser {
 
 	private static final String BASE_PROFILE_URL = "https://osu.ppy.sh/u/";
-	private static final String DEFAULT_AVATAR = "http://w.ppy.sh/c/c9/Logo.png";
+	private static final String DEFAULT_AVATAR = "https://osu.ppy.sh/images/layout/avatar-guest.png";
 
 	/**
 	 * The identifier for the user, this will never change.
@@ -375,10 +375,13 @@ public class OsuUser {
 	public String getAvatarUrl() {
 		try {
 			Document doc = Jsoup.parse(new URL(profileUrl), 3000);
-			Elements elements = doc.getElementsByAttributeValue("alt", "User avatar");
+			Element element = doc.getElementById("json-user");
+			JSONObject object = new JSONObject(element.text());
 
-			if (!elements.isEmpty())
-				return "https:" + elements.attr("src");
+			String url = object.getString("avatar_url");
+
+			if (!url.contains(String.valueOf(userId)))
+				url = "https://osu.ppy.sh/" + url;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -72,7 +72,7 @@ public class AmazonItem {
 
         asin = JsoupUtils.getTextByTag(element, "ASIN");
         parentAsin = JsoupUtils.getTextByTag(element, "ParentASIN");
-        url = String.format("%s/dp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
+        url = String.format("%sdp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
         price = Double.parseDouble(JsoupUtils.optTextByTag(element, "Amount", 0)) / 100;
         currency = Currency.getInstance(JsoupUtils.getTextByTag(element, "CurrencyCode"));
 
