@@ -5,8 +5,11 @@
       <module name="Alexis_main" target="1.8" />
       <module name="Alexis_test" target="1.8" />
       <module name="Commandler_example" target="1.8" />
+      <module name="commandler_example" target="1.8" />
+      <module name="commandler_main" target="1.8" />
       <module name="Commandler_main" target="1.8" />
       <module name="Commandler_test" target="1.8" />
+      <module name="commandler_test" target="1.8" />
       <module name="Elypiai_main" target="1.8" />
       <module name="Elypiai_test" target="1.8" />
     </bytecodeTargetLevel>
