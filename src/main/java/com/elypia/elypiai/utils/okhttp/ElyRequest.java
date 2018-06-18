@@ -1,7 +1,7 @@
 package com.elypia.elypiai.utils.okhttp;
 
+import com.google.gson.JsonObject;
 import okhttp3.*;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -31,7 +31,7 @@ public class ElyRequest {
         reqBuilder.addHeader(key, value);
     }
 
-    public void setFormData(JSONObject object) {
+    public void setFormData(JsonObject object) {
         MediaType type = MediaType.parse("application/json; charset=utf-8");
         body = RequestBody.create(type, object.toString());
     }

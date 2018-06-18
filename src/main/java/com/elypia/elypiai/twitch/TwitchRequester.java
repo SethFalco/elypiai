@@ -2,12 +2,10 @@ package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.TwitchEndpoint;
 import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class TwitchRequester {
@@ -37,14 +35,13 @@ public class TwitchRequester {
 
         req.get(result -> {
             Collection<TwitchUser> collection = new ArrayList<>();
-            JSONObject object = result.asJSONObject();
-            JSONArray users = object.getJSONArray("data");
+            JsonObject object = result.asJsonObject();
+            JsonArray users = object.get("data").getAsJsonArray();
 
-            for (int i = 0; i < users.length(); i++) {
-                JSONObject user = users.getJSONObject(i);
-                TwitchUser twitchUser = new TwitchUser(twitch, user);
+            users.forEach(user -> {
+                TwitchUser twitchUser = new TwitchUser(twitch, user.getAsJsonObject());
                 collection.add(twitchUser);
-            }
+            });
 
             success.accept(collection);
         }, failure);

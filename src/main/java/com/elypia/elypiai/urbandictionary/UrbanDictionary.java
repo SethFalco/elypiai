@@ -2,7 +2,7 @@ package com.elypia.elypiai.urbandictionary;
 
 
 import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -26,7 +26,7 @@ public class UrbanDictionary {
 		req.addParam("term", term);
 
 		req.get(result -> {
-			JSONObject object = result.asJSONObject();
+			JsonObject object = result.asJsonObject();
 			UrbanResult urbanResult = new UrbanResult(object, term);
 
 			success.accept(urbanResult);

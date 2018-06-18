@@ -2,12 +2,9 @@ package com.elypia.elypiai.urbandictionary;
 
 import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
 import com.elypia.elypiai.utils.ElyUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UrbanResult {
@@ -18,10 +15,10 @@ public class UrbanResult {
 	private List<String> sounds;
 	private String term;
 
-	public UrbanResult(JSONObject object, String term) {
+	public UrbanResult(JsonObject object, String term) {
 		this.term = term;
 
-		type = UrbanResultType.getByName(object.getString("result_type"));
+		type = UrbanResultType.getByName(object.get("result_type").getAsString());
 
 		if (type == UrbanResultType.NO_RESULTS)
 			return;
@@ -30,19 +27,15 @@ public class UrbanResult {
 		definitions = new ArrayList<>();
 		sounds = new ArrayList<>();
 
-		JSONArray array = object.getJSONArray("tags");
-		ElyUtils.arrayToString(array, tags);
+		JsonArray array = object.get("tags").getAsJsonArray();
+		array.forEach(o -> tags.add(o.getAsString()));
 
-		array = object.getJSONArray("sounds");
-		ElyUtils.arrayToString(array, sounds);
+		array = object.get("sounds").getAsJsonArray();
+		array.forEach(o -> sounds.add(o.getAsString()));
 
-		array = object.getJSONArray("list");
+		array = object.get("list").getAsJsonArray();
 
-		for (int i = 0; i < array.length(); i++) {
-			JSONObject def = array.getJSONObject(i);
-			UrbanDefinition definition = new UrbanDefinition(def);
-			definitions.add(definition);
-		}
+		array.forEach(o -> definitions.add(new UrbanDefinition(o.getAsJsonObject())));
 	}
 
 	/**
