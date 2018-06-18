@@ -1,9 +1,7 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.yugioh.data.YGOCardType;
-import com.elypia.elypiai.yugioh.data.YGOFamily;
-import com.elypia.elypiai.yugioh.data.YGOMonsterType;
-import org.json.JSONObject;
+import com.elypia.elypiai.yugioh.data.*;
+import com.google.gson.JsonObject;
 
 public class YuGiOhCard {
 
@@ -21,21 +19,21 @@ public class YuGiOhCard {
 	 * @param object The JSONObject from the request for parsing.
 	 */
 
-	public YuGiOhCard(JSONObject object) {
-		name = object.getString("name");
-		text = object.getString("text");
-		cardType = YGOCardType.getByName(object.getString("card_type"));
+	public YuGiOhCard(JsonObject object) {
+		name = object.get("name").getAsString();
+		text = object.get("text").getAsString();
+		cardType = YGOCardType.getByName(object.get("card_type").getAsString());
 
-		String typeString = object.optString("type", null);
+		String typeString = object.get("type").toString();
 
 		if (typeString != null) {
 			String[] split = typeString.split("\\s*\\/\\s*");
 			type = YGOMonsterType.valueOf(split[0].toUpperCase());
 
-			family = YGOFamily.valueOf(object.getString("family").toUpperCase());
-			attack = object.getInt("atk");
-			defense = object.getInt("def");
-			level = object.getInt("level");
+			family = YGOFamily.valueOf(object.get("family").getAsString().toUpperCase());
+			attack = object.get("atk").getAsInt();
+			defense = object.get("def").getAsInt();
+			level = object.get("level").getAsInt();
 		}
 	}
 

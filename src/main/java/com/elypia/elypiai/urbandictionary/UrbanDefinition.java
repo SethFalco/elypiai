@@ -1,6 +1,6 @@
 package com.elypia.elypiai.urbandictionary;
 
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 public class UrbanDefinition {
 
@@ -14,17 +14,17 @@ public class UrbanDefinition {
 	private String example;
 	private int thumbsDown;
 
-	UrbanDefinition(JSONObject object) {
-		definition = object.getString("definition");
-		permalink = object.getString("permalink");
-		thumbsUp = object.getInt("thumbs_up");
-		author = object.getString("author");
-		word = object.getString("word");
-		definitionId = object.getInt("defid");
-		example = object.getString("example");
-		thumbsDown = object.getInt("thumbs_down");
+	UrbanDefinition(JsonObject object) {
+		definition = object.get("definition").getAsString();
+		permalink = object.get("permalink").getAsString();
+		thumbsUp = object.get("thumbs_up").getAsInt();
+		author = object.get("author").getAsString();
+		word = object.get("word").getAsString();
+		definitionId = object.get("defid").getAsInt();
+		example = object.get("example").getAsString();
+		thumbsDown = object.get("thumbs_down").getAsInt();
 
-		currentVote = object.getString("current_vote");
+		currentVote = object.get("current_vote");
 
 		if (currentVote.equals(""))
 			currentVote = null;

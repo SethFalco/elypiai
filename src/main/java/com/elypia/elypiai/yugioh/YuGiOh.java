@@ -1,7 +1,7 @@
 package com.elypia.elypiai.yugioh;
 
 import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -24,11 +24,11 @@ public class YuGiOh {
 		ElyRequest req = new ElyRequest(INFO, term);
 
 		req.get(result -> {
-			JSONObject object = result.asJSONObject();
+			JsonObject object = result.asJsonObject();
 			YuGiOhCard card = null;
 
-			if (object.getString("status").equals("success")) {
-				JSONObject data = object.getJSONObject("data");
+			if (object.get("status").getAsString().equals("success")) {
+				JsonObject data = object.getAsJsonObject("data");
 				card = new YuGiOhCard(data);
 			}
 
