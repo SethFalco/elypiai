@@ -133,34 +133,6 @@ public class ScriptResponse {
 		return time;
 	}
 
-	public int getTimeSecond() {
-		return timeSecond;
-	}
-
-	public int getTimeMinute() {
-		return timeMinute;
-	}
-
-	public int getTimeHour() {
-		return timeHour;
-	}
-
-	public int getTimeDayOfWeek() {
-		return timeDayOfWeek;
-	}
-
-	public int getDay() {
-		return timeDay;
-	}
-
-	public int getMonth() {
-		return timeMonth;
-	}
-
-	public int getYear() {
-		return timeYear;
-	}
-
 	public String getReaction() {
 		return reaction;
 	}
