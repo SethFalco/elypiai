@@ -1,10 +1,8 @@
 package com.elypia.elypiai.cleverbot;
 
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class CleverResponse {
 
@@ -23,16 +21,16 @@ public class CleverResponse {
 
 	private ScriptResponse script;
 
-	public CleverResponse(Cleverbot cleverbot, JSONObject object) {
-		cs 					= object.getString("cs");
-		interactionCount	= object.optInt("interaction_count");
-		input 				= object.getString("input");
-		output				= object.getString("output");
-		conversationId		= object.getString("conversation_id");
-		errorLine			= object.getString("errorline");
-		timeTaken			= object.optInt("time_taken");
-		timeElapsed			= object.optLong("time_elapsed");
-		callback			= object.optString("callback", null);
+	public CleverResponse(Cleverbot cleverbot, JsonObject object) {
+		cs = object.get("cs").getAsString();
+		interactionCount = object.get("interaction_count").getAsInt();
+		input = object.get("input").getAsString();
+		output = object.get("output").getAsString();
+		conversationId = object.get("conversation_id").getAsString();
+		errorLine = object.get("errorline").getAsString();
+		timeTaken = object.get("time_taken").getAsInt();
+		timeElapsed = object.get("time_elapsed").getAsLong();
+		callback = object.get("callback").getAsString();
 
 		// Start collecting passed interactions
 		interactions = new TreeMap<>();
@@ -42,7 +40,7 @@ public class CleverResponse {
 			String otherInteraction = interaction + "_other";
 
 			if (object.has(otherInteraction))
-				interactions.put(object.getString(interaction), object.getString(otherInteraction));
+				interactions.put(object.get(interaction).getAsString(), object.get(otherInteraction).getAsString());
 		}
 
 		// Other variables are unused by Cleverbot but a part of Cleverscript
