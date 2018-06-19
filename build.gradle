@@ -48,6 +48,7 @@ bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
     publications = ['Elypiai']
+    publish = true
 
     pkg {
         repo = projectName
