@@ -1,6 +1,7 @@
 package com.elypia.elypiai.steam;
 
 import com.elypia.elypiai.steam.data.PersonaState;
+import com.google.gson.JsonObject;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -135,7 +136,7 @@ public class SteamUser {
 	 * See {@link Steam#getUser(String, Consumer, Consumer)}
 	 */
 
-	public SteamUser(Steam steam, JSONObject object) {
+	public SteamUser(Steam steam, JsonObject object) {
 		this.steam = steam;
 
 		id = object.optLong("steamid");
