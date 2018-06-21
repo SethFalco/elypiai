@@ -1,6 +1,7 @@
 package com.elypia.elypiai.utils;
 
 import javax.imageio.ImageIO;
+import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -71,13 +72,12 @@ public enum Regex {
 		return regex;
 	}
 
-	public static Pattern compileTogether(Regex... regexs) {
-		String[] strings = new String[regexs.length];
+	public static Pattern compileTogether(Regex... regexes) {
+		StringJoiner joiner = new StringJoiner("|");
 
-		for (int i = 0; i < strings.length; i++)
-			strings[i] = regexs[i].toString();
+		for (Regex regex : regexes)
+			joiner.add(regex.getRegex());
 
-		String joined = String.join("|", strings);
-		return Pattern.compile(joined);
+		return Pattern.compile(joiner.toString());
 	}
 }
