@@ -1,6 +1,6 @@
 package com.elypia.elypiai.cleverbot;
 
-import com.google.gson.JsonObject;
+import org.json.JSONObject;
 
 import java.time.LocalDateTime;
 
@@ -30,38 +30,38 @@ public class ScriptResponse {
 
 	private CleverResponse clever;
 
-	ScriptResponse(CleverResponse clever, JsonObject object) {
+	ScriptResponse(CleverResponse clever, JSONObject object) {
 		// Keep reference to original response
 		this.clever = clever;
 
 		// Grab values
-		inputLabel = object.get("input_label").getAsString();
-		predictedInput = object.get("predicted_input").getAsString();
-		accuracy = object.get("accuracy").getAsString();
-		outputLabel	= object.get("output_label").getAsString();
-		databaseVersion = object.get("database_version").getAsInt();
-		softwareVersion = object.get("software_version").getAsInt();
-		randomNumber = object.get("random_number").getAsInt();
-		reaction = object.get("reaction").getAsString();
-		reactionTone = object.get("reaction_tone").getAsString();
-		emotion = object.get("emotion").getAsString();
-		emotionTone	= object.get("emotion_tone").getAsString();
-		cleverAccuracy = object.get("clever_accuracy").getAsInt();
-		cleverOutput = object.get("clever_output").getAsString();
-		cleverMatch	= object.get("clever_match").getAsString();
-		csres30	= object.get("CSRES30").getAsString();
-		filteredInput = object.get("filtered_input").getAsString();
-		reactionDegree = object.get("reaction_degree").getAsString();
-		emotionDegree = object.get("emotion_degree").getAsString();
-		reactionValues = object.get("reaction_values").getAsString();
-		emotionValues = object.get("emotion_values").getAsString();
+		inputLabel 		= object.getString("input_label");
+		predictedInput 	= object.getString("predicted_input");
+		accuracy		= object.getString("accuracy");
+		outputLabel		= object.getString("output_label");
+		databaseVersion = object.optInt("database_version");
+		softwareVersion = object.optInt("software_version");
+		randomNumber	= object.optInt("random_number");
+		reaction		= object.getString("reaction");
+		reactionTone	= object.getString("reaction_tone");
+		emotion 		= object.getString("emotion");
+		emotionTone		= object.getString("emotion_tone");
+		cleverAccuracy	= object.optInt("clever_accuracy");
+		cleverOutput	= object.getString("clever_output");
+		cleverMatch		= object.getString("clever_match");
+		csres30			= object.getString("CSRES30");
+		filteredInput	= object.getString("filtered_input");
+		reactionDegree	= object.getString("reaction_degree");
+		emotionDegree	= object.getString("emotion_degree");
+		reactionValues	= object.getString("reaction_values");
+		emotionValues	= object.getString("emotion_values");
 
-		int timeSecond = object.get("time_second").getAsInt();
-		int timeMinute = object.get("time_minute").getAsInt();
-		int timeHour = object.get("time_hour").getAsInt();
-		int timeDay	= object.get("time_day").getAsInt();
-		int timeMonth = object.get("time_month").getAsInt();
-		int timeYear = object.get("time_year").getAsInt();
+		int timeSecond = object.optInt("time_second");
+		int timeMinute = object.optInt("time_minute");
+		int timeHour = object.optInt("time_hour");
+		int timeDay	= object.optInt("time_day");
+		int timeMonth = object.optInt("time_month");
+		int timeYear = object.optInt("time_year");
 
 		// Get times and create DateTime object
 		time = LocalDateTime.of(timeYear, timeMonth, timeDay, timeHour, timeMinute, timeSecond);

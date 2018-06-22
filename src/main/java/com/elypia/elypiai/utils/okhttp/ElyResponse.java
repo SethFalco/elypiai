@@ -1,8 +1,7 @@
 package com.elypia.elypiai.utils.okhttp;
 
-import com.elypia.elypiai.utils.JsonUtils;
-import com.google.gson.*;
 import okhttp3.*;
+import org.json.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
@@ -17,8 +16,8 @@ public class ElyResponse {
     private Call call;
     private String body;
 
-    private JsonObject object;
-    private JsonArray array;
+    private JSONObject object;
+    private JSONArray array;
     private Document document;
 
     public ElyResponse(Call call, Response response) throws IOException {
@@ -29,16 +28,16 @@ public class ElyResponse {
         body = responseBody.string();
     }
 
-    public JsonObject asJsonObject() {
+    public JSONObject asJSONObject() {
         if (object == null)
-            object = JsonUtils.toJsonObject(body);
+            object = new JSONObject(body);
 
         return object;
     }
 
-    public JsonArray asJsonArray() {
+    public JSONArray asJSONArray() {
         if (array == null)
-            array = JsonUtils.toJsonArray(body);
+            array = new JSONArray(body);
 
         return array;
     }

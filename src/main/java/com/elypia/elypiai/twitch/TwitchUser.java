@@ -1,7 +1,7 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.*;
-import com.google.gson.JsonObject;
+import org.json.JSONObject;
 
 public class TwitchUser {
 
@@ -20,19 +20,19 @@ public class TwitchUser {
 	private int viewCount;
 	private String url;
 
-	public TwitchUser(Twitch twitch, JsonObject object) {
+	public TwitchUser(Twitch twitch, JSONObject object) {
 		this.twitch = twitch;
 
-		id = object.get("id").getAsInt();
-		username = object.get("login").getAsString();
-		displayName = object.get("display_name").getAsString();
-		type = AccountType.getByName(object.get("type").getAsString());
-		broadcasterType = BroadcasterType.getByName(object.get("broadcaster_type").getAsString());
-		avatarUrl = object.get("profile_image_url").getAsString();
-		offlineImageUrl = object.get("offline_image_url").getAsString();
-		viewCount = object.get("view_count").getAsInt();
+		id = object.optInt("id");
+		username = object.getString("login");
+		displayName = object.getString("display_name");
+		type = AccountType.getByName(object.getString("type"));
+		broadcasterType = BroadcasterType.getByName(object.getString("broadcaster_type"));
+		avatarUrl = object.getString("profile_image_url");
+		offlineImageUrl = object.getString("offline_image_url");
+		viewCount = object.optInt("view_count");
 
-		description = object.get("description").getAsString();
+		description = object.getString("description");
 
 		if (description.isEmpty())
 			description = null;

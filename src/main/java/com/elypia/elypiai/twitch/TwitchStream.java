@@ -1,10 +1,9 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.StreamType;
-import com.google.gson.*;
+import org.json.*;
 
 import java.time.Instant;
-import java.util.*;
 
 public class TwitchStream {
 
@@ -13,7 +12,7 @@ public class TwitchStream {
 
 	private long id;
 	private int gameId;
-	private Collection<String> communityIds;
+	private String[] communityIds;
 	private StreamType type;
 	private String title;
 	private int viewerCount;
@@ -21,28 +20,27 @@ public class TwitchStream {
 	private String language;
 	private String thumbnail;
 
-	public TwitchStream(TwitchUser user, JsonObject object) {
+	public TwitchStream(TwitchUser user, JSONObject object) {
 		this.user = user;
 		twitch = user.getTwitch();
 
 		update(object);
 	}
 
-	public void update(JsonObject object) {
-		id = object.get("id").getAsInt();
-		gameId = object.get("game_id").getAsInt();
-		type = StreamType.getByName(object.get("type").getAsString());
-		title = object.get("title").getAsString();
-		viewerCount = object.get("viewer_count").getAsInt();
-		startDate = Instant.parse(object.get("started_at").getAsString());
-		language = object.get("language").getAsString();
-		thumbnail = object.get("thumbnail_url").getAsString();
+	public void update(JSONObject object) {
+		id = object.optLong("id");
+		gameId = object.optInt("game_id");
+		type = StreamType.getByName(object.getString("type"));
+		title = object.getString("title");
+		viewerCount = object.getInt("viewer_count");
+		startDate = Instant.parse(object.getString("started_at"));
+		language = object.getString("language");
+		thumbnail = object.getString("thumbnail_url");
 
-		communityIds = new ArrayList<>();
-
-		JsonArray array = object.get("community_ids").getAsJsonArray();
-		array.forEach(o -> communityIds.add(o.getAsString()));
+		JSONArray array = object.getJSONArray("community_ids");
+		communityIds = array.toList().toArray(new String[0]);
 	}
+
 
 	public Twitch getTwitch() {
 		return twitch;
@@ -70,7 +68,7 @@ public class TwitchStream {
 		return gameId;
 	}
 
-	public Collection<String> getCommunityIds() {
+	public String[] getCommunityIds() {
 		return communityIds;
 	}
 
