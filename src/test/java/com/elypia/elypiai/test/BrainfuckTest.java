@@ -1,6 +1,6 @@
 package com.elypia.elypiai.test;
 
-import com.elypia.elypiai.Brainfuck;
+import com.elypia.elypiai.brainfuck.Brainfuck;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
