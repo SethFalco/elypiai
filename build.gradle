@@ -8,7 +8,7 @@ plugins {
 }
 
 String projectName = 'Elypiai'
-String projectVersion = '1.0.6'
+String projectVersion = '1.0.7'
 String projectDescription = "All in one API wrapper."
 String projectGit = 'https://gitlab.com/Elypia/Elypiai.git'
 
