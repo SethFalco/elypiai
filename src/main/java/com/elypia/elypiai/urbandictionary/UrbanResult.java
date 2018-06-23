@@ -2,12 +2,9 @@ package com.elypia.elypiai.urbandictionary;
 
 import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
 import com.elypia.elypiai.utils.ElyUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UrbanResult {
@@ -25,16 +22,14 @@ public class UrbanResult {
 
 		if (type == UrbanResultType.NO_RESULTS)
 			return;
-
-		tags = new ArrayList<>();
 		definitions = new ArrayList<>();
 		sounds = new ArrayList<>();
 
 		JSONArray array = object.getJSONArray("tags");
-		ElyUtils.arrayToString(array, tags);
+		tags = ElyUtils.arrayToString(array);
 
 		array = object.getJSONArray("sounds");
-		ElyUtils.arrayToString(array, sounds);
+		sounds = ElyUtils.arrayToString(array);
 
 		array = object.getJSONArray("list");
 
@@ -44,6 +39,7 @@ public class UrbanResult {
 			definitions.add(definition);
 		}
 	}
+
 
 	/**
 	 * @return	The type of result set receieved.

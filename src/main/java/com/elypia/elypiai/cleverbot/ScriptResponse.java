@@ -14,13 +14,6 @@ public class ScriptResponse {
 	private int softwareVersion;
 	private int randomNumber;
 	private LocalDateTime time;
-	private int timeSecond;
-	private int timeMinute;
-	private int timeHour;
-	private int timeDayOfWeek;
-	private int timeDay;
-	private int timeMonth;
-	private int timeYear;
 	private String reaction;
 	private String reactionTone;
 	private String emotion;
@@ -49,13 +42,6 @@ public class ScriptResponse {
 		databaseVersion = object.optInt("database_version");
 		softwareVersion = object.optInt("software_version");
 		randomNumber	= object.optInt("random_number");
-		timeSecond		= object.optInt("time_second");
-		timeMinute		= object.optInt("time_minute");
-		timeHour		= object.optInt("time_hour");
-		timeDayOfWeek	= object.optInt("time_day_of_week");
-		timeDay			= object.optInt("time_day");
-		timeMonth		= object.optInt("time_month");
-		timeYear		= object.optInt("time_year");
 		reaction		= object.getString("reaction");
 		reactionTone	= object.getString("reaction_tone");
 		emotion 		= object.getString("emotion");
@@ -69,6 +55,13 @@ public class ScriptResponse {
 		emotionDegree	= object.getString("emotion_degree");
 		reactionValues	= object.getString("reaction_values");
 		emotionValues	= object.getString("emotion_values");
+
+		int timeSecond = object.optInt("time_second");
+		int timeMinute = object.optInt("time_minute");
+		int timeHour = object.optInt("time_hour");
+		int timeDay	= object.optInt("time_day");
+		int timeMonth = object.optInt("time_month");
+		int timeYear = object.optInt("time_year");
 
 		// Get times and create DateTime object
 		time = LocalDateTime.of(timeYear, timeMonth, timeDay, timeHour, timeMinute, timeSecond);
@@ -138,34 +131,6 @@ public class ScriptResponse {
 
 	public LocalDateTime getDateTime() {
 		return time;
-	}
-
-	public int getTimeSecond() {
-		return timeSecond;
-	}
-
-	public int getTimeMinute() {
-		return timeMinute;
-	}
-
-	public int getTimeHour() {
-		return timeHour;
-	}
-
-	public int getTimeDayOfWeek() {
-		return timeDayOfWeek;
-	}
-
-	public int getDay() {
-		return timeDay;
-	}
-
-	public int getMonth() {
-		return timeMonth;
-	}
-
-	public int getYear() {
-		return timeYear;
 	}
 
 	public String getReaction() {

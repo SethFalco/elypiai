@@ -21,6 +21,8 @@ public class AmazonItem {
 
     private AmazonEndpoint endpoint;
 
+    private String title;
+
     /**
      * Amazon Standard Identification Number (ASIN)
      * A unique identifer used by Amazon to identify products
@@ -70,11 +72,12 @@ public class AmazonItem {
         this.amazon = amazon;
         endpoint = amazon.getEndpoint();
 
+        title = JsoupUtils.getTextByTag(element, "Title");
         asin = JsoupUtils.getTextByTag(element, "ASIN");
         parentAsin = JsoupUtils.getTextByTag(element, "ParentASIN");
-        url = String.format("%s/dp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
+        url = String.format("%sdp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
         price = Double.parseDouble(JsoupUtils.optTextByTag(element, "Amount", 0)) / 100;
-        currency = Currency.getInstance(JsoupUtils.getTextByTag(element, "CurrencyCode"));
+        currency = Currency.getInstance(JsoupUtils.optTextByTag(element, "CurrencyCode", "Unknown"));
 
         Element largeImageEle = JsoupUtils.getElementByTag(element, "LargeImage");
         largeImage = JsoupUtils.getTextByTag(largeImageEle, "URL");
@@ -90,6 +93,10 @@ public class AmazonItem {
 
     public AmazonEndpoint getEndpoint() {
         return endpoint;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getAsin() {

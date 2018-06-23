@@ -3,10 +3,8 @@ package com.elypia.elypiai.utils;
 import org.json.JSONArray;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public final class ElyUtils {
@@ -161,8 +159,12 @@ public final class ElyUtils {
 		return false;
 	}
 
-	public static void arrayToString(JSONArray array, Collection<String> collection) {
+	public static List<String> arrayToString(JSONArray array) {
+		List<String> collection = new ArrayList<>();
+
 		for (int i = 0; i < array.length(); i++)
 			collection.add(array.getString(i));
+
+		return collection;
 	}
 }

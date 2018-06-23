@@ -31,7 +31,7 @@ public enum AmazonEndpoint {
 	 */
 
 	public String getShoppingUrl() {
-		return String.format("https://amazon%s", tld);
+		return String.format("https://amazon%s", tld + "/");
 	}
 
 	@Override

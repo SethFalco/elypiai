@@ -2,12 +2,10 @@ package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.TwitchEndpoint;
 import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class TwitchRequester {
@@ -48,5 +46,6 @@ public class TwitchRequester {
 
             success.accept(collection);
         }, failure);
+
     }
 }

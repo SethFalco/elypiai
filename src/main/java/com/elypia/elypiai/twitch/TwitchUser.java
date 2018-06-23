@@ -1,7 +1,6 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.twitch.data.AccountType;
-import com.elypia.elypiai.twitch.data.BroadcasterType;
+import com.elypia.elypiai.twitch.data.*;
 import org.json.JSONObject;
 
 public class TwitchUser {

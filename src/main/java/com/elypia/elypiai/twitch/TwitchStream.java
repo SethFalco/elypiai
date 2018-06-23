@@ -1,8 +1,7 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.StreamType;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import org.json.*;
 
 import java.time.Instant;
 
@@ -39,8 +38,9 @@ public class TwitchStream {
 		thumbnail = object.getString("thumbnail_url");
 
 		JSONArray array = object.getJSONArray("community_ids");
-		communityIds = array.toList().toArray(new String[array.length()]);
+		communityIds = array.toList().toArray(new String[0]);
 	}
+
 
 	public Twitch getTwitch() {
 		return twitch;

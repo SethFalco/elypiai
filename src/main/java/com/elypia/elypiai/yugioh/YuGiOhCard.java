@@ -1,8 +1,6 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.yugioh.data.YGOCardType;
-import com.elypia.elypiai.yugioh.data.YGOFamily;
-import com.elypia.elypiai.yugioh.data.YGOMonsterType;
+import com.elypia.elypiai.yugioh.data.*;
 import org.json.JSONObject;
 
 public class YuGiOhCard {

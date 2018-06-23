@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Alexis.iml" filepath="$PROJECT_DIR$/.idea/modules/Alexis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Alexis_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Alexis_main.iml" group="Alexis" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Alexis_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Alexis_test.iml" group="Alexis" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Commandler.iml" filepath="$PROJECT_DIR$/.idea/modules/Commandler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Commandler_example.iml" filepath="$PROJECT_DIR$/.idea/modules/Commandler_example.iml" group="Commandler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Commandler_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Commandler_main.iml" group="Commandler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Commandler_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Commandler_test.iml" group="Commandler" />
       <module fileurl="file://$PROJECT_DIR$/Elypiai.iml" filepath="$PROJECT_DIR$/Elypiai.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Elypiai_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Elypiai_main.iml" group="Elypiai" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Elypiai_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Elypiai_test.iml" group="Elypiai" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/894298062/commandler.iml" filepath="$PROJECT_DIR$/.idea/modules/894298062/commandler.iml" group="commandler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/894298062/commandler_example.iml" filepath="$PROJECT_DIR$/.idea/modules/894298062/commandler_example.iml" group="commandler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/894298062/commandler_main.iml" filepath="$PROJECT_DIR$/.idea/modules/894298062/commandler_main.iml" group="commandler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/894298062/commandler_test.iml" filepath="$PROJECT_DIR$/.idea/modules/894298062/commandler_test.iml" group="commandler" />
     </modules>
   </component>
 </project>

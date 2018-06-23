@@ -2,9 +2,7 @@ package com.elypia.elypiai.cleverbot;
 
 import org.json.JSONObject;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class CleverResponse {
 
@@ -24,15 +22,15 @@ public class CleverResponse {
 	private ScriptResponse script;
 
 	public CleverResponse(Cleverbot cleverbot, JSONObject object) {
-		cs 					= object.getString("cs");
-		interactionCount	= object.optInt("interaction_count");
-		input 				= object.getString("input");
-		output				= object.getString("output");
-		conversationId		= object.getString("conversation_id");
-		errorLine			= object.getString("errorline");
-		timeTaken			= object.optInt("time_taken");
-		timeElapsed			= object.optLong("time_elapsed");
-		callback			= object.optString("callback", null);
+		cs = object.getString("cs");
+		interactionCount = object.optInt("interaction_count");
+		input = object.getString("input");
+		output= object.getString("output");
+		conversationId = object.getString("conversation_id");
+		errorLine = object.getString("errorline");
+		timeTaken = object.optInt("time_taken");
+		timeElapsed	= object.optLong("time_elapsed");
+		callback = object.optString("callback", null);
 
 		// Start collecting passed interactions
 		interactions = new TreeMap<>();

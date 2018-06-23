@@ -1,10 +1,7 @@
 package com.elypia.elypiai.utils.okhttp;
 
-import okhttp3.Call;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import okhttp3.*;
+import org.json.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;

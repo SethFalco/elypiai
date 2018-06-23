@@ -95,18 +95,18 @@ class AmazonTest {
 	@Test
 	public void shoppingUrls() {
 		assertAll("Endpoint Strings",
-			() -> assertEquals("https://amazon.com", AmazonEndpoint.US.getShoppingUrl()),
-			() -> assertEquals("https://amazon.com.br", AmazonEndpoint.BRAZIL.getShoppingUrl()),
-			() -> assertEquals("https://amazon.ca", AmazonEndpoint.CANADA.getShoppingUrl()),
-			() -> assertEquals("https://amazon.cn", AmazonEndpoint.CHINA.getShoppingUrl()),
-			() -> assertEquals("https://amazon.de", AmazonEndpoint.GERMANY.getShoppingUrl()),
-			() -> assertEquals("https://amazon.es", AmazonEndpoint.SPAIN.getShoppingUrl()),
-			() -> assertEquals("https://amazon.fr", AmazonEndpoint.FRANCE.getShoppingUrl()),
-			() -> assertEquals("https://amazon.in", AmazonEndpoint.INDIA.getShoppingUrl()),
-			() -> assertEquals("https://amazon.it", AmazonEndpoint.ITALY.getShoppingUrl()),
-			() -> assertEquals("https://amazon.co.jp", AmazonEndpoint.JAPAN.getShoppingUrl()),
-			() -> assertEquals("https://amazon.com.mx", AmazonEndpoint.MEXICO.getShoppingUrl()),
-			() -> assertEquals("https://amazon.co.uk", AmazonEndpoint.UK.getShoppingUrl())
+			() -> assertEquals("https://amazon.com/", AmazonEndpoint.US.getShoppingUrl()),
+			() -> assertEquals("https://amazon.com.br/", AmazonEndpoint.BRAZIL.getShoppingUrl()),
+			() -> assertEquals("https://amazon.ca/", AmazonEndpoint.CANADA.getShoppingUrl()),
+			() -> assertEquals("https://amazon.cn/", AmazonEndpoint.CHINA.getShoppingUrl()),
+			() -> assertEquals("https://amazon.de/", AmazonEndpoint.GERMANY.getShoppingUrl()),
+			() -> assertEquals("https://amazon.es/", AmazonEndpoint.SPAIN.getShoppingUrl()),
+			() -> assertEquals("https://amazon.fr/", AmazonEndpoint.FRANCE.getShoppingUrl()),
+			() -> assertEquals("https://amazon.in/", AmazonEndpoint.INDIA.getShoppingUrl()),
+			() -> assertEquals("https://amazon.it/", AmazonEndpoint.ITALY.getShoppingUrl()),
+			() -> assertEquals("https://amazon.co.jp/", AmazonEndpoint.JAPAN.getShoppingUrl()),
+			() -> assertEquals("https://amazon.com.mx/", AmazonEndpoint.MEXICO.getShoppingUrl()),
+			() -> assertEquals("https://amazon.co.uk/", AmazonEndpoint.UK.getShoppingUrl())
 		);
 	}
 }

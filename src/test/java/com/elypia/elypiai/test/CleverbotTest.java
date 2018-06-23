@@ -1,12 +1,10 @@
 package com.elypia.elypiai.test;
 
-import com.elypia.elypiai.cleverbot.CleverResponse;
-import com.elypia.elypiai.cleverbot.ScriptResponse;
+import com.elypia.elypiai.cleverbot.*;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CleverbotTest {
 
@@ -38,10 +36,10 @@ public class CleverbotTest {
         ScriptResponse script = response.getScriptResponse();
 
         assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertEquals(null, script.getAccuracy()),
+            () -> assertNull(script.getAccuracy()),
             () -> assertEquals(26, script.getCleverAccuracy()),
             () -> assertEquals("I'm not the world.", script.getCleverOutput()),
-            () -> assertEquals(null, script.getCleverMatch())
+            () -> assertNull(script.getCleverMatch())
         );
     }
 }
