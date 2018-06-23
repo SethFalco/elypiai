@@ -77,7 +77,9 @@ public class AmazonItem {
         parentAsin = JsoupUtils.getTextByTag(element, "ParentASIN");
         url = String.format("%sdp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
         price = Double.parseDouble(JsoupUtils.optTextByTag(element, "Amount", 0)) / 100;
-        currency = Currency.getInstance(JsoupUtils.optTextByTag(element, "CurrencyCode", "Unknown"));
+
+        if (price != 0)
+            currency = Currency.getInstance(JsoupUtils.getTextByTag(element, "CurrencyCode"));
 
         Element largeImageEle = JsoupUtils.getElementByTag(element, "LargeImage");
         largeImage = JsoupUtils.getTextByTag(largeImageEle, "URL");
@@ -120,6 +122,9 @@ public class AmazonItem {
     }
 
     public String getPriceString() {
+        if (currency == null)
+            return String.format("%,.2f", price);
+
         int decimalDigits = currency.getDefaultFractionDigits();
         String symbol = currency.getSymbol(Locale.US);
 
