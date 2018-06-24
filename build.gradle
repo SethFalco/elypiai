@@ -114,13 +114,13 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.json', name: 'json', version: '20180130'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.11'
 
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.10.0'
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.19.0'
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'

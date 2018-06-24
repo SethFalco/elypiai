@@ -1,6 +1,6 @@
 package com.elypia.elypiai.google.recaptcha;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -20,7 +20,7 @@ public class Recaptcha {
 	}
 
 	public void verifySubmission(String response, String remoteip, Consumer<CaptchaResponse> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(ENDPOINT);
+		Request req = new Request(ENDPOINT);
 		req.addParam("secret", SECRET);
 		req.addParam("response", response);
 

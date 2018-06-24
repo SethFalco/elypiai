@@ -1,6 +1,6 @@
 package com.elypia.elypiai.google.urlshortener;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -46,7 +46,7 @@ public class URLShortener {
 		JSONObject formdata = new JSONObject();
 		formdata.put("longUrl", url);
 
-		ElyRequest req = new ElyRequest(SHORTEN_ENDPOINT);
+		Request req = new Request(SHORTEN_ENDPOINT);
 		req.addParam("key", API_KEY);
 		req.addParam("alt", "json");
 		req.addParam("prettyPrint", false);
@@ -69,7 +69,7 @@ public class URLShortener {
 	 */
 
 	public void shortenedLinkInfo(String url, Consumer<ShortUrlAnalytics> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(SHORTEN_ENDPOINT);
+		Request req = new Request(SHORTEN_ENDPOINT);
 		req.addParam("key", API_KEY);
 		req.addParam("alt", "json");
 		req.addParam("prettyPrint", false);

@@ -1,6 +1,6 @@
 package com.elypia.elypiai.bing;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -54,7 +54,7 @@ public class TextAnalytics {
 
 		JSONObject formdata = new JSONObject().put("documents", documents);
 
-		ElyRequest req = new ElyRequest(POST_DETECTLANGUAGES);
+		Request req = new Request(POST_DETECTLANGUAGES);
 		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
 		req.setFormData(formdata);
 
@@ -132,7 +132,7 @@ public class TextAnalytics {
 		formdata.put("stopWords", stopWordsJson);
 		formdata.put("topicsToExclude", topicsToExcludeJson);
 
-		ElyRequest req = new ElyRequest(POST_DETECTTOPICS);
+		Request req = new Request(POST_DETECTTOPICS);
 		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
 		req.setFormData(formdata);
 
@@ -154,7 +154,7 @@ public class TextAnalytics {
 	 */
 
 	public void detectTopicsStatus (String operation, Consumer<Boolean> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(operation);
+		Request req = new Request(operation);
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();
@@ -178,7 +178,7 @@ public class TextAnalytics {
 	 */
 
 	public void getDetectedTopics(String operation, Consumer<Collection<String>> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(operation);
+		Request req = new Request(operation);
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();
@@ -212,7 +212,7 @@ public class TextAnalytics {
 		JSONObject formdata = new JSONObject();
 		formdata.put("documents", documents);
 
-		ElyRequest req = new ElyRequest(POST_KEYPHRASES);
+		Request req = new Request(POST_KEYPHRASES);
 		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
 		req.setFormData(formdata);
 
@@ -251,7 +251,7 @@ public class TextAnalytics {
 		JSONObject formdata = new JSONObject();
 		formdata.put("documents", documents);
 
-		ElyRequest req = new ElyRequest(POST_SENTIMENT);
+		Request req = new Request(POST_SENTIMENT);
 		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);
 		req.setFormData(formdata);
 

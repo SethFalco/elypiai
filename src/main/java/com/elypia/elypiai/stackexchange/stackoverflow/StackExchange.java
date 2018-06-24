@@ -1,6 +1,6 @@
 package com.elypia.elypiai.stackexchange.stackoverflow;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,7 +33,7 @@ public class StackExchange {
 	 */
 
 	public void ask(String question, String[] tags, Consumer<String> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(SIMILAR_ENDPOINT);
+		Request req = new Request(SIMILAR_ENDPOINT);
 	    req.addParam("key", apiKey);
 		req.addParam("order", "desc");
 		req.addParam("sort", "relevance");

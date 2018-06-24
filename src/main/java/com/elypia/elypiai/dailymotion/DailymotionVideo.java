@@ -1,6 +1,6 @@
 package com.elypia.elypiai.dailymotion;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -61,7 +61,7 @@ public class DailymotionVideo {
 	 */
 
 	public void getDownloadUrl(Consumer<String> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(DOWNLOAD_ENDPOINT);
+		Request req = new Request(DOWNLOAD_ENDPOINT);
 		req.addParam("fields", DOWNLOAD_FIELDS);
 
 		req.get(result -> {

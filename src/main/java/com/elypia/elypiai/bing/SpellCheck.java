@@ -1,6 +1,6 @@
 package com.elypia.elypiai.bing;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -37,7 +37,7 @@ public class SpellCheck {
 	 */
 
 	public void proofRead(String body, Consumer<String> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(SPELLCHECK_ENDPOINT);
+		Request req = new Request(SPELLCHECK_ENDPOINT);
 		req.addParam("mode", "proof");
 		req.addParam("text", body);
 		req.addHeader("Ocp-Apim-Subscription-Key", API_KEY);

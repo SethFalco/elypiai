@@ -1,7 +1,7 @@
 package com.elypia.elypiai.osu;
 
 import com.elypia.elypiai.osu.data.OsuMode;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -42,7 +42,7 @@ public class Osu {
 	 */
 
 	public void getUser(String username, OsuMode mode, Consumer<OsuUser> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(USER_ENDPOINT);
+		Request req = new Request(USER_ENDPOINT);
 		req.addParam("u", username);
 		req.addParam("type", "string");
 
@@ -57,14 +57,14 @@ public class Osu {
 	 */
 
 	public void getUser(int id, OsuMode mode, Consumer<OsuUser> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(USER_ENDPOINT);
+		Request req = new Request(USER_ENDPOINT);
 		req.addParam("u", id);
 		req.addParam("type", "is");
 
 		getUser(mode, req, success, failure);
 	}
 
-	private void getUser(OsuMode mode, ElyRequest req, Consumer<OsuUser> success, Consumer<IOException> failure) {
+	private void getUser(OsuMode mode, Request req, Consumer<OsuUser> success, Consumer<IOException> failure) {
 		req.addParam("k", API_KEY);
 		req.addParam("m", mode.getId());
 
@@ -93,7 +93,7 @@ public class Osu {
 		if (limit < 1)
 			throw new IllegalArgumentException("Limit can not be lower than 1.");
 
-		ElyRequest req = new ElyRequest(BEATMAP_ENDPOINT);
+		Request req = new Request(BEATMAP_ENDPOINT);
 		req.addParam("k", API_KEY);
 		req.addParam("b", id);
 		req.addParam("limit", limit);
@@ -108,7 +108,7 @@ public class Osu {
 	}
 
 	public void getRecentPlays(OsuUser user, int limit, Consumer<Collection<RecentPlay>> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(BEATMAP_ENDPOINT);
+		Request req = new Request(BEATMAP_ENDPOINT);
 		req.addParam("k", API_KEY);
 		req.addParam("u", user.getId());
 		req.addParam("limit", limit);

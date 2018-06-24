@@ -1,7 +1,7 @@
 package com.elypia.elypiai.nanowrimo;
 
 import com.elypia.elypiai.nanowrimo.data.WordCountError;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -23,7 +23,7 @@ public class Nanowrimo {
 
 		String body = String.format("hash=%s&name=%s&wordcount=%d", secret, name, wordCount);
 
-		ElyRequest req = new ElyRequest(PUT_WORDCOUNT_ENDPOINT);
+		Request req = new Request(PUT_WORDCOUNT_ENDPOINT);
 		req.setFormData(body);
 
 		req.post(result -> {
@@ -36,7 +36,7 @@ public class Nanowrimo {
 
 	public void getNanoUser(String username, Consumer<NanoUser> success, Consumer<IOException> failure) {
 		username = username.replace(" ", "-");
-		ElyRequest req = new ElyRequest(GET_USER_ENDPOINT, username);
+		Request req = new Request(GET_USER_ENDPOINT, username);
 
 		req.get(result -> {
 			Document document = result.asDocument(Parser.xmlParser());

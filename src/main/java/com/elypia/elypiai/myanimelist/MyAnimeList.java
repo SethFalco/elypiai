@@ -1,6 +1,6 @@
 package com.elypia.elypiai.myanimelist;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.apache.commons.codec.Charsets;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
@@ -44,7 +44,7 @@ public class MyAnimeList {
 	}
 
 	public void getAnime(String q, Consumer<Anime> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_SEARCH_ANIME);
+		Request req = new Request(GET_SEARCH_ANIME);
 		req.addParam("q", q);
 		req.addHeader("Authorization", AUTH);
 
@@ -57,7 +57,7 @@ public class MyAnimeList {
 	}
 
 	public void getManga(String q, Consumer<Manga> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_SEARCH_MANGA);
+		Request req = new Request(GET_SEARCH_MANGA);
 		req.addParam("q", q);
 		req.addHeader("Authorization", AUTH);
 

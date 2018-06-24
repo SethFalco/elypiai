@@ -1,6 +1,6 @@
 package com.elypia.elypiai.sightengine;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -40,7 +40,7 @@ public class SightEngine {
 	 */
 
 	public void nudityDetection(String url, Consumer<NudityResponse> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(NUDITY_ENDPOINT);
+		Request req = new Request(NUDITY_ENDPOINT);
 		req.addParam("api_user", USER);
 		req.addParam("api_secret", SECRET);
 		req.addParam("url", url);

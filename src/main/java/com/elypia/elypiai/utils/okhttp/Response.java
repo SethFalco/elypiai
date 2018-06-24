@@ -9,9 +9,9 @@ import org.jsoup.parser.Parser;
 import java.io.IOException;
 import java.util.Objects;
 
-public class ElyResponse {
+public class Response {
 
-    private Response response;
+    private okhttp3.Response response;
     private ResponseBody responseBody;
     private Call call;
     private String body;
@@ -20,7 +20,7 @@ public class ElyResponse {
     private JSONArray array;
     private Document document;
 
-    public ElyResponse(Call call, Response response) throws IOException {
+    public Response(Call call, okhttp3.Response response) throws IOException {
         this.response = response;
         this.call = call;
 

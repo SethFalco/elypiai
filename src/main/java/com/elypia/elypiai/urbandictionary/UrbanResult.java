@@ -1,60 +1,43 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
 import com.elypia.elypiai.utils.ElyUtils;
-import org.json.*;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class UrbanResult {
 
+	@SerializedName("result_type")
 	private UrbanResultType type;
+
+	@SerializedName("tags")
 	private Collection<String> tags;
+
+	private Collection<String> tagsDistinct;
+
+	@SerializedName("list")
 	private List<UrbanDefinition> definitions;
+
+	@SerializedName("sounds")
 	private List<String> sounds;
-	private String term;
-
-	public UrbanResult(JSONObject object, String term) {
-		this.term = term;
-
-		type = UrbanResultType.getByName(object.getString("result_type"));
-
-		if (type == UrbanResultType.NO_RESULTS)
-			return;
-		definitions = new ArrayList<>();
-		sounds = new ArrayList<>();
-
-		JSONArray array = object.getJSONArray("tags");
-		tags = ElyUtils.arrayToString(array);
-
-		array = object.getJSONArray("sounds");
-		sounds = ElyUtils.arrayToString(array);
-
-		array = object.getJSONArray("list");
-
-		for (int i = 0; i < array.length(); i++) {
-			JSONObject def = array.getJSONObject(i);
-			UrbanDefinition definition = new UrbanDefinition(def);
-			definitions.add(definition);
-		}
-	}
-
 
 	/**
-	 * @return	The type of result set receieved.
+	 * @return	The top resulting definition that appears on UrbanDictionary for this search.
 	 */
 
-	public UrbanResultType getResultType() {
-		return type;
+	public UrbanDefinition getDefinition() {
+		return getDefinition(false);
 	}
 
 	/**
-	 * @return	Tags deemed associated with the word defined.
+	 * @param random If to get the top definition or a random one.
+	 * @return A urban dictionary defintion entry for this word.
 	 */
 
-	public Collection<String> getTags() {
-		return tags;
+	public UrbanDefinition getDefinition(boolean random) {
+		int index = random ? ElyUtils.RANDOM.nextInt(definitions.size()) : 0;
+		return definitions.get(index);
 	}
 
 	/**
@@ -62,20 +45,15 @@ public class UrbanResult {
 	 */
 
 	public Collection<String> getTagsDistinct() {
-		return tags.stream().distinct().collect(Collectors.toList());
+		if (tagsDistinct == null)
+			tagsDistinct = tags.stream().distinct().collect(Collectors.toList());
+
+		return tagsDistinct;
 	}
 
 	/**
-	 * @return	Sounds related to this defintion as urls linking to audio files.
-	 */
-
-	public Collection<String> getSounds() {
-		return sounds;
-	}
-
-	/**
-	 * @param amount	The max number of sounds to return.
-	 * @return			A randomised list of sounds.
+	 * @param amount The max number of sounds to return.
+	 * @return A randomised list of sounds.
 	 */
 
 	public Collection<String> getRandomSounds(int amount) {
@@ -93,37 +71,51 @@ public class UrbanResult {
 	}
 
 	/**
-	 * @return	A full list of all returned definitions in
-	 * 			the order they were received in.
+	 * @return	The type of result set receieved.
+	 */
+
+	public UrbanResultType getResultType() {
+		return type;
+	}
+
+	public void setResultType(UrbanResultType type) {
+		this.type = type;
+	}
+
+	/**
+	 * @return	Tags deemed associated with the word defined.
+	 */
+
+	public Collection<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(Collection<String> tags) {
+		this.tags = tags;
+	}
+
+	/**
+	 * @return	Sounds related to this defintion as urls linking to audio files.
+	 */
+
+	public List<String> getSounds() {
+		return sounds;
+	}
+
+	public void setSounds(List<String> sounds) {
+		this.sounds = sounds;
+	}
+
+	/**
+	 * @return	A full list of all returned definitions in the order they were
+	 * recieved in, by default this should be by vote.
 	 */
 
 	public List<UrbanDefinition> getDefinitions() {
 		return definitions;
 	}
 
-	/**
-	 * @return	The top resulting definition that appears on UrbanDictionary for this search.
-	 */
-
-	public UrbanDefinition getResult() {
-		return getResult(false);
-	}
-
-	/**
-	 * @param random If to get the top definition or a random one.
-	 * @return	A random result of all the returned definitions of the search term.
-	 */
-
-	public UrbanDefinition getResult(boolean random) {
-		int index = random ? ElyUtils.RANDOM.nextInt(definitions.size()) : 0;
-		return definitions.get(index);
-	}
-
-	/**
-	 * @return	The search term to provide this set of results.
-	 */
-
-	public String getSearchTerm() {
-		return term;
+	public void setDefinitions(List<UrbanDefinition> definitions) {
+		this.definitions = definitions;
 	}
 }

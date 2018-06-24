@@ -1,15 +1,30 @@
 package com.elypia.elypiai.urbandictionary;
 
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
-import org.json.JSONObject;
+import com.elypia.elypiai.utils.okhttp.deserializers.*;
+import com.google.gson.*;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
-import java.util.function.Consumer;
+public class UrbanDictionary implements UrbanDictionaryService {
 
-public class UrbanDictionary {
+	private static final String BASE_URL = "http://api.urbandictionary.com/";
 
-	public static final String DEFINE = "http://api.urbandictionary.com/v0/define";
+	private UrbanDictionaryService service;
+
+	public UrbanDictionary() {
+		this(BASE_URL);
+	}
+
+	public UrbanDictionary(String baseUrl) {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(UrbanResultType.class, new UrbanResultTypeDeserializer());
+		gsonBuilder.registerTypeAdapter(String.class, new StringDeserializer());
+		Gson gson = gsonBuilder.create();
+
+		Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create(gson)).build();
+		service = retrofit.create(UrbanDictionaryService.class);
+	}
 
 	/**
 	 * Returns a defintion from Urban Dictionary if result(s)
@@ -17,19 +32,10 @@ public class UrbanDictionary {
 	 * Possible null: Returns null if no definitions are found.
 	 *
 	 * @param term The word or phrase to be defined.
-	 * @param success What to do with the result of this call.
-	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void define(String term, Consumer<UrbanResult> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(DEFINE);
-		req.addParam("term", term);
-
-		req.get(result -> {
-			JSONObject object = result.asJSONObject();
-			UrbanResult urbanResult = new UrbanResult(object, term);
-
-			success.accept(urbanResult);
-		}, failure);
+	@Override
+	public Call<UrbanResult> define(String term) {
+		return service.define(term);
 	}
 }

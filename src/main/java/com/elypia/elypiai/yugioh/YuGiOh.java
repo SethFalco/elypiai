@@ -1,6 +1,6 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class YuGiOh {
 	 */
 
 	public void getCard(String term, Consumer<YuGiOhCard> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(INFO, term);
+		Request req = new Request(INFO, term);
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();

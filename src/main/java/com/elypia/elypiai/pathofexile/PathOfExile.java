@@ -1,38 +1,41 @@
 package com.elypia.elypiai.pathofexile;
 
-import java.io.IOException;
+import com.google.gson.*;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import java.util.Collection;
-import java.util.function.Consumer;
 
-public class PathOfExile {
+public class PathOfExile implements PathOfExileService {
 
-	protected StashTabs stashTabs;
+	private static final String BASE_URL = "http://api.pathofexile.com/";
 
-	private PoERequester requester;
+	private PathOfExileService service;
 
 	public PathOfExile() {
-		requester = new PoERequester(this);
+		this(BASE_URL);
 	}
 
-	public void getStashTabs(Consumer<StashTabs> success, Consumer<IOException> failure) {
-		requester.getStashTabs(success, failure);
+	public PathOfExile(String baseUrl) {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.create();
+
+		Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create(gson)).build();
+		service = retrofit.create(PathOfExileService.class);
 	}
 
-	public void getLeagueRules(Consumer<Collection<LeagueRule>> success, Consumer<IOException> failure) {
-		requester.getLeagueRules(success, failure);
+	@Override
+	public Call<StashTabs> getStashTabs() {
+		return service.getStashTabs();
 	}
 
-	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<IOException> failure) {
-		requester.getLeagueRule(id, success, failure);
+	@Override
+	public Call<Collection<LeagueRule>> getLeagueRules() {
+		return service.getLeagueRules();
 	}
 
-	/**
-	 * Does NOT perform an API request. <br>
-	 *
-	 * @return The last cache of the {@link StashTabs}.
-	 */
-
-	public StashTabs getStashTabs() {
-		return stashTabs;
+	@Override
+	public Call<LeagueRule> getLeagueRule(int id) {
+		return service.getLeagueRule(id);
 	}
 }

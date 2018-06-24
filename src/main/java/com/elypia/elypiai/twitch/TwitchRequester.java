@@ -1,7 +1,7 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.TwitchEndpoint;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.*;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class TwitchRequester {
 
         String endpoint = TwitchEndpoint.GET_USERS.getEndpoint();
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
         req.addHeader("Client-Id", twitch.getApiKey());
 
         for (String username : usernames)

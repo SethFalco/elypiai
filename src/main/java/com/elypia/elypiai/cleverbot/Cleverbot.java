@@ -1,6 +1,6 @@
 package com.elypia.elypiai.cleverbot;
 
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -48,7 +48,7 @@ public class Cleverbot {
 	 */
 
 	public void say(String input, String cs, Consumer<CleverResponse> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_REPLY_ENDPOINT);
+		Request req = new Request(GET_REPLY_ENDPOINT);
 		req.addParam("key", API_KEY);
 		req.addParam("wrapper", "Elypiai");
 		req.addParam("input", input);

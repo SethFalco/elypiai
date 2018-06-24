@@ -1,7 +1,7 @@
 package com.elypia.elypiai.pathofexile;
 
 import com.elypia.elypiai.pathofexile.data.PoEEndpoint;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,7 +20,7 @@ class PoERequester {
 
 	public void getStashTabs(Consumer<StashTabs> success, Consumer<IOException> failure) {
 		String endpoint = PoEEndpoint.PUBLIC_STASH_TABS.getEndpoint();
-		ElyRequest req = new ElyRequest(endpoint);
+		Request req = new Request(endpoint);
 
 		req.get(result -> {
 			JSONObject object = result.asJSONObject();
@@ -32,7 +32,7 @@ class PoERequester {
 
 	public void getLeagueRules(Consumer<Collection<LeagueRule>> success, Consumer<IOException> failure) {
 		String endpoint = PoEEndpoint.LEAGUE_RULES.getEndpoint();
-		ElyRequest req = new ElyRequest(endpoint);
+		Request req = new Request(endpoint);
 
 		req.get(result -> {
 			Collection<LeagueRule> rules = new ArrayList<>();
@@ -52,7 +52,7 @@ class PoERequester {
 	public void getLeagueRule(String id, Consumer<LeagueRule> success, Consumer<IOException> failure) {
 		String endpoint = PoEEndpoint.LEAGUE_RULES.getEndpoint();
 
-		ElyRequest req = new ElyRequest(endpoint);
+		Request req = new Request(endpoint);
 		req.addParam("id", id);
 
 		req.get(result -> {

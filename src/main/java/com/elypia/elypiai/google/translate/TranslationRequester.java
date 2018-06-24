@@ -2,7 +2,7 @@ package com.elypia.elypiai.google.translate;
 
 import com.elypia.elypiai.google.translate.data.GoogleTranslateEndpoint;
 import com.elypia.elypiai.utils.Language;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -25,7 +25,7 @@ public class TranslationRequester {
     public void getSupportedLanguages(Consumer<List<Language>> success, Consumer<IOException> failure) {
         String endpoint = GoogleTranslateEndpoint.LANGUAGES.getEndpoint();
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
         req.addParam("key", apiKey);
 
         req.get(result -> {
@@ -69,7 +69,7 @@ public class TranslationRequester {
         if (source != null)
             formdata.put("source", source);
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
         req.addParam("key", apiKey);
         req.setFormData(formdata);
 

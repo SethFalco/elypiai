@@ -1,7 +1,7 @@
 package com.elypia.elypiai.bing;
 
 import com.elypia.elypiai.utils.ElyUtils;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -38,7 +38,7 @@ public class Bing {
 	 */
 
 	public void webSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_SEARCH_ENDPOINT);
+		Request req = new Request(GET_SEARCH_ENDPOINT);
 		req.addParam("q", search);
 		req.addParam("safesearch", safeSearch ? "Strict" : "off");
 		req.addParam("count", random ? ElyUtils.RANDOM.nextInt(50) + 1 : 1);
@@ -77,7 +77,7 @@ public class Bing {
 	 */
 
 	public void imageSearch(String search, boolean safeSearch, boolean random, Consumer<String> success, Consumer<IOException> failure) {
-		ElyRequest req = new ElyRequest(GET_SEARCH_ENDPOINT);
+		Request req = new Request(GET_SEARCH_ENDPOINT);
 		req.addParam("q", search);
 		req.addParam("safesearch", safeSearch ? "Strict" : "off");
 		req.addParam("count", random ? ElyUtils.RANDOM.nextInt(50) + 1 : 1);

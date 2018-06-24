@@ -17,10 +17,14 @@ public enum AmazonEndpoint {
 	MEXICO(".com.mx"),
 	UK(".co.uk");
 
-	private String tld;
+	private final String TLD;
 
 	AmazonEndpoint(String tld) {
-		this.tld = tld;
+		this.TLD = tld;
+	}
+
+	public String getTld() {
+		return TLD;
 	}
 
 	/**
@@ -31,11 +35,11 @@ public enum AmazonEndpoint {
 	 */
 
 	public String getShoppingUrl() {
-		return String.format("https://amazon%s", tld + "/");
+		return String.format("https://amazon%s", TLD + "/");
 	}
 
 	@Override
 	public String toString() {
-		return "webservices.amazon" + tld;
+		return "webservices.amazon" + TLD;
 	}
 }

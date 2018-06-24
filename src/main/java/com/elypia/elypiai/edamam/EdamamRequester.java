@@ -1,7 +1,7 @@
 package com.elypia.elypiai.edamam;
 
 import com.elypia.elypiai.edamam.data.EdamamEndpoint;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,7 +17,7 @@ public class EdamamRequester {
 
     public void search(String q, Consumer<List<Ingredient>> success, Consumer<IOException> failure) {
         EdamamEndpoint endpoint = EdamamEndpoint.SEARCH;
-        ElyRequest req = new ElyRequest(endpoint.getEndpoint());
+        Request req = new Request(endpoint.getEndpoint());
 
         req.addParam("app_id", edamam.getAppId());
         req.addParam("app_key", edamam.getAppKey());

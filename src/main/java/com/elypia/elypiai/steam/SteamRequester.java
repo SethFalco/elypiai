@@ -1,7 +1,7 @@
 package com.elypia.elypiai.steam;
 
 import com.elypia.elypiai.steam.data.SteamEndpoint;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -29,7 +29,7 @@ public class SteamRequester {
 
         String endpoint = SteamEndpoint.GET_USER.getEndpoint();
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
         req.addParam("key", steam.getApiKey());
         req.addParam("steamids", String.join(",", idStrings));
 
@@ -59,7 +59,7 @@ public class SteamRequester {
     public void getIdFromVanityUrl(String vanityUrl, Consumer<Long> success, Consumer<IOException> failure) {
         String endpoint = SteamEndpoint.GET_STEAM_ID.getEndpoint();
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
         req.addParam("key", steam.getApiKey());
         req.addParam("vanityUrl", vanityUrl);
 
@@ -78,7 +78,7 @@ public class SteamRequester {
     public void getLibrary(SteamUser user, Consumer<List<SteamGame>> success, Consumer<IOException> failure) {
         String endpoint = SteamEndpoint.GET_LIB.getEndpoint();
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
         req.addParam("steamid", user.getId());
         req.addParam("format", "json");
         req.addParam("key", steam.getApiKey());

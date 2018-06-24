@@ -2,7 +2,7 @@ package com.elypia.elypiai.google.youtube;
 
 import com.elypia.elypiai.google.youtube.data.YouTubeEndpoint;
 import com.elypia.elypiai.google.youtube.data.YouTubeType;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -32,7 +32,7 @@ public class YouTubeRequester {
     public void getData(String term, int count, YouTubeType type, Consumer<List<YouTubeItem>> success, Consumer<IOException> failure) {
         String endpoint = YouTubeEndpoint.GET_MEDIA.getEndpoint();
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
         req.addParam("maxResults", count);
         req.addParam("q", term);
         req.addParam("type", type.toString());

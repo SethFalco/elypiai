@@ -1,7 +1,7 @@
 package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.runescape.data.RSEndpoint;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -35,7 +35,7 @@ public class RuneScape {
 	public void getUser(String username, Consumer<RuneScapeUser> success, Consumer<IOException> failure) {
 		String endpoint = RSEndpoint.RUNEMETRICS_PROFILE.getEndpoint();
 
-		ElyRequest req = new ElyRequest(endpoint);
+		Request req = new Request(endpoint);
 		req.addParam("user", username);
 
 		req.get(result -> {
@@ -49,7 +49,7 @@ public class RuneScape {
 	public void getOnlineUserCount(Consumer<String> success, Consumer<IOException> failure) {
         String endpoint = RSEndpoint.PLAYER_COUNT.getEndpoint();
 
-        ElyRequest req = new ElyRequest(endpoint);
+        Request req = new Request(endpoint);
 
         req.get(result -> {
 			String string = result.asString();
@@ -61,7 +61,7 @@ public class RuneScape {
 	public void getQuestStatuses(String user, Consumer<QuestsStatus> success, Consumer<IOException> failure) {
 		String endpoint = RSEndpoint.RUNEMETRICS_QUESTS.getEndpoint();
 
-		ElyRequest req = new ElyRequest(endpoint);
+		Request req = new Request(endpoint);
 		req.addParam("user", user);
 
 		req.get(result -> {

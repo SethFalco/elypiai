@@ -3,7 +3,7 @@ package com.elypia.elypiai.amazon;
 import com.elypia.elypiai.amazon.data.AmazonEndpoint;
 import com.elypia.elypiai.amazon.data.AmazonGroup;
 import com.elypia.elypiai.amazon.data.AmazonIndex;
-import com.elypia.elypiai.utils.okhttp.ElyRequest;
+import com.elypia.elypiai.utils.okhttp.Request;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
 import org.jsoup.select.Elements;
@@ -69,7 +69,7 @@ public class AmazonRequester {
 
         String url = signer.sign(endpoint, queryParams);
 
-        ElyRequest req = new ElyRequest(url);
+        Request req = new Request(url);
 
         req.get(result -> {
             Document document = result.asDocument(Parser.xmlParser());
