@@ -178,7 +178,7 @@ public final class Markdown {
 
     /**
      * In markdown a line break is performed by putting
-     * two spaces, then an extra linebreak \n for clarity.
+     * two spaces; we then add an extra linebreak \n for clarity.
      *
      * @return Markdown syntax for a linebreak.
      */

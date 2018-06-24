@@ -6,10 +6,10 @@ public class Tuple<T1, T2> {
     private T2 valueTwo;
 
     public static <T1, T2> Tuple<T1, T2> of(T1 valueOne, T2 valueTwo) {
-        return of(valueOne, valueTwo);
+        return new Tuple<>(valueOne, valueTwo);
     }
 
-    public Tuple(T1 valueOne, T2 valueTwo) {
+    private Tuple(T1 valueOne, T2 valueTwo) {
         this.valueOne = valueOne;
         this.valueTwo = valueTwo;
     }
