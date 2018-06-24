@@ -1,15 +1,23 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.utils.okhttp.Request;
-import org.json.JSONObject;
+import com.elypia.elypiai.utils.RetrofitUtils;
+import retrofit2.Call;
 
-import java.io.IOException;
-import java.util.function.Consumer;
+public class YuGiOh implements YuGiOhService {
 
-public class YuGiOh {
+    private static final String BASE_URL = "http://yugiohprices.com/";
 
-	public static final String INFO = "http://yugiohprices.com/api/card_data/%s";
+    private YuGiOhService service;
+
 	public static final String IMAGE = "http://yugiohprices.com/api/card_image/%s";
+
+	public YuGiOh() {
+        this(BASE_URL);
+    }
+
+    public YuGiOh(String baseUrl) {
+        service = RetrofitUtils.createService(baseUrl, YuGiOhService.class);
+    }
 
 	/**
 	 * Search the YuGiOh prices API for the YuGiOh card requested.
@@ -17,24 +25,11 @@ public class YuGiOh {
 	 * must be perfect, including hythens (-) and spacing.
 	 * Can return a monster or spell/trap card.
 	 *
-	 * @param 	term	The YuGiOh card to search up, must match card name exactly.
+	 * @param name The YuGiOh card to search up, must match card name exactly.
 	 */
 
-	public void getCard(String term, Consumer<YuGiOhCard> success, Consumer<IOException> failure) {
-		Request req = new Request(INFO, term);
-
-		req.get(result -> {
-			JSONObject object = result.asJSONObject();
-			YuGiOhCard card = null;
-
-			if (object.getString("status").equals("success")) {
-				JSONObject data = object.getJSONObject("data");
-				card = new YuGiOhCard(data);
-			}
-
-			success.accept(card);
-		}, err -> {
-			failure.accept(err);
-		});
-	}
+    @Override
+    public Call<YuGiOhCard> getCard(String name) {
+        return service.getCard(name);
+    }
 }

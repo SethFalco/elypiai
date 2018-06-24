@@ -1,10 +1,8 @@
 package com.elypia.elypiai.urbandictionary;
 
 
-import com.elypia.elypiai.utils.okhttp.deserializers.*;
-import com.google.gson.*;
+import com.elypia.elypiai.utils.RetrofitUtils;
 import retrofit2.*;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UrbanDictionary implements UrbanDictionaryService {
 
@@ -17,13 +15,7 @@ public class UrbanDictionary implements UrbanDictionaryService {
 	}
 
 	public UrbanDictionary(String baseUrl) {
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(UrbanResultType.class, new UrbanResultTypeDeserializer());
-		gsonBuilder.registerTypeAdapter(String.class, new StringDeserializer());
-		Gson gson = gsonBuilder.create();
-
-		Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create(gson)).build();
-		service = retrofit.create(UrbanDictionaryService.class);
+		service = RetrofitUtils.createService(baseUrl, UrbanDictionaryService.class);
 	}
 
 	/**
