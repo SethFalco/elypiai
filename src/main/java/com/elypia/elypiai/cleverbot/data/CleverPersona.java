@@ -1,18 +1,15 @@
 package com.elypia.elypiai.cleverbot.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum CleverPersona {
 
-    WACKY("Tweak1"),
-    TALKITIVE("Tweak2"),
-    ATTENTIVE("Tweak3");
+    @SerializedName("Tweak1")
+    WACKY,
 
-    private String apiName;
+    @SerializedName("Tweak2")
+    TALKITIVE,
 
-    CleverPersona(String apiName) {
-        this.apiName = apiName;
-    }
-
-    public String getApiName() {
-        return apiName;
-    }
+    @SerializedName("Tweak3")
+    ATTENTIVE
 }

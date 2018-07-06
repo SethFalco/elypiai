@@ -1,24 +1,23 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-public class LadderEntry extends PoEObject {
+public class LadderEntry {
 
+	@SerializedName("rank")
 	private int rank;
+
+	@SerializedName("dead")
 	private boolean dead;
+
+	@SerializedName("online")
 	private boolean online;
+
+	@SerializedName("character")
 	private Exile exile;
+
+	@SerializedName("account")
 	private Account account;
-
-	public LadderEntry(PathOfExile poe, JSONObject object) {
-		super(poe);
-
-		rank = object.getInt("rank");
-		dead = object.getBoolean("dead");
-		online = object.getBoolean("online");
-		exile = new Exile(poe, object.getJSONObject("character"));
-		account = new Account(poe, object.getJSONObject("account"));
-	}
 
 	public int getRank() {
 		return rank;

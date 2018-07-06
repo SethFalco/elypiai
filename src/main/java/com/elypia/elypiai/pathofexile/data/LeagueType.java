@@ -6,24 +6,34 @@ public enum LeagueType {
 	 * Refers to all leagues.
 	 */
 
-	ALL,
+	ALL("all"),
 
 	/**
 	 * Refers to only the main leagues,
 	 * these are displayed in teh character screen.
 	 */
 
-	MAIN,
+	MAIN("main"),
 
 	/**
 	 * Refers to event leagues.
 	 */
 
-	EVENT,
+	EVENT("event"),
 
 	/**
 	 * Refers to league in a particular season.
 	 */
 
-	SEASON
+	SEASON("season");
+
+	private final String NAME;
+
+	LeagueType(String name) {
+		NAME = name;
+	}
+
+	public String getName() {
+		return NAME;
+	}
 }

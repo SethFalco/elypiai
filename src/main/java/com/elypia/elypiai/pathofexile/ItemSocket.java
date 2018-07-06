@@ -1,22 +1,18 @@
 package com.elypia.elypiai.pathofexile;
 
-import com.elypia.elypiai.pathofexile.data.GemAttribute;
-import com.elypia.elypiai.pathofexile.data.GemColor;
-import org.json.JSONObject;
+import com.elypia.elypiai.pathofexile.data.*;
+import com.google.gson.annotations.SerializedName;
 
-public class ItemSocket extends PoEObject {
+public class ItemSocket {
 
+	@SerializedName("group")
 	private int group;
+
+	@SerializedName("attr")
 	private GemAttribute attribute;
+
+	@SerializedName("sColour")
 	private GemColor color;
-
-	public ItemSocket(PathOfExile poe, JSONObject object) {
-		super(poe);
-
-		group = object.getInt("group");
-		attribute = GemAttribute.getByName(object.getString("attr"));
-		color = GemColor.getByName(object.getString("sColour"));
-	}
 
 	public int getGroup() {
 		return group;

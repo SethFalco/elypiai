@@ -1,63 +1,56 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.StreamType;
-import org.json.*;
+import com.elypia.elypiai.utils.Language;
+import com.google.gson.annotations.SerializedName;
 
-import java.time.Instant;
+import java.util.*;
 
 public class TwitchStream {
 
-	private Twitch twitch;
-	private TwitchUser user;
-
+	@SerializedName("id")
 	private long id;
+
+	@SerializedName("user_id")
+	private int userId;
+
+	@SerializedName("game_id")
 	private int gameId;
-	private String[] communityIds;
+
+	@SerializedName("community_ids")
+	private List<String> communityIds;
+
+	@SerializedName("type")
 	private StreamType type;
+
+	@SerializedName("title")
 	private String title;
+
+	@SerializedName("viewer_count")
 	private int viewerCount;
-	private Instant startDate;
-	private String language;
+
+	@SerializedName("started_at")
+	private Date startDate;
+
+	@SerializedName("language")
+	private Language language;
+
+	@SerializedName("thumbnail_url")
 	private String thumbnail;
 
-	public TwitchStream(TwitchUser user, JSONObject object) {
-		this.user = user;
-		twitch = user.getTwitch();
-
-		update(object);
-	}
-
-	public void update(JSONObject object) {
-		id = object.optLong("id");
-		gameId = object.optInt("game_id");
-		type = StreamType.getByName(object.getString("type"));
-		title = object.getString("title");
-		viewerCount = object.getInt("viewer_count");
-		startDate = Instant.parse(object.getString("started_at"));
-		language = object.getString("language");
-		thumbnail = object.getString("thumbnail_url");
-
-		JSONArray array = object.getJSONArray("community_ids");
-		communityIds = array.toList().toArray(new String[0]);
-	}
-
-
-	public Twitch getTwitch() {
-		return twitch;
-	}
-
-	public TwitchUser getUser() {
-		return user;
-	}
+	private String cursor;
 
 	/**
-	 * @return	Get the id of the stream, do not
-	 * 			the id of the stream is not the
-	 * 			id of the streamer.
+	 * @return	Get the id of the stream, do note the id of the stream
+	 * 			is not the id of the streamer.
 	 */
 
 	public long getId() {
 		return id;
+	}
+
+	public int getUserId() {
+		return userId;
 	}
 
 	/**
@@ -68,8 +61,8 @@ public class TwitchStream {
 		return gameId;
 	}
 
-	public String[] getCommunityIds() {
-		return communityIds;
+	public List<String> getCommunityIds() {
+		return Collections.unmodifiableList(communityIds);
 	}
 
 	public StreamType getType() {
@@ -92,16 +85,16 @@ public class TwitchStream {
 	 * @return	Get the time and date the user started streaming.
 	 */
 
-	public Instant getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public String getLanguage() {
+	public Language getLanguage() {
 		return language;
 	}
 
 	public String getThumbnail() {
-		return getThumbnail(1600);
+		return getThumbnail(480);
 	}
 
 	public String getThumbnail(int width) {
@@ -113,5 +106,13 @@ public class TwitchStream {
 		url = url.replace("{height}", String.valueOf(height));
 
 		return url;
+	}
+
+	public String getCursor() {
+		return cursor;
+	}
+
+	public void setCursor(String cursor) {
+		this.cursor = cursor;
 	}
 }

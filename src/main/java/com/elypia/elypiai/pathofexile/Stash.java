@@ -1,40 +1,35 @@
 package com.elypia.elypiai.pathofexile;
 
 import com.elypia.elypiai.pathofexile.data.StashType;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
-public class Stash extends PoEObject {
+public class Stash {
 
+	@SerializedName("id")
 	private String id;
+
+	@SerializedName("public")
 	private boolean isPublic;
+
+	@SerializedName("accountName")
 	private String accountName;
+
+	@SerializedName("lastCharacterName")
 	private String lastCharacterName;
+
+	@SerializedName("stash")
 	private String name;
+
+	@SerializedName("stashType")
 	private StashType stashType;
-	private Collection<StashItem> items;
 
-	public Stash(PathOfExile poe, JSONObject object) {
-		super(poe);
-		items = new ArrayList<>();
+	@SerializedName("league")
+	private String league;
 
-		id = object.getString("id");
-		isPublic = object.getBoolean("public");
-		accountName = object.optString("accountName", null);
-		lastCharacterName = object.optString("lastCharacterName", null);
-		name = object.optString("stash", null);
-		stashType = StashType.getByName(object.getString("stashType"));
-
-		JSONArray itemsArray = object.getJSONArray("items");
-
-		for (int i = 0; i < itemsArray.length(); i++) {
-			StashItem item = new StashItem(poe, itemsArray.getJSONObject(i));
-			items.add(item);
-		}
-	}
+	@SerializedName("items")
+	private List<StashItem> items;
 
 	public String getId() {
 		return id;
@@ -60,7 +55,11 @@ public class Stash extends PoEObject {
 		return stashType;
 	}
 
-	public Collection<StashItem> getItems() {
+	public String getLeague() {
+		return league;
+	}
+
+	public List<StashItem> getItems() {
 		return items;
 	}
 }

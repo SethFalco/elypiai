@@ -1,33 +1,24 @@
 package com.elypia.elypiai.pathofexile;
 
-import com.elypia.elypiai.pathofexile.data.AscendancyClass;
-import com.elypia.elypiai.pathofexile.data.AscendancyType;
-import org.json.JSONObject;
+import com.elypia.elypiai.pathofexile.data.*;
+import com.google.gson.annotations.SerializedName;
 
-public class Exile extends PoEObject {
+public class Exile {
 
+	@SerializedName("name")
 	private String name;
+
+	@SerializedName("level")
 	private int level;
-	private AscendancyType ascendancy;
-	private AscendancyClass ascendancyClass;
+
+	@SerializedName("class")
+	private String ascendancy;
+
+	@SerializedName("id")
 	private String id;
+
+	@SerializedName("experience")
 	private long experience;
-
-	public Exile(PathOfExile poe, JSONObject object) {
-		super(poe);
-
-		name = object.getString("name");
-		level = object.getInt("level");
-		id = object.optString("id");
-		experience = object.getLong("experience");
-
-		ascendancyClass = AscendancyClass.getByName(object.getString("class"));
-
-		if (ascendancyClass != null)
-			ascendancy = ascendancyClass.getType();
-		else
-			ascendancy = AscendancyType.getByName(object.getString("class"));
-	}
 
 	public String getName() {
 		return name;
@@ -37,12 +28,13 @@ public class Exile extends PoEObject {
 		return level;
 	}
 
-	public AscendancyType getAscendancy() {
-		return ascendancy;
+	public AscendancyClass getAscendancyClass() {
+		return AscendancyClass.get(ascendancy);
 	}
 
-	public AscendancyClass getAscendancyClass() {
-		return ascendancyClass;
+	public AscendancyType getAscendancy() {
+		AscendancyType type = AscendancyType.get(ascendancy);
+		return type != null ? type : getAscendancyClass().getType();
 	}
 
 	public String getId() {

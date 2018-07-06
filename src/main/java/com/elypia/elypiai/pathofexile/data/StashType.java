@@ -1,19 +1,21 @@
 package com.elypia.elypiai.pathofexile.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum StashType {
 
+	@SerializedName("PremiumStash")
 	PREMIUM_STASH("PremiumStash");
 
-	private String apiName;
+	private final String NAME;
 
-	StashType(String apiName) {
-		this.apiName = apiName;
+	StashType(String name) {
+		NAME = name;
 	}
 
-	public static StashType getByName(String apiName) {
-
+	public static StashType get(String name) {
 		for (StashType type : StashType.values()) {
-			if (type.apiName.equals(apiName))
+			if (type.NAME.equals(name))
 				return type;
 		}
 

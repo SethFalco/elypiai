@@ -1,20 +1,17 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-public class LeagueRule extends PoEObject {
+public class LeagueRule {
 
+	@SerializedName("id")
 	private int id;
+
+	@SerializedName("name")
 	private String name;
+
+	@SerializedName("description")
 	private String description;
-
-	public LeagueRule(PathOfExile poe, JSONObject object) {
-		super(poe);
-
-		id = object.getInt("id");
-		name = object.getString("name");
-		description = object.getString("description");
-	}
 
 	public int getId() {
 		return id;

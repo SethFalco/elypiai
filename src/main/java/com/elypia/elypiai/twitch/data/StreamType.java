@@ -1,22 +1,12 @@
 package com.elypia.elypiai.twitch.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum StreamType {
 
-    LIVE("live"),
-    VODCAST("vodcast");
+    @SerializedName("live")
+    LIVE,
 
-    private String apiName;
-
-    StreamType(String apiName) {
-        this.apiName = apiName;
-    }
-
-    public static StreamType getByName(String apiName) {
-        for (StreamType type : values()) {
-            if (type.apiName.equals(apiName))
-                return type;
-        }
-
-        return null;
-    }
+    @SerializedName("vodcast")
+    VODCAST
 }

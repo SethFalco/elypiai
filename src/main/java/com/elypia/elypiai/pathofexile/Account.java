@@ -1,26 +1,23 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONObject;
+import com.elypia.elypiai.utils.gson.deserializers.NestedDeserializer;
+import com.google.gson.annotations.*;
 
-public class Account extends PoEObject {
+public class Account {
 
+	@SerializedName("name")
 	private String name;
+
+	@SerializedName("challenges")
+	@JsonAdapter(NestedDeserializer.class)
 	private int challenges;
+
+	@SerializedName("guild")
 	private Guild guild;
+
+	@SerializedName("twitch")
+	@JsonAdapter(NestedDeserializer.class)
 	private String twitch;
-
-	public Account(PathOfExile poe, JSONObject object) {
-		super(poe);
-
-		name = object.getString("name");
-		challenges = object.getJSONObject("challenges").getInt("total");
-
-		if (object.has("guild"))
-			guild = new Guild(poe, object.getJSONObject("guild"));
-
-		if (object.has("twitch"))
-			twitch = object.getJSONObject("twitch").getString("name");
-	}
 
 	public String getName() {
 		return name;

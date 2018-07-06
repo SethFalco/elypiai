@@ -1,24 +1,32 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.RSEndpoint;
-import com.elypia.elypiai.utils.okhttp.Request;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.elypia.elypiai.runescape.impl.IRuneScapeService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.function.Consumer;
+import java.util.*;
 
 public class RuneScape {
 
-	private RuneScape runescape;
+	private static final String BASE_URL = "https://apps.runescape.com/runemetrics/";
 
-	private Collection<RuneScapeUser> cache;
+	private IRuneScapeService service;
+	private Map<String, RuneScapeUser> cache;
 
 	public RuneScape() {
-		runescape = this;
-		cache = new ArrayList<>();
+		this(BASE_URL);
+	}
+
+	public RuneScape(String baseUrl) {
+		cache = new HashMap<>();
+
+		GsonBuilder gsonBuilder = new GsonBuilder().setDateFormat("dd-MMM-yyyy HH:mm");
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+
+		service = retrofitBuilder.build().create(IRuneScapeService.class);
 	}
 
 	/**
@@ -32,46 +40,14 @@ public class RuneScape {
 	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
-	public void getUser(String username, Consumer<RuneScapeUser> success, Consumer<IOException> failure) {
-		String endpoint = RSEndpoint.RUNEMETRICS_PROFILE.getEndpoint();
-
-		Request req = new Request(endpoint);
-		req.addParam("user", username);
-
-		req.get(result -> {
-			JSONObject object = result.asJSONObject();
-			RuneScapeUser user = new RuneScapeUser(runescape, object);
-
-			success.accept(user);
-		}, failure);
+	public RestAction<RuneScapeUser> getUser(String username) {
+		Call<RuneScapeUser> call = service.getUser(username);
+		return new RestAction<>(call);
 	}
 
-	public void getOnlineUserCount(Consumer<String> success, Consumer<IOException> failure) {
-        String endpoint = RSEndpoint.PLAYER_COUNT.getEndpoint();
-
-        Request req = new Request(endpoint);
-
-        req.get(result -> {
-			String string = result.asString();
-			string = string.substring(string.indexOf("(") + 1, string.lastIndexOf("}"));
-			success.accept(string);
-		}, failure);
-	}
-
-	public void getQuestStatuses(String user, Consumer<QuestsStatus> success, Consumer<IOException> failure) {
-		String endpoint = RSEndpoint.RUNEMETRICS_QUESTS.getEndpoint();
-
-		Request req = new Request(endpoint);
-		req.addParam("user", user);
-
-		req.get(result -> {
-			JSONObject object = result.asJSONObject();
-			JSONArray quests = object.getJSONArray("quests");
-
-			QuestsStatus questsStatus = new QuestsStatus(runescape, user, quests);
-
-			success.accept(questsStatus);
-		}, failure);
+	public RestAction<Collection<QuestStats>> getQuestStatuses(String user) {
+		Call<Collection<QuestStats>> call = service.getQuestStats(user);
+		return new RestAction<>(call);
 	}
 
 	/**
@@ -79,7 +55,7 @@ public class RuneScape {
 	 */
 
 	public Collection<RuneScapeUser> getUsers() {
-		return cache;
+		return Collections.unmodifiableCollection(cache.values());
 	}
 
     /**
@@ -91,8 +67,8 @@ public class RuneScape {
      * @return	        The level a player would be with the XP provided.
      */
 
-    public static int convertXpToLevel(long xp) {
-        return convertXpToLevel(xp, false);
+    public static int parseXpAsLevel(long xp) {
+        return parseXpAsLevel(xp, false);
     }
 
     /**
@@ -103,14 +79,14 @@ public class RuneScape {
      * @return	        The level a player would be with the XP provided.
      */
 
-	public static int convertXpToLevel(long xp, boolean elite) {
+	public static int parseXpAsLevel(long xp, boolean elite) {
 		if (xp < 0)
 			throw new IllegalArgumentException("XP (long) can not be of a negative value.");
 
 		int level = 1;
 		long result;
 
-		while (xp >= (result = convertLevelToXp(level + 1, elite))) {
+		while (xp >= (result = parseLevelAsXp(level + 1, elite))) {
 			if (result == -1)
 				break;
 
@@ -131,8 +107,8 @@ public class RuneScape {
      * @return	        The level a player would be with the XP provided.
      */
 
-    public static long convertLevelToXp(int level) {
-        return convertLevelToXp(level, false);
+    public static long parseLevelAsXp(int level) {
+        return parseLevelAsXp(level, false);
     }
 
 	/**
@@ -145,7 +121,7 @@ public class RuneScape {
 	 * @return			The XP required to attain this level.
 	 */
 
-	public static long convertLevelToXp(int level, boolean elite) {
+	public static long parseLevelAsXp(int level, boolean elite) {
 		if (level < 1)
 			throw new IllegalArgumentException("Level (int) can not be zero or a negative value.");
 

@@ -1,29 +1,27 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONObject;
+import com.elypia.elypiai.utils.gson.deserializers.StringEmptyIsNullDeserializer;
+import com.google.gson.annotations.*;
 
-import java.time.Instant;
+import java.util.Date;
 
-public class Guild extends PoEObject {
+public class Guild {
 
+    @SerializedName("id")
     private int id;
+
+    @SerializedName("name")
     private String name;
+
+    @SerializedName("tag")
     private String tag;
+
+    @SerializedName("statusMessage")
+    @JsonAdapter(StringEmptyIsNullDeserializer.class)
     private String status;
-    private Instant creationDate;
 
-    public Guild(PathOfExile poe, JSONObject object) {
-        super(poe);
-
-        id = object.optInt("id");
-        name = object.getString("name");
-        status = object.getString("statusMessage");
-        creationDate = Instant.parse(object.getString("createdAt"));
-        tag = object.getString("tag");
-
-        if (tag.isEmpty())
-            tag = null;
-    }
+    @SerializedName("createdAt")
+    private Date creationDate;
 
     public int getId() {
         return id;
@@ -41,7 +39,7 @@ public class Guild extends PoEObject {
         return status;
     }
 
-    public Instant getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 }

@@ -1,83 +1,85 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.RSSkill;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.elypia.elypiai.runescape.data.Skill;
+import com.elypia.elypiai.utils.gson.deserializers.CommaIntegerDeserializer;
+import com.google.gson.annotations.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RuneScapeUser {
 
 	private static final String RANK_URL = "http://services.runescape.com/m=hiscore/compare";
 
-	private RuneScape runescape;
-
+	@SerializedName("name")
 	private String username;
-	private int questsStarted;
+
+	@SerializedName("totalskill")
 	private int totalLevel;
-	private int questsComplete;
-	private int questsNotStarted;
+
+	@SerializedName("totalxp")
 	private long totalXp;
+
+	@SerializedName("questscomplete")
+	private int questsComplete;
+
+	@SerializedName("questsstarted")
+	private int questsStarted;
+
+	@SerializedName("questsnotstarted")
+	private int questsNotStarted;
+
+	@SerializedName("rank")
+	@JsonAdapter(CommaIntegerDeserializer.class)
 	private int rank;
+
+	@SerializedName("combatlevel")
 	private int combatLevel;
+
+	@SerializedName("loggedIn")
 	private boolean loggedIn;
-	private boolean isPrivate;
 
+	@SerializedName("activities")
 	private List<Activity> activities;
-	private Map<RSSkill, RuneScapeStat> stats;
 
-	public RuneScapeUser(RuneScape runescape, JSONObject object) {
-		this.runescape = runescape;
-		activities = new ArrayList<>();
-		stats = new HashMap<>();
-		update(object);
+	@SerializedName("skillvalues")
+	private Collection<PlayerStat> stats;
+
+	/**
+	 * @return	Get the leaderboard ranking url for this user.
+	 */
+
+	public String getLeaderboardUrl() {
+		String encoded = username;
+
+		try {
+			encoded = URLEncoder.encode(username, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
+		return RANK_URL + "?user1=" + encoded;
 	}
 
-	public void update(JSONObject object) {
-		if(object.has("error")) {
-			String error = object.getString("error");
+	/**
+	 * @return	Get the leaderboard ranking url for this user
+	 * 			compared to the username provided.
+	 */
 
-			if (error.equals("PROFILE_PRIVATE"))
-				isPrivate = true;
+	public String getLeaderboardUrl(String username) {
+		if (username.equalsIgnoreCase(this.username))
+			return getLeaderboardUrl();
 
-			return;
+		String encoded = username;
+
+		try {
+			encoded = URLEncoder.encode(username, "UTF-8");
+		} catch (UnsupportedEncodingException ex) {
+			ex.printStackTrace();
 		}
 
-		loggedIn = object.optBoolean("loggedIn");
-		username = object.getString("name");
-		questsStarted = object.getInt("questsstarted");
-		questsComplete = object.getInt("questscomplete");
-		questsNotStarted = object.getInt("questsnotstarted");
-		totalLevel = object.getInt("totalskill");
-		totalXp	= object.getLong("totalxp");
-		combatLevel	= object.getInt("combatlevel");
-
-		String rankString = object.optString("rank", "-1");
-		rankString = rankString.replace(",", "");
-		rank = Integer.parseInt(rankString);
-
-		JSONArray skillvalues = object.getJSONArray("skillvalues");
-		for (int i = 0; i < skillvalues.length(); i++) {
-			JSONObject skill = skillvalues.getJSONObject(i);
-			RuneScapeStat stat = new RuneScapeStat(skill);
-			stats.put(stat.getSkill(), stat);
-		}
-
-		JSONArray activitiesArray = object.getJSONArray("activities");
-		for (int i = 0; i < activitiesArray.length(); i++) {
-			JSONObject activityObj = activitiesArray.getJSONObject(i);
-			Activity activity = new Activity(runescape, activityObj);
-			activities.add(activity);
-		}
-	}
-
-	public RuneScape getRunescape() {
-		return runescape;
+		return getLeaderboardUrl() + "&user2=" + encoded;
 	}
 
 	/**
@@ -99,19 +101,37 @@ public class RuneScapeUser {
 	}
 
 	/**
+	 * @return	Returns the total level with commas formatted
+	 * 			as a String.
+	 */
+
+	public String getTotalLevelString() {
+		return String.format("%,d", totalLevel);
+	}
+
+	/**
+	 * @return	The total amount of XP the user has.
+	 */
+
+	public long getTotalXp() {
+		return totalXp;
+	}
+
+	/**
+	 * @return	Returns the total xp formatted with commas
+	 * 			as a String.
+	 */
+
+	public String getTotalXpString() {
+		return String.format("%,d", totalXp);
+	}
+
+	/**
 	 * @return	The total number of completed quests.
 	 */
 
 	public int getQuestsComplete() {
 		return questsComplete;
-	}
-
-	/**
-	 * @return	The total number of quested not even started.
-	 */
-
-	public int getQuestsNotStarted() {
-		return questsNotStarted;
 	}
 
 	/**
@@ -123,11 +143,11 @@ public class RuneScapeUser {
 	}
 
 	/**
-	 * @return	The total amount of XP the user has.
+	 * @return	The total number of quested not even started.
 	 */
 
-	public long getTotalXp() {
-		return totalXp;
+	public int getQuestsNotStarted() {
+		return questsNotStarted;
 	}
 
 	/**
@@ -155,83 +175,22 @@ public class RuneScapeUser {
 	}
 
 	/**
-	 * @return	Get the leaderboard ranking url for this user.
-	 */
-
-	public String getLeaderboardUrl() {
-		String encoded = username;
-
-		try {
-			encoded = URLEncoder.encode(username, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-
-		return RANK_URL + "?user1=" + encoded;
-	}
-
-	/**
-	 * @return	Get the leaderboard ranking url for this user compared to the user provided.
-	 */
-
-	public String getLeaderboardUrl(RuneScapeUser user) {
-		return getLeaderboardUrl(user.getUsername());
-	}
-
-	/**
-	 * @return	Get the leaderboard ranking url for this user
-	 * 			compared to the username provided.
-	 */
-
-	public String getLeaderboardUrl(String username) {
-		if (username.equalsIgnoreCase(this.username))
-			return getLeaderboardUrl();
-
-		String encoded = username;
-
-		try {
-			encoded = URLEncoder.encode(username, "UTF-8");
-		} catch (UnsupportedEncodingException ex) {
-			ex.printStackTrace();
-		}
-
-		return getLeaderboardUrl() + "&user2=" + encoded;
-	}
-
-	/**
-	 * @return	Returns the total xp formatted with commas
-	 * 			as a String.
-	 */
-
-	public String getTotalXpString() {
-		return String.format("%,d", totalXp);
-	}
-
-	/**
-	 * @return	Returns the total level with commas formatted
-	 * 			as a String.
-	 */
-
-	public String getTotalLevelString() {
-		return String.format("%,d", totalLevel);
-	}
-
-	/**
 	 * Returns a HashMap of Skills to Stats. Stats containing
 	 * The players level, xp and rank in the skill.
 	 *
 	 * @return	Returns a Map of skills to stats.
 	 */
 
-	public Map<RSSkill, RuneScapeStat> getStats() {
-		return stats;
+	public Collection<PlayerStat> getStats() {
+		return Collections.unmodifiableCollection(stats);
 	}
 
-	public RuneScapeStat getStat(RSSkill skill) {
-		return stats.get(skill);
-	}
+	public PlayerStat getStat(Skill skill) {
+		for (PlayerStat stat : stats) {
+			if (stat.getSkill() == skill)
+				return stat;
+		}
 
-	public boolean isPrivate() {
-		return isPrivate;
+		return null;
 	}
 }

@@ -4,8 +4,7 @@ import com.elypia.elypiai.utils.math.MathUtils;
 import com.elypia.elypiai.utils.math.Numeral;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MathUtilsTest {
 
@@ -34,7 +33,7 @@ public class MathUtilsTest {
     public void parseNumbers() {
         assertAll("Write Numbers from Values",
             () -> assertEquals(Numeral.ONE, Numeral.of(1)),
-            () -> assertEquals(null, Numeral.of(1234))
+            () -> assertNull(Numeral.of(1234))
         );
     }
 }

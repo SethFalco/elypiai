@@ -1,18 +1,13 @@
 package com.elypia.elypiai.steam;
 
 import com.elypia.elypiai.steam.data.PersonaState;
-import org.json.JSONObject;
+import com.elypia.elypiai.utils.Country;
+import com.elypia.elypiai.utils.gson.deserializers.*;
+import com.google.gson.annotations.*;
 
-import java.io.IOException;
-import java.time.Instant;
-import java.util.List;
-import java.util.function.Consumer;
+import java.util.Date;
 
 public class SteamUser {
-
-	/**
-	 * The parent Steam instance that created this User.
-	 */
 
 	private Steam steam;
 
@@ -20,19 +15,25 @@ public class SteamUser {
 	 * 64bit SteamID of the user
 	 */
 
+	@SerializedName("steamid")
 	private long id;
 
 	/**
 	 * The player's persona name (display name)
 	 */
 
+	@SerializedName("personaname")
 	private String username;
 
 	/**
 	 * The full URL of the player's Steam Community profile.
 	 */
 
+	@SerializedName("profileurl")
 	private String url;
+
+	@SerializedName("avatar")
+	private String avatarLow;
 
 	/**
 	 * The full URL of the player's 184x184px avatar.
@@ -40,37 +41,50 @@ public class SteamUser {
 	 * this will be the default ? avatar.
 	 */
 
-	private String avatar;
+	@SerializedName("avatarmedium")
+	private String avatarMedium;
+
+	@SerializedName("avatarfull")
+	private String avatarHigh;
 
 	/**
 	 * The user's current status. If the player's profile is private,
 	 * this will always be "0".
 	 */
 
+	@SerializedName("personastate")
 	private PersonaState state;
 
 	/**
 	 * This represents whether the profile is visible or not.
 	 */
 
+	@SerializedName("communityvisibilitystate")
+	@JsonAdapter(BitBooleanDeserializer.class)
 	private boolean isPrivate;
 
 	/**
 	 * Indicates the user has a community profile configured.
 	 */
 
+	@SerializedName("profilestate")
+	@JsonAdapter(BitBooleanDeserializer.class)
 	private boolean hasProfile;
 
 	/**
 	 * The last time the user was online.
 	 */
 
-	private Instant lastLogOff;
+	@SerializedName("lastlogoff")
+	@JsonAdapter(DateDeserializer.class)
+	private Date lastLogOff;
 
 	/**
 	 * If set, indicates the profile allows public comments.
 	 */
 
+	@SerializedName("commentpermission")
+	@JsonAdapter(BitBooleanDeserializer.class)
 	private boolean canComment;
 
 	/**
@@ -78,6 +92,7 @@ public class SteamUser {
 	 * The player's "Real Name", if they have set it.
 	 */
 
+	@SerializedName("realname")
 	private String realName;
 
 	/**
@@ -85,80 +100,44 @@ public class SteamUser {
 	 * The player's primary group, as configured in their Steam Community profile.
 	 */
 
-	private String primaryClan;
+	@SerializedName("primaryclanid")
+	private long primaryClan;
 
 	/**
 	 * <strong>Only non-null if profile is not private.</strong><br>
 	 * The time the player's account was created.
 	 */
 
-	private Instant timeCreated;
-
-	/**
-	 * <strong>Only non-null if profile is not private.</strong><br>
-	 * If the user is currently in-game,
-	 * this value will be returned and set to the gameid of that game.
-	 */
-
-	private int gameId;
-
-	/**
-	 * <strong>Only non-null if profile is not private.</strong><br>
-	 * The ip and port of the game server the user is currently playing on,
-	 * if they are playing on-line in a game using Steam matchmaking.
-	 */
-
-	private String serverAddress;
-
-	/**
-	 * If the user is currently in-game,
-	 * this will be the name of the game they are playing.
-	 * This may be the name of a non-Steam game shortcut.
-	 */
-
-	private String gameStatus;
+	@SerializedName("timecreated")
+	@JsonAdapter(DateDeserializer.class)
+	private Date timeCreated;
 
 	/**
 	 * If set on the user's Steam Community profile,
 	 * The user's country of residence, 2-character ISO country code
 	 */
 
-	private String countryCode;
+	@SerializedName("loccountrycode")
+	private Country countryCode;
 
 	/**
 	 * If set on the user's Steam Community profile, The user's state of residence
 	 */
 
+	@SerializedName("locstatecode")
 	private String stateCode;
 
-	/**
-	 * See {@link Steam#getUser(String, Consumer, Consumer)}
-	 */
+	@SerializedName("loccityid")
+	private int cityId;
 
-	public SteamUser(Steam steam, JSONObject object) {
-		this.steam = steam;
-
-		id = object.optLong("steamid");
-		state = PersonaState.values()[object.getInt("personastate")];
-		lastLogOff = Instant.ofEpochSecond(object.getInt("lastlogoff"));
-		hasProfile = object.getInt("profilestate") == 1;
-		avatar = object.getString("avatarfull");
-		url = object.getString("profileurl");
-		username = object.getString("personaname");
-		isPrivate = object.getInt("communityvisibilitystate") == 1;
-
-		// Information is only available if the profile isn't private.
-		if (!isPrivate) {
-			realName = object.optString("realname", null);
-			primaryClan = object.getString("primaryclanid");
-			timeCreated = Instant.ofEpochSecond(object.getInt("timecreated"));
-			countryCode = object.optString("loccountrycode", null);
-			stateCode = object.optString("locstatecode", null);
-		}
-	}
+	private GameSession session;
 
 	public Steam getSteam() {
 		return steam;
+	}
+
+	public void setSteam(Steam steam) {
+		this.steam = steam;
 	}
 
 	/**
@@ -168,10 +147,6 @@ public class SteamUser {
 
 	public long getId() {
 		return id;
-	}
-
-	public boolean hasProfile() {
-		return hasProfile;
 	}
 
 	/**
@@ -184,19 +159,19 @@ public class SteamUser {
 	}
 
 	/**
-	 * @return	The last time the user was logged on.
-	 */
-
-	public Instant getLastLogOff() {
-		return lastLogOff;
-	}
-
-	/**
 	 * @return	Return the Url to their steam profile.
 	 */
 
-	public String getProfileURL() {
+	public String getProfileUrl() {
 		return url;
+	}
+
+	public String getAvatarLow() {
+		return avatarLow;
+	}
+
+	public String getAvatarMedium() {
+		return avatarMedium;
 	}
 
 	/**
@@ -204,10 +179,9 @@ public class SteamUser {
 	 * 			If the user hasn't configured an avatar, this will be the default ? avatar.
 	 */
 
-	public String getAvatar() {
-		return avatar;
+	public String getAvatarHigh() {
+		return avatarHigh;
 	}
-
 
 	/**
 	 * @return	The users personal state/status. Eg, Online, Offline,
@@ -216,54 +190,6 @@ public class SteamUser {
 
 	public PersonaState getPersonaState() {
 		return state;
-	}
-
-	/**
-	 * @return	Returns the real name of the user.
-	 * 			Possible null; if userprofile is private.
-	 */
-
-	public String getRealName() {
-		return realName;
-	}
-
-	/**
-	 * @return	Returns the id for the users primary clan.
-	 * 			Possible null; if userprofile is private.
-	 */
-
-	public String getPrimaryClanId() {
-		return primaryClan;
-	}
-
-	/**
-	 * @return	The date and time the users profile was created
-	 * 			in UNIX time.
-	 * 			Possible null; if userprofile is private.
-	 */
-
-	public Instant getTimeCreated() {
-		return timeCreated;
-	}
-
-	/**
-	 * @return	Returns country code of the user.
-	 * 			Possible null; if userprofile is private or
-	 * 			simply not set by the user.
-	 */
-
-	public String getCountryCode() {
-		return countryCode;
-	}
-
-	/**
-	 * @return	The users state of residence.
-	 * 			Possible null; if userprofile is private or
-	 * 			simply not set by the user.
-	 */
-
-	public String getStateCode() {
-		return stateCode;
 	}
 
 	/**
@@ -276,7 +202,47 @@ public class SteamUser {
 		return isPrivate;
 	}
 
-	public void getLibrary(Consumer<List<SteamGame>> success, Consumer<IOException> failure) {
-		steam.getLibrary(this, success, failure);
+	public boolean hasProfile() {
+		return hasProfile;
+	}
+
+	public Date getLastLogOff() {
+		return lastLogOff;
+	}
+
+	public boolean canComment() {
+		return canComment;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public long getPrimaryClan() {
+		return primaryClan;
+	}
+
+	public Date getTimeCreated() {
+		return timeCreated;
+	}
+
+	public Country getCountry() {
+		return countryCode;
+	}
+
+	public String getStateCode() {
+		return stateCode;
+	}
+
+	public int getCityId() {
+		return cityId;
+	}
+
+	public GameSession getSession() {
+		return session;
+	}
+
+	public void setSession(GameSession session) {
+		this.session = session;
 	}
 }

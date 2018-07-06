@@ -1,85 +1,84 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.osu.data.MapGenre;
-import com.elypia.elypiai.osu.data.MapLanguage;
-import com.elypia.elypiai.osu.data.MapStatus;
-import com.elypia.elypiai.osu.data.OsuMode;
-import org.json.JSONObject;
+import com.elypia.elypiai.osu.data.*;
+import com.elypia.elypiai.utils.gson.deserializers.*;
+import com.google.gson.annotations.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class BeatMap {
 
 	private static final String PREVIEW_FORMAT = "https://b.ppy.sh/preview/%d.mp3";
 
+	@SerializedName("approved")
 	private MapStatus status;
-	private MapGenre genre;
-	private MapLanguage language;
-	private OsuMode mode;
-	private Collection<String> tags;
-	private String approved_date;
-	private String last_update;
+
+	@SerializedName("approved_date")
+	private Date approvedDate;
+
+	@SerializedName("last_update")
+	private Date lastUpdated;
+
+	@SerializedName("artist")
 	private String artist;
+
+	@SerializedName("beatmap_id")
 	private int id;
+
+	@SerializedName("beatmapset_id")
 	private int setId;
+
+	@SerializedName("bpm")
 	private int bpm;
+
+	@SerializedName("creator")
 	private String creator;
-	private double difficultyrating;
-	private double diff_size;
-	private double difficulty;
-	private double diff_approach;
-	private double diff_drain;
+
+	@SerializedName("hit_length")
 	private int hit_length;
+
+	@SerializedName("source")
+	@JsonAdapter(StringEmptyIsNullDeserializer.class)
 	private String source;
+
+	@SerializedName("genre_id")
+	private MapGenre genre;
+
+	@SerializedName("language_id")
+	private MapLanguage language;
+
+	@SerializedName("title")
 	private String title;
-	private int total_length;
+
+	@SerializedName("total_length")
+	private int totalLength;
+
+	@SerializedName("version")
 	private String version;
-	private String file_md5;
-	private int favourite_count;
+
+	@SerializedName("file_md5")
+	private String fileMd5;
+
+	@SerializedName("mode")
+	private OsuMode mode;
+
+	@SerializedName("tags")
+	@JsonAdapter(SpaceDelimitedStringDeserializer.class)
+	private List<String> tags;
+
+	@SerializedName("favourite_count")
+	private int favouriteCount;
+
+	@SerializedName("playcount")
 	private int playcount;
+
+	@SerializedName("passcount")
 	private int passcount;
-	private int max_combo;
-	private String previewUrl;
 
-	public BeatMap(JSONObject object) {
-		tags = new ArrayList<>();
+	@SerializedName("max_combo")
+	private int maxCombo;
 
-		genre = MapGenre.getById(object.optInt("genre_id"));
-		status = MapStatus.getById(object.optInt("approved"));
-		language = MapLanguage.getById(object.optInt("language_id"));
-		mode = OsuMode.getById(object.optInt("mode"));
-		difficultyrating = object.optDouble("difficultyrating");
-		bpm = object.optInt("bpm");
-		favourite_count = object.optInt("favourite_count");
-		playcount = object.optInt("playcount");
-		passcount = object.optInt("passcount");
-		max_combo = object.optInt("max_combo");
-		diff_size = object.optDouble("diff_size");
-		difficulty = object.optDouble("diff_overall");
-		diff_approach = object.optDouble("diff_approach");
-		diff_drain = object.optDouble("diff_drain");
-		hit_length = object.optInt("hit_length");
-		total_length = object.optInt("total_length");
-		approved_date = object.optString("approved_date", null);
-		last_update = object.getString("last_update");
-		artist = object.getString("artist");
-		id = object.optInt("beatmap_id");
-		setId = object.optInt("beatmapset_id");
-		creator = object.getString("creator");
-		source = object.getString("source");
-		title = object.getString("title");
-		version	= object.getString("version");
-		file_md5 = object.getString("file_md5");
-		previewUrl = String.format(PREVIEW_FORMAT, setId);
-
-		String[] strings = object.getString("tags").split("\\s+");
-
-		for (String string : strings) {
-			if (!string.isEmpty())
-				tags.add(string);
-		}
-	}
+	private MapDifficulty difficulty;
 
 	/**
 	 * @return	The maps current status.
@@ -96,8 +95,8 @@ public class BeatMap {
 	 * @return 	Date the map was approved.
 	 */
 
-	public String getApprovedDate() {
-		return approved_date;
+	public Date getApprovedDate() {
+		return approvedDate;
 	}
 
 	/**
@@ -107,8 +106,8 @@ public class BeatMap {
 	 * @return 	Date the map was last updated.
 	 */
 
-	public String getLastUpdate() {
-		return last_update;
+	public Date getLastUpdate() {
+		return lastUpdated;
 	}
 
 	/**
@@ -151,45 +150,12 @@ public class BeatMap {
 		return creator;
 	}
 
-	/**
-	 * @return 	A numerical representation of the beatmap
-	 * 			difficulty, unrounded.
-	 */
-
-	public double getDiffRating() {
-		return difficultyrating;
-	}
-
-	/**
-	 * @return 	The circle size (CS) for the beatmap.
-	 */
-
-	public double getCircleSize() {
-		return diff_size;
-	}
-
-	/**
-	 * @return 	The overall difficulty (OD) of the beatmap.
-	 */
-
-	public double getDifficulty() {
+	public MapDifficulty getDifficulty() {
 		return difficulty;
 	}
 
-	/**
-	 * @return 	The appraoch rate (AR) of the beatmap.
-	 */
-
-	public double getApproachRate() {
-		return diff_approach;
-	}
-
-	/**
-	 * @return 	The health drain (HR) of the beatmap.
-	 */
-
-	public double getHealthDrain() {
-		return diff_drain;
+	public void setDifficulty(MapDifficulty difficulty) {
+		this.difficulty = difficulty;
 	}
 
 	/**
@@ -231,7 +197,7 @@ public class BeatMap {
 	 */
 
 	public int getTotalLength() {
-		return total_length;
+		return totalLength;
 	}
 
 	/**
@@ -242,8 +208,8 @@ public class BeatMap {
 		return version;
 	}
 
-	public String getFileMD5() {
-		return file_md5;
+	public String getFileMd5() {
+		return fileMd5;
 	}
 
 	/**
@@ -258,7 +224,7 @@ public class BeatMap {
 	 * @return	Tags associated with this beatmap.
 	 */
 
-	public Collection<String> getTags() {
+	public List<String> getTags() {
 		return tags;
 	}
 
@@ -266,8 +232,8 @@ public class BeatMap {
 	 * @return	Number of times this beatmap was favourtied.
 	 */
 
-	public int getFavCount() {
-		return favourite_count;
+	public int getFavouriteCount() {
+		return favouriteCount;
 	}
 
 	/**
@@ -292,7 +258,7 @@ public class BeatMap {
 	 */
 
 	public int getMaxCombo() {
-		return max_combo;
+		return maxCombo;
 	}
 
 	/**
@@ -300,6 +266,6 @@ public class BeatMap {
 	 */
 
 	public String getPreviewUrl() {
-		return previewUrl;
+		return String.format(PREVIEW_FORMAT, setId);
 	}
 }

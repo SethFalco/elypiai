@@ -1,25 +1,28 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.osu.data.OsuMode;
-import com.elypia.elypiai.utils.okhttp.Request;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.elypia.elypiai.osu.data.*;
+import com.elypia.elypiai.osu.deserializers.*;
+import com.elypia.elypiai.osu.impl.IOsuService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import okhttp3.*;
+import retrofit2.Call;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.function.Consumer;
+import java.util.*;
 
 public class Osu {
 
-	public static final String USER_ENDPOINT = "https://osu.ppy.sh/api/get_user";
-	public static final String BEATMAP_ENDPOINT = "https://osu.ppy.sh/api/get_beatmaps";
-	public static final String RECENT_PLAY_ENDPOINT = "https://osu.ppy.sh/api/get_user_recent";
+	public static final String OSU_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+	private static final String BASE_URL = "https://osu.ppy.sh/api/";
 
 	private final String API_KEY;
 
-	private Collection<OsuUser> cache;
+	private IOsuService service;
+	private Collection<OsuPlayer> cache;
 
 	/**
 	 * Creates an OSU object for making calls to the osu API.
@@ -30,23 +33,30 @@ public class Osu {
 	 */
 
 	public Osu(String apiKey) {
-		API_KEY = apiKey;
-		cache = new ArrayList<>();
+		this(BASE_URL, apiKey);
 	}
 
-	/**
-	 * Calls the OSU API for the osuplayer by username.
-	 *
-	 * @param 	username	The players username.
-	 * @param	mode		The gamemode to view data for.
-	 */
+	public Osu(String baseUrl, String apiKey) {
+		API_KEY = apiKey;
+		cache = new ArrayList<>();
 
-	public void getUser(String username, OsuMode mode, Consumer<OsuUser> success, Consumer<IOException> failure) {
-		Request req = new Request(USER_ENDPOINT);
-		req.addParam("u", username);
-		req.addParam("type", "string");
+		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+			Request request = chain.request();
+			HttpUrl url = request.url().newBuilder().addQueryParameter("k", apiKey).build();
+			request = request.newBuilder().url(url).build();
+			return chain.proceed(request);
+		}).build();
 
-		getUser(mode, req, success, failure);
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setDateFormat(OSU_DATE_FORMAT);
+		gsonBuilder.registerTypeAdapter(OsuPlayer.class, new OsuPlayerDeserializer());
+		gsonBuilder.registerTypeAdapter(OsuMatch.class, new OsuMatchDeserializer());
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<BeatMap>>(){}.getType(), new BeatMapDeserializer());
+
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+
+		service = retrofitBuilder.client(client).build().create(IOsuService.class);
 	}
 
 	/**
@@ -56,29 +66,24 @@ public class Osu {
 	 * @param	mode	The gamemode to view data for.
 	 */
 
-	public void getUser(int id, OsuMode mode, Consumer<OsuUser> success, Consumer<IOException> failure) {
-		Request req = new Request(USER_ENDPOINT);
-		req.addParam("u", id);
-		req.addParam("type", "is");
-
-		getUser(mode, req, success, failure);
+	public RestAction<OsuPlayer> getPlayer(int id, OsuMode mode, int days) {
+		return getPlayer(String.valueOf(id), OsuId.USER_ID, mode, days);
 	}
 
-	private void getUser(OsuMode mode, Request req, Consumer<OsuUser> success, Consumer<IOException> failure) {
-		req.addParam("k", API_KEY);
-		req.addParam("m", mode.getId());
+	/**
+	 * Calls the OSU API for the osuplayer by username.
+	 *
+	 * @param 	username	The players username.
+	 * @param	mode		The gamemode to view data for.
+	 */
 
-		req.get(result -> {
-			JSONArray array = result.asJSONArray();
-			OsuUser user = null;
+	public RestAction<OsuPlayer> getPlayer(String username, OsuMode mode, int days) {
+		return getPlayer(username, OsuId.USERNAME, mode, days);
+	}
 
-			if (array.length() > 0) {
-				JSONObject userObject = array.getJSONObject(0);
-				user = new OsuUser(mode, userObject);
-			}
-
-			success.accept(user);
-		}, failure);
+	public RestAction<OsuPlayer> getPlayer(String username, OsuId type, OsuMode mode, int days) {
+		Call<OsuPlayer> call = service.getPlayer(username, type.getType(), mode.getId(), days);
+		return new RestAction<>(call);
 	}
 
 	/**
@@ -87,45 +92,30 @@ public class Osu {
 	 * @param	id	The id of the beatmap to search grab.
 	 */
 
-	public void getBeatMap(String id, int limit, Consumer<BeatMap> success, Consumer<IOException> failure) {
-		Objects.requireNonNull(id);
-
-		if (limit < 1)
-			throw new IllegalArgumentException("Limit can not be lower than 1.");
-
-		Request req = new Request(BEATMAP_ENDPOINT);
-		req.addParam("k", API_KEY);
-		req.addParam("b", id);
-		req.addParam("limit", limit);
-
-		req.get(result -> {
-			JSONArray array = result.asJSONArray();
-			JSONObject object = array.getJSONObject(0);
-			BeatMap map = new BeatMap(object);
-
-			success.accept(map);
-		}, failure);
+	public RestAction<List<BeatMap>> getBeatMaps(int id, OsuMode mode, int limit) {
+		Call<List<BeatMap>> call = service.getBeatMaps(id, mode.getId(), limit);
+		return new RestAction<>(call);
 	}
 
-	public void getRecentPlays(OsuUser user, int limit, Consumer<Collection<RecentPlay>> success, Consumer<IOException> failure) {
-		Request req = new Request(BEATMAP_ENDPOINT);
-		req.addParam("k", API_KEY);
-		req.addParam("u", user.getId());
-		req.addParam("limit", limit);
-		req.addParam("type", "id");
+	public RestAction<List<RecentPlay>> getRecentPlays(int id, OsuMode mode, int limit) {
+		return getRecentPlays(String.valueOf(id), OsuId.USER_ID, mode, limit);
+	}
 
-		req.get(result -> {
-			Collection<RecentPlay> plays = new ArrayList<>();
-			JSONArray array = result.asJSONArray();
+	public RestAction<List<RecentPlay>> getRecentPlays(String id, OsuMode mode, int limit) {
+		return getRecentPlays(id, OsuId.USERNAME, mode, limit);
+	}
 
-			for (int i = 0; i < array.length(); i++) {
-				JSONObject object = array.getJSONObject(i);
+	public RestAction<List<RecentPlay>> getRecentPlays(String id, OsuId type, OsuMode mode, int limit) {
+		Call<List<RecentPlay>> call = service.getRecentPlays(id, type.getType(), mode.getId(), limit);
+		return new RestAction<>(call);
+	}
 
-				RecentPlay play = new RecentPlay(object);
-				plays.add(play);
-			}
+	public RestAction<OsuMatch> getMatch(int id) {
+		Call<OsuMatch> call = service.getMatch(id);
+		return new RestAction<>(call);
+	}
 
-			success.accept(plays);
-		}, failure);
+	public String getApiKey() {
+		return API_KEY;
 	}
 }

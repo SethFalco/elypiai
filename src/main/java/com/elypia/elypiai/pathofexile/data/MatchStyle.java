@@ -1,20 +1,27 @@
 package com.elypia.elypiai.pathofexile.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum MatchStyle {
 
+	@SerializedName("Swiss")
 	SWISS("Swiss"),
+
+	@SerializedName("Arena")
 	ARENA("Arena"),
+
+	@SerializedName("Blitz")
 	BLITZ("Blitz");
 
-	private String apiName;
+	private final String NAME;
 
-	MatchStyle(String apiName) {
-		this.apiName = apiName;
+	MatchStyle(String name) {
+		NAME = name;
 	}
 
-	public static MatchStyle getTypeByApiName(String apiName) {
+	public static MatchStyle get(String name) {
 		for (MatchStyle style : MatchStyle.values()) {
-			if (style.apiName.equals(apiName))
+			if (style.NAME.equals(name))
 				return style;
 		}
 

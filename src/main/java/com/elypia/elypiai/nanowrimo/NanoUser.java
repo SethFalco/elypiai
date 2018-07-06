@@ -1,32 +1,27 @@
 package com.elypia.elypiai.nanowrimo;
 
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(namespace = "", name = "wc")
 public class NanoUser {
 
-	private static String PROFILE_URL = "https://nanowrimo.org/participants/";
+	private static final String PROFILE_URL = "https://nanowrimo.org/participants/%s";
 
+	@XmlElement(name = "uname")
 	private String username;
+
+	@XmlElement(name = "user_wordcount")
 	private int wordCount;
+
+	@XmlElement(name = "uid")
 	private int id;
+
+	@XmlElement(name = "winner")
 	private boolean winner;
-	private String profileUrl;
+
+	@XmlElement(name = "error")
 	private String error;
-
-	public NanoUser(Document document) {
-		Elements elements = document.getElementsByTag("error");
-
-		if (elements.size() > 0) {
-			error = elements.first().text();
-		} else {
-			username = document.getElementsByTag("uname").text();
-			profileUrl = PROFILE_URL + username.replace(" ", "-");
-			wordCount = Integer.parseInt(document.getElementsByTag("user_wordcount").first().text());
-			id = Integer.parseInt(document.getElementsByTag("uid").first().text());
-			winner = Boolean.parseBoolean(document.getElementsByTag("winner").first().text());
-		}
-	}
 
 	public String getUsername() {
 		return username;
@@ -44,8 +39,8 @@ public class NanoUser {
 		return winner;
 	}
 
-	public String getProfileUrl() {
-		return profileUrl;
+	public String getUrl() {
+		return String.format(PROFILE_URL, username.replace(" ", "-"));
 	}
 
 	public String getError() {

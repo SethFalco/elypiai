@@ -1,24 +1,39 @@
 package com.elypia.elypiai.pathofexile.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum AscendancyType {
 
+	@SerializedName("Dualist")
 	DUELIST("Dualist"),
+
+	@SerializedName("Shadow")
 	SHADOW("Shadow"),
+
+	@SerializedName("Marauder")
 	MARAUDER("Marauder"),
+
+	@SerializedName("Witch")
 	WITCH("Witch"),
+
+	@SerializedName("Ranger")
 	RANGER("Ranger"),
+
+	@SerializedName("Templar")
 	TEMPLAR("Templar"),
+
+	@SerializedName("Scion")
 	SCION("Scion");
 
-	private String apiName;
+	private final String NAME;
 
-	AscendancyType(String apiName) {
-		this.apiName = apiName;
+	AscendancyType(String name) {
+		NAME = name;
 	}
 
-	public static AscendancyType getByName(String apiName) {
+	public static AscendancyType get(String name) {
 		for (AscendancyType ascendancy : values()) {
-			if (ascendancy.apiName.equals(apiName))
+			if (ascendancy.NAME.equals(name))
 				return ascendancy;
 		}
 

@@ -1,31 +1,29 @@
 package com.elypia.elypiai.runescape;
 
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Activity {
 
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MMM-yyyy HH:mm");
-
-    private RuneScape runescape;
-
+    @SerializedName("date")
     private Date date;
+
+    @SerializedName("details")
     private String details;
+
+    @SerializedName("text")
     private String text;
 
-    public Activity(RuneScape runescape, JSONObject object) {
-        this.runescape = runescape;
+    public Date getDate() {
+        return date;
+    }
 
-        try {
-            date = FORMAT.parse(object.getString("date"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public String getDetails() {
+        return details;
+    }
 
-        details = object.getString("details");
-        text = object.getString("text");
+    public String getText() {
+        return text;
     }
 }

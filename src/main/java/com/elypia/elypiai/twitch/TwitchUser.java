@@ -1,47 +1,56 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.data.*;
-import org.json.JSONObject;
+import com.elypia.elypiai.utils.gson.deserializers.StringEmptyIsNullDeserializer;
+import com.google.gson.annotations.*;
 
 public class TwitchUser {
 
-	private static final String TWITCH_URL = "https://www.twitch.tv/";
+	private static final String TWITCH_URL = "https://www.twitch.tv/%s";
 
 	private Twitch twitch;
 
+	@SerializedName("id")
 	private int id;
+
+	@SerializedName("login")
 	private String username;
+
+	@SerializedName("display_name")
 	private String displayName;
+
+	@SerializedName("type")
 	private AccountType type;
+
+	@SerializedName("broadcaster_type")
 	private BroadcasterType broadcasterType;
+
+	@SerializedName("description")
+	@JsonAdapter(StringEmptyIsNullDeserializer.class)
 	private String description;
+
+	@SerializedName("profile_image_url")
 	private String avatarUrl;
+
+	@SerializedName("offline_image_url")
 	private String offlineImageUrl;
+
+	@SerializedName("view_count")
 	private int viewCount;
-	private String url;
 
-	public TwitchUser(Twitch twitch, JSONObject object) {
-		this.twitch = twitch;
+	public StreamPaginator getStream() {
+		TwitchQuery query = new TwitchQuery();
+		query.addUserId(id);
 
-		id = object.optInt("id");
-		username = object.getString("login");
-		displayName = object.getString("display_name");
-		type = AccountType.getByName(object.getString("type"));
-		broadcasterType = BroadcasterType.getByName(object.getString("broadcaster_type"));
-		avatarUrl = object.getString("profile_image_url");
-		offlineImageUrl = object.getString("offline_image_url");
-		viewCount = object.optInt("view_count");
-
-		description = object.getString("description");
-
-		if (description.isEmpty())
-			description = null;
-
-		url = TWITCH_URL + username;
+		return new StreamPaginator(twitch, query, 1);
 	}
 
 	public Twitch getTwitch() {
 		return twitch;
+	}
+
+	public void setTwitch(Twitch twitch) {
+		this.twitch = twitch;
 	}
 
 	/**
@@ -103,6 +112,6 @@ public class TwitchUser {
 	}
 
 	public String getUrl() {
-		return url;
+		return String.format(TWITCH_URL, displayName);
 	}
 }

@@ -1,36 +1,40 @@
 package com.elypia.elypiai.sightengine;
 
 import com.elypia.elypiai.sightengine.data.SightEngineErrorType;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
 public class SightEngineError {
 
-    private SightEngine engine;
-
+    @SerializedName("type")
     private SightEngineErrorType type;
+
+    @SerializedName("code")
     private int code;
+
+    @SerializedName("message")
     private String message;
-
-    public SightEngineError(SightEngine engine, JSONObject object) {
-        this.engine = engine;
-        type = SightEngineErrorType.getByName(object.getString("type"));
-        code = object.getInt("code");
-        message = object.getString("message");
-    }
-
-    public SightEngine getSightEngine() {
-        return engine;
-    }
 
     public SightEngineErrorType getType() {
         return type;
+    }
+
+    public void setType(SightEngineErrorType type) {
+        this.type = type;
     }
 
     public int getCode() {
         return code;
     }
 
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

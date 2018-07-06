@@ -1,12 +1,17 @@
 package com.elypia.elypiai.pathofexile;
 
-import com.google.gson.*;
+import com.elypia.elypiai.pathofexile.data.*;
+import com.elypia.elypiai.pathofexile.deserializers.LadderEntryDeserializer;
+import com.elypia.elypiai.pathofexile.impl.PathOfExileService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.util.Collection;
+import java.util.List;
 
-public class PathOfExile implements PathOfExileService {
+public class PathOfExile {
 
 	private static final String BASE_URL = "http://api.pathofexile.com/";
 
@@ -18,24 +23,46 @@ public class PathOfExile implements PathOfExileService {
 
 	public PathOfExile(String baseUrl) {
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		Gson gson = gsonBuilder.create();
+		gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ssZ");
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<LadderEntry>>(){}.getType(), new LadderEntryDeserializer());
 
-		Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create(gson)).build();
-		service = retrofit.create(PathOfExileService.class);
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+
+		service = retrofitBuilder.build().create(PathOfExileService.class);
 	}
 
-	@Override
-	public Call<StashTabs> getStashTabs() {
-		return service.getStashTabs();
+	public RestAction<StashTabs> getStashTabs(String cursor) {
+		Call<StashTabs> call = service.getStashTabs(cursor);
+		return new RestAction<>(call);
 	}
 
-	@Override
-	public Call<Collection<LeagueRule>> getLeagueRules() {
-		return service.getLeagueRules();
+	public RestAction<List<League>> getLeagues(LeagueType type, boolean compact, int limit) {
+		return getLeagues("", type, compact, limit);
 	}
 
-	@Override
-	public Call<LeagueRule> getLeagueRule(int id) {
-		return service.getLeagueRule(id);
+	public RestAction<List<League>> getLeagues(String id, LeagueType type, boolean compact, int limit) {
+		Call<List<League>> call = service.getLeagues(id, type.name(), compact ? 1 : 0, limit, 0);
+		return new RestAction<>(call);
+	}
+
+	public RestAction<LeagueRule> getRule(int id) {
+		Call<LeagueRule> call = service.getLeagueRule(id);
+		return new RestAction<>(call);
+	}
+
+	public RestAction<List<LeagueRule>> getRules() {
+		Call<List<LeagueRule>> call = service.getLeagueRules();
+		return new RestAction<>(call);
+	}
+
+	public RestAction<List<LadderEntry>> getLeagueLadder(String id, int limit, int offset, LadderType type) {
+		Call<List<LadderEntry>> call = service.getLeagueLadder(id, limit, offset);
+		return new RestAction<>(call);
+	}
+
+	public RestAction<List<PvPMatch>> getPvPMatches(String id) {
+		Call<List<PvPMatch>> call = service.getPvPMatches(id);
+		return new RestAction<>(call);
 	}
 }

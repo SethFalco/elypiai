@@ -1,22 +1,25 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.utils.RetrofitUtils;
-import retrofit2.Call;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.elypia.elypiai.yugioh.impl.*;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-public class YuGiOh implements YuGiOhService {
+public class YuGiOh {
 
-    private static final String BASE_URL = "http://yugiohprices.com/";
+    private static final String BASE_URL = "http://yugiohprices.com/api/";
 
-    private YuGiOhService service;
-
-	public static final String IMAGE = "http://yugiohprices.com/api/card_image/%s";
+    private IYuGiOhService service;
 
 	public YuGiOh() {
-        this(BASE_URL);
+		this(BASE_URL);
     }
 
     public YuGiOh(String baseUrl) {
-        service = RetrofitUtils.createService(baseUrl, YuGiOhService.class);
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
+
+		service = retrofitBuilder.build().create(IYuGiOhService.class);
     }
 
 	/**
@@ -28,8 +31,8 @@ public class YuGiOh implements YuGiOhService {
 	 * @param name The YuGiOh card to search up, must match card name exactly.
 	 */
 
-    @Override
-    public Call<YuGiOhCard> getCard(String name) {
-        return service.getCard(name);
-    }
+    public RestAction<? extends TradingCard> getCard(String name) {
+		Call<? extends TradingCard> call = service.getCard(name);
+		return new RestAction<>(call);
+	}
 }

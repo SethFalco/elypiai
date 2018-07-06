@@ -1,35 +1,22 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
-public class StashTabs extends PoEObject {
+public class StashTabs {
 
-	private String nextChangeId;
-	private Collection<Stash> stashes;
+	@SerializedName("next_change_id")
+	private String cursor;
 
-	public StashTabs(PathOfExile poe, JSONObject object) {
-		super(poe);
-		stashes = new ArrayList<>();
+	@SerializedName("stashes")
+	private List<Stash> stashes;
 
-		this.nextChangeId = object.getString("next_change_id");
-
-		JSONArray stashesArray = object.getJSONArray("stashes");
-
-		for (int i = 0; i < stashesArray.length(); i++) {
-			Stash stash = new Stash(poe, stashesArray.getJSONObject(i));
-			stashes.add(stash);
-		}
+	public String getCursor() {
+		return cursor;
 	}
 
-	public String getNextChangeId() {
-		return nextChangeId;
-	}
-
-	public Collection<Stash> getStashes() {
+	public List<Stash> getStashes() {
 		return stashes;
 	}
 }

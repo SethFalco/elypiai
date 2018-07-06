@@ -1,29 +1,29 @@
 package com.elypia.elypiai.osu.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum OsuMode {
 
+	@SerializedName("0")
 	OSU(0),
+
+	@SerializedName("1")
 	TAIKO(1),
+
+	@SerializedName("2")
 	CATCH_THE_BEAT(2),
+
+	@SerializedName("3")
 	MANIA(3);
 
-	private int id;
+	private final int ID;
 
 	OsuMode(int id) {
-		this.id = id;
+		ID = id;
 	}
 
 	public int getId() {
-		return id;
-	}
-
-	public static OsuMode getById(int id) {
-		for (OsuMode mode : values()) {
-			if (mode.getId() == id)
-				return mode;
-		}
-
-		return null;
+		return ID;
 	}
 }
 

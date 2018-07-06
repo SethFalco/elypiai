@@ -1,32 +1,22 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-import java.time.Instant;
+import java.util.Date;
 
-public class CompactLeague extends PoEObject {
+public class CompactLeague {
 
+	@SerializedName("id")
 	private String id;
+
+	@SerializedName("url")
 	private String url;
-	private Instant startAt;
-	private Instant endAt;
 
-	public CompactLeague(PathOfExile poe, JSONObject object) {
-		super(poe);
+	@SerializedName("startAt")
+	private Date startAt;
 
-		id = object.getString("id");
-		url = object.optString("url", null);
-
-		String startDate = object.optString("startAt", null);
-
-		if (startDate != null)
-			startAt = Instant.parse(startDate);
-
-		String endDate = object.optString("endAt", null);
-
-		if (endDate != null)
-			endAt = Instant.parse(endDate);
-	}
+	@SerializedName("endAt")
+	private Date endAt;
 
 	public String getId() {
 		return id;
@@ -36,11 +26,11 @@ public class CompactLeague extends PoEObject {
 		return url;
 	}
 
-	public Instant getStartDate() {
+	public Date getStartDate() {
 		return startAt;
 	}
 
-	public Instant getEndDate() {
+	public Date getEndDate() {
 		return endAt;
 	}
 }

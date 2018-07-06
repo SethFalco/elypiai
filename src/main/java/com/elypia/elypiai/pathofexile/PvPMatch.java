@@ -1,45 +1,48 @@
 package com.elypia.elypiai.pathofexile;
 
 import com.elypia.elypiai.pathofexile.data.MatchStyle;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-import java.time.Instant;
+import java.util.Date;
 
-public class PvPMatch extends PoEObject {
+public class PvPMatch {
 
+	@SerializedName("id")
 	private String id;
-	private Instant startAt;
-	private Instant endAt;
+
+	@SerializedName("startAt")
+	private Date startAt;
+
+	@SerializedName("endAt")
+	private Date endAt;
+
+	@SerializedName("url")
 	private String url;
+
+	@SerializedName("description")
 	private String description;
+
+	@SerializedName("glickoRatings")
 	private boolean glickoRatings;
+
+	@SerializedName("pvp")
 	private boolean pvp;
+
+	@SerializedName("style")
 	private MatchStyle style;
-	private Instant registerAt;
 
-	public PvPMatch(PathOfExile poe, JSONObject object) {
-		super(poe);
-
-		id = object.getString("id");
-		startAt = Instant.parse(object.getString("startAt"));
-		endAt = Instant.parse(object.getString("endAt"));
-		url = object.getString("url");
-		description = object.getString("description");
-		glickoRatings = object.getBoolean("glickoRatings");
-		pvp = object.getBoolean("pvp");
-		style = MatchStyle.getTypeByApiName(object.getString("style"));
-		registerAt = Instant.parse(object.getString("registerAt"));
-	}
+	@SerializedName("registerAt")
+	private Date registerAt;
 
 	public String getId() {
 		return id;
 	}
 
-	public Instant getStartDate() {
+	public Date getStartDate() {
 		return startAt;
 	}
 
-	public Instant getEndDate() {
+	public Date getEndDate() {
 		return endAt;
 	}
 
@@ -63,7 +66,7 @@ public class PvPMatch extends PoEObject {
 		return style;
 	}
 
-	public Instant getRegisterDate() {
+	public Date getRegisterDate() {
 		return registerAt;
 	}
 }

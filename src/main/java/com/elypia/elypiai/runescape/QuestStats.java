@@ -1,43 +1,37 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.QuestStatus;
-import org.json.JSONObject;
+import com.elypia.elypiai.runescape.data.*;
+import com.google.gson.annotations.SerializedName;
 
-public class QuestStats {
+public class QuestStats implements Comparable<QuestStats> {
 
-	private RuneScape runescape;
-
+	@SerializedName("title")
 	private String title;
-	private QuestStatus status;
-	private int difficulty;
+
+	@SerializedName("status")
+	private CompletionStatus status;
+
+	@SerializedName("difficulty")
+	private QuestDifficulty difficulty;
+
+	@SerializedName("members")
 	private boolean members;
+
+	@SerializedName("questPoints")
 	private int questPoints;
+
+	@SerializedName("userEligible")
 	private boolean userEligible;
-
-	public QuestStats(RuneScape runescape, JSONObject object) {
-		this.runescape = runescape;
-
-		title = object.getString("title");
-		status = QuestStatus.valueOf(object.getString("status"));
-		difficulty = object.getInt("difficulty");
-		members = object.getBoolean("members");
-		questPoints = object.getInt("questPoints");
-		userEligible = object.getBoolean("userEligible");
-	}
-
-	public RuneScape getRuneScape() {
-		return runescape;
-	}
 
 	public String getTitle() {
 		return title;
 	}
 
-	public QuestStatus getStatus() {
+	public CompletionStatus getStatus() {
 		return status;
 	}
 
-	public int getDifficulty() {
+	public QuestDifficulty getDifficulty() {
 		return difficulty;
 	}
 
@@ -51,5 +45,10 @@ public class QuestStats {
 
 	public boolean isUserEligible() {
 		return userEligible;
+	}
+
+	@Override
+	public int compareTo(QuestStats o) {
+		return title.compareToIgnoreCase(o.title);
 	}
 }

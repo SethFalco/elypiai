@@ -1,128 +1,98 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.elypia.elypiai.pathofexile.deserializers.StashItemNameDeserializer;
+import com.elypia.elypiai.utils.gson.deserializers.JoinedStringDeserializer;
+import com.google.gson.annotations.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
-public class StashItem extends PoEObject {
+public class StashItem {
 
+	@SerializedName("verified")
 	private boolean verified;
+
+	@SerializedName("w")
 	private int width;
+
+	@SerializedName("h")
 	private int height;
+
+	@SerializedName("ilvl")
 	private int level;
+
+	@SerializedName("icon")
 	private String icon;
+
+	@SerializedName("support")
+	private boolean support;
+
+	@SerializedName("league")
 	private String league;
+
+	@SerializedName("id")
 	private String id;
-	private Collection<ItemSocket> sockets;
+
+	@SerializedName("sockets")
+	private List<ItemSocket> sockets;
+
+	@SerializedName("name")
+	@JsonAdapter(StashItemNameDeserializer.class)
 	private String name;
+
+	@SerializedName("typeLine")
 	private String typeLine;
+
+	@SerializedName("identified")
 	private boolean identified;
+
+	@SerializedName("corrupted")
 	private boolean corrupted;
+
+	@SerializedName("note")
 	private String note;
-	private Collection<ItemProperty> properties;
-	private Collection<AdditionalProperty> additionalProperties;
-	private Collection<ItemProperty> requirements;
-	private String setDescription;
-	private int talismanTier;
-	private String[] implicitMods;
-	private String[] explicitMods;
-	private String description;
+
+	@SerializedName("properties")
+	private List<ItemProperty> properties;
+
+	@SerializedName("additionalProperties")
+	private List<AdditionalProperty> additionalProperties;
+
+	@SerializedName("requirements")
+	private List<ItemProperty> requirements;
+
+	@SerializedName("nextLevelRequirements")
+	private List<ItemProperty> nextLevelRequirements;
+
+	@SerializedName("utilityMods")
+	private List<String> utilityMods;
+
+	@SerializedName("setDescrText")
+	private String setDescriptionText;
+
+	@SerializedName("explicitMods")
+	private List<String> explicitMods;
+
+	@SerializedName("descrText")
+	private String decriptionText;
+
+	@SerializedName("flavourText")
+	@JsonAdapter(JoinedStringDeserializer.class)
 	private String flavourText;
+
+	@SerializedName("frameType")
 	private int frameType;
-	// Category isn't done yet
+
+	@SerializedName("x")
 	private int xPos;
+
+	@SerializedName("y")
 	private int yPos;
+
+	@SerializedName("inventoryId")
 	private String inventoryId;
-	private Collection<ItemSocket> socketedItems;
 
-	public StashItem(PathOfExile poe, JSONObject object) {
-		super(poe);
-		properties = new ArrayList<>();
-		requirements = new ArrayList<>();
-
-		verified = object.getBoolean("verified");
-		width = object.getInt("w");
-		height = object.getInt("h");
-		level = object.getInt("ilvl");
-		icon = object.getString("icon");
-		league = object.getString("league");
-		id = object.getString("id");
-		name = object.getString("name").replaceAll("^(?:<<set:[MS]+>>)+", "");
-		typeLine = object.getString("typeLine");
-		identified = object.getBoolean("identified");
-		setDescription = object.optString("secDescrText");
-		description = object.optString("descrText");
-		note = object.optString("note", null);
-		frameType = object.getInt("frameType");
-		xPos = object.getInt("x");
-		yPos = object.getInt("y");
-		inventoryId = object.getString("inventoryId");
-
-		JSONArray socketsArray = object.optJSONArray("sockets");
-
-		if (socketsArray != null) {
-			sockets = new ArrayList<>();
-
-			for (int i = 0; i < socketsArray.length(); i++) {
-				ItemSocket socket = new ItemSocket(poe, socketsArray.getJSONObject(i));
-				sockets.add(socket);
-			}
-		}
-
-		if (object.has("properties")) {
-			JSONArray propertiesArray = object.getJSONArray("properties");
-
-			for (int i = 0; i < propertiesArray.length(); i++) {
-				ItemProperty property = new ItemProperty(poe, propertiesArray.getJSONObject(i));
-				properties.add(property);
-			}
-		}
-
-
-		JSONArray additionalPropertiesArray = object.optJSONArray("additionalProperties");
-
-		if (additionalPropertiesArray != null) {
-			additionalProperties = new ArrayList<>();
-
-			for (int i = 0; i < additionalPropertiesArray.length(); i++) {
-				AdditionalProperty property = new AdditionalProperty(poe, additionalPropertiesArray.getJSONObject(i));
-				additionalProperties.add(property);
-			}
-		}
-
-		JSONArray requirementsArray = object.optJSONArray("requirements");
-
-		if (requirementsArray != null) {
-			for (int i = 0; i < requirementsArray.length(); i++) {
-				ItemProperty property = new ItemProperty(poe, requirementsArray.getJSONObject(i));
-				requirements.add(property);
-			}
-		}
-
-		JSONArray socketedItemsArray = object.optJSONArray("socketedItems");
-
-		if (socketedItemsArray != null) {
-			socketedItems = new ArrayList<>();
-
-			for (int i = 0; i < socketedItemsArray.length(); i++) {
-				ItemSocket socket = new ItemSocket(poe, socketedItemsArray.getJSONObject(i));
-				socketedItems.add(socket);
-			}
-		}
-
-		JSONArray flavourTextArray = object.optJSONArray("flavourText");
-
-		if (flavourTextArray != null) {
-			StringBuilder builder = new StringBuilder();
-
-			for (int i = 0; i < flavourTextArray.length(); i++)
-				builder.append(flavourTextArray.getString(i));
-
-			flavourText = builder.toString();
-		}
-	}
+	@SerializedName("socketedItems")
+	private List<ItemSocket> socketedItems;
 
 	public boolean isVerified() {
 		return verified;
@@ -188,24 +158,8 @@ public class StashItem extends PoEObject {
 		return requirements;
 	}
 
-	public String getSetDescription() {
-		return setDescription;
-	}
-
-	public int getTalismanTier() {
-		return talismanTier;
-	}
-
-	public String[] getImplicitMods() {
-		return implicitMods;
-	}
-
-	public String[] getExplicitMods() {
+	public List<String> getExplicitMods() {
 		return explicitMods;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public String getFlavourText() {

@@ -1,16 +1,11 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
 public class AdditionalProperty extends ItemProperty {
 
+	@SerializedName("progress")
 	private double progress;
-
-	public AdditionalProperty(PathOfExile poe, JSONObject object) {
-		super(poe, object);
-
-		progress = object.getDouble("progress");
-	}
 
 	public double getProgress() {
 		return progress;

@@ -1,19 +1,24 @@
 package com.elypia.elypiai.twitch;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.function.Consumer;
+import com.elypia.elypiai.twitch.deserializers.*;
+import com.elypia.elypiai.twitch.impl.ITwitchService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import okhttp3.*;
+import retrofit2.Call;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.util.*;
 
 public class Twitch {
 
-	private final String API_KEY;
+	private static final String BASE_URL = "https://api.twitch.tv/helix/";
 
-	private TwitchRequester requester;
+	private final String CLIENT_ID;
 
-	private Map<Integer, TwitchUser> users;
+	private ITwitchService service;
 
 	/**
 	 * Allows calls to the Twitch API, can call various information
@@ -23,24 +28,52 @@ public class Twitch {
 	 */
 
 	public Twitch(String apiKey) {
-		API_KEY = Objects.requireNonNull(apiKey);
-		requester = new TwitchRequester(this);
-		users = new HashMap<>();
+		this(BASE_URL, apiKey);
 	}
 
-	public void getUsers(String[] usernames, Consumer<Collection<TwitchUser>> success, Consumer<IOException> failure) {
-		requester.getUsers(usernames, success, failure);
+	public Twitch(String baseUrl, String apiKey) {
+		Objects.requireNonNull(baseUrl);
+		CLIENT_ID = Objects.requireNonNull(apiKey);
+
+		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+			Request.Builder builder = chain.request().newBuilder();
+			Request request = builder.header("Client-Id", CLIENT_ID).build();
+			return chain.proceed(request);
+		}).build();
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ssZ");
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<TwitchUser>>(){}.getType(), new TwitchUserDeserializer(this));
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<TwitchStream>>(){}.getType(), new TwitchStreamDeserializer());
+
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+
+		service = retrofitBuilder.client(client).build().create(ITwitchService.class);
 	}
 
-	public String getApiKey() {
-		return API_KEY;
+	public RestAction<List<TwitchUser>> getUsers(TwitchQuery query) {
+		if (!query.getGameIds().isEmpty())
+			throw new IllegalArgumentException("Can not query users by game id.");
+		if (query.getTotal() > 100)
+			throw new IllegalArgumentException("Can not query over 100 entities at once.");
+
+		Call<List<TwitchUser>> call = service.getUsers(query.getUserIds(), query.getUsernames());
+		return new RestAction<>(call);
 	}
 
-	/**
-	 * @return 	All cached TWitch users.
-	 */
+	public StreamPaginator getStreams(TwitchQuery query, int limit) {
+		if (limit > 100)
+			throw new IllegalArgumentException("Can not retrieve more than 100 users per page.");
 
-	public Collection<TwitchUser> getTwitchUsers() {
-		return users.values();
+		return new StreamPaginator(this, query, limit);
+	}
+
+	public String getClientId() {
+		return CLIENT_ID;
+	}
+
+	protected ITwitchService getService() {
+		return service;
 	}
 }

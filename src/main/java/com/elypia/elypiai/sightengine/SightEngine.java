@@ -1,19 +1,22 @@
 package com.elypia.elypiai.sightengine;
 
-import com.elypia.elypiai.utils.okhttp.Request;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.function.Consumer;
+import com.elypia.elypiai.sightengine.deserializers.NudityScoreDeserializer;
+import com.elypia.elypiai.sightengine.impl.ISightEngineService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import okhttp3.*;
+import retrofit2.Call;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SightEngine {
 
-	public static final String NUDITY_ENDPOINT = "https://api.sightengine.com/1.0/nudity.json";
-
-	private SightEngine engine;
+	private static final String BASE_URL = "https://api.sightengine.com/1.0/";
 
 	private final String USER;
 	private final String SECRET;
+
+	private ISightEngineService service;
 
 	/**
 	 * The SigthtEngine API can detect nudity in images
@@ -25,9 +28,26 @@ public class SightEngine {
 	 */
 
 	public SightEngine(String user, String secret) {
-		engine = this;
+		this(BASE_URL, user, secret);
+	}
+
+	public SightEngine(String baseUrl, String user, String secret) {
 		USER = user;
 		SECRET = secret;
+
+		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+			Request request = chain.request();
+			HttpUrl url = request.url().newBuilder().addQueryParameter("api_user", user).addQueryParameter("api_secret", secret).build();
+			request = request.newBuilder().url(url).build();
+			return chain.proceed(request);
+		}).build();
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(NudityScore.class, new NudityScoreDeserializer());
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+
+		service = retrofitBuilder.client(client).build().create(ISightEngineService.class);
 	}
 
 	/**
@@ -39,17 +59,16 @@ public class SightEngine {
 	 * @param 	url		The url of an image to check for.
 	 */
 
-	public void nudityDetection(String url, Consumer<NudityResponse> success, Consumer<IOException> failure) {
-		Request req = new Request(NUDITY_ENDPOINT);
-		req.addParam("api_user", USER);
-		req.addParam("api_secret", SECRET);
-		req.addParam("url", url);
+	public RestAction<NudityScore> detectNudity(String url) {
+		Call<NudityScore> call = service.detectNudity(url);
+		return new RestAction<>(call);
+	}
 
-		req.get(result -> {
-			JSONObject object = result.asJSONObject();
-			NudityResponse nudity = new NudityResponse(engine, object);
+	public String getUser() {
+		return USER;
+	}
 
-			success.accept(nudity);
-		}, failure);
+	public String getSecret() {
+		return SECRET;
 	}
 }

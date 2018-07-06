@@ -1,24 +1,18 @@
 package com.elypia.elypiai.twitch.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum AccountType {
 
-    STAFF("staff"),
-    ADMIN("admin"),
-    GLOBAL_MOD("global_mod"),
-    USER("");
+    @SerializedName("staff")
+    STAFF,
 
-    private String apiName;
+    @SerializedName("admin")
+    ADMIN,
 
-    AccountType(String apiName) {
-        this.apiName = apiName;
-    }
+    @SerializedName("global_mod")
+    GLOBAL_MOD,
 
-    public static AccountType getByName(String apiName) {
-        for (AccountType type : values()) {
-            if (type.apiName.equals(apiName))
-                return type;
-        }
-
-        return null;
-    }
+    @SerializedName("")
+    USER
 }

@@ -1,23 +1,15 @@
 package com.elypia.elypiai.twitch.data;
 
+import com.google.gson.annotations.SerializedName;
+
 public enum BroadcasterType {
 
-    PARTNER("partner"),
-    AFFILIATE("affiliate"),
-    NORMAL("");
+    @SerializedName("partner")
+    PARTNER,
 
-    private String apiName;
+    @SerializedName("affiliate")
+    AFFILIATE,
 
-    BroadcasterType(String apiName) {
-        this.apiName = apiName;
-    }
-
-    public static BroadcasterType getByName(String apiName) {
-        for (BroadcasterType type : values()) {
-            if (type.apiName.equals(apiName))
-                return type;
-        }
-
-        return null;
-    }
+    @SerializedName("")
+    NORMAL
 }

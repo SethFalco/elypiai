@@ -10,8 +10,29 @@ public final class ElyScript {
 	private static final Pattern RANDOM = Pattern.compile("\\((?:\\{(?<format>(?:\\\\}|[^}])*)})?\\{(?<min>\\d+)?\\.*(?<max>\\d+)?}\\)");
 	private static final Pattern SPLITTER = Pattern.compile("\\|");
 
-	public String compile(String markup) {
-		return select(markup);
+	private final String MARKUP;
+
+	private Queue<Integer> queue;
+
+	public ElyScript(String markup) {
+		this(markup, null);
+	}
+
+	public ElyScript(String markup, Queue<Integer> queue) {
+		MARKUP = markup;
+		this.queue = queue;
+	}
+
+	public String compile(String...args) {
+		String compiled = compile();
+		return String.format(compiled, args);
+	}
+
+	public String compile() {
+		String markup = random(MARKUP);
+		markup = select(markup);
+
+		return markup;
 	}
 
 	private String select(String markup) {
@@ -62,19 +83,37 @@ public final class ElyScript {
 		return markup;
 	}
 
-	private String random() {
+	private String random(String markup) {
+        Random rand = ThreadLocalRandom.current();
+        Matcher matcher;
 
+        while ((matcher = RANDOM.matcher(markup)).find()) {
+            do {
+                String format = matcher.group("format");
+                String min = matcher.group("min");
+                String max = matcher.group("max");
+                Number minValue = 0;
+                Number maxValue = 0;
+                Number total = 0;
 
-// TO-DO: Zero padding
-//				if (random != null) {
-//		String randmin = matcher.group("randmin");
-//		int min = Integer.parseInt(randmin);
-//
-//		String randmax = matcher.group("randmax");
-//		int max = Integer.parseInt(randmax);
-//
-//		int value = rand.nextInt(max - min) + min;
-//
-//		markup = markup.replace(matcher.group(), String.valueOf(value));
+                if (min != null)
+                    minValue = Integer.parseInt(min);
+
+                if (max != null)
+                    maxValue = Integer.parseInt(max);
+
+                if (format != null && format.contains("f"))
+					total = Math.random() * (maxValue.intValue() - minValue.intValue()) + minValue.intValue();
+                else
+                    total = rand.nextInt(maxValue.intValue() - minValue.intValue() + 1) + minValue.intValue();
+
+                if (format != null)
+                    markup = markup.replace(matcher.group(), String.format(format, total));
+                else
+                    markup = markup.replace(matcher.group(), String.valueOf((int)total));
+            } while (matcher.find());
+        }
+
+        return markup;
 	}
 }

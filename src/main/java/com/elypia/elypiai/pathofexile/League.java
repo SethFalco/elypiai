@@ -1,46 +1,28 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
 
 public class League extends CompactLeague {
 
+	@SerializedName("description")
 	private String description;
-	private Instant registerAt;
+
+	@SerializedName("registerAt")
+	private Date registerAt;
+
+	@SerializedName("event")
 	private boolean event;
-	private Collection<LeagueRule> rules;
 
-	public League(PathOfExile poe, JSONObject object) {
-		super(poe, object);
-		rules = new ArrayList<>();
-
-		description = object.getString("description");
-		event = object.getBoolean("event");
-
-		String registerDate = object.optString("registerAt", null);
-
-		if (registerDate != null)
-			registerAt = Instant.parse(registerDate);
-
-		JSONArray rulesArray = object.getJSONArray("rules");
-
-		for (int i = 0; i < rulesArray.length(); i++) {
-			JSONObject ruleObject = rulesArray.getJSONObject(i);
-			LeagueRule rule = new LeagueRule(poe, ruleObject);
-
-			rules.add(rule);
-		}
-	}
+	@SerializedName("rules")
+	private List<LeagueRule> rules;
 
 	public String getDescription() {
 		return description;
 	}
 
-	public Instant getRegisterAt() {
+	public Date getRegisterAt() {
 		return registerAt;
 	}
 
@@ -48,7 +30,7 @@ public class League extends CompactLeague {
 		return event;
 	}
 
-	public Collection<LeagueRule> getRules() {
+	public List<LeagueRule> getRules() {
 		return rules;
 	}
 }

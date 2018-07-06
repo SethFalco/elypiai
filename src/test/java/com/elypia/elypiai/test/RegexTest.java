@@ -280,18 +280,4 @@ public class RegexTest {
         assertNotNull(string);
         assertNotNull(matcher);
     }
-
-    @Test
-    public void compileTogetherTest() {
-        Pattern pattern = Regex.compileTogether(
-            Regex.MSGML_ARGS,
-            Regex.MSGML_IGNORE,
-            Regex.MSGML_OPTIONAL,
-            Regex.MSGML_RANDOM,
-            Regex.MSGML_REPEAT,
-            Regex.MSGML_SELECT
-        );
-
-        assertNotNull(pattern);
-    }
 }

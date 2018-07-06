@@ -1,37 +1,28 @@
 package com.elypia.elypiai.pathofexile;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
-public class ItemProperty extends PoEObject {
+public class ItemProperty {
 
+	@SerializedName("name")
 	private String name;
-	private String value;
+
+//	@SerializedName("values")
+//	private List<String> value;
+
+	@SerializedName("displayMode")
 	private int displayMode;
+
+	@SerializedName("type")
 	private int type;
-
-	public ItemProperty(PathOfExile poe, JSONObject object) {
-		super(poe);
-
-		name = object.getString("name");
-		displayMode = object.getInt("displayMode");
-		type = object.optInt("type", Integer.MIN_VALUE);
-
-		JSONArray valuesArray = object.getJSONArray("values");
-
-		if (valuesArray.length() > 0) {
-			JSONArray valueArray = valuesArray.getJSONArray(0);
-			value = valueArray.getString(0);
-		}
-	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String getValues() {
-		return value;
-	}
+//	public List<String> getValues() {
+//		return value;
+//	}
 
 	public int getDisplayMode() {
 		return displayMode;

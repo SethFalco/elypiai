@@ -1,16 +1,24 @@
 package com.elypia.elypiai.steam;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Consumer;
+import com.elypia.elypiai.steam.deserializers.*;
+import com.elypia.elypiai.steam.impl.ISteamService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import okhttp3.*;
+import retrofit2.Call;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.util.*;
 
 public class Steam {
 
+	private final static String BASE_URL = "http://api.steampowered.com/";
+
 	private final String API_KEY;
 
-	private SteamRequester requester;
+	private ISteamService service;
 
 	/**
 	 * The Steam API allows calls to basic Steam information
@@ -21,39 +29,46 @@ public class Steam {
 	 */
 
 	public Steam(String apiKey) {
+		this(BASE_URL, apiKey);
+	}
+
+	public Steam(String baseUrl, String apiKey) {
 		API_KEY = Objects.requireNonNull(apiKey);
-		requester = new SteamRequester(this);
+
+		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+			Request request = chain.request();
+			HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
+			request = request.newBuilder().url(url).build();
+			return chain.proceed(request);
+		}).build();
+
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer());
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer());
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
+
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+
+		service = retrofitBuilder.client(client).build().create(ISteamService.class);
 	}
 
-	public void getUser(String username, Consumer<SteamUser> success, Consumer<IOException> failure) {
-		getIdFromVanityUrl(username, result -> {
-			getUser(result, success, failure);
-		}, failure);
+	public RestAction<SteamSearch> getIdFromVanityUrl(String vanityUrl) {
+		Call<SteamSearch> call = service.getSteamId(vanityUrl);
+		return new RestAction<>(call);
 	}
 
-	/**
-	 * The Steam API allows calls to basic Steam information
-	 * as well as user information such as query the inventory
-	 * or obtaining stats.
-	 *
-	 * @param id Username of the player to get.
-	 */
+	public RestAction<List<SteamUser>> getUsers(long...ids) {
+		if (ids == null || ids.length == 0)
+			throw new IllegalArgumentException("Must specify at least one user to fetch.");
 
-	public void getUser(long id, Consumer<SteamUser> success, Consumer<IOException> failure) {
-		long[] ids = new long[] {id};
+		StringJoiner joiner = new StringJoiner(",");
 
-		getUsers(ids, result -> {
-			SteamUser user = null;
+		for (long id : ids)
+			joiner.add(String.valueOf(id));
 
-			if (!result.isEmpty())
-				user = result.iterator().next();
-
-			success.accept(user);
-		}, failure);
-	}
-
-	public void getUsers(long[] ids, Consumer<Collection<SteamUser>> success, Consumer<IOException> failure) {
-		requester.getUsers(ids, success, failure);
+		Call<List<SteamUser>> call = service.getUsers(joiner.toString());
+		return new RestAction<>(call);
 	}
 
 	/**
@@ -64,17 +79,20 @@ public class Steam {
 	 * (or has played for free games) sorted from RecentPlaytime, and
 	 * when RecentPlaytime is 0, from TotalPlaytime.
 	 *
-	 * @param user Steam user to obtain library for.
-	 * @param success What to do with the result.
-	 * @param failure What to do in case of failure, eg timeout.
+	 * @param id Steam user to obtain library for.
 	 */
 
-	public void getLibrary(SteamUser user, Consumer<List<SteamGame>> success, Consumer<IOException> failure) {
-		requester.getLibrary(user, success, failure);
+	public RestAction<List<SteamGame>> getLibrary(long id) {
+		return getLibrary(id, true);
 	}
 
-	public void getIdFromVanityUrl(String vanityUrl, Consumer<Long> success, Consumer<IOException> failure) {
-		requester.getIdFromVanityUrl(vanityUrl, success, failure);
+	public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames) {
+		return getLibrary(id, freeGames, true);
+	}
+
+	public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames, boolean info) {
+		Call<List<SteamGame>> call = service.getLibrary(id, freeGames ? 1 : 0, info ? 1 : 0);
+		return new RestAction<>(call);
 	}
 
 	public String getApiKey() {

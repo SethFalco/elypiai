@@ -1,7 +1,6 @@
 package com.elypia.elypiai.steam;
 
-import com.elypia.elypiai.utils.ElyUtils;
-import org.json.JSONObject;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,38 +9,29 @@ public class SteamGame implements Comparable<SteamGame> {
 	private static final String GAME_URL_FORMAT = "http://store.steampowered.com/app/%d";
 	private static final String IMAGE_FORMAT = "http://media.steampowered.com/steamcommunity/public/images/apps/%s/%s.jpg";
 
-	private Steam steam;
-	private SteamUser user;
-
+	@SerializedName("appid")
 	private int id;
-	private String url;
+
+	@SerializedName("name")
 	private String name;
+
+	@SerializedName("playtime_forever")
 	private long totalPlaytime;
+
+	@SerializedName("playtime_2weeks")
 	private long recentPlaytime;
+
+	@SerializedName("img_icon_url")
 	private String imgIconUrl;
+
+	@SerializedName("img_logo_url")
 	private String imgLogoUrl;
+
+	@SerializedName("has_community_visible_stats")
 	private boolean statsVisible;
 
-	public SteamGame(SteamUser user, JSONObject game) {
-		steam = user.getSteam();
-		this.user = user;
-
-		id = game.getInt("appid");
-		url = String.format(GAME_URL_FORMAT, id);
-		name = game.getString("name");
-		totalPlaytime = game.optLong("playtime_forever", 0);
-		recentPlaytime = game.optLong("playtime_2weeks", 0);
-		imgIconUrl = String.format(IMAGE_FORMAT, id, game.getString("img_icon_url"));
-		imgLogoUrl = String.format(IMAGE_FORMAT, id, game.getString("img_logo_url"));
-		statsVisible = game.optBoolean("has_community_visible_stats", false);
-	}
-
-	public Steam getSteam() {
-		return steam;
-	}
-
-	public SteamUser getUser() {
-		return user;
+	public String getUrl() {
+		return String.format(GAME_URL_FORMAT, id);
 	}
 
 	/**
@@ -50,10 +40,6 @@ public class SteamGame implements Comparable<SteamGame> {
 
 	public int getId() {
 		return id;
-	}
-
-	public String getGameUrl() {
-		return url;
 	}
 
 	/**
@@ -69,7 +55,7 @@ public class SteamGame implements Comparable<SteamGame> {
 	}
 
 	public long getTotalPlaytime(TimeUnit unit) {
-		return ElyUtils.convertTime(totalPlaytime, TimeUnit.MINUTES, unit);
+		return unit.convert(totalPlaytime, TimeUnit.MINUTES);
 	}
 
 	public long getRecentPlaytime() {
@@ -77,15 +63,15 @@ public class SteamGame implements Comparable<SteamGame> {
 	}
 
 	public long getRecentPlaytime(TimeUnit unit) {
-		return ElyUtils.convertTime(recentPlaytime, TimeUnit.MINUTES, unit);
+		return unit.convert(recentPlaytime, TimeUnit.MINUTES);
 	}
 
 	public String getIconUrl() {
-		return imgIconUrl;
+		return String.format(IMAGE_FORMAT, id, imgIconUrl);
 	}
 
 	public String getLogoUrl() {
-		return imgLogoUrl;
+		return String.format(IMAGE_FORMAT, id, imgLogoUrl);
 	}
 
 	public boolean isStatsVisible() {
