@@ -2,11 +2,9 @@ package com.elypia.elypiai.utils;
 
 public class TableBuilder {
 
-    // Table data
     private String[] headings;
     private Object[][] data;
 
-    // Table config
     private boolean asciiOnly;
     private boolean numbersAlignRight;
 

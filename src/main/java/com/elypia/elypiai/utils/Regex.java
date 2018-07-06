@@ -19,15 +19,6 @@ public enum Regex {
 	OSU_API_KEY("[a-f\\d]{40}"),
 	YANDEX_API_KEY("trnsl(?:\\.\\d){2}\\.\\d{8}T\\d{6}Z\\.[a-z\\d]{16}\\.[a-z\\d]{40}"),
 
-	// Message Parser Regexes
-
-	MSGML_ARGS("(?i)(?:^\\{\\?(?<args>[A-Z|]*)\\})"),
-	MSGML_SELECT("(?:(?<!\\!)\\{(?<select>[^?][^\\{\\}\\[\\]]+)\\}(?!\\[))"),
-	MSGML_REPEAT("(?:\\{(?<repeat>[^\\{\\}]+)\\}\\[(?<repmin>\\d+)\\,(?<repmax>\\d+)\\])"),
-	MSGML_OPTIONAL("(?:\\{(?<optional>[^\\{\\}]+)\\}\\[\\?\\])"),
-	MSGML_RANDOM("(?:\\{\\[(?<random>(?<randmin>\\d+)-(?<randmax>\\d+)))\\]\\}"),
-	MSGML_IGNORE("(?:\\!\\{(?<ignore>[^\\{\\}]+)\\})"),
-
 	// Markdown Regexes
 
 	MD_HEADING("(?:^|[\\n\\r])(?<header>\\#{1,6})\\ (?<text>.+)"),
@@ -48,28 +39,28 @@ public enum Regex {
 	),
 	EMAIL_ADDRESS("(?i)(?<username>[\\w-]+)@(?<domain>[A-Z\\d-]+(?<tld>(?:\\.[A-Z]{2,}){1,2}))");
 
-	private String regex;
-	private Pattern pattern;
+	private final String REGEX;
+	private final Pattern PATTERN;
 
 	Regex(String regex) {
-		this.regex = regex;
-		pattern = Pattern.compile(regex);
-	}
-
-	public Pattern getPattern() {
-		return pattern;
-	}
-
-	public Matcher getMatcher(String matchAgainst) {
-		return pattern.matcher(matchAgainst);
-	}
-
-	public boolean matches(String matchAgainst) {
-		return matchAgainst.matches(regex);
+		REGEX = regex;
+		PATTERN = Pattern.compile(regex);
 	}
 
 	public String getRegex() {
-		return regex;
+		return REGEX;
+	}
+
+	public Pattern getPattern() {
+		return PATTERN;
+	}
+
+	public Matcher getMatcher(String matchAgainst) {
+		return PATTERN.matcher(matchAgainst);
+	}
+
+	public boolean matches(String matchAgainst) {
+		return PATTERN.matcher(matchAgainst).matches();
 	}
 
 	public static Pattern compileTogether(Regex... regexes) {

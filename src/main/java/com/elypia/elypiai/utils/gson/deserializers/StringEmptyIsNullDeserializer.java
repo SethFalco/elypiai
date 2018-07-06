@@ -1,10 +1,10 @@
-package com.elypia.elypiai.utils.okhttp.deserializers;
+package com.elypia.elypiai.utils.gson.deserializers;
 
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
 
-public class StringDeserializer implements JsonDeserializer<String> {
+public class StringEmptyIsNullDeserializer implements JsonDeserializer<String> {
 
     @Override
     public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

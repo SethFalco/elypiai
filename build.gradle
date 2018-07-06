@@ -114,10 +114,12 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-jaxb:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    implementation group: 'com.sparkjava', name: 'spark-core', version: '2.7.2'
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
     implementation group: 'commons-codec', name: 'commons-codec', version: '1.11'
 
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.10.0'

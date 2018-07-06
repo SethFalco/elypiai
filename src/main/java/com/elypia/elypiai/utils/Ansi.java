@@ -60,14 +60,14 @@ public enum Ansi {
 	BACKGROUND_WHITE(47),
 	BACKGROUND_DEFAULT(49);
 
-	private int code;
+	private final int CODE;
 
 	Ansi(int code) {
-		this.code = code;
+		CODE = code;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("\u001B[%dm", code);
+		return String.format("\u001B[%dm", CODE);
 	}
 }

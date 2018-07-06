@@ -1,9 +1,10 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.elypia.elypiai.utils.ElyUtils;
+import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class UrbanResult {
@@ -14,13 +15,15 @@ public class UrbanResult {
 	@SerializedName("tags")
 	private Collection<String> tags;
 
-	private Collection<String> tagsDistinct;
-
 	@SerializedName("list")
 	private List<UrbanDefinition> definitions;
 
 	@SerializedName("sounds")
 	private List<String> sounds;
+
+	private UrbanResult() {
+
+	}
 
 	/**
 	 * @return	The top resulting definition that appears on UrbanDictionary for this search.
@@ -36,38 +39,8 @@ public class UrbanResult {
 	 */
 
 	public UrbanDefinition getDefinition(boolean random) {
-		int index = random ? ElyUtils.RANDOM.nextInt(definitions.size()) : 0;
+		int index = random ? ThreadLocalRandom.current().nextInt(definitions.size()) : 0;
 		return definitions.get(index);
-	}
-
-	/**
-	 * @return Tags with duplicates removed.
-	 */
-
-	public Collection<String> getTagsDistinct() {
-		if (tagsDistinct == null)
-			tagsDistinct = tags.stream().distinct().collect(Collectors.toList());
-
-		return tagsDistinct;
-	}
-
-	/**
-	 * @param amount The max number of sounds to return.
-	 * @return A randomised list of sounds.
-	 */
-
-	public Collection<String> getRandomSounds(int amount) {
-		if (sounds.size() <= amount)
-			return sounds;
-
-		List<String> randomSounds = new ArrayList<>();
-
-		for (int i = 0; i < amount; i++) {
-			int index = ElyUtils.RANDOM.nextInt(sounds.size());
-			randomSounds.add(sounds.get(index));
-		}
-
-		return randomSounds;
 	}
 
 	/**
@@ -78,10 +51,6 @@ public class UrbanResult {
 		return type;
 	}
 
-	public void setResultType(UrbanResultType type) {
-		this.type = type;
-	}
-
 	/**
 	 * @return	Tags deemed associated with the word defined.
 	 */
@@ -90,8 +59,12 @@ public class UrbanResult {
 		return tags;
 	}
 
-	public void setTags(Collection<String> tags) {
-		this.tags = tags;
+	/**
+	 * @return Tags with duplicates removed.
+	 */
+
+	public Collection<String> getTagsDistinct() {
+		return tags.stream().distinct().collect(Collectors.toList());
 	}
 
 	/**
@@ -99,11 +72,27 @@ public class UrbanResult {
 	 */
 
 	public List<String> getSounds() {
-		return sounds;
+		return Collections.unmodifiableList(sounds);
 	}
 
-	public void setSounds(List<String> sounds) {
-		this.sounds = sounds;
+	/**
+	 * @param amount The max number of sounds to return.
+	 * @return A randomised list of sounds.
+	 */
+
+	public Collection<String> getSounds(int amount) {
+		if (sounds.size() <= amount)
+			return sounds;
+
+		List<String> randomSounds = new ArrayList<>();
+
+		for (int i = 0; i < amount; i++) {
+
+			int index = ThreadLocalRandom.current().nextInt(sounds.size());
+			randomSounds.add(sounds.get(index));
+		}
+
+		return Collections.unmodifiableCollection(randomSounds);
 	}
 
 	/**
@@ -113,9 +102,5 @@ public class UrbanResult {
 
 	public List<UrbanDefinition> getDefinitions() {
 		return definitions;
-	}
-
-	public void setDefinitions(List<UrbanDefinition> definitions) {
-		this.definitions = definitions;
 	}
 }

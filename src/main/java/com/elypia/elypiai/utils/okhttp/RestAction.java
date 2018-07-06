@@ -1,25 +1,46 @@
 package com.elypia.elypiai.utils.okhttp;
 
+import com.elypia.elypiai.utils.okhttp.impl.AbstractRestAction;
+import retrofit2.*;
+import retrofit2.Response;
+
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public abstract class RestAction<T> {
+public class RestAction<T> extends AbstractRestAction<T> {
 
-    private static Consumer<IOException> defaultFailure = IOException::printStackTrace;
+    private Call<T> call;
 
-    public void queue() {
-        queue(null);
+    public RestAction(Call<T> call) {
+        this.call = call;
     }
 
-    public void queue(Consumer<T> success) {
-        queue(success, null);
+    @Override
+    public void queue(Consumer<T> success, Consumer<Throwable> ex) {
+        call.enqueue(new Callback<T>() {
+
+            @Override
+            public void onResponse(Call<T> call, Response<T> response) {
+                if (success != null)
+                    success.accept(response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<T> call, Throwable t) {
+                if (ex != null)
+                    ex.accept(t);
+            }
+        });
     }
 
-    public void queue(Consumer<T> success, Consumer<IOException> ex) {
-        
+    @Override
+    public T complete() throws IOException {
+        return call.execute().body();
     }
 
-    public T complete() {
-        return null;
+    @Override
+    public void cancel() {
+        call.cancel();
     }
 }
