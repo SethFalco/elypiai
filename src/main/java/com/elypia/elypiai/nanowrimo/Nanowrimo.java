@@ -29,13 +29,25 @@ public class Nanowrimo {
 	}
 
 	public RestAction<NanoUser> getUser(String name) {
-	    Call<NanoUser> call = service.getUser(name);
-	    return new RestAction<>(call);
+		return getUser(name, false);
     }
+
+	public RestAction<NanoUser> getUser(String name, boolean history) {
+		name = name.replace(" ", "-");
+		Call<NanoUser> call = (history) ? service.getUserHistory(name) : service.getUser(name);
+		return new RestAction<>(call);
+	}
 
 	public WordCountResponse setWordCount(String secret, String name, int wordCount) throws IOException {
 		secret = DigestUtils.sha1Hex(secret + name + wordCount);
 		Call<String> call = service.setWordCount(secret, name, wordCount);
-        return WordCountResponse.get(new RestAction<>(call).complete());
+		RestAction<String> action = new RestAction<>(call);
+		String result = action.complete();
+
+		// Until an event starts on there is documentation
+		if (result != null)
+			throw new RuntimeException("Seth! Come update this now that we get a positive result!");
+
+        return WordCountResponse.get(action.getErrorBody());
 	}
 }

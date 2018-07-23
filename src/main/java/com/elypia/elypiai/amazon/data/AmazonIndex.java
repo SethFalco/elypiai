@@ -45,13 +45,13 @@ public enum AmazonIndex {
     WINE("Wine"),
     WIRELESS("Wireless");
 
-    private String apiName;
+    private final String NAME;
 
-    AmazonIndex(String apiName) {
-        this.apiName = apiName;
+    AmazonIndex(String name) {
+        NAME = name;
     }
 
-    public String getApiName() {
-        return apiName;
+    public String getName() {
+        return NAME;
     }
 }

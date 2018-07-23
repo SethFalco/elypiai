@@ -1,8 +1,10 @@
 package com.elypia.elypiai.runescape;
 
+import com.elypia.elypiai.runescape.deserializers.QuestStatDeserializer;
 import com.elypia.elypiai.runescape.impl.IRuneScapeService;
 import com.elypia.elypiai.utils.okhttp.RestAction;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -23,6 +25,8 @@ public class RuneScape {
 		cache = new HashMap<>();
 
 		GsonBuilder gsonBuilder = new GsonBuilder().setDateFormat("dd-MMM-yyyy HH:mm");
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
+
 		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
 
@@ -36,8 +40,6 @@ public class RuneScape {
 	 * and the rest of the object will be effectively null.
 	 *
 	 * @param username The username of the player to get.
-	 * @param success What do to with the result.
-	 * @param failure What to do in case of failure, eg timeout.
 	 */
 
 	public RestAction<RuneScapeUser> getUser(String username) {
@@ -45,8 +47,8 @@ public class RuneScape {
 		return new RestAction<>(call);
 	}
 
-	public RestAction<Collection<QuestStats>> getQuestStatuses(String user) {
-		Call<Collection<QuestStats>> call = service.getQuestStats(user);
+	public RestAction<List<QuestStats>> getQuestStatuses(String user) {
+		Call<List<QuestStats>> call = service.getQuestStats(user);
 		return new RestAction<>(call);
 	}
 
@@ -60,7 +62,7 @@ public class RuneScape {
 
     /**
      * Convert XP to the level equivilent. <br>
-     * Exactly the same as calling {@link #convertXpToLevel(long, boolean)},
+     * Exactly the same as calling {@link #parseXpAsLevel(long, boolean)},
      * with parameter boolean as <strong>false</strong>.
      *
      * @param	xp      The xp to convert to level.
@@ -100,7 +102,7 @@ public class RuneScape {
      * Convert a level, or virtual level to the XP equivilent using
      * RuneScapes XP formula. <br>
      * Note: Returns -1 if the level is too high. <br>
-     * Exactly the same as calling {@link #convertLevelToXp(int, boolean)},
+     * Exactly the same as calling {@link #parseLevelAsXp(int, boolean)},
      * with parameter boolean as <strong>false</strong>.
      *
      * @param	level   The xp to convert to level.

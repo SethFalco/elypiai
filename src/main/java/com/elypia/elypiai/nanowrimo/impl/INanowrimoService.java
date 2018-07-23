@@ -11,11 +11,16 @@ public interface INanowrimoService {
         @Path("name") String name
     );
 
-    @FormUrlEncoded
+    @GET("wordcount_api/wc/{name}")
+    Call<NanoUser> getUserHistory(
+        @Path("name") String name
+    );
+
+    @Multipart
     @PUT("api/wordcount")
     Call<String> setWordCount(
-        @Field("hash") String hash,
-        @Field("name") String name,
-        @Field("wordcount") int wordcount
+        @Part("hash") String hash,
+        @Part("name") String name,
+        @Part("wordcount") int wordcount
     );
 }

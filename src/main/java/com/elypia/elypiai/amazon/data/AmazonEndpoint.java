@@ -4,18 +4,18 @@ import com.elypia.elypiai.amazon.AmazonItem;
 
 public enum AmazonEndpoint {
 
-	US(".com"),
-	BRAZIL(".com.br"),
-	CANADA(".ca"),
-	CHINA(".cn"),
-	GERMANY(".de"),
-	SPAIN(".es"),
-	FRANCE(".fr"),
-	INDIA(".in"),
-	ITALY(".it"),
-	JAPAN(".co.jp"),
-	MEXICO(".com.mx"),
-	UK(".co.uk");
+	US("com"),
+	BRAZIL("com.br"),
+	CANADA("ca"),
+	CHINA("cn"),
+	GERMANY("de"),
+	SPAIN("es"),
+	FRANCE("fr"),
+	INDIA("in"),
+	ITALY("it"),
+	JAPAN("co.jp"),
+	MEXICO("com.mx"),
+	UK("co.uk");
 
 	private final String TLD;
 
@@ -35,11 +35,15 @@ public enum AmazonEndpoint {
 	 */
 
 	public String getShoppingUrl() {
-		return String.format("https://amazon%s", TLD + "/");
+		return String.format("https://amazon.%s/", TLD);
+	}
+
+	public String getEndpoint() {
+		return "https://" + toString() + "/";
 	}
 
 	@Override
 	public String toString() {
-		return "webservices.amazon" + TLD;
+		return "webservices.amazon." + TLD;
 	}
 }

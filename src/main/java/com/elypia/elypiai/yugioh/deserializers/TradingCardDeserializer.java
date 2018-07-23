@@ -11,15 +11,18 @@ public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
 
     @Override
     public TradingCard deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        JsonObject object = json.getAsJsonObject().getAsJsonObject("data");
-        CardType type = context.deserialize(object.get("card_type"), CardType.class);
+        JsonObject object = json.getAsJsonObject();
+
+        if (object.get("status").getAsString().equals("fail"))
+            return null;
+
+        JsonObject data = object.getAsJsonObject("data");
+        CardType type = context.deserialize(data.get("card_type"), CardType.class);
 
         switch (type) {
-            case MONSTER: return context.deserialize(object, MonsterCard.class);
-            case SPELL: return context.deserialize(object, SpellCard.class);
-            case TRAP: return context.deserialize(object, TrapCard.class);
+            case MONSTER: return context.deserialize(data, MonsterCard.class);
+            case SPELL: return context.deserialize(data, SpellCard.class);
+            default: return context.deserialize(data, TrapCard.class);
         }
-
-        return null;
     }
 }

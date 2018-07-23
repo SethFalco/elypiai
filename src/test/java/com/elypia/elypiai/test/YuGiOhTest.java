@@ -2,6 +2,7 @@ package com.elypia.elypiai.test;
 
 import com.elypia.elypiai.yugioh.*;
 import com.elypia.elypiai.yugioh.data.*;
+import com.elypia.elypiai.yugioh.impl.TradingCard;
 import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
@@ -97,6 +98,14 @@ public class YuGiOhTest {
             () -> assertEquals(TrapProperty.NORMAL, card.getProperty()),
             () -> assertTrue(card.is(CardType.TRAP))
         );
+    }
+
+    @Test
+    public void parseInvalidCard() throws IOException {
+        server.enqueue(new MockResponse().setBody("{\"status\":\"fail\",\"message\":\"No cards matching this name were found in our database.\"}"));
+
+        TradingCard card = yugioh.getCard("CardThatDoesn'tExist").complete();
+        assertNull(card);
     }
 
     @Test

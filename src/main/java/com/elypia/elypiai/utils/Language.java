@@ -47,7 +47,7 @@ public enum Language {
     @SerializedName("cy")
     WELSH("Welsh", "CY"),
 
-    @SerializedName("da")
+    @SerializedName(value = "da", alternate = "dk")
     DANISH("Danish", "DA", DENMARK, FAROE_ISLANDS),
 
     @SerializedName("de")

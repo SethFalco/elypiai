@@ -4,6 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public enum Skill {
 
+	/**
+	 * This should only ever occur if a new skill is introduced
+	 * and Elypiai hasn't updated to include it yet.
+	 */
+
+	UNKNOWN(-1, "Unknown", false),
+
 	@SerializedName("0")
 	ATTACK(0, "Attack", false),
 
@@ -64,7 +71,7 @@ public enum Skill {
 	@SerializedName("19")
 	FARMING(19, "Farming", false),
 
-	@SerializedName("19")
+	@SerializedName("20")
 	RUNECRAFTING(20, "Runecrafting", false),
 
 	@SerializedName("21")

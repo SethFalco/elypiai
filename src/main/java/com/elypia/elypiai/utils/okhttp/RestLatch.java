@@ -1,7 +1,6 @@
 package com.elypia.elypiai.utils.okhttp;
 
 import com.elypia.elypiai.utils.okhttp.impl.AbstractRestAction;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.util.*;
@@ -73,7 +72,7 @@ public class RestLatch<T> extends AbstractRestAction<List<T>> implements Iterabl
 
     @Override
     public List<T> complete() throws IOException {
-        throw new NotImplementedException();
+        throw new IllegalStateException();
     }
 
     @Override

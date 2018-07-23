@@ -6,15 +6,9 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Objects;
+import java.nio.charset.*;
+import java.security.*;
+import java.util.*;
 
 public class RequestSigner {
 
@@ -33,31 +27,19 @@ public class RequestSigner {
 	}
 
 	protected String sign(AmazonEndpoint endpoint, Map<String, Object> queryParams) {
-		StringBuilder builder = new StringBuilder();
-		Iterator<Entry<String, Object>> iterator = queryParams.entrySet().iterator();
+		StringJoiner joiner = new StringJoiner("&");
 
-		while (iterator.hasNext()) {
-			Entry<String, Object> entry = iterator.next();
-			String key = urlEncode(entry.getKey());
-			Object value = urlEncode(entry.getValue());
+		queryParams.forEach((key, value) -> {
+			joiner.add(urlEncode(key) + "=" + urlEncode(value));
+		});
 
-			builder.append(String.format("%s=%s", key, value));
-
-			if (iterator.hasNext())
-				builder.append("&");
-		}
-
-		String toSign = String.format("GET\n%s\n%s\n%s", endpoint, URI, builder);
+		String toSign = String.format("GET\n%s\n%s\n%s", endpoint, URI, joiner);
 
 		byte[] hmac = mac.doFinal(toSign.getBytes(charset));
-		String signature = urlEncode(Base64.getEncoder().encodeToString(hmac));
-
-		return String.format("http://%s%s?%s&Signature=%s", endpoint, URI, builder, signature);
+		return urlEncode(Base64.getEncoder().encodeToString(hmac));
 	}
 
 	private <T> String urlEncode(T encode) {
-		Objects.requireNonNull(encode, "Can not encode a null value.");
-
 		String string = encode.toString();
 
 		try {

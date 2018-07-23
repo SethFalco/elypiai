@@ -146,7 +146,7 @@ public class Brainfuck {
                 return ++position;
 
             case '+':
-                cells.set(selectedCell, (byte) (cells.get(selectedCell) + 1));
+                cells.set(selectedCell, (byte)(cells.get(selectedCell) + 1));
                 return ++position;
 
             case '-':

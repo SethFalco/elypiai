@@ -4,7 +4,7 @@ import com.elypia.elypiai.runescape.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface IRuneScapeService {
 
@@ -12,5 +12,5 @@ public interface IRuneScapeService {
     Call<RuneScapeUser> getUser(@Query("user") String user);
 
     @GET("quests")
-    Call<Collection<QuestStats>> getQuestStats(@Query("user") String user);
+    Call<List<QuestStats>> getQuestStats(@Query("user") String user);
 }

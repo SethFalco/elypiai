@@ -1,22 +1,28 @@
 package com.elypia.elypiai.cleverbot;
 
-import com.elypia.elypiai.utils.okhttp.Request;
-import org.json.JSONObject;
+import com.elypia.elypiai.cleverbot.data.CleverTweak;
+import com.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
+import com.elypia.elypiai.cleverbot.impl.ICleverbotService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import okhttp3.*;
+import retrofit2.Call;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Consumer;
+import java.util.*;
 
 public class Cleverbot {
 
-	private static final String GET_REPLY_ENDPOINT = "https://www.cleverbot.com/getreply";
+	private static final String BASE_URL = "https://www.cleverbot.com/";
 
 	private final String API_KEY;
 
-	private Cleverbot cleverbot;
+	private ICleverbotService service;
 
-	private Map<String, CleverResponse> cache;
+	public Cleverbot(String apiKey) {
+		this(BASE_URL, apiKey);
+	}
 
 	/**
 	 * Creates the Cleverbot object in order to make requests
@@ -27,14 +33,27 @@ public class Cleverbot {
 	 * @see <a href="https://www.cleverbot.com/api/">cleverbot</a>
 	 */
 
-	public Cleverbot(String apiKey) {
-		cleverbot = this;
+	public Cleverbot(String baseUrl, String apiKey) {
 		API_KEY = apiKey;
-		cache = new HashMap<>();
+
+		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+			Request request = chain.request();
+			HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).addQueryParameter("wrapper", "Elypiai").build();
+			request = request.newBuilder().url(url).build();
+			return chain.proceed(request);
+		}).build();
+
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(CleverResponse.class, new CleverResponseDeserializer());
+
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(builder.create()));
+
+		service = retrofitBuilder.client(client).build().create(ICleverbotService.class);
 	}
 
-	public void say(String input, Consumer<CleverResponse> result, Consumer<IOException> failure) {
-		say(input, null, result, failure);
+	public RestAction<CleverResponse> say(String input) {
+		return say(input, null);
 	}
 
 	/**
@@ -47,41 +66,39 @@ public class Cleverbot {
 	 * @param input		The text to send to cleverbot.
 	 */
 
-	public void say(String input, String cs, Consumer<CleverResponse> success, Consumer<IOException> failure) {
-		Request req = new Request(GET_REPLY_ENDPOINT);
-		req.addParam("key", API_KEY);
-		req.addParam("wrapper", "Elypiai");
-		req.addParam("input", input);
-
-		if (cs != null)
-			req.addParam("cs", cs);
-
-		req.get(result -> {
-			JSONObject object = result.asJSONObject();
-			CleverResponse response = new CleverResponse(cleverbot, object);
-
-			success.accept(response);
-
-			if (cs != null)
-				cache.remove(cs);
-
-			cache.put(response.getCS(), response);
-		}, failure);
+	public RestAction<CleverResponse> say(String input, String cs) {
+		return say(input, cs, new HashMap<>());
 	}
 
-	public CleverResponse getCleverResponse(String cs) {
-		if (cs == null)
-			return null;
+	public RestAction<CleverResponse> say(String input, String cs, Map<CleverTweak, Integer> tweaks) {
+		Objects.requireNonNull(tweaks);
 
-		return cache.get(cs);
+		Integer wacky = tweaks.get(CleverTweak.WACKY);
+		Integer talkitive = tweaks.get(CleverTweak.TALKATIVE);
+		Integer attentive = tweaks.get(CleverTweak.ATTENTIVE);
+
+		Call<CleverResponse> call = service.say(input, cs, wacky, talkitive, attentive);
+		return new RestAction<>(call);
 	}
 
-	public String getHistory(String cs) {
-		CleverResponse response = getCleverResponse(cs);
+// ! Get around to creating some kind of cache policy for this.
+//	public CleverResponse getCleverResponse(String cs) {
+//		if (cs == null)
+//			return null;
+//
+//		return cache.get(cs);
+//	}
+//
+//	public String getHistory(String cs) {
+//		CleverResponse response = getCleverResponse(cs);
+//
+//		if (response != null)
+//			return response.getHistoryScript();
+//		else
+//			return null;
+//	}
 
-		if (response != null)
-			return response.getHistoryScript();
-		else
-			return null;
+	public String getApiKey() {
+		return API_KEY;
 	}
 }

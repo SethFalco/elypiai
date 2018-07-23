@@ -1,21 +1,21 @@
 package com.elypia.elypiai.amazon;
 
-import com.elypia.elypiai.amazon.data.AmazonEndpoint;
-import com.elypia.elypiai.amazon.data.AmazonGroup;
-import com.elypia.elypiai.amazon.data.AmazonIndex;
+import com.elypia.elypiai.amazon.data.*;
+import com.elypia.elypiai.amazon.impl.IAmazonService;
 import com.elypia.elypiai.utils.Regex;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import retrofit2.*;
+import retrofit2.converter.jaxb.JaxbConverterFactory;
 
-import java.io.IOException;
 import java.security.InvalidKeyException;
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Consumer;
+import java.time.Instant;
+import java.util.*;
 
 public class Amazon {
 
 	/**
 	 * The default {@link AmazonGroup}s to request Amazon for
-	 * while getting product data.
+	 * getting product data.
 	 */
 
 	private final static AmazonGroup[] DEFAULT_GROUPS = {
@@ -24,20 +24,12 @@ public class Amazon {
 		AmazonGroup.OFFERS
 	};
 
+	private IAmazonService service;
+	private RequestSigner signer;
+
 	private String accessKey;
 	private String secret;
 	private String id;
-
-	/**
-	 * Request helper to make API calls for us.
-	 */
-
-	private AmazonRequester requester;
-
-	/**
-	 *	The selected endpoint to make requests.
-	 */
-
 	private AmazonEndpoint endpoint;
 
 	/**
@@ -66,6 +58,10 @@ public class Amazon {
 	 */
 
 	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException {
+		this(endpoint.getEndpoint(), accessKey, secret, id, endpoint);
+	}
+
+	public Amazon(String baseUrl, String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException {
 		this.accessKey = Objects.requireNonNull(accessKey);
 		this.secret = Objects.requireNonNull(secret);
 		this.id = Objects.requireNonNull(id);
@@ -77,19 +73,44 @@ public class Amazon {
 		if (!Regex.AMAZON_SECRET.matches(secret))
 			throw new IllegalArgumentException("Invalid Amazon Secret provided.");
 
-		requester = new AmazonRequester(this);
+		signer = new RequestSigner(secret);
+
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(JaxbConverterFactory.create());
+
+		service = retrofitBuilder.build().create(IAmazonService.class);
 	}
 
-	public void getItems(String product, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
-		getItems(product, DEFAULT_GROUPS, success, failure);
+	public RestAction<AmazonResult> getItems(String product) {
+		return getItems(product, DEFAULT_GROUPS);
 	}
 
-	public void getItems(String product, AmazonGroup[] groups, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
-		getItems(product, groups, AmazonIndex.ALL, success, failure);
+	public RestAction<AmazonResult> getItems(String product, AmazonGroup[] groups) {
+		return getItems(product, groups, AmazonIndex.ALL);
 	}
 
-	public void getItems(String product, AmazonGroup[] groups, AmazonIndex index, Consumer<List<AmazonItem>> success, Consumer<IOException> failure) {
-		requester.getItems(product, groups, index, success, failure);
+	public RestAction<AmazonResult> getItems(String product, AmazonGroup[] groups, AmazonIndex index) {
+		StringJoiner joiner = new StringJoiner(",");
+
+		for (AmazonGroup g : groups)
+			joiner.add(g.getName());
+
+		Map<String, Object> queryParams = new LinkedHashMap<>();
+		queryParams.put("AWSAccessKeyId", accessKey);
+		queryParams.put("AssociateTag", id);
+		queryParams.put("Keywords", product);
+		queryParams.put("Operation", "ItemSearch");
+		queryParams.put("ResponseGroup", joiner.toString());
+		queryParams.put("SearchIndex", index.getName());
+		queryParams.put("Service", "AWSECommerceService");
+		queryParams.put("Timestamp", Instant.now());
+		queryParams.put("Version", "2013-08-01");
+
+		String signature = signer.sign(endpoint, queryParams);
+		queryParams.put("Signature", signature);
+
+		Call<AmazonResult> call = service.getItems(queryParams);
+		return new RestAction<>(call);
 	}
 
 	public String getAccessKey() {
@@ -106,18 +127,5 @@ public class Amazon {
 
 	public AmazonEndpoint getEndpoint() {
 		return endpoint;
-	}
-
-	/**
-	 * Changed the selected endpoint to do requests for
-	 * Amazon.
-	 *
-	 * @param	id			Amazon user / tracking id.
-	 * @param	endpoint	Endpoint to use for Amazon requests.
-	 */
-
-	public void setEndpoint(String id, AmazonEndpoint endpoint) {
-		this.id = id;
-		this.endpoint = endpoint;
 	}
 }

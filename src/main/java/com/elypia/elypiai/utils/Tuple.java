@@ -5,13 +5,13 @@ public class Tuple<T1, T2> {
     private T1 one;
     private T2 two;
 
-    public static <T1, T2> Tuple<T1, T2> of(T1 valueOne, T2 valueTwo) {
-        return new Tuple<>(valueOne, valueTwo);
+    public static <T1, T2> Tuple<T1, T2> of(T1 one, T2 two) {
+        return new Tuple<>(one, two);
     }
 
-    private Tuple(T1 valueOne, T2 valueTwo) {
-        this.one = valueOne;
-        this.two = valueTwo;
+    private Tuple(T1 one, T2 two) {
+        this.one = one;
+        this.two = two;
     }
 
     public T1 itemOne() {

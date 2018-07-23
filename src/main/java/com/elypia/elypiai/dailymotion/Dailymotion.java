@@ -1,22 +1,34 @@
 package com.elypia.elypiai.dailymotion;
 
-import com.elypia.elypiai.utils.okhttp.Request;
-
-import java.io.IOException;
-import java.util.function.Consumer;
+import com.elypia.elypiai.dailymotion.deserializer.DailymotionVideoDeserializer;
+import com.elypia.elypiai.dailymotion.impl.IDailymotionService;
+import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.google.gson.GsonBuilder;
+import retrofit2.*;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Dailymotion {
 
-	public static final String GET_VIDEO = "https://api.dailymotion.com/video/%s";
-	public static final String PLAYLIST_VIDEOS = "https://api.dailymotion.com/playlist/{id}/videos";
+	private static final String BASE_URL = "https://api.dailymotion.com/";
 
-	public void getVideo(String videoId, Consumer<DailymotionVideo> success, Consumer<IOException> failure) {
-		Request req = new Request(GET_VIDEO, videoId);
+	private IDailymotionService service;
 
-		req.get(result -> {
-			success.accept(new DailymotionVideo(result.asJSONObject()));
-		}, err -> {
-			failure.accept(err);
-		});
+	public Dailymotion() {
+		this(BASE_URL);
+	}
+
+	public Dailymotion(String baseUrl) {
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(DailymotionVideo.class, new DailymotionVideoDeserializer(this));
+
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(builder.create()));
+
+		service = retrofitBuilder.build().create(IDailymotionService.class);
+	}
+
+	public RestAction<DailymotionVideo> getVideo(String videoId) {
+		Call<DailymotionVideo> call = service.getVideo(videoId);
+		return new RestAction<>(call);
 	}
 }

@@ -39,13 +39,13 @@ public enum AmazonGroup {
     VARIATION_OFFERS("VariationOffers"),
     VARIATION_SUMMARY("VariationSummary");
 
-    private String apiName;
+    private final String NAME;
 
-    AmazonGroup(String apiName) {
-        this.apiName = apiName;
+    AmazonGroup(String name) {
+        NAME = name;
     }
 
-    public String getApiName() {
-        return apiName;
+    public String getName() {
+        return NAME;
     }
 }

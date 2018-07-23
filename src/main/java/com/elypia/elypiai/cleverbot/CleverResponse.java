@@ -1,51 +1,40 @@
 package com.elypia.elypiai.cleverbot;
 
-import org.json.JSONObject;
+import com.elypia.elypiai.utils.Tuple;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.*;
 
 public class CleverResponse {
 
-	private Cleverbot cleverbot;
-
+	@SerializedName("cs")
 	private String cs;
+
+	@SerializedName("interaction_count")
 	private int interactionCount;
+
+	@SerializedName("input")
 	private String input;
+
+	@SerializedName("output")
 	private String output;
+
+	@SerializedName("conversation_id")
 	private String conversationId;
+
+	@SerializedName("errorline")
 	private String errorLine;
+
+	@SerializedName("time_taken")
 	private int timeTaken;
+
+	@SerializedName("time_elapsed")
 	private long timeElapsed;
+
+	@SerializedName("callback")
 	private String callback;
-	private Map<String, String> interactions;
 
-	private ScriptResponse script;
-
-	public CleverResponse(Cleverbot cleverbot, JSONObject object) {
-		cs = object.getString("cs");
-		interactionCount = object.optInt("interaction_count");
-		input = object.getString("input");
-		output= object.getString("output");
-		conversationId = object.getString("conversation_id");
-		errorLine = object.getString("errorline");
-		timeTaken = object.optInt("time_taken");
-		timeElapsed	= object.optLong("time_elapsed");
-		callback = object.optString("callback", null);
-
-		// Start collecting passed interactions
-		interactions = new TreeMap<>();
-
-		for (int i = 50; i > 0; i--) {
-			String interaction = "interaction_" + i;
-			String otherInteraction = interaction + "_other";
-
-			if (object.has(otherInteraction))
-				interactions.put(object.getString(interaction), object.getString(otherInteraction));
-		}
-
-		// Other variables are unused by Cleverbot but a part of Cleverscript
-		script = new ScriptResponse(this, object);
-	}
+	private List<Tuple<String, String>> interactions;
 
 	/**
 	 * @return 	The state of the conversation so far, this
@@ -54,7 +43,7 @@ public class CleverResponse {
 	 * 			the flow of the conversation going.
 	 */
 
-	public String getCS() {
+	public String getCs() {
 		return cs;
 	}
 
@@ -116,7 +105,7 @@ public class CleverResponse {
 	 * 			interaction of this conversation.
 	 */
 
-	public long getLifetime() {
+	public long getTimeElapsed() {
 		return timeElapsed;
 	}
 
@@ -125,34 +114,22 @@ public class CleverResponse {
 	 * 			if available, including this current interaction.
 	 */
 
-	public Map<String, String> getHistory() {
+	public List<Tuple<String, String>> getHistory() {
 		return interactions;
 	}
 
 	public String getHistoryScript() {
-		StringBuilder builder = new StringBuilder();
-		Iterator<Map.Entry<String, String>> it = interactions.entrySet().iterator();
+		StringJoiner joiner = new StringJoiner("\n");
 
-		while (it.hasNext()) {
-			Map.Entry<String, String> entry = it.next();
+		interactions.forEach((tuple) -> {
+			joiner.add("User: " + tuple.itemOne());
+			joiner.add("Cleverbot: " + tuple.itemTwo());
+		});
 
-			builder.append("User: " + entry.getKey());
-			builder.append("\n");
-			builder.append("Cleverbot: " + entry.getValue());
-
-			if (it.hasNext())
-				builder.append("\n");
-		}
-
-		return builder.substring(0, builder.length());
+		return joiner.toString();
 	}
 
-	/**
-	 * @return	Return values not relevent to the Cleverbot
-	 * 			API but a part of CleverScript.
-	 */
-
-	public ScriptResponse getScriptResponse() {
-		return script;
+	public void setHistory(List<Tuple<String, String>> interactions) {
+		this.interactions = interactions;
 	}
 }

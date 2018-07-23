@@ -4,12 +4,16 @@ import com.elypia.elypiai.runescape.QuestStats;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
+import java.util.List;
 
-public class QuestStatDeserializer implements JsonDeserializer<QuestStats> {
+public class QuestStatDeserializer implements JsonDeserializer<List<QuestStats>> {
+
+    private static final Gson GSON = new Gson();
 
     @Override
-    public QuestStats deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public List<QuestStats> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonElement element = json.getAsJsonObject().getAsJsonArray("quests");
-        return new Gson().fromJson(element, QuestStats.class);
+        List<QuestStats> list = GSON.fromJson(element, typeOfT);
+        return list.isEmpty() ?  null : list;
     }
 }

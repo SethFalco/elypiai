@@ -1,26 +1,10 @@
 package com.elypia.elypiai.amazon;
 
-import com.elypia.elypiai.amazon.data.AmazonEndpoint;
-import com.elypia.elypiai.utils.JsoupUtils;
-import org.jsoup.nodes.Element;
-
-import java.util.Currency;
-import java.util.Locale;
+import javax.xml.bind.annotation.XmlElement;
 
 public class AmazonItem {
 
-    /**
-     * Parent Amazon object that produced this item.
-     */
-
-    private Amazon amazon;
-
-    /**
-     * The endpoint used to generate this item result.
-     */
-
-    private AmazonEndpoint endpoint;
-
+    @XmlElement(name = "Title")
     private String title;
 
     /**
@@ -29,6 +13,7 @@ public class AmazonItem {
      * or product models / colors.
      */
 
+    @XmlElement(name = "ASIN")
     private String asin;
 
     /**
@@ -37,65 +22,32 @@ public class AmazonItem {
      * or colors will have the same parent ASIN.
      */
 
+    @XmlElement(name = "ParentASIN")
     private String parentAsin;
-
-    /**
-     * The product URL of the item.
-     */
-
-    private String url;
 
     /**
      * A large copy of the default presented image.
      */
 
+    @XmlElement(name = "LargeImage") // ? LargeImage.URL
     private String largeImage;
 
     /**
      * The price of the item.
      */
 
+    @XmlElement(name = "Amount")
     private double price;
 
     /**
      * The currency this item is listed in.
      */
 
-    private Currency currency;
+    @XmlElement(name = "CurrencyCode")
+    private String currenyCode;
 
-    /**
-     * @param amazon The parent Amazon item.
-     * @param element Raw format of an item for parsing.
-     */
-
-    public AmazonItem(Amazon amazon, Element element) {
-        this.amazon = amazon;
-        endpoint = amazon.getEndpoint();
-
-        title = JsoupUtils.getTextByTag(element, "Title");
-        asin = JsoupUtils.getTextByTag(element, "ASIN");
-        parentAsin = JsoupUtils.getTextByTag(element, "ParentASIN");
-        url = String.format("%sdp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
-        price = Double.parseDouble(JsoupUtils.optTextByTag(element, "Amount", 0)) / 100;
-
-        if (price != 0)
-            currency = Currency.getInstance(JsoupUtils.getTextByTag(element, "CurrencyCode"));
-
-        Element largeImageEle = JsoupUtils.getElementByTag(element, "LargeImage");
-        largeImage = JsoupUtils.getTextByTag(largeImageEle, "URL");
-    }
-
-    /**
-     * @return Get the perant Amazon instance that produced this item.
-     */
-
-    public Amazon getAmazon() {
-        return amazon;
-    }
-
-    public AmazonEndpoint getEndpoint() {
-        return endpoint;
-    }
+    @XmlElement(name = "FormattedPrice")
+    private String formattedPrice;
 
     public String getTitle() {
         return title;
@@ -110,7 +62,8 @@ public class AmazonItem {
     }
 
     public String getUrl() {
-        return url;
+        return null;
+//        return String.format("%sdp/%s?tag=%s", endpoint.getShoppingUrl(), asin, amazon.getId());
     }
 
     public String getImage() {
@@ -121,17 +74,11 @@ public class AmazonItem {
         return price;
     }
 
-    public String getPriceString() {
-        if (currency == null)
-            return String.format("%,.2f", price);
-
-        int decimalDigits = currency.getDefaultFractionDigits();
-        String symbol = currency.getSymbol(Locale.US);
-
-        return String.format("%s%,." + decimalDigits + "f", symbol, price);
+    public String getCurrencyCode() {
+        return currenyCode;
     }
 
-    public Currency getCurrency() {
-        return currency;
+    public String getFormattedPrice() {
+        return formattedPrice;
     }
 }

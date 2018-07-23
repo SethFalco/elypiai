@@ -10,6 +10,7 @@ import java.util.function.Consumer;
 public class RestAction<T> extends AbstractRestAction<T> {
 
     private Call<T> call;
+    private String errorBody;
 
     public RestAction(Call<T> call) {
         this.call = call;
@@ -36,11 +37,20 @@ public class RestAction<T> extends AbstractRestAction<T> {
 
     @Override
     public T complete() throws IOException {
-        return call.execute().body();
+        Response<T> response = call.execute();
+
+        if (response.body() == null && response.errorBody() != null)
+            errorBody = response.errorBody().string();
+
+        return response.body();
     }
 
     @Override
     public void cancel() {
         call.cancel();
+    }
+
+    public String getErrorBody() {
+        return errorBody;
     }
 }

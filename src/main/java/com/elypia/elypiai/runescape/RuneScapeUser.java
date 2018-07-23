@@ -1,6 +1,6 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.Skill;
+import com.elypia.elypiai.runescape.data.*;
 import com.elypia.elypiai.utils.gson.deserializers.CommaIntegerDeserializer;
 import com.google.gson.annotations.*;
 
@@ -45,6 +45,9 @@ public class RuneScapeUser {
 
 	@SerializedName("skillvalues")
 	private Collection<PlayerStat> stats;
+
+	@SerializedName("error")
+	private RuneScapeError error;
 
 	/**
 	 * @return	Get the leaderboard ranking url for this user.
@@ -168,6 +171,10 @@ public class RuneScapeUser {
 
 	public boolean isLoggedIn() {
 		return loggedIn;
+	}
+
+	public RuneScapeError getError() {
+		return error;
 	}
 
 	public List<Activity> getActivities() {

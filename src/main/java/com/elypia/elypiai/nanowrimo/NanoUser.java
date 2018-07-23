@@ -1,9 +1,12 @@
 package com.elypia.elypiai.nanowrimo;
 
 
-import javax.xml.bind.annotation.*;
+import com.elypia.elypiai.nanowrimo.data.UserWordCountError;
 
-@XmlRootElement(namespace = "", name = "wc")
+import javax.xml.bind.annotation.*;
+import java.util.*;
+
+@XmlRootElement
 public class NanoUser {
 
 	private static final String PROFILE_URL = "https://nanowrimo.org/participants/%s";
@@ -20,8 +23,12 @@ public class NanoUser {
 	@XmlElement(name = "winner")
 	private boolean winner;
 
+	@XmlElementWrapper(name = "wordcounts")
+	@XmlElement(name = "wcentry")
+	private List<WordCountEntry> entries;
+
 	@XmlElement(name = "error")
-	private String error;
+	private UserWordCountError error;
 
 	public String getUsername() {
 		return username;
@@ -43,7 +50,14 @@ public class NanoUser {
 		return String.format(PROFILE_URL, username.replace(" ", "-"));
 	}
 
-	public String getError() {
+	public List<WordCountEntry> getEntries() {
+		if (entries == null)
+			entries = new ArrayList<>();
+
+		return entries;
+	}
+
+	public UserWordCountError getError() {
 		return error;
 	}
 }

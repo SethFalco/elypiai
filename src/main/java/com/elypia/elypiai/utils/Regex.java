@@ -27,10 +27,6 @@ public enum Regex {
 	// General Purpose Regexes
 
 	NUMBER("^(?<minus>-)?(?=\\.?\\d)(?<int>\\d*)?(?:\\.(?<float>\\d*))?$"),
-	TIME(""),
-	DATE(""),
-	COLOR(""),
-	URL(""),
 	IMAGE_URL (
 		String.format(
 			"https?:\\/\\/.+\\/.+\\.(%s)",
