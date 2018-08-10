@@ -4,7 +4,7 @@ plugins {
     id "maven"
     id "maven-publish"
     id "jacoco"
-    id "com.jfrog.bintray" version "1.8.2"
+    id "com.jfrog.bintray" version "1.8.4"
 }
 
 String projectName = 'Elypiai'
@@ -144,5 +144,5 @@ jacoco {
 
 task wrapper(type: Wrapper) {
     description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.8'
+    gradleVersion = '4.9'
 }
