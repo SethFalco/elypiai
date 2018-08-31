@@ -2,6 +2,7 @@ package com.elypia.elypiai.test;
 
 import com.elypia.elypiai.amazon.*;
 import com.elypia.elypiai.amazon.data.*;
+import okhttp3.*;
 import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
