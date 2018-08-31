@@ -3,8 +3,9 @@ package com.elypia.elypiai.osu;
 import com.elypia.elypiai.osu.data.*;
 import com.elypia.elypiai.osu.deserializers.*;
 import com.elypia.elypiai.osu.impl.IOsuService;
+import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
 import com.elypia.elypiai.utils.okhttp.RestAction;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
 import retrofit2.Call;
@@ -48,9 +49,10 @@ public class Osu {
 		}).build();
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setDateFormat(OSU_DATE_FORMAT);
-		gsonBuilder.registerTypeAdapter(OsuPlayer.class, new OsuPlayerDeserializer());
+		gsonBuilder.registerTypeAdapter(Date.class, new UtcDateDeserializer(OSU_DATE_FORMAT));
+		gsonBuilder.registerTypeAdapter(new TypeToken<List<OsuMod>>(){}.getType(), new OsuModDeserializer());
 		gsonBuilder.registerTypeAdapter(OsuMatch.class, new OsuMatchDeserializer());
+		gsonBuilder.registerTypeAdapter(OsuPlayer.class, new OsuPlayerDeserializer());
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<BeatMap>>(){}.getType(), new BeatMapDeserializer());
 
 		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
@@ -81,7 +83,7 @@ public class Osu {
 		return getPlayer(username, OsuId.USERNAME, mode, days);
 	}
 
-	public RestAction<OsuPlayer> getPlayer(String username, OsuId type, OsuMode mode, int days) {
+	private RestAction<OsuPlayer> getPlayer(String username, OsuId type, OsuMode mode, int days) {
 		Call<OsuPlayer> call = service.getPlayer(username, type.getType(), mode.getId(), days);
 		return new RestAction<>(call);
 	}
@@ -105,7 +107,7 @@ public class Osu {
 		return getRecentPlays(id, OsuId.USERNAME, mode, limit);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(String id, OsuId type, OsuMode mode, int limit) {
+	private RestAction<List<RecentPlay>> getRecentPlays(String id, OsuId type, OsuMode mode, int limit) {
 		Call<List<RecentPlay>> call = service.getRecentPlays(id, type.getType(), mode.getId(), limit);
 		return new RestAction<>(call);
 	}

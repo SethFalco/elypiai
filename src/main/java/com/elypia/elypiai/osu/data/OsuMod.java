@@ -4,7 +4,7 @@ import java.util.*;
 
 public enum OsuMod {
 
-    // NONE(0) | Not including however as NONE should be represented with an empty collection.
+    // NONE(0) | Not including, as NONE should be represented with an empty collection.
     NO_FAIL(1),
     EASY(2),
     TOUCH_DEVICE(4),

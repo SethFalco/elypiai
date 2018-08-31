@@ -2,6 +2,7 @@ package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.runescape.deserializers.QuestStatDeserializer;
 import com.elypia.elypiai.runescape.impl.IRuneScapeService;
+import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
 import com.elypia.elypiai.utils.okhttp.RestAction;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -24,7 +25,8 @@ public class RuneScape {
 	public RuneScape(String baseUrl) {
 		cache = new HashMap<>();
 
-		GsonBuilder gsonBuilder = new GsonBuilder().setDateFormat("dd-MMM-yyyy HH:mm");
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.registerTypeAdapter(Date.class, new UtcDateDeserializer("dd-MMM-yyyy HH:mm"));
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
 
 		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
