@@ -1,6 +1,6 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.utils.gson.deserializers.DocumentDeserializer;
+import com.elypia.elypiai.utils.gson.deserializers.*;
 import com.google.gson.annotations.*;
 
 import java.util.Date;
@@ -18,6 +18,7 @@ public class OsuEvent {
     private int beatmapSetId;
 
     @SerializedName("date")
+    @JsonAdapter(UtcDateDeserializer.class)
     private Date date;
 
     @SerializedName("epicfactor")

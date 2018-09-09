@@ -3,6 +3,7 @@ package com.elypia.elypiai.osu;
 import com.elypia.elypiai.osu.data.OsuMod;
 import com.elypia.elypiai.osu.deserializers.OsuModDeserializer;
 import com.elypia.elypiai.osu.impl.OsuScore;
+import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
 import com.google.gson.annotations.*;
 
 import java.util.*;
@@ -17,6 +18,7 @@ public class RecentPlay extends OsuScore {
 	private List<OsuMod> mods;
 
 	@SerializedName("date")
+	@JsonAdapter(UtcDateDeserializer.class)
 	private Date date;
 
 	@SerializedName("rank")
@@ -25,7 +27,6 @@ public class RecentPlay extends OsuScore {
 	/**
 	 * @return	The beatmap id of the recentplay.
 	 */
-
 	public int getBeatMapId() {
 		return beatmapId;
 	}
@@ -40,7 +41,6 @@ public class RecentPlay extends OsuScore {
 	 *
 	 * @return 	Date the map was last updated.
 	 */
-
 	public Date getDate() {
 		return date;
 	}

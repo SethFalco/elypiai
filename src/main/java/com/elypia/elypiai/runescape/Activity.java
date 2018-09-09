@@ -1,12 +1,14 @@
 package com.elypia.elypiai.runescape;
 
-import com.google.gson.annotations.SerializedName;
+import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
+import com.google.gson.annotations.*;
 
 import java.util.Date;
 
 public class Activity {
 
     @SerializedName("date")
+    @JsonAdapter(UtcDateDeserializer.class)
     private Date date;
 
     @SerializedName("details")

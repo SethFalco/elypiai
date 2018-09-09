@@ -14,9 +14,11 @@ public class BeatMap {
 	private MapStatus status;
 
 	@SerializedName("approved_date")
+	@JsonAdapter(UtcDateDeserializer.class)
 	private Date approvedDate;
 
 	@SerializedName("last_update")
+	@JsonAdapter(UtcDateDeserializer.class)
 	private Date lastUpdated;
 
 	@SerializedName("artist")
@@ -113,7 +115,6 @@ public class BeatMap {
 	/**
 	 * @return 	The artist of the beatmap.
 	 */
-
 	public String getArtist() {
 		return artist;
 	}
@@ -121,7 +122,6 @@ public class BeatMap {
 	/**
 	 * @return 	The beatmap id.
 	 */
-
 	public int getId() {
 		return id;
 	}
@@ -129,7 +129,6 @@ public class BeatMap {
 	/**
 	 * @return 	The id of the beatmap set. (All difficulties)
 	 */
-
 	public int getSetId() {
 		return setId;
 	}
@@ -137,7 +136,6 @@ public class BeatMap {
 	/**
 	 * @return 	The BPM of the beatmap.
 	 */
-
 	public int getBPM() {
 		return bpm;
 	}
@@ -145,7 +143,6 @@ public class BeatMap {
 	/**
 	 * @return 	The name of the creator of the beatmap.
 	 */
-
 	public String getCreator() {
 		return creator;
 	}
@@ -162,7 +159,6 @@ public class BeatMap {
 	 * @return 	The duration of the beatmap from the first note
 	 * 			to the last, excluding breaks in between in seconds.
 	 */
-
 	public int getHitLength() {
 		return hit_length;
 	}
@@ -174,7 +170,6 @@ public class BeatMap {
 	/**
 	 * @return 	The genre for the song.
 	 */
-
 	public MapGenre getGenre() {
 		return genre;
 	}
@@ -186,7 +181,6 @@ public class BeatMap {
 	/**
 	 * @return 	The name of the beatmap.
 	 */
-
 	public String getTitle() {
 		return title;
 	}
@@ -195,7 +189,6 @@ public class BeatMap {
 	 * @return 	The total length of the beatmap,
 	 * 			inclusive of breaks in seconds.
 	 */
-
 	public int getTotalLength() {
 		return totalLength;
 	}
@@ -203,7 +196,6 @@ public class BeatMap {
 	/**
 	 * @return 	The current difficulty's name.
 	 */
-
 	public String getVersion() {
 		return version;
 	}
@@ -215,7 +207,6 @@ public class BeatMap {
 	/**
 	 * @return 	What game mode this beatmap is for.
 	 */
-
 	public OsuMode getMode() {
 		return mode;
 	}
@@ -223,7 +214,6 @@ public class BeatMap {
 	/**
 	 * @return	Tags associated with this beatmap.
 	 */
-
 	public List<String> getTags() {
 		return tags;
 	}
@@ -231,7 +221,6 @@ public class BeatMap {
 	/**
 	 * @return	Number of times this beatmap was favourtied.
 	 */
-
 	public int getFavouriteCount() {
 		return favouriteCount;
 	}
@@ -239,7 +228,6 @@ public class BeatMap {
 	/**
 	 * @return	Number of times this beatmap was played.
 	 */
-
 	public int getPlayCount() {
 		return playcount;
 	}
@@ -248,7 +236,6 @@ public class BeatMap {
 	 * @return	Numvber of times the beatmap was completed.
 	 * 			(Didn't fail or retry, finished the map.)
 	 */
-
 	public int getPassCount() {
 		return passcount;
 	}
@@ -256,7 +243,6 @@ public class BeatMap {
 	/**
 	 * @return	The maximum combo possible on this beatmap.
 	 */
-
 	public int getMaxCombo() {
 		return maxCombo;
 	}
@@ -264,7 +250,6 @@ public class BeatMap {
 	/**
 	 * @return The audio file preview as displayed on the website.
 	 */
-
 	public String getPreviewUrl() {
 		return String.format(PREVIEW_FORMAT, setId);
 	}

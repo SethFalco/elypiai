@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class OsuMatchDeserializer implements JsonDeserializer<OsuMatch> {
 
-    private static final Gson GSON = new GsonBuilder().registerTypeAdapter(Date.class, new UtcDateDeserializer(Osu.OSU_DATE_FORMAT)).create();
+    private static final Gson GSON = new Gson();
 
     @Override
     public OsuMatch deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

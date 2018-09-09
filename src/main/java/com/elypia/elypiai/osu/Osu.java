@@ -16,8 +16,6 @@ import java.util.*;
 
 public class Osu {
 
-	public static final String OSU_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-
 	private static final String BASE_URL = "https://osu.ppy.sh/api/";
 
 	private final String API_KEY;
@@ -32,7 +30,6 @@ public class Osu {
 	 *
 	 * @param 	apiKey	The API obtained from the osu! website.
 	 */
-
 	public Osu(String apiKey) {
 		this(BASE_URL, apiKey);
 	}
@@ -49,7 +46,6 @@ public class Osu {
 		}).build();
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(Date.class, new UtcDateDeserializer(OSU_DATE_FORMAT));
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<OsuMod>>(){}.getType(), new OsuModDeserializer());
 		gsonBuilder.registerTypeAdapter(OsuMatch.class, new OsuMatchDeserializer());
 		gsonBuilder.registerTypeAdapter(OsuPlayer.class, new OsuPlayerDeserializer());
@@ -67,7 +63,6 @@ public class Osu {
 	 * @param 	id		The players id.
 	 * @param	mode	The gamemode to view data for.
 	 */
-
 	public RestAction<OsuPlayer> getPlayer(int id, OsuMode mode, int days) {
 		return getPlayer(String.valueOf(id), OsuId.USER_ID, mode, days);
 	}
@@ -78,7 +73,6 @@ public class Osu {
 	 * @param 	username	The players username.
 	 * @param	mode		The gamemode to view data for.
 	 */
-
 	public RestAction<OsuPlayer> getPlayer(String username, OsuMode mode, int days) {
 		return getPlayer(username, OsuId.USERNAME, mode, days);
 	}
@@ -93,7 +87,6 @@ public class Osu {
 	 *
 	 * @param	id	The id of the beatmap to search grab.
 	 */
-
 	public RestAction<List<BeatMap>> getBeatMaps(int id, OsuMode mode, int limit) {
 		Call<List<BeatMap>> call = service.getBeatMaps(id, mode.getId(), limit);
 		return new RestAction<>(call);

@@ -5,7 +5,6 @@ public enum Ansi {
 	/**
 	 * Resets and reverts back to default style.
 	 */
-
 	RESET(0),
 
 	/**
@@ -13,20 +12,17 @@ public enum Ansi {
 	 * Useful for dark backgrounds. &lt;3
 	 * See also {@link #BOLD_OFF} to disable.
 	 */
-
 	BOLD_ON(1),
 
 	/**
 	 * Turn on italics, see {@link #ITALICS_OFF} to disable.
 	 */
-
 	ITALICS_ON(3),
 	UNDERLINE_ON(4),
 
 	/**
 	 * Invert the background and foreground colors.
 	 */
-
 	INVERSE_ON(7),
 	STRIKETHOUGH_ON(9),
 
@@ -34,7 +30,6 @@ public enum Ansi {
 	 * Turns high-intensity colors off.
 	 * Does nothing if {@link #BOLD_ON} is not enabled.
 	 */
-
 	BOLD_OFF(22),
 
 	ITALICS_OFF(23),

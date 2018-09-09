@@ -2,6 +2,7 @@ package com.elypia.elypiai.osu;
 
 import com.elypia.elypiai.osu.data.*;
 import com.elypia.elypiai.osu.deserializers.OsuModDeserializer;
+import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
 import com.google.gson.annotations.*;
 
 import java.util.*;
@@ -12,9 +13,11 @@ public class MatchGame {
     private int gameId;
 
     @SerializedName("start_time")
+    @JsonAdapter(UtcDateDeserializer.class)
     private Date startTime;
 
     @SerializedName("end_time")
+    @JsonAdapter(UtcDateDeserializer.class)
     private Date endTime;
 
     @SerializedName("beatmap_id")

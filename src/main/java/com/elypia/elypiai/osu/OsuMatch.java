@@ -1,6 +1,7 @@
 package com.elypia.elypiai.osu;
 
-import com.google.gson.annotations.SerializedName;
+import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
+import com.google.gson.annotations.*;
 
 import java.util.*;
 
@@ -13,9 +14,11 @@ public class OsuMatch {
     private String name;
 
     @SerializedName("start_time")
+    @JsonAdapter(UtcDateDeserializer.class)
     private Date startTime;
 
     @SerializedName("end_time")
+    @JsonAdapter(UtcDateDeserializer.class)
     private Date endTime;
 
     @SerializedName("games")

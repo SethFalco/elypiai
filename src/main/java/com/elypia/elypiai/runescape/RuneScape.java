@@ -26,7 +26,6 @@ public class RuneScape {
 		cache = new HashMap<>();
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(Date.class, new UtcDateDeserializer("dd-MMM-yyyy HH:mm"));
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
 
 		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);

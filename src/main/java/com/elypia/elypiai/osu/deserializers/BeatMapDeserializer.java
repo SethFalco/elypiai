@@ -9,7 +9,7 @@ import java.util.*;
 
 public class BeatMapDeserializer implements JsonDeserializer<List<BeatMap>> {
 
-    private static final Gson GSON = new GsonBuilder().registerTypeAdapter(Date.class, new UtcDateDeserializer(Osu.OSU_DATE_FORMAT)).create();
+    private static final Gson GSON = new Gson();
 
     @Override
     public List<BeatMap> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

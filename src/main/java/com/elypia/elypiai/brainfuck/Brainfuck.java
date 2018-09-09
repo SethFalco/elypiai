@@ -7,7 +7,6 @@ public class Brainfuck {
     /**
      * The default value when a new cell is created.
      */
-
     private static final byte CELL_INIT = 0;
 
     /**
@@ -18,7 +17,6 @@ public class Brainfuck {
      * @param input Any input to provide to the code exection on demand.
      * @return A new {@link Brainfuck} instance with the validated code.
      */
-
     public static Brainfuck compile(final String brainfuck, final byte... input) {
         return Brainfuck.compile(brainfuck.getBytes(), input);
     }
@@ -31,7 +29,6 @@ public class Brainfuck {
      * @param input Any input to provide to the code exection on demand.
      * @return A new {@link Brainfuck} instance with the validated code.
      */
-
     public static Brainfuck compile(final byte[] brainfuck, final byte... input) {
         return new Brainfuck(brainfuck, input);
     }
@@ -39,7 +36,6 @@ public class Brainfuck {
     /**
      * The full brainfuck code to execute.
      */
-
     private final byte[] brainfuck;
 
     private final Queue<Byte> input;
@@ -47,19 +43,16 @@ public class Brainfuck {
     /**
      * Set of cells uses to store brainfuck bytes.
      */
-
     private final List<Byte> cells;
 
     /**
      * While compiling brainfuck code, all prints (.) are stored.
      */
-
     private final List<Byte> prints;
 
     /**
      * The currently selected cell from {@link #cells}.
      */
-
     private int selectedCell;
 
     /**
@@ -70,7 +63,6 @@ public class Brainfuck {
      * @param brainfuck The brainfuck code to compile.
      * @param input Input bytes for any required input. (,)
      */
-
     private Brainfuck(final byte[] brainfuck, final byte... input) {
         this.brainfuck = Objects.requireNonNull(brainfuck);
         this.input = new LinkedList<>();
@@ -98,7 +90,6 @@ public class Brainfuck {
      *
      * @return  A {@link String} result of all printed (. command) {@link byte}s.
      */
-
     public String interpret() {
         List<Byte> list = interpretBytes();
         StringBuilder builder = new StringBuilder();
@@ -124,7 +115,6 @@ public class Brainfuck {
      * @param position  The possition of the command.
      * @return  The possition to go to once complete.
      */
-
     private int intepretCommand(final byte[] brainfuck, int position) {
         byte command = brainfuck[position];
 
