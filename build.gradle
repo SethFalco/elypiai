@@ -1,154 +1,166 @@
-plugins {
-    id "java"
-    id "idea"
-    id "maven"
-    id "maven-publish"
-    id "jacoco"
-    id "com.jfrog.bintray" version "1.8.4"
-}
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
 
-String projectName = 'Elypiai'
-String projectVersion = '1.1.0'
-String projectDescription = "All in one API wrapper."
-String projectGit = 'https://gitlab.com/Elypia/Elypiai.git'
-
-jar {
-    from sourceSets.main.allSource
-
-    manifest {
-        attributes 'Implementation-Title'   : projectName,
-                   'Implementation-Version' : projectVersion
+    dependencies {
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
     }
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
+String projectVersion = "2.0.0"
+String projectDescription = "Wrappers for many APIs available online from various services."
+String projectGit = "https://gitlab.com/Elypia/Elypiai.git"
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
+allprojects() {
+    apply plugin: "idea"
+    apply plugin: "jacoco"
 
-    javadoc {
-        options {
-            links += [
-                'https://docs.oracle.com/javase/10/docs/api/'
-            ]
-        }
+    repositories {
+        jcenter()
+    }
+
+    jacoco {
+        toolVersion = "0.8.2"
     }
 }
 
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
+subprojects { subproject ->
+    apply plugin: "java-library"
+    apply plugin: "maven-publish"
+    apply plugin: "com.jfrog.bintray"
 
-bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-    publications = ['Elypiai']
-    publish = true
+    jar {
+        from sourceSets.main.allSource
 
-    pkg {
-        repo = projectName
-        name = projectName
-        userOrg = 'elypia'
-        licenses = ['Apache-2.0']
-        vcsUrl = projectGit
-
-        version {
-            name = projectVersion
-            desc = projectDescription
-            released = new Date()
-        }
-    }
-}
-
-publishing {
-    def details = {
-        licenses{
-            license {
-                name 'The Apache Software License, Version 2.0'
-                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                distribution projectName
-            }
-        }
-
-        developers{
-            developer {
-                id 'Seth'
-                name 'Seth'
-                email "seth@elypia.com"
-            }
-        }
-
-        scm{
-            url projectGit
+        manifest {
+            attributes "Implementation-Title"   : this.name,
+                       "Implementation-Version" : projectVersion
         }
     }
 
-    publications {
-        Elypiai(MavenPublication) {
-            from components.java
-            artifact sourcesJar
-            artifact javadocJar
-            groupId 'com.elypia'
-            artifactId 'elypiai'
-            version projectVersion
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = "sources"
+        from sourceSets.main.allSource
+    }
 
-            pom.withXml {
-                def root = asNode()
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
 
-                root.appendNode('description', projectDescription)
-                root.appendNode('name', projectName)
-                root.appendNode('url', 'https://elypia.com/')
-                root.children().last() + details
+        javadoc {
+            options.addBooleanOption("html5", true)
+
+            options {
+                links += [
+                    "https://docs.oracle.com/javase/10/docs/api/"
+                ]
             }
         }
     }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    bintray {
+        user = System.getenv("BINTRAY_USER")
+        key = System.getenv("BINTRAY_KEY")
+        publications = [this.name]
+        publish = true
+
+        pkg {
+            repo = this.name
+            name = subproject.name
+            userOrg = "elypia"
+            licenses = ["Apache-2.0"]
+            vcsUrl = projectGit
+
+            version {
+                name = projectVersion
+                desc = projectDescription
+                released = new Date()
+            }
+        }
+    }
+
+    publishing {
+        def details = {
+            licenses{
+                license {
+                    name "The Apache Software License, Version 2.0"
+                    url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    distribution this.name
+                }
+            }
+
+            developers{
+                developer {
+                    id "Seth"
+                    name "Seth"
+                    email "seth@elypia.com"
+                }
+            }
+
+            scm{
+                url projectGit
+            }
+        }
+
+        publications {
+            ElyScript(MavenPublication) {
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+                groupId "com.elypia.elypiai"
+                artifactId subproject.name
+                version projectVersion
+
+                pom.withXml {
+                    def root = asNode()
+
+                    root.appendNode("description", projectDescription)
+                    root.appendNode("name", this.name)
+                    root.appendNode("url", "https://elypia.com/")
+                    root.children().last() + details
+                }
+            }
+        }
+    }
+
+    dependencies {
+        if (subproject.name != "core")
+            implementation project(":core")
+
+        // HTTP Requests
+        implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+
+        // Testing
+        testImplementation 'com.squareup.okhttp3:mockwebserver:3.11.0'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.0'
+
+        testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.0'
+        testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.3.0'
+    }
+
+    test {
+        useJUnitPlatform()
+
+        reports {
+            html.enabled = false
+        }
+    }
 }
 
-repositories {
-    jcenter()
-}
-
-dependencies {
-    implementation group: 'com.sparkjava', name: 'spark-core', version: '2.7.2'
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.11.3'
-    implementation group: 'commons-codec', name: 'commons-codec', version: '1.11'
-
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-jaxb:2.4.0'
-
-    implementation "javax.xml.bind:jaxb-api:2.3.0"
-    implementation "com.sun.xml.bind:jaxb-impl:2.3.0.1"
-    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.0.1"
-    implementation "javax.activation:activation:1.1.1"
-
-    testImplementation 'com.squareup.okhttp3:mockwebserver:3.11.0'
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.0'
-
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.0'
-    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.3.0'
-}
-
-test {
-    useJUnitPlatform()
-    finalizedBy jacocoTestReport
+task jacocoReport(type: JacocoReport) {
+    sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs)
+    classDirectories = files(subprojects.sourceSets.main.output)
+    executionData = files(subprojects.jacocoTestReport.executionData)
 
     reports {
-        html.enabled = false
+        html.enabled = true
+        xml.enabled = false
     }
-}
-
-jacoco {
-    toolVersion = "0.8.2"
-}
-
-task wrapper(type: Wrapper) {
-    description = 'Generates gradlew[.bat] scripts'
-    gradleVersion = '4.10'
 }

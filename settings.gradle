@@ -1,0 +1,14 @@
+rootProject.name = "Elypiai"
+
+include "core"
+
+include "amazon-product-api"
+include "cleverbot"
+include "nanowrimo"
+include "osu"
+include "path-of-exile"
+include "runescape"
+include "steam"
+include "twitch"
+include "urbandictionary"
+include "yugioh-prices"

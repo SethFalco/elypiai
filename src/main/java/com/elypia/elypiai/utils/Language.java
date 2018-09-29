@@ -270,7 +270,7 @@ public enum Language {
         COUNTRIES = countries;
     }
 
-    public String getLanguageName() {
+    public String getName() {
         return LANGUAGE;
     }
 
