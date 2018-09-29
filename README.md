@@ -22,7 +22,7 @@ Artifact | Description
 [`cleverbot`](https://www.cleverbot.com/api/) | Interact with Cleverbot, the AI that learns from people.
 [`nanowrimo`](https://nanowrimo.org/wordcount_api) | Query data or create a application or plugin to push word counts!
 [`osu`](https://github.com/ppy/osu-api/wiki) | Query data on users and plays with a ready made notifier.
-[`path-of-exile`](https://www.pathofexile.com/developer/docs/api-resources) | Query user data, stashes (items), league scores and ladders.
+[`path-of-exile`](https://www.pathofexile.com/developer/docs/api-resources) | Query user data, stashes, league scores and ladders.
 [`runescape`](http://runescape.wikia.com/wiki/Application_programming_interface) | Get information on users, plus a notifier for significant events.
 [`steam`](https://steamcommunity.com/dev) | Query user information and player's libraries.
 [`twitch`](https://dev.twitch.tv/docs) | Get information on Twitch users and streams, with notifier.
@@ -30,30 +30,11 @@ Artifact | Description
 [`yugioh-prices`](http://docs.yugiohprices.apiary.io/) | Get information on Yu-Gi-Oh! cards and download or display high quality images.
 
 ### About
-Elypiai is a all-in-one utility library which provides an interface to communicate with many online services such as YouTube, Twitch, and Steam, or even games like RuneScape, or osu!. We've made sure to wrap APIs beyond just getting the data, with notifiers for significant events or static utility functions. It also inclues miscellaneous local functionality like a Brainfuck intepreter, an `enum` of ready made regular expressions for common matches, and other basic utilities that may come in handy for anyone, especially new developers.
+Elypiai is a centralised repository with libraries for various different web APIs online. Wraps are done beyond obtaining data and mapping it to objects to ensure you get the most of the library out of the box so as a developer you can stick to integrating. This includes making utility methods and notifiers where applicable. Simple examples of this could be the in the RuneScape module which includes methods to convert XP to a level and vice versa, or the osu! API which includes a means to webscrap a users profile picture.
 
-Elypiai is the dependency away from adding ample functionality to any project.
-
-#### APIs and Utilities
-Module | About
------- | -----
-[Amazon Product API](https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html) | Generate links and monetize with the [Amazon Affiliate Program](https://affiliate-program.amazon.com/).
-[Bing Cognative Services](https://www.microsoft.com/cognitive-services) | Search for sites and images, spell check, and text analytics.
-[Brainfuck Interpretter](https://en.wikipedia.org/wiki/Brainfuck) | Interpret brainfuck to a `byte[]` or `String`, compatible with input.
-[Cleverbot](https://www.cleverbot.com/api/) | Chat with cleverbot!
-[NaNoWriMo](https://nanowrimo.org/wordcount_api) | Get scores or create applications or plugins to push word counts for users!
-[osu!](https://osu.ppy.sh/p/api) | Call user and play data, with notifier for significant events.
-[Path of Exile](https://www.pathofexile.com/developer/docs/api-resources) | User data, stashes (items), league scores and ladders.
-[Regex](https://regex101.com/) | `Enum` of regexs ready to validate or parse any common data such as email addresses or API keys.
-[RuneScape](http://runescape.wikia.com/wiki/Application_programming_interface) | Get information on users, plus a notifier for significant events.
-[SightEngine](https://sightengine.com/) | Image detection, check for celebrities, nudity or otherwise inappropriate images.
-[StackExchange](https://api.stackexchange.com/) | Query StackOverflow with a question and optional tags.
-[Steam](https://steamcommunity.com/dev) | Steam API get user information and user game libraries.
-[Twitch](https://dev.twitch.tv/docs) | Get information on Twitch users and streams, with notifier.
-[Urban Dictionary](http://api.urbandictionary.com/v0/define?term=api) | Search Urban Dictionary and return the top voted or random definition.
-[Yu-Gi-Oh! Prices](http://docs.yugiohprices.apiary.io/) | Get information on Yu-Gi-Oh! cards and download card images.
+This is an easy way, especially for new developers, to add ample functionality or integrations to any project.
 
 ### Support
 Should any problems occur, come visit us over on [Discord](https://discord.gg/hprGMaM)! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
 
-This project is _heavily_ relied on by [Alexis, the Discord bot](https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot).
+This project is _heavily_ relied on by [Alexis, the Discord bot](https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot), and is infact why it exists!
