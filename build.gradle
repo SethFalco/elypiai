@@ -9,7 +9,7 @@ buildscript {
     }
 }
 
-String projectVersion = "2.0.0"
+String projectVersion = "2.0.1"
 String projectDescription = "Wrappers for many APIs available online from various services."
 String projectGit = "https://gitlab.com/Elypia/Elypiai.git"
 
@@ -118,7 +118,7 @@ subprojects { subproject ->
         }
 
         publications {
-            ElyScript(MavenPublication) {
+            Elypiai(MavenPublication) {
                 from components.java
                 artifact sourcesJar
                 artifact javadocJar
