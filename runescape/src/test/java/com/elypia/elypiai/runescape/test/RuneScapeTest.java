@@ -6,6 +6,7 @@ import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 import static java.time.Duration.ofSeconds;
@@ -21,7 +22,7 @@ public class RuneScapeTest {
 		server = new MockWebServer();
 		server.start();
 
-		rs = new RuneScape("http://localhost:" + server.getPort());
+		rs = new RuneScape(new URL("http://localhost:" + server.getPort()));
 	}
 
 	@AfterEach
@@ -40,7 +41,7 @@ public class RuneScapeTest {
 	public void parseUser() throws IOException {
 		server.enqueue(new MockResponse().setBody("{\"magic\":1854501,\"questsstarted\":1,\"totalskill\":2236,\"questscomplete\":158,\"questsnotstarted\":74,\"totalxp\":182416713,\"ranged\":26210527,\"activities\":[{\"date\":\"24-Jan-2018 22:00\",\"details\":\"I killed  a mithril dragon.\",\"text\":\"I killed  a mithril dragon.\"},{\"date\":\"14-Jan-2018 15:18\",\"details\":\"I killed 5 boss monsters   called:  Hobgoblin Geomancer and a skeletal horde   in Daemonheim.\",\"text\":\"I killed 5 boss monsters in Daemonheim.\"},{\"date\":\"14-Jan-2018 10:11\",\"details\":\"I levelled my  Dungeoneering skill, I am now level 79.\",\"text\":\"Levelled up Dungeoneering.\"},{\"date\":\"14-Jan-2018 10:11\",\"details\":\"I killed 2 boss monsters   called:  Hobgoblin Geomancer and an unholy cursebearer   in Daemonheim.\",\"text\":\"I killed 2 boss monsters in Daemonheim.\"}],\"skillvalues\":[{\"level\":99,\"xp\":262105274,\"rank\":115102,\"id\":3},{\"level\":99,\"xp\":188255163,\"rank\":94482,\"id\":1},{\"level\":99,\"xp\":164070336,\"rank\":119201,\"id\":4},{\"level\":99,\"xp\":162126659,\"rank\":119160,\"id\":6},{\"level\":99,\"xp\":149315898,\"rank\":120930,\"id\":0},{\"level\":99,\"xp\":147711613,\"rank\":133537,\"id\":2},{\"level\":99,\"xp\":143104232,\"rank\":114469,\"id\":18},{\"level\":99,\"xp\":133689428,\"rank\":143990,\"id\":7},{\"level\":99,\"xp\":131619366,\"rank\":158162,\"id\":11},{\"level\":93,\"xp\":76024676,\"rank\":208316,\"id\":8},{\"level\":58,\"xp\":40046299,\"rank\":135386,\"id\":26},{\"level\":81,\"xp\":23945708,\"rank\":241652,\"id\":13},{\"level\":80,\"xp\":20064567,\"rank\":263963,\"id\":12},{\"level\":80,\"xp\":20063398,\"rank\":214665,\"id\":25},{\"level\":80,\"xp\":19956154,\"rank\":201032,\"id\":22},{\"level\":79,\"xp\":18545019,\"rank\":302017,\"id\":5},{\"level\":79,\"xp\":18402702,\"rank\":261283,\"id\":24},{\"level\":79,\"xp\":18128678,\"rank\":348319,\"id\":9},{\"level\":78,\"xp\":17591387,\"rank\":253465,\"id\":23},{\"level\":77,\"xp\":15036292,\"rank\":240687,\"id\":16},{\"level\":75,\"xp\":13299084,\"rank\":296272,\"id\":15},{\"level\":75,\"xp\":13050002,\"rank\":317852,\"id\":14},{\"level\":72,\"xp\":9270717,\"rank\":421381,\"id\":10},{\"level\":67,\"xp\":5834155,\"rank\":292727,\"id\":17},{\"level\":66,\"xp\":5149478,\"rank\":324983,\"id\":20},{\"level\":63,\"xp\":3899253,\"rank\":361786,\"id\":21},{\"level\":63,\"xp\":3861740,\"rank\":310546,\"id\":19}],\"name\":\"Seth X3\",\"rank\":\"199,303\",\"melee\":100621114,\"combatlevel\":133,\"loggedIn\":\"false\"}"));
 
-		RuneScapeUser user = rs.getUser("SethX3").complete();
+		Player user = rs.getUser("SethX3").complete();
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals("Seth X3", user.getUsername()),
 			() -> assertEquals(199303, user.getRank()),
@@ -67,8 +68,8 @@ public class RuneScapeTest {
 		server.enqueue(new MockResponse().setBody("{\"magic\":1854501,\"questsstarted\":1,\"totalskill\":2236,\"questscomplete\":158,\"questsnotstarted\":74,\"totalxp\":182416713,\"ranged\":26210527,\"activities\":[{\"date\":\"24-Jan-2018 22:00\",\"details\":\"I killed  a mithril dragon.\",\"text\":\"I killed  a mithril dragon.\"},{\"date\":\"14-Jan-2018 15:18\",\"details\":\"I killed 5 boss monsters   called:  Hobgoblin Geomancer and a skeletal horde   in Daemonheim.\",\"text\":\"I killed 5 boss monsters in Daemonheim.\"},{\"date\":\"14-Jan-2018 10:11\",\"details\":\"I levelled my  Dungeoneering skill, I am now level 79.\",\"text\":\"Levelled up Dungeoneering.\"},{\"date\":\"14-Jan-2018 10:11\",\"details\":\"I killed 2 boss monsters   called:  Hobgoblin Geomancer and an unholy cursebearer   in Daemonheim.\",\"text\":\"I killed 2 boss monsters in Daemonheim.\"}],\"skillvalues\":[{\"level\":99,\"xp\":262105274,\"rank\":115102,\"id\":3},{\"level\":99,\"xp\":188255163,\"rank\":94482,\"id\":1},{\"level\":99,\"xp\":164070336,\"rank\":119201,\"id\":4},{\"level\":99,\"xp\":162126659,\"rank\":119160,\"id\":6},{\"level\":99,\"xp\":149315898,\"rank\":120930,\"id\":0},{\"level\":99,\"xp\":147711613,\"rank\":133537,\"id\":2},{\"level\":99,\"xp\":143104232,\"rank\":114469,\"id\":18},{\"level\":99,\"xp\":133689428,\"rank\":143990,\"id\":7},{\"level\":99,\"xp\":131619366,\"rank\":158162,\"id\":11},{\"level\":93,\"xp\":76024676,\"rank\":208316,\"id\":8},{\"level\":58,\"xp\":40046299,\"rank\":135386,\"id\":26},{\"level\":81,\"xp\":23945708,\"rank\":241652,\"id\":13},{\"level\":80,\"xp\":20064567,\"rank\":263963,\"id\":12},{\"level\":80,\"xp\":20063398,\"rank\":214665,\"id\":25},{\"level\":80,\"xp\":19956154,\"rank\":201032,\"id\":22},{\"level\":79,\"xp\":18545019,\"rank\":302017,\"id\":5},{\"level\":79,\"xp\":18402702,\"rank\":261283,\"id\":24},{\"level\":79,\"xp\":18128678,\"rank\":348319,\"id\":9},{\"level\":78,\"xp\":17591387,\"rank\":253465,\"id\":23},{\"level\":77,\"xp\":15036292,\"rank\":240687,\"id\":16},{\"level\":75,\"xp\":13299084,\"rank\":296272,\"id\":15},{\"level\":75,\"xp\":13050002,\"rank\":317852,\"id\":14},{\"level\":72,\"xp\":9270717,\"rank\":421381,\"id\":10},{\"level\":67,\"xp\":5834155,\"rank\":292727,\"id\":17},{\"level\":66,\"xp\":5149478,\"rank\":324983,\"id\":20},{\"level\":63,\"xp\":3899253,\"rank\":361786,\"id\":21},{\"level\":63,\"xp\":3861740,\"rank\":310546,\"id\":19}],\"name\":\"Seth X3\",\"rank\":\"199,303\",\"melee\":100621114,\"combatlevel\":133,\"loggedIn\":\"false\"}"));
 		server.enqueue(new MockResponse().setBody("{\"magic\":102038,\"questsstarted\":0,\"totalskill\":1137,\"questscomplete\":24,\"questsnotstarted\":210,\"totalxp\":6552765,\"ranged\":228119,\"activities\":[{\"date\":\"02-Feb-2018 20:32\",\"details\":\"I levelled my  Fletching skill, I am now level 85.\",\"text\":\"Levelled up Fletching.\"},{\"date\":\"02-Feb-2018 20:08\",\"details\":\"I levelled my  Slayer skill, I am now level 56.\",\"text\":\"Levelled up Slayer.\"},{\"date\":\"27-Jan-2018 22:26\",\"details\":\"I levelled my  Fletching skill, I am now level 84.\",\"text\":\"Levelled up Fletching.\"},{\"date\":\"26-Jan-2018 19:16\",\"details\":\"I levelled my  Fletching skill, I am now level 83.\",\"text\":\"Levelled up Fletching.\"}],\"skillvalues\":[{\"level\":85,\"xp\":34499357,\"rank\":264396,\"id\":9},{\"level\":67,\"xp\":5824201,\"rank\":648032,\"id\":8},{\"level\":64,\"xp\":4157629,\"rank\":696863,\"id\":0},{\"level\":61,\"xp\":3156399,\"rank\":391621,\"id\":15},{\"level\":58,\"xp\":2381541,\"rank\":830483,\"id\":2},{\"level\":58,\"xp\":2285730,\"rank\":648033,\"id\":14},{\"level\":58,\"xp\":2281195,\"rank\":853164,\"id\":3},{\"level\":57,\"xp\":2197623,\"rank\":685364,\"id\":10},{\"level\":56,\"xp\":1950325,\"rank\":499218,\"id\":18},{\"level\":52,\"xp\":1277419,\"rank\":845590,\"id\":1},{\"level\":51,\"xp\":1156517,\"rank\":781971,\"id\":11},{\"level\":50,\"xp\":1020382,\"rank\":643281,\"id\":5},{\"level\":47,\"xp\":761479,\"rank\":507020,\"id\":24},{\"level\":46,\"xp\":687058,\"rank\":888229,\"id\":7},{\"level\":44,\"xp\":570456,\"rank\":819675,\"id\":13},{\"level\":37,\"xp\":278407,\"rank\":889082,\"id\":12},{\"level\":36,\"xp\":258474,\"rank\":682997,\"id\":16},{\"level\":35,\"xp\":244904,\"rank\":934066,\"id\":4},{\"level\":34,\"xp\":203382,\"rank\":595069,\"id\":22},{\"level\":23,\"xp\":64424,\"rank\":484577,\"id\":25},{\"level\":22,\"xp\":57092,\"rank\":1154774,\"id\":6},{\"level\":21,\"xp\":51485,\"rank\":882030,\"id\":20},{\"level\":20,\"xp\":48925,\"rank\":663190,\"id\":21},{\"level\":20,\"xp\":45193,\"rank\":623528,\"id\":23},{\"level\":18,\"xp\":38174,\"rank\":640357,\"id\":19},{\"level\":16,\"xp\":30001,\"rank\":852617,\"id\":17},{\"level\":1,\"xp\":0,\"rank\":0,\"id\":26}],\"name\":\"Auri_Nimph\",\"rank\":\"669,126\",\"melee\":3340253,\"combatlevel\":75,\"loggedIn\":\"false\"}"));
 
-		RuneScapeUser user1 = rs.getUser("SethX3").complete();
-		RuneScapeUser user2 = rs.getUser("Auri_Nimph").complete();
+		Player user1 = rs.getUser("SethX3").complete();
+		Player user2 = rs.getUser("Auri_Nimph").complete();
 
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Seth+X3", user1.getLeaderboardUrl()),
@@ -82,7 +83,7 @@ public class RuneScapeTest {
 	public void parseUsersSkills() throws IOException {
 		server.enqueue(new MockResponse().setBody("{\"magic\":1854501,\"questsstarted\":1,\"totalskill\":2236,\"questscomplete\":158,\"questsnotstarted\":75,\"totalxp\":182416713,\"ranged\":26210527,\"activities\":[{\"date\":\"24-Jan-2018 22:00\",\"details\":\"I killed  a mithril dragon.\",\"text\":\"I killed  a mithril dragon.\"},{\"date\":\"14-Jan-2018 15:18\",\"details\":\"I killed 5 boss monsters   called:  Hobgoblin Geomancer and a skeletal horde   in Daemonheim.\",\"text\":\"I killed 5 boss monsters in Daemonheim.\"},{\"date\":\"14-Jan-2018 10:11\",\"details\":\"I levelled my  Dungeoneering skill, I am now level 79.\",\"text\":\"Levelled up Dungeoneering.\"},{\"date\":\"14-Jan-2018 10:11\",\"details\":\"I killed 2 boss monsters   called:  Hobgoblin Geomancer and an unholy cursebearer   in Daemonheim.\",\"text\":\"I killed 2 boss monsters in Daemonheim.\"}],\"skillvalues\":[{\"level\":99,\"xp\":262105274,\"rank\":115491,\"id\":3},{\"level\":99,\"xp\":188255163,\"rank\":94830,\"id\":1},{\"level\":99,\"xp\":164070336,\"rank\":119493,\"id\":4},{\"level\":99,\"xp\":162126659,\"rank\":119519,\"id\":6},{\"level\":99,\"xp\":149315898,\"rank\":121272,\"id\":0},{\"level\":99,\"xp\":147711613,\"rank\":133854,\"id\":2},{\"level\":99,\"xp\":143104232,\"rank\":114897,\"id\":18},{\"level\":99,\"xp\":133689428,\"rank\":144276,\"id\":7},{\"level\":99,\"xp\":131619366,\"rank\":158557,\"id\":11},{\"level\":93,\"xp\":76024676,\"rank\":208578,\"id\":8},{\"level\":58,\"xp\":40046299,\"rank\":136207,\"id\":26},{\"level\":81,\"xp\":23945708,\"rank\":242043,\"id\":13},{\"level\":80,\"xp\":20064567,\"rank\":264649,\"id\":12},{\"level\":80,\"xp\":20063398,\"rank\":215339,\"id\":25},{\"level\":80,\"xp\":19956154,\"rank\":201357,\"id\":22},{\"level\":79,\"xp\":18545019,\"rank\":302435,\"id\":5},{\"level\":79,\"xp\":18402702,\"rank\":261547,\"id\":24},{\"level\":79,\"xp\":18128678,\"rank\":348683,\"id\":9},{\"level\":78,\"xp\":17591387,\"rank\":253547,\"id\":23},{\"level\":77,\"xp\":15036292,\"rank\":241041,\"id\":16},{\"level\":75,\"xp\":13299084,\"rank\":296564,\"id\":15},{\"level\":75,\"xp\":13050002,\"rank\":318383,\"id\":14},{\"level\":72,\"xp\":9270717,\"rank\":421993,\"id\":10},{\"level\":67,\"xp\":5834155,\"rank\":293164,\"id\":17},{\"level\":66,\"xp\":5149478,\"rank\":325473,\"id\":20},{\"level\":63,\"xp\":3899253,\"rank\":362178,\"id\":21},{\"level\":63,\"xp\":3861740,\"rank\":310936,\"id\":19}],\"name\":\"Seth X3\",\"rank\":\"199,733\",\"melee\":100621114,\"combatlevel\":133,\"loggedIn\":\"false\"}"));
 
-		RuneScapeUser user = rs.getUser("SethX3").complete();
+		Player user = rs.getUser("SethX3").complete();
 		PlayerStat stat = user.getStat(Skill.SLAYER);
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals(114897, stat.getRank()),
@@ -97,7 +98,7 @@ public class RuneScapeTest {
 	public void parsePrivateUser() throws IOException {
 		server.enqueue(new MockResponse().setBody("{\"error\":\"PROFILE_PRIVATE\",\"loggedIn\":\"false\"}"));
 
-		RuneScapeUser user = rs.getUser("Zezima").complete();
+		Player user = rs.getUser("Zezima").complete();
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertNull(user.getUsername()),
 			() -> assertEquals(0, user.getRank()),
@@ -115,7 +116,7 @@ public class RuneScapeTest {
 	public void userDoesntExist() throws IOException {
 		server.enqueue(new MockResponse().setBody("{\"error\":\"NO_PROFILE\",\"loggedIn\":\"false\"}"));
 
-		RuneScapeUser user = rs.getUser("random user that doesn't exist").complete();
+		Player user = rs.getUser("random user that doesn't exist").complete();
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertNull(user.getUsername()),
 			() -> assertEquals(0, user.getRank()),
@@ -150,7 +151,7 @@ public class RuneScapeTest {
 
 		assertAll("Testing if Parsing RuneScape Player Quest Status",
 			() -> assertEquals("Rat Catchers", stats.getTitle()),
-			() -> assertEquals(QuestDifficulty.INTERMEDIATE, stats.getDifficulty()),
+			() -> assertEquals(Difficulty.INTERMEDIATE, stats.getDifficulty()),
 			() -> assertEquals(2, stats.getQuestPoints()),
 			() -> assertEquals(CompletionStatus.STARTED, stats.getStatus()),
 			() -> assertTrue(stats.isMembers()),
@@ -168,7 +169,7 @@ public class RuneScapeTest {
 		QuestStats stats = quests.get(0);
 		assertAll("Testing if sorting quests alphabetically correctly.",
 			() -> assertEquals("'Phite Club", stats.getTitle()),
-			() -> assertEquals(QuestDifficulty.MASTER, stats.getDifficulty()),
+			() -> assertEquals(Difficulty.MASTER, stats.getDifficulty()),
 			() -> assertEquals(1, stats.getQuestPoints()),
 			() -> assertEquals(CompletionStatus.NOT_STARTED, stats.getStatus()),
 			() -> assertTrue(stats.isMembers()),
@@ -274,7 +275,7 @@ public class RuneScapeTest {
 
 	@Test
 	public void questDifficultyId() {
-		assertEquals(250, QuestDifficulty.SPECIAL.getId());
+		assertEquals(250, Difficulty.SPECIAL.getId());
 	}
 
 	@Test

@@ -1,9 +1,13 @@
 package com.elypia.elypiai.yugioh.data;
 
-import com.elypia.elypiai.restutils.IEnum;
 import com.google.gson.annotations.SerializedName;
 
-public enum CardType implements IEnum<CardType> {
+/**
+ * The type of card this is, of the generic types,
+ * monster, spell and trap. See {@link MagicType} or
+ * {@link MonsterType} for more specific card details.
+ */
+public enum CardType {
 
 	@SerializedName("monster")
 	MONSTER("monster"),
@@ -20,8 +24,16 @@ public enum CardType implements IEnum<CardType> {
 		NAME = name;
 	}
 
-	@Override
 	public String getName() {
 		return NAME;
+	}
+
+	public static CardType get(String name) {
+		for (CardType type : values()) {
+			if (type.NAME.equals(name))
+				return type;
+		}
+
+		return null;
 	}
 }

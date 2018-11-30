@@ -5,18 +5,33 @@ import com.elypia.elypiai.yugioh.impl.*;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.*;
+
 public class YuGiOh {
 
-    private static final String BASE_URL = "http://yugiohprices.com/api/";
+	/**
+	 * The default URL we call too. <br>
+	 * Should never throw {@link MalformedURLException} as this
+	 * is a manually hardcoded URL.
+	 */
+    private static URL BASE_URL;
 
-    private IYuGiOhService service;
+	static {
+		try {
+			BASE_URL = new URL("http://yugiohprices.com/api/");
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	private IYuGiOhService service;
 
 	public YuGiOh() {
 		this(BASE_URL);
     }
 
-    public YuGiOh(String baseUrl) {
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+    public YuGiOh(URL url) {
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(url.toString());
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
 
 		service = retrofitBuilder.build().create(IYuGiOhService.class);
@@ -25,7 +40,7 @@ public class YuGiOh {
 	/**
 	 * Search the YuGiOh prices API for the YuGiOh card requested.
 	 * This only returns a single card and the spelling of the card
-	 * must be perfect, including hythens (-) and spacing.
+	 * must be exact, including hythens (-) and spacing.
 	 * Can return a monster or spell/trap card.
 	 *
 	 * @param name The YuGiOh card to search up, must match card name exactly.

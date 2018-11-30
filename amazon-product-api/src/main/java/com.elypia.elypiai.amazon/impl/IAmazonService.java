@@ -10,6 +10,6 @@ public interface IAmazonService {
 
     @GET("onca/xml")
     Call<AmazonResult> getItems(
-            @QueryMap Map<String, Object> params
+        @QueryMap Map<String, Object> params
     );
 }

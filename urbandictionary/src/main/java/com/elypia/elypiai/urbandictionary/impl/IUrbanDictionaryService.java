@@ -7,5 +7,7 @@ import retrofit2.http.*;
 public interface IUrbanDictionaryService {
 
     @GET("v0/define")
-    Call<UrbanResult> define(@Query("term") String term);
+    Call<UrbanResult> define(
+        @Query("term") String term
+    );
 }

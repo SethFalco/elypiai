@@ -12,7 +12,7 @@ public class QuestStats implements Comparable<QuestStats> {
 	private CompletionStatus status;
 
 	@SerializedName("difficulty")
-	private QuestDifficulty difficulty;
+	private Difficulty difficulty;
 
 	@SerializedName("members")
 	private boolean members;
@@ -31,7 +31,7 @@ public class QuestStats implements Comparable<QuestStats> {
 		return status;
 	}
 
-	public QuestDifficulty getDifficulty() {
+	public Difficulty getDifficulty() {
 		return difficulty;
 	}
 

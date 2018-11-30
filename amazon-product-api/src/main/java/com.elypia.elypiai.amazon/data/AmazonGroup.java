@@ -2,6 +2,7 @@ package com.elypia.elypiai.amazon.data;
 
 public enum AmazonGroup {
 
+    UNKNOWN(null),
     ACCESSORIES("Accessories"),
     ALTERNATATE_VERSIONS("AlternateVersions"),
     BROWSER_NOTE_INFO("BrowserNodeInfo"),

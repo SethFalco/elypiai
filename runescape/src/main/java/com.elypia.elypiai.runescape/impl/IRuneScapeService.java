@@ -9,7 +9,7 @@ import java.util.List;
 public interface IRuneScapeService {
 
     @GET("profile/profile")
-    Call<RuneScapeUser> getUser(@Query("user") String user);
+    Call<Player> getUser(@Query("user") String user);
 
     @GET("quests")
     Call<List<QuestStats>> getQuestStats(@Query("user") String user);

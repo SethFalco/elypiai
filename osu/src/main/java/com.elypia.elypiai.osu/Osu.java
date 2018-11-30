@@ -3,25 +3,38 @@ package com.elypia.elypiai.osu;
 import com.elypia.elypiai.osu.data.*;
 import com.elypia.elypiai.osu.deserializers.*;
 import com.elypia.elypiai.osu.impl.IOsuService;
-import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
-import com.elypia.elypiai.utils.okhttp.RestAction;
-import com.google.gson.*;
+import com.elypia.elypiai.restutils.RestAction;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
 import retrofit2.Call;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.*;
 import java.util.*;
 
 public class Osu {
 
-	private static final String BASE_URL = "https://osu.ppy.sh/api/";
+	/**
+	 * The default URL we call too. <br>
+	 * Should never throw {@link MalformedURLException} as this
+	 * is a manually hardcoded URL.
+	 */
+	private static URL BASE_URL;
+
+	static {
+		try {
+			BASE_URL = new URL("https://osu.ppy.sh/api/");
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	private final String API_KEY;
 
 	private IOsuService service;
-	private Collection<OsuPlayer> cache;
+	private Collection<Player> cache;
 
 	/**
 	 * Creates an OSU object for making calls to the osu API.
@@ -34,7 +47,7 @@ public class Osu {
 		this(BASE_URL, apiKey);
 	}
 
-	public Osu(String baseUrl, String apiKey) {
+	public Osu(URL baseUrl, String apiKey) {
 		API_KEY = apiKey;
 		cache = new ArrayList<>();
 
@@ -47,11 +60,11 @@ public class Osu {
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<OsuMod>>(){}.getType(), new OsuModDeserializer());
-		gsonBuilder.registerTypeAdapter(OsuMatch.class, new OsuMatchDeserializer());
-		gsonBuilder.registerTypeAdapter(OsuPlayer.class, new OsuPlayerDeserializer());
+		gsonBuilder.registerTypeAdapter(Match.class, new OsuMatchDeserializer());
+		gsonBuilder.registerTypeAdapter(Player.class, new OsuPlayerDeserializer());
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<BeatMap>>(){}.getType(), new BeatMapDeserializer());
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
 
 		service = retrofitBuilder.client(client).build().create(IOsuService.class);
@@ -63,7 +76,7 @@ public class Osu {
 	 * @param 	id		The players id.
 	 * @param	mode	The gamemode to view data for.
 	 */
-	public RestAction<OsuPlayer> getPlayer(int id, OsuMode mode, int days) {
+	public RestAction<Player> getPlayer(int id, OsuMode mode, int days) {
 		return getPlayer(String.valueOf(id), OsuId.USER_ID, mode, days);
 	}
 
@@ -73,12 +86,12 @@ public class Osu {
 	 * @param 	username	The players username.
 	 * @param	mode		The gamemode to view data for.
 	 */
-	public RestAction<OsuPlayer> getPlayer(String username, OsuMode mode, int days) {
+	public RestAction<Player> getPlayer(String username, OsuMode mode, int days) {
 		return getPlayer(username, OsuId.USERNAME, mode, days);
 	}
 
-	private RestAction<OsuPlayer> getPlayer(String username, OsuId type, OsuMode mode, int days) {
-		Call<OsuPlayer> call = service.getPlayer(username, type.getType(), mode.getId(), days);
+	private RestAction<Player> getPlayer(String username, OsuId type, OsuMode mode, int days) {
+		Call<Player> call = service.getPlayer(username, type.getType(), mode.getId(), days);
 		return new RestAction<>(call);
 	}
 
@@ -105,8 +118,8 @@ public class Osu {
 		return new RestAction<>(call);
 	}
 
-	public RestAction<OsuMatch> getMatch(int id) {
-		Call<OsuMatch> call = service.getMatch(id);
+	public RestAction<Match> getMatch(int id) {
+		Call<Match> call = service.getMatch(id);
 		return new RestAction<>(call);
 	}
 

@@ -18,16 +18,16 @@ public class TwitchQuery {
         return userIds.size() + logins.size() + gameIds.size();
     }
 
-    public void addUserId(int id) {
-        userIds.add(id);
+    public void addUserId(Integer... ids) {
+        userIds.addAll(List.of(ids));
     }
 
-    public void addUsername(String name) {
-        logins.add(name);
+    public void addUsername(String names) {
+        logins.addAll(List.of(names));
     }
 
-    public void addGame(int id) {
-        gameIds.add(id);
+    public void addGame(Integer... ids) {
+        gameIds.addAll(List.of(ids));
     }
 
     public List<Integer> getUserIds() {
@@ -38,7 +38,7 @@ public class TwitchQuery {
         return logins;
     }
 
-    public List<Integer> getGameIds() {
+    public List<Integer> getGames() {
         return gameIds;
     }
 }

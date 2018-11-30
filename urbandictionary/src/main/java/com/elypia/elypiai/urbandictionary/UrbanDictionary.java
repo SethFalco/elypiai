@@ -5,9 +5,24 @@ import com.elypia.elypiai.urbandictionary.impl.IUrbanDictionaryService;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.*;
+
 public class UrbanDictionary {
 
-	private static final String BASE_URL = "http://api.urbandictionary.com/";
+	/**
+	 * The default URL we call too. <br>
+	 * Should never throw {@link MalformedURLException} as this
+	 * is a manually hardcoded URL.
+	 */
+	private static URL BASE_URL;
+
+	static {
+		try {
+			BASE_URL = new URL("http://api.urbandictionary.com/");
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	private IUrbanDictionaryService service;
 
@@ -15,8 +30,8 @@ public class UrbanDictionary {
 		this(BASE_URL);
 	}
 
-	public UrbanDictionary(String baseUrl) {
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+	public UrbanDictionary(URL url) {
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(url.toString());
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
 
 		service = retrofitBuilder.build().create(IUrbanDictionaryService.class);

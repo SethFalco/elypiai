@@ -1,21 +1,24 @@
 package com.elypia.elypiai.amazon.data;
 
-import com.elypia.elypiai.amazon.AmazonItem;
+import com.elypia.elypiai.amazon.Product;
+
+import java.net.*;
 
 public enum AmazonEndpoint {
 
-	US("com"),
-	BRAZIL("com.br"),
-	CANADA("ca"),
-	CHINA("cn"),
-	GERMANY("de"),
-	SPAIN("es"),
-	FRANCE("fr"),
-	INDIA("in"),
-	ITALY("it"),
-	JAPAN("co.jp"),
-	MEXICO("com.mx"),
-	UK("co.uk");
+	UNKNOWN(null),
+	US(".com"),
+	BRAZIL(".com.br"),
+	CANADA(".ca"),
+	CHINA(".cn"),
+	GERMANY(".de"),
+	SPAIN(".es"),
+	FRANCE(".fr"),
+	INDIA(".in"),
+	ITALY(".it"),
+	JAPAN(".co.jp"),
+	MEXICO(".com.mx"),
+	UK(".co.uk");
 
 	private final String TLD;
 
@@ -29,21 +32,26 @@ public enum AmazonEndpoint {
 
 	/**
 	 * Do <strong>NOT</strong> use this to to display product data
-	 * results, use the URL provided with {@link AmazonItem} for monetization.
+	 * results, use the URL provided with {@link Product} for monetization.
 	 *
 	 * @return	The Amazon homepage for this endpoint / country.
 	 */
-
 	public String getShoppingUrl() {
-		return String.format("https://amazon.%s/", TLD);
+		return String.format("https://amazon%s/", TLD);
 	}
 
-	public String getEndpoint() {
-		return "https://" + toString() + "/";
+	public URL getEndpoint() {
+		try {
+			return new URL("https://" + toString() + "/");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	@Override
 	public String toString() {
-		return "webservices.amazon." + TLD;
+		return "webservices.amazon" + TLD;
 	}
 }

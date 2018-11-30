@@ -23,7 +23,6 @@ public class MapDifficulty {
      * @return 	A numerical representation of the beatmap
      * 			difficulty, unrounded.
      */
-
     public double getDisplay() {
         return display;
     }
@@ -31,7 +30,6 @@ public class MapDifficulty {
     /**
      * @return 	The overall difficulty (OD) of the beatmap.
      */
-
     public int getOverall() {
         return overall;
     }
@@ -43,7 +41,6 @@ public class MapDifficulty {
     /**
      * @return 	The appraoch rate (AR) of the beatmap.
      */
-
     public int getApproachRate() {
         return approachRate;
     }
@@ -51,7 +48,6 @@ public class MapDifficulty {
     /**
      * @return 	The health drain (HR) of the beatmap.
      */
-
     public int getHealthDrain() {
         return healthDrain;
     }

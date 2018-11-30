@@ -1,8 +1,7 @@
 package com.elypia.elypiai.steam;
 
 import com.elypia.elypiai.steam.data.PersonaState;
-import com.elypia.elypiai.utils.Country;
-import com.elypia.elypiai.utils.gson.deserializers.*;
+import com.elypia.elypiai.steam.deserializers.*;
 import com.google.gson.annotations.*;
 
 import java.util.Date;
@@ -14,21 +13,18 @@ public class SteamUser {
 	/**
 	 * 64bit SteamID of the user
 	 */
-
 	@SerializedName("steamid")
 	private long id;
 
 	/**
 	 * The player's persona name (display name)
 	 */
-
 	@SerializedName("personaname")
 	private String username;
 
 	/**
 	 * The full URL of the player's Steam Community profile.
 	 */
-
 	@SerializedName("profileurl")
 	private String url;
 
@@ -40,7 +36,6 @@ public class SteamUser {
 	 * If the user hasn't configured an avatar,
 	 * this will be the default ? avatar.
 	 */
-
 	@SerializedName("avatarmedium")
 	private String avatarMedium;
 
@@ -51,14 +46,12 @@ public class SteamUser {
 	 * The user's current status. If the player's profile is private,
 	 * this will always be "0".
 	 */
-
 	@SerializedName("personastate")
 	private PersonaState state;
 
 	/**
 	 * This represents whether the profile is visible or not.
 	 */
-
 	@SerializedName("communityvisibilitystate")
 	@JsonAdapter(BitBooleanDeserializer.class)
 	private boolean isPrivate;
@@ -66,7 +59,6 @@ public class SteamUser {
 	/**
 	 * Indicates the user has a community profile configured.
 	 */
-
 	@SerializedName("profilestate")
 	@JsonAdapter(BitBooleanDeserializer.class)
 	private boolean hasProfile;
@@ -74,15 +66,13 @@ public class SteamUser {
 	/**
 	 * The last time the user was online.
 	 */
-
 	@SerializedName("lastlogoff")
-	@JsonAdapter(DateDeserializer.class)
+	@JsonAdapter(SteamDateDeserializer.class)
 	private Date lastLogOff;
 
 	/**
 	 * If set, indicates the profile allows public comments.
 	 */
-
 	@SerializedName("commentpermission")
 	@JsonAdapter(BitBooleanDeserializer.class)
 	private boolean canComment;
@@ -91,7 +81,6 @@ public class SteamUser {
 	 * <strong>Only non-null if profile is not private.</strong><br>
 	 * The player's "Real Name", if they have set it.
 	 */
-
 	@SerializedName("realname")
 	private String realName;
 
@@ -99,7 +88,6 @@ public class SteamUser {
 	 * <strong>Only non-null if profile is not private.</strong><br>
 	 * The player's primary group, as configured in their Steam Community profile.
 	 */
-
 	@SerializedName("primaryclanid")
 	private long primaryClan;
 
@@ -109,21 +97,19 @@ public class SteamUser {
 	 */
 
 	@SerializedName("timecreated")
-	@JsonAdapter(DateDeserializer.class)
+	@JsonAdapter(SteamDateDeserializer.class)
 	private Date timeCreated;
 
 	/**
 	 * If set on the user's Steam Community profile,
 	 * The user's country of residence, 2-character ISO country code
 	 */
-
 	@SerializedName("loccountrycode")
-	private Country countryCode;
+	private String countryCode;
 
 	/**
 	 * If set on the user's Steam Community profile, The user's state of residence
 	 */
-
 	@SerializedName("locstatecode")
 	private String stateCode;
 
@@ -144,7 +130,6 @@ public class SteamUser {
 	 * @return	Returns the ID of the user. See {@link #getUsername()}
 	 * 			for name of the user instead.
 	 */
-
 	public long getId() {
 		return id;
 	}
@@ -153,7 +138,6 @@ public class SteamUser {
 	 * @return	Returns the name of the user as displayed
 	 * 			on their Steam profile.
 	 */
-
 	public String getUsername() {
 		return username;
 	}
@@ -161,7 +145,6 @@ public class SteamUser {
 	/**
 	 * @return	Return the Url to their steam profile.
 	 */
-
 	public String getProfileUrl() {
 		return url;
 	}
@@ -178,7 +161,6 @@ public class SteamUser {
 	 * @return	The full URL of the player's 184x184px avatar.
 	 * 			If the user hasn't configured an avatar, this will be the default ? avatar.
 	 */
-
 	public String getAvatarHigh() {
 		return avatarHigh;
 	}
@@ -187,7 +169,6 @@ public class SteamUser {
 	 * @return	The users personal state/status. Eg, Online, Offline,
 	 * 			Busy, Away etcetc. See {@link PersonaState}.
 	 */
-
 	public PersonaState getPersonaState() {
 		return state;
 	}
@@ -197,7 +178,6 @@ public class SteamUser {
 	 * 			Returns true of profile is private or
 	 * 			set for friends only.
 	 */
-
 	public boolean isPrivate() {
 		return isPrivate;
 	}
@@ -226,7 +206,7 @@ public class SteamUser {
 		return timeCreated;
 	}
 
-	public Country getCountry() {
+	public String getCountry() {
 		return countryCode;
 	}
 

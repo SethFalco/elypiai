@@ -1,18 +1,16 @@
 package com.elypia.elypiai.osu.deserializers;
 
-import com.elypia.elypiai.osu.*;
-import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
+import com.elypia.elypiai.osu.Match;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
-import java.util.Date;
 
-public class OsuMatchDeserializer implements JsonDeserializer<OsuMatch> {
+public class OsuMatchDeserializer implements JsonDeserializer<Match> {
 
     private static final Gson GSON = new Gson();
 
     @Override
-    public OsuMatch deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Match deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject object = json.getAsJsonObject();
         JsonObject match = object.getAsJsonObject("match");
         match.add("games", object.getAsJsonArray("games"));

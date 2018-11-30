@@ -1,23 +1,40 @@
 package com.elypia.elypiai.amazon;
 
-import com.elypia.elypiai.amazon.data.*;
+import com.elypia.elypiai.amazon.data.AmazonEndpoint;
+import com.elypia.elypiai.amazon.data.AmazonGroup;
+import com.elypia.elypiai.amazon.data.ProductIndex;
 import com.elypia.elypiai.amazon.impl.IAmazonService;
 import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.utils.Regex;
-import retrofit2.*;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 import retrofit2.converter.jaxb.JaxbConverterFactory;
 
+import java.net.URL;
 import java.security.InvalidKeyException;
 import java.time.Instant;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.StringJoiner;
+import java.util.regex.Pattern;
 
 public class Amazon {
+
+	/**
+	 * Validates if the {@link #getAccessKey() access key}
+	 * is valid.
+	 */
+	public static final Pattern AMAZON_ACCESS_KEY = Pattern.compile("AKIA[IJ][A-Z\\d]{14}[AQ]");
+
+	/**
+	 * Validates if the {@link #getSecret() secret} is valid.
+	 */
+	public static final Pattern AMAZON_SECRET = Pattern.compile("(?i)[A-Z\\d/+]{40}");
 
 	/**
 	 * The default {@link AmazonGroup}s to request Amazon for
 	 * getting product data.
 	 */
-
 	private final static AmazonGroup[] DEFAULT_GROUPS = {
 		AmazonGroup.IMAGES,
 		AmazonGroup.ITEM_ATTRIBUTES,
@@ -41,8 +58,8 @@ public class Amazon {
 	 * @param secret	Amazon Secret obtained from AWS.
 	 * @param id	Amazon Affiliate ID obtained from the Amazon Affiliate Programme.
 	 * @throws InvalidKeyException	If an invalid key is provided.
+	 * @throws IllegalArgumentException If invalid access key or secret is provided.
 	 */
-
 	public Amazon(String accessKey, String secret, String id) throws InvalidKeyException {
 		this(accessKey, secret, id, id.endsWith("20") ? AmazonEndpoint.US : AmazonEndpoint.UK);
 	}
@@ -55,27 +72,27 @@ public class Amazon {
 	 * @param id Amazon Affiliate ID obtained from the Amazon Affiliate Programme.
 	 * @param endpoint The {@link AmazonEndpoint} / service this ID is associated with.
 	 * @throws InvalidKeyException	If an invalid key is provided.
+	 * @throws IllegalArgumentException If invalid access key or secret is provided.
 	 */
-
 	public Amazon(String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException {
 		this(endpoint.getEndpoint(), accessKey, secret, id, endpoint);
 	}
 
-	public Amazon(String baseUrl, String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException {
+	public Amazon(URL baseUrl, String accessKey, String secret, String id, AmazonEndpoint endpoint) throws InvalidKeyException {
 		this.accessKey = Objects.requireNonNull(accessKey);
 		this.secret = Objects.requireNonNull(secret);
 		this.id = Objects.requireNonNull(id);
 		this.endpoint = Objects.requireNonNull(endpoint);
 
-		if (!Regex.AMAZON_ACCESS_KEY.matches(accessKey))
-			throw new IllegalArgumentException("Invalid Amazon Access Key provided.");
+		if (!AMAZON_ACCESS_KEY.matcher(accessKey).matches())
+			throw new IllegalArgumentException("The access key provided doesn't match the format expected.");
 
-		if (!Regex.AMAZON_SECRET.matches(secret))
-			throw new IllegalArgumentException("Invalid Amazon Secret provided.");
+		if (!AMAZON_SECRET.matcher(secret).matches())
+			throw new IllegalArgumentException("The secret doesn't match the format expected.");
 
 		signer = new RequestSigner(secret);
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
 		retrofitBuilder.addConverterFactory(JaxbConverterFactory.create());
 
 		service = retrofitBuilder.build().create(IAmazonService.class);
@@ -86,10 +103,10 @@ public class Amazon {
 	}
 
 	public RestAction<AmazonResult> getItems(String product, AmazonGroup[] groups) {
-		return getItems(product, groups, AmazonIndex.ALL);
+		return getItems(product, groups, ProductIndex.ALL);
 	}
 
-	public RestAction<AmazonResult> getItems(String product, AmazonGroup[] groups, AmazonIndex index) {
+	public RestAction<AmazonResult> getItems(String product, AmazonGroup[] groups, ProductIndex index) {
 		StringJoiner joiner = new StringJoiner(",");
 
 		for (AmazonGroup g : groups)

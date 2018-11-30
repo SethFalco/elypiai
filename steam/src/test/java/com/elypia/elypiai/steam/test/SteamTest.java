@@ -2,11 +2,11 @@ package com.elypia.elypiai.steam.test;
 
 import com.elypia.elypiai.steam.*;
 import com.elypia.elypiai.steam.data.PersonaState;
-import com.elypia.elypiai.utils.Country;
 import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +21,7 @@ public class SteamTest {
         server = new MockWebServer();
         server.start();
 
-        steam = new Steam("http://localhost:" + server.getPort(), "DCA56FE963FE3D2CE23DF7DF30AAA579");
+        steam = new Steam(new URL("http://localhost:" + server.getPort()), "DCA56FE963FE3D2CE23DF7DF30AAA579");
     }
 
     @AfterEach
@@ -85,7 +85,7 @@ public class SteamTest {
             () -> assertEquals("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de_medium.jpg", user.getAvatarMedium()),
             () -> assertEquals("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de_full.jpg", user.getAvatarHigh()),
             () -> assertEquals("https://steamcommunity.com/id/SethsUtopia/", user.getProfileUrl()),
-            () -> assertEquals(Country.UNITED_KINGDOM, user.getCountry()),
+            () -> assertEquals("GB", user.getCountry()),
             () -> assertEquals(1530244269, user.getLastLogOff().getTime()),
             () -> assertEquals(PersonaState.ONLINE, user.getPersonaState()),
             () -> assertEquals(103582791429521408L, user.getPrimaryClan()),

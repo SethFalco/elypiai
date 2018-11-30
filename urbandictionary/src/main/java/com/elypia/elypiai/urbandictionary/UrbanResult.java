@@ -1,6 +1,6 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.elypia.elypiai.urbandictionary.data.UrbanResultType;
+import com.elypia.elypiai.urbandictionary.data.ResultType;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.*;
@@ -10,26 +10,21 @@ import java.util.stream.Collectors;
 public class UrbanResult {
 
 	@SerializedName("result_type")
-	private UrbanResultType type;
+	private ResultType type;
 
 	@SerializedName("tags")
 	private Collection<String> tags;
 
 	@SerializedName("list")
-	private List<UrbanDefinition> definitions;
+	private List<Definition> definitions;
 
 	@SerializedName("sounds")
 	private List<String> sounds;
 
-	private UrbanResult() {
-
-	}
-
 	/**
 	 * @return	The top resulting definition that appears on UrbanDictionary for this search.
 	 */
-
-	public UrbanDefinition getDefinition() {
+	public Definition getDefinition() {
 		return getDefinition(false);
 	}
 
@@ -37,8 +32,7 @@ public class UrbanResult {
 	 * @param random If to get the top definition or a random one.
 	 * @return A urban dictionary defintion entry for this word.
 	 */
-
-	public UrbanDefinition getDefinition(boolean random) {
+	public Definition getDefinition(boolean random) {
 		int index = random ? ThreadLocalRandom.current().nextInt(definitions.size()) : 0;
 		return definitions.get(index);
 	}
@@ -46,15 +40,13 @@ public class UrbanResult {
 	/**
 	 * @return	The type of result set receieved.
 	 */
-
-	public UrbanResultType getResultType() {
+	public ResultType getResultType() {
 		return type;
 	}
 
 	/**
 	 * @return	Tags deemed associated with the word defined.
 	 */
-
 	public Collection<String> getTags() {
 		return tags;
 	}
@@ -62,7 +54,6 @@ public class UrbanResult {
 	/**
 	 * @return Tags with duplicates removed.
 	 */
-
 	public Collection<String> getTagsDistinct() {
 		return tags.stream().distinct().collect(Collectors.toList());
 	}
@@ -70,7 +61,6 @@ public class UrbanResult {
 	/**
 	 * @return	Sounds related to this defintion as urls linking to audio files.
 	 */
-
 	public List<String> getSounds() {
 		return Collections.unmodifiableList(sounds);
 	}
@@ -79,18 +69,15 @@ public class UrbanResult {
 	 * @param amount The max number of sounds to return.
 	 * @return A randomised list of sounds.
 	 */
-
 	public Collection<String> getSounds(int amount) {
 		if (sounds.size() <= amount)
 			return sounds;
 
+		Random rand = ThreadLocalRandom.current();
 		List<String> randomSounds = new ArrayList<>();
 
-		for (int i = 0; i < amount; i++) {
-
-			int index = ThreadLocalRandom.current().nextInt(sounds.size());
-			randomSounds.add(sounds.get(index));
-		}
+		for (int i = 0; i < amount; i++)
+			randomSounds.add(sounds.get(rand.nextInt(sounds.size())));
 
 		return Collections.unmodifiableCollection(randomSounds);
 	}
@@ -99,8 +86,7 @@ public class UrbanResult {
 	 * @return	A full list of all returned definitions in the order they were
 	 * recieved in, by default this should be by vote.
 	 */
-
-	public List<UrbanDefinition> getDefinitions() {
+	public List<Definition> getDefinitions() {
 		return definitions;
 	}
 }

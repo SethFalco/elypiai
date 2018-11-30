@@ -1,6 +1,6 @@
 package com.elypia.elypiai.osu.impl;
 
-import com.elypia.elypiai.utils.gson.deserializers.BitBooleanDeserializer;
+import com.elypia.elypiai.osu.deserializers.BitBooleanDeserializer;
 import com.google.gson.annotations.*;
 
 public abstract class OsuScore {
@@ -39,7 +39,6 @@ public abstract class OsuScore {
     /**
      * @return	The score the user got.
      */
-
     public long getScore() {
         return score;
     }
@@ -47,7 +46,6 @@ public abstract class OsuScore {
     /**
      * @return	The bigget combo the player received.
      */
-
     public int getMaxCombo() {
         return maxCombo;
     }
@@ -55,7 +53,6 @@ public abstract class OsuScore {
     /**
      * @return	The total number of 50s the player hit.
      */
-
     public int getCount50() {
         return count50;
     }
@@ -63,7 +60,6 @@ public abstract class OsuScore {
     /**
      * @return	The total number of 100s the player hit.
      */
-
     public int getCount100() {
         return count100;
     }
@@ -71,7 +67,6 @@ public abstract class OsuScore {
     /**
      * @return	The total number of 300s the player hit.
      */
-
     public int getCount300() {
         return count300;
     }
@@ -79,7 +74,6 @@ public abstract class OsuScore {
     /**
      * @return	The total number of notes missed.
      */
-
     public int getCountMiss() {
         return countMiss;
     }
@@ -88,7 +82,6 @@ public abstract class OsuScore {
      * @return	The total number of katus in the play.
      * 			(A set of notes/streams with 100s or above only.)
      */
-
     public int getCountKatu() {
         return countKatu;
     }
@@ -97,7 +90,6 @@ public abstract class OsuScore {
      * @return	The total number of gekis in the play.
      * 			(A set of notes/stream with all 300s.)
      */
-
     public int getCountGeki() {
         return countGeki;
     }
@@ -106,7 +98,6 @@ public abstract class OsuScore {
      * @return	If the player achieved the maximum combo possible
      * 			for the beatmap.
      */
-
     public boolean isPerfect() {
         return perfect;
     }
@@ -115,7 +106,6 @@ public abstract class OsuScore {
     /**
      * @return	The users id.
      */
-
     public int getUserId() {
         return userId;
     }

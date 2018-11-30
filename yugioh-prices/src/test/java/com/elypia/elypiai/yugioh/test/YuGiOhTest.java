@@ -7,6 +7,7 @@ import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
+import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,7 @@ public class YuGiOhTest {
         server = new MockWebServer();
         server.start();
 
-        yugioh = new YuGiOh("http://localhost:" + server.getPort());
+        yugioh = new YuGiOh(new URL("http://localhost:" + server.getPort()));
     }
 
     @AfterEach
@@ -38,18 +39,17 @@ public class YuGiOhTest {
     public void parseCardData() throws IOException {
         server.enqueue(new MockResponse().setBody("{\"status\":\"success\",\"data\":{\"name\":\"Dark Magician\",\"text\":\"The ultimate wizard in terms of attack and defense.\",\"card_type\":\"monster\",\"type\":\"Spellcaster / Normal\",\"family\":\"dark\",\"atk\":2500,\"def\":2100,\"level\":7,\"property\":null}}"));
 
-        MonsterCard card = yugioh.getCard("Dark Magician").complete().asMonster();
+        Monster card = (Monster)yugioh.getCard("Dark Magician").complete();
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician", card.getName()),
             () -> assertEquals("The ultimate wizard in terms of attack and defense.", card.getText()),
             () -> assertEquals(CardType.MONSTER, card.getType()),
-            () -> assertTrue(card.getMonsterTypes().contains(MonsterType.NORMAL)),
-            () -> assertEquals(MonsterAttribute.SPELLCASTER, card.getAttribute()),
-            () -> assertEquals(MonsterFamily.DARK, card.getFamily()),
+            () -> assertTrue(card.getTypes().contains(MonsterType.NORMAL)),
+            () -> assertEquals(Race.SPELLCASTER, card.getRace()),
+            () -> assertEquals(Attribute.DARK, card.getAttribute()),
             () -> assertEquals(2500, card.getAttack()),
             () -> assertEquals(2100, card.getDefense()),
-            () -> assertEquals(7, card.getLevel()),
-            () -> assertTrue(card.is(CardType.MONSTER))
+            () -> assertEquals(7, card.getLevel())
         );
     }
 
@@ -57,18 +57,17 @@ public class YuGiOhTest {
     public void parseDarkMagianGirl() throws IOException {
         server.enqueue(new MockResponse().setBody("{\"status\":\"success\",\"data\":{\"name\":\"Dark Magician Girl\",\"text\":\"Gains 300 ATK for every \\\"Dark Magician\\\" or \\\"Magician of Black Chaos\\\" in the GY.\",\"card_type\":\"monster\",\"type\":\"Spellcaster / Effect\",\"family\":\"dark\",\"atk\":2000,\"def\":1700,\"level\":6,\"property\":null}}"));
 
-        MonsterCard card = yugioh.getCard("Dark Magician Girl").complete().asMonster();
+        Monster card = (Monster)yugioh.getCard("Dark Magician Girl").complete();
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician Girl", card.getName()),
             () -> assertEquals("Gains 300 ATK for every \"Dark Magician\" or \"Magician of Black Chaos\" in the GY.", card.getText()),
             () -> assertEquals(CardType.MONSTER, card.getType()),
-            () -> assertEquals(MonsterAttribute.SPELLCASTER, card.getAttribute()),
-            () -> assertTrue(card.getMonsterTypes().contains(MonsterType.EFFECT)),
-            () -> assertEquals(MonsterFamily.DARK, card.getFamily()),
+            () -> assertEquals(Race.SPELLCASTER, card.getRace()),
+            () -> assertTrue(card.getTypes().contains(MonsterType.EFFECT)),
+            () -> assertEquals(Attribute.DARK, card.getAttribute()),
             () -> assertEquals(2000, card.getAttack()),
             () -> assertEquals(1700, card.getDefense()),
-            () -> assertEquals(6, card.getLevel()),
-            () -> assertTrue(card.is(CardType.MONSTER))
+            () -> assertEquals(6, card.getLevel())
         );
     }
 
@@ -76,13 +75,12 @@ public class YuGiOhTest {
     public void parsePotOfGreed() throws IOException {
         server.enqueue(new MockResponse().setBody("{\"status\":\"success\",\"data\":{\"name\":\"Pot of Greed\",\"text\":\"Draw 2 cards.\",\"card_type\":\"spell\",\"type\":null,\"family\":null,\"atk\":null,\"def\":null,\"level\":null,\"property\":\"Normal\"}}"));
 
-        SpellCard card = yugioh.getCard("Pot of Greed").complete().asSpell();
+        MagicCard card = (MagicCard)yugioh.getCard("Pot of Greed").complete();
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Pot of Greed", card.getName()),
             () -> assertEquals("Draw 2 cards.", card.getText()),
             () -> assertEquals(CardType.SPELL, card.getType()),
-            () -> assertEquals(SpellProperty.NORMAL, card.getProperty()),
-            () -> assertTrue(card.is(CardType.SPELL))
+            () -> assertEquals(MagicType.NORMAL, card.getProperty())
         );
     }
 
@@ -90,13 +88,12 @@ public class YuGiOhTest {
     public void parseMirrorForce() throws IOException {
         server.enqueue(new MockResponse().setBody("{\"status\":\"success\",\"data\":{\"name\":\"Mirror Force\",\"text\":\"When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.\",\"card_type\":\"trap\",\"type\":null,\"family\":null,\"atk\":null,\"def\":null,\"level\":null,\"property\":\"Normal\"}}"));
 
-        TrapCard card = yugioh.getCard("Mirror Force").complete().asTrap();
+        MagicCard card = (MagicCard) yugioh.getCard("Mirror Force").complete();
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Mirror Force", card.getName()),
             () -> assertEquals("When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.", card.getText()),
             () -> assertEquals(CardType.TRAP, card.getType()),
-            () -> assertEquals(TrapProperty.NORMAL, card.getProperty()),
-            () -> assertTrue(card.is(CardType.TRAP))
+            () -> assertEquals(MagicType.NORMAL, card.getProperty())
         );
     }
 
@@ -110,7 +107,7 @@ public class YuGiOhTest {
 
     @Test
     public void parseEnum() {
-        assertNull(MonsterAttribute.get("testing nothing"));
+        assertNull(Race.get("testing nothing"));
         assertNull(MonsterType.get("testing nothing"));
     }
 }

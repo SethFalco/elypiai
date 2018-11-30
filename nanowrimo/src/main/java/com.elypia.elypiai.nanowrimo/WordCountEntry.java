@@ -1,8 +1,8 @@
 package com.elypia.elypiai.nanowrimo;
 
-import com.elypia.elypiai.utils.jaxb.deserializers.DateDeserializer;
+import com.elypia.elypiai.nanowrimo.deserializers.DateDeserializer;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 

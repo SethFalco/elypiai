@@ -1,18 +1,16 @@
 package com.elypia.elypiai.osu.deserializers;
 
-import com.elypia.elypiai.osu.*;
-import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
+import com.elypia.elypiai.osu.Player;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
-import java.util.Date;
 
-public class OsuPlayerDeserializer implements JsonDeserializer<OsuPlayer> {
+public class OsuPlayerDeserializer implements JsonDeserializer<Player> {
 
     private static final Gson GSON = new Gson();
 
     @Override
-    public OsuPlayer deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Player deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonArray array = json.getAsJsonArray();
 
         if (array.size() == 0)

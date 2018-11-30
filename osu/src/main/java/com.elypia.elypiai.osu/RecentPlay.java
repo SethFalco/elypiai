@@ -1,9 +1,8 @@
 package com.elypia.elypiai.osu;
 
 import com.elypia.elypiai.osu.data.OsuMod;
-import com.elypia.elypiai.osu.deserializers.OsuModDeserializer;
+import com.elypia.elypiai.osu.deserializers.*;
 import com.elypia.elypiai.osu.impl.OsuScore;
-import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
 import com.google.gson.annotations.*;
 
 import java.util.*;
@@ -18,7 +17,7 @@ public class RecentPlay extends OsuScore {
 	private List<OsuMod> mods;
 
 	@SerializedName("date")
-	@JsonAdapter(UtcDateDeserializer.class)
+	@JsonAdapter(OsuDateDeserializer.class)
 	private Date date;
 
 	@SerializedName("rank")

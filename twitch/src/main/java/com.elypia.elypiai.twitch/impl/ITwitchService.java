@@ -9,17 +9,17 @@ import java.util.*;
 public interface ITwitchService {
 
     @GET("users")
-    Call<List<TwitchUser>> getUsers(
-            @Query("id") List<Integer> ids,
-            @Query("login") List<String> logins
+    Call<List<User>> getUsers(
+        @Query("id") List<Integer> ids,
+        @Query("login") List<String> logins
     );
 
     @GET("streams")
-    Call<List<TwitchStream>> getStreams(
-            @Query("user_id") List<Integer> ids,
-            @Query("user_login") List<String> logins,
-            @Query("game_id") List<Integer> gameIds,
-            @Query("first") int limit,
-            @Query("after") String cursor
+    Call<StreamPage> getStreams(
+        @Query("user_id") List<Integer> ids,
+        @Query("user_login") List<String> logins,
+        @Query("game_id") List<Integer> gameIds,
+        @Query("first") int limit,
+        @Query("after") String cursor
     );
 }

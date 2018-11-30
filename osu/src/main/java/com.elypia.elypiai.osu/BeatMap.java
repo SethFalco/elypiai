@@ -1,7 +1,7 @@
 package com.elypia.elypiai.osu;
 
 import com.elypia.elypiai.osu.data.*;
-import com.elypia.elypiai.utils.gson.deserializers.*;
+import com.elypia.elypiai.osu.deserializers.*;
 import com.google.gson.annotations.*;
 
 import java.util.*;
@@ -14,11 +14,11 @@ public class BeatMap {
 	private MapStatus status;
 
 	@SerializedName("approved_date")
-	@JsonAdapter(UtcDateDeserializer.class)
+	@JsonAdapter(OsuDateDeserializer.class)
 	private Date approvedDate;
 
 	@SerializedName("last_update")
-	@JsonAdapter(UtcDateDeserializer.class)
+	@JsonAdapter(OsuDateDeserializer.class)
 	private Date lastUpdated;
 
 	@SerializedName("artist")
@@ -40,7 +40,7 @@ public class BeatMap {
 	private int hit_length;
 
 	@SerializedName("source")
-	@JsonAdapter(StringEmptyIsNullDeserializer.class)
+	@JsonAdapter(EmptyNullDeserializer.class)
 	private String source;
 
 	@SerializedName("genre_id")
@@ -65,7 +65,7 @@ public class BeatMap {
 	private OsuMode mode;
 
 	@SerializedName("tags")
-	@JsonAdapter(SpaceDelimitedStringDeserializer.class)
+	@JsonAdapter(SpaceDelimitedDeserializer.class)
 	private List<String> tags;
 
 	@SerializedName("favourite_count")
@@ -85,7 +85,6 @@ public class BeatMap {
 	/**
 	 * @return	The maps current status.
 	 */
-
 	public MapStatus getStatus() {
 		return status;
 	}
@@ -96,7 +95,6 @@ public class BeatMap {
 	 *
 	 * @return 	Date the map was approved.
 	 */
-
 	public Date getApprovedDate() {
 		return approvedDate;
 	}

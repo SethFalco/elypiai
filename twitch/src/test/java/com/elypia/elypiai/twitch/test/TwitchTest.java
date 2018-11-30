@@ -2,11 +2,11 @@ package com.elypia.elypiai.twitch.test;
 
 import com.elypia.elypiai.twitch.*;
 import com.elypia.elypiai.twitch.data.*;
-import com.elypia.elypiai.utils.Language;
 import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +21,7 @@ public class TwitchTest {
         server = new MockWebServer();
         server.start();
 
-        twitch = new Twitch("http://localhost:" + server.getPort(), "3njgo97a5031gbutxljfn06dmrvoto");
+        twitch = new Twitch(new URL("http://localhost:" + server.getPort()), "3njgo97a5031gbutxljfn06dmrvoto");
     }
 
     @AfterEach
@@ -49,7 +49,7 @@ public class TwitchTest {
         TwitchQuery query = new TwitchQuery();
         query.addUserId(89672168);
 
-        TwitchUser user = twitch.getUsers(query).complete().get(0);
+        User user = twitch.getUsers(query).complete().get(0);
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(twitch, user.getTwitch()),
             () -> assertEquals(89672168, user.getId()),
@@ -73,8 +73,8 @@ public class TwitchTest {
         query.addUserId(44635243);
         query.addUsername("jenthebluepanda");
 
-        List<TwitchUser> users = twitch.getUsers(query).complete();
-        TwitchUser user = users.get(0);
+        List<User> users = twitch.getUsers(query).complete();
+        User user = users.get(0);
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(twitch, user.getTwitch()),
             () -> assertEquals(44635243, user.getId()),
@@ -98,8 +98,8 @@ public class TwitchTest {
         TwitchQuery query = new TwitchQuery();
         query.addUserId(36483360);
 
-        TwitchUser user = twitch.getUsers(query).complete().get(0);
-        TwitchStream stream = user.getStream().next().get(0);
+        User user = twitch.getUsers(query).complete().get(0);
+        Stream stream = user.getStream().next().get(0);
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(36483360, stream.getUserId()),
             () -> assertEquals(29279769792L, stream.getId()),
@@ -109,7 +109,7 @@ public class TwitchTest {
             () -> assertEquals(StreamType.LIVE, stream.getType()),
             () -> assertEquals("Vaal Race practice! !temple !3.3 !request !rip !leaguestart !filter !tencent !RF !merch", stream.getTitle()),
             () -> assertEquals(1893, stream.getViewerCount()),
-            () -> assertEquals(Language.ENGLISH, stream.getLanguage()),
+            () -> assertEquals("en-gb", stream.getLanguage()),
             () -> assertEquals("https://static-cdn.jtvnw.net/previews-ttv/live_user_zizaran-1600x800.jpg", stream.getThumbnail(1600, 800)),
             () -> assertEquals("https://static-cdn.jtvnw.net/previews-ttv/live_user_zizaran-1600x900.jpg", stream.getThumbnail(1600)),
             () -> assertEquals("https://static-cdn.jtvnw.net/previews-ttv/live_user_zizaran-480x270.jpg", stream.getThumbnail())
@@ -125,10 +125,10 @@ public class TwitchTest {
         TwitchQuery query = new TwitchQuery();
         query.addGame(1598);
 
-        List<TwitchStream> allStreams = new ArrayList<>();
+        List<Stream> allStreams = new ArrayList<>();
         StreamPaginator paginator = twitch.getStreams(query, 2);
 
-        List<TwitchStream> streams;
+        List<Stream> streams;
         while ((streams = paginator.next()) != null) {
             assertEquals(2, streams.size());
             allStreams.addAll(streams);

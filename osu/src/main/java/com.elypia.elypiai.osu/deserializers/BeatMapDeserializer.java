@@ -1,11 +1,10 @@
 package com.elypia.elypiai.osu.deserializers;
 
 import com.elypia.elypiai.osu.*;
-import com.elypia.elypiai.utils.gson.deserializers.UtcDateDeserializer;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.List;
 
 public class BeatMapDeserializer implements JsonDeserializer<List<BeatMap>> {
 

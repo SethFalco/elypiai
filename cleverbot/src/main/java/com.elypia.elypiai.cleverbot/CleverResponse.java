@@ -1,6 +1,5 @@
 package com.elypia.elypiai.cleverbot;
 
-import com.elypia.elypiai.utils.Tuple;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.*;
@@ -34,7 +33,8 @@ public class CleverResponse {
 	@SerializedName("callback")
 	private String callback;
 
-	private List<Tuple<String, String>> interactions;
+	@SerializedName("interactions")
+	private List<Interaction> interactions;
 
 	/**
 	 * @return 	The state of the conversation so far, this
@@ -42,7 +42,6 @@ public class CleverResponse {
 	 * 			request this should be sent back in order to keep
 	 * 			the flow of the conversation going.
 	 */
-
 	public String getCs() {
 		return cs;
 	}
@@ -51,7 +50,6 @@ public class CleverResponse {
 	 * @return	How many pairs of interactions this conversation has had
 	 * 			so far, one interaction is user to bot, then bot to user.
 	 */
-
 	public int getInteractionCount() {
 		return interactionCount;
 	}
@@ -60,7 +58,6 @@ public class CleverResponse {
 	 * @return	What the user said this interaction, will return an empty
 	 * 			String if user said nothing.
 	 */
-
 	public String getInput() {
 		return input;
 	}
@@ -68,7 +65,6 @@ public class CleverResponse {
 	/**
 	 * @return	What the bot responded this interaction.
 	 */
-
 	public String getOutput() {
 		return output;
 	}
@@ -76,7 +72,6 @@ public class CleverResponse {
 	/**
 	 * @return	The conversation ID for this conversation.
 	 */
-
 	public String getConversationId() {
 		return conversationId;
 	}
@@ -85,7 +80,6 @@ public class CleverResponse {
 	 * @return	Any error information from Cleverbot, this
 	 * 			is not the same as error codes.
 	 */
-
 	public String getErrorLine() {
 		return errorLine;
 	}
@@ -95,7 +89,6 @@ public class CleverResponse {
 	 * 			This is the time taken from when they received
 	 * 			the request to when they processed it.
 	 */
-
 	public int getTimeTaken() {
 		return timeTaken;
 	}
@@ -104,7 +97,6 @@ public class CleverResponse {
 	 * @return	The time in seconds it has been since the first
 	 * 			interaction of this conversation.
 	 */
-
 	public long getTimeElapsed() {
 		return timeElapsed;
 	}
@@ -113,23 +105,19 @@ public class CleverResponse {
 	 * @return	Get up to the past 50 interactions (input and output)
 	 * 			if available, including this current interaction.
 	 */
-
-	public List<Tuple<String, String>> getHistory() {
+	public List<Interaction> getHistory() {
 		return interactions;
 	}
 
 	public String getHistoryScript() {
+		String format = "User: %s\nCleverbot: %s";
 		StringJoiner joiner = new StringJoiner("\n");
 
-		interactions.forEach((tuple) -> {
-			joiner.add("User: " + tuple.itemOne());
-			joiner.add("Cleverbot: " + tuple.itemTwo());
+		interactions.forEach((interaction) -> {
+			joiner.add(String.format(format, interaction.getSay(), interaction.getResponse()));
 		});
 
 		return joiner.toString();
 	}
 
-	public void setHistory(List<Tuple<String, String>> interactions) {
-		this.interactions = interactions;
-	}
 }

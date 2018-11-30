@@ -8,10 +8,10 @@ public interface ICleverbotService {
 
     @GET("getreply")
     Call<CleverResponse> say(
-            @Query("input") String input,
-            @Query("cs") String cs,
-            @Query("cb_settings_tweak1") Integer tweakOne,
-            @Query("cb_settings_tweak2") Integer tweakTwo,
-            @Query("cb_settings_tweak3") Integer tweakThree
+        @Query("input") String input,
+        @Query("cs") String cs,
+        @Query("cb_settings_tweak1") Integer tweakOne,
+        @Query("cb_settings_tweak2") Integer tweakTwo,
+        @Query("cb_settings_tweak3") Integer tweakThree
     );
 }

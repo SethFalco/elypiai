@@ -1,8 +1,8 @@
 package com.elypia.elypiai.steam;
 
+import com.elypia.elypiai.restutils.RestAction;
 import com.elypia.elypiai.steam.deserializers.*;
 import com.elypia.elypiai.steam.impl.ISteamService;
-import com.elypia.elypiai.utils.okhttp.RestAction;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
@@ -10,11 +10,25 @@ import retrofit2.Call;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.*;
 import java.util.*;
 
 public class Steam {
 
-	private final static String BASE_URL = "http://api.steampowered.com/";
+	/**
+	 * The default URL we call too. <br>
+	 * Should never throw {@link MalformedURLException} as this
+	 * is a manually hardcoded URL.
+	 */
+	private static URL BASE_URL;
+
+	static {
+		try {
+			BASE_URL = new URL("http://api.steampowered.com/");
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	private final String API_KEY;
 
@@ -32,7 +46,7 @@ public class Steam {
 		this(BASE_URL, apiKey);
 	}
 
-	public Steam(String baseUrl, String apiKey) {
+	public Steam(URL baseUrl, String apiKey) {
 		API_KEY = Objects.requireNonNull(apiKey);
 
 		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
@@ -47,7 +61,7 @@ public class Steam {
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer());
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
 
 		service = retrofitBuilder.client(client).build().create(ISteamService.class);

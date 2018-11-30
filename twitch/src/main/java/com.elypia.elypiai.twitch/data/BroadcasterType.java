@@ -5,11 +5,30 @@ import com.google.gson.annotations.SerializedName;
 public enum BroadcasterType {
 
     @SerializedName("partner")
-    PARTNER,
+    PARTNER("partner"),
 
     @SerializedName("affiliate")
-    AFFILIATE,
+    AFFILIATE("affiliate"),
 
     @SerializedName("")
-    NORMAL
+    NORMAL("");
+
+    private final String NAME;
+
+    BroadcasterType(final String name) {
+        NAME = name;
+    }
+
+    public String getName() {
+        return NAME;
+    }
+
+    public static BroadcasterType get(String name) {
+        for (BroadcasterType type : values()) {
+            if (type.NAME.equals(name))
+                return type;
+        }
+
+        return null;
+    }
 }

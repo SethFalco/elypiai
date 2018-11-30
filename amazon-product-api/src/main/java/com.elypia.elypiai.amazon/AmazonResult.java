@@ -3,14 +3,19 @@ package com.elypia.elypiai.amazon;
 import javax.xml.bind.annotation.*;
 import java.util.List;
 
-@XmlRootElement(name = "ItemSearchResponse")
+@XmlRootElement(
+    name = "ItemSearchResponse",
+    namespace = AmazonResult.NAMESPACE
+)
 public class AmazonResult {
 
-    @XmlElementWrapper(name = "Items")
-    @XmlElement(name = "Item")
-    private List<AmazonItem> items;
+    protected static final String NAMESPACE = "http://webservices.amazon.com/AWSECommerceService/2011-08-01";
 
-    public List<AmazonItem> getItems() {
+    @XmlElementWrapper(name = "Items", namespace = NAMESPACE)
+    @XmlElement(name = "Item", namespace = NAMESPACE)
+    private List<Product> items;
+
+    public List<Product> getItems() {
         return items;
     }
 }

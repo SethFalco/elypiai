@@ -6,6 +6,7 @@ import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +21,7 @@ public class CleverbotTest {
         server = new MockWebServer();
         server.start();
 
-        cb = new Cleverbot("http://localhost:" + server.getPort(), "api key");
+        cb = new Cleverbot(new URL("http://localhost:" + server.getPort()), "api key");
     }
 
     @AfterEach
@@ -29,7 +30,7 @@ public class CleverbotTest {
     }
 
     @Test
-    public void testOsu() {
+    public void testCleverbot() {
         Cleverbot cb = new Cleverbot("api key");
         assertNotNull(cb);
         assertEquals("api key", cb.getApiKey());
@@ -95,6 +96,6 @@ public class CleverbotTest {
         CleverTweak tweak = CleverTweak.ATTENTIVE;
 
         assertEquals(3, tweak.getId());
-        assertEquals("cb_settings_tweak3", tweak.getSettingName());
+        assertEquals("cb_settings_tweak3", tweak.getName());
     }
 }

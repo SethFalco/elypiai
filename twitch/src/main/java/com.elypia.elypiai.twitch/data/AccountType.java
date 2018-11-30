@@ -5,14 +5,33 @@ import com.google.gson.annotations.SerializedName;
 public enum AccountType {
 
     @SerializedName("staff")
-    STAFF,
+    STAFF("staff"),
 
     @SerializedName("admin")
-    ADMIN,
+    ADMIN("admin"),
 
     @SerializedName("global_mod")
-    GLOBAL_MOD,
+    GLOBAL_MOD("global_mod"),
 
     @SerializedName("")
-    USER
+    USER("");
+
+    private final String NAME;
+
+    AccountType(final String name) {
+        NAME = name;
+    }
+
+    public String getName() {
+        return NAME;
+    }
+
+    public static AccountType get(String name) {
+        for (AccountType type : values()) {
+            if (type.NAME.equals(name))
+                return type;
+        }
+
+        return null;
+    }
 }

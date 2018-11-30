@@ -1,6 +1,6 @@
 rootProject.name = "Elypiai"
 
-include "core"
+include "common"
 
 include "amazon-product-api"
 include "cleverbot"

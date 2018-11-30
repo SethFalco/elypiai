@@ -6,9 +6,9 @@ import com.google.gson.*;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class TwitchUserDeserializer implements JsonDeserializer<List<TwitchUser>> {
+public class TwitchUserDeserializer implements JsonDeserializer<List<User>> {
 
-    private static Gson gson = new Gson();
+    private static final Gson GSON = new Gson();
 
     private Twitch twitch;
 
@@ -17,10 +17,9 @@ public class TwitchUserDeserializer implements JsonDeserializer<List<TwitchUser>
     }
 
     @Override
-    public List<TwitchUser> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public List<User> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonElement data = json.getAsJsonObject().getAsJsonArray("data");
-        List<TwitchUser> users = gson.fromJson(data, typeOfT);
-
+        List<User> users = GSON.fromJson(data, typeOfT);
         users.forEach(user -> user.setTwitch(twitch));
 
         return users;

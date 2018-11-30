@@ -3,18 +3,32 @@ package com.elypia.elypiai.cleverbot;
 import com.elypia.elypiai.cleverbot.data.CleverTweak;
 import com.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
 import com.elypia.elypiai.cleverbot.impl.ICleverbotService;
-import com.elypia.elypiai.utils.okhttp.RestAction;
+import com.elypia.elypiai.restutils.RestAction;
 import com.google.gson.GsonBuilder;
 import okhttp3.*;
 import retrofit2.Call;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.*;
 import java.util.*;
 
 public class Cleverbot {
 
-	private static final String BASE_URL = "https://www.cleverbot.com/";
+	/**
+	 * The default URL we call too. <br>
+	 * Should never throw {@link MalformedURLException} as this
+	 * is a manually hardcoded URL.
+	 */
+	private static URL BASE_URL;
+
+	static {
+		try {
+			BASE_URL = new URL("https://www.cleverbot.com/");
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	private final String API_KEY;
 
@@ -32,8 +46,7 @@ public class Cleverbot {
 	 * @param	apiKey 	API key recieved upon signing up.
 	 * @see <a href="https://www.cleverbot.com/api/">cleverbot</a>
 	 */
-
-	public Cleverbot(String baseUrl, String apiKey) {
+	public Cleverbot(URL baseUrl, String apiKey) {
 		API_KEY = apiKey;
 
 		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
@@ -46,7 +59,7 @@ public class Cleverbot {
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(CleverResponse.class, new CleverResponseDeserializer());
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(builder.create()));
 
 		service = retrofitBuilder.client(client).build().create(ICleverbotService.class);
@@ -65,7 +78,6 @@ public class Cleverbot {
 	 * @param cs		The Cleverbot state from previously.
 	 * @param input		The text to send to cleverbot.
 	 */
-
 	public RestAction<CleverResponse> say(String input, String cs) {
 		return say(input, cs, new HashMap<>());
 	}

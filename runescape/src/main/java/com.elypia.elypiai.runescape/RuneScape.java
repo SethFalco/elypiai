@@ -8,26 +8,40 @@ import com.google.gson.reflect.TypeToken;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.*;
 import java.util.*;
 
 public class RuneScape {
 
-	private static final String BASE_URL = "https://apps.runescape.com/runemetrics/";
+	/**
+	 * The default URL we call too. <br>
+	 * Should never throw {@link MalformedURLException} as this
+	 * is a manually hardcoded URL.
+	 */
+	private static URL BASE_URL;
+
+	static {
+		try {
+			BASE_URL = new URL("https://apps.runescape.com/runemetrics/");
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	private IRuneScapeService service;
-	private Map<String, RuneScapeUser> cache;
+	private Map<String, Player> cache;
 
 	public RuneScape() {
 		this(BASE_URL);
 	}
 
-	public RuneScape(String baseUrl) {
+	public RuneScape(URL baseUrl) {
 		cache = new HashMap<>();
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl);
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
 
 		service = retrofitBuilder.build().create(IRuneScapeService.class);
@@ -41,8 +55,8 @@ public class RuneScape {
 	 *
 	 * @param username The username of the player to get.
 	 */
-	public RestAction<RuneScapeUser> getUser(String username) {
-		Call<RuneScapeUser> call = service.getUser(username);
+	public RestAction<Player> getUser(String username) {
+		Call<Player> call = service.getUser(username);
 		return new RestAction<>(call);
 	}
 
@@ -54,7 +68,7 @@ public class RuneScape {
 	/**
 	 * @return	Get the list of cached players.
 	 */
-	public Collection<RuneScapeUser> getUsers() {
+	public Collection<Player> getUsers() {
 		return Collections.unmodifiableCollection(cache.values());
 	}
 
