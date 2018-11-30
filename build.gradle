@@ -139,7 +139,7 @@ subprojects { subproject ->
     }
 
     dependencies {
-        if (!subproject.name.startsWith("common"))
+        if (subproject.name != "common")
             implementation project(":common")
 
         // HTTP Requests
@@ -165,13 +165,19 @@ subprojects { subproject ->
     }
 }
 
+task jacocoMerge(type: JacocoMerge) {
+    executionData = files(executionData.findAll { it.exists() })
+}
+
 task jacocoReport(type: JacocoReport) {
-    sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs)
-    classDirectories = files(subprojects.sourceSets.main.output)
-    executionData = files(subprojects.jacocoTestReport.executionData)
+    sourceDirectories = files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
+    classDirectories = files(subprojects.sourceSets.main.output.findAll { it.asList() })
+    executionData = files(jacocoMerge.destinationFile)
 
     reports {
         html.enabled = true
         xml.enabled = false
     }
+
+    dependsOn jacocoMerge
 }
