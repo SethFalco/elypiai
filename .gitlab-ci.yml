@@ -1,4 +1,4 @@
-image: gradle:alpine
+image: gradle:jdk11-slim
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
