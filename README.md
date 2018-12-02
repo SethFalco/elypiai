@@ -16,18 +16,19 @@ implementation 'com.elypia.elypiai:{ARTIFACT}:{VERSION}'
 ```
 
 ### **Artifacts**
-| Artifact                                                                         | Description                                                                     |
-|----------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`amazon-product-api`](https://affiliate-program.amazon.com/)                    | Generate links and monetize with the Amazon Affiliate Program.                  |
-| [`cleverbot`](https://www.cleverbot.com/api/)                                    | Interact with Cleverbot, the AI that learns from people.                        |
-| [`nanowrimo`](https://nanowrimo.org/wordcount_api)                               | Query data or create a application or plugin to push word counts!               |
-| [`osu`](https://github.com/ppy/osu-api/wiki)                                     | Query data on users and plays with a ready made notifier.                       |
-| [`path-of-exile`](https://www.pathofexile.com/developer/docs/api-resources)      | Query user data, stashes, league scores and ladders.                            |
-| [`runescape`](http://runescape.wikia.com/wiki/Application_programming_interface) | Get information on users, plus a notifier for significant events.               |
-| [`steam`](https://steamcommunity.com/dev)                                        | Query user information and player's libraries.                                  |
-| [`twitch`](https://dev.twitch.tv/docs)                                           | Get information on Twitch users and streams, with notifier.                     |
-| [`urbandictionary`](http://api.urbandictionary.com/v0/define?term=api)           | Search Urban Dictionary and return the top voted or random definition.          |
-| [`yugioh-prices`](http://docs.yugiohprices.apiary.io/)                           | Get information on Yu-Gi-Oh! cards and download or display high quality images. |
+| Artifact                                                                         | Description                                                                                                                 |
+|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| `common`                                                                         | Code shared between all sup-projects, an abstraction of [Retrofit](https://square.github.io/retrofit/) for making requests. |
+| [`amazon-product-api`](https://affiliate-program.amazon.com/)                    | Generate links and monetize with the Amazon Affiliate Program.                                                              |
+| [`cleverbot`](https://www.cleverbot.com/api/)                                    | Interact with Cleverbot, the AI that learns from people.                                                                    |
+| [`nanowrimo`](https://nanowrimo.org/wordcount_api)                               | Query data or create a application or plugin to push word counts!                                                           |
+| [`osu`](https://github.com/ppy/osu-api/wiki)                                     | Query data on users and plays with a ready made notifier.                                                                   |
+| [`path-of-exile`](https://www.pathofexile.com/developer/docs/api-resources)      | Query user data, stashes, league scores and ladders.                                                                        |
+| [`runescape`](http://runescape.wikia.com/wiki/Application_programming_interface) | Get information on users, plus a notifier for significant events.                                                           |
+| [`steam`](https://steamcommunity.com/dev)                                        | Query user information and player's libraries.                                                                              |
+| [`twitch`](https://dev.twitch.tv/docs)                                           | Get information on Twitch users and streams, with notifier.                                                                 |
+| [`urbandictionary`](http://api.urbandictionary.com/v0/define?term=api)           | Search Urban Dictionary and return the top voted or random definition.                                                      |
+| [`yugioh-prices`](http://docs.yugiohprices.apiary.io/)                           | Get information on Yu-Gi-Oh! cards and download or display high quality images.                                             |
 
 ### About
 Elypiai is a centralised repository with libraries for various different web APIs online. Wraps are done beyond obtaining data and mapping it to objects to ensure you get the most of the library out of the box so as a developer you can stick to integrating. This includes making utility methods and notifiers where applicable. Simple examples of this could be the in the RuneScape module which includes methods to convert XP to a level and vice versa, or the osu! API which includes a means to webscrap a users profile picture.
