@@ -4,7 +4,7 @@ import com.elypia.elypiai.twitch.*;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-import java.util.*;
+import java.util.List;
 
 public interface ITwitchService {
 

@@ -1,21 +1,15 @@
 package com.elypia.elypiai.amazon;
 
-import com.elypia.elypiai.amazon.data.AmazonEndpoint;
-import com.elypia.elypiai.amazon.data.AmazonGroup;
-import com.elypia.elypiai.amazon.data.ProductIndex;
+import com.elypia.elypiai.amazon.data.*;
 import com.elypia.elypiai.amazon.impl.IAmazonService;
 import com.elypia.elypiai.restutils.RestAction;
-import retrofit2.Call;
-import retrofit2.Retrofit;
+import retrofit2.*;
 import retrofit2.converter.jaxb.JaxbConverterFactory;
 
 import java.net.URL;
 import java.security.InvalidKeyException;
 import java.time.Instant;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class Amazon {

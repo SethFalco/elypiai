@@ -1,7 +1,7 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.twitch.deserializers.*;
+import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
 import com.elypia.elypiai.twitch.impl.ITwitchService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

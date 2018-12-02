@@ -1,8 +1,7 @@
 package com.elypia.elypiai.amazon;
 
 import javax.xml.bind.annotation.XmlElement;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
 
 public class Product {
 

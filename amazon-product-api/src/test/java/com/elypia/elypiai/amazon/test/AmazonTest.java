@@ -1,14 +1,9 @@
 package com.elypia.elypiai.amazon.test;
 
 import com.elypia.elypiai.amazon.*;
-import com.elypia.elypiai.amazon.data.AmazonEndpoint;
-import com.elypia.elypiai.amazon.data.AmazonGroup;
-import com.elypia.elypiai.amazon.data.ProductIndex;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.elypia.elypiai.amazon.data.*;
+import okhttp3.mockwebserver.*;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.net.URL;

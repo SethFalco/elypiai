@@ -1,7 +1,7 @@
 package com.elypia.elypiai.nanowrimo.test;
 
 import com.elypia.elypiai.nanowrimo.*;
-import com.elypia.elypiai.nanowrimo.data.*;
+import com.elypia.elypiai.nanowrimo.data.WordCountError;
 import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 

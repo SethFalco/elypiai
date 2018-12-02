@@ -6,7 +6,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.URL;
 import java.util.List;
 
 public class Player {

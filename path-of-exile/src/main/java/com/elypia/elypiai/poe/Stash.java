@@ -3,7 +3,7 @@ package com.elypia.elypiai.poe;
 import com.elypia.elypiai.poe.data.StashType;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.List;
 
 public class Stash {
 
