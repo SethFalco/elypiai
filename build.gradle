@@ -9,7 +9,7 @@ buildscript {
     }
 }
 
-String projectVersion = "2.1.1"
+String projectVersion = "2.1.2"
 String projectDescription = "Wrappers for many APIs available online from various services."
 String projectGit = "https://gitlab.com/Elypia/Elypiai.git"
 
