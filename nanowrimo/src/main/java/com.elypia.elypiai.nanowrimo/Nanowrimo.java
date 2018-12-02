@@ -47,20 +47,19 @@ public class Nanowrimo {
     }
 
 	public RestAction<Writer> getUser(String name, boolean history) {
-		name = name.replace(" ", "-");
-		Call<Writer> call = (history) ? service.getUserHistory(name) : service.getUser(name);
+		String requestName = name.replace(" ", "-");
+		Call<Writer> call = (history) ? service.getUserHistory(requestName) : service.getUser(requestName);
 		return new RestAction<>(call);
 	}
 
 	public WordCountResponse setWordCount(String secret, String name, int wordCount) throws IOException {
-		secret = DigestUtils.sha1Hex(secret + name + wordCount);
-		Call<String> call = service.setWordCount(secret, name, wordCount);
+		String encodedSecret = DigestUtils.sha1Hex(secret + name + wordCount);
+		Call<String> call = service.setWordCount(encodedSecret, name, wordCount);
 		RestAction<String> action = new RestAction<>(call);
 		String result = action.complete();
 
-		// Until an event starts or there is documentation
 		if (result != null)
-			throw new RuntimeException("Seth! Come update this now that we get a positive result!");
+			throw new IllegalStateException("This is an unknown state due to poor API documentation.");
 
         return WordCountResponse.get(action.getErrorBody());
 	}

@@ -21,6 +21,14 @@ public enum GemAttribute {
 		NAME = name;
 	}
 
+	public GemColor getColor() {
+		return COLOR;
+	}
+
+	public String getName() {
+		return NAME;
+	}
+
 	public static GemAttribute get(String apiName) {
 		for (GemAttribute attr : GemAttribute.values()) {
 			if (attr.NAME.equals(apiName))
