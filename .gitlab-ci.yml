@@ -39,7 +39,9 @@ pages:
   only:
     - master
   stage: deploy
-  script: mv build/docs/javadoc public
+  script:
+    - gradle globalJavadoc
+    - mv build/docs/javadoc public
   artifacts:
     paths:
       - public
