@@ -1,7 +1,4 @@
-image: gradle:alpine
-
-variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+image: gradle:jdk11-slim
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -19,7 +16,7 @@ test:
   stage: test
   script:
     - gradle --build-cache check
-    - cat build/reports/jacoco/test/html/index.html
+    - gradle codacyCoverage
   cache:
     key: $CI_JOB_NAME
     paths:
