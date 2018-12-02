@@ -22,6 +22,9 @@ test:
     paths:
       - .gradle
       - build
+  artifacts:
+    reports:
+      license_management: gl-license-management-report.json
 
 bintray:
   only:
