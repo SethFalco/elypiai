@@ -198,7 +198,13 @@ dependencies {
 }
 
 task jacocoMerge(type: JacocoMerge) {
-    executionData = files(executionData.findAll { it.exists() })
+    executionData = files(subprojects.jacocoTestReport.executionData.findAll {it.asList() })
+
+    doFirst {
+        executionData = files(executionData.findAll {
+            it.exists()
+        })
+    }
 }
 
 task jacocoReport(type: JacocoReport, dependsOn: jacocoMerge) {
