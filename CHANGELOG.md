@@ -6,4 +6,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://gitlab.com/Elypia/Elypiai/tree/dev)
 ### Changes
-- Only started tracking changes.
+- Removed dependency on Jsoup is it it was under too little use, and so performed without it.

@@ -15,12 +15,4 @@ public interface INanowrimoService {
     Call<Writer> getUserHistory(
         @Path("name") String name
     );
-
-    @Multipart
-    @PUT("api/wordcount")
-    Call<String> setWordCount(
-        @Part("hash") String hash,
-        @Part("name") String name,
-        @Part("wordcount") int wordcount
-    );
 }

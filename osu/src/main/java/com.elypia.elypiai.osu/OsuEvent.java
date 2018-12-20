@@ -8,7 +8,7 @@ import java.util.Date;
 public class OsuEvent {
 
     @SerializedName("display_html")
-    @JsonAdapter(DocumentDeserializer.class)
+    @JsonAdapter(OsuEventDisplayDeseralizer.class)
     private String message;
 
     @SerializedName("beatmap_id")

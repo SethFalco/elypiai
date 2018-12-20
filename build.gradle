@@ -1,28 +1,26 @@
-buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-    }
-
-    dependencies {
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4"
-    }
+plugins {
+    id "com.jfrog.bintray" version "1.8.4"
 }
-
-String projectVersion = "2.1.3"
-String projectDescription = "Wrappers for many APIs available online from various services."
-String projectGit = "https://gitlab.com/Elypia/Elypiai.git"
 
 allprojects() {
     apply plugin: "idea"
     apply plugin: "jacoco"
 
     ext {
+        projectVersion = "2.1.4"
+        projectDescription = "Wrappers for many APIs available online from various services."
+        projectGit = "https://gitlab.com/Elypia/Elypiai.git"
+
         retrofitVersion = "2.5.0"
         jaxbApiVersion = "2.3.1"
         jaxbImplVersion = "2.3.1"
         jaxbCoreVersion = "2.3.0.1"
         javaxActivationVersion = "1.1.1"
+        junitVersion = "5.3.2"
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
     }
 
     repositories {
@@ -139,21 +137,19 @@ subprojects { subproject ->
     }
 
     dependencies {
-        if (subproject.name != "common")
-            implementation project(":common")
-
         // HTTP Requests
         implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
 
         // Logging
-        implementation group: "org.slf4j", name: "slf4j-api", version: "1.7.25"
+        implementation "org.slf4j:slf4j-api:1.7.25"
 
         // Testing
-        testImplementation 'com.squareup.okhttp3:mockwebserver:3.12.0'
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.3.1'
+        testImplementation "com.squareup.okhttp3:mockwebserver:3.12.0"
 
-        testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.3.1'
-        testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-runner', version: '1.3.1'
+        // Testing
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+        testRuntimeOnly "org.junit.platform:junit-platform-runner:1.3.2"
     }
 
     test {

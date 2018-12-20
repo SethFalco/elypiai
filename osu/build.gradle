@@ -1,4 +1,5 @@
 dependencies {
+    implementation project(":common")
+
     implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
-    implementation group: "org.jsoup", name: "jsoup", version: "1.11.3"
 }
