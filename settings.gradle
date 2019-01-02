@@ -2,7 +2,6 @@ rootProject.name = "Elypiai"
 
 include "common"
 
-include "amazon-product-api"
 include "cleverbot"
 include "nanowrimo"
 include "osu"

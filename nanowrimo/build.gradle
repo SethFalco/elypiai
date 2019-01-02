@@ -6,11 +6,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
 
     // Apache Commons
-    implementation group: "commons-codec", name: "commons-codec", version: "1.11"
+    implementation "commons-codec:commons-codec:1.11"
 
     // XML
-    runtimeOnly group: 'javax.xml.bind', name: 'jaxb-api', version: jaxbApiVersion
-    runtimeOnly group: 'com.sun.xml.bind', name: 'jaxb-impl', version: jaxbImplVersion
-    runtimeOnly group: 'com.sun.xml.bind', name: 'jaxb-core', version: jaxbCoreVersion
-    runtimeOnly group: 'javax.activation', name: 'activation', version: javaxActivationVersion
+    runtimeOnly "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
+    runtimeOnly "com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}"
+    runtimeOnly "com.sun.xml.bind:jaxb-core:${jaxbCoreVersion}"
+    runtimeOnly "javax.activation:activation:${javaxActivationVersion}"
 }

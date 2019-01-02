@@ -142,6 +142,7 @@ subprojects { subproject ->
 
         // Logging
         implementation "org.slf4j:slf4j-api:1.7.25"
+        testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
         // Testing
         testImplementation "com.squareup.okhttp3:mockwebserver:3.12.0"
