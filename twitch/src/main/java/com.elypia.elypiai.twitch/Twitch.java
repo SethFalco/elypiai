@@ -1,15 +1,18 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.restutils.RestAction;
+import com.elypia.elypiai.restutils.data.AuthenticationType;
+import com.elypia.elypiai.twitch.data.Scope;
 import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
-import com.elypia.elypiai.twitch.impl.ITwitchService;
+import com.elypia.elypiai.twitch.entity.User;
+import com.elypia.elypiai.twitch.service.*;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import okhttp3.*;
-import retrofit2.Call;
+import okhttp3.OkHttpClient;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.io.IOException;
 import java.net.*;
 import java.util.*;
 
@@ -30,38 +33,89 @@ public class Twitch {
 		}
 	}
 
+	private static URL AUTH_URL;
+
+	static {
+		try {
+			AUTH_URL = new URL("https://id.twitch.tv/");
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
 	private final String CLIENT_ID;
+	private final String CLIENT_SECRET;
+	private final AuthenticationType AUTH_TYPE;
+	private final Scope[] SCOPES;
+
+	private AccessToken token;
 
 	private ITwitchService service;
+	private ITwitchAppService appService;
 
 	/**
 	 * Allows calls to the Twitch API, can call various information
 	 * on users, or get stream information if the user is live.
 	 *
-	 * @param apiKey API key obtained from Twitch website.
+	 * @param clientId API key obtained from Twitch website.
 	 */
-	public Twitch(String apiKey) {
-		this(BASE_URL, apiKey);
+	public Twitch(String clientId, String clientSecret) throws IOException {
+		this(clientId, clientSecret, AuthenticationType.BEARER);
 	}
 
-	public Twitch(URL baseUrl, String apiKey) {
-		Objects.requireNonNull(baseUrl);
-		CLIENT_ID = Objects.requireNonNull(apiKey);
+	public Twitch(String clientId, String clientSecret, AuthenticationType grantType) throws IOException {
+		this(clientId, clientSecret, grantType, (Scope[])null);
+	}
 
-		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
-			Request.Builder builder = chain.request().newBuilder();
-			Request request = builder.header("Client-Id", CLIENT_ID).build();
-			return chain.proceed(request);
-		}).build();
+	public Twitch(String clientId, String clientSecret, AuthenticationType grantType, Scope... scopes) throws IOException {
+		this(BASE_URL, AUTH_URL, clientId, clientSecret, grantType, scopes);
+	}
+
+	public Twitch(URL baseUrl, URL authUrl, String clientID, String clientSecret, AuthenticationType grantType, Scope... scopes) throws IOException {
+		Objects.requireNonNull(baseUrl);
+		Objects.requireNonNull(authUrl);
+		CLIENT_ID = Objects.requireNonNull(clientID);
+		CLIENT_SECRET = Objects.requireNonNull(clientSecret);
+		AUTH_TYPE = Objects.requireNonNull(grantType);
+		SCOPES = scopes;
+
+		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(authUrl.toString());
+		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
+
+		appService = retrofitBuilder.client(new OkHttpClient()).build().create(ITwitchAppService.class);
+
+		token = getToken().complete();
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ssZ");
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<User>>(){}.getType(), new TwitchUserDeserializer(this));
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+			var req = chain.request().newBuilder()
+				.addHeader("Authorization: Bearer", token.getToken())
+				.build();
+
+			return chain.proceed(req);
+		}).build();
 
 		service = retrofitBuilder.client(client).build().create(ITwitchService.class);
+	}
+
+	/**
+	 * Use the users Client-Id and Client-Secret
+	 * to create an app access token;
+	 *
+	 * @return A new access token.
+	 */
+	private RestAction<AccessToken> getToken() {
+		Call<AccessToken> call = appService.getToken(
+			CLIENT_ID,
+			CLIENT_SECRET,
+			AUTH_TYPE.getApiName(),
+			Scope.forQuery(SCOPES)
+		);
+
+		return new RestAction<>(call);
 	}
 
 	public RestAction<List<User>> getUsers(TwitchQuery query) {

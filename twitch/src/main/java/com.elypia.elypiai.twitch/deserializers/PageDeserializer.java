@@ -1,6 +1,7 @@
 package com.elypia.elypiai.twitch.deserializers;
 
-import com.elypia.elypiai.twitch.*;
+import com.elypia.elypiai.twitch.StreamPage;
+import com.elypia.elypiai.twitch.entity.Stream;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 

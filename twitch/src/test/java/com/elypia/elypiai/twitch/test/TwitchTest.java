@@ -2,6 +2,7 @@ package com.elypia.elypiai.twitch.test;
 
 import com.elypia.elypiai.twitch.*;
 import com.elypia.elypiai.twitch.data.*;
+import com.elypia.elypiai.twitch.entity.*;
 import okhttp3.mockwebserver.*;
 import org.junit.jupiter.api.*;
 
@@ -21,7 +22,11 @@ public class TwitchTest {
         server = new MockWebServer();
         server.start();
 
-        twitch = new Twitch(new URL("http://localhost:" + server.getPort()), "3njgo97a5031gbutxljfn06dmrvoto");
+        twitch = new Twitch(
+            new URL("http://localhost:" + server.getPort()),
+            new URL("http://localhost:" + server.getPort()),
+            "3njgo97a5031gbutxljfn06dmrvoto",
+            );
     }
 
     @AfterEach

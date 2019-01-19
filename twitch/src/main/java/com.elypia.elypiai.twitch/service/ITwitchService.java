@@ -1,6 +1,7 @@
-package com.elypia.elypiai.twitch.impl;
+package com.elypia.elypiai.twitch.service;
 
-import com.elypia.elypiai.twitch.*;
+import com.elypia.elypiai.twitch.StreamPage;
+import com.elypia.elypiai.twitch.entity.User;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -21,5 +22,10 @@ public interface ITwitchService {
         @Query("game_id") List<Integer> gameIds,
         @Query("first") int limit,
         @Query("after") String cursor
+    );
+
+    @GET("webhooks/subscriptions")
+    Call<Object> getWebhookSubscriptions(
+        @Header("Authorization: Bearer") String token
     );
 }

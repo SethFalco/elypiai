@@ -1,5 +1,6 @@
-package com.elypia.elypiai.twitch;
+package com.elypia.elypiai.twitch.entity;
 
+import com.elypia.elypiai.twitch.*;
 import com.elypia.elypiai.twitch.data.*;
 import com.elypia.elypiai.twitch.deserializers.EmptyNullDeserializer;
 import com.google.gson.annotations.*;

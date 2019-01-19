@@ -1,4 +1,4 @@
-package com.elypia.elypiai.twitch;
+package com.elypia.elypiai.twitch.entity;
 
 import com.elypia.elypiai.twitch.data.StreamType;
 import com.google.gson.annotations.SerializedName;
@@ -6,6 +6,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.*;
 
 public class Stream {
+
+	private static final double RATIO_16_TO_9 = 0.5625;
 
 	@SerializedName("id")
 	private long id;
@@ -91,7 +93,7 @@ public class Stream {
 	}
 
 	public String getThumbnail(int width) {
-		return getThumbnail(width, width / 16 * 9);
+		return getThumbnail(width, (int)(width * RATIO_16_TO_9));
 	}
 
 	public String getThumbnail(int width, int height) {

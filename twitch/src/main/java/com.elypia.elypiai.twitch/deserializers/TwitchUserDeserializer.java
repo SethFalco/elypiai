@@ -1,6 +1,7 @@
 package com.elypia.elypiai.twitch.deserializers;
 
-import com.elypia.elypiai.twitch.*;
+import com.elypia.elypiai.twitch.Twitch;
+import com.elypia.elypiai.twitch.entity.User;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;

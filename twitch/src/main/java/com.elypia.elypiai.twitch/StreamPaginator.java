@@ -2,6 +2,7 @@ package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.restutils.RestAction;
 import com.elypia.elypiai.restutils.impl.IRestPaginator;
+import com.elypia.elypiai.twitch.entity.Stream;
 import retrofit2.Call;
 
 import java.io.IOException;

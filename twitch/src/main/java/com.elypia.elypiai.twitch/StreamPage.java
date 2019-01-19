@@ -1,6 +1,7 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.deserializers.PageDeserializer;
+import com.elypia.elypiai.twitch.entity.Stream;
 import com.google.gson.annotations.JsonAdapter;
 
 import java.util.List;
