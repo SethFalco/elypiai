@@ -5,6 +5,7 @@ import com.elypia.elypiai.restutils.data.AuthenticationType;
 import com.elypia.elypiai.twitch.data.Scope;
 import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
 import com.elypia.elypiai.twitch.entity.User;
+import com.elypia.elypiai.twitch.notifier.TwitchNotifier;
 import com.elypia.elypiai.twitch.service.*;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -49,6 +50,7 @@ public class Twitch {
 	private final Scope[] SCOPES;
 
 	private AccessToken token;
+	private TwitchNotifier notifier;
 
 	private ITwitchService service;
 	private ITwitchAppService appService;
@@ -80,19 +82,25 @@ public class Twitch {
 		SCOPES = scopes;
 
 		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(authUrl.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
-
-		appService = retrofitBuilder.client(new OkHttpClient()).build().create(ITwitchAppService.class);
-
-		token = getToken().complete();
 
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ssZ");
 		gsonBuilder.registerTypeAdapter(new TypeToken<List<User>>(){}.getType(), new TwitchUserDeserializer(this));
 
+		var factory = GsonConverterFactory.create(gsonBuilder.create());
+
+		retrofitBuilder.addConverterFactory(factory);
+
+		appService = retrofitBuilder.client(new OkHttpClient()).build().create(ITwitchAppService.class);
+
+		token = getToken().complete();
+
+		if (token == null)
+			throw new IllegalStateException("Client credentials were invalid, refer to Twitch and generate new ones.");
+
 		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
 			var req = chain.request().newBuilder()
-				.addHeader("Authorization: Bearer", token.getToken())
+				.addHeader("Authorization", "Bearer " + token.getToken())
 				.build();
 
 			return chain.proceed(req);

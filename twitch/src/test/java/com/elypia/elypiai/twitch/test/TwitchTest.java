@@ -1,5 +1,6 @@
 package com.elypia.elypiai.twitch.test;
 
+import com.elypia.elypiai.restutils.data.AuthenticationType;
 import com.elypia.elypiai.twitch.*;
 import com.elypia.elypiai.twitch.data.*;
 import com.elypia.elypiai.twitch.entity.*;
@@ -12,6 +13,9 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * All tokens, client-ids, and client-secrets are fake.
+ */
 public class TwitchTest {
 
     private static MockWebServer server;
@@ -22,11 +26,15 @@ public class TwitchTest {
         server = new MockWebServer();
         server.start();
 
+        server.enqueue(new MockResponse().setBody("{\"access_token\":\"dsopf1fwefwefwefwefuoox\",\"expires_in\":5306199,\"token_type\":\"bearer\"}"));
+
         twitch = new Twitch(
             new URL("http://localhost:" + server.getPort()),
             new URL("http://localhost:" + server.getPort()),
-            "3njgo97a5031gbutxljfn06dmrvoto",
-            );
+            "uo6dggojyb8d6soh92zknwmi5ej1q2",
+            "0123456789abcdefghijABCDEFGHIJ",
+            AuthenticationType.BEARER
+        );
     }
 
     @AfterEach
@@ -35,16 +43,31 @@ public class TwitchTest {
     }
 
     @Test
-    public void normalInstance() {
-        Twitch t = new Twitch("3njgo97a5031gbutxljfn06dmrvoto");
+    public void badInstance() throws IOException {
+        server.enqueue(new MockResponse().setResponseCode(403).setBody("{\"status\":403,\"message\":\"invalid client secret\"}"));
 
-        assertNotNull(t);
-        assertEquals(t.getClientId(), "3njgo97a5031gbutxljfn06dmrvoto");
+        assertThrows(IllegalStateException.class, () -> {
+            new Twitch(
+                new URL("http://localhost:" + server.getPort()),
+                new URL("http://localhost:" + server.getPort()),
+                "uo6dggojyb8d6soh92zknwmi5ej1q2",
+                "0123456789abcdefghijABCDEFGHIJ",
+                AuthenticationType.BEARER
+            );
+        });
+    }
+
+    @Test
+    public void normalInstance() {
+        assertAll("Twitch is instantiated correctly.",
+            () -> assertNotNull(twitch),
+            () -> assertEquals(twitch.getClientId(), "uo6dggojyb8d6soh92zknwmi5ej1q2")
+        );
     }
 
     @Test
     public void invalidTwitch() {
-        assertThrows(NullPointerException.class, () -> new Twitch(null));
+        assertThrows(NullPointerException.class, () -> new Twitch(null, null));
     }
 
     @Test
@@ -147,7 +170,7 @@ public class TwitchTest {
         TwitchQuery query = new TwitchQuery();
         query.addGame(1000);
 
-        assertThrows(IllegalArgumentException.class, () -> twitch.getUsers(query).complete());
+        assertThrows(IllegalArgumentException.class, () -> twitch.getUsers(query));
     }
 
     @Test
@@ -157,7 +180,7 @@ public class TwitchTest {
         for (int i = 0; i < 101; i++)
             query.addUserId(i);
 
-        assertThrows(IllegalArgumentException.class, () -> twitch.getUsers(query).complete());
+        assertThrows(IllegalArgumentException.class, () -> twitch.getUsers(query));
     }
 
     @Test
