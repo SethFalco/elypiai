@@ -1,13 +1,16 @@
 package com.elypia.elypiai.yugioh.deserializers;
 
-import com.elypia.elypiai.yugioh.*;
-import com.elypia.elypiai.yugioh.data.*;
+import com.elypia.elypiai.yugioh.MagicCard;
+import com.elypia.elypiai.yugioh.Monster;
+import com.elypia.elypiai.yugioh.data.CardType;
 import com.elypia.elypiai.yugioh.impl.TradingCard;
 import com.google.gson.*;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
@@ -17,8 +20,8 @@ public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
     private static final Logger logger = LoggerFactory.getLogger(TradingCardDeserializer.class);
 
     /**
-     * The pattern used to split he cards types apart
-     * in order to store them as a {@link java.util.List< Race >}.
+     * The pattern used to split the cards types apart
+     * in order to store them as a {@link List}.
      */
     private static final Pattern SPLITTER = Pattern.compile("\\s*/\\s*");
 

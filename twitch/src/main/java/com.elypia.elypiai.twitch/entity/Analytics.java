@@ -14,7 +14,7 @@ public abstract class Analytics {
 
     /**
      * Returned by the Twitch API as a date range, we only
-     * expose this as {@link #getStart} and {@link #getEnd) though.
+     * expose this as {@link DateRange#getStart} and {@link DateRange#getEnd) though.
      */
     @SerializedName("date_range")
     protected DateRange range;

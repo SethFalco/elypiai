@@ -1,5 +1,8 @@
 image: gradle:jdk11-slim
 
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
@@ -16,7 +19,7 @@ test:
   stage: test
   script:
     - gradle --build-cache check
-    - gradle codacyCoverage
+    - gradle jacocoReport
   cache:
     key: $CI_JOB_NAME
     paths:

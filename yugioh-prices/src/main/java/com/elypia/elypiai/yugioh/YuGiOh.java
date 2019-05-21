@@ -1,11 +1,14 @@
 package com.elypia.elypiai.yugioh;
 
 import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.yugioh.impl.*;
-import retrofit2.*;
+import com.elypia.elypiai.yugioh.impl.TradingCard;
+import com.elypia.elypiai.yugioh.impl.YuGiOhService;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class YuGiOh {
 
@@ -24,7 +27,7 @@ public class YuGiOh {
 		}
 	}
 
-	private IYuGiOhService service;
+	private YuGiOhService service;
 
 	public YuGiOh() {
 		this(BASE_URL);
@@ -34,7 +37,7 @@ public class YuGiOh {
 		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(url.toString());
 		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
 
-		service = retrofitBuilder.build().create(IYuGiOhService.class);
+		service = retrofitBuilder.build().create(YuGiOhService.class);
     }
 
 	/**

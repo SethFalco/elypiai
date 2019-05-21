@@ -6,7 +6,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
 
     // Apache Commons
-    implementation "commons-codec:commons-codec:1.11"
+    implementation "commons-codec:commons-codec:1.12"
 
     // XML
     runtimeOnly "javax.xml.bind:jaxb-api:${jaxbApiVersion}"

@@ -1,7 +1,9 @@
 package com.elypia.elypiai.restutils;
 
 import com.elypia.elypiai.restutils.impl.AbstractRestAction;
-import retrofit2.*;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -16,7 +18,7 @@ public class RestAction<T> extends AbstractRestAction<T> {
 
     @Override
     public void queue(Consumer<T> success, Consumer<Throwable> ex) {
-        call.enqueue(new Callback<T>() {
+        call.enqueue(new Callback<>() {
 
             @Override
             public void onResponse(Call<T> call, Response<T> response) {

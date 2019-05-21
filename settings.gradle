@@ -1,7 +1,9 @@
 rootProject.name = "Elypiai"
 
+/** Core */
 include "common"
 
+/** Wrappers */
 include "cleverbot"
 include "nanowrimo"
 include "osu"
