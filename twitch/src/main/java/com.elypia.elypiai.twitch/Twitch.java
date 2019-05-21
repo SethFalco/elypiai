@@ -1,21 +1,25 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.restutils.data.AuthenticationType;
+import com.elypia.elypiai.common.RestAction;
+import com.elypia.elypiai.common.data.AuthenticationType;
 import com.elypia.elypiai.twitch.data.Scope;
 import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
 import com.elypia.elypiai.twitch.entity.User;
 import com.elypia.elypiai.twitch.notifier.TwitchNotifier;
-import com.elypia.elypiai.twitch.service.*;
+import com.elypia.elypiai.twitch.service.ITwitchAppService;
+import com.elypia.elypiai.twitch.service.ITwitchService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
-import retrofit2.*;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
-import java.net.*;
-import java.util.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 
 public class Twitch {
 

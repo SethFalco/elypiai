@@ -1,7 +1,7 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.restutils.impl.IRestPaginator;
+import com.elypia.elypiai.common.RestAction;
+import com.elypia.elypiai.common.impl.IRestPaginator;
 import com.elypia.elypiai.twitch.entity.Stream;
 import retrofit2.Call;
 

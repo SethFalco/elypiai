@@ -1,6 +1,6 @@
-package com.elypia.elypiai.restutils;
+package com.elypia.elypiai.common;
 
-import com.elypia.elypiai.restutils.impl.AbstractRestAction;
+import com.elypia.elypiai.common.impl.AbstractRestAction;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

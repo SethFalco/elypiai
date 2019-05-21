@@ -1,10 +1,13 @@
-package com.elypia.elypiai.restutils;
+package com.elypia.elypiai.common;
 
-import com.elypia.elypiai.restutils.impl.AbstractRestAction;
+import com.elypia.elypiai.common.impl.AbstractRestAction;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class RestLatch<T> extends AbstractRestAction<List<T>> implements Iterable<RestAction<T>> {

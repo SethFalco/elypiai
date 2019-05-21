@@ -129,6 +129,9 @@ subprojects { subproject ->
     }
 
     dependencies {
+        if (subproject.name != "common")
+            implementation project(":common")
+
         // HTTP Requests
         implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
 

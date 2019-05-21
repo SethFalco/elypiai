@@ -3,15 +3,20 @@ package com.elypia.elypiai.cleverbot;
 import com.elypia.elypiai.cleverbot.data.CleverTweak;
 import com.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
 import com.elypia.elypiai.cleverbot.impl.ICleverbotService;
-import com.elypia.elypiai.restutils.RestAction;
+import com.elypia.elypiai.common.RestAction;
 import com.google.gson.GsonBuilder;
-import okhttp3.*;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
-import retrofit2.*;
+import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
-import java.util.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class Cleverbot {
 

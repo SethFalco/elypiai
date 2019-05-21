@@ -1,17 +1,24 @@
 package com.elypia.elypiai.steam;
 
-import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.steam.deserializers.*;
+import com.elypia.elypiai.common.RestAction;
+import com.elypia.elypiai.steam.deserializers.SteamGameDeserializer;
+import com.elypia.elypiai.steam.deserializers.SteamSearchDeserializer;
+import com.elypia.elypiai.steam.deserializers.SteamUserDeserializer;
 import com.elypia.elypiai.steam.impl.ISteamService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import okhttp3.*;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
-import retrofit2.*;
+import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
-import java.util.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 
 public class Steam {
 

@@ -1,6 +1,6 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.elypia.elypiai.restutils.RestAction;
+import com.elypia.elypiai.common.RestAction;
 import com.elypia.elypiai.urbandictionary.impl.UrbanDictionaryService;
 import retrofit2.Call;
 import retrofit2.Retrofit;

@@ -1,14 +1,16 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.restutils.RestAction;
+import com.elypia.elypiai.common.RestAction;
 import com.elypia.elypiai.runescape.deserializers.QuestStatDeserializer;
 import com.elypia.elypiai.runescape.impl.IRuneScapeService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import retrofit2.*;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 public class RuneScape {

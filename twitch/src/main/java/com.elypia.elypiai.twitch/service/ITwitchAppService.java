@@ -1,9 +1,11 @@
 package com.elypia.elypiai.twitch.service;
 
-import com.elypia.elypiai.restutils.data.AuthenticationType;
+import com.elypia.elypiai.common.data.AuthenticationType;
 import com.elypia.elypiai.twitch.AccessToken;
 import retrofit2.Call;
-import retrofit2.http.*;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ITwitchAppService {
 

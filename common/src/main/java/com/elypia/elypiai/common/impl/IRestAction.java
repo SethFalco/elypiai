@@ -1,4 +1,4 @@
-package com.elypia.elypiai.restutils.impl;
+package com.elypia.elypiai.common.impl;
 
 import java.io.IOException;
 import java.util.function.Consumer;

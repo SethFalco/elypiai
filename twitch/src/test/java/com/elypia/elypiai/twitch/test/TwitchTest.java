@@ -1,15 +1,24 @@
 package com.elypia.elypiai.twitch.test;
 
-import com.elypia.elypiai.restutils.data.AuthenticationType;
-import com.elypia.elypiai.twitch.*;
-import com.elypia.elypiai.twitch.data.*;
-import com.elypia.elypiai.twitch.entity.*;
-import okhttp3.mockwebserver.*;
-import org.junit.jupiter.api.*;
+import com.elypia.elypiai.common.data.AuthenticationType;
+import com.elypia.elypiai.twitch.StreamPaginator;
+import com.elypia.elypiai.twitch.Twitch;
+import com.elypia.elypiai.twitch.TwitchQuery;
+import com.elypia.elypiai.twitch.data.AccountType;
+import com.elypia.elypiai.twitch.data.BroadcasterType;
+import com.elypia.elypiai.twitch.data.StreamType;
+import com.elypia.elypiai.twitch.entity.Stream;
+import com.elypia.elypiai.twitch.entity.User;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

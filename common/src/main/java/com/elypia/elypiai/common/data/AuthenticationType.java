@@ -1,4 +1,4 @@
-package com.elypia.elypiai.restutils.data;
+package com.elypia.elypiai.common.data;
 
 public enum AuthenticationType {
 

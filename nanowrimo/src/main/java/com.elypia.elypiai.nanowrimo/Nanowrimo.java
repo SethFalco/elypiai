@@ -1,12 +1,14 @@
 package com.elypia.elypiai.nanowrimo;
 
+import com.elypia.elypiai.common.RestAction;
 import com.elypia.elypiai.nanowrimo.impl.INanowrimoService;
-import com.elypia.elypiai.restutils.RestAction;
-import retrofit2.*;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 import retrofit2.converter.jaxb.JaxbConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class Nanowrimo {
 

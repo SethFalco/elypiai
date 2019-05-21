@@ -1,6 +1,6 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.restutils.RestAction;
+import com.elypia.elypiai.common.RestAction;
 import com.elypia.elypiai.yugioh.impl.TradingCard;
 import com.elypia.elypiai.yugioh.impl.YuGiOhService;
 import retrofit2.Call;

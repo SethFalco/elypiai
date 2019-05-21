@@ -1,12 +1,14 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.poe.data.*;
+import com.elypia.elypiai.common.RestAction;
+import com.elypia.elypiai.poe.data.LadderType;
+import com.elypia.elypiai.poe.data.LeagueType;
 import com.elypia.elypiai.poe.deserializers.LadderEntryDeserializer;
 import com.elypia.elypiai.poe.impl.PathOfExileService;
-import com.elypia.elypiai.restutils.RestAction;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import retrofit2.*;
+import retrofit2.Call;
+import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.List;
