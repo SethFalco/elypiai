@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum Race {
 
+	UNKNOWN("Unknown"),
+
 	@SerializedName("Dragon")
 	DRAGON("Dragon"),
 
@@ -96,6 +98,6 @@ public enum Race {
 				return attribute;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

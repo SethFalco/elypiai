@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum Difficulty {
 
+    UNKNOWN(-1),
+
     @SerializedName("0")
     NOVICE(0),
 

@@ -1,9 +1,13 @@
 package com.elypia.elypiai.twitch.entity;
 
-import com.elypia.elypiai.twitch.*;
-import com.elypia.elypiai.twitch.data.*;
-import com.elypia.elypiai.twitch.deserializers.EmptyNullDeserializer;
-import com.google.gson.annotations.*;
+import com.elypia.elypiai.common.gson.deserializers.EmptyNullDeserializer;
+import com.elypia.elypiai.twitch.StreamPaginator;
+import com.elypia.elypiai.twitch.Twitch;
+import com.elypia.elypiai.twitch.TwitchQuery;
+import com.elypia.elypiai.twitch.data.AccountType;
+import com.elypia.elypiai.twitch.data.BroadcasterType;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 public class User {
 
@@ -34,6 +38,7 @@ public class User {
 	private String avatarUrl;
 
 	@SerializedName("offline_image_url")
+	@JsonAdapter(EmptyNullDeserializer.class)
 	private String offlineImageUrl;
 
 	@SerializedName("view_count")
@@ -55,21 +60,21 @@ public class User {
 	}
 
 	/**
-	 * @return	Get the id of the user.
+	 * @return	Get the id get the user.
 	 */
 	public int getId() {
 		return id;
 	}
 
 	/**
-	 * @return	Return the username of the user, all lower case.
+	 * @return	Return the username get the user, all lower case.
 	 */
 	public String getUsername() {
 		return username;
 	}
 
 	/**
-	 * @return	Get's the display name of the user
+	 * @return	Get's the display name get the user
 	 * 			including capitilisation.
 	 */
 	public String getDisplayName() {
@@ -85,7 +90,7 @@ public class User {
 	}
 
 	/**
-	 * @return	Returns the bio of the user.
+	 * @return	Returns the bio get the user.
 	 * 			Possible null, if user hasn't set a bio.
 	 */
 	public String getDescription() {

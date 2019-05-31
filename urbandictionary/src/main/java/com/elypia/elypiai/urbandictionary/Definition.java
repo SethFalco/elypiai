@@ -1,6 +1,6 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.elypia.elypiai.urbandictionary.deserializers.EmptyNullDeserializer;
+import com.elypia.elypiai.common.gson.deserializers.EmptyNullDeserializer;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 

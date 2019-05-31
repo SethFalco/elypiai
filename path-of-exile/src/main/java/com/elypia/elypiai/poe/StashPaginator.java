@@ -1,11 +1,11 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.common.impl.IRestPaginator;
+import com.elypia.elypiai.common.impl.RestPaginator;
 
 import java.io.IOException;
 import java.util.List;
 
-public class StashPaginator implements IRestPaginator<Stash> {
+public class StashPaginator implements RestPaginator<Stash> {
 
     private PathOfExile poe;
     private String cursor;

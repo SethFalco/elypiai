@@ -22,7 +22,7 @@ public enum StreamType {
         return API_NAME;
     }
 
-    public static StreamType of(String apiName) {
+    public static StreamType get(String apiName) {
         StreamType[] types = values();
 
         for (int i = 1; i < types.length; i++) {

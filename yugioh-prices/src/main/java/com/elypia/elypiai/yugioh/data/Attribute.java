@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum Attribute {
 
+	UNKNOWN("Unknown"),
+
 	@SerializedName("light")
 	LIGHT("light"),
 
@@ -41,6 +43,6 @@ public enum Attribute {
 				return attribute;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

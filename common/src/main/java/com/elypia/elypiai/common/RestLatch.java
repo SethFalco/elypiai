@@ -1,16 +1,16 @@
 package com.elypia.elypiai.common;
 
-import com.elypia.elypiai.common.impl.AbstractRestAction;
+import com.elypia.elypiai.common.impl.RestIterable;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
-public class RestLatch<T> extends AbstractRestAction<List<T>> implements Iterable<RestAction<T>> {
+public class RestLatch<T> implements RestIterable<T>, Iterable<RestAction<T>> {
 
     private final int TIMEOUT;
     private final boolean PARTIAL;
@@ -38,12 +38,12 @@ public class RestLatch<T> extends AbstractRestAction<List<T>> implements Iterabl
     }
 
     @Override
-    public void queue(Consumer<List<T>> success, Consumer<Throwable> ex) {
+    public void queue(Consumer<List<Optional<T>>> success, Consumer<Throwable> ex) {
         if (restActions.isEmpty())
-            throw new IllegalStateException("No requests added to latch prior to execution.");
+            return;
 
         new Thread(() -> {
-            List<T> results = new ArrayList<>();
+            List<Optional<T>> results = new ArrayList<>();
             CountDownLatch latch = new CountDownLatch(restActions.size());
 
             forEach((restAction) -> {
@@ -71,11 +71,6 @@ public class RestLatch<T> extends AbstractRestAction<List<T>> implements Iterabl
 
             success.accept(results);
         }).start();
-    }
-
-    @Override
-    public List<T> complete() throws IOException {
-        throw new IllegalStateException();
     }
 
     @Override

@@ -1,15 +1,19 @@
 package com.elypia.elypiai.urbandictionary;
 
+import com.elypia.elypiai.common.RequestService;
 import com.elypia.elypiai.common.RestAction;
-import com.elypia.elypiai.urbandictionary.impl.UrbanDictionaryService;
+import com.elypia.elypiai.common.gson.GsonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class UrbanDictionary {
+
+	private static final Logger logger = LoggerFactory.getLogger(UrbanDictionary.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -22,7 +26,7 @@ public class UrbanDictionary {
 		try {
 			BASE_URL = new URL("http://api.urbandictionary.com/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error("Failed to initialize UrbanDictionary.", ex);
 		}
 	}
 
@@ -33,10 +37,12 @@ public class UrbanDictionary {
 	}
 
 	public UrbanDictionary(URL url) {
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(url.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
-
-		service = retrofitBuilder.build().create(UrbanDictionaryService.class);
+		service = new Retrofit.Builder()
+			.baseUrl(url.toString())
+			.client(RequestService.getInstance())
+			.addConverterFactory(GsonService.getInstance())
+			.build()
+			.create(UrbanDictionaryService.class);
 	}
 
 	/**

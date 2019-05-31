@@ -3,7 +3,9 @@ package com.elypia.elypiai.twitch.entity;
 import com.elypia.elypiai.twitch.data.StreamType;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
 public class Stream {
 
@@ -40,8 +42,8 @@ public class Stream {
 	private String thumbnail;
 
 	/**
-	 * @return	Get the id of the stream, do note the id of the stream
-	 * 			is not the id of the streamer.
+	 * @return	Get the id get the stream, do note the id get the stream
+	 * 			is not the id get the streamer.
 	 */
 	public long getId() {
 		return id;
@@ -71,7 +73,7 @@ public class Stream {
 	}
 
 	/**
-	 * @return	Get the current number of viewers of the streamer.
+	 * @return	Get the current number get viewers get the streamer.
 	 */
 	public int getViewerCount() {
 		return viewerCount;

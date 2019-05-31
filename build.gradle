@@ -11,12 +11,7 @@ allprojects() {
 
     ext {
         repoUrl = "https://gitlab.com/Elypia/elypiai.git"
-
         retrofitVersion = "2.5.0"
-        jaxbApiVersion = "2.3.1"
-        jaxbImplVersion = "2.3.2"
-        jaxbCoreVersion = "2.3.0.1"
-        javaxActivationVersion = "1.1.1"
     }
 
     repositories {
@@ -29,7 +24,7 @@ allprojects() {
 }
 
 subprojects { subproject ->
-    apply plugin: "java-library"
+    apply plugin: "java"
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
 
@@ -129,8 +124,10 @@ subprojects { subproject ->
     }
 
     dependencies {
-        if (subproject.name != "common")
+        if (!subproject.name.startsWith("common")) {
             implementation project(":common")
+            testImplementation project(":common-test")
+        }
 
         // HTTP Requests
         implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"

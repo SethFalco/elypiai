@@ -2,8 +2,8 @@ package com.elypia.elypiai.yugioh.deserializers;
 
 import com.elypia.elypiai.yugioh.MagicCard;
 import com.elypia.elypiai.yugioh.Monster;
+import com.elypia.elypiai.yugioh.TradingCard;
 import com.elypia.elypiai.yugioh.data.CardType;
-import com.elypia.elypiai.yugioh.impl.TradingCard;
 import com.google.gson.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +15,8 @@ import java.util.regex.Pattern;
 
 public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
 
-    private static final String ON_FAILURE = "The request to the Yu-Gi-Oh! Prices API failed with reason: {}";
-
     private static final Logger logger = LoggerFactory.getLogger(TradingCardDeserializer.class);
+    private static final String ON_FAILURE = "The request to the Yu-Gi-Oh! Prices API failed with reason: {}";
 
     /**
      * The pattern used to split the cards types apart

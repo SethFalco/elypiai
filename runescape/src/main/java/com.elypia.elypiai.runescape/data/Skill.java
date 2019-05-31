@@ -6,7 +6,7 @@ public enum Skill {
 
 	/**
 	 * This should only ever occur if a new skill is introduced
-	 * and Elypiai hasn't updated to include it yet.
+	 * and Elypiai hasn't been updated to include it yet.
 	 */
 	UNKNOWN(-1, "Unknown", false),
 

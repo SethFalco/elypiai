@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "id": "34292430496",
+      "user_id": "19571641",
+      "user_name": "Ninja",
+      "game_id": "33214",
+      "community_ids": [],
+      "type": "live",
+      "title": "Forever Grateful for those who sacrificed their lives in service to our Country. Thank you for your courage #MemorialDay",
+      "viewer_count": 52301,
+      "started_at": "2019-05-27T14:22:55Z",
+      "language": "en",
+      "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_ninja-{width}x{height}.jpg",
+      "tag_ids": [
+        "6ea6bca4-4712-4ab9-a906-e3336a9d8039"
+      ]
+    }
+  ],
+  "pagination": {
+    "cursor": "eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6MX19"
+  }
+}

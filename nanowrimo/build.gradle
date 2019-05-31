@@ -1,14 +1,9 @@
 dependencies {
+    implementation project(":common-jaxb")
+
     // Retrofit
-    implementation "com.squareup.retrofit2:converter-jaxb:${retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
 
     // Apache Commons
     implementation "commons-codec:commons-codec:1.12"
-
-    // XML
-    runtimeOnly "javax.xml.bind:jaxb-api:${jaxbApiVersion}"
-    runtimeOnly "com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}"
-    runtimeOnly "com.sun.xml.bind:jaxb-core:${jaxbCoreVersion}"
-    runtimeOnly "javax.activation:activation:${javaxActivationVersion}"
 }

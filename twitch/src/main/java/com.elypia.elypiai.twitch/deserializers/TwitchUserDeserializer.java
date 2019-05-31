@@ -22,7 +22,6 @@ public class TwitchUserDeserializer implements JsonDeserializer<List<User>> {
         JsonElement data = json.getAsJsonObject().getAsJsonArray("data");
         List<User> users = GSON.fromJson(data, typeOfT);
         users.forEach(user -> user.setTwitch(twitch));
-
         return users;
     }
 }

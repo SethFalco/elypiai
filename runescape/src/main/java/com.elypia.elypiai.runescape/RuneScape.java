@@ -1,19 +1,28 @@
 package com.elypia.elypiai.runescape;
 
+import com.elypia.elypiai.common.Elypiai;
+import com.elypia.elypiai.common.RequestService;
 import com.elypia.elypiai.common.RestAction;
+import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
+import com.elypia.elypiai.runescape.deserializers.PlayerDeserializer;
 import com.elypia.elypiai.runescape.deserializers.QuestStatDeserializer;
-import com.elypia.elypiai.runescape.impl.IRuneScapeService;
+import com.elypia.elypiai.runescape.impl.RuneScapeService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 public class RuneScape {
+
+	private static final Logger logger = LoggerFactory.getLogger(RuneScape.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -26,27 +35,30 @@ public class RuneScape {
 		try {
 			BASE_URL = new URL("https://apps.runescape.com/runemetrics/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
-	private IRuneScapeService service;
-	private Map<String, Player> cache;
+	private RuneScapeService service;
 
 	public RuneScape() {
 		this(BASE_URL);
 	}
 
 	public RuneScape(URL baseUrl) {
-		cache = new HashMap<>();
+		GsonBuilder gsonBuilder = new GsonBuilder()
+			.registerTypeAdapter(Date.class, new DateDeserializer("dd-MMM-yyyy hh:mm"))
+			.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
 
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+		gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
 
-		service = retrofitBuilder.build().create(IRuneScapeService.class);
+		service = new Retrofit.Builder()
+			.baseUrl(baseUrl.toString())
+			.client(RequestService.getInstance())
+			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+			.build()
+			.create(RuneScapeService.class);
 	}
 
 	/**
@@ -65,13 +77,6 @@ public class RuneScape {
 	public RestAction<List<QuestStats>> getQuestStatuses(String user) {
 		Call<List<QuestStats>> call = service.getQuestStats(user);
 		return new RestAction<>(call);
-	}
-
-	/**
-	 * @return	Get the list of cached players.
-	 */
-	public Collection<Player> getUsers() {
-		return Collections.unmodifiableCollection(cache.values());
 	}
 
     /**

@@ -1,8 +1,10 @@
 package com.elypia.elypiai.steam;
 
+import com.elypia.elypiai.common.gson.deserializers.BitBooleanDeserializer;
+import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import com.elypia.elypiai.steam.data.PersonaState;
-import com.elypia.elypiai.steam.deserializers.*;
-import com.google.gson.annotations.*;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -67,7 +69,7 @@ public class SteamUser {
 	 * The last time the user was online.
 	 */
 	@SerializedName("lastlogoff")
-	@JsonAdapter(SteamDateDeserializer.class)
+	@JsonAdapter(DateDeserializer.class)
 	private Date lastLogOff;
 
 	/**
@@ -97,7 +99,7 @@ public class SteamUser {
 	 */
 
 	@SerializedName("timecreated")
-	@JsonAdapter(SteamDateDeserializer.class)
+	@JsonAdapter(DateDeserializer.class)
 	private Date timeCreated;
 
 	/**

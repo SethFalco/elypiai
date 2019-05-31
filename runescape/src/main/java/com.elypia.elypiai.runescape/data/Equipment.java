@@ -2,6 +2,7 @@ package com.elypia.elypiai.runescape.data;
 
 public enum Equipment {
 
+	UNKNOWN(-1),
 	HEAD(0),
 	CAPE(1),
 	NECK(2),

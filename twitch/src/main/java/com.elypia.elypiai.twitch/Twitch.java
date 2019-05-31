@@ -1,16 +1,21 @@
 package com.elypia.elypiai.twitch;
 
+import com.elypia.elypiai.common.Elypiai;
+import com.elypia.elypiai.common.RequestService;
 import com.elypia.elypiai.common.RestAction;
 import com.elypia.elypiai.common.data.AuthenticationType;
+import com.elypia.elypiai.common.gson.GsonService;
 import com.elypia.elypiai.twitch.data.Scope;
 import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
 import com.elypia.elypiai.twitch.entity.User;
 import com.elypia.elypiai.twitch.notifier.TwitchNotifier;
-import com.elypia.elypiai.twitch.service.ITwitchAppService;
-import com.elypia.elypiai.twitch.service.ITwitchService;
+import com.elypia.elypiai.twitch.service.TwitchAppService;
+import com.elypia.elypiai.twitch.service.TwitchService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -20,8 +25,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Twitch {
+
+	private static Logger logger = LoggerFactory.getLogger(Twitch.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -34,7 +42,7 @@ public class Twitch {
 		try {
 			BASE_URL = new URL("https://api.twitch.tv/helix/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
@@ -44,7 +52,7 @@ public class Twitch {
 		try {
 			AUTH_URL = new URL("https://id.twitch.tv/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
@@ -56,8 +64,8 @@ public class Twitch {
 	private AccessToken token;
 	private TwitchNotifier notifier;
 
-	private ITwitchService service;
-	private ITwitchAppService appService;
+	private TwitchService service;
+	private TwitchAppService appService;
 
 	/**
 	 * Allows calls to the Twitch API, can call various information
@@ -85,24 +93,27 @@ public class Twitch {
 		AUTH_TYPE = Objects.requireNonNull(grantType);
 		SCOPES = scopes;
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(authUrl.toString());
+		initTwitchAppService(authUrl);
+		initTwitchService(baseUrl);
+	}
 
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ssZ");
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<User>>(){}.getType(), new TwitchUserDeserializer(this));
+	private void initTwitchAppService(URL authUrl) throws IOException {
+		appService = new Retrofit.Builder()
+			.baseUrl(authUrl.toString())
+			.client(RequestService.getInstance())
+			.addConverterFactory(GsonService.getInstance())
+			.build()
+			.create(TwitchAppService.class);
 
-		var factory = GsonConverterFactory.create(gsonBuilder.create());
+		Optional<AccessToken> optToken = getToken().complete();
 
-		retrofitBuilder.addConverterFactory(factory);
+		this.token = optToken.orElseThrow(() ->
+			new IllegalStateException("Client credentials were invalid, refer to Twitch and generate new ones.")
+		);
+	}
 
-		appService = retrofitBuilder.client(new OkHttpClient()).build().create(ITwitchAppService.class);
-
-		token = getToken().complete();
-
-		if (token == null)
-			throw new IllegalStateException("Client credentials were invalid, refer to Twitch and generate new ones.");
-
-		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+	private void initTwitchService(URL baseUrl) {
+		OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {
 			var req = chain.request().newBuilder()
 				.addHeader("Authorization", "Bearer " + token.getToken())
 				.build();
@@ -110,7 +121,15 @@ public class Twitch {
 			return chain.proceed(req);
 		}).build();
 
-		service = retrofitBuilder.client(client).build().create(ITwitchService.class);
+		GsonBuilder gsonBuilder = new GsonBuilder()
+			.registerTypeAdapter(new TypeToken<List<User>>(){}.getType(), new TwitchUserDeserializer(this));
+
+		service = new Retrofit.Builder()
+			.baseUrl(baseUrl.toString())
+			.client(client)
+			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+			.build()
+			.create(TwitchService.class);
 	}
 
 	/**
@@ -152,7 +171,7 @@ public class Twitch {
 		return CLIENT_ID;
 	}
 
-	protected ITwitchService getService() {
+	protected TwitchService getService() {
 		return service;
 	}
 }

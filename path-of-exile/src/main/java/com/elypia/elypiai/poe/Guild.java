@@ -1,7 +1,8 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.poe.deserializers.EmptyNullDeserializer;
-import com.google.gson.annotations.*;
+import com.elypia.elypiai.common.gson.deserializers.EmptyNullDeserializer;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 

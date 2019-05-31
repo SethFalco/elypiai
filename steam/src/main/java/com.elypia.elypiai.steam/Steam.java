@@ -1,15 +1,19 @@
 package com.elypia.elypiai.steam;
 
+import com.elypia.elypiai.common.Elypiai;
+import com.elypia.elypiai.common.RequestService;
 import com.elypia.elypiai.common.RestAction;
 import com.elypia.elypiai.steam.deserializers.SteamGameDeserializer;
 import com.elypia.elypiai.steam.deserializers.SteamSearchDeserializer;
 import com.elypia.elypiai.steam.deserializers.SteamUserDeserializer;
-import com.elypia.elypiai.steam.impl.ISteamService;
+import com.elypia.elypiai.steam.impl.SteamService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -22,6 +26,8 @@ import java.util.StringJoiner;
 
 public class Steam {
 
+	private static final Logger logger = LoggerFactory.getLogger(Steam.class);
+
 	/**
 	 * The default URL we call too. <br>
 	 * Should never throw {@link MalformedURLException} as this
@@ -33,13 +39,12 @@ public class Steam {
 		try {
 			BASE_URL = new URL("http://api.steampowered.com/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
 	private final String API_KEY;
-
-	private ISteamService service;
+	private final SteamService service;
 
 	/**
 	 * The Steam API allows calls to basic Steam information
@@ -56,22 +61,24 @@ public class Steam {
 	public Steam(URL baseUrl, String apiKey) {
 		API_KEY = Objects.requireNonNull(apiKey);
 
-		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
+		OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {
 			Request request = chain.request();
 			HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
 			request = request.newBuilder().url(url).build();
 			return chain.proceed(request);
 		}).build();
 
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer());
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer());
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
+		GsonBuilder gsonBuilder = new GsonBuilder()
+			.registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer())
+			.registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer())
+			.registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
-
-		service = retrofitBuilder.client(client).build().create(ISteamService.class);
+		service = new Retrofit.Builder()
+			.baseUrl(baseUrl.toString())
+			.client(client)
+			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+			.build()
+			.create(SteamService.class);
 	}
 
 	public RestAction<SteamSearch> getIdFromVanityUrl(String vanityUrl) {

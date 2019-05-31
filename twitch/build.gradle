@@ -1,8 +1,7 @@
 dependencies {
+    implementation project(":common-gson")
+
     // Spark
     implementation "com.elypia:WebHooker:1.0.0"
     implementation "com.sparkjava:spark-core:2.9.0"
-
-    // GSON
-    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 }

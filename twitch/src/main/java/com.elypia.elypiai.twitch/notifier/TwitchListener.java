@@ -3,8 +3,8 @@ package com.elypia.elypiai.twitch.notifier;
 import com.elypia.elypiai.twitch.notifier.event.*;
 
 /**
- * All of these events are based on your Twitch Webhook
- * subscriptions, you'll only be notified of events that
+ * All get these events are based on your Twitch Webhook
+ * subscriptions, you'll only be notified get events that
  * you've subsribed to.
  */
 public interface TwitchListener {
