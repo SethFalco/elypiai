@@ -1,6 +1,7 @@
 package com.elypia.elypiai.osu.deserializers;
 
-import com.elypia.elypiai.osu.*;
+import com.elypia.elypiai.osu.BeatMap;
+import com.elypia.elypiai.osu.MapDifficulty;
 import com.google.gson.*;
 
 import java.lang.reflect.Type;
@@ -8,7 +9,11 @@ import java.util.List;
 
 public class BeatMapDeserializer implements JsonDeserializer<List<BeatMap>> {
 
-    private static final Gson GSON = new Gson();
+    private final Gson GSON;
+
+    public BeatMapDeserializer(Gson gson) {
+        this.GSON = gson;
+    }
 
     @Override
     public List<BeatMap> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
@@ -17,7 +22,7 @@ public class BeatMapDeserializer implements JsonDeserializer<List<BeatMap>> {
 
         for (int i = 0; i < maps.size(); i++) {
             JsonObject map = array.get(i).getAsJsonObject();
-            maps.get(i).setDifficulty(GSON.fromJson(map, MapDifficulty.class));
+            maps.get(i).setDifficulty(context.deserialize(map, MapDifficulty.class));
         }
 
         return maps;

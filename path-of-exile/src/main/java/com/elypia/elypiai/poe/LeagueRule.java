@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class LeagueRule {
 
 	@SerializedName("id")
-	private int id;
+	private String id;
 
 	@SerializedName("name")
 	private String name;
@@ -13,7 +13,7 @@ public class LeagueRule {
 	@SerializedName("description")
 	private String description;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 

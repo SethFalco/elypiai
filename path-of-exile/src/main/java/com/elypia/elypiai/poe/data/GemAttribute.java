@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum GemAttribute {
 
+	UNKNOWN(GemColor.UNKNOWN, null),
+
 	@SerializedName("S")
 	STRENGTH(GemColor.RED, "S"),
 
@@ -35,6 +37,6 @@ public enum GemAttribute {
 				return attr;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

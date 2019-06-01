@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum LabyrinthDifficulty {
 
+	UNKNOWN(-1),
+
 	@SerializedName("1")
 	STANDARD(1),
 

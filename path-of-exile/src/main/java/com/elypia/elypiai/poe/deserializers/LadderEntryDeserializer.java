@@ -8,7 +8,11 @@ import java.util.List;
 
 public class LadderEntryDeserializer implements JsonDeserializer<List<LadderEntry>> {
 
-    private static Gson gson = new Gson();
+    private final Gson gson;
+
+    public LadderEntryDeserializer(Gson gson) {
+        this.gson = gson;
+    }
 
     @Override
     public List<LadderEntry> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

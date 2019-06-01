@@ -1,12 +1,17 @@
 package com.elypia.elypiai.poe;
 
+import com.elypia.elypiai.poe.data.Realm;
 import com.elypia.elypiai.poe.deserializers.NestedDeserializer;
-import com.google.gson.annotations.*;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 public class Account {
 
 	@SerializedName("name")
 	private String name;
+
+	@SerializedName("realm")
+	private Realm realm;
 
 	@SerializedName("challenges")
 	@JsonAdapter(NestedDeserializer.class)
@@ -21,6 +26,10 @@ public class Account {
 
 	public String getName() {
 		return name;
+	}
+
+	public Realm getRealm() {
+		return realm;
 	}
 
 	public int getChallenges() {

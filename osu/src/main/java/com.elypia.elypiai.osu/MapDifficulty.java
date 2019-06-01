@@ -8,16 +8,16 @@ public class MapDifficulty {
     private double display;
 
     @SerializedName("diff_overall")
-    private int overall;
+    private double overall;
 
     @SerializedName("diff_size")
-    private int size;
+    private double size;
 
     @SerializedName("diff_approach")
-    private int approachRate;
+    private double approachRate;
 
     @SerializedName("diff_drain")
-    private int healthDrain;
+    private double healthDrain;
 
     /**
      * @return 	A numerical representation of the beatmap
@@ -30,25 +30,25 @@ public class MapDifficulty {
     /**
      * @return 	The overall difficulty (OD) of the beatmap.
      */
-    public int getOverall() {
+    public double getOverall() {
         return overall;
     }
 
-    public int getSize() {
+    public double getSize() {
         return size;
     }
 
     /**
      * @return 	The appraoch rate (AR) of the beatmap.
      */
-    public int getApproachRate() {
+    public double getApproachRate() {
         return approachRate;
     }
 
     /**
      * @return 	The health drain (HR) of the beatmap.
      */
-    public int getHealthDrain() {
+    public double getHealthDrain() {
         return healthDrain;
     }
 }

@@ -2,29 +2,18 @@ package com.elypia.elypiai.poe.data;
 
 public enum LeagueType {
 
-	/**
-	 * Refers to all leagues.
-	 */
-
-	ALL("all"),
+	UNKNOWN("Unknown"),
 
 	/**
 	 * Refers to only the main leagues,
 	 * these are displayed in teh character screen.
 	 */
-
 	MAIN("main"),
 
-	/**
-	 * Refers to event leagues.
-	 */
-
+	/** Refers to event leagues. */
 	EVENT("event"),
 
-	/**
-	 * Refers to league in a particular season.
-	 */
-
+	/** Refers to league in a particular season. */
 	SEASON("season");
 
 	private final String NAME;

@@ -1,0 +1,203 @@
+[
+  {
+    "id": "Standard",
+    "realm": "pc",
+    "description": "#LeagueStandard",
+    "url": "http://pathofexile.com/forum/view-thread/71278",
+    "startAt": "2013-01-23T21:00:00Z",
+    "endAt": null,
+    "delveEvent": true,
+    "rules": []
+  },
+  {
+    "id": "Hardcore",
+    "realm": "pc",
+    "description": "#LeagueHardcore",
+    "url": "http://pathofexile.com/forum/view-thread/71276",
+    "startAt": "2013-01-23T21:00:00Z",
+    "endAt": null,
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "Hardcore",
+        "name": "Hardcore",
+        "description": "A character killed in Hardcore is moved to its parent league."
+      }
+    ]
+  },
+  {
+    "id": "SSF Standard",
+    "realm": "pc",
+    "description": "#LeagueStandardSSF",
+    "url": "http://pathofexile.com/forum/view-thread/1841357",
+    "startAt": "2013-01-23T21:00:00Z",
+    "endAt": null,
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "NoParties",
+        "name": "Solo",
+        "description": "You may not party in this league."
+      }
+    ]
+  },
+  {
+    "id": "SSF Hardcore",
+    "realm": "pc",
+    "description": "#LeagueHardcoreSSF",
+    "url": "http://pathofexile.com/forum/view-thread/1841353",
+    "startAt": "2013-01-23T21:00:00Z",
+    "endAt": null,
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "Hardcore",
+        "name": "Hardcore",
+        "description": "A character killed in Hardcore is moved to its parent league."
+      },
+      {
+        "id": "NoParties",
+        "name": "Solo",
+        "description": "You may not party in this league."
+      }
+    ]
+  },
+  {
+    "id": "Synthesis",
+    "realm": "pc",
+    "description": "#LeagueStandardSynthesis",
+    "registerAt": "2019-03-08T17:30:00Z",
+    "url": "http://pathofexile.com/forum/view-thread/2452427",
+    "startAt": "2019-03-08T20:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": []
+  },
+  {
+    "id": "Hardcore Synthesis",
+    "realm": "pc",
+    "description": "#LeagueHardcoreSynthesis",
+    "registerAt": "2019-03-08T17:30:00Z",
+    "url": "http://pathofexile.com/forum/view-thread/2452428",
+    "startAt": "2019-03-08T20:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "Hardcore",
+        "name": "Hardcore",
+        "description": "A character killed in Hardcore is moved to its parent league."
+      }
+    ]
+  },
+  {
+    "id": "SSF Synthesis",
+    "realm": "pc",
+    "description": "#LeagueStandardSSFSynthesis",
+    "registerAt": "2019-03-08T17:30:00Z",
+    "url": "http://pathofexile.com/forum/view-thread/2452432",
+    "startAt": "2019-03-08T20:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "NoParties",
+        "name": "Solo",
+        "description": "You may not party in this league."
+      }
+    ]
+  },
+  {
+    "id": "SSF Synthesis HC",
+    "realm": "pc",
+    "description": "#LeagueHardcoreSSFSynthesis",
+    "registerAt": "2019-03-08T17:30:00Z",
+    "url": "http://pathofexile.com/forum/view-thread/2452439",
+    "startAt": "2019-03-08T20:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "Hardcore",
+        "name": "Hardcore",
+        "description": "A character killed in Hardcore is moved to its parent league."
+      },
+      {
+        "id": "NoParties",
+        "name": "Solo",
+        "description": "You may not party in this league."
+      }
+    ]
+  },
+  {
+    "id": "Synthesis Event (SRE001)",
+    "realm": "pc",
+    "description": "Please check the Event Forums for more details.",
+    "registerAt": "2019-05-10T20:30:00Z",
+    "event": true,
+    "url": "http://pathofexile.com/forum/view-thread/2501203",
+    "startAt": "2019-05-10T21:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": []
+  },
+  {
+    "id": "Synthesis Event HC (SRE002)",
+    "realm": "pc",
+    "description": "Please check the Event Forums for more details.",
+    "registerAt": "2019-05-10T20:30:00Z",
+    "event": true,
+    "url": "http://pathofexile.com/forum/view-thread/2501205",
+    "startAt": "2019-05-10T21:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "Hardcore",
+        "name": "Hardcore",
+        "description": "A character killed in Hardcore is moved to its parent league."
+      }
+    ]
+  },
+  {
+    "id": "SSF Synthesis Event (SRE003)",
+    "realm": "pc",
+    "description": "Please check the Event Forums for more details.",
+    "registerAt": "2019-05-10T20:30:00Z",
+    "event": true,
+    "url": "http://pathofexile.com/forum/view-thread/2501206",
+    "startAt": "2019-05-10T21:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "NoParties",
+        "name": "Solo",
+        "description": "You may not party in this league."
+      }
+    ]
+  },
+  {
+    "id": "SSF Synthesis Event HC (SRE004)",
+    "realm": "pc",
+    "description": "Please check the Event Forums for more details.",
+    "registerAt": "2019-05-10T20:30:00Z",
+    "event": true,
+    "url": "http://pathofexile.com/forum/view-thread/2501207",
+    "startAt": "2019-05-10T21:00:00Z",
+    "endAt": "2019-06-03T22:00:00Z",
+    "delveEvent": true,
+    "rules": [
+      {
+        "id": "Hardcore",
+        "name": "Hardcore",
+        "description": "A character killed in Hardcore is moved to its parent league."
+      },
+      {
+        "id": "NoParties",
+        "name": "Solo",
+        "description": "You may not party in this league."
+      }
+    ]
+  }
+]

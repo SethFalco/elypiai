@@ -1,10 +1,12 @@
 package com.elypia.elypiai.osu.data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+/** NONE not included as NONE is represented by an empty collection. */
 public enum OsuMod {
 
-    // NONE(0) | Not including, as NONE should be represented with an empty collection.
     NO_FAIL(1),
     EASY(2),
     TOUCH_DEVICE(4),
@@ -18,7 +20,10 @@ public enum OsuMod {
     FLASH_LIGHT(1024),
     AUTOPLAY(2048),
     SPUN_OUT(4096),
-    AUTOPILOT(8192), // Relex2
+
+    /** AKA Relax2 */
+    AUTOPILOT(8192),
+
     PERFECT(16384, OsuMod.SUDDEN_DEATH),
     KEY4(32768),
     KEY5(65536),
@@ -60,6 +65,6 @@ public enum OsuMod {
                 mods.remove(m);
         }
 
-        return mods;
+        return Collections.unmodifiableList(mods);
     }
 }

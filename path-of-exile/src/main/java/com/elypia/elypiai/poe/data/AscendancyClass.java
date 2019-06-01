@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum AscendancyClass {
 
+	UNKNOWN(AscendancyType.UNKNOWN, "Unknown"),
+
 	@SerializedName("Slayer")
 	SLAYER(AscendancyType.DUELIST, "Slayer"),
 
@@ -79,6 +81,6 @@ public enum AscendancyClass {
 				return ascendancy;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

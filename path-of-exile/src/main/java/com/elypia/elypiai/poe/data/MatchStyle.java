@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum MatchStyle {
 
+	UNKNOWN("Unknown"),
+
 	@SerializedName("Swiss")
 	SWISS("Swiss"),
 
@@ -25,6 +27,6 @@ public enum MatchStyle {
 				return style;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum StashType {
 
+	UNKNOWN("Unknown"),
+
 	@SerializedName("PremiumStash")
 	PREMIUM_STASH("PremiumStash");
 
@@ -19,6 +21,6 @@ public enum StashType {
 				return type;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

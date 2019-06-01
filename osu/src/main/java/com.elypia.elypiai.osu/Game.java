@@ -1,10 +1,15 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.osu.data.*;
-import com.elypia.elypiai.osu.deserializers.*;
-import com.google.gson.annotations.*;
+import com.elypia.elypiai.osu.data.OsuMod;
+import com.elypia.elypiai.osu.data.OsuMode;
+import com.elypia.elypiai.osu.data.OsuScoreType;
+import com.elypia.elypiai.osu.data.OsuTeamType;
+import com.elypia.elypiai.osu.deserializers.OsuModDeserializer;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 public class Game {
 
@@ -12,11 +17,9 @@ public class Game {
     private int gameId;
 
     @SerializedName("start_time")
-    @JsonAdapter(OsuDateDeserializer.class)
     private Date startTime;
 
     @SerializedName("end_time")
-    @JsonAdapter(OsuDateDeserializer.class)
     private Date endTime;
 
     @SerializedName("beatmap_id")

@@ -21,7 +21,7 @@ public class StashPaginator implements RestPaginator<Stash> {
 
     @Override
     public List<Stash> next() throws IOException {
-        StashTabs stashtabs = poe.getStashTabs(cursor).complete();
+        StashTabs stashtabs = poe.getStashTabs(cursor).completeGet();
         List<Stash> stashes = stashtabs.getStashes();
 
         if (stashes.isEmpty())

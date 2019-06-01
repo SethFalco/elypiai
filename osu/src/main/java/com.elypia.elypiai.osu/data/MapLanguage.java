@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum MapLanguage {
 
+	UNKNOWN(-1),
+
 	@SerializedName("0")
 	ANY(0),
 

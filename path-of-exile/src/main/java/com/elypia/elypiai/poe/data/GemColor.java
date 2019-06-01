@@ -6,6 +6,8 @@ import java.awt.*;
 
 public enum GemColor {
 
+	UNKNOWN(null, null),
+
 	@SerializedName("R")
 	RED("R", Color.RED),
 
@@ -40,6 +42,6 @@ public enum GemColor {
 				return color;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

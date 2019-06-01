@@ -7,7 +7,11 @@ import java.lang.reflect.Type;
 
 public class OsuMatchDeserializer implements JsonDeserializer<Match> {
 
-    private static final Gson GSON = new Gson();
+    private final Gson GSON;
+
+    public OsuMatchDeserializer(Gson gson) {
+        this.GSON = gson;
+    }
 
     @Override
     public Match deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {

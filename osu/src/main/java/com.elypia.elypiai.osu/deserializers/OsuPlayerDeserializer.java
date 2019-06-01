@@ -7,7 +7,11 @@ import java.lang.reflect.Type;
 
 public class OsuPlayerDeserializer implements JsonDeserializer<Player> {
 
-    private static final Gson GSON = new Gson();
+    private final Gson GSON;
+
+    public OsuPlayerDeserializer(Gson gson) {
+        this.GSON = gson;
+    }
 
     @Override
     public Player deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
