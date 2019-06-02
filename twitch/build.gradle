@@ -1,5 +1,7 @@
 dependencies {
-    implementation project(":common-gson")
+    implementation project(":common:core")
+    implementation project(":common:gson")
+    testImplementation project(":common:test")
 
     // Spark
     implementation "com.elypia:WebHooker:1.0.0"

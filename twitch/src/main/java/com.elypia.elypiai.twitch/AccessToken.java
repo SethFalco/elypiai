@@ -1,6 +1,6 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.common.data.AuthenticationType;
+import com.elypia.elypiai.common.core.data.AuthenticationType;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Collection;

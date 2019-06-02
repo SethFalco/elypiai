@@ -1,10 +1,10 @@
 rootProject.name = "Elypiai"
 
-/** Core */
-include "common"
-include "common-gson"
-include "common-jaxb"
-include "common-test"
+/** Common */
+include "common:core"
+include "common:gson"
+include "common:jaxb"
+include "common:test"
 
 /** Wrappers */
 include "cleverbot"

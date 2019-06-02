@@ -1,6 +1,6 @@
 package com.elypia.elypiai.test.twitch;
 
-import com.elypia.elypiai.common.data.AuthenticationType;
+import com.elypia.elypiai.common.core.data.AuthenticationType;
 import com.elypia.elypiai.common.test.TestUtils;
 import com.elypia.elypiai.twitch.StreamPaginator;
 import com.elypia.elypiai.twitch.Twitch;

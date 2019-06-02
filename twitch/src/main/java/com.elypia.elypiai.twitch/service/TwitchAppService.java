@@ -1,6 +1,6 @@
 package com.elypia.elypiai.twitch.service;
 
-import com.elypia.elypiai.common.data.AuthenticationType;
+import com.elypia.elypiai.common.core.data.AuthenticationType;
 import com.elypia.elypiai.twitch.AccessToken;
 import retrofit2.Call;
 import retrofit2.http.Header;

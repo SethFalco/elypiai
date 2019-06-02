@@ -1,4 +1,4 @@
-package com.elypia.elypiai.test.common.impl;
+package com.elypia.elypiai.test.common.core.impl;
 
 public enum TestEnum {
     UNKNOWN,

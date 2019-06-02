@@ -7,7 +7,7 @@ allprojects() {
     apply plugin: "jacoco"
 
     version = "2.1.5"
-    description = "Wrappers for many APIs available online from various services."
+    description = "Wrappers for many APIs available online from various services that don't provide official wrappers."
 
     ext {
         repoUrl = "https://gitlab.com/Elypia/elypiai.git"
@@ -127,11 +127,6 @@ subprojects { subproject ->
     }
 
     dependencies {
-        if (!subproject.name.startsWith("common")) {
-            implementation project(":common")
-            testImplementation project(":common-test")
-        }
-
         // HTTP Requests
         implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
 

@@ -1,5 +1,7 @@
 dependencies {
-    implementation project(":common-jaxb")
+    implementation project(":common:core")
+    implementation project(":common:jaxb")
+    testImplementation project(":common:test")
 
     // Retrofit
     implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"

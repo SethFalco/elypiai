@@ -1,6 +1,6 @@
-package com.elypia.elypiai.common;
+package com.elypia.elypiai.common.core;
 
-import com.elypia.elypiai.common.impl.RestInterface;
+import com.elypia.elypiai.common.core.impl.RestInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

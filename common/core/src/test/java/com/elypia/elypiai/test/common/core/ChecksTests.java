@@ -1,7 +1,7 @@
-package com.elypia.elypiai.test.common;
+package com.elypia.elypiai.test.common.core;
 
-import com.elypia.elypiai.common.Checks;
-import com.elypia.elypiai.test.common.impl.TestEnum;
+import com.elypia.elypiai.common.core.Checks;
+import com.elypia.elypiai.test.common.core.impl.TestEnum;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

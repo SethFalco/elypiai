@@ -1,6 +1,6 @@
 package com.elypia.elypiai.runescape.deserializers;
 
-import com.elypia.elypiai.common.FriendlyException;
+import com.elypia.elypiai.common.core.FriendlyException;
 import com.elypia.elypiai.runescape.Player;
 import com.elypia.elypiai.runescape.data.RuneScapeError;
 import com.google.gson.*;

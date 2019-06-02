@@ -1,9 +1,9 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.common.Elypiai;
-import com.elypia.elypiai.common.RequestService;
-import com.elypia.elypiai.common.RestAction;
-import com.elypia.elypiai.common.data.AuthenticationType;
+import com.elypia.elypiai.common.core.Elypiai;
+import com.elypia.elypiai.common.core.RequestService;
+import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.data.AuthenticationType;
 import com.elypia.elypiai.common.gson.GsonService;
 import com.elypia.elypiai.twitch.data.Scope;
 import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;

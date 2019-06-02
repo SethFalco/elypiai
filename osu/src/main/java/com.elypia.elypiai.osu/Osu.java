@@ -1,8 +1,8 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.common.Elypiai;
-import com.elypia.elypiai.common.RequestService;
-import com.elypia.elypiai.common.RestAction;
+import com.elypia.elypiai.common.core.Elypiai;
+import com.elypia.elypiai.common.core.RequestService;
+import com.elypia.elypiai.common.core.RestAction;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import com.elypia.elypiai.osu.data.OsuId;
 import com.elypia.elypiai.osu.data.OsuMod;

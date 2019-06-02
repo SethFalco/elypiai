@@ -1,6 +1,6 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.common.impl.RestPaginator;
+import com.elypia.elypiai.common.core.impl.RestPaginator;
 
 import java.io.IOException;
 import java.util.List;

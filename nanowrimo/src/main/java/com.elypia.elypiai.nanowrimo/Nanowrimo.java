@@ -1,10 +1,9 @@
 package com.elypia.elypiai.nanowrimo;
 
-import com.elypia.elypiai.common.Elypiai;
-import com.elypia.elypiai.common.FriendlyException;
-import com.elypia.elypiai.common.RequestService;
-import com.elypia.elypiai.common.RestAction;
-import com.elypia.elypiai.common.jaxb.adapters.DateAdapter;
+import com.elypia.elypiai.common.core.Elypiai;
+import com.elypia.elypiai.common.core.FriendlyException;
+import com.elypia.elypiai.common.core.RequestService;
+import com.elypia.elypiai.common.core.RestAction;
 import com.elypia.elypiai.nanowrimo.data.NanoError;
 import com.elypia.elypiai.nanowrimo.impl.NanowrimoService;
 import org.slf4j.Logger;
@@ -47,8 +46,7 @@ public class Nanowrimo {
 
 	public Nanowrimo(URL baseUrl) {
 		try {
-			JAXBContext context = JAXBContext.newInstance(Writer.class);
-			context.createMarshaller().setAdapter(new DateAdapter("yyyy-MM-dd"));
+			JAXBContext context = JAXBContext.newInstance(Writer.class, WordCountEntry.class);
 
 			service = new Retrofit.Builder()
 				.baseUrl(baseUrl.toString())

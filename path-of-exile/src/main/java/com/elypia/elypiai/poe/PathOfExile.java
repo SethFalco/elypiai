@@ -1,8 +1,8 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.common.Checks;
-import com.elypia.elypiai.common.RequestService;
-import com.elypia.elypiai.common.RestAction;
+import com.elypia.elypiai.common.core.Checks;
+import com.elypia.elypiai.common.core.RequestService;
+import com.elypia.elypiai.common.core.RestAction;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import com.elypia.elypiai.poe.data.LabyrinthDifficulty;
 import com.elypia.elypiai.poe.data.LadderType;

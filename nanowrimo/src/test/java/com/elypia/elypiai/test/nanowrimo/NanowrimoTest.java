@@ -1,6 +1,6 @@
 package com.elypia.elypiai.test.nanowrimo;
 
-import com.elypia.elypiai.common.FriendlyException;
+import com.elypia.elypiai.common.core.FriendlyException;
 import com.elypia.elypiai.common.test.TestUtils;
 import com.elypia.elypiai.nanowrimo.Nanowrimo;
 import com.elypia.elypiai.nanowrimo.WordCountEntry;

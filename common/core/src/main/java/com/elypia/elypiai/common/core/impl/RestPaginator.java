@@ -1,4 +1,4 @@
-package com.elypia.elypiai.common.impl;
+package com.elypia.elypiai.common.core.impl;
 
 import java.io.IOException;
 import java.util.List;
