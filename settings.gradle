@@ -18,3 +18,4 @@ include "urbandictionary"
 include "yugioh-prices"
 
 /** Extensions */
+include "extensions:redis"

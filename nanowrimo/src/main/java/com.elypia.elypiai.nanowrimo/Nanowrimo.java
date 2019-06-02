@@ -1,9 +1,6 @@
 package com.elypia.elypiai.nanowrimo;
 
-import com.elypia.elypiai.common.core.Elypiai;
-import com.elypia.elypiai.common.core.FriendlyException;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.nanowrimo.data.NanoError;
 import com.elypia.elypiai.nanowrimo.impl.NanowrimoService;
 import org.slf4j.Logger;
@@ -19,7 +16,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 
-public class Nanowrimo {
+public class Nanowrimo extends ApiWrapper {
 
 	private static final Logger logger = LoggerFactory.getLogger(Nanowrimo.class);
 
@@ -40,11 +37,13 @@ public class Nanowrimo {
 
 	private NanowrimoService service;
 
-	public Nanowrimo() {
-		this(BASE_URL);
+	public Nanowrimo(WrapperExtension... exts) {
+		this(BASE_URL, exts);
 	}
 
-	public Nanowrimo(URL baseUrl) {
+	public Nanowrimo(URL baseUrl, WrapperExtension... exts) {
+		super(exts);
+
 		try {
 			JAXBContext context = JAXBContext.newInstance(Writer.class, WordCountEntry.class);
 
@@ -55,8 +54,8 @@ public class Nanowrimo {
 				.addConverterFactory(ScalarsConverterFactory.create())
 				.build()
 				.create(NanowrimoService.class);
-		} catch (JAXBException e) {
-			e.printStackTrace();
+		} catch (JAXBException ex) {
+			logger.error("Failed to create JAXBContext", ex);
 		}
 	}
 

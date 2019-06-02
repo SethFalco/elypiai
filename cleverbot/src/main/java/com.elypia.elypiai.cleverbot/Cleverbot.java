@@ -3,9 +3,7 @@ package com.elypia.elypiai.cleverbot;
 import com.elypia.elypiai.cleverbot.data.CleverTweak;
 import com.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
 import com.elypia.elypiai.cleverbot.impl.CleverbotService;
-import com.elypia.elypiai.common.core.Elypiai;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.google.gson.GsonBuilder;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -22,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Cleverbot {
+public class Cleverbot extends ApiWrapper {
 
 	private static final Logger logger = LoggerFactory.getLogger(Cleverbot.class);
 
@@ -44,8 +42,8 @@ public class Cleverbot {
 	private final String API_KEY;
 	private final CleverbotService service;
 
-	public Cleverbot(String apiKey) {
-		this(BASE_URL, apiKey);
+	public Cleverbot(String apiKey, WrapperExtension... exts) {
+		this(BASE_URL, apiKey, exts);
 	}
 
 	/**
@@ -56,7 +54,8 @@ public class Cleverbot {
 	 * @param	apiKey 	API key recieved upon signing up.
 	 * @see <a href="https://www.cleverbot.com/api/">cleverbot</a>
 	 */
-	public Cleverbot(URL baseUrl, String apiKey) {
+	public Cleverbot(URL baseUrl, String apiKey, WrapperExtension... exts) {
+		super(exts);
 		API_KEY = apiKey;
 
 		OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {

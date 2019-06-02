@@ -1,8 +1,6 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.common.core.Elypiai;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import com.elypia.elypiai.runescape.deserializers.PlayerDeserializer;
 import com.elypia.elypiai.runescape.deserializers.QuestStatDeserializer;
@@ -20,7 +18,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
-public class RuneScape {
+public class RuneScape extends ApiWrapper {
 
 	private static final Logger logger = LoggerFactory.getLogger(RuneScape.class);
 
@@ -41,15 +39,16 @@ public class RuneScape {
 
 	private RuneScapeService service;
 
-	public RuneScape() {
-		this(BASE_URL);
+	public RuneScape(WrapperExtension... exts) {
+		this(BASE_URL, exts);
 	}
 
-	public RuneScape(URL baseUrl) {
+	public RuneScape(URL baseUrl, WrapperExtension... exts) {
+		super(exts);
+
 		GsonBuilder gsonBuilder = new GsonBuilder()
 			.registerTypeAdapter(Date.class, new DateDeserializer("dd-MMM-yyyy hh:mm"))
 			.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
-
 
 		gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
 

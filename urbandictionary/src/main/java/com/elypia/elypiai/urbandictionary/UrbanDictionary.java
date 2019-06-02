@@ -1,7 +1,9 @@
 package com.elypia.elypiai.urbandictionary;
 
+import com.elypia.elypiai.common.core.ApiWrapper;
 import com.elypia.elypiai.common.core.RequestService;
 import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.WrapperExtension;
 import com.elypia.elypiai.common.gson.GsonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,7 @@ import retrofit2.Retrofit;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class UrbanDictionary {
+public class UrbanDictionary extends ApiWrapper {
 
 	private static final Logger logger = LoggerFactory.getLogger(UrbanDictionary.class);
 
@@ -32,11 +34,12 @@ public class UrbanDictionary {
 
 	private UrbanDictionaryService service;
 
-	public UrbanDictionary() {
-		this(BASE_URL);
+	public UrbanDictionary(WrapperExtension... exts) {
+		this(BASE_URL, exts);
 	}
 
-	public UrbanDictionary(URL url) {
+	public UrbanDictionary(URL url, WrapperExtension... exts) {
+        super(exts);
 		service = new Retrofit.Builder()
 			.baseUrl(url.toString())
 			.client(RequestService.getInstance())

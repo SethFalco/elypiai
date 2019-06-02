@@ -1,8 +1,6 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.common.core.Elypiai;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.common.gson.GsonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +10,7 @@ import retrofit2.Retrofit;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class YuGiOh {
+public class YuGiOh extends ApiWrapper {
 
 	private static final Logger logger = LoggerFactory.getLogger(YuGiOh.class);
 
@@ -33,11 +31,12 @@ public class YuGiOh {
 
 	private YuGiOhService service;
 
-	public YuGiOh() {
-		this(BASE_URL);
+	public YuGiOh(WrapperExtension... exts) {
+		this(BASE_URL, exts);
     }
 
-    public YuGiOh(URL url) {
+    public YuGiOh(URL url, WrapperExtension... exts) {
+		super(exts);
 		service = new Retrofit.Builder()
 			.baseUrl(url.toString())
 			.client(RequestService.getInstance())

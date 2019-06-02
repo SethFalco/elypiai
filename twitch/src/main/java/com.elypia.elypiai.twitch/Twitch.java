@@ -1,5 +1,6 @@
 package com.elypia.elypiai.twitch;
 
+import com.elypia.elypiai.common.core.ApiWrapper;
 import com.elypia.elypiai.common.core.Elypiai;
 import com.elypia.elypiai.common.core.RequestService;
 import com.elypia.elypiai.common.core.RestAction;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Twitch {
+public class Twitch extends ApiWrapper {
 
 	private static Logger logger = LoggerFactory.getLogger(Twitch.class);
 

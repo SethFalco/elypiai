@@ -1,8 +1,6 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.common.core.Checks;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import com.elypia.elypiai.poe.data.LabyrinthDifficulty;
 import com.elypia.elypiai.poe.data.LadderType;
@@ -20,17 +18,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class PathOfExile {
+public class PathOfExile extends ApiWrapper {
 
 	private static final String BASE_URL = "http://api.pathofexile.com/";
 
 	private PathOfExileService service;
 
-	public PathOfExile() {
-		this(BASE_URL);
+	public PathOfExile(WrapperExtension... exts) {
+		this(BASE_URL, exts);
 	}
 
-	public PathOfExile(String baseUrl) {
+	public PathOfExile(String baseUrl, WrapperExtension... exts) {
+		super(exts);
 		GsonBuilder gsonBuilder = new GsonBuilder()
 			.registerTypeAdapter(Date.class, new DateDeserializer("yyyy-MM-dd'T'HH:mm:ss'Z'"));
 

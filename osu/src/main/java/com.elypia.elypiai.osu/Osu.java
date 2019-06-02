@@ -1,8 +1,6 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.common.core.Elypiai;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import com.elypia.elypiai.osu.data.OsuId;
 import com.elypia.elypiai.osu.data.OsuMod;
@@ -29,7 +27,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
-public class Osu {
+public class Osu extends ApiWrapper {
 
 	private static final Logger logger = LoggerFactory.getLogger(Osu.class);
 
@@ -49,7 +47,6 @@ public class Osu {
 	}
 
 	private final String API_KEY;
-
 	private final OsuService service;
 
 	/**
@@ -59,11 +56,12 @@ public class Osu {
 	 *
 	 * @param 	apiKey	The API obtained from the osu! website.
 	 */
-	public Osu(String apiKey) {
-		this(BASE_URL, apiKey);
+	public Osu(String apiKey, WrapperExtension... exts) {
+		this(BASE_URL, apiKey, exts);
 	}
 
-	public Osu(URL baseUrl, String apiKey) {
+	public Osu(URL baseUrl, String apiKey, WrapperExtension... exts) {
+		super(exts);
 		API_KEY = apiKey;
 
 		OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {

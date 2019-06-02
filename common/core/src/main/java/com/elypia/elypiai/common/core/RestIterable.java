@@ -1,4 +1,4 @@
-package com.elypia.elypiai.common.core.impl;
+package com.elypia.elypiai.common.core;
 
 import java.util.List;
 import java.util.Optional;

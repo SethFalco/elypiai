@@ -1,8 +1,6 @@
 package com.elypia.elypiai.steam;
 
-import com.elypia.elypiai.common.core.Elypiai;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.steam.deserializers.SteamGameDeserializer;
 import com.elypia.elypiai.steam.deserializers.SteamSearchDeserializer;
 import com.elypia.elypiai.steam.deserializers.SteamUserDeserializer;
@@ -26,7 +24,7 @@ import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Steam {
+public class Steam extends ApiWrapper {
 
     /** A regular expression that matches against profile urls and returns the username or id. */
     private static final Pattern VANITY_URL = Pattern.compile("^(?:https?://)?steamcommunity\\.com/id/([^/]+)/?$");
@@ -59,11 +57,12 @@ public class Steam {
      * @param apiKey API key obtained from Steam.
      */
 
-    public Steam(String apiKey) {
-        this(BASE_URL, apiKey);
+    public Steam(String apiKey, WrapperExtension... exts) {
+        this(BASE_URL, apiKey, exts);
     }
 
-    public Steam(URL baseUrl, String apiKey) {
+    public Steam(URL baseUrl, String apiKey, WrapperExtension... exts) {
+        super(exts);
         API_KEY = Objects.requireNonNull(apiKey);
 
         OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {

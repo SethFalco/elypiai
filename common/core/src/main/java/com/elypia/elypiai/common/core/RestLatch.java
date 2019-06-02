@@ -1,7 +1,5 @@
 package com.elypia.elypiai.common.core;
 
-import com.elypia.elypiai.common.core.impl.RestIterable;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
