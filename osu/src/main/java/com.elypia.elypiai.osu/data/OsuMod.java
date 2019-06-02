@@ -50,11 +50,11 @@ public enum OsuMod {
         PARENTS = parents;
     }
 
-    public long getBitwiseValue() {
+    public long getBitValue() {
         return BITWISE;
     }
 
-    public static List<OsuMod> getMods(long bitwise) {
+    public static List<OsuMod> get(long bitwise) {
         List<OsuMod> mods = new ArrayList<>();
 
         for (OsuMod mod : values()) {

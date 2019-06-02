@@ -28,7 +28,7 @@ public enum AccountType {
         return API_NAME;
     }
 
-    public static AccountType of(String name) {
+    public static AccountType get(String name) {
         AccountType[] types = values();
 
         for (int i = 1; i < types.length; i++) {

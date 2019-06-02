@@ -25,7 +25,7 @@ public enum BroadcasterType {
         return API_NAME;
     }
 
-    public static BroadcasterType of(String name) {
+    public static BroadcasterType get(String name) {
         BroadcasterType[] types = values();
 
         for (int i = 1; i < types.length; i++) {

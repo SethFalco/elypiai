@@ -24,7 +24,7 @@ public enum Scope {
         return API_NAME;
     }
 
-    public static Scope of(String apiName) {
+    public static Scope get(String apiName) {
         Scope[] scopes = values();
 
         for (int i = 1; i < scopes.length; i++) {

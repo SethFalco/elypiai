@@ -22,7 +22,7 @@ public enum AuthenticationType {
         return API_NAME;
     }
 
-    public static AuthenticationType of(String apiName) {
+    public static AuthenticationType get(String apiName) {
         AuthenticationType[] types = values();
 
         for (int i = 1; i < types.length; i++) {

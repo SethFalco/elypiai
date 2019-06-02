@@ -2,8 +2,12 @@ package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.runescape.data.Skill;
 import com.google.gson.annotations.SerializedName;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PlayerStat {
+
+	private static final Logger logger = LoggerFactory.getLogger(PlayerStat.class);
 
 	@SerializedName("id")
 	private Skill skill;
@@ -18,7 +22,12 @@ public class PlayerStat {
 	private int rank;
 
 	public int getVirtualLevel() {
-		return RuneScape.parseXpAsLevel(getXp(), skill.isElite());
+		if (skill.isElite()) {
+			logger.warn("Formula for elite skills is unknown, returning original level.");
+			return level;
+		}
+
+		return RuneScape.parseXpAsLevel(getXp());
 	}
 
 	/**
