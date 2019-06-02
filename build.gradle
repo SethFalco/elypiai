@@ -24,9 +24,12 @@ allprojects() {
 }
 
 subprojects { subproject ->
-    apply plugin: "java"
+    apply plugin: "java-library"
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
+
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
@@ -34,8 +37,8 @@ subprojects { subproject ->
         from sourceSets.main.allSource
 
         manifest {
-            attributes "Implementation-Title"   : "Elypiai",
-                       "Implementation-Version" : version
+            attributes "Implementation-Title": "Elypiai",
+                       "Implementation-Version": version
         }
     }
 

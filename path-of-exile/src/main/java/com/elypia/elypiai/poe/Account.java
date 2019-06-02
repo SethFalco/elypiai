@@ -1,7 +1,7 @@
 package com.elypia.elypiai.poe;
 
+import com.elypia.elypiai.common.gson.deserializers.NestedDeserializer;
 import com.elypia.elypiai.poe.data.Realm;
-import com.elypia.elypiai.poe.deserializers.NestedDeserializer;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 

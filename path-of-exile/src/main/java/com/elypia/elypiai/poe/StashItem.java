@@ -1,9 +1,12 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.poe.deserializers.*;
-import com.google.gson.annotations.*;
+import com.elypia.elypiai.common.gson.deserializers.JoinedStringDeserializer;
+import com.elypia.elypiai.poe.deserializers.StashItemNameDeserializer;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 
 public class StashItem {
 

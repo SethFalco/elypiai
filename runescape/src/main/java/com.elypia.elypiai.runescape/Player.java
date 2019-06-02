@@ -1,7 +1,7 @@
 package com.elypia.elypiai.runescape;
 
+import com.elypia.elypiai.common.gson.deserializers.CommaIntegerDeserializer;
 import com.elypia.elypiai.runescape.data.Skill;
-import com.elypia.elypiai.runescape.deserializers.CommaIntergerDeserializer;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
@@ -34,7 +34,7 @@ public class Player {
 	private int questsNotStarted;
 
 	@SerializedName("rank")
-	@JsonAdapter(CommaIntergerDeserializer.class)
+	@JsonAdapter(CommaIntegerDeserializer.class)
 	private int rank;
 
 	@SerializedName("combatlevel")

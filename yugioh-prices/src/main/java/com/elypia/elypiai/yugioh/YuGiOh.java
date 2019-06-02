@@ -1,8 +1,11 @@
 package com.elypia.elypiai.yugioh;
 
+import com.elypia.elypiai.common.Elypiai;
 import com.elypia.elypiai.common.RequestService;
 import com.elypia.elypiai.common.RestAction;
 import com.elypia.elypiai.common.gson.GsonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -10,6 +13,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class YuGiOh {
+
+	private static final Logger logger = LoggerFactory.getLogger(YuGiOh.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -22,7 +27,7 @@ public class YuGiOh {
 		try {
 			BASE_URL = new URL("http://yugiohprices.com/api/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 

@@ -45,7 +45,7 @@ public class YuGiOhTest {
     @Test
     public void parseCardData() throws IOException {
         server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("dark-magician"))
+            .setBody(TestUtils.read("dark-magician.json"))
         );
         Monster card = (Monster)yugioh.getCard("Dark Magician").completeGet();
 
@@ -65,7 +65,7 @@ public class YuGiOhTest {
     @Test
     public void parseDarkMagianGirl() throws IOException {
         server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("dark-magician-girl"))
+            .setBody(TestUtils.read("dark-magician-girl.json"))
         );
         Monster card = (Monster)yugioh.getCard("Dark Magician Girl").completeGet();
 
@@ -85,7 +85,7 @@ public class YuGiOhTest {
     @Test
     public void parsePotOfGreed() throws IOException {
         server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("pot-of-greed"))
+            .setBody(TestUtils.read("pot-of-greed.json"))
         );
         MagicCard card = (MagicCard)yugioh.getCard("Pot of Greed").completeGet();
 
@@ -100,7 +100,7 @@ public class YuGiOhTest {
     @Test
     public void parseMirrorForce() throws IOException {
         server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("mirror-force"))
+            .setBody(TestUtils.read("mirror-force.json"))
         );
         MagicCard card = (MagicCard)yugioh.getCard("Mirror Force").completeGet();
 
@@ -115,7 +115,7 @@ public class YuGiOhTest {
     @Test
     public void parseInvalidCard() throws IOException {
         server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("does-not-exist"))
+            .setBody(TestUtils.read("does-not-exist.json"))
         );
         Optional<TradingCard> card = yugioh.getCard("CardThatDoesn'tExist").complete();
         assertTrue(card.isEmpty());

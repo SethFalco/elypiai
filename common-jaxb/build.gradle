@@ -1,6 +1,6 @@
 dependencies {
     // Retrofit
-    compile "com.squareup.retrofit2:converter-jaxb:${retrofitVersion}"
+    api "com.squareup.retrofit2:converter-jaxb:${retrofitVersion}"
 
     // XML
     runtimeOnly "javax.xml.bind:jaxb-api:2.3.1"

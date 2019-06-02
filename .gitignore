@@ -50,6 +50,6 @@ gradle-app.setting
 *.properties
 
 # IntelliJ
-/out/
+out/
 /.idea/
 *.iml
