@@ -1,28 +1,20 @@
 package com.elypia.elypiai.steam;
 
 import com.elypia.elypiai.common.core.*;
-import com.elypia.elypiai.steam.deserializers.SteamGameDeserializer;
-import com.elypia.elypiai.steam.deserializers.SteamSearchDeserializer;
-import com.elypia.elypiai.steam.deserializers.SteamUserDeserializer;
+import com.elypia.elypiai.common.core.ext.*;
+import com.elypia.elypiai.steam.deserializers.*;
 import com.elypia.elypiai.steam.impl.SteamService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import okhttp3.*;
+import org.slf4j.*;
 import retrofit2.Call;
-import retrofit2.Retrofit;
+import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Objects;
-import java.util.StringJoiner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.net.*;
+import java.util.*;
+import java.util.regex.*;
 
 public class Steam extends ApiWrapper {
 
@@ -65,12 +57,15 @@ public class Steam extends ApiWrapper {
         super(exts);
         API_KEY = Objects.requireNonNull(apiKey);
 
-        OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {
-            Request request = chain.request();
-            HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
-            request = request.newBuilder().url(url).build();
-            return chain.proceed(request);
-        }).build();
+        OkHttpClient client = RequestService.getBuilder()
+            .addInterceptor((chain) -> {
+                Request request = chain.request();
+                HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
+                request = request.newBuilder().url(url).build();
+                return chain.proceed(request);
+            })
+            .addInterceptor(new ExtensionInterceptor(this))
+            .build();
 
         GsonBuilder gsonBuilder = new GsonBuilder()
                 .registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer())

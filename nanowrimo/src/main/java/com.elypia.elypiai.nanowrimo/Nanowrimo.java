@@ -1,19 +1,17 @@
 package com.elypia.elypiai.nanowrimo;
 
 import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ex.FriendlyException;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
 import com.elypia.elypiai.nanowrimo.data.NanoError;
 import com.elypia.elypiai.nanowrimo.impl.NanowrimoService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Call;
-import retrofit2.Retrofit;
+import org.slf4j.*;
+import retrofit2.*;
 import retrofit2.converter.jaxb.JaxbConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import javax.xml.bind.*;
+import java.net.*;
 import java.util.Objects;
 
 public class Nanowrimo extends ApiWrapper {
@@ -49,7 +47,7 @@ public class Nanowrimo extends ApiWrapper {
 
 			service = new Retrofit.Builder()
 				.baseUrl(baseUrl.toString())
-				.client(RequestService.getInstance())
+				.client(RequestService.withExtensionInterceptor(this))
 				.addConverterFactory(JaxbConverterFactory.create(context))
 				.addConverterFactory(ScalarsConverterFactory.create())
 				.build()

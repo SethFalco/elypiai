@@ -1,13 +1,10 @@
 package com.elypia.elypiai.common.core;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.elypia.elypiai.common.core.ex.FriendlyException;
+import retrofit2.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class RestAction<T> implements RestInterface<T> {

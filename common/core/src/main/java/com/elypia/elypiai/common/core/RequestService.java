@@ -1,5 +1,6 @@
 package com.elypia.elypiai.common.core;
 
+import com.elypia.elypiai.common.core.ext.ExtensionInterceptor;
 import okhttp3.OkHttpClient;
 
 /**
@@ -11,16 +12,6 @@ public class RequestService {
     private static OkHttpClient client;
 
     /**
-     * @return Get the global {@link OkHttpClient} instance.
-     */
-    public static OkHttpClient getInstance() {
-        if (client == null)
-            client = new OkHttpClient();
-
-        return client;
-    }
-
-    /**
      * This should be used when some runtime modifications
      * are required such as custom inceptors.
      *
@@ -28,6 +19,13 @@ public class RequestService {
      * as the global {@link OkHttpClient} client.
      */
     public static OkHttpClient.Builder getBuilder() {
-        return getInstance().newBuilder();
+        if (client == null)
+            client = new OkHttpClient();
+
+        return client.newBuilder();
+    }
+
+    public static OkHttpClient withExtensionInterceptor(ApiWrapper wrapper) {
+        return getBuilder().addInterceptor(new ExtensionInterceptor(wrapper)).build();
     }
 }

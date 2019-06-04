@@ -1,22 +1,18 @@
 package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
-import com.elypia.elypiai.runescape.deserializers.PlayerDeserializer;
-import com.elypia.elypiai.runescape.deserializers.QuestStatDeserializer;
+import com.elypia.elypiai.runescape.deserializers.*;
 import com.elypia.elypiai.runescape.impl.RuneScapeService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Call;
-import retrofit2.Retrofit;
+import org.slf4j.*;
+import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-import java.util.List;
+import java.net.*;
+import java.util.*;
 
 public class RuneScape extends ApiWrapper {
 
@@ -54,7 +50,7 @@ public class RuneScape extends ApiWrapper {
 
 		service = new Retrofit.Builder()
 			.baseUrl(baseUrl.toString())
-			.client(RequestService.getInstance())
+			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.build()
 			.create(RuneScapeService.class);

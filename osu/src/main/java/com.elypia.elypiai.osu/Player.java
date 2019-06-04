@@ -5,7 +5,7 @@ import org.slf4j.*;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
-import java.net.*;
+import java.net.URL;
 import java.util.List;
 
 public class Player {
@@ -316,5 +316,34 @@ public class Player {
 		}
 
 		return avatarUrl = UNKNOWN_AVATAR;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof Player))
+			return false;
+
+		Player player = (Player)object;
+
+		return
+			userId == player.userId &&
+			username.equals(player.username) &&
+			count300 == player.count300 &&
+			count100 == player.count100 &&
+			count50 == player.count50 &&
+			playcount == player.playcount &&
+			rankedScore == player.rankedScore &&
+			totalScore == player.totalScore &&
+			rank == player.rank &&
+			level == player.level &&
+			pp == player.pp &&
+			accuracy == player.accuracy &&
+			countSS == player.countSS &&
+			countSSH == player.countSSH &&
+			countS == player.countS &&
+			countSH == player.countSH &&
+			countA == player.countA &&
+			country.equals(player.country) &&
+			nationalRank == player.nationalRank;
 	}
 }

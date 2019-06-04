@@ -1,19 +1,15 @@
 package com.elypia.elypiai.test.runescape;
 
-import com.elypia.elypiai.common.core.FriendlyException;
+import com.elypia.elypiai.common.core.ex.FriendlyException;
 import com.elypia.elypiai.common.test.TestUtils;
 import com.elypia.elypiai.runescape.RuneScape;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
+import okhttp3.mockwebserver.*;
 import org.junit.Assert;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

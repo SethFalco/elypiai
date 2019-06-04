@@ -4,21 +4,16 @@ import com.elypia.elypiai.cleverbot.data.CleverTweak;
 import com.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
 import com.elypia.elypiai.cleverbot.impl.CleverbotService;
 import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.*;
 import com.google.gson.GsonBuilder;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import okhttp3.*;
+import org.slf4j.*;
 import retrofit2.Call;
-import retrofit2.Retrofit;
+import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.net.*;
+import java.util.*;
 
 public class Cleverbot extends ApiWrapper {
 
@@ -58,12 +53,15 @@ public class Cleverbot extends ApiWrapper {
 		super(exts);
 		API_KEY = apiKey;
 
-		OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {
-			Request request = chain.request();
-			HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).addQueryParameter("wrapper", "Elypiai").build();
-			request = request.newBuilder().url(url).build();
-			return chain.proceed(request);
-		}).build();
+		OkHttpClient client = RequestService.getBuilder()
+			.addInterceptor((chain) -> {
+				Request request = chain.request();
+				HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).addQueryParameter("wrapper", "Elypiai").build();
+				request = request.newBuilder().url(url).build();
+				return chain.proceed(request);
+			})
+			.addInterceptor(new ExtensionInterceptor(this))
+			.build();
 
 		GsonBuilder builder = new GsonBuilder()
 			.registerTypeAdapter(CleverResponse.class, new CleverResponseDeserializer());

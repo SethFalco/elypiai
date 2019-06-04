@@ -1,15 +1,10 @@
 package com.elypia.elypiai.test.nanowrimo;
 
-import com.elypia.elypiai.common.core.FriendlyException;
+import com.elypia.elypiai.common.core.ex.FriendlyException;
 import com.elypia.elypiai.common.test.TestUtils;
-import com.elypia.elypiai.nanowrimo.Nanowrimo;
-import com.elypia.elypiai.nanowrimo.WordCountEntry;
-import com.elypia.elypiai.nanowrimo.Writer;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.elypia.elypiai.nanowrimo.*;
+import okhttp3.mockwebserver.*;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 
 import java.io.IOException;

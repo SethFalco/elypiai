@@ -1,22 +1,18 @@
 package com.elypia.elypiai.poe;
 
 import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
+import com.elypia.elypiai.common.core.utils.Checks;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
-import com.elypia.elypiai.poe.data.LabyrinthDifficulty;
-import com.elypia.elypiai.poe.data.LadderType;
-import com.elypia.elypiai.poe.data.LeagueType;
-import com.elypia.elypiai.poe.data.Realm;
+import com.elypia.elypiai.poe.data.*;
 import com.elypia.elypiai.poe.deserializers.LadderEntryDeserializer;
 import com.elypia.elypiai.poe.impl.PathOfExileService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import retrofit2.Call;
-import retrofit2.Retrofit;
+import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class PathOfExile extends ApiWrapper {
 
@@ -37,7 +33,7 @@ public class PathOfExile extends ApiWrapper {
 
 		service = new Retrofit.Builder()
 			.baseUrl(baseUrl)
-			.client(RequestService.getInstance())
+			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.build()
 			.create(PathOfExileService.class);

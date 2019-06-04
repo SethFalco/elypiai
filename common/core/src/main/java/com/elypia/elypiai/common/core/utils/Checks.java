@@ -1,4 +1,4 @@
-package com.elypia.elypiai.common.core;
+package com.elypia.elypiai.common.core.utils;
 
 import java.util.Objects;
 

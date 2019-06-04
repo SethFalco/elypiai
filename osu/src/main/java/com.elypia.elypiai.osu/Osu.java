@@ -1,31 +1,21 @@
 package com.elypia.elypiai.osu;
 
 import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.*;
 import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
-import com.elypia.elypiai.osu.data.OsuId;
-import com.elypia.elypiai.osu.data.OsuMod;
-import com.elypia.elypiai.osu.data.OsuMode;
-import com.elypia.elypiai.osu.deserializers.BeatMapDeserializer;
-import com.elypia.elypiai.osu.deserializers.OsuMatchDeserializer;
-import com.elypia.elypiai.osu.deserializers.OsuModDeserializer;
-import com.elypia.elypiai.osu.deserializers.OsuPlayerDeserializer;
+import com.elypia.elypiai.osu.data.*;
+import com.elypia.elypiai.osu.deserializers.*;
 import com.elypia.elypiai.osu.impl.OsuService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import okhttp3.*;
+import org.slf4j.*;
 import retrofit2.Call;
-import retrofit2.Retrofit;
+import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Date;
-import java.util.List;
+import java.net.*;
+import java.util.*;
 
 public class Osu extends ApiWrapper {
 
@@ -64,12 +54,15 @@ public class Osu extends ApiWrapper {
 		super(exts);
 		API_KEY = apiKey;
 
-		OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {
-			Request request = chain.request();
-			HttpUrl url = request.url().newBuilder().addQueryParameter("k", apiKey).build();
-			request = request.newBuilder().url(url).build();
-			return chain.proceed(request);
-		}).build();
+		OkHttpClient client = RequestService.getBuilder()
+			.addInterceptor((chain) -> {
+				Request request = chain.request();
+				HttpUrl url = request.url().newBuilder().addQueryParameter("k", apiKey).build();
+				request = request.newBuilder().url(url).build();
+				return chain.proceed(request);
+			})
+			.addInterceptor(new ExtensionInterceptor(this))
+			.build();
 
 		GsonBuilder gsonBuilder = new GsonBuilder()
 			.registerTypeAdapter(new TypeToken<List<OsuMod>>(){}.getType(), new OsuModDeserializer())

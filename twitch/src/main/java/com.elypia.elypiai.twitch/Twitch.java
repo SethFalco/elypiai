@@ -1,32 +1,24 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.common.core.ApiWrapper;
-import com.elypia.elypiai.common.core.Elypiai;
-import com.elypia.elypiai.common.core.RequestService;
-import com.elypia.elypiai.common.core.RestAction;
+import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.common.core.data.AuthenticationType;
+import com.elypia.elypiai.common.core.ext.ExtensionInterceptor;
 import com.elypia.elypiai.common.gson.GsonService;
 import com.elypia.elypiai.twitch.data.Scope;
 import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
 import com.elypia.elypiai.twitch.entity.User;
 import com.elypia.elypiai.twitch.notifier.TwitchNotifier;
-import com.elypia.elypiai.twitch.service.TwitchAppService;
-import com.elypia.elypiai.twitch.service.TwitchService;
+import com.elypia.elypiai.twitch.service.*;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Call;
-import retrofit2.Retrofit;
+import org.slf4j.*;
+import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.net.*;
+import java.util.*;
 
 public class Twitch extends ApiWrapper {
 
@@ -101,7 +93,7 @@ public class Twitch extends ApiWrapper {
 	private void initTwitchAppService(URL authUrl) throws IOException {
 		appService = new Retrofit.Builder()
 			.baseUrl(authUrl.toString())
-			.client(RequestService.getInstance())
+			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonService.getInstance())
 			.build()
 			.create(TwitchAppService.class);
@@ -114,13 +106,16 @@ public class Twitch extends ApiWrapper {
 	}
 
 	private void initTwitchService(URL baseUrl) {
-		OkHttpClient client = RequestService.getBuilder().addInterceptor((chain) -> {
-			var req = chain.request().newBuilder()
-				.addHeader("Authorization", "Bearer " + token.getToken())
-				.build();
+		OkHttpClient client = RequestService.getBuilder()
+			.addInterceptor((chain) -> {
+				var req = chain.request().newBuilder()
+					.addHeader("Authorization", "Bearer " + token.getToken())
+					.build();
 
-			return chain.proceed(req);
-		}).build();
+				return chain.proceed(req);
+			})
+			.addInterceptor(new ExtensionInterceptor(this))
+			.build();
 
 		GsonBuilder gsonBuilder = new GsonBuilder()
 			.registerTypeAdapter(new TypeToken<List<User>>(){}.getType(), new TwitchUserDeserializer(this));

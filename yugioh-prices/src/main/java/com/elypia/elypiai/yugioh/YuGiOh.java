@@ -1,14 +1,12 @@
 package com.elypia.elypiai.yugioh;
 
 import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
 import com.elypia.elypiai.common.gson.GsonService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Call;
-import retrofit2.Retrofit;
+import org.slf4j.*;
+import retrofit2.*;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
 
 public class YuGiOh extends ApiWrapper {
 
@@ -39,7 +37,7 @@ public class YuGiOh extends ApiWrapper {
 		super(exts);
 		service = new Retrofit.Builder()
 			.baseUrl(url.toString())
-			.client(RequestService.getInstance())
+			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonService.getInstance())
 			.build()
 			.create(YuGiOhService.class);
