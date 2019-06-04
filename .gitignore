@@ -47,7 +47,6 @@ gradle-app.setting
 #################
 
 *.toml
-*.properties
 
 # IntelliJ
 out/
