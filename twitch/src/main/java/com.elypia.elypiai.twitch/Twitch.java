@@ -4,11 +4,16 @@ import com.elypia.elypiai.common.core.*;
 import com.elypia.elypiai.common.core.data.AuthenticationType;
 import com.elypia.elypiai.common.core.ext.ExtensionInterceptor;
 import com.elypia.elypiai.common.gson.GsonService;
+import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import com.elypia.elypiai.twitch.data.Scope;
-import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
+import com.elypia.elypiai.twitch.deserializers.*;
 import com.elypia.elypiai.twitch.entity.User;
+import com.elypia.elypiai.twitch.notifier.TwitchNotifier;
+import com.elypia.elypiai.twitch.notifier.event.*;
 import com.elypia.elypiai.twitch.service.*;
-import com.google.gson.GsonBuilder;
+import com.elypia.webhooker.WebHooker;
+import com.elypia.webhooker.controller.*;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
 import org.slf4j.*;
@@ -53,6 +58,7 @@ public class Twitch extends ApiWrapper {
 	private final AuthenticationType AUTH_TYPE;
 	private final Scope[] SCOPES;
 
+	private Gson gson;
 	private TwitchService service;
 	private TwitchAppService appService;
 	private AccessToken token;
@@ -115,12 +121,22 @@ public class Twitch extends ApiWrapper {
 			.build();
 
 		GsonBuilder gsonBuilder = new GsonBuilder()
+			.registerTypeAdapter(Date.class, new DateDeserializer("yyyy-MM-dd'T'HH:mm:ss'Z'"))
 			.registerTypeAdapter(new TypeToken<List<User>>(){}.getType(), new TwitchUserDeserializer(this));
+
+		Gson gson = gsonBuilder.create();
+
+		gsonBuilder
+				.registerTypeAdapter(FollowEvent.class, new FollowEventDeserializer(gson))
+				.registerTypeAdapter(StreamUpdateEvent.class, new StreamEventDeserializer(gson))
+				.registerTypeAdapter(UserUpdatedEvent.class, new UserEventDeserializer(gson));
+
+		this.gson = gsonBuilder.create();
 
 		service = new Retrofit.Builder()
 			.baseUrl(baseUrl)
 			.client(client)
-			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+			.addConverterFactory(GsonConverterFactory.create(this.gson))
 			.build()
 			.create(TwitchService.class);
 	}
@@ -160,8 +176,25 @@ public class Twitch extends ApiWrapper {
 		return new StreamPaginator(this, query, limit);
 	}
 
+	public TwitchNotifier createNotifier(String publicUrl) throws MalformedURLException {
+		return createNotifier(publicUrl, 4567);
+	}
+
+	public TwitchNotifier createNotifier(String publicUrl, int port) throws MalformedURLException {
+		return createNotifier(publicUrl, port, new MapClientController());
+	}
+
+	public TwitchNotifier createNotifier(String publicUrl, int port, ClientController controller) throws MalformedURLException {
+		WebHooker hooker = new WebHooker(publicUrl, port, controller, gson);
+		return new TwitchNotifier(this, hooker);
+	}
+
 	public String getClientId() {
 		return CLIENT_ID;
+	}
+
+	public Gson getGson() {
+		return gson;
 	}
 
 	/**

@@ -1,8 +1,11 @@
 package com.elypia.elypiai.twitch.notifier.dispatchers;
 
 import com.elypia.webhooker.*;
+import org.slf4j.*;
 
 public class AuthDispatcher implements Dispatcher {
+
+    private static Logger logger = LoggerFactory.getLogger(AuthDispatcher.class);
 
     /**
      * If <code>hub.challenge</code> exists, this is an authentication
@@ -20,6 +23,7 @@ public class AuthDispatcher implements Dispatcher {
         if (challenge == null)
             return true;
 
+        logger.info("Received authentication challenge from Twitch, wont continue with dispatchers.");
         payload.getResponse().body(challenge);
         return false;
     }

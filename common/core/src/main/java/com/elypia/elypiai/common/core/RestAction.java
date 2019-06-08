@@ -1,6 +1,7 @@
 package com.elypia.elypiai.common.core;
 
 import com.elypia.elypiai.common.core.ex.FriendlyException;
+import org.slf4j.*;
 import retrofit2.*;
 
 import java.io.IOException;
@@ -9,16 +10,22 @@ import java.util.function.Consumer;
 
 public class RestAction<T> implements RestInterface<T> {
 
+    private static final Logger logger = LoggerFactory.getLogger(RestAction.class);
+
     private Call<T> call;
     private List<Consumer<T>> pipes;
 
     public RestAction(Call<T> call) {
         this.call = call;
         this.pipes = new ArrayList<>();
+
+        logger.debug("Created new RestAction with url: {}", call.request().url().toString());
     }
 
     @Override
     public void queue(Consumer<Optional<T>> success, Consumer<Throwable> ex) {
+        logger.debug("Queued RestAction with url: {}", call.request().url().toString());
+
         call.enqueue(new Callback<>() {
 
             @Override
@@ -49,6 +56,7 @@ public class RestAction<T> implements RestInterface<T> {
 
     @Override
     public Optional<T> complete() throws IOException {
+        logger.debug("Called Complete on RestAction with url: {}", call.request().url().toString());
         T body = call.execute().body();
 
         for (Consumer<T> pipe : pipes)

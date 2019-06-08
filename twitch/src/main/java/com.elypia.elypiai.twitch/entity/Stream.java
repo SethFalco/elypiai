@@ -3,9 +3,7 @@ package com.elypia.elypiai.twitch.entity;
 import com.elypia.elypiai.twitch.data.StreamType;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Stream {
 
@@ -16,6 +14,9 @@ public class Stream {
 
 	@SerializedName("user_id")
 	private int userId;
+
+	@SerializedName("user_name")
+	private String username;
 
 	@SerializedName("game_id")
 	private int gameId;
@@ -51,6 +52,10 @@ public class Stream {
 
 	public int getUserId() {
 		return userId;
+	}
+
+	public String getUsername() {
+		return username;
 	}
 
 	/**

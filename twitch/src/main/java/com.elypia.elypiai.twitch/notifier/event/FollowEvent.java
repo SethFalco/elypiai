@@ -29,16 +29,8 @@ public class FollowEvent {
         return followerName;
     }
 
-    public void setFollowerName(String followerName) {
-        this.followerName = followerName;
-    }
-
     public int getFolloweeId() {
         return followeeId;
-    }
-
-    public void setFolloweeId(int followeeId) {
-        this.followeeId = followeeId;
     }
 
     public String getFolloweeName() {

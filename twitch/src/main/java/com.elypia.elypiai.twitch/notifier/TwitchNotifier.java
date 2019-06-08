@@ -4,12 +4,15 @@ import com.elypia.elypiai.common.core.RestAction;
 import com.elypia.elypiai.twitch.Twitch;
 import com.elypia.elypiai.twitch.notifier.dispatchers.*;
 import com.elypia.webhooker.*;
+import org.slf4j.*;
 import retrofit2.Call;
 import spark.Spark;
 
 import java.util.*;
 
 public class TwitchNotifier {
+
+    private static Logger logger = LoggerFactory.getLogger(TwitchNotifier.class);
 
     /** AuthDispatcher is stateless and needs to be added to all clients, no need to create multiple. */
     private static final AuthDispatcher AUTH_DISPATCHER = new AuthDispatcher();
@@ -107,6 +110,10 @@ public class TwitchNotifier {
 
     public void removeListeners(TwitchListener... list) {
         listeners.removeAll(Arrays.asList(list));
+    }
+
+    public WebHooker getWebHooker() {
+        return webhooker;
     }
 
     public Collection<TwitchListener> getListeners() {

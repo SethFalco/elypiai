@@ -5,21 +5,20 @@ import com.elypia.elypiai.twitch.entity.Stream;
 public class StreamUpdateEvent {
 
     /**
-     * Is the streamer now online or offline.
-     */
-    private boolean isLive;
-
-    /**
      * The new stream data, or null if the
-     * user wen't offline.
+     * user went offline.
      */
     private Stream stream;
 
-    public boolean isLive() {
-        return isLive;
+    public StreamUpdateEvent(Stream stream) {
+        this.stream = stream;
     }
 
     public Stream getStream() {
         return stream;
+    }
+
+    public boolean isLive() {
+        return stream != null;
     }
 }
