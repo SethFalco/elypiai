@@ -27,7 +27,29 @@ allprojects() {
     }
 }
 
-subprojects {
+def publishedProjects = [
+    /** Common */
+    project(":common:core"),
+    project(":common:gson"),
+    project(":common:jaxb"),
+    project(":common:test"),
+
+    /** Wrappers */
+    project(":cleverbot"),
+    project(":nanowrimo"),
+    project(":osu"),
+    project(":path-of-exile"),
+    project(":runescape"),
+    project(":steam"),
+    project(":twitch"),
+    project(":urbandictionary"),
+    project(":yugioh-prices"),
+
+    /** Extensions */
+    project(":extensions:redis")
+]
+
+configure(publishedProjects) {
     apply plugin: "java-library"
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
@@ -75,7 +97,7 @@ subprojects {
 
     jar {
         manifest {
-            attributes "Implementation-Title": "${this.name}-${project.name}",
+            attributes "Implementation-Title": this.name + project.path.replace(':', '-'),
                        "Implementation-Version": version
         }
     }
@@ -110,7 +132,7 @@ subprojects {
         publish = true
         pkg {
             repo = this.name
-            name = project.name
+            name = project.path.replace(':', '-')
             desc = project.description
             userOrg = "elypia"
             websiteUrl = website
@@ -130,7 +152,7 @@ subprojects {
     publishing {
         publications {
             mavenJava(MavenPublication) {
-                artifactId project.name
+                artifactId project.path.replace(':', '-')
                 groupId project.group
                 version project.version
                 from components.java
@@ -166,15 +188,15 @@ subprojects {
 /** Generate Global JavaDocs for GitLab Pages */
 
 task globalJavadoc(type: Javadoc) {
-    source = subprojects.collect { it.sourceSets.main.allJava }
-    classpath = files(subprojects.collect { it.sourceSets.main.compileClasspath })
+    source = publishedProjects.collect { it.sourceSets.main.allJava }
+    classpath = files(publishedProjects.collect { it.sourceSets.main.compileClasspath })
     destinationDir = file("${buildDir}/docs/javadoc")
 }
 
 /** Combine and ouput code coverage. */
 
 task jacocoMerge(type: JacocoMerge) {
-    executionData = files(subprojects.jacocoTestReport.executionData.findAll {it.asList() })
+    executionData = files(publishedProjects.jacocoTestReport.executionData.findAll {it.asList() })
 
     doFirst {
         executionData = files(executionData.findAll {
@@ -184,8 +206,8 @@ task jacocoMerge(type: JacocoMerge) {
 }
 
 task jacocoReport(type: JacocoReport, dependsOn: jacocoMerge) {
-    sourceDirectories.from = files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
-    classDirectories.from = files(subprojects.sourceSets.main.output.findAll { it.asList() })
+    sourceDirectories.from = files(publishedProjects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
+    classDirectories.from = files(publishedProjects.sourceSets.main.output.findAll { it.asList() })
     executionData.from = files(jacocoMerge.destinationFile)
 
     reports {
