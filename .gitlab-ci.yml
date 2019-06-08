@@ -20,6 +20,7 @@ test:
   script:
     - gradle --build-cache check
     - gradle jacocoReport
+    - cat build/reports/jacoco/jacocoReport/html/index.html
 
 bintray:
   only:
