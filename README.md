@@ -48,8 +48,8 @@ make sure to get it sorted.
 
 [discord]: https://discord.gg/hprGMaM "Discord Invite"
 [discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[bintray]: https://bintray.com/elypia/Elypiai "Bintray Latest Version"
-[bintray-download]: https://api.bintray.com/packages/elypia/Elypiai/common/images/download.svg "Bintray Download Shield"
+[bintray]: https://bintray.com/elypia/elypiai "Bintray Latest Version"
+[bintray-download]: https://api.bintray.com/packages/elypia/elypiai/common-core/images/download.svg "Bintray Download Shield"
 [docs]: https://elypiai.elypia.com/ "Commandler Documentation"
 [docs-shield]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
