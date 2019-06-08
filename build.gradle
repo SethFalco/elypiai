@@ -132,7 +132,7 @@ configure(publishedProjects) {
         publish = true
         pkg {
             repo = this.name
-            name = project.path.replace(':', '-')
+            name = project.path.substring(1).replace(':', '-')
             desc = project.description
             userOrg = "elypia"
             websiteUrl = website
@@ -152,7 +152,7 @@ configure(publishedProjects) {
     publishing {
         publications {
             mavenJava(MavenPublication) {
-                artifactId project.path.replace(':', '-')
+                artifactId project.path.substring(1).replace(':', '-')
                 groupId project.group
                 version project.version
                 from components.java
