@@ -6,11 +6,15 @@ allprojects() {
     apply plugin: "idea"
     apply plugin: "jacoco"
 
-    version = "2.1.5"
-    description = "Wrappers for many APIs available online from various services that don't provide official wrappers."
+    group = "com.elypia.elypiai"
+    version = "2.2.0"
+    description = "A clean abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
 
     ext {
-        repoUrl = "https://gitlab.com/Elypia/elypiai.git"
+        repoUrl = "https://gitlab.com/Elypia/elypiai"
+        gitUrl = "${repoUrl}.git"
+        issueUrl = "${repoUrl}/issues"
+        website = "https://elypia.com/"
         retrofitVersion = "2.6.0"
     }
 
@@ -23,7 +27,7 @@ allprojects() {
     }
 }
 
-subprojects { subproject ->
+subprojects {
     apply plugin: "java-library"
     apply plugin: "maven-publish"
     apply plugin: "com.jfrog.bintray"
@@ -32,99 +36,6 @@ subprojects { subproject ->
     targetCompatibility = 11
 
     [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-    jar {
-        from sourceSets.main.allSource
-
-        manifest {
-            attributes "Implementation-Title": "Elypiai",
-                       "Implementation-Version": version
-        }
-    }
-
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = "sources"
-        from sourceSets.main.allSource
-    }
-
-    task javadocJar(type: Jar, dependsOn: javadoc) {
-        classifier = 'javadoc'
-        from javadoc.destinationDir
-
-        javadoc {
-            options.addBooleanOption("html5", true)
-        }
-    }
-
-    artifacts {
-        archives sourcesJar
-        archives javadocJar
-    }
-
-    bintray {
-        user = System.getenv("BINTRAY_USER")
-        key = System.getenv("BINTRAY_KEY")
-        publications = [this.name]
-        publish = true
-
-        pkg {
-            repo = this.name
-            name = subproject.name
-            userOrg = "elypia"
-            licenses = ["Apache-2.0"]
-            vcsUrl = repoUrl
-
-            version {
-                name = version
-                desc = description
-                released = new Date()
-            }
-        }
-    }
-
-    publishing {
-        def details = {
-            licenses{
-                license {
-                    name "The Apache Software License, Version 2.0"
-                    url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                    distribution this.name
-                }
-            }
-
-            developers{
-                developer {
-                    id "Seth"
-                    name "Seth"
-                    email "seth@elypia.com"
-                }
-            }
-
-            scm{
-                url repoUrl
-            }
-        }
-
-        publications {
-            Elypiai(MavenPublication) {
-                from components.java
-                artifact sourcesJar
-                artifact javadocJar
-                groupId "com.elypia.elypiai"
-                artifactId subproject.name
-                version version
-
-                pom.withXml {
-                    def root = asNode()
-
-                    root.appendNode("description", description)
-                    root.appendNode("name", this.name)
-                    root.appendNode("url", "https://elypia.com/")
-                    root.children().last() + details
-                }
-            }
-        }
-    }
 
     dependencies {
         // HTTP Requests
@@ -140,7 +51,7 @@ subprojects { subproject ->
         testImplementation "com.squareup.okhttp3:mockwebserver:3.12.0"
     }
 
-    /** Run tests */
+    /** Testing */
 
     test {
         useJUnitPlatform()
@@ -148,6 +59,106 @@ subprojects { subproject ->
 
         reports {
             html.enabled = false
+        }
+    }
+
+    /** Code Coverage */
+
+    jacocoTestReport {
+        reports {
+            html.enabled = false
+            xml.enabled = false
+        }
+    }
+
+    /** Upload to Bintray */
+
+    jar {
+        manifest {
+            attributes "Implementation-Title": "${this.name}-${project.name}",
+                       "Implementation-Version": version
+        }
+    }
+
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allSource
+        archiveClassifier = 'sources'
+    }
+
+    task javadocJar(type: Jar) {
+        from javadoc
+        archiveClassifier = 'javadoc'
+
+        javadoc {
+            options {
+                links += [
+                    "https://docs.oracle.com/en/java/javase/12/docs/api/"
+                ]
+            }
+        }
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    bintray {
+        user = System.getenv("BINTRAY_USER")
+        key = System.getenv("BINTRAY_KEY")
+        publications = ['mavenJava']
+        publish = true
+        pkg {
+            repo = this.name
+            name = project.name
+            desc = project.description
+            userOrg = "elypia"
+            websiteUrl = website
+            licenses = ["Apache-2.0"]
+            vcsUrl = gitUrl
+            issueTrackerUrl = issueUrl
+            publicDownloadNumbers = true
+            version {
+                name = project.version
+                desc = project.description
+                vcsTag = project.version
+                released = new Date()
+            }
+        }
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId project.name
+                groupId project.group
+                version project.version
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+
+                pom {
+                    name = this.name
+                    description = project.description
+                    url = website
+                    licenses {
+                        license {
+                            name = "The Apache License, Version 2.0"
+                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "Seth"
+                            name = "Seth"
+                            email = "seth@elypia.com"
+                        }
+                    }
+                    scm {
+                        url = gitUrl
+                    }
+                }
+            }
         }
     }
 }
@@ -173,9 +184,9 @@ task jacocoMerge(type: JacocoMerge) {
 }
 
 task jacocoReport(type: JacocoReport, dependsOn: jacocoMerge) {
-    getSourceDirectories().setFrom(files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() }))
-    getClassDirectories().setFrom(files(subprojects.sourceSets.main.output.findAll { it.asList() }))
-    executionData = files(jacocoMerge.destinationFile)
+    sourceDirectories.from = files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
+    classDirectories.from = files(subprojects.sourceSets.main.output.findAll { it.asList() })
+    executionData.from = files(jacocoMerge.destinationFile)
 
     reports {
         html.enabled = true
