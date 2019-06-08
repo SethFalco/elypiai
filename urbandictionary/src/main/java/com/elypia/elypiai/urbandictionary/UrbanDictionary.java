@@ -36,7 +36,7 @@ public class UrbanDictionary extends ApiWrapper {
 	public UrbanDictionary(URL url, WrapperExtension... exts) {
         super(exts);
 		service = new Retrofit.Builder()
-			.baseUrl(url.toString())
+			.baseUrl(url)
 			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonService.getInstance())
 			.build()

@@ -9,14 +9,31 @@ import com.elypia.elypiai.poe.deserializers.LadderEntryDeserializer;
 import com.elypia.elypiai.poe.impl.PathOfExileService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.*;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.*;
 import java.util.*;
 
 public class PathOfExile extends ApiWrapper {
 
-	private static final String BASE_URL = "http://api.pathofexile.com/";
+	private static final Logger logger = LoggerFactory.getLogger(PathOfExile.class);
+
+	/**
+	 * The default URL we call too. <br>
+	 * Should never throw {@link MalformedURLException} as this
+	 * is a manually hardcoded URL.
+	 */
+	private static URL BASE_URL;
+
+	static {
+		try {
+			BASE_URL = new URL("http://api.pathofexile.com/");
+		} catch (MalformedURLException ex) {
+			logger.error(Elypiai.MALFORMED, ex);
+		}
+	}
 
 	private PathOfExileService service;
 
@@ -24,7 +41,7 @@ public class PathOfExile extends ApiWrapper {
 		this(BASE_URL, exts);
 	}
 
-	public PathOfExile(String baseUrl, WrapperExtension... exts) {
+	public PathOfExile(URL baseUrl, WrapperExtension... exts) {
 		super(exts);
 		GsonBuilder gsonBuilder = new GsonBuilder()
 			.registerTypeAdapter(Date.class, new DateDeserializer("yyyy-MM-dd'T'HH:mm:ss'Z'"));

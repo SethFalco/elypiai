@@ -17,37 +17,12 @@ public class RedisExtension implements WrapperExtension {
     /** The default TTL in seconds. */
     private int ttl;
 
-    public RedisExtension() {
-        this(60);
-    }
-
-    public RedisExtension(int ttl) {
-        this(6379, ttl);
-    }
-
-    public RedisExtension(String host, int ttl) {
-        this(host, 6379, ttl);
-    }
-
-    public RedisExtension(int port, int ttl) {
-        this("localhost", port, ttl);
-    }
-
-    public RedisExtension(String host, int port, int ttl) {
-        this(new HostAndPort(host, port), ttl);
-    }
-
-    public RedisExtension(HostAndPort hostPort, int ttl) {
-        this(new JedisShardInfo(hostPort), ttl);
-    }
-
     public RedisExtension(JedisShardInfo info, int ttl) {
         this(new Jedis(info), ttl);
     }
 
     public RedisExtension(Jedis jedis, int ttl) {
         this.jedis = jedis;
-        this.ttl = ttl;
     }
 
     /**

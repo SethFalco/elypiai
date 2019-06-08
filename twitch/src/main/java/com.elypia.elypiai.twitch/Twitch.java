@@ -7,7 +7,6 @@ import com.elypia.elypiai.common.gson.GsonService;
 import com.elypia.elypiai.twitch.data.Scope;
 import com.elypia.elypiai.twitch.deserializers.TwitchUserDeserializer;
 import com.elypia.elypiai.twitch.entity.User;
-import com.elypia.elypiai.twitch.notifier.TwitchNotifier;
 import com.elypia.elypiai.twitch.service.*;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -54,11 +53,9 @@ public class Twitch extends ApiWrapper {
 	private final AuthenticationType AUTH_TYPE;
 	private final Scope[] SCOPES;
 
-	private AccessToken token;
-	private TwitchNotifier notifier;
-
 	private TwitchService service;
 	private TwitchAppService appService;
+	private AccessToken token;
 
 	/**
 	 * Allows calls to the Twitch API, can call various information
@@ -92,7 +89,7 @@ public class Twitch extends ApiWrapper {
 
 	private void initTwitchAppService(URL authUrl) throws IOException {
 		appService = new Retrofit.Builder()
-			.baseUrl(authUrl.toString())
+			.baseUrl(authUrl)
 			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonService.getInstance())
 			.build()
@@ -121,7 +118,7 @@ public class Twitch extends ApiWrapper {
 			.registerTypeAdapter(new TypeToken<List<User>>(){}.getType(), new TwitchUserDeserializer(this));
 
 		service = new Retrofit.Builder()
-			.baseUrl(baseUrl.toString())
+			.baseUrl(baseUrl)
 			.client(client)
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.build()
@@ -167,7 +164,14 @@ public class Twitch extends ApiWrapper {
 		return CLIENT_ID;
 	}
 
-	protected TwitchService getService() {
+	/**
+	 * Despite usually keeping service internal, the Twitch API has
+	 * several components so there is an exception so those components
+	 * can also access the TwitchService.
+	 *
+	 * @return The service class for making the actual Twitch API calls.
+	 */
+	public TwitchService getService() {
 		return service;
 	}
 }

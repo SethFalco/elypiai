@@ -67,7 +67,7 @@ public class Cleverbot extends ApiWrapper {
 			.registerTypeAdapter(CleverResponse.class, new CleverResponseDeserializer());
 
 		service = new Retrofit.Builder()
-			.baseUrl(baseUrl.toString())
+			.baseUrl(baseUrl)
 			.client(client)
 			.addConverterFactory(GsonConverterFactory.create(builder.create()))
 			.build()

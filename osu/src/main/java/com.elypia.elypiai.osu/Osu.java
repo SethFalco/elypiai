@@ -76,7 +76,7 @@ public class Osu extends ApiWrapper {
 			.registerTypeAdapter(new TypeToken<List<BeatMap>>(){}.getType(), new BeatMapDeserializer(gson));
 
 		service = new Retrofit.Builder()
-			.baseUrl(baseUrl.toString())
+			.baseUrl(baseUrl)
 			.client(client)
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.build()

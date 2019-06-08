@@ -1,4 +1,4 @@
-rootProject.name = "Elypiai"
+rootProject.name = "elypiai"
 
 /** Common */
 include "common:core"

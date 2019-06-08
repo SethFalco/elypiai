@@ -1,24 +1,23 @@
 package com.elypia.elypiai.twitch;
 
 import com.elypia.elypiai.twitch.deserializers.PageDeserializer;
-import com.elypia.elypiai.twitch.entity.Stream;
 import com.google.gson.annotations.JsonAdapter;
 
 import java.util.List;
 
 @JsonAdapter(PageDeserializer.class)
-public class StreamPage {
+public class TwitchPage<I> {
 
-    private List<Stream> streamers;
+    private List<I> items;
     private String cursor;
 
-    public StreamPage(List<Stream> streamers, String cursor) {
-        this.streamers = streamers;
+    public TwitchPage(List<I> items, String cursor) {
+        this.items = items;
         this.cursor = cursor;
     }
 
-    public List<Stream> getStreamers() {
-        return streamers;
+    public List<I> getItems() {
+        return items;
     }
 
     public String getCursor() {

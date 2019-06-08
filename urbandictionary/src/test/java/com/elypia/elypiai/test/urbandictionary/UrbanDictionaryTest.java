@@ -1,14 +1,9 @@
 package com.elypia.elypiai.test.urbandictionary;
 
 import com.elypia.elypiai.common.test.TestUtils;
-import com.elypia.elypiai.urbandictionary.DefineResult;
-import com.elypia.elypiai.urbandictionary.Definition;
-import com.elypia.elypiai.urbandictionary.UrbanDictionary;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.elypia.elypiai.urbandictionary.*;
+import okhttp3.mockwebserver.*;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 
 import java.io.IOException;

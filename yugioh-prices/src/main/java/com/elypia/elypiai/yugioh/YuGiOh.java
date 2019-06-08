@@ -36,7 +36,7 @@ public class YuGiOh extends ApiWrapper {
     public YuGiOh(URL url, WrapperExtension... exts) {
 		super(exts);
 		service = new Retrofit.Builder()
-			.baseUrl(url.toString())
+			.baseUrl(url)
 			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonService.getInstance())
 			.build()

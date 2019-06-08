@@ -73,7 +73,7 @@ public class Steam extends ApiWrapper {
                 .registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
 
         service = new Retrofit.Builder()
-                .baseUrl(baseUrl.toString())
+                .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
                 .build()

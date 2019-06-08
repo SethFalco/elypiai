@@ -49,7 +49,7 @@ public class RuneScape extends ApiWrapper {
 		gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
 
 		service = new Retrofit.Builder()
-			.baseUrl(baseUrl.toString())
+			.baseUrl(baseUrl)
 			.client(RequestService.withExtensionInterceptor(this))
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.build()

@@ -3,14 +3,12 @@ package com.elypia.elypiai.test.poe;
 import com.elypia.elypiai.common.test.TestUtils;
 import com.elypia.elypiai.poe.*;
 import com.elypia.elypiai.poe.data.*;
-import okhttp3.mockwebserver.MockResponse;
-import okhttp3.mockwebserver.MockWebServer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import okhttp3.mockwebserver.*;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.function.Executable;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +26,7 @@ public class PathOfExileTest {
     public void beforeEach() throws IOException {
         server = new MockWebServer();
         server.start();
-        poe = new PathOfExile("http://localhost:" + server.getPort());
+        poe = new PathOfExile(new URL("http://localhost:" + server.getPort()));
     }
 
     @AfterEach

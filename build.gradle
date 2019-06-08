@@ -11,7 +11,7 @@ allprojects() {
 
     ext {
         repoUrl = "https://gitlab.com/Elypia/elypiai.git"
-        retrofitVersion = "2.5.0"
+        retrofitVersion = "2.6.0"
     }
 
     repositories {

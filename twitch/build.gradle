@@ -1,9 +1,13 @@
+repositories {
+    maven {
+        url  "https://dl.bintray.com/elypia/webhooker"
+    }
+}
+
 dependencies {
     implementation project(":common:core")
     implementation project(":common:gson")
     testImplementation project(":common:test")
 
-    // Spark
-    implementation "com.elypia:WebHooker:1.0.0"
-    implementation "com.sparkjava:spark-core:2.9.0"
+    implementation "com.elypia.webhooker:core:2.0.2"
 }

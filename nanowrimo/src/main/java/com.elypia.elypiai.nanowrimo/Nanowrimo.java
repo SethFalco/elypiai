@@ -46,7 +46,7 @@ public class Nanowrimo extends ApiWrapper {
 			JAXBContext context = JAXBContext.newInstance(Writer.class, WordCountEntry.class);
 
 			service = new Retrofit.Builder()
-				.baseUrl(baseUrl.toString())
+				.baseUrl(baseUrl)
 				.client(RequestService.withExtensionInterceptor(this))
 				.addConverterFactory(JaxbConverterFactory.create(context))
 				.addConverterFactory(ScalarsConverterFactory.create())
