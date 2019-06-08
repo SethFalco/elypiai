@@ -1,28 +1,46 @@
 # Elypiai [![Discord][discord-members]][discord] [![Download][bintray-download]][bintray] [![Documentation][docs-shield]][docs] [![GitLab Pipeline Status][gitlab-build]][gitlab] [![Coverage][gitlab-coverage]][gitlab] 
 The [Gradle][gradle]/[Maven][maven] import string can be found at the Download badge above!
 
-## Artifacts
-| Artifact                             | Description                                                                     |
-|--------------------------------------|---------------------------------------------------------------------------------|
-| [`cleverbot`][cleverbot]             | Interact with Cleverbot, the AI that learns from people.                        |
-| [`nanowrimo`][nanowrimo]             | Query data or create a application or plugin to push word counts!               |
-| [`osu`][osu]                         | Query data on users and plays with a ready made notifier.                       |
-| [`path-of-exile`][path-of-exile]     | Query user data, stashes, league scores and ladders.                            |
-| [`runescape`][runescape]             | Get information on users, plus a notifier for significant events.               |
-| [`steam`][steam]                     | Query user information and player's libraries.                                  |
-| [`twitch`][twitch]                   | Get information on Twitch users and streams, with notifier.                     |
-| [`urbandictionary`][urbandictionary] | Search Urban Dictionary and return the top voted or random definition.          |
-| [`yugioh-prices`][yugioh-prices]     | Get information on Yu-Gi-Oh! cards and download or display high quality images. |
-
 ## About
-Elypiai is a centralised repository with libraries for various different web APIs online. Wraps are done beyond obtaining data and mapping it to objects to ensure you get the most of the library out of the box so as a developer you can stick to integrating. This includes making utility methods and notifiers where applicable. Simple examples of this could be the in the RuneScape module which includes methods to convert XP to a level and vice versa, or the osu! API which includes a means to webscrap a users profile picture.
+Elypiai is a small and easy way, especially for new developers, to add ample functionality 
+or integrations to any project.
+This is small library made of primarly 3 types of modules which come together to make a small and clean
 
-This is an easy way, especially for new developers, to add ample functionality or integrations to any project.
+### Common
+Common modules are shared resources that all the wrappers can pool from such as HttpClient, or
+custom deserializers and adapters. They make it easier to reuse code between wraps as well as
+improve performance by managing singleton instances of special objects.
+
+### Extension
+Extensions are a way to add additional functionality into of wrappers generically, so once
+a extension is made it can be used by any wrapper ideally. The best example of this is the RedisExtension
+which takes a time-to-live and caches responses for the specified time. This is great for cross-application
+caching and can massively save bandwidth and reduce API calls.
+
+### Wrappers
+Wrappers are the actual wrapper around a particular service, this is what users should be interfacing to
+call the web APIs. Some wraps to include minimal utility methods as well as appropriate for the respective
+service, such as mathematical functions or web scrapping methods to get data the API may not.
+
+## Supported APIs
+* [Cleverbot][cleverbot]
+* [NaNoWriMo][nanowrimo]
+* [osu!][osu]
+* [Path of Exile][path-of-exile]
+* [RuneScape][runescape]
+* [Steam][steam]
+* [Twitch][twitch]
+* [UrbanDictionary][urbandictionary]
+* [Yu-Gi-Oh! Prices][yugioh-prices]
+
+> Elypiai is pretty easy to work with so we can always add more wrappers, or you could contibute
+> yourself! Or better yet, or if you want to keep your wrap to yourself just depend on the `common` 
+> and extension modules and you'll be good to go, sharing resources, a similar interface, lots of reusable components.
 
 ## Support
-Should any problems occur, come visit us over on [Discord][discord]! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
-
-This project is _heavily_ relied on by [Alexis, the Discord bot][alexis], and is infact why it exists!
+Should any problems occur, come visit us over on [Discord][discord]! We're always around and there are
+ample developers that would be willing to help; if it's a problem with the library itself then we'll
+make sure to get it sorted.
 
 [discord]: https://discord.gg/hprGMaM "Discord Invite"
 [discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
