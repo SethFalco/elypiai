@@ -1,6 +1,6 @@
 package com.elypia.elypiai.yugioh.data;
 
-import com.elypia.elypiai.yugioh.impl.TradingCard;
+import com.elypia.elypiai.yugioh.TradingCard;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,6 +8,8 @@ import com.google.gson.annotations.SerializedName;
  * this is.
  */
 public enum MagicType {
+
+    UNKNOWN("Unknown", false, false),
 
     @SerializedName("Normal")
     NORMAL("Normal", true, true),
@@ -69,6 +71,6 @@ public enum MagicType {
                 return property;
         }
 
-        return null;
+        return UNKNOWN;
     }
 }

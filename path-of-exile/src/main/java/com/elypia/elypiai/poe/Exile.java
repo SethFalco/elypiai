@@ -1,6 +1,7 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.poe.data.*;
+import com.elypia.elypiai.poe.data.AscendancyClass;
+import com.elypia.elypiai.poe.data.AscendancyType;
 import com.google.gson.annotations.SerializedName;
 
 public class Exile {
@@ -28,13 +29,29 @@ public class Exile {
 		return level;
 	}
 
+	/**
+	 * @return The class of the {@link Exile}, null if
+	 * there is no specific {@link AscendancyClass} but just
+	 * {@link AscendancyType}, or {@link AscendancyClass#UNKNOWN}
+	 * if the class/type is not known to this API wrapper.
+	 */
 	public AscendancyClass getAscendancyClass() {
-		return AscendancyClass.get(ascendancy);
+		AscendancyClass aclass = AscendancyClass.get(ascendancy);
+
+		if (aclass != AscendancyClass.UNKNOWN)
+			return aclass;
+
+		AscendancyType type = getAscendancy();
+
+		if (type != AscendancyType.UNKNOWN)
+			return null;
+
+		return AscendancyClass.UNKNOWN;
 	}
 
 	public AscendancyType getAscendancy() {
 		AscendancyType type = AscendancyType.get(ascendancy);
-		return type != null ? type : getAscendancyClass().getType();
+		return (type != AscendancyType.UNKNOWN) ? type : getAscendancyClass().getType();
 	}
 
 	public String getId() {

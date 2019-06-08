@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(":common:core")
+    testImplementation project(":common:test")
+    testImplementation project(":osu")
+
+    implementation "redis.clients:jedis:3.0.1"
+}

@@ -1,9 +1,9 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.osu.deserializers.OsuDateDeserializer;
-import com.google.gson.annotations.*;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 public class Match {
 
@@ -14,11 +14,9 @@ public class Match {
     private String name;
 
     @SerializedName("start_time")
-    @JsonAdapter(OsuDateDeserializer.class)
     private Date startTime;
 
     @SerializedName("end_time")
-    @JsonAdapter(OsuDateDeserializer.class)
     private Date endTime;
 
     @SerializedName("games")

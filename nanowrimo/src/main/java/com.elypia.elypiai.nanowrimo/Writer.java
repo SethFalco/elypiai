@@ -1,9 +1,12 @@
 package com.elypia.elypiai.nanowrimo;
 
-import com.elypia.elypiai.nanowrimo.data.WordCountError;
+import com.elypia.elypiai.nanowrimo.data.NanoError;
 
-import javax.xml.bind.annotation.*;
-import java.util.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 @XmlRootElement(name = "wchistory")
 public class Writer {
@@ -27,7 +30,7 @@ public class Writer {
 	private List<WordCountEntry> entries;
 
 	@XmlElement(name = "error")
-	private WordCountError error;
+	private NanoError error;
 
 	public String getUsername() {
 		return username;
@@ -56,7 +59,7 @@ public class Writer {
 		return entries;
 	}
 
-	public WordCountError getError() {
+	protected NanoError getError() {
 		return error;
 	}
 }

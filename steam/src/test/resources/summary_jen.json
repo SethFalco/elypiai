@@ -1,0 +1,23 @@
+{
+  "response": {
+    "players": [
+      {
+        "steamid": "76561198077852097",
+        "communityvisibilitystate": 3,
+        "profilestate": 1,
+        "personaname": "Jen",
+        "lastlogoff": 1558969899,
+        "commentpermission": 1,
+        "profileurl": "https://steamcommunity.com/id/JenTheBluePanda/",
+        "avatar": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/31/31b2142d377734a065f3b27ee1c4a0b04ef30732.jpg",
+        "avatarmedium": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/31/31b2142d377734a065f3b27ee1c4a0b04ef30732_medium.jpg",
+        "avatarfull": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/31/31b2142d377734a065f3b27ee1c4a0b04ef30732_full.jpg",
+        "personastate": 1,
+        "primaryclanid": "103582791429521408",
+        "timecreated": 1354988289,
+        "personastateflags": 0,
+        "loccountrycode": "BE"
+      }
+    ]
+  }
+}

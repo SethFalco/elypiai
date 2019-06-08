@@ -1,44 +1,72 @@
-## Elypiai [![Discord](https://discordapp.com/api/guilds/184657525990359041/widget.png)](https://discord.gg/hprGMaM) [![Download](https://api.bintray.com/packages/elypia/Elypiai/common/images/download.svg)](https://bintray.com/elypia/Elypiai/common/_latestVersion) [![Documentation](https://img.shields.io/badge/Docs-Elypiai-blue.svg)](https://elypiai.elypia.com/) [![GitLab Pipeline Status](https://gitlab.com/Elypia/Elypiai/badges/master/pipeline.svg)](https://gitlab.com/Elypia/Elypiai/commits/master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/51814ca2e04c46809f97634601595741)](https://www.codacy.com/app/Elypia/Elypiai?utm_source=gitlab.com&amp;utm_medium=referral&amp;utm_content=Elypia/Elypiai&amp;utm_campaign=Badge_Grade) [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/51814ca2e04c46809f97634601595741)](https://www.codacy.com/app/Elypia/Elypiai?utm_source=gitlab.com&utm_medium=referral&utm_content=Elypia/Elypiai&utm_campaign=Badge_Coverage)
+# Elypiai [![Discord][discord-members]][discord] [![Download][bintray-download]][bintray] [![Documentation][docs-shield]][docs] [![GitLab Pipeline Status][gitlab-build]][gitlab] [![Coverage][gitlab-coverage]][gitlab] 
+The [Gradle][gradle]/[Maven][maven] import string can be found at the Download badge above!
 
-### Importing
-#### [Gradle](https://gradle.org/)
-```gradle
-implementation 'com.elypia.elypiai:{ARTIFACT}:{VERSION}'
-```
+## About
+Elypiai is a small and easy way, especially for new developers, to add ample functionality 
+or integrations to any project.  
+This is small library made of primarily 3 types of modules which come together to make a small, common, and 
+clean interface when creating wrappers.
 
-#### [Maven](https://maven.apache.org/)
-```xml
-<dependency>
-  <groupId>com.elypia.elypiai</groupId>
-  <artifactId>{ARTIFACT}</artifactId>
-  <version>{VERSION}</version>
-</dependency>
-```
+### Common
+Common modules are shared resources that all the wrappers can pool from such as the HTTP client, or
+custom deserializers and adapters. They make it easier to reuse code between wraps as well as
+improve performance by managing singleton instances of special objects.
 
-### **Artifacts**
-| Artifact                                                                         | Description                                                                                                                 |
-|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| `common`                                                                         | Code shared between all sup-projects, an abstraction of [Retrofit](https://square.github.io/retrofit/) for making requests. |
-| [`amazon-product-api`](https://affiliate-program.amazon.com/)                    | Generate links and monetize with the Amazon Affiliate Program.                                                              |
-| [`cleverbot`](https://www.cleverbot.com/api/)                                    | Interact with Cleverbot, the AI that learns from people.                                                                    |
-| [`nanowrimo`](https://nanowrimo.org/wordcount_api)                               | Query data or create a application or plugin to push word counts!                                                           |
-| [`osu`](https://github.com/ppy/osu-api/wiki)                                     | Query data on users and plays with a ready made notifier.                                                                   |
-| [`path-of-exile`](https://www.pathofexile.com/developer/docs/api-resources)      | Query user data, stashes, league scores and ladders.                                                                        |
-| [`runescape`](http://runescape.wikia.com/wiki/Application_programming_interface) | Get information on users, plus a notifier for significant events.                                                           |
-| [`steam`](https://steamcommunity.com/dev)                                        | Query user information and player's libraries.                                                                              |
-| [`twitch`](https://dev.twitch.tv/docs)                                           | Get information on Twitch users and streams, with notifier.                                                                 |
-| [`urbandictionary`](http://api.urbandictionary.com/v0/define?term=api)           | Search Urban Dictionary and return the top voted or random definition.                                                      |
-| [`yugioh-prices`](http://docs.yugiohprices.apiary.io/)                           | Get information on Yu-Gi-Oh! cards and download or display high quality images.                                             |
+### Extension
+Extensions are a way to add additional functionality to wrappers generically, so once
+a extension is made it can be used by any wrapper. The best example of this is the RedisExtension
+which takes a time-to-live and caches responses for the specified time. This is great for cross-application
+caching and can massively save bandwidth and reduce API calls.
 
-### About
-Elypiai is a centralised repository with libraries for various different web APIs online. Wraps are done beyond obtaining data and mapping it to objects to ensure you get the most of the library out of the box so as a developer you can stick to integrating. This includes making utility methods and notifiers where applicable. Simple examples of this could be the in the RuneScape module which includes methods to convert XP to a level and vice versa, or the osu! API which includes a means to webscrap a users profile picture.
+### Wrappers
+Wrappers are the actual wrapper around a service, this is what users should be interfacing with to
+call the web APIs. Some wraps include utility methods as appropriate for the respective
+service, such as mathematical functions or web scrapping methods to get data the API may not.
 
-This is an easy way, especially for new developers, to add ample functionality or integrations to any project.
+## Supported APIs
+* [Cleverbot][cleverbot]
+* [NaNoWriMo][nanowrimo]
+* [osu!][osu]
+* [Path of Exile][path-of-exile]
+* [RuneScape][runescape]
+* [Steam][steam]
+* [Twitch][twitch]
+* [UrbanDictionary][urbandictionary]
+* [Yu-Gi-Oh! Prices][yugioh-prices]
 
-### Example
-This project is heavily used by Alexis, an open-source Discord bot also. Please check out her modules to see examples of each wrap.
+> Elypiai is pretty easy to work with so we can always add more wrappers, or you could contribute
+> yourself. If you want to can also keep your wrap to yourself just depend by just depending
+> on the `common` and `extension` modules appropriate for your applications with all of the benfits
+> including: sharing resources, a common interface, and lots of reusable components.  
+>
+> You can see more in the contribution guide which _very_ breifly runs through creating a wrapper.
 
-### Support
-Should any problems occur, come visit us over on [Discord](https://discord.gg/hprGMaM)! We're always around and there are ample developers that would be willing to help; if it's a problem with the library itself then we'll make sure to get it sorted.
+## Support
+Should any problems occur, come visit us over on [Discord][discord]! We're always around and there are
+ample developers that would be willing to help; if it's a problem with the library itself then we'll
+make sure to get it sorted.
 
-This project is _heavily_ relied on by [Alexis, the Discord bot](https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot), and is infact why it exists!
+[discord]: https://discord.gg/hprGMaM "Discord Invite"
+[discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
+[bintray]: https://bintray.com/elypia/Elypiai "Bintray Latest Version"
+[bintray-download]: https://api.bintray.com/packages/elypia/Elypiai/common/images/download.svg "Bintray Download Shield"
+[docs]: https://elypiai.elypia.com/ "Commandler Documentation"
+[docs-shield]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
+[gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
+[gitlab-build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
+[gitlab-coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
+
+[gradle]: https://gradle.org/ "Depend via Gradle"
+[maven]: https://maven.apache.org/ "Depend via Maven"
+
+[cleverbot]: https://www.cleverbot.com/api/
+[nanowrimo]: https://nanowrimo.org/wordcount_api
+[osu]: https://github.com/ppy/osu-api/wiki
+[path-of-exile]: https://www.pathofexile.com/developer/docs/api-resources
+[runescape]: http://runescape.wikia.com/wiki/Application_programming_interface
+[steam]: https://steamcommunity.com/dev
+[twitch]: https://dev.twitch.tv/docs
+[urbandictionary]: http://api.urbandictionary.com/v0/define?term=api
+[yugioh-prices]: http://docs.yugiohprices.apiary.io/
+
+[alexis]: https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot "Invite Alexis"

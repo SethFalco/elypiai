@@ -1,17 +1,22 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.runescape.deserializers.QuestStatDeserializer;
-import com.elypia.elypiai.runescape.impl.IRuneScapeService;
+import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
+import com.elypia.elypiai.common.gson.deserializers.DateDeserializer;
+import com.elypia.elypiai.runescape.deserializers.*;
+import com.elypia.elypiai.runescape.impl.RuneScapeService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.slf4j.*;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
 import java.util.*;
 
-public class RuneScape {
+public class RuneScape extends ApiWrapper {
+
+	private static final Logger logger = LoggerFactory.getLogger(RuneScape.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -24,27 +29,31 @@ public class RuneScape {
 		try {
 			BASE_URL = new URL("https://apps.runescape.com/runemetrics/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
-	private IRuneScapeService service;
-	private Map<String, Player> cache;
+	private RuneScapeService service;
 
-	public RuneScape() {
-		this(BASE_URL);
+	public RuneScape(WrapperExtension... exts) {
+		this(BASE_URL, exts);
 	}
 
-	public RuneScape(URL baseUrl) {
-		cache = new HashMap<>();
+	public RuneScape(URL baseUrl, WrapperExtension... exts) {
+		super(exts);
 
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
+		GsonBuilder gsonBuilder = new GsonBuilder()
+			.registerTypeAdapter(Date.class, new DateDeserializer("dd-MMM-yyyy hh:mm"))
+			.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+		gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
 
-		service = retrofitBuilder.build().create(IRuneScapeService.class);
+		service = new Retrofit.Builder()
+			.baseUrl(baseUrl)
+			.client(RequestService.withExtensionInterceptor(this))
+			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+			.build()
+			.create(RuneScapeService.class);
 	}
 
 	/**
@@ -65,40 +74,20 @@ public class RuneScape {
 		return new RestAction<>(call);
 	}
 
-	/**
-	 * @return	Get the list of cached players.
-	 */
-	public Collection<Player> getUsers() {
-		return Collections.unmodifiableCollection(cache.values());
-	}
-
-    /**
-     * Convert XP to the level equivilent. <br>
-     * Exactly the same as calling {@link #parseXpAsLevel(long, boolean)},
-     * with parameter boolean as <strong>false</strong>.
-     *
-     * @param	xp      The xp to convert to level.
-     * @return	        The level a player would be with the XP provided.
-     */
-    public static int parseXpAsLevel(long xp) {
-        return parseXpAsLevel(xp, false);
-    }
-
     /**
      * Convert XP to the level equivilent.
      *
      * @param	xp      The xp to convert to level.
-     * @param	elite	Convert as an elite skill or standard skill.
      * @return	        The level a player would be with the XP provided.
      */
-	public static int parseXpAsLevel(long xp, boolean elite) {
+	public static int parseXpAsLevel(long xp) {
 		if (xp < 0)
 			throw new IllegalArgumentException("XP (long) can not be of a negative value.");
 
 		int level = 1;
 		long result;
 
-		while (xp >= (result = parseLevelAsXp(level + 1, elite))) {
+		while (xp >= (result = parseLevelAsXp(level + 1))) {
 			if (result == -1)
 				break;
 
@@ -108,30 +97,15 @@ public class RuneScape {
 		return level;
 	}
 
-    /**
-     * Convert a level, or virtual level to the XP equivilent using
-     * RuneScapes XP formula. <br>
-     * Note: Returns -1 if the level is too high. <br>
-     * Exactly the same as calling {@link #parseLevelAsXp(int, boolean)},
-     * with parameter boolean as <strong>false</strong>.
-     *
-     * @param	level   The xp to convert to level.
-     * @return	        The level a player would be with the XP provided.
-     */
-    public static long parseLevelAsXp(int level) {
-        return parseLevelAsXp(level, false);
-    }
-
 	/**
 	 * Convert a level, or virtual level to the XP equivilent using
 	 * RuneScapes XP formula. <br>
 	 * Note: Returns -1 if the level is too high.
 	 *
 	 * @param   level	The level to convert to XP.
-	 * @param	elite	Convert as an elite skill or standard skill.
 	 * @return			The XP required to attain this level.
 	 */
-	public static long parseLevelAsXp(int level, boolean elite) {
+	public static long parseLevelAsXp(int level) {
 		if (level < 1)
 			throw new IllegalArgumentException("Level (int) can not be zero or a negative value.");
 

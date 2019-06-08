@@ -1,115 +1,138 @@
 package com.elypia.elypiai.steam;
 
-import com.elypia.elypiai.restutils.RestAction;
+import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.*;
 import com.elypia.elypiai.steam.deserializers.*;
-import com.elypia.elypiai.steam.impl.ISteamService;
+import com.elypia.elypiai.steam.impl.SteamService;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
+import org.slf4j.*;
 import retrofit2.Call;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
 import java.util.*;
+import java.util.regex.*;
 
-public class Steam {
+public class Steam extends ApiWrapper {
 
-	/**
-	 * The default URL we call too. <br>
-	 * Should never throw {@link MalformedURLException} as this
-	 * is a manually hardcoded URL.
-	 */
-	private static URL BASE_URL;
+    /** A regular expression that matches against profile urls and returns the username or id. */
+    private static final Pattern VANITY_URL = Pattern.compile("^(?:https?://)?steamcommunity\\.com/id/([^/]+)/?$");
 
-	static {
-		try {
-			BASE_URL = new URL("http://api.steampowered.com/");
-		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
-		}
-	}
+    private static final Logger logger = LoggerFactory.getLogger(Steam.class);
 
-	private final String API_KEY;
+    /**
+     * The default URL we call too. <br>
+     * Should never throw {@link MalformedURLException} as this
+     * is a manually hardcoded URL.
+     */
+    private static URL BASE_URL;
 
-	private ISteamService service;
+    static {
+        try {
+            BASE_URL = new URL("http://api.steampowered.com/");
+        } catch (MalformedURLException ex) {
+            logger.error(Elypiai.MALFORMED, ex);
+        }
+    }
 
-	/**
-	 * The Steam API allows calls to basic Steam information
-	 * as well as user information such as query the inventory
-	 * or obtaining stats.
-	 *
-	 * @param 	apiKey		API key obtained from Steam.
-	 */
+    private final String API_KEY;
+    private final SteamService service;
 
-	public Steam(String apiKey) {
-		this(BASE_URL, apiKey);
-	}
+    /**
+     * The Steam API allows calls to basic Steam information
+     * as well as user information such as query the inventory
+     * or obtaining stats.
+     *
+     * @param apiKey API key obtained from Steam.
+     */
 
-	public Steam(URL baseUrl, String apiKey) {
-		API_KEY = Objects.requireNonNull(apiKey);
+    public Steam(String apiKey, WrapperExtension... exts) {
+        this(BASE_URL, apiKey, exts);
+    }
 
-		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
-			Request request = chain.request();
-			HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
-			request = request.newBuilder().url(url).build();
-			return chain.proceed(request);
-		}).build();
+    public Steam(URL baseUrl, String apiKey, WrapperExtension... exts) {
+        super(exts);
+        API_KEY = Objects.requireNonNull(apiKey);
 
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer());
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer());
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
+        OkHttpClient client = RequestService.getBuilder()
+            .addInterceptor((chain) -> {
+                Request request = chain.request();
+                HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
+                request = request.newBuilder().url(url).build();
+                return chain.proceed(request);
+            })
+            .addInterceptor(new ExtensionInterceptor(this))
+            .build();
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
+        GsonBuilder gsonBuilder = new GsonBuilder()
+                .registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer())
+                .registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer())
+                .registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
 
-		service = retrofitBuilder.client(client).build().create(ISteamService.class);
-	}
+        service = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+                .build()
+                .create(SteamService.class);
+    }
 
-	public RestAction<SteamSearch> getIdFromVanityUrl(String vanityUrl) {
-		Call<SteamSearch> call = service.getSteamId(vanityUrl);
-		return new RestAction<>(call);
-	}
+    /**
+     * @param vanityUrl The custom url entirely, or custom url route after id.
+     * @return The search result of if a user was found or not.
+     */
+    public RestAction<SteamSearch> getIdFromVanityUrl(String vanityUrl) {
+        String name = getUsernameFromUrl(vanityUrl);
+        Call<SteamSearch> call = service.getSteamId((name == null) ? vanityUrl : name);
+        return new RestAction<>(call);
+    }
 
-	public RestAction<List<SteamUser>> getUsers(long...ids) {
-		if (ids == null || ids.length == 0)
-			throw new IllegalArgumentException("Must specify at least one user to fetch.");
+    public RestAction<List<SteamUser>> getUsers(long...ids) {
+        if (ids == null || ids.length == 0)
+            throw new IllegalArgumentException("Must specify at least one user to fetch.");
 
-		StringJoiner joiner = new StringJoiner(",");
+        StringJoiner joiner = new StringJoiner(",");
 
-		for (long id : ids)
-			joiner.add(String.valueOf(id));
+        for (long id : ids)
+            joiner.add(String.valueOf(id));
 
-		Call<List<SteamUser>> call = service.getUsers(joiner.toString());
-		return new RestAction<>(call);
-	}
+        Call<List<SteamUser>> call = service.getUsers(joiner.toString());
+        return new RestAction<>(call);
+    }
 
-	/**
-	 * Get the Steam users Library, do note the first time
-	 * the method is called for each SteamProfile; it consumes
-	 * another API call, the Library is cached however upon
-	 * method call. This contains a list of games the steam user owns
-	 * (or has played for free games) sorted from RecentPlaytime, and
-	 * when RecentPlaytime is 0, from TotalPlaytime.
-	 *
-	 * @param id Steam user to obtain library for.
-	 */
+    /**
+     * Get the Steam users Library, do note the first time
+     * the method is called for each SteamProfile; it consumes
+     * another API call, the Library is cached however upon
+     * method call. This contains a list of games the steam user owns
+     * (or has played for free games) sorted from RecentPlaytime, and
+     * when RecentPlaytime is 0, from TotalPlaytime.
+     *
+     * @param id Steam user to obtain library for.
+     */
 
-	public RestAction<List<SteamGame>> getLibrary(long id) {
-		return getLibrary(id, true);
-	}
+    public RestAction<List<SteamGame>> getLibrary(long id) {
+        return getLibrary(id, true);
+    }
 
-	public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames) {
-		return getLibrary(id, freeGames, true);
-	}
+    public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames) {
+        return getLibrary(id, freeGames, true);
+    }
 
-	public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames, boolean info) {
-		Call<List<SteamGame>> call = service.getLibrary(id, freeGames ? 1 : 0, info ? 1 : 0);
-		return new RestAction<>(call);
-	}
+    public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames, boolean info) {
+        Call<List<SteamGame>> call = service.getLibrary(id, freeGames ? 1 : 0, info ? 1 : 0);
+        return new RestAction<>(call);
+    }
 
-	public String getApiKey() {
-		return API_KEY;
-	}
+    public static String getUsernameFromUrl(String vanityUrl) {
+        Matcher matcher = VANITY_URL.matcher(vanityUrl);
+        return (matcher.find()) ? matcher.group(1) : null;
+    }
+
+    public String getApiKey() {
+        return API_KEY;
+    }
 }

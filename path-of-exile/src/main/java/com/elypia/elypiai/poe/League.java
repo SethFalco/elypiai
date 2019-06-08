@@ -2,7 +2,8 @@ package com.elypia.elypiai.poe;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 public class League extends CompactLeague {
 
@@ -11,9 +12,6 @@ public class League extends CompactLeague {
 
 	@SerializedName("registerAt")
 	private Date registerAt;
-
-	@SerializedName("event")
-	private boolean event;
 
 	@SerializedName("rules")
 	private List<LeagueRule> rules;
@@ -24,10 +22,6 @@ public class League extends CompactLeague {
 
 	public Date getRegisterAt() {
 		return registerAt;
-	}
-
-	public boolean isEvent() {
-		return event;
 	}
 
 	public List<LeagueRule> getRules() {

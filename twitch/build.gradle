@@ -1,3 +1,13 @@
+repositories {
+    maven {
+        url  "https://dl.bintray.com/elypia/webhooker"
+    }
+}
+
 dependencies {
-    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation project(":common:core")
+    implementation project(":common:gson")
+    testImplementation project(":common:test")
+
+    implementation "com.elypia.webhooker:core:2.0.2"
 }

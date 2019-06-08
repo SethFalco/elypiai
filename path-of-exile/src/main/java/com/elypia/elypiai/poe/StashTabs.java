@@ -1,10 +1,8 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.restutils.impl.IRestPaginator;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 public class StashTabs {
 

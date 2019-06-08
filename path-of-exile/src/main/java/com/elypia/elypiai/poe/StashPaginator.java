@@ -1,11 +1,11 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.restutils.impl.IRestPaginator;
+import com.elypia.elypiai.common.core.RestPaginator;
 
 import java.io.IOException;
 import java.util.List;
 
-public class StashPaginator implements IRestPaginator<Stash> {
+public class StashPaginator implements RestPaginator<Stash> {
 
     private PathOfExile poe;
     private String cursor;
@@ -21,7 +21,7 @@ public class StashPaginator implements IRestPaginator<Stash> {
 
     @Override
     public List<Stash> next() throws IOException {
-        StashTabs stashtabs = poe.getStashTabs(cursor).complete();
+        StashTabs stashtabs = poe.getStashTabs(cursor).completeGet();
         List<Stash> stashes = stashtabs.getStashes();
 
         if (stashes.isEmpty())

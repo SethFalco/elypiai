@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum AscendancyType {
 
+	UNKNOWN("Unknown"),
+
 	@SerializedName("Dualist")
 	DUELIST("Dualist"),
 
@@ -37,6 +39,6 @@ public enum AscendancyType {
 				return ascendancy;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

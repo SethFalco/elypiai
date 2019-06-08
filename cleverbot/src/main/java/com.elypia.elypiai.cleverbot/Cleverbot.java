@@ -2,10 +2,12 @@ package com.elypia.elypiai.cleverbot;
 
 import com.elypia.elypiai.cleverbot.data.CleverTweak;
 import com.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
-import com.elypia.elypiai.cleverbot.impl.ICleverbotService;
-import com.elypia.elypiai.restutils.RestAction;
+import com.elypia.elypiai.cleverbot.impl.CleverbotService;
+import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.*;
 import com.google.gson.GsonBuilder;
 import okhttp3.*;
+import org.slf4j.*;
 import retrofit2.Call;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -13,7 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.net.*;
 import java.util.*;
 
-public class Cleverbot {
+public class Cleverbot extends ApiWrapper {
+
+	private static final Logger logger = LoggerFactory.getLogger(Cleverbot.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -26,16 +30,15 @@ public class Cleverbot {
 		try {
 			BASE_URL = new URL("https://www.cleverbot.com/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
 	private final String API_KEY;
+	private final CleverbotService service;
 
-	private ICleverbotService service;
-
-	public Cleverbot(String apiKey) {
-		this(BASE_URL, apiKey);
+	public Cleverbot(String apiKey, WrapperExtension... exts) {
+		this(BASE_URL, apiKey, exts);
 	}
 
 	/**
@@ -46,23 +49,29 @@ public class Cleverbot {
 	 * @param	apiKey 	API key recieved upon signing up.
 	 * @see <a href="https://www.cleverbot.com/api/">cleverbot</a>
 	 */
-	public Cleverbot(URL baseUrl, String apiKey) {
+	public Cleverbot(URL baseUrl, String apiKey, WrapperExtension... exts) {
+		super(exts);
 		API_KEY = apiKey;
 
-		OkHttpClient client = new OkHttpClient.Builder().addInterceptor((chain) -> {
-			Request request = chain.request();
-			HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).addQueryParameter("wrapper", "Elypiai").build();
-			request = request.newBuilder().url(url).build();
-			return chain.proceed(request);
-		}).build();
+		OkHttpClient client = RequestService.getBuilder()
+			.addInterceptor((chain) -> {
+				Request request = chain.request();
+				HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).addQueryParameter("wrapper", "Elypiai").build();
+				request = request.newBuilder().url(url).build();
+				return chain.proceed(request);
+			})
+			.addInterceptor(new ExtensionInterceptor(this))
+			.build();
 
-		GsonBuilder builder = new GsonBuilder();
-		builder.registerTypeAdapter(CleverResponse.class, new CleverResponseDeserializer());
+		GsonBuilder builder = new GsonBuilder()
+			.registerTypeAdapter(CleverResponse.class, new CleverResponseDeserializer());
 
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create(builder.create()));
-
-		service = retrofitBuilder.client(client).build().create(ICleverbotService.class);
+		service = new Retrofit.Builder()
+			.baseUrl(baseUrl)
+			.client(client)
+			.addConverterFactory(GsonConverterFactory.create(builder.create()))
+			.build()
+			.create(CleverbotService.class);
 	}
 
 	public RestAction<CleverResponse> say(String input) {
@@ -92,23 +101,6 @@ public class Cleverbot {
 		Call<CleverResponse> call = service.say(input, cs, wacky, talkitive, attentive);
 		return new RestAction<>(call);
 	}
-
-// ! Get around to creating some kind of cache policy for this.
-//	public CleverResponse getCleverResponse(String cs) {
-//		if (cs == null)
-//			return null;
-//
-//		return cache.get(cs);
-//	}
-//
-//	public String getHistory(String cs) {
-//		CleverResponse response = getCleverResponse(cs);
-//
-//		if (response != null)
-//			return response.getHistoryScript();
-//		else
-//			return null;
-//	}
 
 	public String getApiKey() {
 		return API_KEY;

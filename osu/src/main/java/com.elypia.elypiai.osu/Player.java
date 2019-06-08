@@ -1,18 +1,18 @@
 package com.elypia.elypiai.osu;
 
-import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.*;
+import org.slf4j.*;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
-import java.net.*;
+import java.net.URL;
 import java.util.List;
 
 public class Player {
 
-	private static final String BASE_PROFILE_URL = "https://osu.ppy.sh/u/%s";
-	private static final String DEFAULT_AVATAR = "https://osu.ppy.sh/images/layout/avatar-guest.png";
+	private static final Logger logger = LoggerFactory.getLogger(Player.class);
+
+	private static final String UNKNOWN_AVATAR = "https://osu.ppy.sh/images/layout/avatar-guest.png";
 
 	/**
 	 * The identifier for the user, this will never change.
@@ -267,7 +267,7 @@ public class Player {
 	 * @return 	Get the users osu! profile url.
 	 */
 	public String getProfileUrl() {
-		return String.format(BASE_PROFILE_URL, userId);
+		return "https://osu.ppy.sh/u/" + userId;
 	}
 
 	public List<OsuEvent> getEvents() {
@@ -275,25 +275,75 @@ public class Player {
 	}
 
 	/**
+	 * This is a URL that will take you to the avatar
+	 * of the player <strong>if it's set</strong> else
+	 * it may be a dead link.
+	 *
 	 * @return	The profile picture of the osu player as a url.
 	 */
 	public String getAvatarUrl() {
-		if (avatarUrl == null) {
-			try {
-				Document doc = Jsoup.parse(new URL(getProfileUrl()), 4096);
-				Element element = doc.getElementById("json-user");
+		return getAvatarUrl(false);
+	}
 
-				if (element != null) {
-					String text = element.childNode(0).toString();
-					JsonObject object = new JsonParser().parse(text).getAsJsonObject();
-					String url = object.get("avatar_url").getAsString();
+	/**
+	 * This returns the avatar url checking if the url
+	 * avatar exists in the first place and returns
+	 * an apropriate default avatar for users that don't have one.
+	 * <strong>Performs an HTTP HEAD request.</strong>
+	 *
+	 * @param check
+	 * @return
+	 */
+	public String getAvatarUrl(boolean check) {
+		if (avatarUrl != null)
+			return avatarUrl;
+
+		String url = "https://a.ppy.sh/" + userId;
+
+		if (!check)
+			avatarUrl = url;
+
+		else {
+			try {
+				var con = (HttpsURLConnection) new URL(url).openConnection();
+				con.setRequestMethod("HEAD");
+
+				if (con.getResponseCode() == HttpsURLConnection.HTTP_OK)
 					return avatarUrl = url;
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
+			} catch (IOException ex) {
+				logger.error("Failed to verify osu! avatar.", ex);
 			}
 		}
 
-		return DEFAULT_AVATAR;
+		return avatarUrl = UNKNOWN_AVATAR;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof Player))
+			return false;
+
+		Player player = (Player)object;
+
+		return
+			userId == player.userId &&
+			username.equals(player.username) &&
+			count300 == player.count300 &&
+			count100 == player.count100 &&
+			count50 == player.count50 &&
+			playcount == player.playcount &&
+			rankedScore == player.rankedScore &&
+			totalScore == player.totalScore &&
+			rank == player.rank &&
+			level == player.level &&
+			pp == player.pp &&
+			accuracy == player.accuracy &&
+			countSS == player.countSS &&
+			countSSH == player.countSSH &&
+			countS == player.countS &&
+			countSH == player.countSH &&
+			countA == player.countA &&
+			country.equals(player.country) &&
+			nationalRank == player.nationalRank;
 	}
 }

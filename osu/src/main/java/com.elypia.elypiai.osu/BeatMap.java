@@ -1,10 +1,14 @@
 package com.elypia.elypiai.osu;
 
-import com.elypia.elypiai.osu.data.*;
-import com.elypia.elypiai.osu.deserializers.*;
-import com.google.gson.annotations.*;
+import com.elypia.elypiai.common.gson.deserializers.EmptyNullDeserializer;
+import com.elypia.elypiai.osu.data.MapGenre;
+import com.elypia.elypiai.osu.data.MapLanguage;
+import com.elypia.elypiai.osu.data.MapStatus;
+import com.elypia.elypiai.osu.data.OsuMode;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.Date;
 
 public class BeatMap {
 
@@ -13,12 +17,13 @@ public class BeatMap {
 	@SerializedName("approved")
 	private MapStatus status;
 
+	@SerializedName("submit_date")
+	private Date submitDate;
+
 	@SerializedName("approved_date")
-	@JsonAdapter(OsuDateDeserializer.class)
 	private Date approvedDate;
 
 	@SerializedName("last_update")
-	@JsonAdapter(OsuDateDeserializer.class)
 	private Date lastUpdated;
 
 	@SerializedName("artist")
@@ -36,8 +41,11 @@ public class BeatMap {
 	@SerializedName("creator")
 	private String creator;
 
+	@SerializedName("creator_id")
+	private int creatorId;
+
 	@SerializedName("hit_length")
-	private int hit_length;
+	private int hitLength;
 
 	@SerializedName("source")
 	@JsonAdapter(EmptyNullDeserializer.class)
@@ -65,8 +73,7 @@ public class BeatMap {
 	private OsuMode mode;
 
 	@SerializedName("tags")
-	@JsonAdapter(SpaceDelimitedDeserializer.class)
-	private List<String> tags;
+	private String tags;
 
 	@SerializedName("favourite_count")
 	private int favouriteCount;
@@ -89,9 +96,12 @@ public class BeatMap {
 		return status;
 	}
 
+	public Date getSubmissionDate() {
+		return submitDate;
+	}
+
 	/**
-	 * Date and time the map was approved in the format <br>
-	 * "YYYY-MM-DD HH:MM:SS" (UTC+8)
+	 * Date and time the map was approved in the format.
 	 *
 	 * @return 	Date the map was approved.
 	 */
@@ -145,6 +155,10 @@ public class BeatMap {
 		return creator;
 	}
 
+	public int getCreatorId() {
+		return creatorId;
+	}
+
 	public MapDifficulty getDifficulty() {
 		return difficulty;
 	}
@@ -158,7 +172,7 @@ public class BeatMap {
 	 * 			to the last, excluding breaks in between in seconds.
 	 */
 	public int getHitLength() {
-		return hit_length;
+		return hitLength;
 	}
 
 	public String getSource() {
@@ -210,9 +224,12 @@ public class BeatMap {
 	}
 
 	/**
+	 * The tags are space delimeted, which may cause confusion
+	 * when the tags themselves contain spaces.
+	 *
 	 * @return	Tags associated with this beatmap.
 	 */
-	public List<String> getTags() {
+	public String getTags() {
 		return tags;
 	}
 

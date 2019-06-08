@@ -1,0 +1,24 @@
+{
+  "response": {
+    "players": [
+      {
+        "steamid": "76561198085657484",
+        "communityvisibilitystate": 3,
+        "profilestate": 1,
+        "personaname": "Seth",
+        "lastlogoff": 1558993223,
+        "commentpermission": 1,
+        "profileurl": "https://steamcommunity.com/id/Sethiii/",
+        "avatar": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de.jpg",
+        "avatarmedium": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de_medium.jpg",
+        "avatarfull": "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de_full.jpg",
+        "personastate": 1,
+        "realname": "Seth",
+        "primaryclanid": "103582791429521408",
+        "timecreated": 1362733966,
+        "personastateflags": 0,
+        "loccountrycode": "BE"
+      }
+    ]
+  }
+}

@@ -1,12 +1,3 @@
-# Configuration
-*.json
-*.toml
-*.properties
-
-# IntelliJ
-.idea/
-out/
-
 ##################################################################
 # https://github.com/github/gitignore/blob/master/Java.gitignore #
 ##################################################################
@@ -40,7 +31,7 @@ hs_err_pid*
 ####################################################################
 
 .gradle
-/build/
+build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -51,5 +42,13 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
-# gradle/wrapper/gradle-wrapper.properties
+#################
+# Configuration #
+#################
+
+*.toml
+
+# IntelliJ
+out/
+/.idea/
+*.iml

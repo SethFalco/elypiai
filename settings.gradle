@@ -1,8 +1,12 @@
-rootProject.name = "Elypiai"
+rootProject.name = "elypiai"
 
-include "common"
+/** Common */
+include "common:core"
+include "common:gson"
+include "common:jaxb"
+include "common:test"
 
-include "amazon-product-api"
+/** Wrappers */
 include "cleverbot"
 include "nanowrimo"
 include "osu"
@@ -12,3 +16,6 @@ include "steam"
 include "twitch"
 include "urbandictionary"
 include "yugioh-prices"
+
+/** Extensions */
+include "extensions:redis"

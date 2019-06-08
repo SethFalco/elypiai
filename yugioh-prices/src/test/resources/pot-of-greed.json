@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "data": {
+    "name": "Pot of Greed",
+    "text": "Draw 2 cards.",
+    "card_type": "spell",
+    "type": null,
+    "family": null,
+    "atk": null,
+    "def": null,
+    "level": null,
+    "property": "Normal"
+  }
+}

@@ -1,19 +1,14 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.yugioh.data.*;
-import com.elypia.elypiai.yugioh.impl.TradingCard;
+import com.elypia.elypiai.yugioh.data.Attribute;
+import com.elypia.elypiai.yugioh.data.MonsterType;
+import com.elypia.elypiai.yugioh.data.Race;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.Collection;
+import java.util.List;
 
 public class Monster extends TradingCard {
-
-	/**
-	 * The pattern used to split he cards types apart
-	 * in order to store them as a {@link List<Race>}.
-	 */
-	private static final Pattern SPLITTER = Pattern.compile("\\s*/\\s*");
 
 	@SerializedName("family")
 	private Attribute attribute;

@@ -1,7 +1,5 @@
 package com.elypia.elypiai.nanowrimo;
 
-import com.elypia.elypiai.nanowrimo.deserializers.DateDeserializer;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
@@ -12,7 +10,7 @@ public class WordCountEntry {
     private int wordcount;
 
     @XmlElement(name = "wcdate")
-    @XmlJavaTypeAdapter(DateDeserializer.class)
+    @XmlJavaTypeAdapter(NanoDateAdapater.class)
     private Date date;
 
     public int getWordcount() {

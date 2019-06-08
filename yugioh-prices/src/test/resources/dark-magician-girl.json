@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "data": {
+    "name": "Dark Magician Girl",
+    "text": "Gains 300 ATK for every \"Dark Magician\" or \"Magician of Black Chaos\" in the GY.",
+    "card_type": "monster",
+    "type": "Spellcaster / Effect",
+    "family": "dark",
+    "atk": 2000,
+    "def": 1700,
+    "level": 6,
+    "property": null
+  }
+}

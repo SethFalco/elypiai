@@ -1,13 +1,16 @@
 package com.elypia.elypiai.urbandictionary;
 
-import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.urbandictionary.impl.IUrbanDictionaryService;
+import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
+import com.elypia.elypiai.common.gson.GsonService;
+import org.slf4j.*;
 import retrofit2.*;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
 
-public class UrbanDictionary {
+public class UrbanDictionary extends ApiWrapper {
+
+	private static final Logger logger = LoggerFactory.getLogger(UrbanDictionary.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -20,21 +23,24 @@ public class UrbanDictionary {
 		try {
 			BASE_URL = new URL("http://api.urbandictionary.com/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error("Failed to initialize UrbanDictionary.", ex);
 		}
 	}
 
-	private IUrbanDictionaryService service;
+	private UrbanDictionaryService service;
 
-	public UrbanDictionary() {
-		this(BASE_URL);
+	public UrbanDictionary(WrapperExtension... exts) {
+		this(BASE_URL, exts);
 	}
 
-	public UrbanDictionary(URL url) {
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(url.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
-
-		service = retrofitBuilder.build().create(IUrbanDictionaryService.class);
+	public UrbanDictionary(URL url, WrapperExtension... exts) {
+        super(exts);
+		service = new Retrofit.Builder()
+			.baseUrl(url)
+			.client(RequestService.withExtensionInterceptor(this))
+			.addConverterFactory(GsonService.getInstance())
+			.build()
+			.create(UrbanDictionaryService.class);
 	}
 
 	/**
@@ -44,8 +50,8 @@ public class UrbanDictionary {
 	 *
 	 * @param term The word or phrase to be defined.
 	 */
-	public RestAction<UrbanResult> define(String term) {
-		Call<UrbanResult> call = service.define(term);
+	public RestAction<DefineResult> define(String term) {
+		Call<DefineResult> call = service.define(term);
 		return new RestAction<>(call);
 	}
 }

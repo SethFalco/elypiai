@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum BroadcasterType {
 
+    UNKNOWN(null),
+
     @SerializedName("partner")
     PARTNER("partner"),
 
@@ -13,22 +15,26 @@ public enum BroadcasterType {
     @SerializedName("")
     NORMAL("");
 
-    private final String NAME;
+    private final String API_NAME;
 
     BroadcasterType(final String name) {
-        NAME = name;
+        API_NAME = name;
     }
 
     public String getName() {
-        return NAME;
+        return API_NAME;
     }
 
     public static BroadcasterType get(String name) {
-        for (BroadcasterType type : values()) {
-            if (type.NAME.equals(name))
+        BroadcasterType[] types = values();
+
+        for (int i = 1; i < types.length; i++) {
+            BroadcasterType type = types[i];
+
+            if (type.API_NAME.equals(name))
                 return type;
         }
 
-        return null;
+        return UNKNOWN;
     }
 }

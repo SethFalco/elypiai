@@ -1,13 +1,16 @@
 package com.elypia.elypiai.yugioh;
 
-import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.yugioh.impl.*;
+import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
+import com.elypia.elypiai.common.gson.GsonService;
+import org.slf4j.*;
 import retrofit2.*;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
 
-public class YuGiOh {
+public class YuGiOh extends ApiWrapper {
+
+	private static final Logger logger = LoggerFactory.getLogger(YuGiOh.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -20,21 +23,24 @@ public class YuGiOh {
 		try {
 			BASE_URL = new URL("http://yugiohprices.com/api/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
-	private IYuGiOhService service;
+	private YuGiOhService service;
 
-	public YuGiOh() {
-		this(BASE_URL);
+	public YuGiOh(WrapperExtension... exts) {
+		this(BASE_URL, exts);
     }
 
-    public YuGiOh(URL url) {
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(url.toString());
-		retrofitBuilder.addConverterFactory(GsonConverterFactory.create());
-
-		service = retrofitBuilder.build().create(IYuGiOhService.class);
+    public YuGiOh(URL url, WrapperExtension... exts) {
+		super(exts);
+		service = new Retrofit.Builder()
+			.baseUrl(url)
+			.client(RequestService.withExtensionInterceptor(this))
+			.addConverterFactory(GsonService.getInstance())
+			.build()
+			.create(YuGiOhService.class);
     }
 
 	/**
@@ -45,8 +51,8 @@ public class YuGiOh {
 	 *
 	 * @param name The YuGiOh card to search up, must match card name exactly.
 	 */
-    public RestAction<? extends TradingCard> getCard(String name) {
-		Call<? extends TradingCard> call = service.getCard(name);
+    public RestAction<TradingCard> getCard(String name) {
+		Call<TradingCard> call = service.getCard(name);
 		return new RestAction<>(call);
 	}
 }

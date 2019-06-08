@@ -1,0 +1,14 @@
+{
+  "status": "success",
+  "data": {
+    "name": "Mirror Force",
+    "text": "When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters.",
+    "card_type": "trap",
+    "type": null,
+    "family": null,
+    "atk": null,
+    "def": null,
+    "level": null,
+    "property": "Normal"
+  }
+}

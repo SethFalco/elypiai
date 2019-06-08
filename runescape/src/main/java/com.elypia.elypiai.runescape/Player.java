@@ -1,12 +1,15 @@
 package com.elypia.elypiai.runescape;
 
-import com.elypia.elypiai.runescape.data.*;
-import com.elypia.elypiai.runescape.deserializers.CommaIntergerDeserializer;
-import com.google.gson.annotations.*;
+import com.elypia.elypiai.common.gson.deserializers.CommaIntegerDeserializer;
+import com.elypia.elypiai.runescape.data.Skill;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class Player {
 
@@ -31,7 +34,7 @@ public class Player {
 	private int questsNotStarted;
 
 	@SerializedName("rank")
-	@JsonAdapter(CommaIntergerDeserializer.class)
+	@JsonAdapter(CommaIntegerDeserializer.class)
 	private int rank;
 
 	@SerializedName("combatlevel")
@@ -45,9 +48,6 @@ public class Player {
 
 	@SerializedName("skillvalues")
 	private Collection<PlayerStat> stats;
-
-	@SerializedName("error")
-	private RuneScapeError error;
 
 	/**
 	 * @return	Get the leaderboard ranking url for this user.
@@ -102,8 +102,7 @@ public class Player {
 	}
 
 	/**
-	 * @return	Returns the total xp formatted with commas
-	 * 			as a String.
+	 * @return	Returns the total xp formatted as a String.
 	 */
 	public String getTotalXpString() {
 		return String.format("%,d", totalXp);
@@ -146,10 +145,6 @@ public class Player {
 
 	public boolean isLoggedIn() {
 		return loggedIn;
-	}
-
-	public RuneScapeError getError() {
-		return error;
 	}
 
 	public List<Activity> getActivities() {

@@ -1,0 +1,404 @@
+{
+  "total": 15000,
+  "cached_since": "2019-06-01T15:23:02+00:00",
+  "entries": [
+    {
+      "rank": 1,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "PenDora",
+        "level": 100,
+        "class": "Scion",
+        "id": "cc248e0d23c849d71b40379d82dfc19b200bdb7b8ac63322f06de6483aaca5ea",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Jin_melike",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "TaylorSwiftVEVO",
+        "level": 100,
+        "class": "Scion",
+        "id": "b23f488245ffebc87616c9acf76fbbb3d534e0490a8b30a9be48f8fcc3941be0",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "PeakingDuck",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        },
+        "twitch": {
+          "name": "peakingduck"
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Dear_Santa_UA",
+        "level": 100,
+        "class": "Occultist",
+        "id": "41240e2f9f7a56ebb409d6060619a14ffba154c61a84ef769bc9758361351ae8",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Valerchik",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "VaalMulliSpark",
+        "level": 100,
+        "class": "Scion",
+        "id": "7580516c6997a4401ea0363a0cca9e83ae50e475fe437fedc51848f322c98b6a",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "spinzter",
+        "realm": "pc",
+        "challenges": {
+          "total": 17
+        },
+        "twitch": {
+          "name": "gourangaa"
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Sliqs",
+        "level": 100,
+        "class": "Ranger",
+        "id": "f73e30b470c74d3a4ebd3e3ee4e4410ac9164f95f7c1876d32e2c74a5f861a6c",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Redhill",
+        "realm": "pc",
+        "challenges": {
+          "total": 19
+        },
+        "twitch": {
+          "name": "sliqs_"
+        }
+      }
+    },
+    {
+      "rank": 6,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "xVisco",
+        "level": 100,
+        "class": "Templar",
+        "id": "b96614016b65e349212a77a9996edc34faa3c164529141064a2cef24ca132277",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "xVisco",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 7,
+      "dead": false,
+      "online": true,
+      "character": {
+        "name": "xdukanx",
+        "level": 100,
+        "class": "Chieftain",
+        "id": "3fd75b1d62ed688b6fe6facf824a2bc95cf3546eeeb961ab45e3d32f8cb2bba8",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "danieldukan",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Gigaways",
+        "level": 100,
+        "class": "Ranger",
+        "id": "c894d59151e36fdf72651efc5ea306dda3b64dbe4d686b05c73dfce8eeb7f9ba",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "gigawayss",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 9,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "SasusiaTesusia",
+        "level": 100,
+        "class": "Pathfinder",
+        "id": "c93359f2d95bbdbf14ad0adf3f54868fb08a98bba6a40dd0c7bf7c17216cecdb",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "zeldzioszka",
+        "realm": "pc",
+        "challenges": {
+          "total": 5
+        },
+        "twitch": {
+          "name": "lancmis2"
+        }
+      }
+    },
+    {
+      "rank": 10,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Dollarmaker",
+        "level": 100,
+        "class": "Raider",
+        "id": "40cc6c38083852a86f5f9f7cc6c3a52aacb792221e09ea70a6994a55f8e3b342",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Juhazzz",
+        "realm": "pc",
+        "challenges": {
+          "total": 31
+        },
+        "twitch": {
+          "name": "jonjonnz"
+        }
+      }
+    },
+    {
+      "rank": 11,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Ghiaurul",
+        "level": 100,
+        "class": "Inquisitor",
+        "id": "0c617da80d97e447c81d828bb326fa421dfce722954431c4fcd0d222bbbb5cc9",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Runner84",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 12,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "ShavronnesBastard",
+        "level": 100,
+        "class": "Witch",
+        "id": "2ea3fb2faa289f2d3ce6a9d28f6f1870cc00664ac2a8b3a6ce686a1f2028b2f3",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Nurgus",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 13,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Flammenausbreitung",
+        "level": 100,
+        "class": "Assassin",
+        "id": "646568362606e049e328d7155fa602525448d82e67ad400a58fc2d3764566db2",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "bluegray",
+        "realm": "pc",
+        "challenges": {
+          "total": 4
+        }
+      }
+    },
+    {
+      "rank": 14,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "MiningForAWin",
+        "level": 100,
+        "class": "Necromancer",
+        "id": "e4aeeb67a18364b79e91540c6cd51f378ccda3efbf99e700b29a0bc21474bdde",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Mohun",
+        "realm": "pc",
+        "challenges": {
+          "total": 18
+        },
+        "twitch": {
+          "name": "wolfsgaming"
+        }
+      }
+    },
+    {
+      "rank": 15,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "___Feanor___",
+        "level": 100,
+        "class": "Trickster",
+        "id": "5f24b37af8e2daf00afb6f6fd275b92e958b42e2d5c43585751b51fc5085737e",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "MagicalPowers",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 16,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "BLASTINE",
+        "level": 100,
+        "class": "Witch",
+        "id": "0791844bae0e89de2bf4af7068d36d5e67c9ae8b1a0d199666ace678aef9652e",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "fireballz",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 17,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "MrsBBQ",
+        "level": 100,
+        "class": "Scion",
+        "id": "dc0ee8fe807ec26fcf166803e8af6d524c13b19ce8106f4a5cd3ce48344cb10c",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "ywsandcj",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 18,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "StickyTick",
+        "level": 100,
+        "class": "Scion",
+        "id": "8d7a83626224d7039adbd23fe9247e5d170760139e9d58d848a10b2a6d5c8bca",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Japichin",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 19,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Aelurora",
+        "level": 100,
+        "class": "Scion",
+        "id": "c25f23a7aeb3a5c752cb71bf545cbc3971925cd8df32637c0fdcf58f6d7f86d9",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "thanatanthrope",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    },
+    {
+      "rank": 20,
+      "dead": false,
+      "online": false,
+      "character": {
+        "name": "Circe_Roc",
+        "level": 100,
+        "class": "Witch",
+        "id": "11eb46dc8ae775764e86509c76ddb419c53dcd602019d5080a9264915eb1a90e",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "r5g6h3s7",
+        "realm": "pc",
+        "challenges": {
+          "total": 0
+        }
+      }
+    }
+  ]
+}

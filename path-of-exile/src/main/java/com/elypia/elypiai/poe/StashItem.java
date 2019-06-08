@@ -1,6 +1,6 @@
 package com.elypia.elypiai.poe;
 
-import com.elypia.elypiai.poe.deserializers.JoinedStringDeserializer;
+import com.elypia.elypiai.common.gson.deserializers.JoinedStringDeserializer;
 import com.elypia.elypiai.poe.deserializers.StashItemNameDeserializer;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;

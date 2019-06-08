@@ -2,6 +2,7 @@ package com.elypia.elypiai.runescape.data;
 
 public enum ItemCategory {
 
+	UNKNOWN(-1),
 	MISCELLANEOUS(0),
 	AMMO(1),
 	ARROWS(2),

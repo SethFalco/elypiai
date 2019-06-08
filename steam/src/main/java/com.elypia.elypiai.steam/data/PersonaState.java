@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum PersonaState {
 
+	UNKNOWN,
+
 	@SerializedName("0")
 	OFFLINE,
 

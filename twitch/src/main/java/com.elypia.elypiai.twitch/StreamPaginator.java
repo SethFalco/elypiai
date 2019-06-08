@@ -1,13 +1,13 @@
 package com.elypia.elypiai.twitch;
 
-import com.elypia.elypiai.restutils.RestAction;
-import com.elypia.elypiai.restutils.impl.IRestPaginator;
+import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.twitch.entity.Stream;
 import retrofit2.Call;
 
 import java.io.IOException;
 import java.util.List;
 
-public class StreamPaginator implements IRestPaginator<Stream> {
+public class StreamPaginator implements RestPaginator<Stream> {
 
     private Twitch twitch;
     private TwitchQuery query;
@@ -22,7 +22,7 @@ public class StreamPaginator implements IRestPaginator<Stream> {
 
     @Override
     public List<Stream> next() throws IOException {
-        Call<StreamPage> streamers = twitch.getService().getStreams(
+        Call<TwitchPage<Stream>> streamers = twitch.getService().getStreams(
             query.getUserIds(),
             query.getUsernames(),
             query.getGames(),
@@ -30,8 +30,8 @@ public class StreamPaginator implements IRestPaginator<Stream> {
             cursor
         );
 
-        StreamPage page = new RestAction<>(streamers).complete();
-        List<Stream> streams = page.getStreamers();
+        TwitchPage<Stream> page = new RestAction<>(streamers).completeGet();
+        List<Stream> streams = page.getItems();
         cursor = page.getCursor();
 
         return !streams.isEmpty() ? streams : null;

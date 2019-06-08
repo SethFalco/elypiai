@@ -1,7 +1,6 @@
 package com.elypia.elypiai.yugioh;
 
 import com.elypia.elypiai.yugioh.data.MagicType;
-import com.elypia.elypiai.yugioh.impl.TradingCard;
 import com.google.gson.annotations.SerializedName;
 
 public class MagicCard extends TradingCard {

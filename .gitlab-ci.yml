@@ -1,43 +1,37 @@
 image: gradle:jdk11-slim
 
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+  paths:
+    - .gradle
+    - build
 
 build:
   stage: build
   script: gradle --build-cache assemble
-  cache:
-    key: $CI_PROJECT_ID
-    paths:
-      - .gradle
-      - build
 
 test:
   stage: test
   script:
     - gradle --build-cache check
-    - gradle codacyCoverage
-  cache:
-    key: $CI_JOB_NAME
-    paths:
-      - .gradle
-      - build
+    - gradle jacocoReport
 
 bintray:
   only:
-    - master
+    - tags
   stage: deploy
   script: gradle bintrayUpload
   cache:
-    key: $CI_PROJECT_ID
     policy: pull
-    paths:
-      - .gradle
-      - build
 
 pages:
   only:
-    - master
+    - tags
   stage: deploy
   script:
     - gradle globalJavadoc
@@ -46,7 +40,6 @@ pages:
     paths:
       - public
   cache:
-    key: $CI_PROJECT_ID
     policy: pull
     paths:
       - build/docs/

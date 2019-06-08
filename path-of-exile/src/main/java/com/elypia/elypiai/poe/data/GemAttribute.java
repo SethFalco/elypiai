@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum GemAttribute {
 
+	UNKNOWN(GemColor.UNKNOWN, null),
+
 	@SerializedName("S")
 	STRENGTH(GemColor.RED, "S"),
 
@@ -21,12 +23,20 @@ public enum GemAttribute {
 		NAME = name;
 	}
 
+	public GemColor getColor() {
+		return COLOR;
+	}
+
+	public String getName() {
+		return NAME;
+	}
+
 	public static GemAttribute get(String apiName) {
 		for (GemAttribute attr : GemAttribute.values()) {
 			if (attr.NAME.equals(apiName))
 				return attr;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

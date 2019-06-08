@@ -1,0 +1,26 @@
+{
+  "data": [
+    {
+      "id": "89672168",
+      "login": "jenthebluepanda",
+      "display_name": "JenTheBluePanda",
+      "type": "",
+      "broadcaster_type": "affiliate",
+      "description": "Fun is what matters! ^-^",
+      "profile_image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/78145658-f3d7-4052-8e82-42bafc7313f6-profile_image-300x300.png",
+      "offline_image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/af3359e6-3eb0-479f-863d-444643fcda6c-channel_offline_image-1920x1080.png",
+      "view_count": 3342
+    },
+    {
+      "id": "44635243",
+      "login": "sethiiiii",
+      "display_name": "Sethiiiii",
+      "type": "",
+      "broadcaster_type": "",
+      "description": "Testing stuffi!!!!!!!",
+      "profile_image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/a91170f3-b6b8-458b-bf54-7bee1647c100-profile_image-300x300.png",
+      "offline_image_url": "",
+      "view_count": 635
+    }
+  ]
+}

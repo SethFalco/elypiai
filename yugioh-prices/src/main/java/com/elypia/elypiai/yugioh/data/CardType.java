@@ -9,6 +9,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum CardType {
 
+	UNKNOWN("Unknown"),
+
 	@SerializedName("monster")
 	MONSTER("monster"),
 
@@ -34,6 +36,6 @@ public enum CardType {
 				return type;
 		}
 
-		return null;
+		return UNKNOWN;
 	}
 }

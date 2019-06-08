@@ -1,17 +1,22 @@
 package com.elypia.elypiai.nanowrimo;
 
-import com.elypia.elypiai.nanowrimo.data.WordCountResponse;
-import com.elypia.elypiai.nanowrimo.impl.INanowrimoService;
-import com.elypia.elypiai.restutils.RestAction;
-import org.apache.commons.codec.digest.DigestUtils;
+import com.elypia.elypiai.common.core.*;
+import com.elypia.elypiai.common.core.ex.FriendlyException;
+import com.elypia.elypiai.common.core.ext.WrapperExtension;
+import com.elypia.elypiai.nanowrimo.data.NanoError;
+import com.elypia.elypiai.nanowrimo.impl.NanowrimoService;
+import org.slf4j.*;
 import retrofit2.*;
 import retrofit2.converter.jaxb.JaxbConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-import java.io.IOException;
+import javax.xml.bind.*;
 import java.net.*;
+import java.util.Objects;
 
-public class Nanowrimo {
+public class Nanowrimo extends ApiWrapper {
+
+	private static final Logger logger = LoggerFactory.getLogger(Nanowrimo.class);
 
 	/**
 	 * The default URL we call too. <br>
@@ -24,22 +29,32 @@ public class Nanowrimo {
 		try {
 			BASE_URL = new URL("https://nanowrimo.org/");
 		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
+			logger.error(Elypiai.MALFORMED, ex);
 		}
 	}
 
-	private INanowrimoService service;
+	private NanowrimoService service;
 
-	public Nanowrimo() {
-		this(BASE_URL);
+	public Nanowrimo(WrapperExtension... exts) {
+		this(BASE_URL, exts);
 	}
 
-	public Nanowrimo(URL baseUrl) {
-		Retrofit.Builder retrofitBuilder = new Retrofit.Builder().baseUrl(baseUrl.toString());
-		retrofitBuilder.addConverterFactory(JaxbConverterFactory.create());
-		retrofitBuilder.addConverterFactory(ScalarsConverterFactory.create());
+	public Nanowrimo(URL baseUrl, WrapperExtension... exts) {
+		super(exts);
 
-		service = retrofitBuilder.build().create(INanowrimoService.class);
+		try {
+			JAXBContext context = JAXBContext.newInstance(Writer.class, WordCountEntry.class);
+
+			service = new Retrofit.Builder()
+				.baseUrl(baseUrl)
+				.client(RequestService.withExtensionInterceptor(this))
+				.addConverterFactory(JaxbConverterFactory.create(context))
+				.addConverterFactory(ScalarsConverterFactory.create())
+				.build()
+				.create(NanowrimoService.class);
+		} catch (JAXBException ex) {
+			logger.error("Failed to create JAXBContext", ex);
+		}
 	}
 
 	public RestAction<Writer> getUser(String name) {
@@ -47,21 +62,27 @@ public class Nanowrimo {
     }
 
 	public RestAction<Writer> getUser(String name, boolean history) {
-		name = name.replace(" ", "-");
-		Call<Writer> call = (history) ? service.getUserHistory(name) : service.getUser(name);
-		return new RestAction<>(call);
-	}
+		Objects.requireNonNull(name);
 
-	public WordCountResponse setWordCount(String secret, String name, int wordCount) throws IOException {
-		secret = DigestUtils.sha1Hex(secret + name + wordCount);
-		Call<String> call = service.setWordCount(secret, name, wordCount);
-		RestAction<String> action = new RestAction<>(call);
-		String result = action.complete();
+		String requestName = name.replace(" ", "-");
+		Call<Writer> call = (history) ? service.getUserHistory(requestName) : service.getUser(requestName);
+		RestAction<Writer> action = new RestAction<>(call);
 
-		// Until an event starts or there is documentation
-		if (result != null)
-			throw new RuntimeException("Seth! Come update this now that we get a positive result!");
+		action.pipe(writer -> {
+			NanoError error = writer.getError();
 
-        return WordCountResponse.get(action.getErrorBody());
+			if (error == null)
+				return;
+
+			String message = error.getMessage();
+
+			switch (error) {
+				case UNKNOWN: throw new FriendlyException(message, "An unknown error occured.", false);
+				case USER_DOES_NOT_EXIST: throw new FriendlyException(message, "There is no user with that name.", true);
+				case USER_DOES_NOT_HAVE_A_CURRENT_NOVEL: throw new FriendlyException(message, "This user currently doesn't have a novel.", true);
+			}
+		});
+
+		return action;
 	}
 }

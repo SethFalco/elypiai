@@ -1,0 +1,14 @@
+{
+  "data":
+  [{
+    "id": "1234",
+    "login": "1234login",
+    "display_name": "hiiam1234",
+    "type": "staff",
+    "broadcaster_type": "",
+    "description": "1234 is me",
+    "profile_image_url": "https://link/to/pic/1234.jpg",
+    "offline_image_url": "https://link/to/offline_pic/1234_off.jpg",
+    "view_count": 3455
+  }]
+}

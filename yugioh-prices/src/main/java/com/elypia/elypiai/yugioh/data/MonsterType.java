@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public enum MonsterType {
 
+    UNKNOWN("Unknown"),
+
     @SerializedName("Normal")
     NORMAL("Normal"),
 
@@ -37,6 +39,6 @@ public enum MonsterType {
                 return type;
         }
 
-        return null;
+        return UNKNOWN;
     }
 }

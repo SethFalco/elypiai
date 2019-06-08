@@ -1,7 +1,8 @@
 package com.elypia.elypiai.osu.impl;
 
-import com.elypia.elypiai.osu.deserializers.BitBooleanDeserializer;
-import com.google.gson.annotations.*;
+import com.elypia.elypiai.common.gson.deserializers.BitBooleanDeserializer;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 public abstract class OsuScore {
 

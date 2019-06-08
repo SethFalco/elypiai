@@ -1,3 +1,5 @@
 dependencies {
-    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation project(":common:core")
+    implementation project(":common:gson")
+    testImplementation project(":common:test")
 }
