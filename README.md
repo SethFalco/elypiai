@@ -68,5 +68,3 @@ make sure to get it sorted.
 [twitch]: https://dev.twitch.tv/docs
 [urbandictionary]: http://api.urbandictionary.com/v0/define?term=api
 [yugioh-prices]: http://docs.yugiohprices.apiary.io/
-
-[alexis]: https://discordapp.com/oauth2/authorize?client_id=230716794212581376&scope=bot "Invite Alexis"
