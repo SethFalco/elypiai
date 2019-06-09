@@ -13,12 +13,12 @@ cache:
 
 build:
   stage: build
-  script: gradle --build-cache assemble
+  script: gradle --build-cache --full-stacktrace assemble
 
 test:
   stage: test
   script:
-    - gradle --build-cache check
+    - gradle --build-cache --full-stacktrace check
     - gradle jacocoReport
     - cat build/reports/jacoco/jacocoReport/html/index.html
 
@@ -27,8 +27,6 @@ bintray:
     - tags
   stage: deploy
   script: gradle bintrayUpload
-  cache:
-    policy: pull
 
 pages:
   only:
