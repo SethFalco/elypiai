@@ -42,10 +42,11 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
-#################
-# Configuration #
-#################
+###########
+# Elypiai #
+###########
 
+# Configuration
 *.toml
 
 # IntelliJ
