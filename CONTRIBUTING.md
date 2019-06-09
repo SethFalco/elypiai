@@ -70,7 +70,7 @@ users will be interfacing with and will expose the methods in the service, and p
 classes so that they can either `#queue` (async) or `#complete` (non-async) the request.
 
 #### This to note:
-* The wrapper should always take a first parameter of `URL` with a hard-coded `BASE_URL` property at. This is
+* The wrapper should always take a first parameter of `URL` with a hard-coded `BASE_URL` property. This is
 because for testing we want to be able to replace this `URL` with our own one.
 * The wrapper should avoid using the `Call<>` objects returned by the service where possible, and instead opt
 to create a `RestAction<>` which is an abstraction of the `Call<>` object to either perform the request async or
@@ -79,8 +79,8 @@ non-async, as well as execute pipes.
 [The wrapper that users interface with.][ud-wrapper]
 
 This demonstrates a minimal usage of Elypiai for a small API, there's little magic added above what other libraries
-already provide, in fact most of these instructions until the last step weren't using anything in Elypiai yet.
-The important part is was using the Elypiai classes/interfaces which gives users the control to add pipes and
+already provide, in fact most of these instructions until the last step was just basic Retrofit and Gson usage.  
+The important part is was using the Elypiai classes/interfaces which gives users the control to add pipes,
 extensions, and share resources between wrappers.
 
 [retrofit]: https://github.com/square/retrofit "Retrofit on GitHub"
@@ -89,6 +89,6 @@ extensions, and share resources between wrappers.
 [ud]: https://www.urbandictionary.com "UrbanDictionary"
 [ud-get]: http://api.urbandictionary.com/v0/define?term=seth "GET /define?term=azba"
 [define-result]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/Definition.java
-[define-result-set]: https://gitlab/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/DefineResult.java
+[define-result-set]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/DefineResult.java
 [ud-service]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/UrbanDictionaryService.java
 [ud-wrapper]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/UrbanDictionary.java
