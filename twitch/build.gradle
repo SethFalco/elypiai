@@ -1,9 +1,3 @@
-repositories {
-    maven {
-        url  "https://dl.bintray.com/elypia/webhooker"
-    }
-}
-
 dependencies {
     api project(":common:core")
     implementation project(":common:gson")
