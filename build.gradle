@@ -71,7 +71,7 @@ configure(publishedProjects) {
         // Testing
         testImplementation "org.junit.jupiter:junit-jupiter:5.4.2"
         testImplementation "org.mockito:mockito-core:3.0.0"
-        testImplementation "com.squareup.okhttp3:mockwebserver:4.0.0"
+        testImplementation "com.squareup.okhttp3:mockwebserver:3.14.2"
     }
 
     /** Testing */
