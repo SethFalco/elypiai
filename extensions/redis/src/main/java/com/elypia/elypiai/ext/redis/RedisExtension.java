@@ -23,6 +23,7 @@ public class RedisExtension implements WrapperExtension {
 
     public RedisExtension(Jedis jedis, int ttl) {
         this.jedis = jedis;
+        this.ttl = ttl;
     }
 
     /**

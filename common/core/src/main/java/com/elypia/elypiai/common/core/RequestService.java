@@ -15,6 +15,10 @@ public class RequestService {
      * This should be used when some runtime modifications
      * are required such as custom inceptors.
      *
+     * This doesn't include the {@link ExtensionInterceptor} itself
+     * as inceptor order might matter so each implementation should
+     * add it it's self.
+     *
      * @return Get a builder that will share the same core
      * as the global {@link OkHttpClient} client.
      */
