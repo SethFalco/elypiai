@@ -7,8 +7,8 @@ allprojects() {
     apply plugin: "jacoco"
 
     group = "com.elypia.elypiai"
-    version = "2.2.0"
-    description = "A clean abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
+    version = "2.2.1"
+    description = "A abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
 
     ext {
         repoUrl = "https://gitlab.com/Elypia/elypiai"
@@ -52,6 +52,7 @@ def publishedProjects = [
 configure(publishedProjects) {
     apply plugin: "java-library"
     apply plugin: "maven-publish"
+    apply plugin: "maven"
     apply plugin: "com.jfrog.bintray"
 
     sourceCompatibility = 11
@@ -68,9 +69,9 @@ configure(publishedProjects) {
         testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
         // Testing
-        testImplementation "org.junit.jupiter:junit-jupiter:5.4.2"
-        testImplementation "org.mockito:mockito-core:2.28.2"
-        testImplementation "com.squareup.okhttp3:mockwebserver:3.12.0"
+        testImplementation "org.junit.jupiter:junit-jupiter:5.5.0"
+        testImplementation "org.mockito:mockito-core:3.0.0"
+        testImplementation "com.squareup.okhttp3:mockwebserver:4.0.0"
     }
 
     /** Testing */

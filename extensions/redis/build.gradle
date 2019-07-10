@@ -1,5 +1,5 @@
 dependencies {
-    implementation project(":common:core")
+    api project(":common:core")
     testImplementation project(":common:test")
     testImplementation project(":osu")
 
