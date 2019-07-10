@@ -12,20 +12,21 @@ public interface TwitchListener {
     /**
      * When a user follows another user.
      *
-     * @param event
+     * @param event Information about a follow event on Twitch.
      */
     void onFollowEvent(FollowEvent event);
 
     /**
      * When the stream information changes.
      *
-     * @param event
+     * @param event Information on the stream event,
+     *              the stream is null if the user went offline.
      */
     void onStreamUpdateEvent(StreamUpdateEvent event);
 
     /**
      * When a users information changes.
-     * @param event
+     * @param event Information on a user's profile update, only includes new data.
      */
     void onUserUpdateEvent(UserUpdatedEvent event);
 

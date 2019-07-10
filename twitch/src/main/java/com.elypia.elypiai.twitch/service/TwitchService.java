@@ -39,7 +39,7 @@ public interface TwitchService {
      *              in a multi-page response. The cursor value specified
      *              here is from the pagination response field of a prior query.
      * @param first Number of values to be returned per page. Limit: 100. Default: 20.
-     * @return
+     * @return A page of webhook subscriptions.
      */
     @GET("webhooks/subscriptions")
     Call<TwitchPage<WebhookSubscription>> getWebhookSubscriptions(

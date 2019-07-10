@@ -2,14 +2,11 @@ package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.common.gson.deserializers.CommaIntegerDeserializer;
 import com.elypia.elypiai.runescape.data.Skill;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Player {
 
@@ -58,6 +55,7 @@ public class Player {
 	}
 
 	/**
+	 * @param username Get the leaderboard url if this player was compared to another player.
 	 * @return	Get the leaderboard ranking url for this user
 	 * 			compared to the username provided.
 	 */

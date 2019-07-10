@@ -47,6 +47,7 @@ public class Steam extends ApiWrapper {
      * or obtaining stats.
      *
      * @param apiKey API key obtained from Steam.
+     * @param exts Extensions to add to this wrapper.
      */
 
     public Steam(String apiKey, WrapperExtension... exts) {
@@ -112,8 +113,8 @@ public class Steam extends ApiWrapper {
      * when RecentPlaytime is 0, from TotalPlaytime.
      *
      * @param id Steam user to obtain library for.
+     * @return An rest action which will return a list of steam games.
      */
-
     public RestAction<List<SteamGame>> getLibrary(long id) {
         return getLibrary(id, true);
     }

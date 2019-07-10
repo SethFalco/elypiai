@@ -63,6 +63,7 @@ public class RuneScape extends ApiWrapper {
 	 * and the rest of the object will be effectively null.
 	 *
 	 * @param username The username of the player to get.
+	 * @return A rest action represeting this HTTP request.
 	 */
 	public RestAction<Player> getUser(String username) {
 		Call<Player> call = service.getUser(username);

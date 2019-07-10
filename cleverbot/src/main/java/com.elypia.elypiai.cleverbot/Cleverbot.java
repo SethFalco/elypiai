@@ -37,6 +37,10 @@ public class Cleverbot extends ApiWrapper {
 	private final String API_KEY;
 	private final CleverbotService service;
 
+	/**
+	 * @param apiKey API key recieved upon signing up.
+	 * @param exts Any extensions to add to this wrapper.
+	 */
 	public Cleverbot(String apiKey, WrapperExtension... exts) {
 		this(BASE_URL, apiKey, exts);
 	}
@@ -46,7 +50,9 @@ public class Cleverbot extends ApiWrapper {
 	 * to the cleverbot API, apikey can be obtained from
 	 * cleverbot website for free.
 	 *
-	 * @param	apiKey 	API key recieved upon signing up.
+	 * @param baseUrl The URL to send HTTP requests too.
+	 * @param apiKey API key recieved upon signing up.
+	 * @param exts Any extensions to add to this wrapper.
 	 * @see <a href="https://www.cleverbot.com/api/">cleverbot</a>
 	 */
 	public Cleverbot(URL baseUrl, String apiKey, WrapperExtension... exts) {
@@ -84,8 +90,9 @@ public class Cleverbot extends ApiWrapper {
 	 * on the Map used internally in this API, encouraged for longer
 	 * conversations you may wish to continue after retarting the application.
 	 *
-	 * @param cs		The Cleverbot state from previously.
-	 * @param input		The text to send to cleverbot.
+	 * @param cs The Cleverbot state from previously.
+	 * @param input	The text to send to cleverbot.
+	 * @return A rest action that represents this HTTP request.
 	 */
 	public RestAction<CleverResponse> say(String input, String cs) {
 		return say(input, cs, new HashMap<>());
