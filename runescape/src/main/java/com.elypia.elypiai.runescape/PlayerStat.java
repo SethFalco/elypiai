@@ -2,8 +2,7 @@ package com.elypia.elypiai.runescape;
 
 import com.elypia.elypiai.runescape.data.Skill;
 import com.google.gson.annotations.SerializedName;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.slf4j.*;
 
 public class PlayerStat {
 
@@ -27,7 +26,7 @@ public class PlayerStat {
 			return level;
 		}
 
-		return RuneScape.parseXpAsLevel(getXp());
+		return RuneScape.getLevelFromXp(getXp());
 	}
 
 	/**

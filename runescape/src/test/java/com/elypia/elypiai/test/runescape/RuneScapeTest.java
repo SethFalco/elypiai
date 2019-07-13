@@ -170,80 +170,80 @@ public class RuneScapeTest {
 	@Test
 	public void levelToXp() {
 		assertAll("Level to XP",
-			() -> assertEquals(0, RuneScape.parseLevelAsXp(1)),
-			() -> assertEquals(1154, RuneScape.parseLevelAsXp(10)),
-			() -> assertEquals(4470, RuneScape.parseLevelAsXp(20)),
-			() -> assertEquals(13363, RuneScape.parseLevelAsXp(30)),
-			() -> assertEquals(101333, RuneScape.parseLevelAsXp(50)),
-			() -> assertEquals(737627, RuneScape.parseLevelAsXp(70)),
-			() -> assertEquals(1986068, RuneScape.parseLevelAsXp(80)),
-			() -> assertEquals(13034431, RuneScape.parseLevelAsXp(99)),
-			() -> assertEquals(14391160, RuneScape.parseLevelAsXp(100)),
-			() -> assertEquals(104273167, RuneScape.parseLevelAsXp(120)),
-			() -> assertEquals(188884740, RuneScape.parseLevelAsXp(126))
+			() -> assertEquals(0, RuneScape.getXpFromLevel(1)),
+			() -> assertEquals(1154, RuneScape.getXpFromLevel(10)),
+			() -> assertEquals(4470, RuneScape.getXpFromLevel(20)),
+			() -> assertEquals(13363, RuneScape.getXpFromLevel(30)),
+			() -> assertEquals(101333, RuneScape.getXpFromLevel(50)),
+			() -> assertEquals(737627, RuneScape.getXpFromLevel(70)),
+			() -> assertEquals(1986068, RuneScape.getXpFromLevel(80)),
+			() -> assertEquals(13034431, RuneScape.getXpFromLevel(99)),
+			() -> assertEquals(14391160, RuneScape.getXpFromLevel(100)),
+			() -> assertEquals(104273167, RuneScape.getXpFromLevel(120)),
+			() -> assertEquals(188884740, RuneScape.getXpFromLevel(126))
 		);
 	}
 
 	@Test
 	public void xpToLevel() {
 		assertAll("XP to Level",
-			() -> assertEquals(1, RuneScape.parseXpAsLevel(0)),
-			() -> assertEquals(10, RuneScape.parseXpAsLevel(1154)),
-			() -> assertEquals(20, RuneScape.parseXpAsLevel(4470)),
-			() -> assertEquals(30, RuneScape.parseXpAsLevel(13363)),
-			() -> assertEquals(50, RuneScape.parseXpAsLevel(101333)),
-			() -> assertEquals(70, RuneScape.parseXpAsLevel(737627)),
-			() -> assertEquals(90, RuneScape.parseXpAsLevel(5346332)),
-			() -> assertEquals(99, RuneScape.parseXpAsLevel(13034431)),
-			() -> assertEquals(100, RuneScape.parseXpAsLevel(14391160)),
-			() -> assertEquals(120, RuneScape.parseXpAsLevel(104273167)),
-			() -> assertEquals(126, RuneScape.parseXpAsLevel(188884740))
+			() -> assertEquals(1, RuneScape.getLevelFromXp(0)),
+			() -> assertEquals(10, RuneScape.getLevelFromXp(1154)),
+			() -> assertEquals(20, RuneScape.getLevelFromXp(4470)),
+			() -> assertEquals(30, RuneScape.getLevelFromXp(13363)),
+			() -> assertEquals(50, RuneScape.getLevelFromXp(101333)),
+			() -> assertEquals(70, RuneScape.getLevelFromXp(737627)),
+			() -> assertEquals(90, RuneScape.getLevelFromXp(5346332)),
+			() -> assertEquals(99, RuneScape.getLevelFromXp(13034431)),
+			() -> assertEquals(100, RuneScape.getLevelFromXp(14391160)),
+			() -> assertEquals(120, RuneScape.getLevelFromXp(104273167)),
+			() -> assertEquals(126, RuneScape.getLevelFromXp(188884740))
 		);
 	}
 
 	@Test
 	public void xpToLevelNonPrecise() {
 		assertAll("XP to Level with Non-Precise Amounts",
-			() -> assertEquals(1, RuneScape.parseXpAsLevel(1)),
-			() -> assertEquals(1, RuneScape.parseXpAsLevel(50)),
-			() -> assertEquals(1, RuneScape.parseXpAsLevel(82)),
-			() -> assertEquals(36, RuneScape.parseXpAsLevel(25000)),
-			() -> assertEquals(65, RuneScape.parseXpAsLevel(471000)),
-			() -> assertEquals(98, RuneScape.parseXpAsLevel(13034430))
+			() -> assertEquals(1, RuneScape.getLevelFromXp(1)),
+			() -> assertEquals(1, RuneScape.getLevelFromXp(50)),
+			() -> assertEquals(1, RuneScape.getLevelFromXp(82)),
+			() -> assertEquals(36, RuneScape.getLevelFromXp(25000)),
+			() -> assertEquals(65, RuneScape.getLevelFromXp(471000)),
+			() -> assertEquals(98, RuneScape.getLevelFromXp(13034430))
 		);
 	}
 
 	@Test
 	public void levelTooHigh() {
-		assertEquals(-1, RuneScape.parseLevelAsXp(Integer.MAX_VALUE));
+		assertEquals(-1, RuneScape.getXpFromLevel(Integer.MAX_VALUE));
 	}
 
 	@Test
 	public void illegalLevelArguments() {
 		assertAll("Exceptions from Illegal Level Arguments",
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseLevelAsXp(0)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseLevelAsXp(-1)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseLevelAsXp(-99)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseLevelAsXp(-126)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseLevelAsXp(-999)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseLevelAsXp(Integer.MIN_VALUE))
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(0)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-1)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-99)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-126)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-999)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(Integer.MIN_VALUE))
 		);
 	}
 
 	@Test
 	public void illegalXpArguments() {
 		assertAll("Exceptions from Illegal XP Arguments",
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseXpAsLevel(-1)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseXpAsLevel(-1000)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseXpAsLevel(-999999)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseXpAsLevel(-2141724413)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.parseXpAsLevel(Long.MIN_VALUE))
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-1)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-1000)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-999999)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-2141724413)),
+			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(Long.MIN_VALUE))
 		);
 	}
 
 	@Test
 	public void xpToLevelLoopTest() {
-		assertTimeout(ofSeconds(30), () -> RuneScape.parseXpAsLevel(Long.MAX_VALUE));
+		assertTimeout(ofSeconds(30), () -> RuneScape.getLevelFromXp(Long.MAX_VALUE));
 	}
 
 	@Test

@@ -81,14 +81,14 @@ public class RuneScape extends ApiWrapper {
      * @param	xp      The xp to convert to level.
      * @return	        The level a player would be with the XP provided.
      */
-	public static int parseXpAsLevel(long xp) {
+	public static int getLevelFromXp(long xp) {
 		if (xp < 0)
-			throw new IllegalArgumentException("XP (long) can not be of a negative value.");
+			throw new IllegalArgumentException("XP can not be of a negative value.");
 
 		int level = 1;
 		long result;
 
-		while (xp >= (result = parseLevelAsXp(level + 1))) {
+		while (xp >= (result = getXpFromLevel(level + 1))) {
 			if (result == -1)
 				break;
 
@@ -106,9 +106,9 @@ public class RuneScape extends ApiWrapper {
 	 * @param   level	The level to convert to XP.
 	 * @return			The XP required to attain this level.
 	 */
-	public static long parseLevelAsXp(int level) {
+	public static long getXpFromLevel(int level) {
 		if (level < 1)
-			throw new IllegalArgumentException("Level (int) can not be zero or a negative value.");
+			throw new IllegalArgumentException("Level can not be zero or a negative value.");
 
 		double xp = 0;
 
