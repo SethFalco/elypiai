@@ -1,3 +1,19 @@
+/*
+ * Copyright 2019-2019 Elypia CIC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 plugins {
     id "com.jfrog.bintray" version "1.8.4" apply false
 }
@@ -6,20 +22,22 @@ allprojects() {
     apply plugin: "idea"
     apply plugin: "jacoco"
 
-    group = "com.elypia.elypiai"
-    version = "2.2.1"
+    group = "org.elypia.elypiai"
+    version = "2.3.0"
     description = "A abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
 
     ext {
         repoUrl = "https://gitlab.com/Elypia/elypiai"
         gitUrl = "${repoUrl}.git"
         issueUrl = "${repoUrl}/issues"
-        website = "https://elypia.com/"
-        retrofitVersion = "2.6.0"
+        website = "https://elypia.org/"
+        okhttpVersion = "4.2.0"
+        retrofitVersion = "2.6.2"
     }
 
     repositories {
         jcenter()
+        mavenLocal();
     }
 
     jacoco {
@@ -36,6 +54,7 @@ def publishedProjects = [
 
     /** Wrappers */
     project(":cleverbot"),
+    project(":orna"),
     project(":nanowrimo"),
     project(":osu"),
     project(":path-of-exile"),
@@ -62,16 +81,17 @@ configure(publishedProjects) {
 
     dependencies {
         // HTTP Requests
+        implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
         implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
 
         // Logging
-        implementation "org.slf4j:slf4j-api:1.7.26"
+        implementation "org.slf4j:slf4j-api:1.7.28"
         testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
 
         // Testing
-        testImplementation "org.junit.jupiter:junit-jupiter:5.5.0"
+        testImplementation "org.junit.jupiter:junit-jupiter:5.5.2"
         testImplementation "org.mockito:mockito-core:3.0.0"
-        testImplementation "com.squareup.okhttp3:mockwebserver:4.0.0"
+        testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
     }
 
     /** Testing */
@@ -115,7 +135,7 @@ configure(publishedProjects) {
         javadoc {
             options {
                 links += [
-                    "https://docs.oracle.com/en/java/javase/12/docs/api/"
+                    "https://docs.oracle.com/en/java/javase/13/docs/api/"
                 ]
             }
         }
@@ -174,7 +194,7 @@ configure(publishedProjects) {
                         developer {
                             id = "Seth"
                             name = "Seth"
-                            email = "seth@elypia.com"
+                            email = "seth@elypia.org"
                         }
                     }
                     scm {

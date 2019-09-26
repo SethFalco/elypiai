@@ -1,0 +1,734 @@
+[
+  {
+    "id": 266,
+    "name": "Dracon",
+    "tier": 3,
+    "boss": true,
+    "image": "bosses/dracon.png",
+    "level": 75,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 271,
+        "name": "Pure Draconite"
+      },
+      {
+        "id": 529,
+        "name": "Dracon Bow"
+      },
+      {
+        "id": 701,
+        "name": "Dracon Shield"
+      },
+      {
+        "id": 568,
+        "name": "Dracon Staff"
+      },
+      {
+        "id": 530,
+        "name": "Dracon Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 34,
+        "name": "Battle Dance"
+      },
+      {
+        "id": 96,
+        "name": "Blightstrike"
+      },
+      {
+        "id": 175,
+        "name": "Cyclone"
+      },
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 72,
+        "name": "Exploit"
+      },
+      {
+        "id": 51,
+        "name": "Firestrike"
+      },
+      {
+        "id": 74,
+        "name": "Holystrike"
+      },
+      {
+        "id": 57,
+        "name": "Icestrike"
+      }
+    ]
+  },
+  {
+    "id": 207,
+    "name": "Fomor",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/fomor.png",
+    "level": 100,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 431,
+        "name": "Fomor Katana"
+      },
+      {
+        "id": 702,
+        "name": "Fomor Shield"
+      },
+      {
+        "id": 425,
+        "name": "Fomor Staff"
+      },
+      {
+        "id": 432,
+        "name": "Fomor Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 71,
+        "name": "Doublecut"
+      },
+      {
+        "id": 89,
+        "name": "Holy"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 81,
+        "name": "Sleep Dart"
+      },
+      {
+        "id": 65,
+        "name": "Smoke Bomb"
+      },
+      {
+        "id": 84,
+        "name": "Stun Dart"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ]
+  },
+  {
+    "id": 177,
+    "name": "Starlord",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/hobgoblin_lord.png",
+    "level": 125,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 364,
+        "name": "Solarite"
+      },
+      {
+        "id": 368,
+        "name": "Meteor Armor"
+      },
+      {
+        "id": 370,
+        "name": "Meteor Hammer"
+      },
+      {
+        "id": 369,
+        "name": "Meteor Helmet"
+      },
+      {
+        "id": 371,
+        "name": "Meteor Leggings"
+      },
+      {
+        "id": 401,
+        "name": "Solar Boots"
+      },
+      {
+        "id": 373,
+        "name": "Solar Bow"
+      },
+      {
+        "id": 372,
+        "name": "Solar Garb"
+      },
+      {
+        "id": 363,
+        "name": "Solar Hood"
+      },
+      {
+        "id": 365,
+        "name": "Sun Boots"
+      },
+      {
+        "id": 362,
+        "name": "Sun Hat"
+      },
+      {
+        "id": 366,
+        "name": "Sun Robe"
+      },
+      {
+        "id": 367,
+        "name": "Sun Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 121,
+        "name": "Bright Star"
+      },
+      {
+        "id": 130,
+        "name": "Comet"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      },
+      {
+        "id": 183,
+        "name": "Quasar"
+      },
+      {
+        "id": 122,
+        "name": "Shooting Star"
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "name": "Titan",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/titan.png",
+    "level": 150,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 390,
+        "name": "Titanium"
+      },
+      {
+        "id": 383,
+        "name": "Lunar Boots"
+      },
+      {
+        "id": 374,
+        "name": "Lunar Dagger"
+      },
+      {
+        "id": 377,
+        "name": "Lunar Garb"
+      },
+      {
+        "id": 380,
+        "name": "Lunar Helmet"
+      },
+      {
+        "id": 382,
+        "name": "Moon Boots"
+      },
+      {
+        "id": 381,
+        "name": "Moon Hat"
+      },
+      {
+        "id": 379,
+        "name": "Moon Robe"
+      },
+      {
+        "id": 376,
+        "name": "Moon Staff"
+      },
+      {
+        "id": 378,
+        "name": "Titan Armor"
+      },
+      {
+        "id": 375,
+        "name": "Titan Axe"
+      },
+      {
+        "id": 388,
+        "name": "Titan Helmet"
+      },
+      {
+        "id": 384,
+        "name": "Titan Leggings"
+      }
+    ],
+    "skills": [
+      {
+        "id": 211,
+        "name": "Catastrophe"
+      },
+      {
+        "id": 213,
+        "name": "Onslaught"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      },
+      {
+        "id": 79,
+        "name": "Protection II"
+      },
+      {
+        "id": 63,
+        "name": "Quake"
+      },
+      {
+        "id": 210,
+        "name": "Quake III"
+      },
+      {
+        "id": 212,
+        "name": "Stone Stare"
+      }
+    ]
+  },
+  {
+    "id": 337,
+    "name": "Arisen Naggeneen",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/naggeneen.png",
+    "level": 175,
+    "spawns": [
+      "Raid"
+    ],
+    "resistant_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 454,
+        "name": "Berserk Mushroom"
+      },
+      {
+        "id": 845,
+        "name": "Naggeneen's Brew"
+      },
+      {
+        "id": 837,
+        "name": "Arisen Fairy's Ring"
+      },
+      {
+        "id": 834,
+        "name": "Arisen Clurichaun Blade"
+      },
+      {
+        "id": 839,
+        "name": "Arisen Naggeneen's Hat"
+      },
+      {
+        "id": 838,
+        "name": "Clurichaun Arrows"
+      }
+    ],
+    "skills": [
+      {
+        "id": 108,
+        "name": "Blast II"
+      },
+      {
+        "id": 191,
+        "name": "Blast III"
+      },
+      {
+        "id": 366,
+        "name": "Miasma"
+      },
+      {
+        "id": 204,
+        "name": "Omnistrike III"
+      },
+      {
+        "id": 246,
+        "name": "Putrid Breath"
+      },
+      {
+        "id": 247,
+        "name": "Toxicstrike"
+      }
+    ]
+  },
+  {
+    "id": 179,
+    "name": "Balor Elite",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/balor_knight.png",
+    "level": 175,
+    "spawns": [
+      "Raid"
+    ],
+    "resistant_to": [
+      "Fire",
+      "Lightning"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 519,
+        "name": "Ashen Boots"
+      },
+      {
+        "id": 471,
+        "name": "Ashen Hat"
+      },
+      {
+        "id": 522,
+        "name": "Ashen Robe"
+      },
+      {
+        "id": 500,
+        "name": "Ashen Staff"
+      },
+      {
+        "id": 516,
+        "name": "Pale Armor"
+      },
+      {
+        "id": 474,
+        "name": "Paleblade"
+      },
+      {
+        "id": 520,
+        "name": "Pale Helmet"
+      },
+      {
+        "id": 483,
+        "name": "Pale Leggings"
+      },
+      {
+        "id": 438,
+        "name": "Shadow Boots"
+      },
+      {
+        "id": 502,
+        "name": "Shadow Garb"
+      },
+      {
+        "id": 439,
+        "name": "Shadow Hood"
+      },
+      {
+        "id": 452,
+        "name": "Shadow Katana"
+      }
+    ],
+    "skills": [
+      {
+        "id": 207,
+        "name": "Annihilation"
+      },
+      {
+        "id": 206,
+        "name": "Fireball"
+      },
+      {
+        "id": 213,
+        "name": "Onslaught"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 234,
+    "name": "Fallen King Arthus",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/king_arthus.png",
+    "level": 200,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 479,
+        "name": "Avalon Armor"
+      },
+      {
+        "id": 514,
+        "name": "Avalon Helmet"
+      },
+      {
+        "id": 517,
+        "name": "Avalon Leggings"
+      },
+      {
+        "id": 513,
+        "name": "Avalon Ore"
+      },
+      {
+        "id": 478,
+        "name": "Coward's Blade"
+      },
+      {
+        "id": 472,
+        "name": "Coward's Boots"
+      },
+      {
+        "id": 515,
+        "name": "Coward's Cloak"
+      },
+      {
+        "id": 525,
+        "name": "Coward's Cowl"
+      },
+      {
+        "id": 680,
+        "name": "Crest of Avalon"
+      },
+      {
+        "id": 468,
+        "name": "Excalibur"
+      },
+      {
+        "id": 518,
+        "name": "King's Boots"
+      },
+      {
+        "id": 528,
+        "name": "King's Hood"
+      },
+      {
+        "id": 477,
+        "name": "King's Robe"
+      },
+      {
+        "id": 532,
+        "name": "Rhongomiant"
+      }
+    ],
+    "skills": [
+      {
+        "id": 161,
+        "name": "Horizontal Slash"
+      },
+      {
+        "id": 208,
+        "name": "King's Reign"
+      },
+      {
+        "id": 157,
+        "name": "Multi-flame"
+      },
+      {
+        "id": 158,
+        "name": "Multi-frost"
+      },
+      {
+        "id": 159,
+        "name": "Multi-spark"
+      },
+      {
+        "id": 160,
+        "name": "Multi-tremor"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      },
+      {
+        "id": 164,
+        "name": "Swordplay"
+      },
+      {
+        "id": 162,
+        "name": "X Slash"
+      }
+    ]
+  },
+  {
+    "id": 279,
+    "name": "Apollyon",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/abaddon.png",
+    "level": 250,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 12,
+        "name": "Panacea"
+      },
+      {
+        "id": 605,
+        "name": "Abyssal Armor"
+      },
+      {
+        "id": 603,
+        "name": "Abyssal Axe"
+      },
+      {
+        "id": 610,
+        "name": "Abyssal Grieves"
+      },
+      {
+        "id": 608,
+        "name": "Abyssal Helmet"
+      },
+      {
+        "id": 607,
+        "name": "Incarnate Archistaff"
+      },
+      {
+        "id": 606,
+        "name": "Incarnate Boots"
+      },
+      {
+        "id": 604,
+        "name": "Incarnate Hood"
+      },
+      {
+        "id": 600,
+        "name": "Incarnate Robe"
+      },
+      {
+        "id": 601,
+        "name": "Realm Boots"
+      },
+      {
+        "id": 611,
+        "name": "Realm Cowl"
+      },
+      {
+        "id": 602,
+        "name": "Realm Garb"
+      },
+      {
+        "id": 609,
+        "name": "Realm Katana"
+      },
+      {
+        "id": 599,
+        "name": "Realm Ore"
+      },
+      {
+        "id": 667,
+        "name": "Sempre Forte"
+      }
+    ],
+    "skills": [
+      {
+        "id": 253,
+        "name": "Apocalypse"
+      },
+      {
+        "id": 166,
+        "name": "Arcana"
+      },
+      {
+        "id": 167,
+        "name": "Arcana II"
+      },
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      },
+      {
+        "id": 242,
+        "name": "Distortion"
+      },
+      {
+        "id": 123,
+        "name": "Holy II"
+      },
+      {
+        "id": 74,
+        "name": "Holystrike"
+      },
+      {
+        "id": 149,
+        "name": "Holystrike II"
+      },
+      {
+        "id": 184,
+        "name": "Nightmare II"
+      },
+      {
+        "id": 153,
+        "name": "Osmostrike II"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      },
+      {
+        "id": 164,
+        "name": "Swordplay"
+      }
+    ]
+  }
+]

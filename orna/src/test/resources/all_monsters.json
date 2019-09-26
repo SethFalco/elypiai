@@ -1,0 +1,10742 @@
+[
+  {
+    "id": 230,
+    "name": "Bandit",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/bandit.png",
+    "drops": [
+      {
+        "id": 501,
+        "name": "Bandit's Cloak"
+      },
+      {
+        "id": 460,
+        "name": "Bandit's Hood"
+      }
+    ],
+    "skills": [
+      {
+        "id": 51,
+        "name": "Firestrike"
+      },
+      {
+        "id": 42,
+        "name": "Lunge"
+      }
+    ],
+    "quests": [
+      {
+        "id": 1,
+        "name": "Carl's Revenge"
+      }
+    ]
+  },
+  {
+    "id": 229,
+    "name": "Bandit Lord",
+    "tier": 1,
+    "boss": true,
+    "image": "bosses/bandit_lord.png",
+    "level": 20,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 460,
+        "name": "Bandit's Hood"
+      },
+      {
+        "id": 14,
+        "name": "Lucky Silver Coin"
+      }
+    ],
+    "quests": [
+      {
+        "id": 4,
+        "name": "Hermes' Revenge"
+      },
+      {
+        "id": 40,
+        "name": "Lord of the Bandits"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Barbarian",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/barbarian.png",
+    "drops": [
+      {
+        "id": 140,
+        "name": "Iron Helmet"
+      },
+      {
+        "id": 195,
+        "name": "Leather Boots"
+      },
+      {
+        "id": 34,
+        "name": "Axe"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Bat",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/bat.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "resistant_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Blue Slime",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/slime.png",
+    "resistant_to": [
+      "Physical"
+    ],
+    "quests": [
+      {
+        "id": 37,
+        "name": "993 DCE"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Crow",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/crow.png",
+    "resistant_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Fallen Mage",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/fallen_mage.png",
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 283,
+        "name": "Wood"
+      },
+      {
+        "id": 49,
+        "name": "Fallen Mage's Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 39,
+        "name": "Flame"
+      },
+      {
+        "id": 40,
+        "name": "Frost"
+      },
+      {
+        "id": 59,
+        "name": "Magic Boost"
+      },
+      {
+        "id": 45,
+        "name": "Spark"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Fallen Thief",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/fallen_thief.png",
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 50,
+        "name": "Fallen Thief's Dagger"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Fallen Warrior",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/fallen_warrior.png",
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 51,
+        "name": "Fallen Warrior's Sword"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Ghost",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/ghost.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 2,
+        "name": "Bow"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Goblin",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/goblin.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 2,
+        "name": "Bow"
+      },
+      {
+        "id": 28,
+        "name": "Dagger"
+      },
+      {
+        "id": 157,
+        "name": "Goblin Armor"
+      },
+      {
+        "id": 192,
+        "name": "Goblin Boots"
+      }
+    ],
+    "skills": [
+      {
+        "id": 44,
+        "name": "Slash"
+      }
+    ],
+    "quests": [
+      {
+        "id": 38,
+        "name": "Goblins"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Goblin Lord",
+    "tier": 1,
+    "boss": true,
+    "image": "bosses/goblin_lord.png",
+    "level": 20,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 245,
+        "name": "Magician's Hood"
+      },
+      {
+        "id": 244,
+        "name": "Magician's Robe"
+      }
+    ],
+    "quests": [
+      {
+        "id": 41,
+        "name": "Lord of Goblins"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Goblin Mage",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/goblin_mage.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 161,
+        "name": "Simple Robe"
+      },
+      {
+        "id": 31,
+        "name": "Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 39,
+        "name": "Flame"
+      },
+      {
+        "id": 40,
+        "name": "Frost"
+      },
+      {
+        "id": 45,
+        "name": "Spark"
+      }
+    ],
+    "quests": [
+      {
+        "id": 39,
+        "name": "Magic"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Green Slime",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/green_slime.png",
+    "drops": [
+      {
+        "id": 4,
+        "name": "Antidote"
+      }
+    ],
+    "skills": [
+      {
+        "id": 61,
+        "name": "Poison"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Gull",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/gull.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "resistant_to": [
+      "Earthen",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Jelly",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/jelly.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "resistant_to": [
+      "Water"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Mimic",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/mimic.png"
+  },
+  {
+    "id": 21,
+    "name": "Minotaur",
+    "tier": 1,
+    "boss": true,
+    "image": "bosses/minotaur.png",
+    "level": 20,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 261,
+        "name": "Hardened Steel"
+      },
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 58,
+        "name": "Minotaur Axe"
+      }
+    ],
+    "quests": [
+      {
+        "id": 28,
+        "name": "The Arisen"
+      }
+    ]
+  },
+  {
+    "id": 189,
+    "name": "Rat",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/rat.png",
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Red Slime",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/red_slime.png"
+  },
+  {
+    "id": 14,
+    "name": "Skeleton",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/skeleton.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "resistant_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      },
+      {
+        "id": 158,
+        "name": "Hard Leather Armor"
+      },
+      {
+        "id": 195,
+        "name": "Leather Boots"
+      },
+      {
+        "id": 137,
+        "name": "Leather Hat"
+      },
+      {
+        "id": 160,
+        "name": "Leather Jacket"
+      },
+      {
+        "id": 29,
+        "name": "Rusty Sword"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Snake",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/snake.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 264,
+        "name": "Leather"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Spider",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/spider.png",
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Sprout",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/sprout.png",
+    "weak_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 283,
+        "name": "Wood"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Undead",
+    "tier": 1,
+    "boss": false,
+    "image": "monsters/undead.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ]
+  },
+  {
+    "id": 137,
+    "name": "Arachne",
+    "tier": 2,
+    "boss": true,
+    "image": "bosses/arachne.png",
+    "level": 40,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 294,
+        "name": "Silk"
+      },
+      {
+        "id": 295,
+        "name": "Silk Crossbow"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "name": "Bear",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/bear.png",
+    "drops": [
+      {
+        "id": 37,
+        "name": "Bearclaw"
+      },
+      {
+        "id": 162,
+        "name": "Bearskin"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Black Widow",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/black_widow.png",
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Demon",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/demon.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Demon Prince",
+    "tier": 2,
+    "boss": true,
+    "image": "bosses/demon_prince.png",
+    "level": 50,
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 35,
+        "name": "Axe of Night"
+      },
+      {
+        "id": 253,
+        "name": "Demonic Ore"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Draconian",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/draco.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 263,
+        "name": "Iron"
+      },
+      {
+        "id": 163,
+        "name": "Draconian Armor"
+      },
+      {
+        "id": 138,
+        "name": "Draconian Cowl"
+      },
+      {
+        "id": 243,
+        "name": "Draconian Leggings"
+      },
+      {
+        "id": 46,
+        "name": "Draconian Sword"
+      },
+      {
+        "id": 219,
+        "name": "Monster Tome"
+      }
+    ],
+    "quests": [
+      {
+        "id": 42,
+        "name": "The Draconians"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Draconian Lord",
+    "tier": 2,
+    "boss": true,
+    "image": "bosses/draco_lord.png",
+    "level": 40,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 254,
+        "name": "Draconite"
+      },
+      {
+        "id": 43,
+        "name": "Draconian Archistaff"
+      },
+      {
+        "id": 219,
+        "name": "Monster Tome"
+      },
+      {
+        "id": 271,
+        "name": "Pure Draconite"
+      }
+    ],
+    "quests": [
+      {
+        "id": 44,
+        "name": "Lords of Draconia"
+      },
+      {
+        "id": 28,
+        "name": "The Arisen"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Draconian Mage",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/draco_mage.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 254,
+        "name": "Draconite"
+      },
+      {
+        "id": 139,
+        "name": "Draconian Hood"
+      },
+      {
+        "id": 165,
+        "name": "Draconian Robe"
+      },
+      {
+        "id": 47,
+        "name": "Draconian Staff"
+      }
+    ],
+    "quests": [
+      {
+        "id": 43,
+        "name": "Mages of Draconia"
+      }
+    ]
+  },
+  {
+    "id": 286,
+    "name": "Earthworm",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/earthworm.png",
+    "spawns": [
+      "Rain Only"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Evil Eye",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/eye.png",
+    "drops": [
+      {
+        "id": 226,
+        "name": "Crystal Eye"
+      }
+    ],
+    "skills": [
+      {
+        "id": 40,
+        "name": "Frost"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      }
+    ],
+    "quests": [
+      {
+        "id": 7,
+        "name": "Eye for an Eye"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Flame",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/flame.png",
+    "weak_to": [
+      "Earthen",
+      "Water"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "immune_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 259,
+        "name": "Firestone"
+      },
+      {
+        "id": 59,
+        "name": "Red Dagger"
+      },
+      {
+        "id": 60,
+        "name": "Ruby Wand"
+      },
+      {
+        "id": 231,
+        "name": "Red Crystal"
+      }
+    ],
+    "skills": [
+      {
+        "id": 47,
+        "name": "Burn"
+      },
+      {
+        "id": 51,
+        "name": "Firestrike"
+      },
+      {
+        "id": 52,
+        "name": "Flame II"
+      }
+    ]
+  },
+  {
+    "id": 154,
+    "name": "Gnat",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/gnat.png",
+    "resistant_to": [
+      "Earthen"
+    ],
+    "skills": [
+      {
+        "id": 61,
+        "name": "Poison"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Goblin Warrior",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/goblin_warrior.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 157,
+        "name": "Goblin Armor"
+      },
+      {
+        "id": 192,
+        "name": "Goblin Boots"
+      },
+      {
+        "id": 263,
+        "name": "Iron"
+      },
+      {
+        "id": 30,
+        "name": "Short Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 67,
+        "name": "Warcry"
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Greater Snake",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/greater_snake.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 264,
+        "name": "Leather"
+      },
+      {
+        "id": 167,
+        "name": "Snakeskin Armor"
+      },
+      {
+        "id": 142,
+        "name": "Snakeskin Cowl"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 240,
+    "name": "Great Sprout",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/sprout2.png",
+    "weak_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 283,
+        "name": "Wood"
+      },
+      {
+        "id": 549,
+        "name": "Thorn"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Living Armor",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/living_armor.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 273,
+        "name": "Runestone"
+      },
+      {
+        "id": 141,
+        "name": "Rune Helmet"
+      },
+      {
+        "id": 198,
+        "name": "Rune Leggings"
+      },
+      {
+        "id": 674,
+        "name": "Rune Shield"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Lizarr Warrior",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/lizard_warrior.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "resistant_to": [
+      "Fire",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 201,
+        "name": "Lizarr Boots"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Wolfman",
+    "tier": 2,
+    "boss": false,
+    "image": "monsters/wolfman.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 182,
+        "name": "Wolfskin"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Blue Flame",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/blue_flame.png",
+    "weak_to": [
+      "Earthen",
+      "Lightning"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "immune_to": [
+      "Fire",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 38,
+        "name": "Blue Dagger"
+      },
+      {
+        "id": 217,
+        "name": "Blue Gem"
+      },
+      {
+        "id": 59,
+        "name": "Red Dagger"
+      },
+      {
+        "id": 220,
+        "name": "Red Gem"
+      },
+      {
+        "id": 60,
+        "name": "Ruby Wand"
+      }
+    ],
+    "skills": [
+      {
+        "id": 52,
+        "name": "Flame II"
+      }
+    ]
+  },
+  {
+    "id": 270,
+    "name": "Cave Sprout",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/sprout3.png",
+    "spawns": [
+      "Gauntlet Only"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Demon Knight",
+    "tier": 3,
+    "boss": true,
+    "image": "bosses/demon_knight.png",
+    "level": 60,
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 253,
+        "name": "Demonic Ore"
+      },
+      {
+        "id": 67,
+        "name": "Demonic Blade"
+      },
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      }
+    ]
+  },
+  {
+    "id": 266,
+    "name": "Dracon",
+    "tier": 3,
+    "boss": true,
+    "image": "bosses/dracon.png",
+    "level": 75,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 271,
+        "name": "Pure Draconite"
+      },
+      {
+        "id": 529,
+        "name": "Dracon Bow"
+      },
+      {
+        "id": 701,
+        "name": "Dracon Shield"
+      },
+      {
+        "id": 568,
+        "name": "Dracon Staff"
+      },
+      {
+        "id": 530,
+        "name": "Dracon Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 34,
+        "name": "Battle Dance"
+      },
+      {
+        "id": 96,
+        "name": "Blightstrike"
+      },
+      {
+        "id": 175,
+        "name": "Cyclone"
+      },
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 72,
+        "name": "Exploit"
+      },
+      {
+        "id": 51,
+        "name": "Firestrike"
+      },
+      {
+        "id": 74,
+        "name": "Holystrike"
+      },
+      {
+        "id": 57,
+        "name": "Icestrike"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Draconian Acolyte",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/draco_acolyte.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 254,
+        "name": "Draconite"
+      },
+      {
+        "id": 196,
+        "name": "Draconian Boots"
+      },
+      {
+        "id": 164,
+        "name": "Draconian Garb"
+      },
+      {
+        "id": 139,
+        "name": "Draconian Hood"
+      },
+      {
+        "id": 165,
+        "name": "Draconian Robe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 63,
+        "name": "Quake"
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Draconian Rogue",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/draco_rogue.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 254,
+        "name": "Draconite"
+      },
+      {
+        "id": 138,
+        "name": "Draconian Cowl"
+      },
+      {
+        "id": 164,
+        "name": "Draconian Garb"
+      },
+      {
+        "id": 46,
+        "name": "Draconian Sword"
+      }
+    ]
+  },
+  {
+    "id": 253,
+    "name": "Draugr Lord",
+    "tier": 3,
+    "boss": true,
+    "image": "monsters/draugr_lord.png",
+    "level": 0,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 278,
+        "name": "Undead Bone"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Evil Eyes",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/eyes.png",
+    "immune_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 217,
+        "name": "Blue Gem"
+      }
+    ],
+    "skills": [
+      {
+        "id": 171,
+        "name": "Mindblast"
+      },
+      {
+        "id": 66,
+        "name": "Spark II"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Fallen Archmage",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/fallen_archmage.png",
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 68,
+        "name": "Fallen Archistaff"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Fallen Knight",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/fallen_knight.png",
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 69,
+        "name": "Fallen Knight's Axe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 51,
+        "name": "Firestrike"
+      },
+      {
+        "id": 57,
+        "name": "Icestrike"
+      },
+      {
+        "id": 58,
+        "name": "Lightningstrike"
+      },
+      {
+        "id": 42,
+        "name": "Lunge"
+      },
+      {
+        "id": 62,
+        "name": "Protection"
+      },
+      {
+        "id": 85,
+        "name": "Threaten"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Fallen Rogue",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/fallen_rogue.png",
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 70,
+        "name": "Fallen Rogue's Bow"
+      }
+    ],
+    "skills": [
+      {
+        "id": 71,
+        "name": "Doublecut"
+      },
+      {
+        "id": 72,
+        "name": "Exploit"
+      },
+      {
+        "id": 50,
+        "name": "Fire Arrow"
+      },
+      {
+        "id": 56,
+        "name": "Ice Arrow"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Fallen Witch",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/fallen_witch.png",
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 49,
+        "name": "Fallen Mage's Staff"
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Golem",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/golem.png",
+    "weak_to": [
+      "Dark",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 277,
+        "name": "Stone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 111,
+        "name": "Tremor II"
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Greater Demon",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/greater_demon.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Great Mimic",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/great_mimic.png",
+    "resistant_to": [
+      "Physical"
+    ],
+    "immune_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ]
+  },
+  {
+    "id": 126,
+    "name": "Grey Wolfman",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/wolfman.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 264,
+        "name": "Leather"
+      },
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 199,
+        "name": "Boots of Wolves"
+      },
+      {
+        "id": 145,
+        "name": "Hood of Wolves"
+      },
+      {
+        "id": 175,
+        "name": "Robe of Wolves"
+      },
+      {
+        "id": 182,
+        "name": "Wolfskin"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Hellhound",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/hellhound.png",
+    "resistant_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 171,
+        "name": "Fur Coat"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Hobgoblin",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/hobgoblin.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 172,
+        "name": "Hobgoblin Armor"
+      },
+      {
+        "id": 200,
+        "name": "Hobgoblin Boots"
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Hobgoblin Mage",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/hobgoblin_mage.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 172,
+        "name": "Hobgoblin Armor"
+      },
+      {
+        "id": 200,
+        "name": "Hobgoblin Boots"
+      }
+    ],
+    "skills": [
+      {
+        "id": 52,
+        "name": "Flame II"
+      },
+      {
+        "id": 54,
+        "name": "Frost II"
+      },
+      {
+        "id": 78,
+        "name": "Outwill"
+      },
+      {
+        "id": 66,
+        "name": "Spark II"
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Imp",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/imp.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "name": "Jinn",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/jinn.png",
+    "resistant_to": [
+      "Earthen",
+      "Fire",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 74,
+        "name": "Jinn's Staff"
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Lesser Sluagh",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/lesser_sluagh.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 260,
+        "name": "Fogstone"
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Lizarr King",
+    "tier": 3,
+    "boss": true,
+    "image": "bosses/lizarr_king.png",
+    "level": 50,
+    "spawns": [
+      "Water Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "resistant_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 65,
+        "name": "Bow of Scales"
+      },
+      {
+        "id": 274,
+        "name": "Scalestone"
+      }
+    ],
+    "quests": [
+      {
+        "id": 15,
+        "name": "Beast of the Sea"
+      },
+      {
+        "id": 46,
+        "name": "King of Lizarr"
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Lizarr Knight",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/lizard_knight.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "resistant_to": [
+      "Physical",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 173,
+        "name": "Lizarr Armor"
+      },
+      {
+        "id": 75,
+        "name": "Lizarr Blade"
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Lord of Wolves",
+    "tier": 3,
+    "boss": true,
+    "image": "bosses/wolfman_lord.png",
+    "level": 50,
+    "spawns": [
+      "Woods Only"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 264,
+        "name": "Leather"
+      },
+      {
+        "id": 53,
+        "name": "Greatsword"
+      },
+      {
+        "id": 84,
+        "name": "Staff of Wolves"
+      },
+      {
+        "id": 282,
+        "name": "Wolf's Blood"
+      }
+    ],
+    "quests": [
+      {
+        "id": 28,
+        "name": "The Arisen"
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Lost Pharaoh",
+    "tier": 3,
+    "boss": true,
+    "image": "bosses/pharaoh.png",
+    "level": 75,
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 248,
+        "name": "Ancient Stone"
+      },
+      {
+        "id": 64,
+        "name": "Ankh"
+      }
+    ],
+    "skills": [
+      {
+        "id": 75,
+        "name": "Meteor"
+      },
+      {
+        "id": 170,
+        "name": "Petrify"
+      }
+    ],
+    "quests": [
+      {
+        "id": 47,
+        "name": "The Pharaoh"
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Mythril Armor",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/mythril_armor.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 266,
+        "name": "Mythril"
+      },
+      {
+        "id": 174,
+        "name": "Mythril Armor"
+      },
+      {
+        "id": 146,
+        "name": "Mythril Helmet"
+      },
+      {
+        "id": 203,
+        "name": "Mythril Leggings"
+      }
+    ],
+    "quests": [
+      {
+        "id": 8,
+        "name": "A Hunt for Mythril"
+      }
+    ]
+  },
+  {
+    "id": 195,
+    "name": "Ogre",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/ogre.png",
+    "drops": [
+      {
+        "id": 277,
+        "name": "Stone"
+      },
+      {
+        "id": 283,
+        "name": "Wood"
+      },
+      {
+        "id": 567,
+        "name": "Ogre Axe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 37,
+        "name": "Charge"
+      },
+      {
+        "id": 46,
+        "name": "Tremor"
+      }
+    ]
+  },
+  {
+    "id": 272,
+    "name": "Sea Serpent",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/blue_snake.png",
+    "spawns": [
+      "Water Only"
+    ]
+  },
+  {
+    "id": 256,
+    "name": "Seaweed",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/seaweed.png",
+    "spawns": [
+      "Water Only"
+    ]
+  },
+  {
+    "id": 163,
+    "name": "Skeleton Rogue",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/skeleton_rogue.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Skeleton Warrior",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/skeleton_warrior.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "resistant_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      },
+      {
+        "id": 158,
+        "name": "Hard Leather Armor"
+      },
+      {
+        "id": 193,
+        "name": "Hard Leather Boots"
+      },
+      {
+        "id": 32,
+        "name": "Sword and Shield"
+      }
+    ]
+  },
+  {
+    "id": 188,
+    "name": "Twilight Knight",
+    "tier": 3,
+    "boss": true,
+    "image": "bosses/twilight_knight.png",
+    "level": 75,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 406,
+        "name": "Twilight Blade"
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Vampire",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/vampire.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 220,
+        "name": "Red Gem"
+      },
+      {
+        "id": 168,
+        "name": "Count's Garment"
+      },
+      {
+        "id": 143,
+        "name": "Count's Hood"
+      }
+    ],
+    "quests": [
+      {
+        "id": 13,
+        "name": "Night Slayer"
+      }
+    ]
+  },
+  {
+    "id": 227,
+    "name": "Vile Rat",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/vile_rat.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "skills": [
+      {
+        "id": 225,
+        "name": "Bite"
+      },
+      {
+        "id": 226,
+        "name": "Scratch"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Walking Wood",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/walking_wood.png",
+    "weak_to": [
+      "Fire"
+    ],
+    "immune_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      },
+      {
+        "id": 283,
+        "name": "Wood"
+      },
+      {
+        "id": 33,
+        "name": "Wooden Staff"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Wisp",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/wisp.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "resistant_to": [
+      "Physical"
+    ]
+  },
+  {
+    "id": 156,
+    "name": "Zu",
+    "tier": 3,
+    "boss": false,
+    "image": "monsters/bluebird.png",
+    "resistant_to": [
+      "Earthen"
+    ],
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 72,
+        "name": "Exploit"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 190,
+    "name": "Buzzard",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/greenbird.png",
+    "resistant_to": [
+      "Earthen",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Camazotz",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/camazotz.png",
+    "level": 75,
+    "spawns": [
+      "Woods Only"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 85,
+        "name": "Batwing Bow"
+      },
+      {
+        "id": 251,
+        "name": "Cavestone"
+      },
+      {
+        "id": 12,
+        "name": "Panacea"
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Carman's Gargoyle",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/gargoyle.png",
+    "level": 100,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 250,
+        "name": "Broken Statue"
+      },
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 135,
+        "name": "Stone Dagger"
+      }
+    ],
+    "quests": [
+      {
+        "id": 50,
+        "name": "Carmen's Pet"
+      }
+    ]
+  },
+  {
+    "id": 235,
+    "name": "Cobra",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/cobra.png",
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 264,
+        "name": "Leather"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Cyclops",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/cyclops.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Dark Elf",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/dark_elf.png",
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 257,
+        "name": "Elstone"
+      },
+      {
+        "id": 89,
+        "name": "Elven Sword"
+      },
+      {
+        "id": 210,
+        "name": "Dark Elf Boots"
+      },
+      {
+        "id": 151,
+        "name": "Dark Elf Cowl"
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Dark Mage",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/skeleton_mage.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 144,
+        "name": "Dark Mage Hood"
+      },
+      {
+        "id": 170,
+        "name": "Dark Mage Robe"
+      }
+    ]
+  },
+  {
+    "id": 267,
+    "name": "Dark Widow",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/dark_widow.png",
+    "skills": [
+      {
+        "id": 42,
+        "name": "Lunge"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Drake",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/drake.png",
+    "weak_to": [
+      "Dragon"
+    ],
+    "drops": [
+      {
+        "id": 255,
+        "name": "Dragonite"
+      },
+      {
+        "id": 177,
+        "name": "Drake Armor"
+      },
+      {
+        "id": 205,
+        "name": "Drake Boots"
+      },
+      {
+        "id": 206,
+        "name": "Drake Leggings"
+      }
+    ],
+    "skills": [
+      {
+        "id": 59,
+        "name": "Magic Boost"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 303,
+    "name": "Earth Core",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/earth_core.png",
+    "weak_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      }
+    ]
+  },
+  {
+    "id": 161,
+    "name": "Fairy",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/fairy.png",
+    "drops": [
+      {
+        "id": 275,
+        "name": "Silver"
+      }
+    ],
+    "skills": [
+      {
+        "id": 89,
+        "name": "Holy"
+      },
+      {
+        "id": 128,
+        "name": "Holy Light"
+      },
+      {
+        "id": 129,
+        "name": "Miracle"
+      }
+    ]
+  },
+  {
+    "id": 162,
+    "name": "Firefly",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/firefly.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Water"
+    ],
+    "immune_to": [
+      "Fire"
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 339,
+    "name": "Flame Core",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/flame_core.png",
+    "weak_to": [
+      "Water"
+    ],
+    "immune_to": [
+      "Fire"
+    ],
+    "skills": [
+      {
+        "id": 52,
+        "name": "Flame II"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      }
+    ]
+  },
+  {
+    "id": 207,
+    "name": "Fomor",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/fomor.png",
+    "level": 100,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 431,
+        "name": "Fomor Katana"
+      },
+      {
+        "id": 702,
+        "name": "Fomor Shield"
+      },
+      {
+        "id": 425,
+        "name": "Fomor Staff"
+      },
+      {
+        "id": 432,
+        "name": "Fomor Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 71,
+        "name": "Doublecut"
+      },
+      {
+        "id": 89,
+        "name": "Holy"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 81,
+        "name": "Sleep Dart"
+      },
+      {
+        "id": 65,
+        "name": "Smoke Bomb"
+      },
+      {
+        "id": 84,
+        "name": "Stun Dart"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Fomorian Mage",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/fomorian_mage.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 149,
+        "name": "Fomorian Hood"
+      },
+      {
+        "id": 180,
+        "name": "Fomorian Robe"
+      },
+      {
+        "id": 91,
+        "name": "Fomorian Staff"
+      },
+      {
+        "id": 242,
+        "name": "Great Monster Tome"
+      }
+    ],
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 52,
+        "name": "Flame II"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      },
+      {
+        "id": 76,
+        "name": "Mute"
+      },
+      {
+        "id": 78,
+        "name": "Outwill"
+      },
+      {
+        "id": 63,
+        "name": "Quake"
+      },
+      {
+        "id": 66,
+        "name": "Spark II"
+      },
+      {
+        "id": 83,
+        "name": "Storm"
+      }
+    ],
+    "quests": [
+      {
+        "id": 48,
+        "name": "The Fomorians"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Fomorian Rogue",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/fomorian_rogue.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 92,
+        "name": "Fomorian Dagger"
+      },
+      {
+        "id": 179,
+        "name": "Fomorian Garb"
+      },
+      {
+        "id": 149,
+        "name": "Fomorian Hood"
+      },
+      {
+        "id": 208,
+        "name": "Fomorian Leggings"
+      }
+    ],
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 50,
+        "name": "Fire Arrow"
+      },
+      {
+        "id": 185,
+        "name": "Focus"
+      },
+      {
+        "id": 56,
+        "name": "Ice Arrow"
+      },
+      {
+        "id": 61,
+        "name": "Poison"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Fomorian Warrior",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/fomorian_warrior.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 178,
+        "name": "Fomorian Armor"
+      },
+      {
+        "id": 93,
+        "name": "Fomorian Sword"
+      }
+    ],
+    "quests": [
+      {
+        "id": 48,
+        "name": "The Fomorians"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 299,
+    "name": "Frost Core",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/frost_core.png",
+    "weak_to": [
+      "Fire"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 54,
+        "name": "Frost II"
+      }
+    ]
+  },
+  {
+    "id": 209,
+    "name": "Gargouille",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/gargouille.png",
+    "level": 100,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 427,
+        "name": "Gargouille's Dagger"
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Gazer",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/gazer.png",
+    "resistant_to": [
+      "Dark",
+      "Holy",
+      "Physical"
+    ],
+    "immune_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 265,
+        "name": "Lightningstone"
+      },
+      {
+        "id": 226,
+        "name": "Crystal Eye"
+      },
+      {
+        "id": 227,
+        "name": "Green Crystal"
+      }
+    ]
+  },
+  {
+    "id": 191,
+    "name": "Gheist",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/gheist.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Dark",
+      "Physical"
+    ]
+  },
+  {
+    "id": 123,
+    "name": "Gnome",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/gnome.png",
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 246,
+        "name": "Gnome's Hat"
+      }
+    ],
+    "skills": [
+      {
+        "id": 52,
+        "name": "Flame II"
+      },
+      {
+        "id": 78,
+        "name": "Outwill"
+      },
+      {
+        "id": 111,
+        "name": "Tremor II"
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Great Bear",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/black_bear.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 181,
+        "name": "Great Bearskin"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Greater Vampire",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/greater_vampire.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 168,
+        "name": "Count's Garment"
+      },
+      {
+        "id": 143,
+        "name": "Count's Hood"
+      },
+      {
+        "id": 231,
+        "name": "Red Crystal"
+      }
+    ]
+  },
+  {
+    "id": 259,
+    "name": "Greater Yokai",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/yokai2.png",
+    "spawns": [
+      "Gauntlet Only"
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Lich",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/lich.png",
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 204,
+        "name": "Ancient Boots"
+      },
+      {
+        "id": 176,
+        "name": "Ancient Robe"
+      },
+      {
+        "id": 94,
+        "name": "Lich's Staff"
+      },
+      {
+        "id": 237,
+        "name": "Mage's Ring"
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Lizarr Lord",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/lizard_lord.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "immune_to": [
+      "Fire",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 75,
+        "name": "Lizarr Blade"
+      },
+      {
+        "id": 202,
+        "name": "Lizarr Leggings"
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Lizarr Noble",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/lizard_noble.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "immune_to": [
+      "Fire",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 173,
+        "name": "Lizarr Armor"
+      },
+      {
+        "id": 75,
+        "name": "Lizarr Blade"
+      },
+      {
+        "id": 201,
+        "name": "Lizarr Boots"
+      },
+      {
+        "id": 202,
+        "name": "Lizarr Leggings"
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Magma Golem",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/metal_golem.png",
+    "weak_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 269,
+        "name": "Platinum"
+      },
+      {
+        "id": 276,
+        "name": "Steel"
+      }
+    ],
+    "skills": [
+      {
+        "id": 111,
+        "name": "Tremor II"
+      }
+    ]
+  },
+  {
+    "id": 176,
+    "name": "Mimic King",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/mimic_king.png",
+    "level": 100,
+    "spawns": [
+      "Woods Only"
+    ],
+    "weak_to": [
+      "Dragon"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Holy"
+    ],
+    "immune_to": [
+      "Earthen",
+      "Fire",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Orc",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/orc.png",
+    "drops": [
+      {
+        "id": 95,
+        "name": "Orcish Axe"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Orc Brute",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/orc_brute.png",
+    "drops": [
+      {
+        "id": 95,
+        "name": "Orcish Axe"
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Orc Lord",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/orc_lord.png",
+    "level": 80,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      }
+    ]
+  },
+  {
+    "id": 158,
+    "name": "Rotten Slime",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/rotten_slime.png",
+    "resistant_to": [
+      "Dark",
+      "Dragon",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "skills": [
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      }
+    ]
+  },
+  {
+    "id": 258,
+    "name": "Sea Drake",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/sea_drake.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "drops": [
+      {
+        "id": 255,
+        "name": "Dragonite"
+      },
+      {
+        "id": 177,
+        "name": "Drake Armor"
+      },
+      {
+        "id": 205,
+        "name": "Drake Boots"
+      },
+      {
+        "id": 148,
+        "name": "Drake Helmet"
+      },
+      {
+        "id": 206,
+        "name": "Drake Leggings"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 302,
+    "name": "Storm Core",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/storm_core.png",
+    "immune_to": [
+      "Lightning"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Troll",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/troll.png",
+    "level": 75,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 264,
+        "name": "Leather"
+      },
+      {
+        "id": 240,
+        "name": "Troll's Charm"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Undead Golem",
+    "tier": 4,
+    "boss": true,
+    "image": "bosses/undead_golem.png",
+    "level": 75,
+    "weak_to": [
+      "Holy"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 249,
+        "name": "Bone"
+      },
+      {
+        "id": 86,
+        "name": "Bonecrusher"
+      },
+      {
+        "id": 682,
+        "name": "Bone Shield"
+      },
+      {
+        "id": 234,
+        "name": "Enchanted Skull"
+      },
+      {
+        "id": 278,
+        "name": "Undead Bone"
+      }
+    ],
+    "quests": [
+      {
+        "id": 49,
+        "name": "The Undead Giant"
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Wolfman Warrior",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/wolfman_warrior.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 182,
+        "name": "Wolfskin"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 281,
+    "name": "Yeti",
+    "tier": 4,
+    "boss": false,
+    "image": "monsters/yeti.png",
+    "spawns": [
+      "Snow Only"
+    ],
+    "drops": [
+      {
+        "id": 634,
+        "name": "Yeti Coat"
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Adamantine Knight",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/adam_knight.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 247,
+        "name": "Adamantine"
+      },
+      {
+        "id": 183,
+        "name": "Adamantine Armor"
+      },
+      {
+        "id": 150,
+        "name": "Adamantine Helmet"
+      },
+      {
+        "id": 209,
+        "name": "Adamantine Leggings"
+      },
+      {
+        "id": 100,
+        "name": "Adamantine Staff"
+      }
+    ]
+  },
+  {
+    "id": 246,
+    "name": "Ancient Cyclops",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/ancient_cyclops.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 847,
+        "name": "Ancient Troll's Charm"
+      }
+    ]
+  },
+  {
+    "id": 290,
+    "name": "Ancient Gazer",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/ancient_gazer.png",
+    "weak_to": [
+      "Earthen"
+    ],
+    "resistant_to": [
+      "Physical"
+    ]
+  },
+  {
+    "id": 247,
+    "name": "Ancient Mimic",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/ancient_mimic.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "weak_to": [
+      "Arcane"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Holy"
+    ],
+    "immune_to": [
+      "Earthen",
+      "Fire",
+      "Physical",
+      "Water"
+    ]
+  },
+  {
+    "id": 157,
+    "name": "Balor Guardian",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/balor_guardian.png",
+    "weak_to": [
+      "Arcane"
+    ],
+    "drops": [
+      {
+        "id": 349,
+        "name": "Balor Sword"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 208,
+    "name": "Balor Worm",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/balor_worm.png",
+    "level": 125,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "weak_to": [
+      "Arcane"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 428,
+        "name": "Dune Blade"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "name": "Banshee",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/banshee.png",
+    "skills": [
+      {
+        "id": 180,
+        "name": "Wail"
+      }
+    ]
+  },
+  {
+    "id": 196,
+    "name": "Carrion Crow",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/redbird.png",
+    "resistant_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "skills": [
+      {
+        "id": 182,
+        "name": "Bloodlust"
+      }
+    ]
+  },
+  {
+    "id": 283,
+    "name": "Castor",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/castor.png",
+    "level": 125,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "immune_to": [
+      "Fire",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 642,
+        "name": "Dioscuri Mead"
+      },
+      {
+        "id": 636,
+        "name": "Dioscuri Archistaff"
+      },
+      {
+        "id": 302,
+        "name": "Pure Waterstone"
+      }
+    ]
+  },
+  {
+    "id": 261,
+    "name": "Dark Elf Lord",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/dark_elf_lord.png",
+    "level": 120,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 210,
+        "name": "Dark Elf Boots"
+      },
+      {
+        "id": 151,
+        "name": "Dark Elf Cowl"
+      },
+      {
+        "id": 184,
+        "name": "Dark Elf Garb"
+      },
+      {
+        "id": 534,
+        "name": "Dark Elven Katana"
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Dark Elf Mage",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/dark_elf_mage.png",
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 257,
+        "name": "Elstone"
+      },
+      {
+        "id": 210,
+        "name": "Dark Elf Boots"
+      },
+      {
+        "id": 152,
+        "name": "Dark Elf Hood"
+      },
+      {
+        "id": 185,
+        "name": "Dark Elf Robe"
+      },
+      {
+        "id": 108,
+        "name": "Elven Staff"
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Dark Elf Rogue",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/dark_elf_rogue.png",
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 257,
+        "name": "Elstone"
+      },
+      {
+        "id": 151,
+        "name": "Dark Elf Cowl"
+      },
+      {
+        "id": 107,
+        "name": "Elven Katana"
+      }
+    ],
+    "skills": [
+      {
+        "id": 182,
+        "name": "Bloodlust"
+      },
+      {
+        "id": 72,
+        "name": "Exploit"
+      },
+      {
+        "id": 65,
+        "name": "Smoke Bomb"
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Darkest Demon",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/dark_demon.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "resistant_to": [
+      "Earthen",
+      "Fire",
+      "Lightning",
+      "Water"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 67,
+        "name": "Demonic Blade"
+      },
+      {
+        "id": 87,
+        "name": "Dark Staff"
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Dark Slime",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/dark_slime.png",
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 55,
+        "name": "Great Heal"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 65,
+        "name": "Smoke Bomb"
+      }
+    ]
+  },
+  {
+    "id": 159,
+    "name": "Deadwood",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/deadwood.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 283,
+        "name": "Wood"
+      },
+      {
+        "id": 348,
+        "name": "Deadwood Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 140,
+        "name": "Berserk"
+      }
+    ]
+  },
+  {
+    "id": 160,
+    "name": "Death Worm",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/deathworm.png",
+    "level": 100,
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 360,
+        "name": "Sandstone"
+      },
+      {
+        "id": 359,
+        "name": "Sandstorm"
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "name": "Dragon",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/dragon.png",
+    "weak_to": [
+      "Dragon"
+    ],
+    "drops": [
+      {
+        "id": 255,
+        "name": "Dragonite"
+      },
+      {
+        "id": 177,
+        "name": "Drake Armor"
+      },
+      {
+        "id": 205,
+        "name": "Drake Boots"
+      },
+      {
+        "id": 206,
+        "name": "Drake Leggings"
+      },
+      {
+        "id": 104,
+        "name": "Dragon Dagger"
+      },
+      {
+        "id": 105,
+        "name": "Dragon Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 59,
+        "name": "Magic Boost"
+      }
+    ],
+    "quests": [
+      {
+        "id": 51,
+        "name": "Of Dragons"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Frost Mage",
+    "tier": 5,
+    "boss": false,
+    "image": "classes/frost_mage/default_m.png",
+    "weak_to": [
+      "Lightning"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 236,
+        "name": "Frost Belt"
+      },
+      {
+        "id": 111,
+        "name": "Glacial Staff"
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Greater Cyclops",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/greater_cyclops.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Great Gazer",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/great_gazer.png",
+    "level": 125,
+    "resistant_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 258,
+        "name": "Eyestone"
+      },
+      {
+        "id": 110,
+        "name": "Gazing Staff"
+      }
+    ],
+    "quests": [
+      {
+        "id": 59,
+        "name": "The Eyes of Ra"
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Great Jinn",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/great_jinn.png",
+    "level": 120,
+    "resistant_to": [
+      "Dark",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 112,
+        "name": "Great Jinn Staff"
+      },
+      {
+        "id": 268,
+        "name": "Perfect Runestone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 88,
+        "name": "Glacier"
+      },
+      {
+        "id": 90,
+        "name": "Inferno"
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Great Troll",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/greater_troll.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "skills": [
+      {
+        "id": 37,
+        "name": "Charge"
+      },
+      {
+        "id": 185,
+        "name": "Focus"
+      },
+      {
+        "id": 41,
+        "name": "Heal"
+      },
+      {
+        "id": 42,
+        "name": "Lunge"
+      },
+      {
+        "id": 111,
+        "name": "Tremor II"
+      }
+    ]
+  },
+  {
+    "id": 308,
+    "name": "Griffin",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/griffin.png",
+    "level": 150,
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 728,
+        "name": "Skystone"
+      },
+      {
+        "id": 734,
+        "name": "Griffin Crested Shield"
+      },
+      {
+        "id": 733,
+        "name": "Hurricane Arc"
+      }
+    ],
+    "skills": [
+      {
+        "id": 96,
+        "name": "Blightstrike"
+      },
+      {
+        "id": 151,
+        "name": "Lightningstrike II"
+      },
+      {
+        "id": 308,
+        "name": "Ward of Steel"
+      },
+      {
+        "id": 217,
+        "name": "Wyvern Speed II"
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Harpy",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/harpy.png",
+    "resistant_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 186,
+        "name": "Harpy's Feathers"
+      }
+    ],
+    "skills": [
+      {
+        "id": 182,
+        "name": "Bloodlust"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      }
+    ]
+  },
+  {
+    "id": 288,
+    "name": "Ingenious Cade",
+    "tier": 5,
+    "boss": true,
+    "image": "npcs/inventor.png",
+    "level": 125,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "resistant_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 692,
+        "name": "Arch-Gadget"
+      },
+      {
+        "id": 684,
+        "name": "Arch-Gizmo"
+      },
+      {
+        "id": 475,
+        "name": "Gadget"
+      },
+      {
+        "id": 687,
+        "name": "Genius"
+      },
+      {
+        "id": 469,
+        "name": "Gizmo"
+      }
+    ],
+    "skills": [
+      {
+        "id": 277,
+        "name": "Flame V"
+      },
+      {
+        "id": 278,
+        "name": "Frost V"
+      },
+      {
+        "id": 151,
+        "name": "Lightningstrike II"
+      },
+      {
+        "id": 231,
+        "name": "Mage's Dance"
+      },
+      {
+        "id": 306,
+        "name": "Multi-spark II"
+      },
+      {
+        "id": 152,
+        "name": "Omnistrike II"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      },
+      {
+        "id": 65,
+        "name": "Smoke Bomb"
+      },
+      {
+        "id": 279,
+        "name": "Spark V"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      },
+      {
+        "id": 83,
+        "name": "Storm"
+      },
+      {
+        "id": 307,
+        "name": "Super Bomb"
+      },
+      {
+        "id": 280,
+        "name": "Tremor V"
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Legionnaire",
+    "tier": 5,
+    "boss": false,
+    "image": "classes/legionnaire/default_m.png",
+    "weak_to": [
+      "Fire"
+    ],
+    "immune_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      },
+      {
+        "id": 232,
+        "name": "Earthen Belt"
+      },
+      {
+        "id": 106,
+        "name": "Earthen Pike"
+      }
+    ]
+  },
+  {
+    "id": 297,
+    "name": "Midnight Imp",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/dark_imp.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 41,
+        "name": "Heal"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      }
+    ]
+  },
+  {
+    "id": 268,
+    "name": "Naja",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/brown_snake.png",
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "skills": [
+      {
+        "id": 61,
+        "name": "Poison"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 241,
+    "name": "Odok",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/odok.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      }
+    ]
+  },
+  {
+    "id": 242,
+    "name": "Odok Brute",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/odok2.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      }
+    ]
+  },
+  {
+    "id": 197,
+    "name": "Ogre Brute",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/ogre_brute.png",
+    "drops": [
+      {
+        "id": 277,
+        "name": "Stone"
+      },
+      {
+        "id": 283,
+        "name": "Wood"
+      }
+    ],
+    "skills": [
+      {
+        "id": 37,
+        "name": "Charge"
+      },
+      {
+        "id": 46,
+        "name": "Tremor"
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Orc Marauder",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/orc_marauder.png",
+    "drops": [
+      {
+        "id": 96,
+        "name": "Orcish Blade"
+      }
+    ],
+    "skills": [
+      {
+        "id": 71,
+        "name": "Doublecut"
+      },
+      {
+        "id": 81,
+        "name": "Sleep Dart"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      }
+    ]
+  },
+  {
+    "id": 278,
+    "name": "Poison Wyvern",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/poison_wyvern.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 541,
+        "name": "Poison Dagger"
+      }
+    ]
+  },
+  {
+    "id": 301,
+    "name": "Pyre",
+    "tier": 5,
+    "boss": true,
+    "image": "npcs/pyre.png",
+    "level": 120,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "drops": [
+      {
+        "id": 719,
+        "name": "Candle-pike"
+      },
+      {
+        "id": 718,
+        "name": "Candle-staff"
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Reaper",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/reaper.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "resistant_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      },
+      {
+        "id": 169,
+        "name": "Dark Garb"
+      },
+      {
+        "id": 113,
+        "name": "Reaper's Scythe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 242,
+        "name": "Distortion"
+      },
+      {
+        "id": 220,
+        "name": "Shadow II"
+      }
+    ],
+    "quests": [
+      {
+        "id": 52,
+        "name": "Reapers of Ankou"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Scorcher",
+    "tier": 5,
+    "boss": false,
+    "image": "classes/scorcher/default_m.png",
+    "weak_to": [
+      "Water"
+    ],
+    "immune_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 259,
+        "name": "Firestone"
+      },
+      {
+        "id": 235,
+        "name": "Flame Belt"
+      },
+      {
+        "id": 115,
+        "name": "Scorcher"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Sea Demon",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/water_demon.png",
+    "spawns": [
+      "Night Only",
+      "Water Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "resistant_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      }
+    ]
+  },
+  {
+    "id": 226,
+    "name": "Seer",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/seer.png",
+    "skills": [
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 93,
+        "name": "Omnistrike"
+      },
+      {
+        "id": 169,
+        "name": "Sleep"
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "name": "Sluagh",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/sluagh.png",
+    "level": 100,
+    "immune_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 109,
+        "name": "Fog Blade"
+      },
+      {
+        "id": 260,
+        "name": "Fogstone"
+      }
+    ]
+  },
+  {
+    "id": 177,
+    "name": "Starlord",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/hobgoblin_lord.png",
+    "level": 125,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 364,
+        "name": "Solarite"
+      },
+      {
+        "id": 368,
+        "name": "Meteor Armor"
+      },
+      {
+        "id": 370,
+        "name": "Meteor Hammer"
+      },
+      {
+        "id": 369,
+        "name": "Meteor Helmet"
+      },
+      {
+        "id": 371,
+        "name": "Meteor Leggings"
+      },
+      {
+        "id": 401,
+        "name": "Solar Boots"
+      },
+      {
+        "id": 373,
+        "name": "Solar Bow"
+      },
+      {
+        "id": 372,
+        "name": "Solar Garb"
+      },
+      {
+        "id": 363,
+        "name": "Solar Hood"
+      },
+      {
+        "id": 365,
+        "name": "Sun Boots"
+      },
+      {
+        "id": 362,
+        "name": "Sun Hat"
+      },
+      {
+        "id": 366,
+        "name": "Sun Robe"
+      },
+      {
+        "id": 367,
+        "name": "Sun Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 121,
+        "name": "Bright Star"
+      },
+      {
+        "id": 130,
+        "name": "Comet"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      },
+      {
+        "id": 183,
+        "name": "Quasar"
+      },
+      {
+        "id": 122,
+        "name": "Shooting Star"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Storm Knight",
+    "tier": 5,
+    "boss": false,
+    "image": "classes/storm_knight/default_m.png",
+    "weak_to": [
+      "Earthen"
+    ],
+    "immune_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 265,
+        "name": "Lightningstone"
+      },
+      {
+        "id": 239,
+        "name": "Storm Belt"
+      },
+      {
+        "id": 103,
+        "name": "Bolt"
+      }
+    ]
+  },
+  {
+    "id": 276,
+    "name": "The Fool",
+    "tier": 5,
+    "boss": true,
+    "image": "monsters/mimic.png",
+    "level": 100,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "resistant_to": [
+      "Dragon",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 481,
+        "name": "Carl's Dagger"
+      },
+      {
+        "id": 482,
+        "name": "Aldon's Hat"
+      },
+      {
+        "id": 486,
+        "name": "Beatrice's Staff"
+      },
+      {
+        "id": 497,
+        "name": "Dalan's Hood"
+      },
+      {
+        "id": 442,
+        "name": "Dalan's Robe"
+      },
+      {
+        "id": 476,
+        "name": "Dudley's Hammer"
+      },
+      {
+        "id": 491,
+        "name": "Sala's Hood"
+      },
+      {
+        "id": 462,
+        "name": "Boreal's Staff"
+      },
+      {
+        "id": 487,
+        "name": "Boulderbold"
+      },
+      {
+        "id": 475,
+        "name": "Gadget"
+      },
+      {
+        "id": 469,
+        "name": "Gizmo"
+      },
+      {
+        "id": 485,
+        "name": "Artifice Gada"
+      },
+      {
+        "id": 493,
+        "name": "Fail-not"
+      },
+      {
+        "id": 465,
+        "name": "Balin's Left"
+      },
+      {
+        "id": 524,
+        "name": "Balin's Right"
+      },
+      {
+        "id": 521,
+        "name": "Balanced Epee"
+      },
+      {
+        "id": 587,
+        "name": "Fine Greatsword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 207,
+        "name": "Annihilation"
+      },
+      {
+        "id": 108,
+        "name": "Blast II"
+      },
+      {
+        "id": 191,
+        "name": "Blast III"
+      },
+      {
+        "id": 240,
+        "name": "Blizzard II"
+      },
+      {
+        "id": 211,
+        "name": "Catastrophe"
+      },
+      {
+        "id": 174,
+        "name": "Coup de Grace"
+      },
+      {
+        "id": 98,
+        "name": "Flare"
+      },
+      {
+        "id": 192,
+        "name": "Great Mimic's Mischief"
+      },
+      {
+        "id": 89,
+        "name": "Holy"
+      },
+      {
+        "id": 208,
+        "name": "King's Reign"
+      },
+      {
+        "id": 243,
+        "name": "Meteor II"
+      },
+      {
+        "id": 103,
+        "name": "Mimic's Mischief"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 152,
+        "name": "Omnistrike II"
+      },
+      {
+        "id": 210,
+        "name": "Quake III"
+      },
+      {
+        "id": 183,
+        "name": "Quasar"
+      },
+      {
+        "id": 212,
+        "name": "Stone Stare"
+      },
+      {
+        "id": 181,
+        "name": "Storm II"
+      },
+      {
+        "id": 180,
+        "name": "Wail"
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Ushi-Oni",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/ushi.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 241,
+        "name": "Warrior's Ring"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Vampire Lord",
+    "tier": 5,
+    "boss": true,
+    "image": "bosses/vampire_lord.png",
+    "level": 100,
+    "spawns": [
+      "Woods Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 231,
+        "name": "Red Crystal"
+      },
+      {
+        "id": 117,
+        "name": "Vampiric Blade"
+      },
+      {
+        "id": 279,
+        "name": "Vampiric Ore"
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Will-O'-The-Wisp",
+    "tier": 5,
+    "boss": false,
+    "image": "monsters/will_wisp.png",
+    "spawns": [
+      "Night Only"
+    ]
+  },
+  {
+    "id": 340,
+    "name": "Ancient Draugr",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/ancient_draugr.png",
+    "spawns": [
+      "Gauntlet Only"
+    ]
+  },
+  {
+    "id": 245,
+    "name": "Ancient Draugr Lord",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/ancient_draugr_lord.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 278,
+        "name": "Undead Bone"
+      }
+    ]
+  },
+  {
+    "id": 341,
+    "name": "Ancient Draugr Mage",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/ancient_draugr_mage.png",
+    "spawns": [
+      "Gauntlet Only"
+    ]
+  },
+  {
+    "id": 164,
+    "name": "Arcane Dragon",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/arcane_dragon.png",
+    "weak_to": [
+      "Dragon"
+    ],
+    "drops": [
+      {
+        "id": 353,
+        "name": "Arcane Boots"
+      },
+      {
+        "id": 352,
+        "name": "Arcane Hat"
+      },
+      {
+        "id": 351,
+        "name": "Arcane Robe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 166,
+        "name": "Arcana"
+      },
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 184,
+        "name": "Nightmare II"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "name": "Arcane Flame",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/arcane_flame.png",
+    "weak_to": [
+      "Earthen"
+    ],
+    "immune_to": [
+      "Dark",
+      "Dragon",
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 259,
+        "name": "Firestone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 166,
+        "name": "Arcana"
+      },
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 100,
+        "name": "Flare II"
+      }
+    ]
+  },
+  {
+    "id": 224,
+    "name": "Basilisk",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/basilisk.png",
+    "drops": [
+      {
+        "id": 255,
+        "name": "Dragonite"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 192,
+    "name": "Behemoth",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/behemoth.png",
+    "level": 140,
+    "spawns": [
+      "Woods Only"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 261,
+        "name": "Hardened Steel"
+      },
+      {
+        "id": 402,
+        "name": "Oxen Axe"
+      }
+    ],
+    "quests": [
+      {
+        "id": 25,
+        "name": "Slayer of Artifice"
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "name": "Carman",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/witch.png",
+    "level": 125,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 101,
+        "name": "Black Witch Staff"
+      },
+      {
+        "id": 153,
+        "name": "Witch's Hat"
+      },
+      {
+        "id": 281,
+        "name": "Witchstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 64,
+        "name": "Shock"
+      }
+    ],
+    "quests": [
+      {
+        "id": 25,
+        "name": "Slayer of Artifice"
+      },
+      {
+        "id": 58,
+        "name": "The Great Witch"
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "name": "Cerberus",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/cerberus.png",
+    "level": 140,
+    "resistant_to": [
+      "Dark"
+    ],
+    "immune_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 253,
+        "name": "Demonic Ore"
+      },
+      {
+        "id": 118,
+        "name": "Balor Dagger"
+      }
+    ],
+    "quests": [
+      {
+        "id": 26,
+        "name": "A Hunt of Heads"
+      },
+      {
+        "id": 53,
+        "name": "Hound of Balor"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 277,
+    "name": "Cerus",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/taurus.png",
+    "level": 150,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "resistant_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 582,
+        "name": "Belt of Cerus"
+      },
+      {
+        "id": 584,
+        "name": "Horned Helmet"
+      },
+      {
+        "id": 585,
+        "name": "Horned Hood"
+      },
+      {
+        "id": 586,
+        "name": "Raging Bull"
+      },
+      {
+        "id": 583,
+        "name": "Untamed Bull"
+      }
+    ],
+    "skills": [
+      {
+        "id": 121,
+        "name": "Bright Star"
+      },
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      },
+      {
+        "id": 148,
+        "name": "Firestrike II"
+      },
+      {
+        "id": 237,
+        "name": "Inquest"
+      },
+      {
+        "id": 157,
+        "name": "Multi-flame"
+      },
+      {
+        "id": 204,
+        "name": "Omnistrike III"
+      },
+      {
+        "id": 183,
+        "name": "Quasar"
+      },
+      {
+        "id": 234,
+        "name": "Rebuke"
+      },
+      {
+        "id": 251,
+        "name": "Scout Weakness"
+      },
+      {
+        "id": 122,
+        "name": "Shooting Star"
+      }
+    ]
+  },
+  {
+    "id": 248,
+    "name": "Crimson Yokai",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/yokai3.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 259,
+        "name": "Firestone"
+      }
+    ]
+  },
+  {
+    "id": 243,
+    "name": "Dark Wolfman",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/dark_wolfman.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 275,
+        "name": "Silver"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 135,
+    "name": "Finfolk",
+    "tier": 6,
+    "boss": true,
+    "image": "monsters/water_demon.png",
+    "level": 125,
+    "spawns": [
+      "Water Only"
+    ],
+    "resistant_to": [
+      "Fire"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 302,
+        "name": "Pure Waterstone"
+      },
+      {
+        "id": 287,
+        "name": "Sea Axe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 239,
+        "name": "Drain II"
+      }
+    ],
+    "quests": [
+      {
+        "id": 25,
+        "name": "Slayer of Artifice"
+      }
+    ]
+  },
+  {
+    "id": 174,
+    "name": "Fomorian Druid",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/fomorian_druid.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 494,
+        "name": "Fallen Druid's Staff"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "name": "Frost Troll",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/ice_troll.png",
+    "weak_to": [
+      "Fire"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 280,
+        "name": "Waterstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 88,
+        "name": "Glacier"
+      }
+    ]
+  },
+  {
+    "id": 166,
+    "name": "Gargoyle",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/gargoyle.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Earthen"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "immune_to": [
+      "Fire"
+    ],
+    "skills": [
+      {
+        "id": 171,
+        "name": "Mindblast"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ]
+  },
+  {
+    "id": 274,
+    "name": "Giant Basilisk",
+    "tier": 6,
+    "boss": true,
+    "image": "monsters/basilisk.png",
+    "level": 150,
+    "spawns": [
+      "Woods Only"
+    ],
+    "drops": [
+      {
+        "id": 274,
+        "name": "Scalestone"
+      },
+      {
+        "id": 457,
+        "name": "Basilisk Tooth"
+      }
+    ],
+    "skills": [
+      {
+        "id": 225,
+        "name": "Bite"
+      },
+      {
+        "id": 96,
+        "name": "Blightstrike"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 260,
+    "name": "Great Odok",
+    "tier": 6,
+    "boss": true,
+    "image": "monsters/odok3.png",
+    "level": 0,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 278,
+        "name": "Undead Bone"
+      },
+      {
+        "id": 654,
+        "name": "Bonesong"
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "name": "Great Ushi-Oni",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/great_ushi.png",
+    "weak_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 264,
+        "name": "Leather"
+      },
+      {
+        "id": 241,
+        "name": "Warrior's Ring"
+      }
+    ],
+    "skills": [
+      {
+        "id": 34,
+        "name": "Battle Dance"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Great Wyvern",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/wyvern.png",
+    "weak_to": [
+      "Dragon"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Physical",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 255,
+        "name": "Dragonite"
+      },
+      {
+        "id": 205,
+        "name": "Drake Boots"
+      },
+      {
+        "id": 148,
+        "name": "Drake Helmet"
+      },
+      {
+        "id": 188,
+        "name": "Wyvern Chestmail"
+      },
+      {
+        "id": 154,
+        "name": "Wyvern Helmet"
+      },
+      {
+        "id": 212,
+        "name": "Wyvern Leggings"
+      }
+    ],
+    "skills": [
+      {
+        "id": 41,
+        "name": "Heal"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 198,
+    "name": "High Draconian",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/high_draco.png",
+    "drops": [
+      {
+        "id": 254,
+        "name": "Draconite"
+      },
+      {
+        "id": 266,
+        "name": "Mythril"
+      },
+      {
+        "id": 415,
+        "name": "High Draconian Armor"
+      },
+      {
+        "id": 437,
+        "name": "High Draconian Leggings"
+      }
+    ],
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 74,
+        "name": "Holystrike"
+      }
+    ],
+    "quests": [
+      {
+        "id": 60,
+        "name": "Return of the Draconians"
+      }
+    ]
+  },
+  {
+    "id": 199,
+    "name": "High Draconian Mage",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/high_draco_mage.png",
+    "drops": [
+      {
+        "id": 254,
+        "name": "Draconite"
+      },
+      {
+        "id": 417,
+        "name": "High Draconian Hood"
+      },
+      {
+        "id": 409,
+        "name": "High Draconian Robe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 118,
+        "name": "Flame III"
+      },
+      {
+        "id": 117,
+        "name": "Frost III"
+      },
+      {
+        "id": 112,
+        "name": "Tremor III"
+      }
+    ],
+    "quests": [
+      {
+        "id": 60,
+        "name": "Return of the Draconians"
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "name": "High Draconian Mystic",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/draco_mystic.png",
+    "drops": [
+      {
+        "id": 124,
+        "name": "Fallen Mystic's Staff"
+      },
+      {
+        "id": 441,
+        "name": "High Draconian Boots"
+      },
+      {
+        "id": 416,
+        "name": "High Draconian Cowl"
+      },
+      {
+        "id": 414,
+        "name": "High Draconian Garb"
+      }
+    ],
+    "quests": [
+      {
+        "id": 60,
+        "name": "Return of the Draconians"
+      }
+    ]
+  },
+  {
+    "id": 275,
+    "name": "Kerberos of Ice",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/kerberos.png",
+    "level": 150,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "resistant_to": [
+      "Water"
+    ],
+    "immune_to": [
+      "Dark",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 565,
+        "name": "Kerberos Claws"
+      },
+      {
+        "id": 563,
+        "name": "Kerberos Hood"
+      },
+      {
+        "id": 564,
+        "name": "Kerberos Staff"
+      },
+      {
+        "id": 562,
+        "name": "Kerberos Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 240,
+        "name": "Blizzard II"
+      },
+      {
+        "id": 63,
+        "name": "Quake"
+      },
+      {
+        "id": 249,
+        "name": "Unrelenting Fury"
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "name": "Orthrus",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/orthrus.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 162,
+        "name": "Bearskin"
+      },
+      {
+        "id": 126,
+        "name": "Might"
+      }
+    ],
+    "skills": [
+      {
+        "id": 71,
+        "name": "Doublecut"
+      },
+      {
+        "id": 93,
+        "name": "Omnistrike"
+      },
+      {
+        "id": 85,
+        "name": "Threaten"
+      }
+    ],
+    "quests": [
+      {
+        "id": 27,
+        "name": "A Hunt of Heads II"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 338,
+    "name": "Polar Bear",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/polar_bear.png",
+    "spawns": [
+      "Snow Only"
+    ]
+  },
+  {
+    "id": 118,
+    "name": "Ronin",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/ronin.png",
+    "level": 150,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 125,
+        "name": "Masamune"
+      },
+      {
+        "id": 267,
+        "name": "Nightstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 85,
+        "name": "Threaten"
+      }
+    ],
+    "quests": [
+      {
+        "id": 25,
+        "name": "Slayer of Artifice"
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "name": "Sea Wyvern",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/sea_dragon.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "weak_to": [
+      "Dragon",
+      "Lightning"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 187,
+        "name": "Wyvern Armor"
+      },
+      {
+        "id": 127,
+        "name": "Wyvern Blades"
+      },
+      {
+        "id": 211,
+        "name": "Wyvern Boots"
+      },
+      {
+        "id": 188,
+        "name": "Wyvern Chestmail"
+      },
+      {
+        "id": 343,
+        "name": "Wyvern Cowl"
+      },
+      {
+        "id": 154,
+        "name": "Wyvern Helmet"
+      },
+      {
+        "id": 288,
+        "name": "Wyvern Hood"
+      },
+      {
+        "id": 212,
+        "name": "Wyvern Leggings"
+      },
+      {
+        "id": 213,
+        "name": "Wyvern Mage's Boots"
+      },
+      {
+        "id": 190,
+        "name": "Wyvern Robe"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 178,
+    "name": "Titan",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/titan.png",
+    "level": 150,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 390,
+        "name": "Titanium"
+      },
+      {
+        "id": 383,
+        "name": "Lunar Boots"
+      },
+      {
+        "id": 374,
+        "name": "Lunar Dagger"
+      },
+      {
+        "id": 377,
+        "name": "Lunar Garb"
+      },
+      {
+        "id": 380,
+        "name": "Lunar Helmet"
+      },
+      {
+        "id": 382,
+        "name": "Moon Boots"
+      },
+      {
+        "id": 381,
+        "name": "Moon Hat"
+      },
+      {
+        "id": 379,
+        "name": "Moon Robe"
+      },
+      {
+        "id": 376,
+        "name": "Moon Staff"
+      },
+      {
+        "id": 378,
+        "name": "Titan Armor"
+      },
+      {
+        "id": 375,
+        "name": "Titan Axe"
+      },
+      {
+        "id": 388,
+        "name": "Titan Helmet"
+      },
+      {
+        "id": 384,
+        "name": "Titan Leggings"
+      }
+    ],
+    "skills": [
+      {
+        "id": 211,
+        "name": "Catastrophe"
+      },
+      {
+        "id": 213,
+        "name": "Onslaught"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      },
+      {
+        "id": 79,
+        "name": "Protection II"
+      },
+      {
+        "id": 63,
+        "name": "Quake"
+      },
+      {
+        "id": 210,
+        "name": "Quake III"
+      },
+      {
+        "id": 212,
+        "name": "Stone Stare"
+      }
+    ]
+  },
+  {
+    "id": 219,
+    "name": "Underworld Carman",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/carman2.png",
+    "level": 150,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 440,
+        "name": "Witch's Archistaff"
+      },
+      {
+        "id": 281,
+        "name": "Witchstone"
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "name": "Woodland Elf",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/wood_elf.png",
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      },
+      {
+        "id": 257,
+        "name": "Elstone"
+      },
+      {
+        "id": 299,
+        "name": "Woodblade"
+      }
+    ],
+    "skills": [
+      {
+        "id": 96,
+        "name": "Blightstrike"
+      },
+      {
+        "id": 73,
+        "name": "Flurry"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ]
+  },
+  {
+    "id": 153,
+    "name": "Woodland Elf Mage",
+    "tier": 6,
+    "boss": false,
+    "image": "monsters/wood_elf_mage.png",
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      },
+      {
+        "id": 257,
+        "name": "Elstone"
+      },
+      {
+        "id": 344,
+        "name": "Woodland Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      },
+      {
+        "id": 83,
+        "name": "Storm"
+      }
+    ]
+  },
+  {
+    "id": 216,
+    "name": "Woodland Lord",
+    "tier": 6,
+    "boss": true,
+    "image": "bosses/wood_elf_lord.png",
+    "level": 0,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Dragon",
+      "Holy"
+    ],
+    "immune_to": [
+      "Fire",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 426,
+        "name": "Spirit of the Wood"
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "name": "Ankou",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/grim_reaper.png",
+    "level": 150,
+    "resistant_to": [
+      "Earthen",
+      "Fire",
+      "Lightning",
+      "Water"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 252,
+        "name": "Darkstone"
+      },
+      {
+        "id": 169,
+        "name": "Dark Garb"
+      },
+      {
+        "id": 133,
+        "name": "Deathbringer"
+      },
+      {
+        "id": 270,
+        "name": "Pure Darkstone"
+      },
+      {
+        "id": 189,
+        "name": "Reaper's Robe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 48,
+        "name": "Drain"
+      },
+      {
+        "id": 51,
+        "name": "Firestrike"
+      },
+      {
+        "id": 57,
+        "name": "Icestrike"
+      },
+      {
+        "id": 58,
+        "name": "Lightningstrike"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 367,
+        "name": "Rebirth"
+      }
+    ],
+    "quests": [
+      {
+        "id": 55,
+        "name": "Ankou"
+      }
+    ]
+  },
+  {
+    "id": 249,
+    "name": "Arcane Slime",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/arcane_slime.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 167,
+        "name": "Arcana II"
+      }
+    ]
+  },
+  {
+    "id": 134,
+    "name": "Arisen Camazotz",
+    "tier": 7,
+    "boss": false,
+    "image": "bosses/camazotz.png",
+    "resistant_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 251,
+        "name": "Cavestone"
+      },
+      {
+        "id": 289,
+        "name": "Arisen Batwing Bow"
+      }
+    ]
+  },
+  {
+    "id": 155,
+    "name": "Arisen Cerberus",
+    "tier": 7,
+    "boss": false,
+    "image": "bosses/cerberus.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "immune_to": [
+      "Dark",
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 253,
+        "name": "Demonic Ore"
+      },
+      {
+        "id": 350,
+        "name": "Arisen Balor Dagger"
+      }
+    ],
+    "skills": [
+      {
+        "id": 206,
+        "name": "Fireball"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Arisen Draconian Lord",
+    "tier": 7,
+    "boss": false,
+    "image": "bosses/draco_lord.png",
+    "drops": [
+      {
+        "id": 271,
+        "name": "Pure Draconite"
+      },
+      {
+        "id": 128,
+        "name": "Arisen Draconian Archistaff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 90,
+        "name": "Inferno"
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "name": "Arisen Lord of Wolves",
+    "tier": 7,
+    "boss": false,
+    "image": "bosses/wolfman_lord.png",
+    "resistant_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 282,
+        "name": "Wolf's Blood"
+      },
+      {
+        "id": 290,
+        "name": "Arisen Staff of Wolves"
+      }
+    ]
+  },
+  {
+    "id": 141,
+    "name": "Arisen Lost Pharaoh",
+    "tier": 7,
+    "boss": false,
+    "image": "bosses/pharaoh.png",
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 248,
+        "name": "Ancient Stone"
+      },
+      {
+        "id": 300,
+        "name": "Arisen Ankh"
+      }
+    ],
+    "skills": [
+      {
+        "id": 99,
+        "name": "Blast"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      },
+      {
+        "id": 170,
+        "name": "Petrify"
+      },
+      {
+        "id": 83,
+        "name": "Storm"
+      }
+    ]
+  },
+  {
+    "id": 132,
+    "name": "Arisen Minotaur",
+    "tier": 7,
+    "boss": false,
+    "image": "bosses/minotaur.png",
+    "drops": [
+      {
+        "id": 261,
+        "name": "Hardened Steel"
+      },
+      {
+        "id": 129,
+        "name": "Arisen Minotaur Axe"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 337,
+    "name": "Arisen Naggeneen",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/naggeneen.png",
+    "level": 175,
+    "spawns": [
+      "Raid"
+    ],
+    "resistant_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 454,
+        "name": "Berserk Mushroom"
+      },
+      {
+        "id": 845,
+        "name": "Naggeneen's Brew"
+      },
+      {
+        "id": 837,
+        "name": "Arisen Fairy's Ring"
+      },
+      {
+        "id": 834,
+        "name": "Arisen Clurichaun Blade"
+      },
+      {
+        "id": 839,
+        "name": "Arisen Naggeneen's Hat"
+      },
+      {
+        "id": 838,
+        "name": "Clurichaun Arrows"
+      }
+    ],
+    "skills": [
+      {
+        "id": 108,
+        "name": "Blast II"
+      },
+      {
+        "id": 191,
+        "name": "Blast III"
+      },
+      {
+        "id": 366,
+        "name": "Miasma"
+      },
+      {
+        "id": 204,
+        "name": "Omnistrike III"
+      },
+      {
+        "id": 246,
+        "name": "Putrid Breath"
+      },
+      {
+        "id": 247,
+        "name": "Toxicstrike"
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Arisen Orc Lord",
+    "tier": 7,
+    "boss": false,
+    "image": "bosses/orc_lord.png"
+  },
+  {
+    "id": 179,
+    "name": "Balor Elite",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/balor_knight.png",
+    "level": 175,
+    "spawns": [
+      "Raid"
+    ],
+    "resistant_to": [
+      "Fire",
+      "Lightning"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 519,
+        "name": "Ashen Boots"
+      },
+      {
+        "id": 471,
+        "name": "Ashen Hat"
+      },
+      {
+        "id": 522,
+        "name": "Ashen Robe"
+      },
+      {
+        "id": 500,
+        "name": "Ashen Staff"
+      },
+      {
+        "id": 516,
+        "name": "Pale Armor"
+      },
+      {
+        "id": 474,
+        "name": "Paleblade"
+      },
+      {
+        "id": 520,
+        "name": "Pale Helmet"
+      },
+      {
+        "id": 483,
+        "name": "Pale Leggings"
+      },
+      {
+        "id": 438,
+        "name": "Shadow Boots"
+      },
+      {
+        "id": 502,
+        "name": "Shadow Garb"
+      },
+      {
+        "id": 439,
+        "name": "Shadow Hood"
+      },
+      {
+        "id": 452,
+        "name": "Shadow Katana"
+      }
+    ],
+    "skills": [
+      {
+        "id": 207,
+        "name": "Annihilation"
+      },
+      {
+        "id": 206,
+        "name": "Fireball"
+      },
+      {
+        "id": 213,
+        "name": "Onslaught"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 225,
+    "name": "Cavelord",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/dweller.png",
+    "level": 175,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 251,
+        "name": "Cavestone"
+      },
+      {
+        "id": 499,
+        "name": "Spelunking Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 251,
+        "name": "Scout Weakness"
+      }
+    ]
+  },
+  {
+    "id": 170,
+    "name": "Colossus",
+    "tier": 7,
+    "boss": true,
+    "image": "monsters/colossus.png",
+    "level": 160,
+    "weak_to": [
+      "Water"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Dragon",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 273,
+        "name": "Runestone"
+      },
+      {
+        "id": 277,
+        "name": "Stone"
+      },
+      {
+        "id": 355,
+        "name": "Colossal Armor"
+      },
+      {
+        "id": 356,
+        "name": "Colossal Helmet"
+      },
+      {
+        "id": 357,
+        "name": "Colossal Leggings"
+      }
+    ],
+    "skills": [
+      {
+        "id": 108,
+        "name": "Blast II"
+      },
+      {
+        "id": 239,
+        "name": "Drain II"
+      }
+    ]
+  },
+  {
+    "id": 251,
+    "name": "Dark Dragon",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/black_dragon.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 255,
+        "name": "Dragonite"
+      },
+      {
+        "id": 104,
+        "name": "Dragon Dagger"
+      },
+      {
+        "id": 105,
+        "name": "Dragon Sword"
+      },
+      {
+        "id": 649,
+        "name": "Dragonsong"
+      }
+    ],
+    "skills": [
+      {
+        "id": 137,
+        "name": "Holy Wall"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 201,
+    "name": "Enlightened",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/enlightened.png"
+  },
+  {
+    "id": 202,
+    "name": "Enlightened Guardian",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/enlightened_knight.png",
+    "drops": [
+      {
+        "id": 418,
+        "name": "Crystal Halberd"
+      }
+    ]
+  },
+  {
+    "id": 203,
+    "name": "Enlightened Mage",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/enlightened_mage.png",
+    "drops": [
+      {
+        "id": 436,
+        "name": "Crystal Staff"
+      }
+    ]
+  },
+  {
+    "id": 210,
+    "name": "Enlightened Prince",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/enlightened_prince.png",
+    "level": 175,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 268,
+        "name": "Perfect Runestone"
+      },
+      {
+        "id": 433,
+        "name": "Crystalis"
+      }
+    ]
+  },
+  {
+    "id": 222,
+    "name": "Fallen Ra, the Seer",
+    "tier": 7,
+    "boss": true,
+    "image": "npcs/ra.png",
+    "level": 0,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 258,
+        "name": "Eyestone"
+      },
+      {
+        "id": 455,
+        "name": "Ra's Cane"
+      }
+    ],
+    "skills": [
+      {
+        "id": 121,
+        "name": "Bright Star"
+      },
+      {
+        "id": 130,
+        "name": "Comet"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      },
+      {
+        "id": 122,
+        "name": "Shooting Star"
+      }
+    ]
+  },
+  {
+    "id": 167,
+    "name": "Fallen Wanderer",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/fallen_wanderer.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 266,
+        "name": "Mythril"
+      },
+      {
+        "id": 354,
+        "name": "Fallen Wanderer's Dagger"
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "name": "Fenrir",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/fenrir.png",
+    "level": 175,
+    "spawns": [
+      "Woods Only"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 282,
+        "name": "Wolf's Blood"
+      },
+      {
+        "id": 304,
+        "name": "Wolfbane"
+      }
+    ]
+  },
+  {
+    "id": 252,
+    "name": "Giant Red Basilisk",
+    "tier": 7,
+    "boss": true,
+    "image": "monsters/red_basilisk.png",
+    "level": 0,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 274,
+        "name": "Scalestone"
+      },
+      {
+        "id": 457,
+        "name": "Basilisk Tooth"
+      }
+    ],
+    "skills": [
+      {
+        "id": 225,
+        "name": "Bite"
+      },
+      {
+        "id": 96,
+        "name": "Blightstrike"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 257,
+    "name": "Great Eel",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/eel.png",
+    "spawns": [
+      "Water Only"
+    ]
+  },
+  {
+    "id": 124,
+    "name": "Great Orc",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/great_orc.png",
+    "drops": [
+      {
+        "id": 404,
+        "name": "Great Orcish Axe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 182,
+        "name": "Bloodlust"
+      },
+      {
+        "id": 213,
+        "name": "Onslaught"
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "name": "Great Orc Marauder",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/great_orc_marauder.png",
+    "drops": [
+      {
+        "id": 405,
+        "name": "Great Orcish Blade"
+      }
+    ]
+  },
+  {
+    "id": 282,
+    "name": "Great Yeti",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/great_yeti.png",
+    "spawns": [
+      "Snow Only"
+    ],
+    "drops": [
+      {
+        "id": 613,
+        "name": "Yeti Overcoat"
+      }
+    ],
+    "skills": [
+      {
+        "id": 148,
+        "name": "Firestrike II"
+      },
+      {
+        "id": 150,
+        "name": "Icestrike II"
+      },
+      {
+        "id": 91,
+        "name": "Magic Shield II"
+      },
+      {
+        "id": 79,
+        "name": "Protection II"
+      }
+    ]
+  },
+  {
+    "id": 204,
+    "name": "High Fomorian",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/high_fomorian.png",
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      },
+      {
+        "id": 266,
+        "name": "Mythril"
+      },
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 412,
+        "name": "High Fomorian Armor"
+      },
+      {
+        "id": 411,
+        "name": "High Fomorian Leggings"
+      },
+      {
+        "id": 419,
+        "name": "High Fomorian Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 37,
+        "name": "Charge"
+      },
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 74,
+        "name": "Holystrike"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 205,
+    "name": "High Fomorian Mage",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/high_fomorian_mage.png",
+    "drops": [
+      {
+        "id": 249,
+        "name": "Bone"
+      },
+      {
+        "id": 266,
+        "name": "Mythril"
+      },
+      {
+        "id": 275,
+        "name": "Silver"
+      },
+      {
+        "id": 410,
+        "name": "High Fomorian Hood"
+      },
+      {
+        "id": 413,
+        "name": "High Fomorian Robe"
+      },
+      {
+        "id": 420,
+        "name": "High Fomorian Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 273,
+    "name": "Naggeneen",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/naggeneen.png",
+    "level": 175,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "resistant_to": [
+      "Earthen",
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 575,
+        "name": "Fairy's Ring"
+      },
+      {
+        "id": 576,
+        "name": "Clurichaun Soul Blade"
+      },
+      {
+        "id": 577,
+        "name": "Naggeneen's Hat"
+      }
+    ],
+    "skills": [
+      {
+        "id": 167,
+        "name": "Arcana II"
+      },
+      {
+        "id": 108,
+        "name": "Blast II"
+      },
+      {
+        "id": 191,
+        "name": "Blast III"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 246,
+        "name": "Putrid Breath"
+      },
+      {
+        "id": 165,
+        "name": "Quick attack"
+      },
+      {
+        "id": 247,
+        "name": "Toxicstrike"
+      }
+    ]
+  },
+  {
+    "id": 262,
+    "name": "Red Basilisk",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/red_basilisk.png",
+    "drops": [
+      {
+        "id": 255,
+        "name": "Dragonite"
+      }
+    ],
+    "skills": [
+      {
+        "id": 225,
+        "name": "Bite"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "name": "Tiamat",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/tiamat.png",
+    "level": 175,
+    "weak_to": [
+      "Dragon"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Fire",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 272,
+        "name": "Red Draconite"
+      },
+      {
+        "id": 187,
+        "name": "Wyvern Armor"
+      },
+      {
+        "id": 188,
+        "name": "Wyvern Chestmail"
+      },
+      {
+        "id": 212,
+        "name": "Wyvern Leggings"
+      },
+      {
+        "id": 190,
+        "name": "Wyvern Robe"
+      },
+      {
+        "id": 130,
+        "name": "Axe of Tiamat"
+      },
+      {
+        "id": 131,
+        "name": "Bow of Tiamat"
+      },
+      {
+        "id": 134,
+        "name": "Staff of Tiamat"
+      }
+    ],
+    "skills": [
+      {
+        "id": 242,
+        "name": "Distortion"
+      },
+      {
+        "id": 206,
+        "name": "Fireball"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ],
+    "quests": [
+      {
+        "id": 29,
+        "name": "Tiamat"
+      },
+      {
+        "id": 54,
+        "name": "Tiamat"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 236,
+    "name": "Twilight Wisp",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/twilight_wisp.png",
+    "resistant_to": [
+      "Arcane",
+      "Dark",
+      "Dragon",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Physical",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 252,
+        "name": "Darkstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 92,
+        "name": "Nightmare"
+      }
+    ]
+  },
+  {
+    "id": 212,
+    "name": "Typhon",
+    "tier": 7,
+    "boss": true,
+    "image": "bosses/typhon.png",
+    "level": 175,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "weak_to": [
+      "Dragon"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 272,
+        "name": "Red Draconite"
+      },
+      {
+        "id": 429,
+        "name": "Axe of Typhon"
+      },
+      {
+        "id": 434,
+        "name": "Bow of Typhon"
+      },
+      {
+        "id": 435,
+        "name": "Staff of Typhon"
+      }
+    ],
+    "skills": [
+      {
+        "id": 243,
+        "name": "Meteor II"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ],
+    "quests": [
+      {
+        "id": 30,
+        "name": "Typhon"
+      }
+    ]
+  },
+  {
+    "id": 244,
+    "name": "Warg",
+    "tier": 7,
+    "boss": false,
+    "image": "monsters/warg.png",
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "skills": [
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 289,
+    "name": "Almighty Balin",
+    "tier": 8,
+    "boss": true,
+    "image": "npcs/balin.png",
+    "level": 200,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "drops": [
+      {
+        "id": 690,
+        "name": "Avalon Knight Armor"
+      },
+      {
+        "id": 688,
+        "name": "Avalon Knight Helmet"
+      },
+      {
+        "id": 689,
+        "name": "Avalon Knight Leggings"
+      },
+      {
+        "id": 686,
+        "name": "Colada"
+      },
+      {
+        "id": 685,
+        "name": "Tizona"
+      }
+    ],
+    "skills": [
+      {
+        "id": 174,
+        "name": "Coup de Grace"
+      },
+      {
+        "id": 285,
+        "name": "Doublecut II"
+      },
+      {
+        "id": 237,
+        "name": "Inquest"
+      },
+      {
+        "id": 200,
+        "name": "Lightningstrike III"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      },
+      {
+        "id": 164,
+        "name": "Swordplay"
+      },
+      {
+        "id": 85,
+        "name": "Threaten"
+      },
+      {
+        "id": 67,
+        "name": "Warcry"
+      },
+      {
+        "id": 162,
+        "name": "X Slash"
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "name": "Arisen Lizarr Royal",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/lizard_lord.png",
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 274,
+        "name": "Scalestone"
+      },
+      {
+        "id": 340,
+        "name": "Arisen Bow of Scales"
+      }
+    ]
+  },
+  {
+    "id": 231,
+    "name": "Arisen Undead Golem",
+    "tier": 8,
+    "boss": false,
+    "image": "bosses/undead_golem.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "resistant_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 278,
+        "name": "Undead Bone"
+      },
+      {
+        "id": 459,
+        "name": "Arisen Bonecrusher"
+      },
+      {
+        "id": 691,
+        "name": "Arisen Bone Shield"
+      }
+    ]
+  },
+  {
+    "id": 193,
+    "name": "Cockatrice",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/cockatrice.png",
+    "level": 175,
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 277,
+        "name": "Stone"
+      },
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 408,
+        "name": "Stone Pendant"
+      }
+    ],
+    "skills": [
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 170,
+        "name": "Petrify"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ]
+  },
+  {
+    "id": 311,
+    "name": "Crimson Wood",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/crimson_wood.png",
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      },
+      {
+        "id": 283,
+        "name": "Wood"
+      }
+    ]
+  },
+  {
+    "id": 269,
+    "name": "Cthulhu",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/cthulhu.png",
+    "level": 200,
+    "spawns": [
+      "Gauntlet Only",
+      "Water Only"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Holy"
+    ],
+    "immune_to": [
+      "Fire",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 552,
+        "name": "Horror"
+      }
+    ],
+    "skills": [
+      {
+        "id": 191,
+        "name": "Blast III"
+      },
+      {
+        "id": 48,
+        "name": "Drain"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      }
+    ]
+  },
+  {
+    "id": 263,
+    "name": "Dark Basilisk",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/black_basilisk.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 612,
+        "name": "Basilisk Talons"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 213,
+    "name": "Dokkalfar",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/dokkalfar.png",
+    "spawns": [
+      "Gauntlet Only",
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 537,
+        "name": "Dokkalfar Garb"
+      }
+    ],
+    "quests": [
+      {
+        "id": 32,
+        "name": "Dokkalfar Forces"
+      },
+      {
+        "id": 57,
+        "name": "The Dokkalfar"
+      }
+    ]
+  },
+  {
+    "id": 214,
+    "name": "Dokkalfar Knight",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/dokkalfar_knight.png",
+    "spawns": [
+      "Gauntlet Only",
+      "Night Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 543,
+        "name": "Dokkalfar Armor"
+      },
+      {
+        "id": 545,
+        "name": "Dokkalfar Boots"
+      },
+      {
+        "id": 539,
+        "name": "Dokkalfar Helmet"
+      },
+      {
+        "id": 542,
+        "name": "Dokkalfar Sword"
+      }
+    ],
+    "quests": [
+      {
+        "id": 33,
+        "name": "Dokkalfar Knights"
+      },
+      {
+        "id": 57,
+        "name": "The Dokkalfar"
+      }
+    ]
+  },
+  {
+    "id": 217,
+    "name": "Dokkalfar Lord",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/dokkalfar_lord.png",
+    "level": 200,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 430,
+        "name": "Dokkalfar Gada"
+      },
+      {
+        "id": 330,
+        "name": "Pure Lightstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      },
+      {
+        "id": 137,
+        "name": "Holy Wall"
+      },
+      {
+        "id": 184,
+        "name": "Nightmare II"
+      },
+      {
+        "id": 152,
+        "name": "Omnistrike II"
+      },
+      {
+        "id": 153,
+        "name": "Osmostrike II"
+      }
+    ],
+    "quests": [
+      {
+        "id": 34,
+        "name": "Dokkalfar Lords"
+      },
+      {
+        "id": 61,
+        "name": "The Elven Lords"
+      }
+    ]
+  },
+  {
+    "id": 215,
+    "name": "Dokkalfar Mage",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/dokkalfar_mage.png",
+    "spawns": [
+      "Gauntlet Only"
+    ]
+  },
+  {
+    "id": 250,
+    "name": "Dokkalfar Warlock",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/dokkalfar_mage.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "quests": [
+      {
+        "id": 35,
+        "name": "Dokkalfar Magic"
+      },
+      {
+        "id": 57,
+        "name": "The Dokkalfar"
+      }
+    ]
+  },
+  {
+    "id": 149,
+    "name": "Fafnir",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/fafnir.png",
+    "level": 190,
+    "weak_to": [
+      "Dragon"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 255,
+        "name": "Dragonite"
+      },
+      {
+        "id": 12,
+        "name": "Panacea"
+      },
+      {
+        "id": 332,
+        "name": "Cursed Monster Tome"
+      },
+      {
+        "id": 331,
+        "name": "Cursed Ring"
+      },
+      {
+        "id": 730,
+        "name": "Dragon Scroll"
+      }
+    ],
+    "skills": [
+      {
+        "id": 206,
+        "name": "Fireball"
+      },
+      {
+        "id": 368,
+        "name": "Ravage"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      },
+      {
+        "id": 107,
+        "name": "Wyvern's Wrath"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 234,
+    "name": "Fallen King Arthus",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/king_arthus.png",
+    "level": 200,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 479,
+        "name": "Avalon Armor"
+      },
+      {
+        "id": 514,
+        "name": "Avalon Helmet"
+      },
+      {
+        "id": 517,
+        "name": "Avalon Leggings"
+      },
+      {
+        "id": 513,
+        "name": "Avalon Ore"
+      },
+      {
+        "id": 478,
+        "name": "Coward's Blade"
+      },
+      {
+        "id": 472,
+        "name": "Coward's Boots"
+      },
+      {
+        "id": 515,
+        "name": "Coward's Cloak"
+      },
+      {
+        "id": 525,
+        "name": "Coward's Cowl"
+      },
+      {
+        "id": 680,
+        "name": "Crest of Avalon"
+      },
+      {
+        "id": 468,
+        "name": "Excalibur"
+      },
+      {
+        "id": 518,
+        "name": "King's Boots"
+      },
+      {
+        "id": 528,
+        "name": "King's Hood"
+      },
+      {
+        "id": 477,
+        "name": "King's Robe"
+      },
+      {
+        "id": 532,
+        "name": "Rhongomiant"
+      }
+    ],
+    "skills": [
+      {
+        "id": 161,
+        "name": "Horizontal Slash"
+      },
+      {
+        "id": 208,
+        "name": "King's Reign"
+      },
+      {
+        "id": 157,
+        "name": "Multi-flame"
+      },
+      {
+        "id": 158,
+        "name": "Multi-frost"
+      },
+      {
+        "id": 159,
+        "name": "Multi-spark"
+      },
+      {
+        "id": 160,
+        "name": "Multi-tremor"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      },
+      {
+        "id": 164,
+        "name": "Swordplay"
+      },
+      {
+        "id": 162,
+        "name": "X Slash"
+      }
+    ]
+  },
+  {
+    "id": 300,
+    "name": "Fallen Knight Vulcan",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/fallen_vulcan.png",
+    "level": 200,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "drops": [
+      {
+        "id": 721,
+        "name": "Vulcan's Brew"
+      },
+      {
+        "id": 716,
+        "name": "Vulcan Boots"
+      },
+      {
+        "id": 720,
+        "name": "Vulcan Buckler"
+      },
+      {
+        "id": 717,
+        "name": "Vulcan Charm"
+      },
+      {
+        "id": 715,
+        "name": "Vulcan Curass"
+      },
+      {
+        "id": 714,
+        "name": "Vulcan Helmet"
+      }
+    ],
+    "skills": [
+      {
+        "id": 174,
+        "name": "Coup de Grace"
+      },
+      {
+        "id": 197,
+        "name": "Firestrike III"
+      },
+      {
+        "id": 277,
+        "name": "Flame V"
+      },
+      {
+        "id": 213,
+        "name": "Onslaught"
+      },
+      {
+        "id": 234,
+        "name": "Rebuke"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      },
+      {
+        "id": 164,
+        "name": "Swordplay"
+      },
+      {
+        "id": 162,
+        "name": "X Slash"
+      }
+    ]
+  },
+  {
+    "id": 312,
+    "name": "Fallen Merlin",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/merlin.png",
+    "level": 200,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 776,
+        "name": "Merlin's Concoction"
+      },
+      {
+        "id": 763,
+        "name": "Merlin's Ring"
+      },
+      {
+        "id": 783,
+        "name": "Alpha Myrddin"
+      },
+      {
+        "id": 758,
+        "name": "Alpha Myrddin Cloak"
+      },
+      {
+        "id": 790,
+        "name": "Alpha Myrddin Cowl"
+      },
+      {
+        "id": 755,
+        "name": "Alpha Myrddin Hood"
+      },
+      {
+        "id": 772,
+        "name": "Alpha Myrddin Robe"
+      },
+      {
+        "id": 759,
+        "name": "Alpha Myrddin Shield"
+      },
+      {
+        "id": 767,
+        "name": "Beta Myrddin"
+      },
+      {
+        "id": 780,
+        "name": "Beta Myrddin Cloak"
+      },
+      {
+        "id": 768,
+        "name": "Beta Myrddin Cowl"
+      },
+      {
+        "id": 769,
+        "name": "Beta Myrddin Hood"
+      },
+      {
+        "id": 789,
+        "name": "Beta Myrddin Robe"
+      },
+      {
+        "id": 779,
+        "name": "Beta Myrddin Shield"
+      },
+      {
+        "id": 785,
+        "name": "Lass of the Lake"
+      },
+      {
+        "id": 781,
+        "name": "Merlin's Scroll"
+      },
+      {
+        "id": 766,
+        "name": "Delta Myrddin"
+      },
+      {
+        "id": 775,
+        "name": "Delta Myrddin Cloak"
+      },
+      {
+        "id": 778,
+        "name": "Delta Myrddin Cowl"
+      },
+      {
+        "id": 770,
+        "name": "Delta Myrddin Hood"
+      },
+      {
+        "id": 788,
+        "name": "Delta Myrddin Robe"
+      },
+      {
+        "id": 784,
+        "name": "Delta Myrddin Shield"
+      },
+      {
+        "id": 782,
+        "name": "Lady of the Lake"
+      },
+      {
+        "id": 762,
+        "name": "Gamma Myrddin"
+      },
+      {
+        "id": 756,
+        "name": "Gamma Myrddin Cloak"
+      },
+      {
+        "id": 757,
+        "name": "Gamma Myrddin Cowl"
+      },
+      {
+        "id": 777,
+        "name": "Gamma Myrddin Hood"
+      },
+      {
+        "id": 773,
+        "name": "Gamma Myrddin Robe"
+      },
+      {
+        "id": 786,
+        "name": "Gamma Myrddin Shield"
+      },
+      {
+        "id": 764,
+        "name": "Myrddin Harp"
+      },
+      {
+        "id": 765,
+        "name": "Zeta Myrddin"
+      },
+      {
+        "id": 761,
+        "name": "Zeta Myrddin Cloak"
+      },
+      {
+        "id": 771,
+        "name": "Zeta Myrddin Cowl"
+      },
+      {
+        "id": 760,
+        "name": "Zeta Myrddin Hood"
+      },
+      {
+        "id": 774,
+        "name": "Zeta Myrddin Robe"
+      },
+      {
+        "id": 787,
+        "name": "Zeta Myrddin Shield"
+      }
+    ],
+    "skills": [
+      {
+        "id": 201,
+        "name": "Darkstrike III"
+      },
+      {
+        "id": 199,
+        "name": "Earthstrike III"
+      },
+      {
+        "id": 197,
+        "name": "Firestrike III"
+      },
+      {
+        "id": 277,
+        "name": "Flame V"
+      },
+      {
+        "id": 344,
+        "name": "Flare III"
+      },
+      {
+        "id": 202,
+        "name": "Holystrike III"
+      },
+      {
+        "id": 198,
+        "name": "Icestrike III"
+      },
+      {
+        "id": 366,
+        "name": "Miasma"
+      },
+      {
+        "id": 204,
+        "name": "Omnistrike III"
+      },
+      {
+        "id": 370,
+        "name": "Starscreen"
+      }
+    ]
+  },
+  {
+    "id": 237,
+    "name": "Garm",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/garm.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "name": "Gorgon",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/gorgon.png",
+    "weak_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 237,
+        "name": "Mage's Ring"
+      },
+      {
+        "id": 333,
+        "name": "Gorgon's Staff"
+      }
+    ]
+  },
+  {
+    "id": 211,
+    "name": "Great Cockatrice",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/great_cockatrice.png",
+    "level": 200,
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "drops": [
+      {
+        "id": 470,
+        "name": "Cockatrice Mail"
+      }
+    ],
+    "skills": [
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 170,
+        "name": "Petrify"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ]
+  },
+  {
+    "id": 309,
+    "name": "Great Reaper",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/great_reaper.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 746,
+        "name": "Darkest Garb"
+      },
+      {
+        "id": 731,
+        "name": "Reaping Sickle"
+      }
+    ]
+  },
+  {
+    "id": 287,
+    "name": "Headless",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/headless.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 648,
+        "name": "Lost Helmet"
+      }
+    ]
+  },
+  {
+    "id": 298,
+    "name": "Heimdall",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/heimdall.png",
+    "level": 190,
+    "weak_to": [
+      "Earthen"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 707,
+        "name": "Atgeir"
+      },
+      {
+        "id": 709,
+        "name": "Heimdall's Shield"
+      },
+      {
+        "id": 708,
+        "name": "Perfect Baldur"
+      }
+    ],
+    "skills": [
+      {
+        "id": 216,
+        "name": "Blightstrike II"
+      },
+      {
+        "id": 335,
+        "name": "Guarding Strike"
+      },
+      {
+        "id": 331,
+        "name": "Inferno Ward"
+      },
+      {
+        "id": 214,
+        "name": "Jump"
+      },
+      {
+        "id": 316,
+        "name": "Quadcut"
+      }
+    ]
+  },
+  {
+    "id": 239,
+    "name": "Infernal Bear",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/fire_bear.png",
+    "weak_to": [
+      "Water"
+    ],
+    "resistant_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 259,
+        "name": "Firestone"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 168,
+    "name": "Kobold",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/kobold.png",
+    "resistant_to": [
+      "Dark",
+      "Dragon",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 571,
+        "name": "Kobold Armor"
+      },
+      {
+        "id": 574,
+        "name": "Kobold Boots"
+      },
+      {
+        "id": 569,
+        "name": "Sanguine Sword"
+      }
+    ]
+  },
+  {
+    "id": 169,
+    "name": "Kobold Mage",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/kobold_mage.png",
+    "resistant_to": [
+      "Dark",
+      "Dragon",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 574,
+        "name": "Kobold Boots"
+      },
+      {
+        "id": 572,
+        "name": "Kobold Cloak"
+      },
+      {
+        "id": 573,
+        "name": "Kobold Hood"
+      },
+      {
+        "id": 570,
+        "name": "Sanguine Staff"
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "name": "Ljosalfar",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/ljosalfar.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark"
+    ],
+    "immune_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 325,
+        "name": "Lightstone"
+      },
+      {
+        "id": 323,
+        "name": "Ljosalfar Boots"
+      },
+      {
+        "id": 335,
+        "name": "Ljosalfar Cowl"
+      },
+      {
+        "id": 337,
+        "name": "Ljosalfar Garb"
+      },
+      {
+        "id": 326,
+        "name": "Ljosalfar Hood"
+      },
+      {
+        "id": 327,
+        "name": "Ljosalfar Sword"
+      }
+    ],
+    "quests": [
+      {
+        "id": 56,
+        "name": "The Ljosalfar"
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "name": "Ljosalfar Knight",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/ljosalfar_knight.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark"
+    ],
+    "immune_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 325,
+        "name": "Lightstone"
+      },
+      {
+        "id": 334,
+        "name": "Ljosalfar Armor"
+      },
+      {
+        "id": 323,
+        "name": "Ljosalfar Boots"
+      },
+      {
+        "id": 336,
+        "name": "Ljosalfar Helmet"
+      },
+      {
+        "id": 327,
+        "name": "Ljosalfar Sword"
+      }
+    ],
+    "quests": [
+      {
+        "id": 56,
+        "name": "The Ljosalfar"
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "name": "Ljosalfar Lord",
+    "tier": 8,
+    "boss": true,
+    "image": "monsters/ljosalfar_lord.png",
+    "level": 180,
+    "weak_to": [
+      "Dark"
+    ],
+    "immune_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 329,
+        "name": "Ljosalfar Sceptre"
+      },
+      {
+        "id": 330,
+        "name": "Pure Lightstone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 240,
+        "name": "Blizzard II"
+      },
+      {
+        "id": 242,
+        "name": "Distortion"
+      },
+      {
+        "id": 243,
+        "name": "Meteor II"
+      }
+    ],
+    "quests": [
+      {
+        "id": 61,
+        "name": "The Elven Lords"
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "name": "Ljosalfar Mage",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/ljosalfar_mage.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Dark"
+    ],
+    "immune_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 325,
+        "name": "Lightstone"
+      },
+      {
+        "id": 323,
+        "name": "Ljosalfar Boots"
+      },
+      {
+        "id": 326,
+        "name": "Ljosalfar Hood"
+      },
+      {
+        "id": 339,
+        "name": "Ljosalfar Robe"
+      },
+      {
+        "id": 324,
+        "name": "Ljosalfar Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 240,
+        "name": "Blizzard II"
+      },
+      {
+        "id": 243,
+        "name": "Meteor II"
+      },
+      {
+        "id": 181,
+        "name": "Storm II"
+      }
+    ],
+    "quests": [
+      {
+        "id": 56,
+        "name": "The Ljosalfar"
+      }
+    ]
+  },
+  {
+    "id": 284,
+    "name": "Midnight Gazer",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/night_eye.png",
+    "resistant_to": [
+      "Dragon",
+      "Earthen",
+      "Fire",
+      "Lightning",
+      "Water"
+    ],
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 647,
+        "name": "Midnight Eye"
+      }
+    ],
+    "skills": [
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 184,
+        "name": "Nightmare II"
+      },
+      {
+        "id": 169,
+        "name": "Sleep"
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "name": "Naga Mage",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/naga_mage.png",
+    "drops": [
+      {
+        "id": 338,
+        "name": "Naga Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 239,
+        "name": "Drain II"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "name": "Naga Warrior",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/naga_warrior.png",
+    "drops": [
+      {
+        "id": 328,
+        "name": "Naga Halberd"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 33,
+        "name": "Dragon Slayer"
+      }
+    ]
+  },
+  {
+    "id": 291,
+    "name": "Nothren Berserker",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/nothren2.png",
+    "resistant_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 666,
+        "name": "Baldur"
+      },
+      {
+        "id": 657,
+        "name": "Nothren Armor"
+      },
+      {
+        "id": 656,
+        "name": "Nothren Grieves"
+      },
+      {
+        "id": 658,
+        "name": "Nothren Helmet"
+      },
+      {
+        "id": 678,
+        "name": "Nothren Shield"
+      }
+    ]
+  },
+  {
+    "id": 292,
+    "name": "Nothren Raider",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/nothren4.png",
+    "resistant_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 666,
+        "name": "Baldur"
+      },
+      {
+        "id": 661,
+        "name": "Nothren Boots"
+      },
+      {
+        "id": 659,
+        "name": "Nothren Cowl"
+      },
+      {
+        "id": 660,
+        "name": "Nothren Garb"
+      }
+    ],
+    "skills": [
+      {
+        "id": 287,
+        "name": "Flurry II"
+      }
+    ]
+  },
+  {
+    "id": 293,
+    "name": "Nothren Warlock",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/nothren3.png",
+    "resistant_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 666,
+        "name": "Baldur"
+      },
+      {
+        "id": 665,
+        "name": "Nothren Hood"
+      },
+      {
+        "id": 662,
+        "name": "Nothren Robe"
+      },
+      {
+        "id": 663,
+        "name": "Nothren Shoes"
+      }
+    ],
+    "skills": [
+      {
+        "id": 277,
+        "name": "Flame V"
+      },
+      {
+        "id": 278,
+        "name": "Frost V"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      },
+      {
+        "id": 279,
+        "name": "Spark V"
+      },
+      {
+        "id": 280,
+        "name": "Tremor V"
+      }
+    ]
+  },
+  {
+    "id": 238,
+    "name": "Orichalcum Golem",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/orichalcum_golem.png",
+    "immune_to": [
+      "Physical"
+    ],
+    "drops": [
+      {
+        "id": 424,
+        "name": "Orichalcum"
+      },
+      {
+        "id": 422,
+        "name": "Orichalcum Armor"
+      },
+      {
+        "id": 421,
+        "name": "Orichalcum Helmet"
+      },
+      {
+        "id": 423,
+        "name": "Orichalcum Leggings"
+      }
+    ]
+  },
+  {
+    "id": 206,
+    "name": "Orichalcum Knight",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/orichalcum_knight.png",
+    "drops": [
+      {
+        "id": 424,
+        "name": "Orichalcum"
+      },
+      {
+        "id": 422,
+        "name": "Orichalcum Armor"
+      },
+      {
+        "id": 421,
+        "name": "Orichalcum Helmet"
+      },
+      {
+        "id": 423,
+        "name": "Orichalcum Leggings"
+      }
+    ]
+  },
+  {
+    "id": 285,
+    "name": "Pollux",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/pollux.png",
+    "level": 200,
+    "spawns": [
+      "Past Event (currently unavailable)"
+    ],
+    "drops": [
+      {
+        "id": 652,
+        "name": "Dioscuri Warrior's Ring"
+      },
+      {
+        "id": 644,
+        "name": "Dioscuri Greataxe"
+      }
+    ],
+    "skills": [
+      {
+        "id": 133,
+        "name": "Full Bend"
+      },
+      {
+        "id": 124,
+        "name": "Lightning Wall"
+      },
+      {
+        "id": 251,
+        "name": "Scout Weakness"
+      }
+    ]
+  },
+  {
+    "id": 264,
+    "name": "Racul",
+    "tier": 8,
+    "boss": true,
+    "image": "bosses/drac.png",
+    "level": 175,
+    "spawns": [
+      "Woods Only"
+    ],
+    "weak_to": [
+      "Holy"
+    ],
+    "immune_to": [
+      "Arcane",
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 279,
+        "name": "Vampiric Ore"
+      },
+      {
+        "id": 526,
+        "name": "Racul Blade"
+      }
+    ],
+    "skills": [
+      {
+        "id": 201,
+        "name": "Darkstrike III"
+      },
+      {
+        "id": 137,
+        "name": "Holy Wall"
+      }
+    ]
+  },
+  {
+    "id": 228,
+    "name": "Ratman",
+    "tier": 8,
+    "boss": false,
+    "image": "monsters/rat_man.png",
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      },
+      {
+        "id": 262,
+        "name": "Hide"
+      }
+    ],
+    "skills": [
+      {
+        "id": 48,
+        "name": "Drain"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 32,
+        "name": "Beast Mode"
+      }
+    ]
+  },
+  {
+    "id": 254,
+    "name": "Ancient Jinn",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/ancient_jinn.png",
+    "spawns": [
+      "Gauntlet Only"
+    ],
+    "weak_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 256,
+        "name": "Earthstone"
+      },
+      {
+        "id": 259,
+        "name": "Firestone"
+      },
+      {
+        "id": 280,
+        "name": "Waterstone"
+      },
+      {
+        "id": 325,
+        "name": "Lightstone"
+      },
+      {
+        "id": 535,
+        "name": "Ancient Jinn Staff"
+      }
+    ]
+  },
+  {
+    "id": 279,
+    "name": "Apollyon",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/abaddon.png",
+    "level": 250,
+    "spawns": [
+      "Raid"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 12,
+        "name": "Panacea"
+      },
+      {
+        "id": 605,
+        "name": "Abyssal Armor"
+      },
+      {
+        "id": 603,
+        "name": "Abyssal Axe"
+      },
+      {
+        "id": 610,
+        "name": "Abyssal Grieves"
+      },
+      {
+        "id": 608,
+        "name": "Abyssal Helmet"
+      },
+      {
+        "id": 607,
+        "name": "Incarnate Archistaff"
+      },
+      {
+        "id": 606,
+        "name": "Incarnate Boots"
+      },
+      {
+        "id": 604,
+        "name": "Incarnate Hood"
+      },
+      {
+        "id": 600,
+        "name": "Incarnate Robe"
+      },
+      {
+        "id": 601,
+        "name": "Realm Boots"
+      },
+      {
+        "id": 611,
+        "name": "Realm Cowl"
+      },
+      {
+        "id": 602,
+        "name": "Realm Garb"
+      },
+      {
+        "id": 609,
+        "name": "Realm Katana"
+      },
+      {
+        "id": 599,
+        "name": "Realm Ore"
+      },
+      {
+        "id": 667,
+        "name": "Sempre Forte"
+      }
+    ],
+    "skills": [
+      {
+        "id": 253,
+        "name": "Apocalypse"
+      },
+      {
+        "id": 166,
+        "name": "Arcana"
+      },
+      {
+        "id": 167,
+        "name": "Arcana II"
+      },
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      },
+      {
+        "id": 242,
+        "name": "Distortion"
+      },
+      {
+        "id": 123,
+        "name": "Holy II"
+      },
+      {
+        "id": 74,
+        "name": "Holystrike"
+      },
+      {
+        "id": 149,
+        "name": "Holystrike II"
+      },
+      {
+        "id": 184,
+        "name": "Nightmare II"
+      },
+      {
+        "id": 153,
+        "name": "Osmostrike II"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      },
+      {
+        "id": 164,
+        "name": "Swordplay"
+      }
+    ]
+  },
+  {
+    "id": 310,
+    "name": "Arisen Ankou",
+    "tier": 9,
+    "boss": false,
+    "image": "bosses/grim_reaper.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 737,
+        "name": "Arisen Deathbringer"
+      }
+    ]
+  },
+  {
+    "id": 305,
+    "name": "Arisen Carman",
+    "tier": 9,
+    "boss": false,
+    "image": "bosses/witch.png",
+    "drops": [
+      {
+        "id": 281,
+        "name": "Witchstone"
+      },
+      {
+        "id": 723,
+        "name": "Arisen Witch's Hat"
+      },
+      {
+        "id": 735,
+        "name": "Arisen Witch's Scroll"
+      },
+      {
+        "id": 736,
+        "name": "Arisen Witch's Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 344,
+        "name": "Flare III"
+      },
+      {
+        "id": 369,
+        "name": "Miasma II"
+      }
+    ]
+  },
+  {
+    "id": 306,
+    "name": "Arisen Ronin",
+    "tier": 9,
+    "boss": false,
+    "image": "bosses/ronin.png",
+    "drops": [
+      {
+        "id": 722,
+        "name": "Arisen Masamune"
+      }
+    ],
+    "skills": [
+      {
+        "id": 173,
+        "name": "Arcane Strikes"
+      },
+      {
+        "id": 337,
+        "name": "Guarding Strikes"
+      },
+      {
+        "id": 338,
+        "name": "Purifying Strikes"
+      }
+    ]
+  },
+  {
+    "id": 182,
+    "name": "Balor Assassin",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/balor_rogue.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "weak_to": [
+      "Arcane"
+    ],
+    "drops": [
+      {
+        "id": 266,
+        "name": "Mythril"
+      },
+      {
+        "id": 393,
+        "name": "Balor Katana"
+      }
+    ],
+    "quests": [
+      {
+        "id": 62,
+        "name": "The Army of Balor"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 255,
+    "name": "Balor Flame",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/balor_flame.png",
+    "weak_to": [
+      "Water"
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 187,
+    "name": "Balor King",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/king_balor.png",
+    "level": 210,
+    "weak_to": [
+      "Arcane"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 400,
+        "name": "Lesser Balorite"
+      },
+      {
+        "id": 398,
+        "name": "Balor Crown"
+      }
+    ],
+    "skills": [
+      {
+        "id": 121,
+        "name": "Bright Star"
+      },
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      }
+    ],
+    "quests": [
+      {
+        "id": 63,
+        "name": "Balor"
+      },
+      {
+        "id": 36,
+        "name": "Balor vs Annwn"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 183,
+    "name": "Balor Marauder",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/balor_warrior.png",
+    "weak_to": [
+      "Arcane"
+    ],
+    "drops": [
+      {
+        "id": 395,
+        "name": "Balor Armor"
+      },
+      {
+        "id": 397,
+        "name": "Balor Helmet"
+      },
+      {
+        "id": 399,
+        "name": "Balor Leggings"
+      },
+      {
+        "id": 669,
+        "name": "Balor Shield"
+      }
+    ],
+    "quests": [
+      {
+        "id": 62,
+        "name": "The Army of Balor"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 181,
+    "name": "Balor Warlock",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/balor_mage.png",
+    "weak_to": [
+      "Arcane"
+    ],
+    "drops": [
+      {
+        "id": 273,
+        "name": "Runestone"
+      },
+      {
+        "id": 394,
+        "name": "Balor Archistaff"
+      },
+      {
+        "id": 396,
+        "name": "Balor Robe"
+      }
+    ],
+    "quests": [
+      {
+        "id": 62,
+        "name": "The Army of Balor"
+      }
+    ],
+    "buffs": [
+      {
+        "id": 250,
+        "name": "Crest of Annwn"
+      }
+    ]
+  },
+  {
+    "id": 180,
+    "name": "Crimson Gazer",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/crimson_gazer.png",
+    "resistant_to": [
+      "Dark",
+      "Dragon",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Physical",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 498,
+        "name": "Crimson Eye"
+      }
+    ]
+  },
+  {
+    "id": 233,
+    "name": "Fallen Demeter, the Earth Mage",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/fallen_demeter.png",
+    "level": 225,
+    "spawns": [
+      "Gauntlet Only",
+      "Woods Only"
+    ],
+    "weak_to": [
+      "Lightning"
+    ],
+    "immune_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 706,
+        "name": "Demeter's Halberd"
+      },
+      {
+        "id": 566,
+        "name": "Demeter's Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 147,
+        "name": "Earthstrike II"
+      },
+      {
+        "id": 153,
+        "name": "Osmostrike II"
+      },
+      {
+        "id": 210,
+        "name": "Quake III"
+      },
+      {
+        "id": 111,
+        "name": "Tremor II"
+      }
+    ],
+    "quests": [
+      {
+        "id": 64,
+        "name": "Fallen Gods"
+      }
+    ]
+  },
+  {
+    "id": 220,
+    "name": "Fallen Ithra, the White Knight",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/fallen_ithra.png",
+    "level": 225,
+    "weak_to": [
+      "Fire"
+    ],
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 461,
+        "name": "Ithra's Blade"
+      },
+      {
+        "id": 705,
+        "name": "Ithra's Staff"
+      }
+    ],
+    "skills": [
+      {
+        "id": 240,
+        "name": "Blizzard II"
+      },
+      {
+        "id": 126,
+        "name": "Fire Wall"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      }
+    ],
+    "quests": [
+      {
+        "id": 64,
+        "name": "Fallen Gods"
+      }
+    ]
+  },
+  {
+    "id": 221,
+    "name": "Fallen Thor, the Storm God",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/fallen_thor.png",
+    "level": 225,
+    "weak_to": [
+      "Earthen"
+    ],
+    "immune_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 712,
+        "name": "Thor's Arc"
+      },
+      {
+        "id": 467,
+        "name": "Thor's Hammer"
+      }
+    ],
+    "skills": [
+      {
+        "id": 151,
+        "name": "Lightningstrike II"
+      },
+      {
+        "id": 66,
+        "name": "Spark II"
+      },
+      {
+        "id": 181,
+        "name": "Storm II"
+      }
+    ],
+    "quests": [
+      {
+        "id": 64,
+        "name": "Fallen Gods"
+      }
+    ]
+  },
+  {
+    "id": 232,
+    "name": "Fallen Vulcan, the Red Knight",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/fallen_vulcan.png",
+    "level": 225,
+    "spawns": [
+      "Gauntlet Only",
+      "Woods Only"
+    ],
+    "weak_to": [
+      "Water"
+    ],
+    "immune_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 713,
+        "name": "Vulcan's Archistaff"
+      },
+      {
+        "id": 550,
+        "name": "Vulcan's Longsword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 118,
+        "name": "Flame III"
+      },
+      {
+        "id": 161,
+        "name": "Horizontal Slash"
+      },
+      {
+        "id": 243,
+        "name": "Meteor II"
+      },
+      {
+        "id": 164,
+        "name": "Swordplay"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ],
+    "quests": [
+      {
+        "id": 64,
+        "name": "Fallen Gods"
+      }
+    ]
+  },
+  {
+    "id": 296,
+    "name": "Frilled Naga Mage",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/great_naga_mage.png",
+    "drops": [
+      {
+        "id": 703,
+        "name": "Frilled Naga Staff"
+      }
+    ]
+  },
+  {
+    "id": 295,
+    "name": "Frilled Naga Warrior",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/great_naga_warrior.png",
+    "drops": [
+      {
+        "id": 263,
+        "name": "Iron"
+      },
+      {
+        "id": 704,
+        "name": "Frilled Naga Halberd"
+      }
+    ]
+  },
+  {
+    "id": 271,
+    "name": "Guivre",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/guivre.png",
+    "drops": [
+      {
+        "id": 554,
+        "name": "Viper Armor"
+      },
+      {
+        "id": 559,
+        "name": "Viper Boots"
+      },
+      {
+        "id": 556,
+        "name": "Viper Chestmail"
+      },
+      {
+        "id": 555,
+        "name": "Viper Cowl"
+      },
+      {
+        "id": 635,
+        "name": "Viper Dagger"
+      },
+      {
+        "id": 558,
+        "name": "Viper Helmet"
+      },
+      {
+        "id": 553,
+        "name": "Viper Hood"
+      },
+      {
+        "id": 561,
+        "name": "Viper Leggings"
+      },
+      {
+        "id": 557,
+        "name": "Viper Mage's Boots"
+      },
+      {
+        "id": 560,
+        "name": "Viper Robe"
+      },
+      {
+        "id": 653,
+        "name": "Vipersong"
+      }
+    ]
+  },
+  {
+    "id": 186,
+    "name": "Lunar Demon",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/lunar_demon.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "resistant_to": [
+      "Dark"
+    ],
+    "immune_to": [
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 392,
+        "name": "Azure Crystal"
+      }
+    ]
+  },
+  {
+    "id": 280,
+    "name": "Mammon",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/mammon.png",
+    "level": 250,
+    "resistant_to": [
+      "Arcane",
+      "Dragon"
+    ],
+    "immune_to": [
+      "Dark",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 595,
+        "name": "Fallen Armor"
+      },
+      {
+        "id": 590,
+        "name": "Fallen Boots"
+      },
+      {
+        "id": 591,
+        "name": "Fallen Cowl"
+      },
+      {
+        "id": 596,
+        "name": "Fallen Garb"
+      },
+      {
+        "id": 598,
+        "name": "Fallen Helmet"
+      },
+      {
+        "id": 597,
+        "name": "Fallen Hood"
+      },
+      {
+        "id": 593,
+        "name": "Fallen Leggings"
+      },
+      {
+        "id": 594,
+        "name": "Fallen Robe"
+      },
+      {
+        "id": 672,
+        "name": "Fallen Shield"
+      },
+      {
+        "id": 592,
+        "name": "Fallen Shoes"
+      },
+      {
+        "id": 842,
+        "name": "Gandring"
+      },
+      {
+        "id": 843,
+        "name": "Kaladanda"
+      },
+      {
+        "id": 844,
+        "name": "Labrys"
+      }
+    ],
+    "skills": [
+      {
+        "id": 256,
+        "name": "Despair"
+      },
+      {
+        "id": 255,
+        "name": "Envy"
+      },
+      {
+        "id": 254,
+        "name": "Greed"
+      },
+      {
+        "id": 252,
+        "name": "Hubris"
+      }
+    ]
+  },
+  {
+    "id": 307,
+    "name": "Mighty Griffin",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/great_griffin.png",
+    "level": 210,
+    "resistant_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 728,
+        "name": "Skystone"
+      },
+      {
+        "id": 727,
+        "name": "Mighty Griffin Shield"
+      },
+      {
+        "id": 729,
+        "name": "Mighty Tempest"
+      }
+    ],
+    "skills": [
+      {
+        "id": 342,
+        "name": "Blightstrike III"
+      },
+      {
+        "id": 344,
+        "name": "Flare III"
+      },
+      {
+        "id": 337,
+        "name": "Guarding Strikes"
+      },
+      {
+        "id": 204,
+        "name": "Omnistrike III"
+      },
+      {
+        "id": 203,
+        "name": "Osmostrike III"
+      },
+      {
+        "id": 279,
+        "name": "Spark V"
+      },
+      {
+        "id": 341,
+        "name": "Wyrm's Song"
+      }
+    ]
+  },
+  {
+    "id": 304,
+    "name": "Mighty Mimic",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/mighty_mimic.png",
+    "drops": [
+      {
+        "id": 732,
+        "name": "Imagination"
+      }
+    ],
+    "skills": [
+      {
+        "id": 344,
+        "name": "Flare III"
+      }
+    ]
+  },
+  {
+    "id": 194,
+    "name": "Nin-Kilim",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/rat_king.png",
+    "level": 210,
+    "resistant_to": [
+      "Dark",
+      "Dragon",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 347,
+        "name": "Arena Token"
+      },
+      {
+        "id": 403,
+        "name": "Venin"
+      }
+    ],
+    "skills": [
+      {
+        "id": 152,
+        "name": "Omnistrike II"
+      }
+    ]
+  },
+  {
+    "id": 294,
+    "name": "Nothren Valkyrie",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/nothren_valk.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "resistant_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 666,
+        "name": "Baldur"
+      },
+      {
+        "id": 698,
+        "name": "Valhallan Armor"
+      },
+      {
+        "id": 694,
+        "name": "Valhallan Grieves"
+      },
+      {
+        "id": 695,
+        "name": "Valhallan Helmet"
+      },
+      {
+        "id": 696,
+        "name": "Valhallan Shield"
+      },
+      {
+        "id": 697,
+        "name": "Valhalla's Rise"
+      }
+    ]
+  },
+  {
+    "id": 265,
+    "name": "Odok Golem",
+    "tier": 9,
+    "boss": true,
+    "image": "bosses/odok_golem.png",
+    "level": 200,
+    "resistant_to": [
+      "Arcane",
+      "Dark",
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 278,
+        "name": "Undead Bone"
+      },
+      {
+        "id": 527,
+        "name": "Lifeshaker"
+      }
+    ],
+    "skills": [
+      {
+        "id": 224,
+        "name": "Cataclysm II"
+      }
+    ]
+  },
+  {
+    "id": 184,
+    "name": "Sandstone Golem",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/sandstone_golem.png",
+    "resistant_to": [
+      "Physical"
+    ],
+    "skills": [
+      {
+        "id": 79,
+        "name": "Protection II"
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "name": "Solar Demon",
+    "tier": 9,
+    "boss": false,
+    "image": "monsters/solar_demon.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "resistant_to": [
+      "Dark",
+      "Holy"
+    ],
+    "drops": [
+      {
+        "id": 391,
+        "name": "Golden Crystal"
+      }
+    ]
+  },
+  {
+    "id": 330,
+    "name": "Anubis",
+    "tier": 10,
+    "boss": true,
+    "image": "bosses/anubis.png",
+    "level": 0,
+    "drops": [
+      {
+        "id": 821,
+        "name": "Dynasty"
+      }
+    ]
+  },
+  {
+    "id": 318,
+    "name": "Arcane Troll",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/arcane_troll.png",
+    "immune_to": [
+      "Arcane"
+    ],
+    "drops": [
+      {
+        "id": 262,
+        "name": "Hide"
+      },
+      {
+        "id": 273,
+        "name": "Runestone"
+      }
+    ],
+    "skills": [
+      {
+        "id": 167,
+        "name": "Arcana II"
+      },
+      {
+        "id": 173,
+        "name": "Arcane Strikes"
+      }
+    ]
+  },
+  {
+    "id": 315,
+    "name": "Arisen Cthulhu",
+    "tier": 10,
+    "boss": false,
+    "image": "bosses/cthulhu.png",
+    "spawns": [
+      "Water Only"
+    ],
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 302,
+        "name": "Pure Waterstone"
+      },
+      {
+        "id": 827,
+        "name": "Arisen Horror"
+      },
+      {
+        "id": 826,
+        "name": "Arisen Terror"
+      }
+    ]
+  },
+  {
+    "id": 322,
+    "name": "Arisen Fafnir",
+    "tier": 10,
+    "boss": false,
+    "image": "bosses/fafnir.png",
+    "drops": [
+      {
+        "id": 730,
+        "name": "Dragon Scroll"
+      },
+      {
+        "id": 828,
+        "name": "Arisen Monster Tome"
+      },
+      {
+        "id": 840,
+        "name": "Arisen Ring"
+      },
+      {
+        "id": 841,
+        "name": "Black Dragon Armor"
+      },
+      {
+        "id": 817,
+        "name": "Black Dragon Grieves"
+      },
+      {
+        "id": 816,
+        "name": "Black Dragon Helmet"
+      }
+    ]
+  },
+  {
+    "id": 335,
+    "name": "Arisen Mimic King",
+    "tier": 10,
+    "boss": false,
+    "image": "bosses/mimic_king.png",
+    "resistant_to": [
+      "Arcane",
+      "Dark",
+      "Dragon",
+      "Earthen",
+      "Fire",
+      "Holy",
+      "Lightning",
+      "Physical",
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 836,
+        "name": "Arisen Imagination"
+      }
+    ],
+    "skills": [
+      {
+        "id": 123,
+        "name": "Holy II"
+      },
+      {
+        "id": 369,
+        "name": "Miasma II"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      },
+      {
+        "id": 184,
+        "name": "Nightmare II"
+      },
+      {
+        "id": 368,
+        "name": "Ravage"
+      },
+      {
+        "id": 180,
+        "name": "Wail"
+      }
+    ]
+  },
+  {
+    "id": 317,
+    "name": "Chimera",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/chimera.png",
+    "drops": [
+      {
+        "id": 804,
+        "name": "Chimera Armor"
+      },
+      {
+        "id": 812,
+        "name": "Chimera Grieves"
+      },
+      {
+        "id": 799,
+        "name": "Chimera Helmet"
+      }
+    ],
+    "skills": [
+      {
+        "id": 372,
+        "name": "Flame VI"
+      },
+      {
+        "id": 337,
+        "name": "Guarding Strikes"
+      },
+      {
+        "id": 369,
+        "name": "Miasma II"
+      },
+      {
+        "id": 376,
+        "name": "Spark VI"
+      }
+    ]
+  },
+  {
+    "id": 325,
+    "name": "Fallen Arcanic",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_arcanic.png",
+    "drops": [
+      {
+        "id": 797,
+        "name": "Lost Art"
+      }
+    ]
+  },
+  {
+    "id": 329,
+    "name": "Fallen Freyr",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_freya.png",
+    "drops": [
+      {
+        "id": 819,
+        "name": "Chimera Stacatto"
+      }
+    ]
+  },
+  {
+    "id": 324,
+    "name": "Fallen Gaia",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_gaia.png",
+    "immune_to": [
+      "Earthen"
+    ],
+    "drops": [
+      {
+        "id": 809,
+        "name": "Gaia Robe"
+      }
+    ]
+  },
+  {
+    "id": 331,
+    "name": "Fallen Ifrit",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_ifrit.png",
+    "immune_to": [
+      "Fire"
+    ],
+    "drops": [
+      {
+        "id": 830,
+        "name": "Ifrit's Feet"
+      }
+    ]
+  },
+  {
+    "id": 332,
+    "name": "Fallen Leviathan",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_leviathan.png",
+    "immune_to": [
+      "Water"
+    ],
+    "drops": [
+      {
+        "id": 831,
+        "name": "Leviathan Curass"
+      }
+    ]
+  },
+  {
+    "id": 334,
+    "name": "Fallen Nekromancer",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_necro.png",
+    "immune_to": [
+      "Dark"
+    ],
+    "drops": [
+      {
+        "id": 833,
+        "name": "Nekromancer's Staff"
+      }
+    ]
+  },
+  {
+    "id": 333,
+    "name": "Fallen Taranis",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_taranis.png",
+    "immune_to": [
+      "Lightning"
+    ],
+    "drops": [
+      {
+        "id": 832,
+        "name": "Taranis Hood"
+      }
+    ]
+  },
+  {
+    "id": 323,
+    "name": "Fallen Vanguard",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/fallen_vanguard.png",
+    "drops": [
+      {
+        "id": 829,
+        "name": "Atlas"
+      }
+    ]
+  },
+  {
+    "id": 314,
+    "name": "Hades",
+    "tier": 10,
+    "boss": true,
+    "image": "bosses/hades.png",
+    "level": 0,
+    "drops": [
+      {
+        "id": 818,
+        "name": "Bident"
+      }
+    ],
+    "skills": [
+      {
+        "id": 328,
+        "name": "Forbid"
+      },
+      {
+        "id": 161,
+        "name": "Horizontal Slash"
+      },
+      {
+        "id": 237,
+        "name": "Inquest"
+      },
+      {
+        "id": 203,
+        "name": "Osmostrike III"
+      },
+      {
+        "id": 299,
+        "name": "Ward of Mythril"
+      }
+    ]
+  },
+  {
+    "id": 336,
+    "name": "King Gradlon",
+    "tier": 10,
+    "boss": true,
+    "image": "bosses/gradlon.png",
+    "level": 0,
+    "drops": [
+      {
+        "id": 820,
+        "name": "Lyonesse Crown"
+      }
+    ]
+  },
+  {
+    "id": 326,
+    "name": "Lyonesse Assassin",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/lyon_assassin.png",
+    "spawns": [
+      "Night Only"
+    ],
+    "drops": [
+      {
+        "id": 825,
+        "name": "Lyonesse Boots"
+      },
+      {
+        "id": 823,
+        "name": "Lyonesse Cowl"
+      },
+      {
+        "id": 824,
+        "name": "Lyonesse Garb"
+      },
+      {
+        "id": 822,
+        "name": "Uchigatana"
+      }
+    ],
+    "skills": [
+      {
+        "id": 356,
+        "name": "Anthem of Lyonesse"
+      },
+      {
+        "id": 338,
+        "name": "Purifying Strikes"
+      },
+      {
+        "id": 163,
+        "name": "Riposte"
+      }
+    ]
+  },
+  {
+    "id": 328,
+    "name": "Lyonesse Knight",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/lyon_knight.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 807,
+        "name": "Lyonesse Curass"
+      },
+      {
+        "id": 814,
+        "name": "Lyonesse Grieves"
+      },
+      {
+        "id": 800,
+        "name": "Lyonesse Helmet"
+      },
+      {
+        "id": 810,
+        "name": "Lyonesse Shield"
+      },
+      {
+        "id": 794,
+        "name": "Lyonesse Sword"
+      }
+    ],
+    "skills": [
+      {
+        "id": 356,
+        "name": "Anthem of Lyonesse"
+      },
+      {
+        "id": 337,
+        "name": "Guarding Strikes"
+      },
+      {
+        "id": 202,
+        "name": "Holystrike III"
+      },
+      {
+        "id": 338,
+        "name": "Purifying Strikes"
+      }
+    ]
+  },
+  {
+    "id": 327,
+    "name": "Lyonesse Warlock",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/lyon_mage.png",
+    "spawns": [
+      "Day Only"
+    ],
+    "drops": [
+      {
+        "id": 802,
+        "name": "Lyonesse Hood"
+      },
+      {
+        "id": 806,
+        "name": "Lyonesse Robe"
+      },
+      {
+        "id": 815,
+        "name": "Lyonesse Shoes"
+      },
+      {
+        "id": 796,
+        "name": "Lyonesse Staff"
+      }
+    ]
+  },
+  {
+    "id": 321,
+    "name": "Mammon Acolyte",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/mammon_acolyte.png",
+    "drops": [
+      {
+        "id": 801,
+        "name": "Acolyte Hood"
+      },
+      {
+        "id": 803,
+        "name": "Acolyte Robe"
+      },
+      {
+        "id": 811,
+        "name": "Acolyte Shoes"
+      },
+      {
+        "id": 793,
+        "name": "Acolyte Staff"
+      }
+    ]
+  },
+  {
+    "id": 319,
+    "name": "Mighty Slime",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/mighty_slime.png",
+    "skills": [
+      {
+        "id": 342,
+        "name": "Blightstrike III"
+      },
+      {
+        "id": 199,
+        "name": "Earthstrike III"
+      },
+      {
+        "id": 197,
+        "name": "Firestrike III"
+      },
+      {
+        "id": 202,
+        "name": "Holystrike III"
+      },
+      {
+        "id": 198,
+        "name": "Icestrike III"
+      },
+      {
+        "id": 200,
+        "name": "Lightningstrike III"
+      }
+    ]
+  },
+  {
+    "id": 316,
+    "name": "Nothren Lord",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/nothren_lord.png",
+    "drops": [
+      {
+        "id": 666,
+        "name": "Baldur"
+      },
+      {
+        "id": 808,
+        "name": "Robe of the North"
+      }
+    ]
+  },
+  {
+    "id": 313,
+    "name": "Odin",
+    "tier": 10,
+    "boss": true,
+    "image": "bosses/odin.png",
+    "level": 0,
+    "drops": [
+      {
+        "id": 446,
+        "name": "Gauntlet Key"
+      },
+      {
+        "id": 708,
+        "name": "Perfect Baldur"
+      },
+      {
+        "id": 792,
+        "name": "Gungnir"
+      }
+    ],
+    "skills": [
+      {
+        "id": 372,
+        "name": "Flame VI"
+      },
+      {
+        "id": 374,
+        "name": "Frost VI"
+      },
+      {
+        "id": 366,
+        "name": "Miasma"
+      },
+      {
+        "id": 369,
+        "name": "Miasma II"
+      },
+      {
+        "id": 373,
+        "name": "Multi-Flame II"
+      },
+      {
+        "id": 375,
+        "name": "Multi-frost II"
+      },
+      {
+        "id": 325,
+        "name": "Multi-shadow"
+      },
+      {
+        "id": 316,
+        "name": "Quadcut"
+      }
+    ]
+  },
+  {
+    "id": 320,
+    "name": "Ortanite Golem",
+    "tier": 10,
+    "boss": false,
+    "image": "monsters/ortanite_golem.png",
+    "drops": [
+      {
+        "id": 473,
+        "name": "Ortanite"
+      },
+      {
+        "id": 805,
+        "name": "Ortanite Armor"
+      },
+      {
+        "id": 813,
+        "name": "Ortanite Grieves"
+      },
+      {
+        "id": 798,
+        "name": "Ortanite Helmet"
+      }
+    ],
+    "skills": [
+      {
+        "id": 327,
+        "name": "Drain III"
+      },
+      {
+        "id": 199,
+        "name": "Earthstrike III"
+      },
+      {
+        "id": 337,
+        "name": "Guarding Strikes"
+      },
+      {
+        "id": 299,
+        "name": "Ward of Mythril"
+      },
+      {
+        "id": 371,
+        "name": "Ward of Ortanite"
+      }
+    ]
+  }
+]

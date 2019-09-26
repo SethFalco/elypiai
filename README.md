@@ -26,6 +26,7 @@ service, such as mathematical functions or web scrapping methods to get data the
 ## Supported APIs
 * [Cleverbot][cleverbot]
 * [NaNoWriMo][nanowrimo]
+* [Orna Guide][orna]
 * [osu!][osu]
 * [Path of Exile][path-of-exile]
 * [RuneScape][runescape]
@@ -50,7 +51,7 @@ make sure to get it sorted.
 [discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [bintray]: https://bintray.com/elypia/elypiai "Bintray Latest Version"
 [bintray-download]: https://api.bintray.com/packages/elypia/elypiai/common-core/images/download.svg "Bintray Download Shield"
-[docs]: https://elypiai.elypia.com/ "Commandler Documentation"
+[docs]: https://elypiai.elypia.org/ "Commandler Documentation"
 [docs-shield]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
 [gitlab-build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
@@ -60,6 +61,7 @@ make sure to get it sorted.
 [maven]: https://maven.apache.org/ "Depend via Maven"
 
 [cleverbot]: https://www.cleverbot.com/api/
+[orna]: https://orna.guide/gameplay?show=16
 [nanowrimo]: https://nanowrimo.org/wordcount_api
 [osu]: https://github.com/ppy/osu-api/wiki
 [path-of-exile]: https://www.pathofexile.com/developer/docs/api-resources
