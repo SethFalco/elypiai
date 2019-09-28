@@ -55,7 +55,7 @@ gradle-app.setting
 *.toml
 
 # IntelliJ
-/out/
+out/
 /.idea/
 *.iml
 
