@@ -21,7 +21,7 @@ import org.elypia.elypiai.yugioh.data.CardType;
 import org.elypia.elypiai.yugioh.deserializers.TradingCardDeserializer;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 @JsonAdapter(TradingCardDeserializer.class)
 public abstract class TradingCard {

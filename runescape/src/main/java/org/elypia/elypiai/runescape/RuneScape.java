@@ -30,7 +30,7 @@ import java.net.*;
 import java.util.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class RuneScape extends ApiWrapper {
 
@@ -52,6 +52,10 @@ public class RuneScape extends ApiWrapper {
 	}
 
 	private RuneScapeService service;
+
+	public RuneScape() {
+		this((WrapperExtension[])null);
+	}
 
 	public RuneScape(WrapperExtension... exts) {
 		this(BASE_URL, exts);

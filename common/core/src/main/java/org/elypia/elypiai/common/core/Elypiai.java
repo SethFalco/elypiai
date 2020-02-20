@@ -19,7 +19,7 @@ package org.elypia.elypiai.common.core;
 /**
  * Contains constants.
  *
- * @author seth@elypia.org
+ * @author seth@elypia.org (Seth Falco)
  */
 public final class Elypiai {
 

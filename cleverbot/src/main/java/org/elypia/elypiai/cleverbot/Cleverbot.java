@@ -32,7 +32,7 @@ import java.net.*;
 import java.util.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Cleverbot extends ApiWrapper {
 
@@ -55,6 +55,10 @@ public class Cleverbot extends ApiWrapper {
 
 	private final String API_KEY;
 	private final CleverbotService service;
+
+	public Cleverbot(String apiKey) {
+		this(apiKey, (WrapperExtension[])null);
+	}
 
 	/**
 	 * @param apiKey API key recieved upon signing up.

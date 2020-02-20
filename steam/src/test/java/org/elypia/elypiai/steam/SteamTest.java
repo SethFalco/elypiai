@@ -28,7 +28,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class SteamTest {
 
@@ -112,7 +112,7 @@ public class SteamTest {
             () -> assertEquals(1362733966, user.getTimeCreated().getTime()),
             () -> assertTrue(user.hasProfile()),
             () -> assertTrue(user.canComment()),
-            () -> assertNull(user.getSession())
+            () -> assertNull(user.getCurrentlyPlaying())
         );
     }
 
@@ -140,14 +140,14 @@ public class SteamTest {
             () -> assertTrue(user.hasProfile()),
             () -> assertTrue(user.canComment()),
             () -> assertEquals(0, user.getCityId()),
-            () -> assertNotNull(user.getSession())
+            () -> assertNotNull(user.getCurrentlyPlaying())
         );
     }
 
     @Test
     public void parseGameSessionData() throws IOException {
         server.enqueue(new MockResponse().setBody(TestUtils.read("summary_seth-with-session.json")));
-        GameSession session = steam.getUsers(76561198085657484L).completeGet().get(0).getSession();
+        GameSession session = steam.getUsers(76561198085657484L).completeGet().get(0).getCurrentlyPlaying();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(646570, session.getGameId()),

@@ -34,7 +34,7 @@ import java.net.*;
 import java.util.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Osu extends ApiWrapper {
 
@@ -58,6 +58,10 @@ public class Osu extends ApiWrapper {
 	private final String API_KEY;
 	private final OsuService service;
 
+	public Osu(String apiKey) {
+		this(apiKey, (WrapperExtension[])null);
+	}
+
 	/**
 	 * Creates an osu! object for making calls to the osu API.
 	 * Using this you can call information on each user, as well
@@ -71,7 +75,7 @@ public class Osu extends ApiWrapper {
 
 	public Osu(URL baseUrl, String apiKey, WrapperExtension... exts) {
 		super(exts);
-		API_KEY = apiKey;
+		API_KEY = Objects.requireNonNull(apiKey);
 
 		OkHttpClient client = RequestService.getBuilder()
 			.addInterceptor((chain) -> {

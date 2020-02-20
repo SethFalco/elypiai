@@ -23,7 +23,7 @@ import com.google.gson.annotations.SerializedName;
  * monster, spell and trap. See {@link MagicType} or
  * {@link MonsterType} for more specific card details.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum CardType {
 

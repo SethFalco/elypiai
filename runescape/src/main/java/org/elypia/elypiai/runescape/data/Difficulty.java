@@ -19,7 +19,7 @@ package org.elypia.elypiai.runescape.data;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum Difficulty {
 

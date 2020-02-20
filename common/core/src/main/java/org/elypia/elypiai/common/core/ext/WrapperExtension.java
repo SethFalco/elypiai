@@ -21,7 +21,7 @@ import okhttp3.*;
 import java.io.IOException;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public interface WrapperExtension {
     Response pre(Request request) throws IOException;

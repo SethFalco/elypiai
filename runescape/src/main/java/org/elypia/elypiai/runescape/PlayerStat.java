@@ -21,7 +21,7 @@ import org.elypia.elypiai.runescape.data.Skill;
 import org.slf4j.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class PlayerStat {
 

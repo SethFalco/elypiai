@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 
 /**
  * @param <T> The type of response to recieve and manage from this instance.
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class RestLatch<T> implements RestIterable<T>, Iterable<RestAction<T>> {
 

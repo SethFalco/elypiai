@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class StashTabs {
 

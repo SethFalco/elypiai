@@ -30,7 +30,7 @@ import java.util.List;
  * Unofficial API wrapper for Java for Orna Guide.
  *
  * @see <a href="https://orna.guide/">https://orna.guide/</a>
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Orna extends ApiWrapper {
 
@@ -55,6 +55,10 @@ public class Orna extends ApiWrapper {
     }
 
     private OrnaService service;
+
+    public Orna() {
+        this((WrapperExtension[])null);
+    }
 
     public Orna(WrapperExtension... exts) {
         this(BASE_URL, exts);

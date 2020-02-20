@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * @param <T> The type of response array you're to receieve from this interface.
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public interface RestPaginator<T> {
     List<T> next() throws IOException;

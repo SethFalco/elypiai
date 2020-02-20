@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Data in this has been intentionally shortended in order to
  * improve IDE performance.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class PathOfExileTest {
 

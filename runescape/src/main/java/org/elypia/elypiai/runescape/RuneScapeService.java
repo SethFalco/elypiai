@@ -22,7 +22,7 @@ import retrofit2.http.*;
 import java.util.List;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public interface RuneScapeService {
 

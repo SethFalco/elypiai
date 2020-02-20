@@ -23,7 +23,7 @@ import org.elypia.elypiai.osu.deserializers.OsuModDeserializer;
 import java.util.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Game {
 

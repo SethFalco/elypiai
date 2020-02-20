@@ -20,7 +20,7 @@ package org.elypia.elypiai.orna.entities;
  * Generic class which has what <strong>every</strong>
  * Orna Guide entity holds.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class AbstractEntity implements Comparable<AbstractEntity> {
 

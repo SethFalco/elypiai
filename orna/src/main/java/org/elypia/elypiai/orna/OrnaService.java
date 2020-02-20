@@ -23,7 +23,7 @@ import retrofit2.http.POST;
 import java.util.List;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public interface OrnaService {
 

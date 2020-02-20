@@ -33,7 +33,7 @@ import java.util.*;
 import java.util.regex.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Steam extends ApiWrapper {
 
@@ -59,6 +59,10 @@ public class Steam extends ApiWrapper {
 
     private final String API_KEY;
     private final SteamService service;
+
+    public Steam(String apiKey) {
+        this(BASE_URL, apiKey, (WrapperExtension[])null);
+    }
 
     /**
      * The Steam API allows calls to basic Steam information

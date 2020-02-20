@@ -19,7 +19,7 @@ package org.elypia.elypiai.orna.entities;
 import org.elypia.elypiai.orna.data.SkillType;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Skill extends TieredEntity {
 

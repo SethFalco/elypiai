@@ -22,7 +22,7 @@ import org.elypia.elypiai.osu.deserializers.OsuEventDisplayDeseralizer;
 import java.util.Date;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class OsuEvent {
 

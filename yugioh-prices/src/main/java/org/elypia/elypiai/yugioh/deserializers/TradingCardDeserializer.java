@@ -26,7 +26,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
 

@@ -17,7 +17,7 @@
 package org.elypia.elypiai.common.core.impl;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum TestEnum {
     UNKNOWN,

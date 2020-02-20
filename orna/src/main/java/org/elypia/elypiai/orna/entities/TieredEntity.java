@@ -22,7 +22,7 @@ import com.google.gson.annotations.SerializedName;
  * Abstract class that represents any {@link AbstractEntity}
  * which has some kind a tier associated with it.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public abstract class TieredEntity extends AbstractEntity {
 

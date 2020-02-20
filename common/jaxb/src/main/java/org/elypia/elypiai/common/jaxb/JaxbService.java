@@ -22,7 +22,7 @@ import retrofit2.converter.jaxb.JaxbConverterFactory;
  * Store global singleton {@link JaxbConverterFactory} instance.
  * This improves performance between APIs.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class JaxbService {
 

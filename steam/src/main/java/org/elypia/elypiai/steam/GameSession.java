@@ -19,7 +19,7 @@ package org.elypia.elypiai.steam;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class GameSession {
 
@@ -52,6 +52,10 @@ public class GameSession {
 
     @SerializedName("gameserverip")
     private String serverAddress;
+
+    public String getAppUrl() {
+        return "https://store.steampowered.com/app/" + gameId;
+    }
 
     public int getGameId() {
         return gameId;

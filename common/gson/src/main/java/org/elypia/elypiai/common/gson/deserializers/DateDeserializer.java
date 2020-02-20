@@ -27,7 +27,7 @@ import java.util.*;
  * Convert date parse by the specified pattern or as unix time
  * if no format is specified.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class DateDeserializer implements JsonDeserializer<Date> {
 

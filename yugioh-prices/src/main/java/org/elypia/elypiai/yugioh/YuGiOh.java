@@ -25,7 +25,7 @@ import retrofit2.*;
 import java.net.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class YuGiOh extends ApiWrapper {
 
@@ -47,6 +47,10 @@ public class YuGiOh extends ApiWrapper {
 	}
 
 	private YuGiOhService service;
+
+	public YuGiOh() {
+		this((WrapperExtension[])null);
+	}
 
 	public YuGiOh(WrapperExtension... exts) {
 		this(BASE_URL, exts);

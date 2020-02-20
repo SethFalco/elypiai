@@ -19,19 +19,14 @@ package org.elypia.elypiai.osu;
 import com.google.gson.annotations.SerializedName;
 import org.slf4j.*;
 
-import javax.net.ssl.HttpsURLConnection;
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Player {
 
 	private static final Logger logger = LoggerFactory.getLogger(Player.class);
-
-	private static final String UNKNOWN_AVATAR = "https://osu.ppy.sh/images/layout/avatar-guest.png";
 
 	/**
 	 * The identifier for the user, this will never change.
@@ -151,8 +146,6 @@ public class Player {
 
 	@SerializedName("events")
 	private List<OsuEvent> events;
-
-	private String avatarUrl;
 
 	/**
 	 * @return 	The id for the user. The ID never changes.
@@ -286,55 +279,11 @@ public class Player {
 	 * @return 	Get the users osu! profile url.
 	 */
 	public String getProfileUrl() {
-		return "https://osu.ppy.sh/u/" + userId;
+		return "https://osu.ppy.sh/users/" + userId;
 	}
 
 	public List<OsuEvent> getEvents() {
 		return events;
-	}
-
-	/**
-	 * This is a URL that will take you to the avatar
-	 * of the player <strong>if it's set</strong> else
-	 * it may be a dead link.
-	 *
-	 * @return	The profile picture of the osu player as a url.
-	 */
-	public String getAvatarUrl() {
-		return getAvatarUrl(false);
-	}
-
-	/**
-	 * This returns the avatar url checking if the url
-	 * avatar exists in the first place and returns
-	 * an apropriate default avatar for users that don't have one.
-	 * <strong>Performs an HTTP HEAD request.</strong>
-	 *
-	 * @param check
-	 * @return
-	 */
-	public String getAvatarUrl(boolean check) {
-		if (avatarUrl != null)
-			return avatarUrl;
-
-		String url = "https://a.ppy.sh/" + userId;
-
-		if (!check)
-			avatarUrl = url;
-
-		else {
-			try {
-				var con = (HttpsURLConnection) new URL(url).openConnection();
-				con.setRequestMethod("HEAD");
-
-				if (con.getResponseCode() == HttpsURLConnection.HTTP_OK)
-					return avatarUrl = url;
-			} catch (IOException ex) {
-				logger.error("Failed to verify osu! avatar.", ex);
-			}
-		}
-
-		return avatarUrl = UNKNOWN_AVATAR;
 	}
 
 	@Override

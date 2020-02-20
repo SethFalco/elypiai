@@ -26,7 +26,7 @@ import java.util.Collection;
  * Refers to any monster in Orna regardless of status
  * and where or how it's encountered.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Monster extends TieredEntity {
 

@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import org.elypia.elypiai.yugioh.data.MagicType;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class MagicCard extends TradingCard {
 

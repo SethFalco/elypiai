@@ -22,7 +22,7 @@ import org.elypia.elypiai.osu.Match;
 import java.lang.reflect.Type;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class OsuMatchDeserializer implements JsonDeserializer<Match> {
 

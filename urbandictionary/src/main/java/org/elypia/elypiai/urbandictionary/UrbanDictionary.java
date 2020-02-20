@@ -25,7 +25,7 @@ import retrofit2.*;
 import java.net.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class UrbanDictionary extends ApiWrapper {
 
@@ -47,6 +47,10 @@ public class UrbanDictionary extends ApiWrapper {
 	}
 
 	private UrbanDictionaryService service;
+
+	public UrbanDictionary() {
+		this((WrapperExtension[])null);
+	}
 
 	public UrbanDictionary(WrapperExtension... exts) {
 		this(BASE_URL, exts);

@@ -19,7 +19,7 @@ package org.elypia.elypiai.osu.data;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum OsuMode {
 

@@ -23,7 +23,7 @@ import org.elypia.elypiai.yugioh.Monster;
  * The family is the first attribute displayed on any
  * {@link Monster}
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum Attribute {
 

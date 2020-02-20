@@ -25,12 +25,10 @@ include "common:test"
 /** Wrappers */
 include "cleverbot"
 include "orna"
-include "nanowrimo"
 include "osu"
 include "path-of-exile"
 include "runescape"
 include "steam"
-include "twitch"
 include "urbandictionary"
 include "yugioh-prices"
 

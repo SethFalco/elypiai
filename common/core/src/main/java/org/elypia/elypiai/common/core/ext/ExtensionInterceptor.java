@@ -22,7 +22,7 @@ import org.elypia.elypiai.common.core.ApiWrapper;
 import java.io.IOException;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class ExtensionInterceptor implements Interceptor {
 

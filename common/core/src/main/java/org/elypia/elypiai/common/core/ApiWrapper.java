@@ -26,12 +26,16 @@ import java.util.*;
  * An abstract wrapper for sharing common code between all
  * API wrappers.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public abstract class ApiWrapper {
 
     /** A list of extensions enabled for this wrapper. */
     protected List<WrapperExtension> exts;
+
+    public ApiWrapper() {
+        this((WrapperExtension[])null);
+    }
 
     /**
      * @param exts An optional list of extensions for this wrapper.

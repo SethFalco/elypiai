@@ -22,7 +22,7 @@ import com.google.gson.annotations.SerializedName;
  * Types of spawns monsters can have, this may define if it only spawns
  * during a certain time or during certain events.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum Spawn {
 

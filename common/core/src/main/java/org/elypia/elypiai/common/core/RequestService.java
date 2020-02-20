@@ -23,7 +23,7 @@ import org.elypia.elypiai.common.core.ext.ExtensionInterceptor;
  * Store global singleton HTTP client instance.
  * This improves performance between APIs.
  *
- * @author seth@elypia.org
+ * @author seth@elypia.org (Seth Falco)
  */
 public class RequestService {
 

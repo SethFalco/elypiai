@@ -22,7 +22,7 @@ import org.elypia.elypiai.steam.SteamSearch;
 import java.lang.reflect.Type;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class SteamSearchDeserializer implements JsonDeserializer<SteamSearch> {
 

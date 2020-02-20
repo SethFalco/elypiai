@@ -22,7 +22,7 @@ import org.elypia.elypiai.osu.data.OsuTeam;
 import org.elypia.elypiai.osu.impl.OsuScore;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class GameScore extends OsuScore {
 

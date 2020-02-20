@@ -23,7 +23,7 @@ import org.elypia.elypiai.steam.data.PersonaState;
 import java.util.Date;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class SteamUser {
 
@@ -135,7 +135,7 @@ public class SteamUser {
 	@SerializedName("loccityid")
 	private int cityId;
 
-	private GameSession session;
+	private GameSession currentlyPlaying;
 
 	public Steam getSteam() {
 		return steam;
@@ -237,11 +237,11 @@ public class SteamUser {
 		return cityId;
 	}
 
-	public GameSession getSession() {
-		return session;
+	public GameSession getCurrentlyPlaying() {
+		return currentlyPlaying;
 	}
 
-	public void setSession(GameSession session) {
-		this.session = session;
+	public void setCurrentlyPlaying(GameSession currentlyPlaying) {
+		this.currentlyPlaying = currentlyPlaying;
 	}
 }

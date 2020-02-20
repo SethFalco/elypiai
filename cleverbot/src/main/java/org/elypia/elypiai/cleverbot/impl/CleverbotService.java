@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.http.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public interface CleverbotService {
 

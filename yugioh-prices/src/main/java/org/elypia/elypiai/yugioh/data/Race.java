@@ -25,7 +25,7 @@ import com.google.gson.annotations.SerializedName;
  * class is named after the direct translation from the
  * Japanese, "Shuzoku".
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum Race {
 

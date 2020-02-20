@@ -1,4 +1,4 @@
-# Elypiai [![Discord][discord-members]][discord] [![Download][bintray-download]][bintray] [![Documentation][docs-shield]][docs] [![GitLab Pipeline Status][gitlab-build]][gitlab] [![Coverage][gitlab-coverage]][gitlab] 
+# Elypiai [![matrix-members]][matrix] [![Discord][discord-members]][discord] [![Download][bintray-download]][bintray] [![Documentation][docs-shield]][docs] [![GitLab Pipeline Status][gitlab-build]][gitlab] [![Coverage][gitlab-coverage]][gitlab] [![donate-shield]][elypia-donate]
 The [Gradle][gradle]/[Maven][maven] import string can be found at the Download badge above!
 
 ## About
@@ -25,13 +25,11 @@ service, such as mathematical functions or web scrapping methods to get data the
 
 ## Supported APIs
 * [Cleverbot][cleverbot]
-* [NaNoWriMo][nanowrimo]
 * [Orna Guide][orna]
 * [osu!][osu]
 * [Path of Exile][path-of-exile]
 * [RuneScape][runescape]
 * [Steam][steam]
-* [Twitch][twitch]
 * [UrbanDictionary][urbandictionary]
 * [Yu-Gi-Oh! Prices][yugioh-prices]
 
@@ -47,26 +45,27 @@ Should any problems occur, come visit us over on [Discord][discord]! We're alway
 ample developers that would be willing to help; if it's a problem with the library itself then we'll
 make sure to get it sorted.
 
+[matrix]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
 [discord]: https://discord.gg/hprGMaM "Discord Invite"
-[discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [bintray]: https://bintray.com/elypia/elypiai "Bintray Latest Version"
-[bintray-download]: https://api.bintray.com/packages/elypia/elypiai/common-core/images/download.svg "Bintray Download Shield"
 [docs]: https://elypiai.elypia.org/ "Commandler Documentation"
-[docs-shield]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
-[gitlab-build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
-[gitlab-coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
-
+[elypia-donate]: https://elypia.org/donate "Donate to Elypia"
 [gradle]: https://gradle.org/ "Depend via Gradle"
 [maven]: https://maven.apache.org/ "Depend via Maven"
-
 [cleverbot]: https://www.cleverbot.com/api/
 [orna]: https://orna.guide/gameplay?show=16
-[nanowrimo]: https://nanowrimo.org/wordcount_api
 [osu]: https://github.com/ppy/osu-api/wiki
 [path-of-exile]: https://www.pathofexile.com/developer/docs/api-resources
 [runescape]: http://runescape.wikia.com/wiki/Application_programming_interface
 [steam]: https://steamcommunity.com/dev
-[twitch]: https://dev.twitch.tv/docs
 [urbandictionary]: http://api.urbandictionary.com/v0/define?term=api
 [yugioh-prices]: http://docs.yugiohprices.apiary.io/
+
+[matrix-members]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
+[discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
+[bintray-download]: https://api.bintray.com/packages/elypia/elypiai/common-core/images/download.svg "Bintray Download Shield"
+[docs-shield]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
+[gitlab-build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
+[gitlab-coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
+[donate-shield]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"

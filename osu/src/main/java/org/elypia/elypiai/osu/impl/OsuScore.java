@@ -20,7 +20,7 @@ import com.google.gson.annotations.*;
 import org.elypia.elypiai.common.gson.deserializers.BitBooleanDeserializer;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public abstract class OsuScore {
 

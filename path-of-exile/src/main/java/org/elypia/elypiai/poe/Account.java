@@ -21,7 +21,7 @@ import org.elypia.elypiai.common.gson.deserializers.NestedDeserializer;
 import org.elypia.elypiai.poe.data.Realm;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Account {
 

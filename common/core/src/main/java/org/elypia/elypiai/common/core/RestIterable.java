@@ -21,7 +21,7 @@ import java.util.function.Consumer;
 
 /**
  * @param <T>
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public interface RestIterable<T> {
 

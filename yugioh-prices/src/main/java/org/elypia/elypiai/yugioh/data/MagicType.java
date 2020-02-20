@@ -23,7 +23,7 @@ import org.elypia.elypiai.yugioh.TradingCard;
  * This tells us the subtype of magic or spell {@link TradingCard}
  * this is.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum MagicType {
 

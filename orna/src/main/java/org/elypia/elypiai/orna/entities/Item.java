@@ -21,7 +21,7 @@ import org.elypia.elypiai.orna.data.*;
 import java.util.List;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Item extends TieredEntity {
 

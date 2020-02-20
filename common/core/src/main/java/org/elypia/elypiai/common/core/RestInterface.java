@@ -22,7 +22,7 @@ import java.util.function.Consumer;
 
 /**
  * @param <T> The type of response to recieve from this interface.
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public interface RestInterface<T> {
 

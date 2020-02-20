@@ -21,7 +21,7 @@ import java.util.*;
 /**
  * NONE not included as NONE is represented by an empty collection.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public enum OsuMod {
 

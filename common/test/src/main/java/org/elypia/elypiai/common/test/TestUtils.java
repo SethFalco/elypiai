@@ -23,7 +23,7 @@ import java.util.Objects;
 /**
  * Utility methods for testing the rest of Elypiai.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public final class TestUtils {
 

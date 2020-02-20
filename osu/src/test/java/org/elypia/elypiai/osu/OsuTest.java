@@ -76,7 +76,7 @@ public class OsuTest {
             () -> assertEquals(563, user.getCountA()),
             () -> assertEquals("KR", user.getCountry()),
             () -> assertEquals(2, user.getCountryRank()),
-            () -> assertEquals("https://osu.ppy.sh/u/124493", user.getProfileUrl()),
+            () -> assertEquals("https://osu.ppy.sh/users/124493", user.getProfileUrl()),
             () -> assertFalse(user.getEvents().isEmpty())
         );
     }

@@ -17,7 +17,7 @@
 package org.elypia.elypiai.orna;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Query {
 

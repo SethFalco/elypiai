@@ -19,7 +19,7 @@ package org.elypia.elypiai.orna.entities;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class Quest extends TieredEntity {
 

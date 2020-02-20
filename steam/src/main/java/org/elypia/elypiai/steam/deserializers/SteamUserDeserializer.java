@@ -23,7 +23,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class SteamUserDeserializer implements JsonDeserializer<List<SteamUser>> {
 
@@ -46,7 +46,7 @@ public class SteamUserDeserializer implements JsonDeserializer<List<SteamUser>> 
             JsonObject player = players.get(i).getAsJsonObject();
 
             if (player.has("gameextrainfo"))
-                users.get(i).setSession(gson.fromJson(player, GameSession.class));
+                users.get(i).setCurrentlyPlaying(gson.fromJson(player, GameSession.class));
         }
 
         return users;

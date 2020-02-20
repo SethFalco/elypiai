@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Store global singleton {@link GsonConverterFactory} instance.
  * This improves performance between APIs.
  *
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class GsonService {
 

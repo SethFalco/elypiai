@@ -26,7 +26,7 @@ import java.util.function.Consumer;
 
 /**
  * @param <T> The type of response this will return.
- * @author seth@elypia.org
+ * @author seth@elypia.org (Seth Falco)
  */
 public class RestAction<T> implements RestInterface<T> {
 
@@ -50,6 +50,9 @@ public class RestAction<T> implements RestInterface<T> {
 
             @Override
             public void onResponse(Call<T> call, Response<T> response) {
+                if (!response.isSuccessful())
+                    logger.warn("HTTP request failed with status code {}.", response.code());
+
                 T body = response.body();
 
                 for (Consumer<T> pipe : pipes) {
@@ -63,7 +66,6 @@ public class RestAction<T> implements RestInterface<T> {
 
                 if (success != null)
                     success.accept((body != null) ? Optional.of(body) : Optional.empty());
-
             }
 
             @Override
@@ -77,7 +79,12 @@ public class RestAction<T> implements RestInterface<T> {
     @Override
     public Optional<T> complete() throws IOException {
         logger.debug("Called Complete on RestAction with url: {}", call.request().url().toString());
-        T body = call.execute().body();
+        Response<T> response = call.execute();
+
+        if (!response.isSuccessful())
+            logger.warn("HTTP request failed with status code {}.", response.code());
+
+        T body = response.body();
 
         for (Consumer<T> pipe : pipes)
             pipe.accept(body);

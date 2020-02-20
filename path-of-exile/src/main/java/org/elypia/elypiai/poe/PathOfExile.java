@@ -32,7 +32,7 @@ import java.net.*;
 import java.util.*;
 
 /**
- * @author seth@elypia.org (Syed Shah)
+ * @author seth@elypia.org (Seth Falco)
  */
 public class PathOfExile extends ApiWrapper {
 
@@ -54,6 +54,10 @@ public class PathOfExile extends ApiWrapper {
 	}
 
 	private PathOfExileService service;
+
+	public PathOfExile() {
+		this((WrapperExtension[])null);
+	}
 
 	public PathOfExile(WrapperExtension... exts) {
 		this(BASE_URL, exts);
