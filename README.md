@@ -66,6 +66,6 @@ make sure to get it sorted.
 [Discord]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [Bintray]: https://api.bintray.com/packages/elypia/elypiai/common-core/images/download.svg "Bintray Download Shield"
 [Docs]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
-[Builds]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
+[Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
 [Donate]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"
