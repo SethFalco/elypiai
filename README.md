@@ -1,4 +1,4 @@
-# Elypiai [![matrix-members]][matrix] [![Discord][discord-members]][discord] [![Download][bintray-download]][bintray] [![Documentation][docs-shield]][docs] [![GitLab Pipeline Status][gitlab-build]][gitlab] [![Coverage][gitlab-coverage]][gitlab] [![donate-shield]][elypia-donate]
+# Elypiai [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Bintray]][bintray-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
 The [Gradle][gradle]/[Maven][maven] import string can be found at the Download badge above!
 
 ## About
@@ -41,14 +41,14 @@ service, such as mathematical functions or web scrapping methods to get data the
 > You can see more in the contribution guide which _very_ breifly runs through creating a wrapper.
 
 ## Support
-Should any problems occur, come visit us over on [Discord][discord]! We're always around and there are
+Should any problems occur, come visit us over on Discord! We're always around and there are
 ample developers that would be willing to help; if it's a problem with the library itself then we'll
 make sure to get it sorted.
 
-[matrix]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
-[discord]: https://discord.gg/hprGMaM "Discord Invite"
-[bintray]: https://bintray.com/elypia/elypiai "Bintray Latest Version"
-[docs]: https://elypiai.elypia.org/ "Commandler Documentation"
+[matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
+[discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
+[bintray-page]: https://bintray.com/elypia/elypiai "Bintray Latest Version"
+[documentation]: https://elypiai.elypia.org/ "Commandler Documentation"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
 [elypia-donate]: https://elypia.org/donate "Donate to Elypia"
 [gradle]: https://gradle.org/ "Depend via Gradle"
@@ -62,10 +62,10 @@ make sure to get it sorted.
 [urbandictionary]: http://api.urbandictionary.com/v0/define?term=api
 [yugioh-prices]: http://docs.yugiohprices.apiary.io/
 
-[matrix-members]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
-[discord-members]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[bintray-download]: https://api.bintray.com/packages/elypia/elypiai/common-core/images/download.svg "Bintray Download Shield"
-[docs-shield]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
-[gitlab-build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
-[gitlab-coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
-[donate-shield]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"
+[Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
+[Discord]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
+[Bintray]: https://api.bintray.com/packages/elypia/elypiai/common-core/images/download.svg "Bintray Download Shield"
+[Docs]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
+[Builds]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
+[Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
+[Donate]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"
