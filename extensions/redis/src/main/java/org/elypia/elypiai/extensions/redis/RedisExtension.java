@@ -72,14 +72,15 @@ public class RedisExtension implements WrapperExtension {
         if (mediaType == null)
             return null;
 
-        ResponseBody response = ResponseBody.create(MediaType.parse(mediaType), body);
-        return new Response.Builder()
-            .request(request)
-            .protocol(Protocol.get(protocol))
-            .code(code)
-            .message(message)
-            .body(response)
-            .build();
+        try (ResponseBody response = ResponseBody.create(body, MediaType.parse(mediaType))) {
+            return new Response.Builder()
+                .request(request)
+                .protocol(Protocol.get(protocol))
+                .code(code)
+                .message(message)
+                .body(response)
+                .build();
+        }
     }
 
     @Override
@@ -95,7 +96,7 @@ public class RedisExtension implements WrapperExtension {
         int code = response.code();
         String message = response.message();
 
-        if (bodyString == null || mediaType == null || request == null || protocol == null || code < 0 || message == null)
+        if (mediaType == null || request == null || code < 0)
             return null;
 
         String key = request.toString();
@@ -111,7 +112,7 @@ public class RedisExtension implements WrapperExtension {
         jedis.rpush(key, values);
         jedis.expire(key, ttl);
 
-        return response.newBuilder().body(ResponseBody.create(mediaType, bodyString)).build();
+        return response.newBuilder().body(ResponseBody.create(bodyString, mediaType)).build();
     }
 
     public Jedis getJedis() {
