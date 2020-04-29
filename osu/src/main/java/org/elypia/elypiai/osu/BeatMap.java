@@ -27,6 +27,7 @@ import java.util.Date;
  */
 public class BeatMap {
 
+	/** The URL format for the previewable MP3 of a osu! beatmap. */
 	private static final String PREVIEW_FORMAT = "https://b.ppy.sh/preview/%d.mp3";
 
 	@SerializedName("approved")
