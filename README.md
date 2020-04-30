@@ -7,6 +7,39 @@ or integrations to any project.
 This is small library made of primarily 3 types of modules which come together to make a small, common, and 
 clean interface when creating wrappers.
 
+## Getting Started
+In this example we'll just use the osu! API to get things going.
+
+First you need to construct the wrapper object for the API you want to access, for example.
+Following this you can use the methods are you'd expect, each API method will have a few ways to make
+the request:
+
+* `complete()` - This will do a syncronous or blocking request and return an optional object.
+* `completeGet()` - This will do a syncrhonous or blocking request, and do get for you.
+* `queue(success, failure)` - This will do a ascyncronous request, both the sucess, and failure consumers are optional.
+
+```java
+class Main {
+ 
+    public static void main(String[] args) {
+        // Construct the wrapper object.
+        Osu osu = new Osu("{{api key}}");
+        
+        // It's strongly recommend to use queue, the others should only be used is absolutely neccasary.
+        osu.getPlayer("nathan on osu").queue((player) -> {
+            if (player.isEmpty()) {
+                // If the player doesn't exist or wasn't found for whatever reason
+            }
+            
+            Player player = player.get();
+            
+            // If the player was found
+        });
+    }
+}
+```
+
+## Structure
 ### Common
 Common modules are shared resources that all the wrappers can pool from such as the HTTP client, or
 custom deserializers and adapters. They make it easier to reuse code between wraps as well as
