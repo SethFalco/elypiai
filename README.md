@@ -1,5 +1,5 @@
 # Elypiai [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Bintray]][bintray-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-The [Gradle][gradle]/[Maven][maven] import string can be found at the Download badge above!
+The [Gradle][gradle]/[Maven][maven] import string can be found at the bintray badge above!
 
 ## About
 Elypiai is a small and easy way, especially for new developers, to add ample functionality 
