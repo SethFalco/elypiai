@@ -96,7 +96,7 @@ make sure to get it sorted.
 [yugioh-prices]: http://docs.yugiohprices.apiary.io/
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
-[Discord]: https://discordapp.com/api/guilds/184657525990359041/widget.png "Discord Shield"
+[Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [Bintray]: https://img.shields.io/bintray/v/elypia/elypiai/common-core "Bintray Download Shield"
 [Docs]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Commandler Documentation Shield"
 [Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
