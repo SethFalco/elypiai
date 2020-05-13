@@ -14,6 +14,7 @@ Following this, you may also have to purchase a [topup package][Cleverbot].
 
 Once you're ready, you can depend on the Cleverbot module of Elypiai.
 
+**Gradle**
 ```gradle
 ext {
     elypiaiVersion = "x.y.z"
@@ -22,6 +23,15 @@ ext {
 dependencies {
     implementation "org.elypia.elypiai:cleverbot:${elypiaiVersion}"
 }
+```
+
+**Maven**
+```maven
+<dependency>
+    <groupId>org.elypia.elypiai</groupId>
+    <artifactId>cleverbot</artifactId>
+    <version>x.y.z</version>
+</dependency>
 ```
 
 To use the wrapper, just instantiate the `Cleverbot` instance with your API key
@@ -44,10 +54,12 @@ class Main {
 }
 ```
 
-When you call `Cleverbot#say()` you'll have a few things you can do:
+When you call `Cleverbot#say()` you'll get a `RestAction<CleverResponse>` have a few things you can do:
 * `complete()` - This will do a syncronous or blocking request and return an optional object.
 * `completeGet()` - This will do a syncrhonous or blocking request, and do get for you.
 * `queue(success, failure)` - This will do a ascyncronous request, both the sucess, and failure consumers are optional.
+
+For more information, please see [Elypiai].
 
 ## Support
 Should any problems occur, come visit us over on Discord! We're always around and there are
@@ -64,6 +76,7 @@ make sure to get it sorted.
 [Maven]: https://maven.apache.org/ "Depend via Maven"
 [Cleverbot]: https://www.cleverbot.com/api/ "Cleverbot API"
 [website]: https://www.cleverbot.com/ "Cleverbot Website"
+[Elypiai]: https://gitlab.com/Elypia/elypiai "Elypiai Repository"
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
