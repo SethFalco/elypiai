@@ -43,11 +43,11 @@ public class Cleverbot extends ApiWrapper {
 	 * Should never throw {@link MalformedURLException} as this
 	 * is a manually hardcoded URL.
 	 */
-	private static URL BASE_URL;
+	private static URL baseUrl;
 
 	static {
 		try {
-			BASE_URL = new URL("https://www.cleverbot.com/");
+			baseUrl = new URL("https://www.cleverbot.com/");
 		} catch (MalformedURLException ex) {
 			logger.error(Elypiai.MALFORMED, ex);
 		}
@@ -65,7 +65,7 @@ public class Cleverbot extends ApiWrapper {
 	 * @param exts Any extensions to add to this wrapper.
 	 */
 	public Cleverbot(String apiKey, WrapperExtension... exts) {
-		this(BASE_URL, apiKey, exts);
+		this(baseUrl, apiKey, exts);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class Cleverbot extends ApiWrapper {
 	 * @return A rest action that represents this HTTP request.
 	 */
 	public RestAction<CleverResponse> say(String input, String cs) {
-		return say(input, cs, new HashMap<>());
+		return say(input, cs, new EnumMap<>(CleverTweak.class));
 	}
 
 	public RestAction<CleverResponse> say(String input, String cs, Map<CleverTweak, Integer> tweaks) {

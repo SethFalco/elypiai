@@ -23,7 +23,7 @@ allprojects() {
     apply plugin: "jacoco"
 
     group = "org.elypia.elypiai"
-    version = "2.3.0"
+    version = "2.3.1"
     description = "A abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
 
     ext {
