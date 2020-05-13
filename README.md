@@ -25,15 +25,35 @@ class Main {
         // Construct the wrapper object.
         Osu osu = new Osu("{{api key}}");
         
-        // It's strongly recommend to use queue, the others should only be used is absolutely neccasary.
-        osu.getPlayer("nathan on osu").queue((player) -> {
+        // It's strongly recommend to use #queue, #complete should only be used if neccasary.
+        osu.getPlayer("SethX3").queue((player) -> {
             if (player.isEmpty()) {
-                // If the player doesn't exist or wasn't found for whatever reason
+                return; // If the player doesn't exist
             }
             
             Player player = player.get();
-            
             // If the player was found
+        });
+        
+        // There are also additional request type objects to manage requests better.
+        RestLatch<Player> latch = new RestLatch<>();
+
+        // Let's collect all the RestActions we want to perform in a RestLatch
+        String[] usernames = {"SethX3", "Rheannon"};
+                
+        for (String username : usernames)
+            latch.add(osu.getPlayer(username));
+        
+        // Perform all queued requests and perform the callback when all are finished.
+        latch.queue((results) -> {
+            for (Optional<Player> optPlayer : results) {
+                if (player.isEmpty()) {
+                    return; // If the player doesn't exist
+                }
+                
+                Player player = player.get();
+                // If the player was found
+            }
         });
     }
 }

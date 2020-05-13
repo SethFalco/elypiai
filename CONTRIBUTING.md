@@ -7,20 +7,20 @@ to any wrap found in this repository.
 
 First you'll need to have a basic understanding of the following libraries, you can do
 independent research on the below, or just go through the Elypiai wraps and use them as
-refernceable examples:
+referable examples:
 
 * [Retrofit] and [OkHttp]
-* [GSON] for JSON APIs
+* [Gson] for JSON APIs
 * JAXB for XML APIs
 
 ## Getting Started
-In this guide we'll be wrapping [UrbanDictionary] becasue it's small, only a single endpoint, and already
-exists within this repository so it's easy to link to example code rather than mock and maintain seperate code.
+In this guide we'll be wrapping [UrbanDictionary] because it's small, only a single endpoint, and already
+exists within this repository so it's easy to link to example code rather than mock and maintain separate code.
 
 ### Creating Entities
 The first step is to create a class for any entities we may expect this API to return.
 In this case due to there being no official documentation, we'll just do a GET request and review
-the response. Just use any HTTP Client or your your browser and make a request [here].  
+the response. Just use any HTTP client or your browser and make a request [here].  
 As of this tutorial, and what we'll continue working with, the response is as below.
 
 ```json
@@ -43,17 +43,17 @@ As of this tutorial, and what we'll continue working with, the response is as be
 }
 ```
 
-So from this we can see we'll be getting a list of results, so we can either use a deseralizer and convert this into
+From this we can see we'll be getting a list of results, so we can either use a deserializer and convert this into
 just a list, or make a wrapper object which goes over the list and may return the list or have utility methods to
 perform predefined functions or sorting on the list. We'll go for the latter as it's more helpful for this case.
 
 [A single definition to put in our list.]  
 [List of results the wrapper will return.]
 
-You can see we used a custom deseralizer in this object. They're helpful when APIs can return data in ways
+You can see we used a custom deserializer in this object. They're helpful when APIs can return data in ways
 that are not ideal for Java developers, for example numbers as strings, or an empty string instead of null like 
-the case above. Several deseralizers have been predefined in the common library for GSON and JAXB including 
-the `NullEmptyDeseralizer` which will deseralize empty Strings as `null` instead.
+the case above. Several deserializers have been predefined in the common library for Gson and JAXB including 
+the `NullEmptyDeseralizer` which will deserialize empty Strings as `null` instead.
 
 ### Creating the Service
 Once all entities have been created, we have to make a service class, the service usually isn't exposed
@@ -78,17 +78,17 @@ non-async, as well as execute pipes.
 
 [The wrapper that users interface with.]
 
-This demonstrates a minimal usage of Elypiai for a small API, there's little magic added above what other libraries
+This demonstrates a minimal usage of Elypiai for a small API, there's a little done above what other libraries
 already provide, in fact most of these instructions until the last step was just basic Retrofit and Gson usage.  
-The important part is was using the Elypiai classes/interfaces which gives users the control to add pipes,
-extensions, and share resources between wrappers.
+The important part was using the Elypiai classes/interfaces which gives users the control to add pipes,
+extensions, and pool resources between wrappers.
 
 [Retrofit]: https://github.com/square/retrofit "Retrofit on GitHub"
 [OkHttp]: https://github.com/square/okhttp "OkHttp on GitHub"
-[GSON]: https://github.com/google/gson "GSON on GitHub"
+[Gson]: https://github.com/google/gson "Gson on GitHub"
 [UrbanDictionary]: https://www.urbandictionary.com "UrbanDictionary"
 [here]: http://api.urbandictionary.com/v0/define?term=azba "GET /define?term=azba"
-[A single definition to put in our list.]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/Definition.java
-[List of results the wrapper will return.]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/DefineResult.java
-[Example UrbanDictionary service with a single endpoint.]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/UrbanDictionaryService.java
-[The wrapper that users interface with.]: https://gitlab.com/Elypia/elypiai/blob/master/urbandictionary/src/main/java/com/elypia/elypiai/urbandictionary/UrbanDictionary.java
+[A single definition to put in our list.]: https://gitlab.com/Elypia/elypiai/-/blob/master/urbandictionary/src/main/java/org/elypia/elypiai/urbandictionary/Definition.java
+[List of results the wrapper will return.]: https://gitlab.com/Elypia/elypiai/-/blob/master/urbandictionary/src/main/java/org/elypia/elypiai/urbandictionary/DefineResult.java
+[Example UrbanDictionary service with a single endpoint.]: https://gitlab.com/Elypia/elypiai/-/blob/master/urbandictionary/src/main/java/org/elypia/elypiai/urbandictionary/UrbanDictionaryService.java
+[The wrapper that users interface with.]: https://gitlab.com/Elypia/elypiai/-/blob/master/urbandictionary/src/main/java/org/elypia/elypiai/urbandictionary/UrbanDictionary.java
