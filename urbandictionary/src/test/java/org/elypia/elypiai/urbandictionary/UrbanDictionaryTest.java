@@ -102,6 +102,24 @@ public class UrbanDictionaryTest {
     }
 
     @Test
+    public void parseDefinitionWithNoExample() throws IOException {
+        server.enqueue(new MockResponse().setBody(TestUtils.read("define_life.json")));
+        Definition definition =  ud.define("life").completeGet().getDefinitions(true).get(0);
+
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("A sexually-transmitted, [terminal disease].", definition.getDefinition()),
+            () -> assertEquals("http://life.urbanup.com/139509", definition.getPermaLink()),
+            () -> assertEquals(26417, definition.getThumbsUp()),
+            () -> assertEquals("Anonymous", definition.getAuthor()),
+            () -> assertEquals("life", definition.getWord()),
+            () -> assertEquals(139509, definition.getDefinitionId()),
+            () -> assertNull(definition.getCurrentVote()),
+            () -> assertNull(definition.getExample()),
+            () -> assertEquals(1958, definition.getThumbsDown())
+        );
+    }
+
+    @Test
     public void parseNoResults() throws IOException {
         server.enqueue(new MockResponse()
             .setBody(TestUtils.read("define_no-definitions.json"))

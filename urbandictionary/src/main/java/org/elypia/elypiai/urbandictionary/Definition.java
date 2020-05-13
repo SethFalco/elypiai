@@ -55,6 +55,7 @@ public class Definition implements Comparable<Definition> {
 	private Date createdDate;
 
 	@SerializedName("example")
+	@JsonAdapter(EmptyNullDeserializer.class)
 	private String example;
 
 	@SerializedName("thumbs_down")
