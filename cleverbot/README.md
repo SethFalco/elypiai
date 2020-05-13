@@ -26,7 +26,7 @@ dependencies {
 ```
 
 **Maven**
-```maven
+```xml
 <dependency>
     <groupId>org.elypia.elypiai</groupId>
     <artifactId>cleverbot</artifactId>
