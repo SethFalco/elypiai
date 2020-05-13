@@ -9,7 +9,7 @@ or via the Cleverbot [API][Cleverbot].
 ## Getting Started
 **Heads Up: The Cleverbot API is a paid service.**
 
-First you'll have to go to the Cleverbot API site and make an account if you haven't already.
+First you'll have to go to the Cleverbot API site and make an account if you haven't already.  
 Following this, you may also have to purchase a [topup package][Cleverbot].  
 
 Once you're ready, you can depend on the Cleverbot module of Elypiai.
@@ -54,7 +54,7 @@ class Main {
 }
 ```
 
-When you call `Cleverbot#say()` you'll get a `RestAction<CleverResponse>` have a few things you can do:
+When you call `Cleverbot#say()` you'll get a `RestAction<CleverResponse>`; you can call:
 * `complete()` - This will do a syncronous or blocking request and return an optional object.
 * `completeGet()` - This will do a syncrhonous or blocking request, and do get for you.
 * `queue(success, failure)` - This will do a ascyncronous request, both the sucess, and failure consumers are optional.
