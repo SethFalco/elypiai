@@ -27,7 +27,7 @@ import java.util.*;
 public class Definition implements Comparable<Definition> {
 
 	@SerializedName("definition")
-	private String definition;
+	private String definitionBody;
 
 	@SerializedName("permalink")
 	private String permalink;
@@ -62,8 +62,8 @@ public class Definition implements Comparable<Definition> {
 	private int thumbsDown;
 
 	/** @return The definition of the word. */
-	public String getDefinition() {
-		return definition;
+	public String getDefinitionBody() {
+		return definitionBody;
 	}
 
 	/** @return	A permanent URL that will always link to this defintion. */

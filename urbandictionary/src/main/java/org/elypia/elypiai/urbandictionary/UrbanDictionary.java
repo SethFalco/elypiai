@@ -36,11 +36,11 @@ public class UrbanDictionary extends ApiWrapper {
 	 * Should never throw {@link MalformedURLException} as this
 	 * is a manually hardcoded URL.
 	 */
-	private static URL BASE_URL;
+	private static URL baseUrl;
 
 	static {
 		try {
-			BASE_URL = new URL("http://api.urbandictionary.com/");
+			baseUrl = new URL("http://api.urbandictionary.com/");
 		} catch (MalformedURLException ex) {
 			logger.error("Failed to initialize UrbanDictionary.", ex);
 		}
@@ -53,7 +53,7 @@ public class UrbanDictionary extends ApiWrapper {
 	}
 
 	public UrbanDictionary(WrapperExtension... exts) {
-		this(BASE_URL, exts);
+		this(baseUrl, exts);
 	}
 
 	public UrbanDictionary(URL url, WrapperExtension... exts) {
@@ -72,6 +72,7 @@ public class UrbanDictionary extends ApiWrapper {
 	 * Possible null: Returns null if no definitions are found.
 	 *
 	 * @param term The word or phrase to be defined.
+	 * @return RestAction to request definition of the word.
 	 */
 	public RestAction<DefineResult> define(String term) {
 		Call<DefineResult> call = service.define(term);

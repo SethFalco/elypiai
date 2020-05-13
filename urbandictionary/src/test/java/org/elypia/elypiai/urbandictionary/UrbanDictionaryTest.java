@@ -75,7 +75,7 @@ public class UrbanDictionaryTest {
         Definition definition =  ud.define("jen").completeGet().getDefinitions(true).get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertEquals("Gorgeous, amazing, perfect everything. The girl who has always been my best friend, the girl who I should've been chasing this [whole time]. I love her. <[333]\r\n\r\n- [Sugarlips]", definition.getDefinition()),
+            () -> assertEquals("Gorgeous, amazing, perfect everything. The girl who has always been my best friend, the girl who I should've been chasing this [whole time]. I love her. <[333]\r\n\r\n- [Sugarlips]", definition.getDefinitionBody()),
             () -> assertEquals("http://jen.urbanup.com/1859201", definition.getPermaLink()),
             () -> assertEquals(2274, definition.getThumbsUp()),
             () -> assertEquals("mikev²", definition.getAuthor()),
@@ -107,7 +107,7 @@ public class UrbanDictionaryTest {
         Definition definition =  ud.define("life").completeGet().getDefinitions(true).get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertEquals("A sexually-transmitted, [terminal disease].", definition.getDefinition()),
+            () -> assertEquals("A sexually-transmitted, [terminal disease].", definition.getDefinitionBody()),
             () -> assertEquals("http://life.urbanup.com/139509", definition.getPermaLink()),
             () -> assertEquals(26417, definition.getThumbsUp()),
             () -> assertEquals("Anonymous", definition.getAuthor()),
