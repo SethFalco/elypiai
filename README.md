@@ -74,7 +74,7 @@ caching and can massively save bandwidth and reduce API calls.
 ### Wrappers
 Wrappers are the actual wrapper around a service, this is what users should be interfacing with to
 call the web APIs. Some wraps include utility methods as appropriate for the respective
-service, such as mathematical functions or web scrapping methods to get data the API may not.
+service, such as mathematical functions.
 
 ## Supported APIs
 * [Cleverbot][cleverbot]
