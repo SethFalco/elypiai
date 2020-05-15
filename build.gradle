@@ -24,7 +24,7 @@ allprojects() {
 
     group = "org.elypia.elypiai"
     version = "2.3.1"
-    description = "A abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
+    description = "An abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
 
     ext {
         repoUrl = "https://gitlab.com/Elypia/elypiai"

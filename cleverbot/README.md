@@ -57,7 +57,7 @@ class Main {
 When you call `Cleverbot#say()` you'll get a `RestAction<CleverResponse>`; you can call:
 * `complete()` - This will do a synchronous or blocking request and return an optional object.
 * `completeGet()` - This will do a synchronous or blocking request, and do get for you.
-* `queue(success, failure)` - This will do a asynchronous request, both the sucess, and failure consumers are optional.
+* `queue(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
 
 For more information, please see [Elypiai].
 

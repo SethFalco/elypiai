@@ -16,7 +16,7 @@ the request:
 
 * `complete()` - This will do a synchronous or blocking request and return an optional object.
 * `completeGet()` - This will do a synchronous or blocking request, and do get for you.
-* `queue(success, failure)` - This will do a asynchronous request, both the sucess, and failure consumers are optional.
+* `queue(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
 
 ```java
 class Main {
@@ -67,7 +67,7 @@ improve performance by managing singleton instances of special objects.
 
 ### Extension
 Extensions are a way to add additional functionality to wrappers generically, so once
-a extension is made it can be used by any wrapper. The best example of this is the RedisExtension
+an extension is made it can be used by any wrapper. The best example of this is the RedisExtension
 which takes a time-to-live and caches responses for the specified time. This is great for cross-application
 caching and can massively save bandwidth and reduce API calls.
 

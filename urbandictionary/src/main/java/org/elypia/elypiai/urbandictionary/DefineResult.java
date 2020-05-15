@@ -66,7 +66,7 @@ public class DefineResult {
 
 	/**
 	 * @param random If to get the top definition or a random one.
-	 * @return A urban dictionary defintion entry for this word.
+	 * @return An UrbanDictionary defintion entry for this word.
 	 */
 	public Definition getDefinition(boolean random) {
 		int index = random ? ThreadLocalRandom.current().nextInt(definitions.size()) : 0;
