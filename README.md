@@ -14,9 +14,9 @@ First you need to construct the wrapper object for the API you want to access, f
 Following this you can use the methods are you'd expect, each API method will have a few ways to make
 the request:
 
-* `complete()` - This will do a syncronous or blocking request and return an optional object.
-* `completeGet()` - This will do a syncrhonous or blocking request, and do get for you.
-* `queue(success, failure)` - This will do a ascyncronous request, both the sucess, and failure consumers are optional.
+* `complete()` - This will do a synchronous or blocking request and return an optional object.
+* `completeGet()` - This will do a synchronous or blocking request, and do get for you.
+* `queue(success, failure)` - This will do a asynchronous request, both the sucess, and failure consumers are optional.
 
 ```java
 class Main {
