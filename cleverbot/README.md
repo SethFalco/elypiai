@@ -1,5 +1,5 @@
 # Elypiai Cleverbot Module [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-The [Gradle]/[Maven] import string can be found at the bintray badge above!
+The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
 
 ## About
 This is the [Cleverbot] module for Elypiai.

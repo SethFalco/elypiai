@@ -1,5 +1,5 @@
 # Elypiai [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-The [Gradle][gradle]/[Maven][maven] import string can be found at the bintray badge above!
+The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
 
 ## About
 Elypiai is a small and easy way, especially for new developers, to add ample functionality 
@@ -104,8 +104,8 @@ make sure to get it sorted.
 [documentation]: https://elypia.gitlab.io/elypiai "Elypiai Documentation"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
 [elypia-donate]: https://elypia.org/donate "Donate to Elypia"
-[gradle]: https://gradle.org/ "Depend via Gradle"
-[maven]: https://maven.apache.org/ "Depend via Maven"
+[Gradle]: https://gradle.org/ "Depend via Gradle"
+[Maven]: https://maven.apache.org/ "Depend via Maven"
 [cleverbot]: https://www.cleverbot.com/api/
 [orna]: https://orna.guide/gameplay?show=16
 [osu]: https://github.com/ppy/osu-api/wiki
