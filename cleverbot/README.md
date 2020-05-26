@@ -1,4 +1,4 @@
-# Elypiai Cleverbot Module [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Bintray]][bintray-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+# Elypiai Cleverbot Module [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
 The [Gradle]/[Maven] import string can be found at the bintray badge above!
 
 ## About
@@ -68,7 +68,7 @@ make sure to get it sorted.
 
 [matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
 [discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
-[bintray-page]: https://bintray.com/elypia/elypiai "Bintray Latest Version"
+[maven-page]: https://search.maven.org/artifact/org.elypia.elypiai/cleverbot "Maven Central"
 [documentation]: https://elypia.gitlab.io/elypiai/com/elypia/elypiai/cleverbot/package-summary.html "Elypiai - Cleverbot Documentation"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
 [elypia-donate]: https://elypia.org/donate "Donate to Elypia"
@@ -80,8 +80,8 @@ make sure to get it sorted.
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[Bintray]: https://img.shields.io/bintray/v/elypia/elypiai/cleverbot "Bintray Download Shield"
-[Docs]: https://img.shields.io/badge/Docs-Elypiai-blue.svg "Elypiai Documentation Shield"
+[Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/cleverbot "Download Shield"
+[Docs]: https://img.shields.io/badge/docs-Elypiai-blue.svg "Elypiai Documentation Shield"
 [Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
-[Donate]: https://img.shields.io/badge/Elypia-Donate-blueviolet "Donate Shield"
+[Donate]: https://img.shields.io/badge/elypia-Donate-blueviolet "Donate Shield"
