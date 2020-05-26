@@ -23,7 +23,7 @@ allprojects() {
     apply plugin: "jacoco"
 
     group = "org.elypia.elypiai"
-    version = "2.3.1"
+    version = "2.3.3"
     description = "An abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
 
     ext {
@@ -31,13 +31,15 @@ allprojects() {
         gitUrl = "${repoUrl}.git"
         issueUrl = "${repoUrl}/issues"
         website = "https://elypia.org/"
-        okhttpVersion = "4.5.0"
-        retrofitVersion = "2.8.1"
+        retrofitVersion = "2.9.0"
+
+        // Using older version as it's what Retrofit uses.
+        okhttpVersion = "3.14.9"
     }
 
     repositories {
         jcenter()
-        mavenLocal();
+        mavenLocal()
     }
 
     jacoco {
@@ -79,7 +81,6 @@ configure(publishedProjects) {
 
     dependencies {
         // HTTP Requests
-        implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
         implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
 
         // Logging

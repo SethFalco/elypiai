@@ -31,6 +31,13 @@ public class DefineResult {
 	private List<Definition> definitions;
 
 	/**
+	 * @return If definitions were found.
+	 */
+	public boolean hasDefinitions() {
+		return definitions != null && !definitions.isEmpty();
+	}
+
+	/**
 	 * Same as calling {@link #getDefinitions(boolean)} with false.
 	 *
 	 * @return	A full list of all returned definitions in the order they were

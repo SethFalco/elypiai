@@ -72,7 +72,7 @@ public class RedisExtension implements WrapperExtension {
         if (mediaType == null)
             return null;
 
-        try (ResponseBody response = ResponseBody.create(body, MediaType.parse(mediaType))) {
+        try (ResponseBody response = ResponseBody.create(MediaType.parse(mediaType), body)) {
             return new Response.Builder()
                 .request(request)
                 .protocol(Protocol.get(protocol))
@@ -112,7 +112,7 @@ public class RedisExtension implements WrapperExtension {
         jedis.rpush(key, values);
         jedis.expire(key, ttl);
 
-        return response.newBuilder().body(ResponseBody.create(bodyString, mediaType)).build();
+        return response.newBuilder().body(ResponseBody.create(mediaType, bodyString)).build();
     }
 
     public Jedis getJedis() {
