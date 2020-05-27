@@ -121,4 +121,4 @@ make sure to get it sorted.
 [Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Elypiai Documentation Shield"
 [Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
-[Donate]: https://img.shields.io/badge/elypia-donate-blueviolet "Donate Shield"
+[Donate]: https://img.shields.io/badge/donate-elypia-blueviolet "Donate Shield"
