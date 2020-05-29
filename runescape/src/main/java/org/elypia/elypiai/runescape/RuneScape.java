@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,11 @@ package org.elypia.elypiai.runescape;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.elypia.elypiai.common.core.*;
-import org.elypia.elypiai.common.core.ext.WrapperExtension;
-import org.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import org.elypia.elypiai.runescape.deserializers.*;
+import org.elypia.retropia.core.*;
+import org.elypia.retropia.core.extensions.WrapperExtension;
+import org.elypia.retropia.core.requests.*;
+import org.elypia.retropia.gson.deserializers.DateDeserializer;
 import org.slf4j.*;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -41,24 +42,24 @@ public class RuneScape extends ApiWrapper {
 	 * Should never throw {@link MalformedURLException} as this
 	 * is a manually hardcoded URL.
 	 */
-	private static URL BASE_URL;
+	private static URL baseUrl;
 
 	static {
 		try {
-			BASE_URL = new URL("https://apps.runescape.com/runemetrics/");
+			baseUrl = new URL("https://apps.runescape.com/runemetrics/");
 		} catch (MalformedURLException ex) {
-			logger.error(Elypiai.MALFORMED, ex);
+			logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
 		}
 	}
 
 	private RuneScapeService service;
 
 	public RuneScape() {
-		this((WrapperExtension[])null);
+		this(new WrapperExtension[0]);
 	}
 
 	public RuneScape(WrapperExtension... exts) {
-		this(BASE_URL, exts);
+		this(baseUrl, exts);
 	}
 
 	public RuneScape(URL baseUrl, WrapperExtension... exts) {
@@ -72,7 +73,7 @@ public class RuneScape extends ApiWrapper {
 
 		service = new Retrofit.Builder()
 			.baseUrl(baseUrl)
-			.client(RequestService.withExtensionInterceptor(this))
+			.client(RequestService.withExtensions(exts))
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.build()
 			.create(RuneScapeService.class);
@@ -92,9 +93,9 @@ public class RuneScape extends ApiWrapper {
 		return new RestAction<>(call);
 	}
 
-	public RestAction<List<QuestStats>> getQuestStatuses(String user) {
+	public OptionalRestAction<List<QuestStats>> getQuestStatuses(String user) {
 		Call<List<QuestStats>> call = service.getQuestStats(user);
-		return new RestAction<>(call);
+		return new OptionalRestAction<>(call);
 	}
 
     /**

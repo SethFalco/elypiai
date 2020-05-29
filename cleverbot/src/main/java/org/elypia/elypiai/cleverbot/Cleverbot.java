@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,9 @@ import okhttp3.*;
 import org.elypia.elypiai.cleverbot.data.CleverTweak;
 import org.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
 import org.elypia.elypiai.cleverbot.impl.CleverbotService;
-import org.elypia.elypiai.common.core.*;
-import org.elypia.elypiai.common.core.ext.*;
+import org.elypia.retropia.core.*;
+import org.elypia.retropia.core.extensions.*;
+import org.elypia.retropia.core.requests.RestAction;
 import org.slf4j.*;
 import retrofit2.Call;
 import retrofit2.*;
@@ -49,7 +50,7 @@ public class Cleverbot extends ApiWrapper {
 		try {
 			baseUrl = new URL("https://www.cleverbot.com/");
 		} catch (MalformedURLException ex) {
-			logger.error(Elypiai.MALFORMED, ex);
+			logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
 		}
 	}
 
@@ -57,7 +58,7 @@ public class Cleverbot extends ApiWrapper {
 	private final CleverbotService service;
 
 	public Cleverbot(String apiKey) {
-		this(apiKey, (WrapperExtension[])null);
+		this(apiKey, new WrapperExtension[0]);
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class Cleverbot extends ApiWrapper {
 				request = request.newBuilder().url(url).build();
 				return chain.proceed(request);
 			})
-			.addInterceptor(new ExtensionInterceptor(this))
+			.addInterceptor(new ExtensionInterceptor(exts))
 			.build();
 
 		GsonBuilder builder = new GsonBuilder()

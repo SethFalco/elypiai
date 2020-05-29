@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ public enum Skill {
 
 	/**
 	 * This should only ever occur if a new skill is introduced
-	 * and Elypiai hasn't been updated to include it yet.
+	 * and Elypiai hasn't been updated to include yet.
 	 */
 	UNKNOWN(-1, "Unknown", false),
 
@@ -108,27 +108,30 @@ public enum Skill {
 	DIVINATION(25, "Divination", false),
 
 	@SerializedName("26")
-	INVENTION(26, "Invention", true);
+	INVENTION(26, "Invention", true),
 
-	private final int ID;
-	private final String NAME;
-	private final boolean ELITE;
+	@SerializedName("27")
+	ARCHAEOLOGY(27, "Archaeology", false);
 
-	Skill(int id, String name, boolean elite) {
-		ID = id;
-		NAME = name;
-		ELITE = elite;
+	private final int id;
+	private final String name;
+	private final boolean isElite;
+
+	Skill(int id, String name, boolean isElite) {
+		this.id = id;
+		this.name = name;
+		this.isElite = isElite;
 	}
 
 	public int getId() {
-		return ID;
+		return id;
 	}
 
 	public String getDisplay() {
-		return NAME;
+		return name;
 	}
 
 	public boolean isElite() {
-		return ELITE;
+		return isElite;
 	}
 }

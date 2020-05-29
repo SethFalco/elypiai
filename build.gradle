@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,22 +23,24 @@ allprojects() {
     apply plugin: "jacoco"
 
     group = "org.elypia.elypiai"
-    version = "2.3.3"
-    description = "An abstraction to wrap APIs as effectively as possible with a clean and common interface and extensibility between them."
+    version = "3.0.0"
+    description = "Wrappers for various web APIs that don't provide official libraries for Java."
 
     ext {
         repoUrl = "https://gitlab.com/Elypia/elypiai"
         gitUrl = "${repoUrl}.git"
         issueUrl = "${repoUrl}/issues"
         website = "https://elypia.org/"
-        retrofitVersion = "2.9.0"
 
-        // Using older version as it's what Retrofit uses.
+        retropiaVersion = "1.2.0"
+        retrofitVersion = "2.9.0"
         okhttpVersion = "3.14.9"
     }
 
     repositories {
         jcenter()
+
+        // Local System
         mavenLocal()
     }
 
@@ -47,28 +49,7 @@ allprojects() {
     }
 }
 
-def publishedProjects = [
-    /** Common */
-    project(":common:core"),
-    project(":common:gson"),
-    project(":common:jaxb"),
-    project(":common:test"),
-
-    /** Wrappers */
-    project(":cleverbot"),
-    project(":orna"),
-    project(":osu"),
-    project(":path-of-exile"),
-    project(":runescape"),
-    project(":steam"),
-    project(":urbandictionary"),
-    project(":yugioh-prices"),
-
-    /** Extensions */
-    project(":extensions:redis")
-]
-
-configure(publishedProjects) {
+subprojects() {
     apply plugin: "java-library"
     apply plugin: "maven-publish"
     apply plugin: "maven"
@@ -81,7 +62,8 @@ configure(publishedProjects) {
 
     dependencies {
         // HTTP Requests
-        implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+        api "org.elypia.retropia:core:${retropiaVersion}"
+        testImplementation "org.elypia.retropia:test:${retropiaVersion}"
 
         // Logging
         implementation "org.slf4j:slf4j-api:1.7.30"
@@ -89,7 +71,6 @@ configure(publishedProjects) {
 
         // Testing
         testImplementation "org.junit.jupiter:junit-jupiter:5.6.2"
-        testImplementation "org.mockito:mockito-core:3.3.3"
         testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
     }
 
@@ -208,15 +189,15 @@ configure(publishedProjects) {
 /** Generate Global JavaDocs for GitLab Pages */
 
 task globalJavadoc(type: Javadoc) {
-    source = publishedProjects.collect { it.sourceSets.main.allJava }
-    classpath = files(publishedProjects.collect { it.sourceSets.main.compileClasspath })
+    source = subprojects.collect { it.sourceSets.main.allJava }
+    classpath = files(subprojects.collect { it.sourceSets.main.compileClasspath })
     destinationDir = file("${buildDir}/docs/javadoc")
 }
 
 /** Combine and ouput code coverage. */
 
 task jacocoMerge(type: JacocoMerge) {
-    executionData = files(publishedProjects.jacocoTestReport.executionData.findAll {it.asList() })
+    executionData = files(subprojects.jacocoTestReport.executionData.findAll {it.asList() })
 
     doFirst {
         executionData = files(executionData.findAll {
@@ -226,8 +207,8 @@ task jacocoMerge(type: JacocoMerge) {
 }
 
 task jacocoReport(type: JacocoReport, dependsOn: jacocoMerge) {
-    sourceDirectories.from = files(publishedProjects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
-    classDirectories.from = files(publishedProjects.sourceSets.main.output.findAll { it.asList() })
+    sourceDirectories.from = files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
+    classDirectories.from = files(subprojects.sourceSets.main.output.findAll { it.asList() })
     executionData.from = files(jacocoMerge.destinationFile)
 
     reports {

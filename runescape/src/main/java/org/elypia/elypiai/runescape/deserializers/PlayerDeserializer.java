@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 package org.elypia.elypiai.runescape.deserializers;
 
 import com.google.gson.*;
-import org.elypia.elypiai.common.core.ex.FriendlyException;
 import org.elypia.elypiai.runescape.Player;
 import org.elypia.elypiai.runescape.data.RuneScapeError;
+import org.elypia.retropia.core.exceptions.FriendlyException;
 
 import java.lang.reflect.Type;
 

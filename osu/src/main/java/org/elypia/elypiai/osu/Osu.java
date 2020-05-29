@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,12 +19,13 @@ package org.elypia.elypiai.osu;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
-import org.elypia.elypiai.common.core.*;
-import org.elypia.elypiai.common.core.ext.*;
-import org.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import org.elypia.elypiai.osu.data.*;
 import org.elypia.elypiai.osu.deserializers.*;
 import org.elypia.elypiai.osu.impl.OsuService;
+import org.elypia.retropia.core.*;
+import org.elypia.retropia.core.extensions.*;
+import org.elypia.retropia.core.requests.*;
+import org.elypia.retropia.gson.deserializers.DateDeserializer;
 import org.slf4j.*;
 import retrofit2.Call;
 import retrofit2.*;
@@ -45,13 +46,13 @@ public class Osu extends ApiWrapper {
 	 * Should never throw {@link MalformedURLException} as this
 	 * is a manually hardcoded URL.
 	 */
-	private static URL BASE_URL;
+	private static URL baseUrl;
 
 	static {
 		try {
-			BASE_URL = new URL("https://osu.ppy.sh/api/");
+			baseUrl = new URL("https://osu.ppy.sh/api/");
 		} catch (MalformedURLException ex) {
-			logger.error(Elypiai.MALFORMED, ex);
+			logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
 		}
 	}
 
@@ -59,7 +60,7 @@ public class Osu extends ApiWrapper {
 	private final OsuService service;
 
 	public Osu(String apiKey) {
-		this(apiKey, (WrapperExtension[])null);
+		this(apiKey, new WrapperExtension[0]);
 	}
 
 	/**
@@ -70,7 +71,7 @@ public class Osu extends ApiWrapper {
 	 * @param 	apiKey	The API obtained from the osu! website.
 	 */
 	public Osu(String apiKey, WrapperExtension... exts) {
-		this(BASE_URL, apiKey, exts);
+		this(baseUrl, apiKey, exts);
 	}
 
 	public Osu(URL baseUrl, String apiKey, WrapperExtension... exts) {
@@ -84,7 +85,7 @@ public class Osu extends ApiWrapper {
 				request = request.newBuilder().url(url).build();
 				return chain.proceed(request);
 			})
-			.addInterceptor(new ExtensionInterceptor(this))
+			.addInterceptor(new ExtensionInterceptor(exts))
 			.build();
 
 		GsonBuilder gsonBuilder = new GsonBuilder()
@@ -106,19 +107,19 @@ public class Osu extends ApiWrapper {
 			.create(OsuService.class);
 	}
 
-	public RestAction<Player> getPlayer(int id) {
+	public OptionalRestAction<Player> getPlayer(int id) {
 		return getPlayer(id, OsuMode.OSU);
 	}
 
-	public RestAction<Player> getPlayer(String username) {
+	public OptionalRestAction<Player> getPlayer(String username) {
 		return getPlayer(username, OsuMode.OSU);
 	}
 
-	public RestAction<Player> getPlayer(int id, OsuMode mode) {
+	public OptionalRestAction<Player> getPlayer(int id, OsuMode mode) {
 		return getPlayer(id, mode, 31);
 	}
 
-	public RestAction<Player> getPlayer(String username, OsuMode mode) {
+	public OptionalRestAction<Player> getPlayer(String username, OsuMode mode) {
 		return getPlayer(username, mode, 31);
 	}
 
@@ -129,7 +130,7 @@ public class Osu extends ApiWrapper {
 	 * @param mode The gamemode to view data for.
 	 * @param days The number of days to look back for events.
 	 */
-	public RestAction<Player> getPlayer(int id, OsuMode mode, int days) {
+	public OptionalRestAction<Player> getPlayer(int id, OsuMode mode, int days) {
 		return getPlayer(String.valueOf(id), OsuId.USER_ID, mode, days);
 	}
 
@@ -140,13 +141,13 @@ public class Osu extends ApiWrapper {
 	 * @param mode The gamemode to view data for.
 	 * @param days The number of days to look back for events.
 	 */
-	public RestAction<Player> getPlayer(String username, OsuMode mode, int days) {
+	public OptionalRestAction<Player> getPlayer(String username, OsuMode mode, int days) {
 		return getPlayer(username, OsuId.USERNAME, mode, days);
 	}
 
-	public RestAction<Player> getPlayer(String username, OsuId type, OsuMode mode, int days) {
+	public OptionalRestAction<Player> getPlayer(String username, OsuId type, OsuMode mode, int days) {
 		Call<Player> call = service.getPlayer(username, type.getType(), mode.getId(), days);
-		return new RestAction<>(call);
+		return new OptionalRestAction<>(call);
 	}
 
 	public RestAction<List<BeatMap>> getBeatMaps(int id) {
@@ -196,9 +197,9 @@ public class Osu extends ApiWrapper {
 		return new RestAction<>(call);
 	}
 
-	public RestAction<Match> getMatch(int id) {
+	public OptionalRestAction<Match> getMatch(int id) {
 		Call<Match> call = service.getMatch(id);
-		return new RestAction<>(call);
+		return new OptionalRestAction<>(call);
 	}
 
 	public String getApiKey() {

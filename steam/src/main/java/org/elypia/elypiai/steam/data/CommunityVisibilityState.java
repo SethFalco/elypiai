@@ -14,23 +14,21 @@
  * limitations under the License.
  */
 
-package org.elypia.elypiai.common.gson.deserializers;
+package org.elypia.elypiai.steam.data;
 
-import com.google.gson.*;
-
-import java.lang.reflect.Type;
-import java.util.StringJoiner;
+import com.google.gson.annotations.SerializedName;
 
 /**
+ * Represents if a profile is visible or not and why.
+ *
  * @author seth@elypia.org (Seth Falco)
+ * @since 3.0.0
  */
-public class JoinedStringDeserializer implements JsonDeserializer<String> {
+public enum CommunityVisibilityState {
 
-    @Override
-    public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        JsonArray array = json.getAsJsonArray();
-        StringJoiner joiner = new StringJoiner("");
-        array.forEach(o -> joiner.add(o.getAsString()));
-        return joiner.toString();
-    }
+    @SerializedName("1")
+    NOT_PUBLIC,
+
+    @SerializedName("3")
+    PUBLIC
 }

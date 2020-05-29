@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,10 @@
 
 package org.elypia.elypiai.urbandictionary;
 
-import org.elypia.elypiai.common.core.*;
-import org.elypia.elypiai.common.core.ext.WrapperExtension;
-import org.elypia.elypiai.common.gson.GsonService;
+import org.elypia.retropia.core.*;
+import org.elypia.retropia.core.extensions.WrapperExtension;
+import org.elypia.retropia.core.requests.RestAction;
+import org.elypia.retropia.gson.GsonService;
 import org.slf4j.*;
 import retrofit2.*;
 
@@ -49,7 +50,7 @@ public class UrbanDictionary extends ApiWrapper {
 	private UrbanDictionaryService service;
 
 	public UrbanDictionary() {
-		this((WrapperExtension[])null);
+		this(new WrapperExtension[0]);
 	}
 
 	public UrbanDictionary(WrapperExtension... exts) {
@@ -60,7 +61,7 @@ public class UrbanDictionary extends ApiWrapper {
         super(exts);
 		service = new Retrofit.Builder()
 			.baseUrl(url)
-			.client(RequestService.withExtensionInterceptor(this))
+			.client(RequestService.withExtensions(exts))
 			.addConverterFactory(GsonService.getInstance())
 			.build()
 			.create(UrbanDictionaryService.class);

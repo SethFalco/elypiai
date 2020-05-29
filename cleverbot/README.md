@@ -56,7 +56,6 @@ class Main {
 
 When you call `Cleverbot#say()` you'll get a `RestAction<CleverResponse>`; you can call:
 * `complete()` - This will do a synchronous or blocking request and return an optional object.
-* `completeGet()` - This will do a synchronous or blocking request, and do get for you.
 * `queue(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
 
 For more information, please see [Elypiai].
@@ -69,7 +68,7 @@ make sure to get it sorted.
 [matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
 [discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
 [maven-page]: https://search.maven.org/artifact/org.elypia.elypiai/cleverbot "Maven Central"
-[documentation]: https://elypia.gitlab.io/elypiai/com/elypia/elypiai/cleverbot/package-summary.html "Elypiai - Cleverbot Documentation"
+[documentation]: https://elypia.gitlab.io/elypiai/com/elypia/elypiai/cleverbot/package-summary.html "Documentation"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
 [elypia-donate]: https://elypia.org/donate "Donate to Elypia"
 [Gradle]: https://gradle.org/ "Depend via Gradle"
@@ -81,7 +80,7 @@ make sure to get it sorted.
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/cleverbot "Download Shield"
-[Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Elypiai Documentation Shield"
+[Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Documentation Shield"
 [Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
 [Donate]: https://img.shields.io/badge/donate-elypia-blueviolet "Donate Shield"

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package org.elypia.elypiai.poe;
 
-import org.elypia.elypiai.common.core.RestPaginator;
+import org.elypia.retropia.core.requests.RestPaginator;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,7 +40,7 @@ public class StashPaginator implements RestPaginator<Stash> {
 
     @Override
     public List<Stash> next() throws IOException {
-        StashTabs stashtabs = poe.getStashTabs(cursor).completeGet();
+        StashTabs stashtabs = poe.getStashTabs(cursor).complete().get();
         List<Stash> stashes = stashtabs.getStashes();
 
         if (stashes.isEmpty())

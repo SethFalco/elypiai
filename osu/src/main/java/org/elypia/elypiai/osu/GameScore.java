@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,9 @@
 package org.elypia.elypiai.osu;
 
 import com.google.gson.annotations.*;
-import org.elypia.elypiai.common.gson.deserializers.BitBooleanDeserializer;
 import org.elypia.elypiai.osu.data.OsuTeam;
 import org.elypia.elypiai.osu.impl.OsuScore;
+import org.elypia.retropia.gson.deserializers.BitBooleanDeserializer;
 
 /**
  * @author seth@elypia.org (Seth Falco)

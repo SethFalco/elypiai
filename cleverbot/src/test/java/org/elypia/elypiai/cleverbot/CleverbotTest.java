@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,9 @@ package org.elypia.elypiai.cleverbot;
 
 import okhttp3.mockwebserver.*;
 import org.elypia.elypiai.cleverbot.data.CleverTweak;
-import org.elypia.elypiai.common.test.TestUtils;
+import org.elypia.retropia.test.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +31,17 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
+@ExtendWith(MockResponseExtension.class)
 public class CleverbotTest {
+
+    @Response("reply_conversation.json")
+    public static MockResponse replyConversation;
+
+    @Response("reply_hello.json")
+    public static MockResponse replyHello;
+
+    @Response("reply_wack0-attent100.json")
+    public static MockResponse replyWack0Attent100;
 
     private static MockWebServer server;
     private static Cleverbot cb;
@@ -55,8 +66,8 @@ public class CleverbotTest {
 
     @Test
     public void parseResponse() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("reply_hello.json")));
-        CleverResponse response = cb.say("Hello, world!").completeGet();
+        server.enqueue(replyHello);
+        CleverResponse response = cb.say("Hello, world!").complete();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("MXYxCTh2MQlBdldYSVVNOEdDTkQJMUZ2MTU1OTE3MDUzNAk2NHZIZWxsbywgd29ybGQhCTY0aUhlbGxvLCByb2JvdCEJ", response.getCs()),
@@ -73,21 +84,21 @@ public class CleverbotTest {
 
     @Test
     public void makeRequestWithTweak() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("reply_wack0-attent100.json")));
+        server.enqueue(replyWack0Attent100);
 
         Map<CleverTweak, Integer> tweaks = new HashMap<>();
         tweaks.put(CleverTweak.WACKY, 0);
         tweaks.put(CleverTweak.ATTENTIVE, 100);
 
-        CleverResponse response = cb.say("Hello, world!", null, tweaks).completeGet();
+        CleverResponse response = cb.say("Hello, world!", null, tweaks).complete();
 
         assertNotNull(response);
     }
 
     @Test
     public void makeRequestParseMultiHistory() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("reply_conversation.json")));
-        CleverResponse response = cb.say("now I'm sad :c", "MXYyCTh2MQlBdldYSVVNOEdDTkQJMUZ2MTU1OTE3MDUzNAk2NHZubyB1IQk2NGlUaGluayBpbSBiZXR0ZXIgdGhhbiB5b3UuCTY1dkhlbGxvLCB3b3JsZCEJNjVpSGVsbG8sIHJvYm90IQk=").completeGet();
+        server.enqueue(replyConversation);
+        CleverResponse response = cb.say("now I'm sad :c", "MXYyCTh2MQlBdldYSVVNOEdDTkQJMUZ2MTU1OTE3MDUzNAk2NHZubyB1IQk2NGlUaGluayBpbSBiZXR0ZXIgdGhhbiB5b3UuCTY1dkhlbGxvLCB3b3JsZCEJNjVpSGVsbG8sIHJvYm90IQk=").complete();
 
         assertEquals(
             "User: Hello, world!\n" +

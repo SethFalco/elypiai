@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,10 @@
 package org.elypia.elypiai.yugioh;
 
 import okhttp3.mockwebserver.*;
-import org.elypia.elypiai.common.test.TestUtils;
 import org.elypia.elypiai.yugioh.data.*;
+import org.elypia.retropia.test.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 
 import java.io.IOException;
@@ -31,7 +32,23 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
+@ExtendWith(MockResponseExtension.class)
 public class YuGiOhTest {
+
+    @Response("dark-magician.json")
+    public static MockResponse darkMagician;
+
+    @Response("dark-magician-girl.json")
+    public static MockResponse darkMagicianGirl;
+
+    @Response("does-not-exist.json")
+    public static MockResponse doesNotExist;
+
+    @Response("mirror-force.json")
+    public static MockResponse mirrorForce;
+
+    @Response("pot-of-greed.json")
+    public static MockResponse potOfGreed;
 
     private static MockWebServer server;
     private static YuGiOh yugioh;
@@ -56,10 +73,8 @@ public class YuGiOhTest {
 
     @Test
     public void parseCardData() throws IOException {
-        server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("dark-magician.json"))
-        );
-        Monster card = (Monster)yugioh.getCard("Dark Magician").completeGet();
+        server.enqueue(darkMagician);
+        Monster card = (Monster)yugioh.getCard("Dark Magician").complete().get();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician", card.getName()),
@@ -76,10 +91,8 @@ public class YuGiOhTest {
 
     @Test
     public void parseDarkMagianGirl() throws IOException {
-        server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("dark-magician-girl.json"))
-        );
-        Monster card = (Monster)yugioh.getCard("Dark Magician Girl").completeGet();
+        server.enqueue(darkMagicianGirl);
+        Monster card = (Monster)yugioh.getCard("Dark Magician Girl").complete().get();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician Girl", card.getName()),
@@ -96,10 +109,8 @@ public class YuGiOhTest {
 
     @Test
     public void parsePotOfGreed() throws IOException {
-        server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("pot-of-greed.json"))
-        );
-        MagicCard card = (MagicCard)yugioh.getCard("Pot of Greed").completeGet();
+        server.enqueue(potOfGreed);
+        MagicCard card = (MagicCard)yugioh.getCard("Pot of Greed").complete().get();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Pot of Greed", card.getName()),
@@ -111,10 +122,8 @@ public class YuGiOhTest {
 
     @Test
     public void parseMirrorForce() throws IOException {
-        server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("mirror-force.json"))
-        );
-        MagicCard card = (MagicCard)yugioh.getCard("Mirror Force").completeGet();
+        server.enqueue(mirrorForce);
+        MagicCard card = (MagicCard)yugioh.getCard("Mirror Force").complete().get();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Mirror Force", card.getName()),
@@ -126,9 +135,7 @@ public class YuGiOhTest {
 
     @Test
     public void parseInvalidCard() throws IOException {
-        server.enqueue(new MockResponse()
-            .setBody(TestUtils.read("does-not-exist.json"))
-        );
+        server.enqueue(doesNotExist);
         Optional<TradingCard> card = yugioh.getCard("CardThatDoesn'tExist").complete();
         assertTrue(card.isEmpty());
     }

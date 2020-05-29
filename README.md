@@ -4,18 +4,15 @@ The [Gradle]/[Maven] import strings can be found at the maven-central badge abov
 ## About
 Elypiai is a small and easy way, especially for new developers, to add ample functionality 
 or integrations to any project.  
-This is small library made of primarily 3 types of modules which come together to make a small, common, and 
-clean interface when creating wrappers.
 
 ## Getting Started
 In this example we'll just use the osu! API to get things going.
 
 First you need to construct the wrapper object for the API you want to access, for example.
-Following this you can use the methods are you'd expect, each API method will have a few ways to make
+Following this you can use the methods as you'd expect, each API method will have a few ways to make
 the request:
 
 * `complete()` - This will do a synchronous or blocking request and return an optional object.
-* `completeGet()` - This will do a synchronous or blocking request, and do get for you.
 * `queue(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
 
 ```java
@@ -59,23 +56,6 @@ class Main {
 }
 ```
 
-## Structure
-### Common
-Common modules are shared resources that all the wrappers can pool from such as the HTTP client, or
-custom deserializers and adapters. They make it easier to reuse code between wraps as well as
-improve performance by managing singleton instances of special objects.
-
-### Extension
-Extensions are a way to add additional functionality to wrappers generically, so once
-an extension is made it can be used by any wrapper. The best example of this is the RedisExtension
-which takes a time-to-live and caches responses for the specified time. This is great for cross-application
-caching and can massively save bandwidth and reduce API calls.
-
-### Wrappers
-Wrappers are the actual wrapper around a service, this is what users should be interfacing with to
-call the web APIs. Some wraps include utility methods as appropriate for the respective
-service, such as mathematical functions.
-
 ## Supported APIs
 * [Cleverbot][cleverbot]
 * [Orna Guide][orna]
@@ -86,13 +66,6 @@ service, such as mathematical functions.
 * [UrbanDictionary][urbandictionary]
 * [Yu-Gi-Oh! Prices][yugioh-prices]
 
-> Elypiai is pretty easy to work with so we can always add more wrappers, or you could contribute
-> yourself. If you want to can also keep your wrap to yourself just depend by just depending
-> on the `common` and `extension` modules appropriate for your applications with all of the benfits
-> including: sharing resources, a common interface, and lots of reusable components.  
->
-> You can see more in the contribution guide which _very_ breifly runs through creating a wrapper.
-
 ## Support
 Should any problems occur, come visit us over on Discord! We're always around and there are
 ample developers that would be willing to help; if it's a problem with the library itself then we'll
@@ -101,7 +74,7 @@ make sure to get it sorted.
 [matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
 [discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
 [maven-page]: https://search.maven.org/search?q=g:org.elypia.elypiai "Maven Central"
-[documentation]: https://elypia.gitlab.io/elypiai "Elypiai Documentation"
+[documentation]: https://elypia.gitlab.io/elypiai "Documentation"
 [gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
 [elypia-donate]: https://elypia.org/donate "Donate to Elypia"
 [Gradle]: https://gradle.org/ "Depend via Gradle"
@@ -117,8 +90,8 @@ make sure to get it sorted.
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/common-core "Download Shield"
-[Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Elypiai Documentation Shield"
+[Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/osu "Download Shield"
+[Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Documentation Shield"
 [Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
 [Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
 [Donate]: https://img.shields.io/badge/donate-elypia-blueviolet "Donate Shield"

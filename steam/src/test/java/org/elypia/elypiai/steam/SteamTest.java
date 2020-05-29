@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,12 @@
 package org.elypia.elypiai.steam;
 
 import okhttp3.mockwebserver.*;
-import org.elypia.elypiai.common.test.TestUtils;
-import org.elypia.elypiai.steam.data.PersonaState;
+import org.elypia.elypiai.steam.data.*;
+import org.elypia.retropia.test.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,9 +31,33 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
+ * The API keys here are fake. c;
+ *
  * @author seth@elypia.org (Seth Falco)
  */
+@ExtendWith(MockResponseExtension.class)
 public class SteamTest {
+
+    @Response("library_seth.json")
+    public static MockResponse librarySeth;
+
+    @Response("library_toasty.json")
+    public static MockResponse libraryToasty;
+
+    @Response("summary_seth-no-session.json")
+    public static MockResponse summarySethNoSesson;
+
+    @Response("summary_seth-with-session.json")
+    public static MockResponse summarySethWithSession;
+
+    @Response("url-to-id_jen.json")
+    public static MockResponse urlToIdJen;
+
+    @Response("url-to-id_noone.json")
+    public static MockResponse urlToIdNoone;
+
+    @Response("url-to-id_seth.json")
+    public static MockResponse urlToIdSeth;
 
     private static MockWebServer server;
     private static Steam steam;
@@ -63,8 +90,8 @@ public class SteamTest {
 
     @Test
     public void idSearch() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("url-to-id_jen.json")));
-        SteamSearch search = steam.getIdFromVanityUrl("JenTheBluePanda").completeGet();
+        server.enqueue(urlToIdJen);
+        SteamSearch search = steam.getIdFromVanityUrl("JenTheBluePanda").complete();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(76561198077852097L, search.getId()),
@@ -76,8 +103,8 @@ public class SteamTest {
 
     @Test
     public void failedIdSearch() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("url-to-id_noone.json")));
-        SteamSearch search = steam.getIdFromVanityUrl("BLAHBLAHBLAHBLAHBLAHBLAHBLAHBLAHBLAH").completeGet();
+        server.enqueue(urlToIdNoone);
+        SteamSearch search = steam.getIdFromVanityUrl("BLAHBLAHBLAHBLAHBLAHBLAHBLAHBLAHBLAH").complete();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(0, search.getId()),
@@ -89,16 +116,16 @@ public class SteamTest {
 
     @Test
     public void parseSteamUser() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("url-to-id_seth.json")));
-        server.enqueue(new MockResponse().setBody(TestUtils.read("summary_seth-no-session.json")));
+        server.enqueue(urlToIdSeth);
+        server.enqueue(summarySethNoSesson);
 
-        long id = steam.getIdFromVanityUrl("Sethiii").completeGet().getId();
-        SteamUser user = steam.getUsers(id).completeGet().get(0);
+        long id = steam.getIdFromVanityUrl("Sethiii").complete().getId();
+        SteamUser user = steam.getUsers(id).complete().get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(steam, user.getSteam()),
             () -> assertEquals(76561198085657484L, user.getId()),
-            () -> assertFalse(user.isPrivate()),
+            () -> assertEquals(CommunityVisibilityState.PUBLIC, user.getCommunityVisibilityState()),
             () -> assertEquals("Seth", user.getUsername()),
             () -> assertEquals("Seth", user.getRealName()),
             () -> assertEquals("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de.jpg", user.getAvatarLow()),
@@ -118,13 +145,13 @@ public class SteamTest {
 
     @Test
     public void parseUserWithSession() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("summary_seth-with-session.json")));
-        SteamUser user = steam.getUsers(76561198085657484L).completeGet().get(0);
+        server.enqueue(summarySethWithSession);
+        SteamUser user = steam.getUsers(76561198085657484L).complete().get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(steam, user.getSteam()),
             () -> assertEquals(76561198085657484L, user.getId()),
-            () -> assertFalse(user.isPrivate()),
+            () -> assertEquals(CommunityVisibilityState.PUBLIC, user.getCommunityVisibilityState()),
             () -> assertEquals("Seth", user.getUsername()),
             () -> assertEquals("Seth", user.getRealName()),
             () -> assertEquals("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de.jpg", user.getAvatarLow()),
@@ -146,8 +173,8 @@ public class SteamTest {
 
     @Test
     public void parseGameSessionData() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("summary_seth-with-session.json")));
-        GameSession session = steam.getUsers(76561198085657484L).completeGet().get(0).getCurrentlyPlaying();
+        server.enqueue(summarySethWithSession);
+        GameSession session = steam.getUsers(76561198085657484L).complete().get(0).getCurrentlyPlaying();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(646570, session.getGameId()),
@@ -157,15 +184,15 @@ public class SteamTest {
 
     @Test
     public void parseLibrary() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("url-to-id_seth.json")));
-        server.enqueue(new MockResponse().setBody(TestUtils.read("library_seth.json")));
+        server.enqueue(urlToIdSeth);
+        server.enqueue(librarySeth);
 
-        long id = steam.getIdFromVanityUrl("Sethiii").completeGet().getId();
-        List<SteamGame> library = steam.getLibrary(id).completeGet();
+        long id = steam.getIdFromVanityUrl("Sethiii").complete().getId();
+        List<SteamGame> library = steam.getLibrary(id).complete().get();
         Collections.sort(library);
         SteamGame game = library.get(0);
 
-        assertEquals(library.size(), 296);
+        assertEquals(296, library.size());
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(646570, game.getId()),
             () -> assertEquals("Slay the Spire", game.getName()),
@@ -180,12 +207,12 @@ public class SteamTest {
 
     @Test
     public void parseLibraryWithRecentPlay() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("library_toasty.json")));
-        List<SteamGame> library = steam.getLibrary(76561198012145255L).completeGet();
+        server.enqueue(libraryToasty);
+        List<SteamGame> library = steam.getLibrary(76561198012145255L).complete().get();
         Collections.sort(library);
         SteamGame game = library.get(0);
 
-        assertEquals(library.size(), 269);
+        assertEquals(269, library.size());
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(230410, game.getId()),
             () -> assertEquals("Warframe", game.getName()),
@@ -203,15 +230,16 @@ public class SteamTest {
         assertThrows(IllegalArgumentException.class, () -> steam.getUsers().queue());
     }
 
-    @Test
-    public void testUrlRegexMatches() {
-        assertAll("Is finding user correctly.",
-            () -> assertEquals("Sethiii", Steam.getUsernameFromUrl("https://steamcommunity.com/id/Sethiii/")),
-            () -> assertEquals("Sethiii", Steam.getUsernameFromUrl("https://steamcommunity.com/id/Sethiii")),
-            () -> assertEquals("Sethiii", Steam.getUsernameFromUrl("http://steamcommunity.com/id/Sethiii/")),
-            () -> assertEquals("Sethiii", Steam.getUsernameFromUrl("http://steamcommunity.com/id/Sethiii")),
-            () -> assertEquals("Sethiii", Steam.getUsernameFromUrl("steamcommunity.com/id/Sethiii/")),
-            () -> assertEquals("Sethiii", Steam.getUsernameFromUrl("steamcommunity.com/id/Sethiii"))
-        );
+    @ParameterizedTest
+    @ValueSource(strings = {
+        "https://steamcommunity.com/id/Sethiii/",
+        "https://steamcommunity.com/id/Sethiii",
+        "http://steamcommunity.com/id/Sethiii/",
+        "http://steamcommunity.com/id/Sethiii",
+        "steamcommunity.com/id/Sethiii/",
+        "steamcommunity.com/id/Sethiii"
+    })
+    public void testUrlRegexMatches(final String vanityUrl) {
+        assertEquals("Sethiii", Steam.getUsernameFromUrl(vanityUrl));
     }
 }

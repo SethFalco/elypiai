@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,11 @@ package org.elypia.elypiai.steam;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
-import org.elypia.elypiai.common.core.*;
-import org.elypia.elypiai.common.core.ext.*;
 import org.elypia.elypiai.steam.deserializers.*;
 import org.elypia.elypiai.steam.impl.SteamService;
+import org.elypia.retropia.core.*;
+import org.elypia.retropia.core.extensions.*;
+import org.elypia.retropia.core.requests.*;
 import org.slf4j.*;
 import retrofit2.Call;
 import retrofit2.*;
@@ -47,13 +48,13 @@ public class Steam extends ApiWrapper {
      * Should never throw {@link MalformedURLException} as this
      * is a manually hardcoded URL.
      */
-    private static URL BASE_URL;
+    private static URL baseUrl;
 
     static {
         try {
-            BASE_URL = new URL("http://api.steampowered.com/");
+            baseUrl = new URL("http://api.steampowered.com/");
         } catch (MalformedURLException ex) {
-            logger.error(Elypiai.MALFORMED, ex);
+            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
         }
     }
 
@@ -61,7 +62,7 @@ public class Steam extends ApiWrapper {
     private final SteamService service;
 
     public Steam(String apiKey) {
-        this(BASE_URL, apiKey, (WrapperExtension[])null);
+        this(baseUrl, apiKey, new WrapperExtension[0]);
     }
 
     /**
@@ -74,7 +75,7 @@ public class Steam extends ApiWrapper {
      */
 
     public Steam(String apiKey, WrapperExtension... exts) {
-        this(BASE_URL, apiKey, exts);
+        this(baseUrl, apiKey, exts);
     }
 
     public Steam(URL baseUrl, String apiKey, WrapperExtension... exts) {
@@ -88,7 +89,7 @@ public class Steam extends ApiWrapper {
                 request = request.newBuilder().url(url).build();
                 return chain.proceed(request);
             })
-            .addInterceptor(new ExtensionInterceptor(this))
+            .addInterceptor(new ExtensionInterceptor(exts))
             .build();
 
         GsonBuilder gsonBuilder = new GsonBuilder()
@@ -114,7 +115,14 @@ public class Steam extends ApiWrapper {
         return new RestAction<>(call);
     }
 
-    public RestAction<List<SteamUser>> getUsers(long...ids) {
+    /**
+     * Returns a list of steam players that are returned based on the IDs
+     * provided.
+     *
+     * @param ids The IDs of all steam players to return.
+     * @return A request action which will return the results, never null.
+     */
+    public RestAction<List<SteamUser>> getUsers(long... ids) {
         if (ids == null || ids.length == 0)
             throw new IllegalArgumentException("Must specify at least one user to fetch.");
 
@@ -138,19 +146,24 @@ public class Steam extends ApiWrapper {
      * @param id Steam user to obtain library for.
      * @return An rest action which will return a list of steam games.
      */
-    public RestAction<List<SteamGame>> getLibrary(long id) {
+    public OptionalRestAction<List<SteamGame>> getLibrary(long id) {
         return getLibrary(id, true);
     }
 
-    public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames) {
+    public OptionalRestAction<List<SteamGame>> getLibrary(long id, boolean freeGames) {
         return getLibrary(id, freeGames, true);
     }
 
-    public RestAction<List<SteamGame>> getLibrary(long id, boolean freeGames, boolean info) {
+    public OptionalRestAction<List<SteamGame>> getLibrary(long id, boolean freeGames, boolean info) {
         Call<List<SteamGame>> call = service.getLibrary(id, freeGames ? 1 : 0, info ? 1 : 0);
-        return new RestAction<>(call);
+        return new OptionalRestAction<>(call);
     }
 
+    /**
+     * @param vanityUrl The URL to a users stream profile.
+     * @return The identifying portion of the URL which represents
+     * the users custom URL.
+     */
     public static String getUsernameFromUrl(String vanityUrl) {
         Matcher matcher = VANITY_URL.matcher(vanityUrl);
         return (matcher.find()) ? matcher.group(1) : null;

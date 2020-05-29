@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,19 +17,42 @@
 package org.elypia.elypiai.runescape;
 
 import okhttp3.mockwebserver.*;
-import org.elypia.elypiai.common.core.ex.FriendlyException;
-import org.elypia.elypiai.common.test.TestUtils;
 import org.elypia.elypiai.runescape.data.*;
+import org.elypia.retropia.core.exceptions.FriendlyException;
+import org.elypia.retropia.test.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.*;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(MockResponseExtension.class)
 public class RuneScapeTest {
+
+    @Response("profile_los.json")
+	public static MockResponse profileLos;
+
+    @Response("profile_no-profile.json")
+	public static MockResponse profileNoProfile;
+
+    @Response("profile_private.json")
+	public static MockResponse profilePrivate;
+
+    @Response("profile_sethii.json")
+	public static MockResponse profileSethii;
+
+    @Response("quests_private.json")
+	public static MockResponse questsPrivate;
+
+    @Response("quests_sethii.json")
+	public static MockResponse questsSethii;
 
 	private static MockWebServer server;
 	private static RuneScape rs;
@@ -54,9 +77,9 @@ public class RuneScapeTest {
 
 	@Test
 	public void parseUser() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("profile_sethii.json")));
+		server.enqueue(profileSethii);
 
-		Player user = rs.getUser("Sethii").completeGet();
+		Player user = rs.getUser("Sethii").complete();
 
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals("Sethii", user.getUsername()),
@@ -80,11 +103,11 @@ public class RuneScapeTest {
 
 	@Test
 	public void parseUserLeaderboards() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("profile_sethii.json")));
-		server.enqueue(new MockResponse().setBody(TestUtils.read("profile_los.json")));
+		server.enqueue(profileSethii);
+		server.enqueue(profileLos);
 
-		Player user1 = rs.getUser("Sethii").completeGet();
-		Player user2 = rs.getUser("Los").completeGet();
+		Player user1 = rs.getUser("Sethii").complete();
+		Player user2 = rs.getUser("Los").complete();
 
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Sethii", user1.getLeaderboardUrl()),
@@ -96,9 +119,9 @@ public class RuneScapeTest {
 
 	@Test
 	public void parseUsersSkills() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("profile_sethii.json")));
+		server.enqueue(profileSethii);
 
-		Player user = rs.getUser("Sethii").completeGet();
+		Player user = rs.getUser("Sethii").complete();
 		PlayerStat stat = user.getStat(Skill.SLAYER);
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals(125433, stat.getRank()),
@@ -111,7 +134,7 @@ public class RuneScapeTest {
 
 	@Test
 	public void parsePrivateUser() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("profile_private.json")));
+		server.enqueue(profilePrivate);
 
         assertThrows(FriendlyException.class, () ->
             rs.getUser("Zezima").complete()
@@ -120,7 +143,7 @@ public class RuneScapeTest {
 
 	@Test
 	public void userDoesntExist() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("profile_no-profile.json")));
+		server.enqueue(profileNoProfile);
 
 		assertThrows(FriendlyException.class, () ->
 			rs.getUser("random user that doesn't exist").complete()
@@ -129,9 +152,9 @@ public class RuneScapeTest {
 
 	@Test
 	public void parseActivity() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("profile_sethii.json")));
+		server.enqueue(profileSethii);
 
-		Activity activity = rs.getUser("Sethii").completeGet().getActivities().get(0);
+		Activity activity = rs.getUser("Sethii").complete().getActivities().get(0);
 		assertAll("Testing if Parsing RuneScape Player Activity Correctly",
 			() -> assertEquals(1548363000000L, activity.getDate().getTime()),
 			() -> assertEquals("I levelled my  Farming skill, I am now level 66.", activity.getDetails()),
@@ -141,9 +164,9 @@ public class RuneScapeTest {
 
 	@Test
 	public void parseQuest() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("quests_sethii.json")));
+		server.enqueue(questsSethii);
 
-		List<QuestStats> quests = rs.getQuestStatuses("Sethii").completeGet();
+		List<QuestStats> quests = rs.getQuestStatuses("Sethii").complete().get();
 		QuestStats stats = quests.stream().filter(o -> o.getStatus() == CompletionStatus.STARTED).findFirst().get();
 
 		assertAll("Testing if Parsing RuneScape Player Quest Status",
@@ -158,9 +181,9 @@ public class RuneScapeTest {
 
 	@Test
 	public void sortQuests() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("quests_sethii.json")));
+		server.enqueue(questsSethii);
 
-		List<QuestStats> quests = rs.getQuestStatuses("Sethii").completeGet();
+		List<QuestStats> quests = rs.getQuestStatuses("Sethii").complete().get();
 		Collections.sort(quests);
 
 		QuestStats stats = quests.get(0);
@@ -174,10 +197,35 @@ public class RuneScapeTest {
 		);
 	}
 
+	/**
+	 * This is just a one off asyncronous task to test
+	 * if handling friendly exceptions works.
+	 *
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void parsePrivateUserAsync() throws InterruptedException {
+		server.enqueue(profilePrivate);
+
+		CountDownLatch latch = new CountDownLatch(1);
+
+		rs.getUser("Zezima").queue(
+			o -> {
+				fail("This should have produced an exception.");
+				latch.countDown();
+			},
+			ex -> {
+				assertTrue(ex instanceof FriendlyException);
+				latch.countDown();
+			}
+		);
+
+		latch.await(8, TimeUnit.SECONDS);
+	}
+
 	@Test
 	public void parseNoQuests() throws IOException {
-		server.enqueue(new MockResponse().setBody(TestUtils.read("quests_private.json")));
-
+		server.enqueue(questsPrivate);
 		Optional<List<QuestStats>> quests = rs.getQuestStatuses("Zezima").complete();
 		assertTrue(quests.isEmpty());
 	}
@@ -233,29 +281,21 @@ public class RuneScapeTest {
 		assertEquals(-1, RuneScape.getXpFromLevel(Integer.MAX_VALUE));
 	}
 
-	@Test
-	public void illegalLevelArguments() {
-		assertAll("Exceptions from Illegal Level Arguments",
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(0)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-1)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-99)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-126)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(-999)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(Integer.MIN_VALUE))
-		);
+	@ParameterizedTest
+    @ValueSource(ints = {0, -1, -99, -126, -999, Integer.MIN_VALUE})
+	public void illegalLevelArguments(int level) {
+        assertThrows(IllegalArgumentException.class, () -> RuneScape.getXpFromLevel(level));
 	}
 
-	@Test
-	public void illegalXpArguments() {
-		assertAll("Exceptions from Illegal XP Arguments",
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-1)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-1000)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-999999)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(-2141724413)),
-			() -> assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(Long.MIN_VALUE))
-		);
+	@ParameterizedTest
+    @ValueSource(longs = {-1, -1000, -999999, -2141724413, Long.MIN_VALUE})
+	public void illegalXpArguments(long xp) {
+        assertThrows(IllegalArgumentException.class, () -> RuneScape.getLevelFromXp(xp));
 	}
 
+    /**
+     * Ensure we don't infinite loop when calling with large numbers.
+     */
 	@Test
 	public void xpToLevelLoopTest() {
 		assertTimeout(ofSeconds(30), () -> RuneScape.getLevelFromXp(Long.MAX_VALUE));
@@ -264,6 +304,7 @@ public class RuneScapeTest {
 	@Test
 	public void skill() {
 		Skill skill = Skill.SLAYER;
+
 		assertAll("All Skill Values are Valid",
 			() -> assertEquals(18, skill.getId()),
 			() -> assertEquals("Slayer", skill.getDisplay())

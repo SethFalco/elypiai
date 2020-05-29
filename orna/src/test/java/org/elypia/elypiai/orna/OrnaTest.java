@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,10 @@
 package org.elypia.elypiai.orna;
 
 import okhttp3.mockwebserver.*;
-import org.elypia.elypiai.common.test.TestUtils;
 import org.elypia.elypiai.orna.entities.Monster;
+import org.elypia.retropia.test.*;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +31,11 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
+@ExtendWith(MockResponseExtension.class)
 public class OrnaTest {
+
+    @Response("all_monsters.json")
+    public static MockResponse allMonsters;
 
     private static MockWebServer server;
     private static Orna orna;
@@ -54,8 +59,8 @@ public class OrnaTest {
 
     @Test
     public void testOrnaAllMonsters() throws IOException {
-        server.enqueue(new MockResponse().setBody(TestUtils.read("all_monsters.json")));
-        List<Monster> monsters = orna.getMonsters().completeGet();
+        server.enqueue(allMonsters);
+        List<Monster> monsters = orna.getMonsters().complete();
         Monster monster = monsters.get(0);
 
         assertAll("Check values of osu! player.",

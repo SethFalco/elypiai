@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
     private static final Pattern SPLITTER = Pattern.compile("\\s*/\\s*");
 
     @Override
-    public TradingCard deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public TradingCard deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonObject object = json.getAsJsonObject();
 
         if (object.get("status").getAsString().equals("fail")) {
@@ -52,7 +52,7 @@ public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
         CardType type = context.deserialize(data.get("card_type"), CardType.class);
 
         switch (type) {
-            case MONSTER: {
+            case MONSTER:
                 String typeLine = data.get("type").getAsString();
                 String[] split = SPLITTER.split(typeLine);
                 Iterator<String> itTypes = List.of(split).iterator();
@@ -67,14 +67,11 @@ public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
                 data.add("types", array);
 
                 return context.deserialize(data, Monster.class);
-            }
             case SPELL:
-            case TRAP: {
+            case TRAP:
                 return context.deserialize(data, MagicCard.class);
-            }
-            default: {
+            default:
                 return null;
-            }
         }
     }
 }

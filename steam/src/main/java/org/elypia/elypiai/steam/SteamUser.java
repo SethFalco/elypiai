@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@
 package org.elypia.elypiai.steam;
 
 import com.google.gson.annotations.*;
-import org.elypia.elypiai.common.gson.deserializers.*;
-import org.elypia.elypiai.steam.data.PersonaState;
+import org.elypia.elypiai.steam.data.*;
+import org.elypia.retropia.gson.deserializers.*;
 
 import java.util.Date;
 
@@ -72,8 +72,7 @@ public class SteamUser {
 	 * This represents whether the profile is visible or not.
 	 */
 	@SerializedName("communityvisibilitystate")
-	@JsonAdapter(BitBooleanDeserializer.class)
-	private boolean isPrivate;
+	private CommunityVisibilityState communityVisibilityState;
 
 	/**
 	 * Indicates the user has a community profile configured.
@@ -193,12 +192,10 @@ public class SteamUser {
 	}
 
 	/**
-	 * @return	If the users profile is private.
-	 * 			Returns true of profile is private or
-	 * 			set for friends only.
+	 * @return The users community visible state.
 	 */
-	public boolean isPrivate() {
-		return isPrivate;
+	public CommunityVisibilityState getCommunityVisibilityState() {
+		return communityVisibilityState;
 	}
 
 	public boolean hasProfile() {

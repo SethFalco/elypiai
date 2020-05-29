@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +18,13 @@ package org.elypia.elypiai.poe;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import org.elypia.elypiai.common.core.*;
-import org.elypia.elypiai.common.core.ext.WrapperExtension;
-import org.elypia.elypiai.common.core.utils.Checks;
-import org.elypia.elypiai.common.gson.deserializers.DateDeserializer;
 import org.elypia.elypiai.poe.data.*;
 import org.elypia.elypiai.poe.deserializers.LadderEntryDeserializer;
+import org.elypia.retropia.core.*;
+import org.elypia.retropia.core.extensions.WrapperExtension;
+import org.elypia.retropia.core.requests.*;
+import org.elypia.retropia.core.utils.Checks;
+import org.elypia.retropia.gson.deserializers.DateDeserializer;
 import org.slf4j.*;
 import retrofit2.*;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -43,24 +44,24 @@ public class PathOfExile extends ApiWrapper {
 	 * Should never throw {@link MalformedURLException} as this
 	 * is a manually hardcoded URL.
 	 */
-	private static URL BASE_URL;
+	private static URL baseUrl;
 
 	static {
 		try {
-			BASE_URL = new URL("http://api.pathofexile.com/");
+			baseUrl = new URL("http://api.pathofexile.com/");
 		} catch (MalformedURLException ex) {
-			logger.error(Elypiai.MALFORMED, ex);
+			logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
 		}
 	}
 
 	private PathOfExileService service;
 
 	public PathOfExile() {
-		this((WrapperExtension[])null);
+		this(new WrapperExtension[0]);
 	}
 
 	public PathOfExile(WrapperExtension... exts) {
-		this(BASE_URL, exts);
+		this(baseUrl, exts);
 	}
 
 	public PathOfExile(URL baseUrl, WrapperExtension... exts) {
@@ -72,19 +73,19 @@ public class PathOfExile extends ApiWrapper {
 
 		service = new Retrofit.Builder()
 			.baseUrl(baseUrl)
-			.client(RequestService.withExtensionInterceptor(this))
+			.client(RequestService.withExtensions(exts))
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.build()
 			.create(PathOfExileService.class);
 	}
 
-	public RestAction<StashTabs> getStashTabs() {
+	public OptionalRestAction<StashTabs> getStashTabs() {
 		return getStashTabs(null);
 	}
 
-	public RestAction<StashTabs> getStashTabs(String cursor) {
+	public OptionalRestAction<StashTabs> getStashTabs(String cursor) {
 		Call<StashTabs> call = service.getStashTabs(cursor);
-		return new RestAction<>(call);
+		return new OptionalRestAction<>(call);
 	}
 
 	public RestAction<List<League>> getSeasonsLeagues(String season) {

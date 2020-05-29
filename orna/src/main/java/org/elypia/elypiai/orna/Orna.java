@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,11 @@
 
 package org.elypia.elypiai.orna;
 
-import org.elypia.elypiai.common.core.*;
-import org.elypia.elypiai.common.core.ext.WrapperExtension;
-import org.elypia.elypiai.common.gson.GsonService;
 import org.elypia.elypiai.orna.entities.*;
+import org.elypia.retropia.core.*;
+import org.elypia.retropia.core.extensions.WrapperExtension;
+import org.elypia.retropia.core.requests.RestAction;
+import org.elypia.retropia.gson.GsonService;
 import org.slf4j.*;
 import retrofit2.*;
 
@@ -44,24 +45,24 @@ public class Orna extends ApiWrapper {
      * Should never throw {@link MalformedURLException} as this
      * is a manually hardcoded URL.
      */
-    private static URL BASE_URL;
+    private static URL baseUrl;
 
     static {
         try {
-            BASE_URL = new URL("https://orna.guide/api/v1/");
+            baseUrl = new URL("https://orna.guide/api/v1/");
         } catch (MalformedURLException ex) {
-            logger.error(Elypiai.MALFORMED, ex);
+            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
         }
     }
 
     private OrnaService service;
 
     public Orna() {
-        this((WrapperExtension[])null);
+        this(new WrapperExtension[0]);
     }
 
     public Orna(WrapperExtension... exts) {
-        this(BASE_URL, exts);
+        this(baseUrl, exts);
     }
 
     public Orna(URL baseUrl, WrapperExtension... exts) {
@@ -69,7 +70,7 @@ public class Orna extends ApiWrapper {
 
         service = new Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(RequestService.withExtensionInterceptor(this))
+            .client(RequestService.withExtensions(exts))
             .addConverterFactory(GsonService.getInstance())
             .build()
             .create(OrnaService.class);

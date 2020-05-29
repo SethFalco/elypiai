@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2019 Elypia CIC
+ * Copyright 2019-2020 Elypia CIC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,8 @@
 package org.elypia.elypiai.poe;
 
 import com.google.gson.annotations.*;
-import org.elypia.elypiai.common.gson.deserializers.JoinedStringDeserializer;
 import org.elypia.elypiai.poe.deserializers.StashItemNameDeserializer;
+import org.elypia.retropia.gson.deserializers.JoinedStringDeserializer;
 
 import java.util.*;
 
