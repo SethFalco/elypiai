@@ -5,6 +5,16 @@ The [Gradle]/[Maven] import strings can be found at the maven-central badge abov
 Elypiai is a small and easy way, especially for new developers, to add ample functionality 
 or integrations to any project.  
 
+## Supported APIs
+* [Cleverbot][cleverbot]
+* [Orna Guide][orna]
+* [osu!][osu]
+* [Path of Exile][path-of-exile]
+* [RuneScape][runescape]
+* [Steam][steam]
+* [UrbanDictionary][urbandictionary]
+* [Yu-Gi-Oh! Prices][yugioh-prices]
+
 ## Getting Started
 In this example we'll just use the osu! API to get things going.
 
@@ -55,16 +65,6 @@ class Main {
     }
 }
 ```
-
-## Supported APIs
-* [Cleverbot][cleverbot]
-* [Orna Guide][orna]
-* [osu!][osu]
-* [Path of Exile][path-of-exile]
-* [RuneScape][runescape]
-* [Steam][steam]
-* [UrbanDictionary][urbandictionary]
-* [Yu-Gi-Oh! Prices][yugioh-prices]
 
 ## Support
 Should any problems occur, come visit us over on Discord! We're always around and there are
