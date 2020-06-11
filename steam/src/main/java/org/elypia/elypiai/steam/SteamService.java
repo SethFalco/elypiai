@@ -14,25 +14,32 @@
  * limitations under the License.
  */
 
-package org.elypia.elypiai.runescape.deserializers;
+package org.elypia.elypiai.steam;
 
-import com.google.gson.*;
-import org.elypia.elypiai.runescape.QuestStats;
+import io.reactivex.rxjava3.core.*;
+import retrofit2.http.*;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class QuestStatDeserializer implements JsonDeserializer<List<QuestStats>> {
+public interface SteamService {
 
-    private static final Gson GSON = new Gson();
+    @GET("ISteamUser/ResolveVanityURL/v0001/")
+    Single<SteamSearch> getSteamId(
+        @Query("vanityUrl") String vanityUrl
+    );
 
-    @Override
-    public List<QuestStats> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        JsonElement element = json.getAsJsonObject().getAsJsonArray("quests");
-        List<QuestStats> list = GSON.fromJson(element, typeOfT);
-        return list.isEmpty() ?  null : list;
-    }
+    @GET("ISteamUser/GetPlayerSummaries/v0002/")
+    Single<List<SteamUser>> getUsers(
+        @Query("steamids") String steamIds
+    );
+
+    @GET("IPlayerService/GetOwnedGames/v0001/")
+    Maybe<List<SteamGame>> getLibrary(
+        @Query("steamid") long steamId,
+        @Query("include_played_free_games") int freeGames,
+        @Query("include_appinfo") int appInfo
+    );
 }

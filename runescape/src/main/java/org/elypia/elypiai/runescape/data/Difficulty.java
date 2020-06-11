@@ -43,13 +43,13 @@ public enum Difficulty {
     @SerializedName("250")
     SPECIAL(250);
 
-    private final int ID;
+    private final int id;
 
     Difficulty(int id) {
-        ID = id;
+        this.id = id;
     }
 
     public int getId() {
-        return ID;
+        return id;
     }
 }

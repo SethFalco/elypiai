@@ -43,17 +43,17 @@ public enum Spawn {
     @SerializedName("Water Only")
     WATER_ONLY("Water Only");
 
-    private final String NAME;
+    private final String name;
 
     Spawn(final String name) {
-        this.NAME = name;
+        this.name = name;
     }
 
     /**
      * @return The clean human readable name for this spawn type.
      */
     public String getName() {
-        return this.NAME;
+        return this.name;
     }
 
     /**
@@ -62,7 +62,7 @@ public enum Spawn {
      */
     public static Spawn find(final String name) {
         for (Spawn spawn : values()) {
-            if (spawn.NAME.equals(name))
+            if (spawn.name.equals(name))
                 return spawn;
         }
 

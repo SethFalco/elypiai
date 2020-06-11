@@ -37,7 +37,6 @@ dependencies {
 To use the wrapper, just instantiate the `Cleverbot` instance with your API key
 that you'll have obtained from the Cleverbot API website.
 
-
 ```java
 class Main {
  
@@ -46,7 +45,7 @@ class Main {
         Cleverbot cb = new Cleverbot("{API_KEY}");
         
         // Queue the request we want to make with a callback.
-        cb.say("Hello").queue((response) -> {
+        cb.say("Hello").subscribe((response) -> {
             System.out.println(response.getOutput()); // Response to "Hello"
             System.out.println(response.getCs()); // Cleverbot state, to continue the conversation
         });
@@ -54,9 +53,9 @@ class Main {
 }
 ```
 
-When you call `Cleverbot#say()` you'll get a `RestAction<CleverResponse>`; you can call:
-* `complete()` - This will do a synchronous or blocking request and return an optional object.
-* `queue(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
+When you call `Cleverbot#say()` you'll get a `Single<CleverResponse>`; you can call:
+* `blockingGet()` - This will do a synchronous or blocking request.
+* `subscribe(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
 
 For more information, please see [Elypiai].
 

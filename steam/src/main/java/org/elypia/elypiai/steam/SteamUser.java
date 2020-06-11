@@ -85,7 +85,7 @@ public class SteamUser {
 	 * The last time the user was online.
 	 */
 	@SerializedName("lastlogoff")
-	@JsonAdapter(DateDeserializer.class)
+	@JsonAdapter(SecondsDateDeseralizer.class)
 	private Date lastLogOff;
 
 	/**
@@ -115,7 +115,7 @@ public class SteamUser {
 	 */
 
 	@SerializedName("timecreated")
-	@JsonAdapter(DateDeserializer.class)
+	@JsonAdapter(SecondsDateDeseralizer.class)
 	private Date timeCreated;
 
 	/**

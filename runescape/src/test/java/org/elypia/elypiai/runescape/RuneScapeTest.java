@@ -16,57 +16,30 @@
 
 package org.elypia.elypiai.runescape;
 
-import okhttp3.mockwebserver.*;
 import org.elypia.elypiai.runescape.data.*;
 import org.elypia.retropia.core.exceptions.FriendlyException;
-import org.elypia.retropia.test.*;
+import org.elypia.webservertestbed.junit5.*;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 import java.util.concurrent.*;
 
 import static java.time.Duration.ofSeconds;
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockResponseExtension.class)
 public class RuneScapeTest {
 
-    @Response("profile_los.json")
-	public static MockResponse profileLos;
+	@RegisterExtension
+	public static final WebServerExtension serverExtension = new WebServerExtension();
 
-    @Response("profile_no-profile.json")
-	public static MockResponse profileNoProfile;
-
-    @Response("profile_private.json")
-	public static MockResponse profilePrivate;
-
-    @Response("profile_sethii.json")
-	public static MockResponse profileSethii;
-
-    @Response("quests_private.json")
-	public static MockResponse questsPrivate;
-
-    @Response("quests_sethii.json")
-	public static MockResponse questsSethii;
-
-	private static MockWebServer server;
 	private static RuneScape rs;
 
 	@BeforeEach
-	public void beforeEach() throws IOException {
-		server = new MockWebServer();
-		server.start();
-		rs = new RuneScape(new URL("http://localhost:" + server.getPort()));
-	}
-
-	@AfterEach
-	public void afterEach() throws IOException {
-		server.close();
+	public void beforeEach() {
+		rs = new RuneScape(serverExtension.getRequestUrl());
 	}
 
 	@Test
@@ -75,21 +48,19 @@ public class RuneScapeTest {
 		assertNotNull(rs);
 	}
 
-	@Test
-	public void parseUser() throws IOException {
-		server.enqueue(profileSethii);
-
-		Player user = rs.getUser("Sethii").complete();
+	@WebServerTest("profile_sethii.json")
+	public void parseUser() {
+		Player user = rs.getUser("Sethii").blockingGet();
 
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals("Sethii", user.getUsername()),
 			() -> assertEquals(215938, user.getRank()),
-			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Sethii", user.getLeaderboardUrl()),
-			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Sethii&user2=Auri_Nimph", user.getLeaderboardUrl("Auri_Nimph")),
-			() -> assertEquals("2,249", user.getTotalLevelString()),
+			() -> assertEquals("https://services.runescape.com/m=hiscore/compare?user1=Sethii", user.getLeaderboardUrl()),
+			() -> assertEquals("https://services.runescape.com/m=hiscore/compare?user1=Sethii&user2=Auri_Nimph", user.getLeaderboardUrl("Auri_Nimph")),
+			() -> assertEquals("2,249", user.getTotalLevelFormatted()),
 			() -> assertEquals(2249, user.getTotalLevel()),
 			() -> assertEquals(187689300, user.getTotalXp()),
-			() -> assertEquals("187,689,300", user.getTotalXpString()),
+			() -> assertEquals("187,689,300", user.getTotalXpFormatted()),
 			() -> assertEquals(133, user.getCombatLevel()),
 			() -> assertEquals(170, user.getQuestsComplete()),
 			() -> assertEquals(119, user.getQuestsNotStarted()),
@@ -101,27 +72,22 @@ public class RuneScapeTest {
 		);
 	}
 
-	@Test
-	public void parseUserLeaderboards() throws IOException {
-		server.enqueue(profileSethii);
-		server.enqueue(profileLos);
-
-		Player user1 = rs.getUser("Sethii").complete();
-		Player user2 = rs.getUser("Los").complete();
+	@WebServerTest({"profile_sethii.json", "profile_los.json"})
+	public void parseUserLeaderboards() {
+		Player user1 = rs.getUser("Sethii").blockingGet();
+		Player user2 = rs.getUser("Los").blockingGet();
 
 		assertAll("Testing if Parsing RuneScape Player Correctly",
-			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Sethii", user1.getLeaderboardUrl()),
-			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Sethii&user2=Los", user1.getLeaderboardUrl("Los")),
-			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Sethii&user2=Los", user1.getLeaderboardUrl(user2.getUsername())),
-			() -> assertEquals("http://services.runescape.com/m=hiscore/compare?user1=Sethii", user1.getLeaderboardUrl(user1.getUsername()))
+			() -> assertEquals("https://services.runescape.com/m=hiscore/compare?user1=Sethii", user1.getLeaderboardUrl()),
+			() -> assertEquals("https://services.runescape.com/m=hiscore/compare?user1=Sethii&user2=Los", user1.getLeaderboardUrl("Los")),
+			() -> assertEquals("https://services.runescape.com/m=hiscore/compare?user1=Sethii&user2=Los", user1.getLeaderboardUrl(user2.getUsername())),
+			() -> assertEquals("https://services.runescape.com/m=hiscore/compare?user1=Sethii", user1.getLeaderboardUrl(user1.getUsername()))
 		);
 	}
 
-	@Test
-	public void parseUsersSkills() throws IOException {
-		server.enqueue(profileSethii);
-
-		Player user = rs.getUser("Sethii").complete();
+	@WebServerTest("profile_sethii.json")
+	public void parseUsersSkills() {
+		Player user = rs.getUser("Sethii").blockingGet();
 		PlayerStat stat = user.getStat(Skill.SLAYER);
 		assertAll("Testing if Parsing RuneScape Player Correctly",
 			() -> assertEquals(125433, stat.getRank()),
@@ -132,29 +98,23 @@ public class RuneScapeTest {
 		);
 	}
 
-	@Test
-	public void parsePrivateUser() throws IOException {
-		server.enqueue(profilePrivate);
-
+	@WebServerTest("profile_no-profile.json")
+	public void parsePrivateUser() {
         assertThrows(FriendlyException.class, () ->
-            rs.getUser("Zezima").complete()
+            rs.getUser("Zezima").blockingGet()
         );
 	}
 
-	@Test
-	public void userDoesntExist() throws IOException {
-		server.enqueue(profileNoProfile);
-
+	@WebServerTest("profile_no-profile.json")
+	public void userDoesntExist() {
 		assertThrows(FriendlyException.class, () ->
-			rs.getUser("random user that doesn't exist").complete()
+			rs.getUser("random user that doesn't exist").blockingGet()
 		);
 	}
 
-	@Test
-	public void parseActivity() throws IOException {
-		server.enqueue(profileSethii);
-
-		Activity activity = rs.getUser("Sethii").complete().getActivities().get(0);
+	@WebServerTest("profile_sethii.json")
+	public void parseActivity() {
+		Activity activity = rs.getUser("Sethii").blockingGet().getActivities().get(0);
 		assertAll("Testing if Parsing RuneScape Player Activity Correctly",
 			() -> assertEquals(1548363000000L, activity.getDate().getTime()),
 			() -> assertEquals("I levelled my  Farming skill, I am now level 66.", activity.getDetails()),
@@ -162,12 +122,10 @@ public class RuneScapeTest {
 		);
 	}
 
-	@Test
-	public void parseQuest() throws IOException {
-		server.enqueue(questsSethii);
-
-		List<QuestStats> quests = rs.getQuestStatuses("Sethii").complete().get();
-		QuestStats stats = quests.stream().filter(o -> o.getStatus() == CompletionStatus.STARTED).findFirst().get();
+	@WebServerTest("quests_sethii.json")
+	public void parseQuest() {
+		QuestStatuses quests = rs.getQuestStatuses("Sethii").blockingGet();
+		QuestStatus stats = quests.getQuestStatuses().stream().filter(o -> o.getStatus() == CompletionStatus.STARTED).findFirst().get();
 
 		assertAll("Testing if Parsing RuneScape Player Quest Status",
 			() -> assertEquals("Abyss (miniquest)", stats.getTitle()),
@@ -179,14 +137,13 @@ public class RuneScapeTest {
 		);
 	}
 
-	@Test
-	public void sortQuests() throws IOException {
-		server.enqueue(questsSethii);
+	@WebServerTest("quests_sethii.json")
+	public void sortQuests() {
+		QuestStatuses quests = rs.getQuestStatuses("Sethii").blockingGet();
+		List<QuestStatus> statuses = new ArrayList<>(quests.getQuestStatuses());
+		Collections.sort(statuses);
 
-		List<QuestStats> quests = rs.getQuestStatuses("Sethii").complete().get();
-		Collections.sort(quests);
-
-		QuestStats stats = quests.get(0);
+		QuestStatus stats = statuses.get(0);
 		assertAll("Testing if sorting quests alphabetically correctly.",
 			() -> assertEquals("'Phite Club", stats.getTitle()),
 			() -> assertEquals(Difficulty.MASTER, stats.getDifficulty()),
@@ -201,15 +158,13 @@ public class RuneScapeTest {
 	 * This is just a one off asyncronous task to test
 	 * if handling friendly exceptions works.
 	 *
-	 * @throws InterruptedException
+	 * @throws InterruptedException If the timeout occurs before we get the value.
 	 */
-	@Test
+	@WebServerTest("profile_private.json")
 	public void parsePrivateUserAsync() throws InterruptedException {
-		server.enqueue(profilePrivate);
-
 		CountDownLatch latch = new CountDownLatch(1);
 
-		rs.getUser("Zezima").queue(
+		rs.getUser("Zezima").subscribe(
 			o -> {
 				fail("This should have produced an exception.");
 				latch.countDown();
@@ -223,11 +178,9 @@ public class RuneScapeTest {
 		latch.await(8, TimeUnit.SECONDS);
 	}
 
-	@Test
-	public void parseNoQuests() throws IOException {
-		server.enqueue(questsPrivate);
-		Optional<List<QuestStats>> quests = rs.getQuestStatuses("Zezima").complete();
-		assertTrue(quests.isEmpty());
+	@WebServerTest("quests_private.json")
+	public void parseNoQuests() {
+		assertTrue(rs.getQuestStatuses("Zezima").isEmpty().blockingGet());
 	}
 
 	@Test

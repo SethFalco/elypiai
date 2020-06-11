@@ -16,19 +16,20 @@
 
 package org.elypia.elypiai.urbandictionary;
 
-import org.elypia.retropia.core.*;
-import org.elypia.retropia.core.extensions.WrapperExtension;
-import org.elypia.retropia.core.requests.RestAction;
-import org.elypia.retropia.gson.GsonService;
+import io.reactivex.rxjava3.core.*;
+import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
-import retrofit2.*;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
+import java.util.Optional;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class UrbanDictionary extends ApiWrapper {
+public class UrbanDictionary {
 
 	private static final Logger logger = LoggerFactory.getLogger(UrbanDictionary.class);
 
@@ -41,7 +42,7 @@ public class UrbanDictionary extends ApiWrapper {
 
 	static {
 		try {
-			baseUrl = new URL("http://api.urbandictionary.com/");
+			baseUrl = new URL("http://api.urbandictionary.com/v0/");
 		} catch (MalformedURLException ex) {
 			logger.error("Failed to initialize UrbanDictionary.", ex);
 		}
@@ -50,19 +51,15 @@ public class UrbanDictionary extends ApiWrapper {
 	private UrbanDictionaryService service;
 
 	public UrbanDictionary() {
-		this(new WrapperExtension[0]);
+		this(baseUrl);
 	}
 
-	public UrbanDictionary(WrapperExtension... exts) {
-		this(baseUrl, exts);
-	}
-
-	public UrbanDictionary(URL url, WrapperExtension... exts) {
-        super(exts);
+	public UrbanDictionary(URL url) {
 		service = new Retrofit.Builder()
 			.baseUrl(url)
-			.client(RequestService.withExtensions(exts))
-			.addConverterFactory(GsonService.getInstance())
+			.client(HttpClientSingleton.getBuilder().build())
+			.addConverterFactory(GsonConverterFactory.create())
+			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()
 			.create(UrbanDictionaryService.class);
 	}
@@ -75,8 +72,30 @@ public class UrbanDictionary extends ApiWrapper {
 	 * @param term The word or phrase to be defined.
 	 * @return RestAction to request definition of the word.
 	 */
-	public RestAction<DefineResult> define(String term) {
-		Call<DefineResult> call = service.define(term);
-		return new RestAction<>(call);
+	public Single<DefineResult> getDefinitions(String term) {
+		return service.getDefinitions(term);
+	}
+
+	/**
+	 * Returns 10 random definitions from UrbanDictionary.
+	 * The list of definitions can be incorporated of
+	 * different words.
+	 *
+	 * @return RestAction to request random definitions.
+	 */
+	public Single<DefineResult> getRandomDefinitions() {
+		return service.getRandomDefinitions();
+	}
+
+	/**
+	 * Return a single definition from Urban Dictionary from the
+	 * ID of the definition.
+	 *
+	 * @param id The {@link Definition#getDefinitionId()}.
+	 * @return The definition if it exists, else an empty Optional.
+	 */
+	public Maybe<Definition> getDefinitionById(int id) {
+		Maybe<DefineResult> call = service.getDefinitionById(id);
+		return call.mapOptional((results) -> (results.hasDefinitions()) ? Optional.of(results.getDefinition()) : Optional.empty());
 	}
 }

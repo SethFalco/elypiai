@@ -26,10 +26,10 @@ import java.lang.reflect.Type;
  */
 public class OsuPlayerDeserializer implements JsonDeserializer<Player> {
 
-    private final Gson GSON;
+    private final Gson gson;
 
     public OsuPlayerDeserializer(Gson gson) {
-        this.GSON = gson;
+        this.gson = gson;
     }
 
     @Override
@@ -40,6 +40,6 @@ public class OsuPlayerDeserializer implements JsonDeserializer<Player> {
             return null;
 
         JsonObject object = array.get(0).getAsJsonObject();
-        return GSON.fromJson(object, typeOfT);
+        return gson.fromJson(object, typeOfT);
     }
 }

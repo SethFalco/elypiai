@@ -17,16 +17,14 @@
 package org.elypia.elypiai.cleverbot;
 
 import com.google.gson.GsonBuilder;
+import io.reactivex.rxjava3.core.Single;
 import okhttp3.*;
 import org.elypia.elypiai.cleverbot.data.CleverTweak;
 import org.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
-import org.elypia.elypiai.cleverbot.impl.CleverbotService;
-import org.elypia.retropia.core.*;
-import org.elypia.retropia.core.extensions.*;
-import org.elypia.retropia.core.requests.RestAction;
+import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
-import retrofit2.Call;
-import retrofit2.*;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
@@ -35,7 +33,7 @@ import java.util.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class Cleverbot extends ApiWrapper {
+public class Cleverbot {
 
 	private static final Logger logger = LoggerFactory.getLogger(Cleverbot.class);
 
@@ -54,19 +52,14 @@ public class Cleverbot extends ApiWrapper {
 		}
 	}
 
-	private final String API_KEY;
+	private final String apiKey;
 	private final CleverbotService service;
-
-	public Cleverbot(String apiKey) {
-		this(apiKey, new WrapperExtension[0]);
-	}
 
 	/**
 	 * @param apiKey API key recieved upon signing up.
-	 * @param exts Any extensions to add to this wrapper.
 	 */
-	public Cleverbot(String apiKey, WrapperExtension... exts) {
-		this(baseUrl, apiKey, exts);
+	public Cleverbot(String apiKey) {
+		this(baseUrl, apiKey);
 	}
 
 	/**
@@ -76,21 +69,18 @@ public class Cleverbot extends ApiWrapper {
 	 *
 	 * @param baseUrl The URL to send HTTP requests too.
 	 * @param apiKey API key recieved upon signing up.
-	 * @param exts Any extensions to add to this wrapper.
 	 * @see <a href="https://www.cleverbot.com/api/">cleverbot</a>
 	 */
-	public Cleverbot(URL baseUrl, String apiKey, WrapperExtension... exts) {
-		super(exts);
-		API_KEY = apiKey;
+	public Cleverbot(URL baseUrl, String apiKey) {
+		this.apiKey = apiKey;
 
-		OkHttpClient client = RequestService.getBuilder()
+		OkHttpClient client = HttpClientSingleton.getBuilder()
 			.addInterceptor((chain) -> {
 				Request request = chain.request();
 				HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).addQueryParameter("wrapper", "Elypiai").build();
 				request = request.newBuilder().url(url).build();
 				return chain.proceed(request);
 			})
-			.addInterceptor(new ExtensionInterceptor(exts))
 			.build();
 
 		GsonBuilder builder = new GsonBuilder()
@@ -100,11 +90,12 @@ public class Cleverbot extends ApiWrapper {
 			.baseUrl(baseUrl)
 			.client(client)
 			.addConverterFactory(GsonConverterFactory.create(builder.create()))
+			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()
 			.create(CleverbotService.class);
 	}
 
-	public RestAction<CleverResponse> say(String input) {
+	public Single<CleverResponse> say(String input) {
 		return say(input, null);
 	}
 
@@ -118,22 +109,21 @@ public class Cleverbot extends ApiWrapper {
 	 * @param input	The text to send to cleverbot.
 	 * @return A rest action that represents this HTTP request.
 	 */
-	public RestAction<CleverResponse> say(String input, String cs) {
+	public Single<CleverResponse> say(String input, String cs) {
 		return say(input, cs, new EnumMap<>(CleverTweak.class));
 	}
 
-	public RestAction<CleverResponse> say(String input, String cs, Map<CleverTweak, Integer> tweaks) {
+	public Single<CleverResponse> say(String input, String cs, Map<CleverTweak, Integer> tweaks) {
 		Objects.requireNonNull(tweaks);
 
 		Integer wacky = tweaks.get(CleverTweak.WACKY);
 		Integer talkitive = tweaks.get(CleverTweak.TALKATIVE);
 		Integer attentive = tweaks.get(CleverTweak.ATTENTIVE);
 
-		Call<CleverResponse> call = service.say(input, cs, wacky, talkitive, attentive);
-		return new RestAction<>(call);
+		return service.say(input, cs, wacky, talkitive, attentive);
 	}
 
 	public String getApiKey() {
-		return API_KEY;
+		return apiKey;
 	}
 }

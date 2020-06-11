@@ -16,46 +16,25 @@
 
 package org.elypia.elypiai.osu;
 
-import okhttp3.mockwebserver.*;
 import org.elypia.elypiai.osu.data.*;
-import org.elypia.retropia.test.*;
+import org.elypia.webservertestbed.junit5.*;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockResponseExtension.class)
 public class OsuTest {
 
-    @Response("beatmap_675314.json")
-    public static MockResponse beatmap;
+    @RegisterExtension
+    public static final WebServerExtension serverExtension = new WebServerExtension();
 
-    @Response("match_random.json")
-    public static MockResponse matchRandom;
-
-    @Response("player_nathan-on-osu.json")
-    public static MockResponse playerNathanOnOsu;
-
-    @Response("recent_yasha.json")
-    public static MockResponse recentYasha;
-
-    private static MockWebServer server;
     private static Osu osu;
 
     @BeforeEach
-    public void beforeEach() throws IOException {
-        server = new MockWebServer();
-        server.start();
-        osu = new Osu(new URL("http://localhost:" + server.getPort()), "api key");
-    }
-
-    @AfterEach
-    public void afterEach() throws IOException {
-        server.close();
+    public void beforeEach() {
+        osu = new Osu(serverExtension.getRequestUrl(), "api key");
     }
 
     @Test
@@ -65,10 +44,9 @@ public class OsuTest {
         assertEquals("api key", osu.getApiKey());
     }
 
-    @Test
-    public void testOsuPlayer() throws IOException {
-        server.enqueue(playerNathanOnOsu);
-        Player user = osu.getPlayer("nathan on osu").complete().get();
+    @WebServerTest("player_nathan-on-osu.json")
+    public void testOsuPlayer() {
+        Player user = osu.getPlayer("nathan on osu").blockingGet();
 
         assertAll("Check values of osu! player.",
             () -> assertEquals(124493, user.getId()),
@@ -95,10 +73,9 @@ public class OsuTest {
         );
     }
 
-    @Test
-    public void testOsuPlayerEvent() throws IOException {
-        server.enqueue(playerNathanOnOsu);
-        OsuEvent event = osu.getPlayer("nathan on osu").complete().get().getEvents().get(0);
+    @WebServerTest("player_nathan-on-osu.json")
+    public void testOsuPlayerEvent() {
+        OsuEvent event = osu.getPlayer("nathan on osu").blockingGet().getEvents().get(0);
 
         assertAll("Check values of osu! player first event.",
             () -> assertEquals("nathan on osu has lost first place on xi - Blue Zenith [FOUR DIMENSIONS] (osu!)", event.getMessage()),
@@ -109,10 +86,9 @@ public class OsuTest {
         );
     }
 
-    @Test
-    public void testOsuBeapMap() throws IOException {
-        server.enqueue(beatmap);
-        BeatMap map = osu.getBeatMaps(675314).complete().get(0);
+    @WebServerTest("beatmap_675314.json")
+    public void testOsuBeapMap() {
+        BeatMap map = osu.getBeatMaps(675314).blockingSingle().get(0);
 
         assertAll("Check values of osu! Beatmap.",
             () -> assertEquals(675314, map.getSetId()),
@@ -143,10 +119,9 @@ public class OsuTest {
         );
     }
 
-    @Test
-    public void testOsuMapDifficulty() throws IOException {
-        server.enqueue(beatmap);
-        MapDifficulty diff = osu.getBeatMaps(675314).complete().get(0).getDifficulty();
+    @WebServerTest("beatmap_675314.json")
+    public void testOsuMapDifficulty() {
+        MapDifficulty diff = osu.getBeatMaps(675314).blockingSingle().get(0).getDifficulty();
 
         assertAll("Check values of osu! beatmap difficulty values.",
             () -> assertEquals(8.5, diff.getApproachRate()),
@@ -157,13 +132,9 @@ public class OsuTest {
         );
     }
 
-    @Test
-    public void testRecentPlay() throws IOException {
-        server.enqueue(recentYasha);
-        List<RecentPlay> plays = osu.getRecentPlays("Yasha").complete();
-
-        assertEquals(10, plays.size());
-
+    @WebServerTest("recent_yasha.json")
+    public void testRecentPlay() {
+        List<RecentPlay> plays = osu.getRecentPlays("Yasha").blockingSingle();
         RecentPlay play = plays.get(0);
 
         assertAll("Check values of osu! recent play.",
@@ -184,11 +155,9 @@ public class OsuTest {
         );
     }
 
-    @Test
-    public void testMatchData() throws IOException {
-        server.enqueue(matchRandom);
-
-        Match match = osu.getMatch(52270952).complete().get();
+    @WebServerTest("match_random.json")
+    public void testMatchData() {
+        Match match = osu.getMatch(52270952).blockingGet();
         assertAll("Check values of osu! match are correct.",
             () -> assertEquals(52270952, match.getMatchId()),
             () -> assertEquals("artside36's game", match.getName()),
@@ -198,10 +167,9 @@ public class OsuTest {
         );
     }
 
-    @Test
-    public void testMatchGameData() throws IOException {
-        server.enqueue(matchRandom);
-        Game game = osu.getMatch(52270952).complete().get().getGames().get(0);
+    @WebServerTest("match_random.json")
+    public void testMatchGameData() {
+        Game game = osu.getMatch(52270952).blockingGet().getGames().get(0);
 
         assertAll("Check values of osu! match game entity are correct.",
             () -> assertEquals(272751073, game.getGameId()),
@@ -216,10 +184,9 @@ public class OsuTest {
         );
     }
 
-    @Test
-    public void testMatchGameScoreData() throws IOException {
-        server.enqueue(matchRandom);
-        GameScore score = osu.getMatch(52270952).complete().get().getGames().get(0).getScores().get(0);
+    @WebServerTest("match_random.json")
+    public void testMatchGameScoreData() {
+        GameScore score = osu.getMatch(52270952).blockingGet().getGames().get(0).getScores().get(0);
 
         assertAll("Check values of osu! match game score entity are correct.",
             () -> assertEquals(0, score.getSlot()),

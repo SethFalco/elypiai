@@ -17,14 +17,14 @@
 package org.elypia.elypiai.runescape;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import org.elypia.elypiai.runescape.deserializers.*;
-import org.elypia.retropia.core.*;
-import org.elypia.retropia.core.extensions.WrapperExtension;
-import org.elypia.retropia.core.requests.*;
+import io.reactivex.rxjava3.core.Maybe;
+import org.elypia.elypiai.runescape.deserializers.PlayerDeserializer;
+import org.elypia.retropia.core.HttpClientSingleton;
+import org.elypia.retropia.core.exceptions.FriendlyException;
 import org.elypia.retropia.gson.deserializers.DateDeserializer;
 import org.slf4j.*;
-import retrofit2.*;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
@@ -33,7 +33,7 @@ import java.util.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class RuneScape extends ApiWrapper {
+public class RuneScape {
 
 	private static final Logger logger = LoggerFactory.getLogger(RuneScape.class);
 
@@ -55,26 +55,20 @@ public class RuneScape extends ApiWrapper {
 	private RuneScapeService service;
 
 	public RuneScape() {
-		this(new WrapperExtension[0]);
+		this(baseUrl);
 	}
 
-	public RuneScape(WrapperExtension... exts) {
-		this(baseUrl, exts);
-	}
-
-	public RuneScape(URL baseUrl, WrapperExtension... exts) {
-		super(exts);
-
+	public RuneScape(URL baseUrl) {
 		GsonBuilder gsonBuilder = new GsonBuilder()
-			.registerTypeAdapter(Date.class, new DateDeserializer("dd-MMM-yyyy hh:mm"))
-			.registerTypeAdapter(new TypeToken<List<QuestStats>>(){}.getType(), new QuestStatDeserializer());
+			.registerTypeAdapter(Date.class, new DateDeserializer("dd-MMM-yyyy hh:mm"));
 
 		gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
 
 		service = new Retrofit.Builder()
 			.baseUrl(baseUrl)
-			.client(RequestService.withExtensions(exts))
+			.client(HttpClientSingleton.getBuilder().build())
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()
 			.create(RuneScapeService.class);
 	}
@@ -82,20 +76,19 @@ public class RuneScape extends ApiWrapper {
 	/**
 	 * Return the RuneScape player with the username provided.
 	 * Possible null, if user doesn't exist. If the user does exist
-	 * but has their profile set to private, name will be "PROFILE_PRIVATE"
-	 * and the rest of the object will be effectively null.
+	 * it may throw a the consumer may throw a {@link FriendlyException}
+	 * in the failure consumer.
 	 *
 	 * @param username The username of the player to get.
 	 * @return A rest action represeting this HTTP request.
 	 */
-	public RestAction<Player> getUser(String username) {
-		Call<Player> call = service.getUser(username);
-		return new RestAction<>(call);
+	public Maybe<Player> getUser(String username) {
+		return service.getUser(username);
 	}
 
-	public OptionalRestAction<List<QuestStats>> getQuestStatuses(String user) {
-		Call<List<QuestStats>> call = service.getQuestStats(user);
-		return new OptionalRestAction<>(call);
+	public Maybe<QuestStatuses> getQuestStatuses(String user) {
+		return service.getQuestStatuses(user)
+			.mapOptional((result) -> result.getQuestStatuses().isEmpty() ? Optional.empty() : Optional.of(result));
 	}
 
     /**

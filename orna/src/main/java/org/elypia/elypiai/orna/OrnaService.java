@@ -16,8 +16,8 @@
 
 package org.elypia.elypiai.orna;
 
-import org.elypia.elypiai.orna.entities.Monster;
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Single;
+import org.elypia.elypiai.orna.entities.*;
 import retrofit2.http.POST;
 
 import java.util.List;
@@ -27,6 +27,33 @@ import java.util.List;
  */
 public interface OrnaService {
 
+    @POST("item")
+    Single<List<Item>> getItems();
+
+    @POST("assess")
+    Single<Void> getAssess();
+
+    @POST("class")
+    Single<List<Void>> getClasses();
+
+    @POST("specialization")
+    Single<List<Specialization>> getSpecializations();
+
+    @POST("skill")
+    Single<List<SkillDetails>> getSkills();
+
+    @POST("pet")
+    Single<List<Pet>> getPets();
+
     @POST("monster")
-    Call<List<Monster>> getMonsters();
+    Single<List<Monster>> getMonsters();
+
+    @POST("quest")
+    Single<List<Quest>> getQuests();
+
+    @POST("achievement")
+    Single<List<Achievment>> getAchievments();
+
+    @POST("npc")
+    Single<List<Npc>> getNpcs();
 }

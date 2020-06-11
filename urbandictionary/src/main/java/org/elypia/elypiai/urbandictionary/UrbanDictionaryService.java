@@ -16,7 +16,7 @@
 
 package org.elypia.elypiai.urbandictionary;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.*;
 import retrofit2.http.*;
 
 /**
@@ -24,8 +24,16 @@ import retrofit2.http.*;
  */
 public interface UrbanDictionaryService {
 
-    @GET("v0/define")
-    Call<DefineResult> define(
+    @GET("define")
+    Single<DefineResult> getDefinitions(
         @Query("term") String term
     );
+
+    @GET("define")
+    Maybe<DefineResult> getDefinitionById(
+        @Query("defid") int definitionId
+    );
+
+    @GET("random")
+    Single<DefineResult> getRandomDefinitions();
 }

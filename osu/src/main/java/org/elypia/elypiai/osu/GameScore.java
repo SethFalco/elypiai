@@ -18,7 +18,6 @@ package org.elypia.elypiai.osu;
 
 import com.google.gson.annotations.*;
 import org.elypia.elypiai.osu.data.OsuTeam;
-import org.elypia.elypiai.osu.impl.OsuScore;
 import org.elypia.retropia.gson.deserializers.BitBooleanDeserializer;
 
 /**

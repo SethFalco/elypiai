@@ -1,0 +1,1143 @@
+[
+  {
+    "id": 56,
+    "name": "Apprentice",
+    "female_name": "Apprentice",
+    "cost": "5,000 orns",
+    "description": "A new and gifted student of magic. It has additional spell capacity.",
+    "tier": 3,
+    "images": [
+      "subclasses/apprentice/default_f.png",
+      "subclasses/apprentice/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [],
+      "slots": 1
+    },
+    "boosts": [
+      {
+        "name": "Mana",
+        "value": 5
+      },
+      {
+        "name": "Magic",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Assassin",
+    "female_name": "Assassin",
+    "cost": "200,000 orns",
+    "description": "Not much is known about these scoundrels, and it can be assumed that is how they prefer it. Their attacks have the chance to temporarily destroy enemy defenses.",
+    "tier": 9,
+    "images": [
+      "subclasses/assassin/default_f.png",
+      "subclasses/assassin/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 443,
+          "name": "Assassinate"
+        }
+      ],
+      "learns": [],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Attack",
+        "value": 3
+      },
+      {
+        "name": "Dexterity",
+        "value": 25
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Bard",
+    "female_name": "Bard",
+    "cost": "50,000 orns",
+    "description": "A simple fighter well versed in the arts of music and dance.  Learns songs recanting tales of power, magic, and more.",
+    "tier": 7,
+    "images": [
+      "subclasses/bard/default_f.png",
+      "subclasses/bard/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 227,
+          "name": "Song of Power",
+          "level": 150,
+          "type": "Buff"
+        },
+        {
+          "id": 228,
+          "name": "Song of Magic",
+          "level": 150,
+          "type": "Buff"
+        },
+        {
+          "id": 230,
+          "name": "Warrior's Dance",
+          "level": 160,
+          "type": "Attack"
+        },
+        {
+          "id": 231,
+          "name": "Mage's Dance",
+          "level": 160,
+          "type": "Magic"
+        },
+        {
+          "id": 232,
+          "name": "Song of Resistance",
+          "level": 170,
+          "type": "Buff"
+        },
+        {
+          "id": 229,
+          "name": "Song of Defense",
+          "level": 170,
+          "type": "Buff"
+        },
+        {
+          "id": 233,
+          "name": "Anthem of Avalon",
+          "level": 200,
+          "type": "Buff"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Mana",
+        "value": 20
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Beastmaster",
+    "female_name": "Beastmaster",
+    "cost": "50,000 orns",
+    "description": "A true master of nurturing beasts of the wild.  Followers of a Beastmaster are stronger and may attack more often. (pets gain 5% increase to each action chance)",
+    "tier": 7,
+    "images": [
+      "subclasses/beastmaster/default_f.png",
+      "subclasses/beastmaster/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 245,
+          "name": "Beastslayer",
+          "level": 175,
+          "type": "Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": []
+  },
+  {
+    "id": 29,
+    "name": "Berserker",
+    "female_name": "Berserker",
+    "cost": "25,000 orns",
+    "description": "A ruthless warrior that seemingly fights without self-preservation. Learns strong attacks and buffs.",
+    "tier": 5,
+    "images": [
+      "subclasses/berserker/default_f.png",
+      "subclasses/berserker/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 140,
+          "name": "Berserk",
+          "level": 105,
+          "type": "Buff"
+        },
+        {
+          "id": 143,
+          "name": "Mighty Charge",
+          "level": 110,
+          "type": "Attack"
+        },
+        {
+          "id": 141,
+          "name": "Berserk II",
+          "level": 120,
+          "type": "Buff"
+        },
+        {
+          "id": 142,
+          "name": "Desperation",
+          "level": 140,
+          "type": "Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Hit Points",
+        "value": -10
+      },
+      {
+        "name": "Attack",
+        "value": 10
+      },
+      {
+        "name": "Defense",
+        "value": 2
+      },
+      {
+        "name": "Resistance",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Brawler",
+    "female_name": "Brawler",
+    "cost": "5,000 orns",
+    "description": "A brutal fighter who stops at nothing to win a brawl. Learns alternative forms of damage.",
+    "tier": 3,
+    "images": [
+      "subclasses/brawler/default_f.png",
+      "subclasses/brawler/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 359,
+          "name": "Torchstrike",
+          "level": 50,
+          "type": "Attack"
+        },
+        {
+          "id": 360,
+          "name": "Tree Trunk",
+          "level": 50,
+          "type": "Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Hit Points",
+        "value": 5
+      },
+      {
+        "name": "Attack",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Cataphract",
+    "female_name": "Cataphract",
+    "cost": "200,000 orns",
+    "description": "An expert in defense who begins battle with Ward activated.",
+    "tier": 9,
+    "images": [
+      "subclasses/cataphract/default_f.png",
+      "subclasses/cataphract/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 347,
+          "name": "The Cataphract"
+        }
+      ],
+      "learns": [
+        {
+          "id": 126,
+          "name": "Fire Wall",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 127,
+          "name": "Ice Wall",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 124,
+          "name": "Lightning Wall",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 125,
+          "name": "Earthen Wall",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 137,
+          "name": "Holy Wall",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 135,
+          "name": "Dark Wall",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 136,
+          "name": "Prism Wall",
+          "level": 200,
+          "type": "Buff"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Defense",
+        "value": 10
+      },
+      {
+        "name": "Resistance",
+        "value": 10
+      },
+      {
+        "name": "Hit Points",
+        "value": 12
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Charmer",
+    "female_name": "Charmer",
+    "cost": "200,000 orns",
+    "description": "A bard of Lyonesse versed in the arts of music and dance. Learns songs recanting tales of power, magic, and more.",
+    "tier": 9,
+    "images": [
+      "subclasses/charmer/default_f.png",
+      "subclasses/charmer/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 353,
+          "name": "Sonata of Magic",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 354,
+          "name": "Sonata of Power",
+          "level": 200,
+          "type": "Buff"
+        },
+        {
+          "id": 350,
+          "name": "Warrior's Pavane",
+          "level": 210,
+          "type": "Attack"
+        },
+        {
+          "id": 351,
+          "name": "Mage's Pavane",
+          "level": 210,
+          "type": "Magic"
+        },
+        {
+          "id": 352,
+          "name": "Sonata of Defense",
+          "level": 220,
+          "type": "Buff"
+        },
+        {
+          "id": 355,
+          "name": "Sonata of Resistance",
+          "level": 220,
+          "type": "Buff"
+        },
+        {
+          "id": 356,
+          "name": "Anthem of Lyonesse",
+          "level": 225,
+          "type": "Buff"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Mana",
+        "value": 20
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Cleric",
+    "female_name": "Cleric",
+    "cost": "25,000 orns",
+    "description": "An advanced magic user that can cast healing and defensive spells. Learns healing and holy magic.",
+    "tier": 5,
+    "images": [
+      "subclasses/cleric/default_f.png",
+      "subclasses/cleric/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 129,
+          "name": "Miracle",
+          "level": 105,
+          "type": "Buff"
+        },
+        {
+          "id": 128,
+          "name": "Holy Light",
+          "level": 110,
+          "type": "Magic"
+        },
+        {
+          "id": 139,
+          "name": "Remedy",
+          "level": 115,
+          "type": "Buff"
+        },
+        {
+          "id": 119,
+          "name": "Dispel",
+          "level": 125,
+          "type": "Magic"
+        },
+        {
+          "id": 123,
+          "name": "Holy II",
+          "level": 140,
+          "type": "Magic"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Hit Points",
+        "value": 10
+      },
+      {
+        "name": "Defense",
+        "value": 2
+      },
+      {
+        "name": "Resistance",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Guardian",
+    "female_name": "Guardian",
+    "cost": "25,000 orns",
+    "description": "An experienced fighter that specializes in fighting against the forces of magic. Learns anti-magic skills.",
+    "tier": 5,
+    "images": [
+      "subclasses/guardian/default_f.png",
+      "subclasses/guardian/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 126,
+          "name": "Fire Wall",
+          "level": 105,
+          "type": "Buff"
+        },
+        {
+          "id": 127,
+          "name": "Ice Wall",
+          "level": 110,
+          "type": "Buff"
+        },
+        {
+          "id": 124,
+          "name": "Lightning Wall",
+          "level": 115,
+          "type": "Buff"
+        },
+        {
+          "id": 125,
+          "name": "Earthen Wall",
+          "level": 120,
+          "type": "Buff"
+        },
+        {
+          "id": 137,
+          "name": "Holy Wall",
+          "level": 125,
+          "type": "Buff"
+        },
+        {
+          "id": 135,
+          "name": "Dark Wall",
+          "level": 130,
+          "type": "Buff"
+        },
+        {
+          "id": 136,
+          "name": "Prism Wall",
+          "level": 140,
+          "type": "Buff"
+        },
+        {
+          "id": 138,
+          "name": "Spellbreaker",
+          "level": 150,
+          "type": "Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Hit Points",
+        "value": 10
+      },
+      {
+        "name": "Resistance",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Hunter",
+    "female_name": "Hunter",
+    "cost": "25,000 orns",
+    "description": "An agile warrior that can focus all might into strong physical attacks. Learns both offensive and survivability skills.",
+    "tier": 5,
+    "images": [
+      "subclasses/hunter/default_f.png",
+      "subclasses/hunter/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 134,
+          "name": "Arrowstorm",
+          "level": 105,
+          "type": "Attack"
+        },
+        {
+          "id": 139,
+          "name": "Remedy",
+          "level": 105,
+          "type": "Buff"
+        },
+        {
+          "id": 133,
+          "name": "Full Bend",
+          "level": 120,
+          "type": "Attack"
+        },
+        {
+          "id": 132,
+          "name": "Dragonslayer",
+          "level": 130,
+          "type": "Attack"
+        },
+        {
+          "id": 120,
+          "name": "Break Power",
+          "level": 150,
+          "type": "Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Hit Points",
+        "value": 10
+      },
+      {
+        "name": "Attack",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Inquisitor",
+    "female_name": "Inquisitor",
+    "cost": "50,000 orns",
+    "description": "A long forgotten Inquisitor of Avalon.  Learns Holy and defensive skills.",
+    "tier": 7,
+    "images": [
+      "subclasses/inquisitor/default_f.png",
+      "subclasses/inquisitor/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 234,
+          "name": "Rebuke",
+          "level": 150,
+          "type": "Debuff"
+        },
+        {
+          "id": 235,
+          "name": "Blessed Shield",
+          "level": 155,
+          "type": "Buff"
+        },
+        {
+          "id": 236,
+          "name": "Cleanse",
+          "level": 160,
+          "type": "Buff"
+        },
+        {
+          "id": 237,
+          "name": "Inquest",
+          "level": 165,
+          "type": "Buff"
+        },
+        {
+          "id": 238,
+          "name": "Smite",
+          "level": 175,
+          "type": "Multi-round Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Hit Points",
+        "value": 10
+      },
+      {
+        "name": "Mana",
+        "value": -10
+      },
+      {
+        "name": "Defense",
+        "value": 5
+      },
+      {
+        "name": "Resistance",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Magus",
+    "female_name": "Magus",
+    "cost": "50,000 orns",
+    "description": "A talented magician who conjures magic with ease.  Spells cast by the Magus cost less mana (Spells cost 25% less mana).",
+    "tier": 7,
+    "images": [
+      "subclasses/magus/default_f.png",
+      "subclasses/magus/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 248,
+          "name": "The Magus"
+        }
+      ],
+      "learns": [
+        {
+          "id": 241,
+          "name": "Great Meditation",
+          "level": 175,
+          "type": "Buff"
+        }
+      ],
+      "slots": 2
+    },
+    "boosts": [
+      {
+        "name": "Magic",
+        "value": 5
+      },
+      {
+        "name": "Resistance",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Maji",
+    "female_name": "Maji",
+    "cost": "200,000 orns",
+    "description": "An expert magician who conjures magic with ease. Spells cast by the Maji cost far less mana.",
+    "tier": 9,
+    "images": [
+      "subclasses/maji/default_f.png",
+      "subclasses/maji/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 349,
+          "name": "The Maji"
+        }
+      ],
+      "learns": [
+        {
+          "id": 241,
+          "name": "Great Meditation",
+          "level": 200,
+          "type": "Buff"
+        }
+      ],
+      "slots": 4
+    },
+    "boosts": [
+      {
+        "name": "Magic",
+        "value": 10
+      },
+      {
+        "name": "Resistance",
+        "value": 10
+      },
+      {
+        "name": "Attack",
+        "value": -10
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Merchant",
+    "female_name": "Merchant",
+    "cost": "25,000 orns",
+    "description": "An established trader who chooses wealth over knowledge. They gather less experience from combat, but may find more gold or items.",
+    "tier": 5,
+    "images": [
+      "subclasses/merchant/default_f.png",
+      "subclasses/merchant/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 447,
+          "name": "The Merchant"
+        }
+      ],
+      "learns": [],
+      "slots": 0
+    },
+    "boosts": []
+  },
+  {
+    "id": 70,
+    "name": "Pikeman",
+    "female_name": "Pikewoman",
+    "cost": "25,000 orns",
+    "description": "An defensive warrior who focuses on deflecting damage at the right time.  Ward is automatically activated in battle.",
+    "tier": 5,
+    "images": [
+      "subclasses/shieldman/default_f.png",
+      "subclasses/shieldman/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 437,
+          "name": "Shields Up"
+        }
+      ],
+      "learns": [],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Defense",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Raider",
+    "female_name": "Raider",
+    "cost": "200,000 orns",
+    "description": "A formidable raider of Nothren that fights without care or self-preservation.",
+    "tier": 9,
+    "images": [
+      "subclasses/raider/default_f.png",
+      "subclasses/raider/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 346,
+          "name": "Berserk III",
+          "level": 200,
+          "type": "Buff"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Hit Points",
+        "value": -20
+      },
+      {
+        "name": "Attack",
+        "value": 20
+      },
+      {
+        "name": "Defense",
+        "value": 2
+      },
+      {
+        "name": "Resistance",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Ranger",
+    "female_name": "Ranger",
+    "cost": "50,000 orns",
+    "description": "A seasoned archer that can focus all might into strong projectile attacks. Learns both offensive and survivability skills.",
+    "tier": 7,
+    "images": [
+      "subclasses/ranger/default_f.png",
+      "subclasses/ranger/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 139,
+          "name": "Remedy",
+          "level": 150,
+          "type": "Buff"
+        },
+        {
+          "id": 445,
+          "name": "Arrowstorm II",
+          "level": 150,
+          "type": "Attack"
+        },
+        {
+          "id": 132,
+          "name": "Dragonslayer",
+          "level": 150,
+          "type": "Attack"
+        },
+        {
+          "id": 446,
+          "name": "Full Bend II",
+          "level": 165,
+          "type": "Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": []
+  },
+  {
+    "id": 28,
+    "name": "Scholar",
+    "female_name": "Scholar",
+    "cost": "25,000 orns",
+    "description": "A well educated magic user that deals extra damage when exploiting enemy weaknesses. Learns elemental imbuing spells and elemental spells that deal extra to those weak against it.",
+    "tier": 5,
+    "images": [
+      "subclasses/scholar/default_f.png",
+      "subclasses/scholar/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 115,
+          "name": "Imbue Fire",
+          "level": 105,
+          "type": "Buff"
+        },
+        {
+          "id": 118,
+          "name": "Flame III",
+          "level": 105,
+          "type": "Magic"
+        },
+        {
+          "id": 117,
+          "name": "Frost III",
+          "level": 110,
+          "type": "Magic"
+        },
+        {
+          "id": 114,
+          "name": "Imbue Ice",
+          "level": 110,
+          "type": "Buff"
+        },
+        {
+          "id": 113,
+          "name": "Imbue Lightning",
+          "level": 115,
+          "type": "Buff"
+        },
+        {
+          "id": 110,
+          "name": "Spark III",
+          "level": 115,
+          "type": "Magic"
+        },
+        {
+          "id": 112,
+          "name": "Tremor III",
+          "level": 120,
+          "type": "Magic"
+        },
+        {
+          "id": 116,
+          "name": "Imbue Earth",
+          "level": 120,
+          "type": "Buff"
+        }
+      ],
+      "slots": 1
+    },
+    "boosts": [
+      {
+        "name": "Mana",
+        "value": 10
+      },
+      {
+        "name": "Defense",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Stargazer",
+    "female_name": "Stargazer",
+    "cost": "25,000 orns",
+    "description": "An advanced magic user that can cast cosmic magic, capable of damaging and debuffing an opponent.",
+    "tier": 5,
+    "images": [
+      "subclasses/stargazer/default_f.png",
+      "subclasses/stargazer/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 121,
+          "name": "Bright Star",
+          "level": 105,
+          "type": "Magic"
+        },
+        {
+          "id": 130,
+          "name": "Comet",
+          "level": 110,
+          "type": "Magic"
+        },
+        {
+          "id": 122,
+          "name": "Shooting Star",
+          "level": 120,
+          "type": "Magic"
+        },
+        {
+          "id": 131,
+          "name": "Supernova",
+          "level": 140,
+          "type": "Magic"
+        }
+      ],
+      "slots": 1
+    },
+    "boosts": [
+      {
+        "name": "Magic",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Swashbuckler",
+    "female_name": "Swashbuckler",
+    "cost": "50,000 orns",
+    "description": "Cunning and unique warriors, their attack power increases when equipped with minimal defense.",
+    "tier": 7,
+    "images": [
+      "subclasses/swashbuckler/default_f.png",
+      "subclasses/swashbuckler/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 460,
+          "name": "The Swashbuckler"
+        }
+      ],
+      "learns": [
+        {
+          "id": 244,
+          "name": "Sidesteps",
+          "level": 175,
+          "type": "Buff"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Attack",
+        "value": 5
+      },
+      {
+        "name": "Magic",
+        "value": 3
+      },
+      {
+        "name": "Defense",
+        "value": -5
+      },
+      {
+        "name": "Resistance",
+        "value": -3
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Tamer",
+    "female_name": "Tamer",
+    "cost": "200,000 orns",
+    "description": "A true expert of nurturing beasts of the wild. Followers of a Tamer are stronger and may attack more often.",
+    "tier": 9,
+    "images": [
+      "subclasses/tamer/default_f.png",
+      "subclasses/tamer/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 348,
+          "name": "The Tamer"
+        }
+      ],
+      "learns": [
+        {
+          "id": 364,
+          "name": "Beastslayer II",
+          "level": 200,
+          "type": "Attack"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": []
+  },
+  {
+    "id": 57,
+    "name": "Trickster",
+    "female_name": "Trickster",
+    "cost": "5,000 orns",
+    "description": "A resourceful thief that employs dirty tricks to win battles. Learns debuffing skills.",
+    "tier": 3,
+    "images": [
+      "subclasses/trickster/default_f.png",
+      "subclasses/trickster/default_m.png"
+    ],
+    "skills": {
+      "passives": [],
+      "learns": [
+        {
+          "id": 361,
+          "name": "Alpha Dart",
+          "level": 50,
+          "type": "Debuff"
+        },
+        {
+          "id": 362,
+          "name": "Beta Dart",
+          "level": 55,
+          "type": "Debuff"
+        },
+        {
+          "id": 363,
+          "name": "Gamma Dart",
+          "level": 60,
+          "type": "Debuff"
+        }
+      ],
+      "slots": 0
+    },
+    "boosts": [
+      {
+        "name": "Dexterity",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Warden",
+    "female_name": "Warden",
+    "cost": "50,000 orns",
+    "description": "A master of defending what they have claimed. Wardens are more difficult to defeat in Area control defenses.",
+    "tier": 7,
+    "images": [
+      "subclasses/warden/default_f.png",
+      "subclasses/warden/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 444,
+          "name": "The Warden"
+        }
+      ],
+      "learns": [],
+      "slots": 0
+    },
+    "boosts": []
+  }
+]

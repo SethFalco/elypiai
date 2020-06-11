@@ -50,17 +50,17 @@ public enum SkillType {
     @SerializedName("Passive")
     PASSIVE("Passive");
 
-    private final String NAME;
+    private final String name;
 
     SkillType(final String name) {
-        this.NAME = name;
+        this.name = name;
     }
 
     /**
      * @return The clean human readable name for this {@link SkillType}.
      */
     public String getName() {
-        return this.NAME;
+        return this.name;
     }
 
     /**
@@ -69,7 +69,7 @@ public enum SkillType {
      */
     public static SkillType find(final String name) {
         for (SkillType type : values()) {
-            if (type.NAME.equals(name))
+            if (type.name.equals(name))
                 return type;
         }
 

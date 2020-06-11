@@ -35,17 +35,17 @@ public enum OrnaClassType {
     @SerializedName("Warrior")
     WARRIOR("Warrior");
 
-    private final String NAME;
+    private final String name;
 
     OrnaClassType(final String name) {
-        this.NAME = name;
+        this.name = name;
     }
 
     /**
      * @return The clean human readable name for this {@link OrnaClassType}.
      */
     public String getName() {
-        return this.NAME;
+        return this.name;
     }
 
     /**
@@ -54,7 +54,7 @@ public enum OrnaClassType {
      */
     public static OrnaClassType find(final String name) {
         for (OrnaClassType type : values()) {
-            if (type.NAME.equals(name))
+            if (type.name.equals(name))
                 return type;
         }
 

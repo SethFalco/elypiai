@@ -16,14 +16,12 @@
 
 package org.elypia.elypiai.orna;
 
-import okhttp3.mockwebserver.*;
-import org.elypia.elypiai.orna.entities.Monster;
-import org.elypia.retropia.test.*;
+import org.elypia.elypiai.orna.data.*;
+import org.elypia.elypiai.orna.entities.*;
+import org.elypia.webservertestbed.junit5.*;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,25 +29,16 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-@ExtendWith(MockResponseExtension.class)
 public class OrnaTest {
 
-    @Response("all_monsters.json")
-    public static MockResponse allMonsters;
+    @RegisterExtension
+    public static final WebServerExtension serverExtension = new WebServerExtension();
 
-    private static MockWebServer server;
     private static Orna orna;
 
     @BeforeEach
-    public void beforeEach() throws IOException {
-        server = new MockWebServer();
-        server.start();
-        orna = new Orna(new URL("http://localhost:" + server.getPort()));
-    }
-
-    @AfterEach
-    public void afterEach() throws IOException {
-        server.close();
+    public void beforeEach() {
+        orna = new Orna(serverExtension.getRequestUrl());
     }
 
     @Test
@@ -57,19 +46,35 @@ public class OrnaTest {
         assertDoesNotThrow(() -> new Orna());
     }
 
-    @Test
-    public void testOrnaAllMonsters() throws IOException {
-        server.enqueue(allMonsters);
-        List<Monster> monsters = orna.getMonsters().complete();
+    @WebServerTest("all_monsters.json")
+    public void testOrnaAllMonsters() {
+        List<Monster> monsters = orna.getMonsters().blockingGet();
         Monster monster = monsters.get(0);
 
-        assertAll("Check values of osu! player.",
+        assertAll("Check values of Orna Monster.",
             () -> assertEquals(230, monster.getId()),
             () -> assertEquals("Bandit", monster.getName()),
             () -> assertEquals(1, monster.getTier()),
             () -> assertFalse(monster.isBoss()),
             () -> assertEquals("monsters/bandit.png", monster.getImageUrl()),
             () -> assertEquals("https://orna.guide/static/orna/img/monsters/bandit.png", monster.getFullImageUrl())
+        );
+    }
+
+    @WebServerTest("all_items.json")
+    public void testAllItems() {
+        List<Item> items = orna.getItems().blockingGet();
+        Item item = items.get(0);
+
+        assertAll("Check values of Orna Item.",
+            () -> assertEquals("Abyssal Armor", item.getName()),
+            () -> assertEquals(605, item.getId()),
+            () -> assertEquals("Heavy armor crafted by Apollyon, the destructive exiled Balor mystic. Apollyon sought to destroy lands to stop the falling, but was exiled for his unorthodox approaches.", item.getDescription()),
+            () -> assertEquals(ItemType.ARMOR, item.getType()),
+            () -> assertEquals(9, item.getTier()),
+            () -> assertTrue(item.isBoss()),
+            () -> assertEquals("armor/abyssal_armor.png", item.getImageUrl()),
+            () -> assertEquals(Element.ARCANE, item.getElement())
         );
     }
 }

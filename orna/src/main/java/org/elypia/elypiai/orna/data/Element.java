@@ -52,17 +52,17 @@ public enum Element {
     @SerializedName("Water")
     WATER("Water");
 
-    private final String NAME;
+    private final String name;
 
     Element(final String name) {
-        this.NAME = name;
+        this.name = name;
     }
 
     /**
      * @return The clean human readable name for this {@link Element}.
      */
     public String getName() {
-        return this.NAME;
+        return this.name;
     }
 
     /**
@@ -71,7 +71,7 @@ public enum Element {
      */
     public static Element find(final String name) {
         for (Element element : values()) {
-            if (element.NAME.equals(name))
+            if (element.name.equals(name))
                 return element;
         }
 

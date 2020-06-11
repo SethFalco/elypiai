@@ -23,16 +23,24 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Interaction {
 
+    /** @see #getSay() */
     @SerializedName("say")
     private String say;
 
+    /** @see #getResponse() */
     @SerializedName("response")
     private String response;
 
+    /**
+     * @return What was said to Cleverbot this interaction.
+     */
     public String getSay() {
         return say;
     }
 
+    /**
+     * @return What Cleverbot responded to this input.
+     */
     public String getResponse() {
         return response;
     }

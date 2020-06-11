@@ -39,19 +39,19 @@ public enum RuneScapeError {
      */
     NOT_A_MEMBER("NOT_A_MEMBER");
 
-    private final String NAME;
+    private final String name;
 
-    RuneScapeError(final String NAME) {
-        this.NAME = NAME;
+    RuneScapeError(final String name) {
+        this.name = name;
     }
 
     public String getName() {
-        return NAME;
+        return name;
     }
 
     public static RuneScapeError get(String name) {
         for (RuneScapeError error : values()) {
-            if (error.NAME.equals(name))
+            if (error.name.equals(name))
                 return error;
         }
 

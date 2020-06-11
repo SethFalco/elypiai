@@ -19,7 +19,6 @@ package org.elypia.elypiai.osu;
 import com.google.gson.annotations.*;
 import org.elypia.elypiai.osu.data.OsuMod;
 import org.elypia.elypiai.osu.deserializers.OsuModDeserializer;
-import org.elypia.elypiai.osu.impl.OsuScore;
 
 import java.util.*;
 

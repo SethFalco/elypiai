@@ -16,7 +16,7 @@
 
 package org.elypia.elypiai.yugioh;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Maybe;
 import retrofit2.http.*;
 
 /**
@@ -25,7 +25,7 @@ import retrofit2.http.*;
 public interface YuGiOhService {
 
     @GET("card_data/{name}")
-    Call<TradingCard> getCard(
+    Maybe<TradingCard> getCard(
         @Path("name") String name
     );
 }

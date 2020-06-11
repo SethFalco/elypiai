@@ -16,15 +16,11 @@
 
 package org.elypia.elypiai.poe;
 
-import okhttp3.mockwebserver.*;
 import org.elypia.elypiai.poe.data.*;
-import org.elypia.retropia.test.*;
+import org.elypia.webservertestbed.junit5.*;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,54 +31,26 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author seth@elypia.org (Seth Falco)
  */
-@ExtendWith(MockResponseExtension.class)
 public class PathOfExileTest {
 
-    @Response("ladders_standard.json")
-    public static MockResponse laddersStandard;
+    @RegisterExtension
+    public static final WebServerExtension serverExtension = new WebServerExtension();
 
-    @Response("ladders_standard-lab-norm-pc.json")
-    public static MockResponse laddersStandardLabNormPc;
-
-    @Response("leagues_default.json")
-    public static MockResponse leaguesDefault;
-
-    @Response("public-stash-tabs_single.json")
-    public static MockResponse publicStashTabsSingle;
-
-    @Response("pvp-matches_eupvpseason1.json")
-    public static MockResponse pvpMatchesEuPvpSeason1;
-
-    @Response("rule_hardcore.json")
-    public static MockResponse ruleHardcore;
-
-    @Response("rules.json")
-    public static MockResponse rules;
-
-    private static MockWebServer server;
     private static PathOfExile poe;
 
     @BeforeEach
-    public void beforeEach() throws IOException {
-        server = new MockWebServer();
-        server.start();
-        poe = new PathOfExile(new URL("http://localhost:" + server.getPort()));
-    }
-
-    @AfterEach
-    public void afterEach() throws IOException {
-        server.close();
+    public void beforeEach() {
+        poe = new PathOfExile(serverExtension.getRequestUrl());
     }
 
     @Test
     public void pathOfExile() {
-        assertDoesNotThrow((Executable)PathOfExile::new);
+        assertDoesNotThrow(() -> new PathOfExile());
     }
 
-    @Test
-    public void parsePartialStashTabs() throws IOException {
-        server.enqueue(publicStashTabsSingle);
-        StashTabs stashtabs = poe.getStashTabs().complete().get();
+    @WebServerTest("public-stash-tabs_single.json")
+    public void parsePartialStashTabs() {
+        StashTabs stashtabs = poe.getStashTabs().blockingGet();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("2947-5165-4180-5175-1708", stashtabs.getCursor()),
@@ -90,10 +58,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseSingleStash() throws IOException {
-        server.enqueue(publicStashTabsSingle);
-        Stash stash = poe.getStashTabs(null).complete().get().getStashes().get(0);
+    @WebServerTest("public-stash-tabs_single.json")
+    public void parseSingleStash() {
+        Stash stash = poe.getStashTabs(null).blockingGet().getStashes().get(0);
 
         assertAll("Ensure Parsing Single Stash Correctly",
             () -> assertEquals("a9a42a5dbda657f71b077ecd0692acce8d1d29c7dff3437e5ed8708f6cb8838f", stash.getId()),
@@ -106,10 +73,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseSingleStashNonNull() throws IOException {
-        server.enqueue(publicStashTabsSingle);
-        Stash stash = poe.getStashTabs(null).complete().get().getStashes().get(3);
+    @WebServerTest("public-stash-tabs_single.json")
+    public void parseSingleStashNonNull() {
+        Stash stash = poe.getStashTabs(null).blockingGet().getStashes().get(3);
 
         assertAll("Ensure Parsing Single Stash Correctly | With Info",
             () -> assertEquals("6e744b0f76179835e1f681ce81c513ea190cb021b34eaacafe4c3d4f6990395f", stash.getId()),
@@ -123,10 +89,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseSingleStashItem() throws IOException {
-        server.enqueue(publicStashTabsSingle);
-        StashItem item = poe.getStashTabs().complete().get().getStashes().get(3).getItems().get(0);
+    @WebServerTest("public-stash-tabs_single.json")
+    public void parseSingleStashItem() {
+        StashItem item = poe.getStashTabs().blockingGet().getStashes().get(3).getItems().get(0);
 
         assertAll("Ensure Parsing StashItem Correctly",
             () -> assertFalse(item.isVerified()),
@@ -147,17 +112,15 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseMultipleLeagues() throws IOException {
-        server.enqueue(leaguesDefault);
-        List<League> leagues = poe.getLeagues().complete();
+    @WebServerTest("leagues_default.json")
+    public void parseMultipleLeagues() {
+        List<League> leagues = poe.getLeagues().blockingGet();
         assertFalse(leagues.isEmpty());
     }
 
-    @Test
-    public void parseSingleLeague() throws IOException {
-        server.enqueue(leaguesDefault);
-        League league = poe.getLeagues().complete().get(0);
+    @WebServerTest("leagues_default.json")
+    public void parseSingleLeague() {
+        League league = poe.getLeagues().blockingGet().get(0);
 
         assertAll("Ensure Single League is Parsed Correctly",
             () -> assertEquals("Standard", league.getId()),
@@ -172,10 +135,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseSingleLeagueWithEndDate() throws IOException {
-        server.enqueue(leaguesDefault);
-        League league = poe.getLeagues().complete().get(4);
+    @WebServerTest("leagues_default.json")
+    public void parseSingleLeagueWithEndDate() {
+        League league = poe.getLeagues().blockingGet().get(4);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("Synthesis", league.getId()),
@@ -189,10 +151,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseRulesFromLeague() throws IOException {
-        server.enqueue(leaguesDefault);
-        LeagueRule rule = poe.getLeagues().complete().get(1).getRules().get(0);
+    @WebServerTest("leagues_default.json")
+    public void parseRulesFromLeague() {
+        LeagueRule rule = poe.getLeagues().blockingGet().get(1).getRules().get(0);
 
         assertAll("League Rules",
             () -> assertEquals("Hardcore", rule.getId()),
@@ -201,10 +162,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void getSingleRule() throws IOException {
-        server.enqueue(ruleHardcore);
-        LeagueRule rule = poe.getRule("Hardcore").complete();
+    @WebServerTest("rule_hardcore.json")
+    public void getSingleRule() {
+        LeagueRule rule = poe.getRule("Hardcore").blockingGet();
 
         assertAll("League Rules",
             () -> assertEquals("Hardcore", rule.getId()),
@@ -213,18 +173,15 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void getMultipleRules() throws IOException {
-        server.enqueue(rules);
-        List<LeagueRule> rule = poe.getRules().complete();
-
+    @WebServerTest("rules.json")
+    public void getMultipleRules() {
+        List<LeagueRule> rule = poe.getRules().blockingGet();
         assertFalse(rule.isEmpty());
     }
 
-    @Test
-    public void parseLadderEntry() throws IOException {
-        server.enqueue(laddersStandard);
-        LadderEntry entry = poe.getLeagueLadder("Standard").complete().get(0);
+    @WebServerTest("ladders_standard.json")
+    public void parseLadderEntry() {
+        LadderEntry entry = poe.getLeagueLadder("Standard").blockingGet().get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(1, entry.getRank()),
@@ -235,10 +192,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseLadderEntryWithChallenges() throws IOException {
-        server.enqueue(laddersStandard);
-        LadderEntry entry = poe.getLeagueLadder("Standard").complete().get(3);
+    @WebServerTest("ladders_standard.json")
+    public void parseLadderEntryWithChallenges() {
+        LadderEntry entry = poe.getLeagueLadder("Standard").blockingGet().get(3);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(4, entry.getRank()),
@@ -249,10 +205,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseExileFromLadderEntryWithChallenges() throws IOException {
-        server.enqueue(laddersStandard);
-        Exile exile = poe.getLeagueLadder("Standard").complete().get(3).getExile();
+    @WebServerTest("ladders_standard.json")
+    public void parseExileFromLadderEntryWithChallenges() {
+        Exile exile = poe.getLeagueLadder("Standard").blockingGet().get(3).getExile();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("VaalMulliSpark", exile.getName()),
@@ -264,10 +219,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseAccountFromLadderEntryWithChallenges() throws IOException {
-        server.enqueue(laddersStandard);
-        Account account = poe.getLeagueLadder("Standard").complete().get(3).getAccount();
+    @WebServerTest("ladders_standard.json")
+    public void parseAccountFromLadderEntryWithChallenges() {
+        Account account = poe.getLeagueLadder("Standard").blockingGet().get(3).getAccount();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("spinzter", account.getName()),
@@ -278,10 +232,9 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseLadderEntryUserWithSubClass() throws IOException {
-        server.enqueue(laddersStandard);
-        Exile exile = poe.getLeagueLadder("Standard").complete().get(6).getExile();
+    @WebServerTest("ladders_standard.json")
+    public void parseLadderEntryUserWithSubClass() {
+        Exile exile = poe.getLeagueLadder("Standard").blockingGet().get(6).getExile();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("xdukanx", exile.getName()),
@@ -293,19 +246,17 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parseLadderEntryWithGuild() throws IOException {
-        server.enqueue(laddersStandardLabNormPc);
-        Account account = poe.getLeagueLadder("Standard", Realm.PC, 200, 0, LadderType.LABYRINTH).complete().get(0).getAccount();
+    @WebServerTest("ladders_standard-lab-norm-pc.json")
+    public void parseLadderEntryWithGuild() {
+        Account account = poe.getLeagueLadder("Standard", Realm.PC, 200, 0, LadderType.LABYRINTH).blockingGet().get(0).getAccount();
 
         assertNotNull(account);
         assertNotNull(account.getGuild());
     }
 
-    @Test
-    public void parseGuildOfLadderEntryWithGuild() throws IOException {
-        server.enqueue(laddersStandardLabNormPc);
-        Guild guild = poe.getLeagueLadder("Standard", Realm.PC, 200, 0, LadderType.LABYRINTH).complete().get(0).getAccount().getGuild();
+    @WebServerTest("ladders_standard-lab-norm-pc.json")
+    public void parseGuildOfLadderEntryWithGuild() {
+        Guild guild = poe.getLeagueLadder("Standard", Realm.PC, 200, 0, LadderType.LABYRINTH).blockingGet().get(0).getAccount().getGuild();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(7617, guild.getId()),
@@ -316,19 +267,17 @@ public class PathOfExileTest {
         );
     }
 
-    @Test
-    public void parsePvpMatches() throws IOException {
-        server.enqueue(pvpMatchesEuPvpSeason1);
-        List<PvpMatch> matches = poe.getPvpMatches("EUPvPSeason1").complete();
+    @WebServerTest("pvp-matches_eupvpseason1.json")
+    public void parsePvpMatches() {
+        List<PvpMatch> matches = poe.getPvpMatches("EUPvPSeason1").blockingGet();
 
         assertNotNull(matches);
         assertFalse(matches.isEmpty());
     }
 
-    @Test
-    public void parsePvpMatch() throws IOException {
-        server.enqueue(pvpMatchesEuPvpSeason1);
-        PvpMatch match = poe.getPvpMatches("EUPvPSeason1").complete().get(0);
+    @WebServerTest("pvp-matches_eupvpseason1.json")
+    public void parsePvpMatch() {
+        PvpMatch match = poe.getPvpMatches("EUPvPSeason1").blockingGet().get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("EU01-73-STD Swiss", match.getId()),

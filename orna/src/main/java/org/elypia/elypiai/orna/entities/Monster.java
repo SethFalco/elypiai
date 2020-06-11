@@ -20,7 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import org.elypia.elypiai.orna.Orna;
 import org.elypia.elypiai.orna.data.*;
 
-import java.util.Collection;
+import java.util.*;
 
 /**
  * Refers to any monster in Orna regardless of status
@@ -33,34 +33,30 @@ public class Monster extends TieredEntity {
     @SerializedName("boss")
     private boolean isBoss;
 
-    /** The image URL that's after. */
     @SerializedName("image")
     private String imageUrl;
 
-    private Collection<Spawn> spawn;
+    private List<Spawn> spawn;
 
     @SerializedName("weak_to")
-    private Collection<Element> weakTo;
+    private List<Element> weakTo;
 
     @SerializedName("resistent_to")
-    private Collection<Element> resistentTo;
+    private List<Element> resistentTo;
 
     @SerializedName("immune_to")
-    private Collection<Element> immuneTo;
+    private List<Element> immuneTo;
 
-    /** The items this {@link Monster} is able to drop. */
-    private Collection<AbstractEntity> drops;
+    private List<Entity> drops;
 
-    /** The skills this {@link Monster} is able to perform. */
-    private Collection<AbstractEntity> skills;
+    private List<Entity> skills;
 
-    /** The quests this {@link Monster} may be involved in. */
-    private Collection<AbstractEntity> quests;
+    private List<Entity> quests;
 
-    private Collection<AbstractEntity> buffs;
+    private List<Entity> buffs;
 
-    public int getTier() {
-        return tier;
+    public String getFullImageUrl() {
+        return Orna.getStaticResource(imageUrl);
     }
 
     public boolean isBoss() {
@@ -71,23 +67,44 @@ public class Monster extends TieredEntity {
         return imageUrl;
     }
 
-    public String getFullImageUrl() {
-        return Orna.getStaticResource(imageUrl);
+    public List<Spawn> getSpawn() {
+        return Collections.unmodifiableList(spawn);
     }
 
-    public Collection<Spawn> getSpawn() {
-        return spawn;
+    public List<Element> getWeakTo() {
+        return Collections.unmodifiableList(weakTo);
     }
 
-    public Collection<Element> getWeakTo() {
-        return weakTo;
+    public List<Element> getResistentTo() {
+        return Collections.unmodifiableList(resistentTo);
     }
 
-    public Collection<Element> getResistentTo() {
-        return resistentTo;
+    public List<Element> getImmuneTo() {
+        return Collections.unmodifiableList(immuneTo);
     }
 
-    public Collection<Element> getImmuneTo() {
-        return immuneTo;
+    /**
+     * @return The items this {@link Monster} is able to drop.
+     */
+    public List<Entity> getDrops() {
+        return Collections.unmodifiableList(drops);
+    }
+
+    /**
+     * @return The skills this {@link Monster} is able to perform.
+     */
+    public List<Entity> getSkills() {
+        return Collections.unmodifiableList(skills);
+    }
+
+    /**
+     * @return The quests this {@link Monster} may be involved in.
+     */
+    public List<Entity> getQuests() {
+        return Collections.unmodifiableList(quests);
+    }
+
+    public List<Entity> getBuffs() {
+        return Collections.unmodifiableList(buffs);
     }
 }

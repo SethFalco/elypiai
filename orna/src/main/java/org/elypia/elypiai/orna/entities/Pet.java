@@ -16,15 +16,40 @@
 
 package org.elypia.elypiai.orna.entities;
 
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.*;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
 public class Pet extends TieredEntity {
 
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("image")
+    private String imageUrl;
+
+    @SerializedName("cost")
     private int cost;
 
-    private List<AbstractEntity> skills;
+    @SerializedName("skills")
+    private List<Entity> skills;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public List<Entity> getSkills() {
+        return Collections.unmodifiableList(skills);
+    }
 }

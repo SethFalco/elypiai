@@ -16,19 +16,74 @@
 
 package org.elypia.elypiai.orna.entities;
 
+import com.google.gson.annotations.SerializedName;
+import org.elypia.elypiai.orna.Orna;
 import org.elypia.elypiai.orna.data.*;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
 public class Item extends TieredEntity {
 
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("type")
     private ItemType type;
+
+    @SerializedName("boss")
     private boolean isBoss;
+
+    @SerializedName("image")
+    private String imageUrl;
+
+    @SerializedName("element")
     private Element element;
-    private List<AbstractEntity> materials;
-    private List<AbstractEntity> droppedBy;
+
+    @SerializedName("materials")
+    private List<Entity> materials;
+
+    @SerializedName("dropped_by")
+    private List<Entity> droppedBy;
+
+    @SerializedName("equipped_by")
+    private List<Entity> equippedBy;
+
+    public String getFullImageUrl() {
+        return Orna.getStaticResource(imageUrl);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ItemType getType() {
+        return type;
+    }
+
+    public boolean isBoss() {
+        return isBoss;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public List<Entity> getMaterials() {
+        return Collections.unmodifiableList(materials);
+    }
+
+    public List<Entity> getDroppedBy() {
+        return Collections.unmodifiableList(droppedBy);
+    }
+
+    public List<Entity> getEquippedBy() {
+        return Collections.unmodifiableList(equippedBy);
+    }
 }

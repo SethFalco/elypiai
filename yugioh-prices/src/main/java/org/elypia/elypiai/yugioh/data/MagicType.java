@@ -53,39 +53,39 @@ public enum MagicType {
     /**
      * The name of this property.
      */
-    private final String NAME;
+    private final String name;
 
     /**
      * Can a spell card have this property.
      */
-    private final boolean SPELL;
+    private final boolean forSpell;
 
     /**
      * Can a trap card have this property.
      */
-    private final boolean TRAP;
+    private final boolean forTrap;
 
     MagicType(final String name, final boolean spell, final boolean trap) {
-        NAME = name;
-        SPELL = spell;
-        TRAP = trap;
+        this.name = name;
+        forSpell = spell;
+        forTrap = trap;
     }
 
     public String getName() {
-        return NAME;
+        return name;
     }
 
     public boolean isSpell() {
-        return SPELL;
+        return forSpell;
     }
 
     public boolean isTrap() {
-        return TRAP;
+        return forTrap;
     }
 
     public static MagicType get(String name) {
         for (MagicType property : values()) {
-            if (property.NAME.equals(name))
+            if (property.name.equals(name))
                 return property;
         }
 

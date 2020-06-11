@@ -18,15 +18,13 @@ package org.elypia.elypiai.steam;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import io.reactivex.rxjava3.core.*;
 import okhttp3.*;
 import org.elypia.elypiai.steam.deserializers.*;
-import org.elypia.elypiai.steam.impl.SteamService;
-import org.elypia.retropia.core.*;
-import org.elypia.retropia.core.extensions.*;
-import org.elypia.retropia.core.requests.*;
+import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
-import retrofit2.Call;
-import retrofit2.*;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
@@ -36,7 +34,7 @@ import java.util.regex.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class Steam extends ApiWrapper {
+public class Steam {
 
     /** A regular expression that matches against profile urls and returns the username or id. */
     private static final Pattern VANITY_URL = Pattern.compile("^(?:https?://)?steamcommunity\\.com/id/([^/]+)/?$");
@@ -58,12 +56,8 @@ public class Steam extends ApiWrapper {
         }
     }
 
-    private final String API_KEY;
+    private final String apiKey;
     private final SteamService service;
-
-    public Steam(String apiKey) {
-        this(baseUrl, apiKey, new WrapperExtension[0]);
-    }
 
     /**
      * The Steam API allows calls to basic Steam information
@@ -71,25 +65,22 @@ public class Steam extends ApiWrapper {
      * or obtaining stats.
      *
      * @param apiKey API key obtained from Steam.
-     * @param exts Extensions to add to this wrapper.
      */
 
-    public Steam(String apiKey, WrapperExtension... exts) {
-        this(baseUrl, apiKey, exts);
+    public Steam(String apiKey) {
+        this(baseUrl, apiKey);
     }
 
-    public Steam(URL baseUrl, String apiKey, WrapperExtension... exts) {
-        super(exts);
-        API_KEY = Objects.requireNonNull(apiKey);
+    public Steam(URL baseUrl, String apiKey) {
+        this.apiKey = Objects.requireNonNull(apiKey);
 
-        OkHttpClient client = RequestService.getBuilder()
+        OkHttpClient client = HttpClientSingleton.getBuilder()
             .addInterceptor((chain) -> {
                 Request request = chain.request();
                 HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
                 request = request.newBuilder().url(url).build();
                 return chain.proceed(request);
             })
-            .addInterceptor(new ExtensionInterceptor(exts))
             .build();
 
         GsonBuilder gsonBuilder = new GsonBuilder()
@@ -101,6 +92,7 @@ public class Steam extends ApiWrapper {
                 .baseUrl(baseUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build()
                 .create(SteamService.class);
     }
@@ -109,10 +101,9 @@ public class Steam extends ApiWrapper {
      * @param vanityUrl The custom url entirely, or custom url route after id.
      * @return The search result of if a user was found or not.
      */
-    public RestAction<SteamSearch> getIdFromVanityUrl(String vanityUrl) {
+    public Single<SteamSearch> getIdFromVanityUrl(String vanityUrl) {
         String name = getUsernameFromUrl(vanityUrl);
-        Call<SteamSearch> call = service.getSteamId((name == null) ? vanityUrl : name);
-        return new RestAction<>(call);
+        return service.getSteamId((name == null) ? vanityUrl : name);
     }
 
     /**
@@ -122,7 +113,7 @@ public class Steam extends ApiWrapper {
      * @param ids The IDs of all steam players to return.
      * @return A request action which will return the results, never null.
      */
-    public RestAction<List<SteamUser>> getUsers(long... ids) {
+    public Single<List<SteamUser>> getUsers(long... ids) {
         if (ids == null || ids.length == 0)
             throw new IllegalArgumentException("Must specify at least one user to fetch.");
 
@@ -131,8 +122,7 @@ public class Steam extends ApiWrapper {
         for (long id : ids)
             joiner.add(String.valueOf(id));
 
-        Call<List<SteamUser>> call = service.getUsers(joiner.toString());
-        return new RestAction<>(call);
+        return service.getUsers(joiner.toString());
     }
 
     /**
@@ -146,17 +136,16 @@ public class Steam extends ApiWrapper {
      * @param id Steam user to obtain library for.
      * @return An rest action which will return a list of steam games.
      */
-    public OptionalRestAction<List<SteamGame>> getLibrary(long id) {
+    public Maybe<List<SteamGame>> getLibrary(long id) {
         return getLibrary(id, true);
     }
 
-    public OptionalRestAction<List<SteamGame>> getLibrary(long id, boolean freeGames) {
+    public Maybe<List<SteamGame>> getLibrary(long id, boolean freeGames) {
         return getLibrary(id, freeGames, true);
     }
 
-    public OptionalRestAction<List<SteamGame>> getLibrary(long id, boolean freeGames, boolean info) {
-        Call<List<SteamGame>> call = service.getLibrary(id, freeGames ? 1 : 0, info ? 1 : 0);
-        return new OptionalRestAction<>(call);
+    public Maybe<List<SteamGame>> getLibrary(long id, boolean freeGames, boolean info) {
+        return service.getLibrary(id, freeGames ? 1 : 0, info ? 1 : 0);
     }
 
     /**
@@ -170,6 +159,6 @@ public class Steam extends ApiWrapper {
     }
 
     public String getApiKey() {
-        return API_KEY;
+        return apiKey;
     }
 }

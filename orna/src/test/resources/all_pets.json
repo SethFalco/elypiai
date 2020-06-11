@@ -1,0 +1,2475 @@
+[
+  {
+    "id": 43,
+    "name": "Orthrus",
+    "description": "The unrelenting Orthrus.",
+    "image": "monsters/orthrus.png",
+    "tier": 6,
+    "cost": 175000,
+    "stats": {
+      "attack": 10,
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 225,
+        "name": "Bite"
+      },
+      {
+        "id": 37,
+        "name": "Charge"
+      },
+      {
+        "id": 71,
+        "name": "Doublecut"
+      },
+      {
+        "id": 226,
+        "name": "Scratch"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Mighty Griffin",
+    "description": "A mighty griffin. It can assist you in battle by improving your critical hit rate, while casting dragon magic.",
+    "image": "bosses/great_griffin.png",
+    "tier": 9,
+    "cost": 1250000,
+    "stats": {
+      "attack": 12,
+      "spell": 5,
+      "buff": 5
+    },
+    "skills": [
+      {
+        "id": 342,
+        "name": "Blightstrike III"
+      },
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 341,
+        "name": "Wyrm's Song"
+      },
+      {
+        "id": 217,
+        "name": "Wyvern Speed II"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Bat",
+    "description": "A tamed bat. It can drain HP from your enemies in battle.",
+    "image": "monsters/bat.png",
+    "tier": 2,
+    "cost": 3750,
+    "stats": {
+      "attack": 100,
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 48,
+        "name": "Drain"
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Evil Eye",
+    "description": "A strange floating eye. It seems to know rudimentary magic.",
+    "image": "monsters/eye.png",
+    "tier": 2,
+    "cost": 6250,
+    "stats": {
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 39,
+        "name": "Flame"
+      },
+      {
+        "id": 40,
+        "name": "Frost"
+      },
+      {
+        "id": 45,
+        "name": "Spark"
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Nidhogg",
+    "description": "A horrific serpentine dragon capable of beastly attacks.",
+    "image": "monsters/nidhogg.png",
+    "tier": 9,
+    "cost": 1750000,
+    "stats": {
+      "attack": 2,
+      "spell": 9
+    },
+    "skills": [
+      {
+        "id": 419,
+        "name": "Beaststrike"
+      },
+      {
+        "id": 421,
+        "name": "Beaststrike II"
+      },
+      {
+        "id": 423,
+        "name": "Beaststrike III"
+      },
+      {
+        "id": 420,
+        "name": "Lusus Naturae"
+      },
+      {
+        "id": 422,
+        "name": "Lusus Naturae II"
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Cactus",
+    "description": "A live cactus. It can assist you in battle with barrages of needles.",
+    "image": "monsters/cactus.png",
+    "tier": 4,
+    "cost": 20000,
+    "stats": {
+      "spell": 4
+    },
+    "skills": [
+      {
+        "id": 134,
+        "name": "Arrowstorm"
+      },
+      {
+        "id": 445,
+        "name": "Arrowstorm II"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Yeti",
+    "description": "The storied yeti. Can boost your defenses in battle while assisting you with ice magic.",
+    "image": "monsters/yeti.png",
+    "tier": 4,
+    "cost": 30000,
+    "stats": {
+      "attack": 5,
+      "spell": 5,
+      "buff": 30
+    },
+    "skills": [
+      {
+        "id": 40,
+        "name": "Frost"
+      },
+      {
+        "id": 57,
+        "name": "Icestrike"
+      },
+      {
+        "id": 60,
+        "name": "Magic Shield"
+      },
+      {
+        "id": 62,
+        "name": "Protection"
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Cerberus",
+    "description": "A tamed Cerberus of Balor. It can assist in battle with spells of fire.",
+    "image": "bosses/cerberus.png",
+    "tier": 8,
+    "cost": 875000,
+    "stats": {
+      "attack": 5,
+      "spell": 12,
+      "debuff": 25
+    },
+    "skills": [
+      {
+        "id": 47,
+        "name": "Burn"
+      },
+      {
+        "id": 197,
+        "name": "Firestrike III"
+      },
+      {
+        "id": 90,
+        "name": "Inferno"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      },
+      {
+        "id": 288,
+        "name": "Tricut II"
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Pale Dragon",
+    "description": "An ivory dragon of the light skies. It is extremely versed in holy magic.",
+    "image": "monsters/pale_dragon.png",
+    "tier": 8,
+    "cost": 1125000,
+    "stats": {
+      "attack": 5,
+      "spell": 5,
+      "heal": 25
+    },
+    "skills": [
+      {
+        "id": 119,
+        "name": "Dispel"
+      },
+      {
+        "id": 89,
+        "name": "Holy"
+      },
+      {
+        "id": 123,
+        "name": "Holy II"
+      },
+      {
+        "id": 128,
+        "name": "Holy Light"
+      },
+      {
+        "id": 74,
+        "name": "Holystrike"
+      },
+      {
+        "id": 149,
+        "name": "Holystrike II"
+      },
+      {
+        "id": 129,
+        "name": "Miracle"
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Ice Dragon",
+    "description": "A dragon with the power of the cold. It can imbue your weapon with ice and cast ice magic.",
+    "image": "monsters/ice_dragon.png",
+    "tier": 5,
+    "cost": 50000,
+    "stats": {
+      "spell": 10,
+      "buff": 20
+    },
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 114,
+        "name": "Imbue Ice"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Hellhound",
+    "description": "A tamed hellhound. Can assist in battle with attacks and fire magic.",
+    "image": "monsters/hellhound.png",
+    "tier": 3,
+    "cost": 7500,
+    "stats": {
+      "attack": 25,
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 52,
+        "name": "Flame II"
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Castor",
+    "description": "Available for a limited time: the terrible twin Castor can assist you in battle with great elemental resistance.",
+    "image": "bosses/castor.png",
+    "tier": 6,
+    "cost": 150000,
+    "stats": {
+      "attack": 3,
+      "spell": 8,
+      "buff": 3
+    },
+    "skills": [
+      {
+        "id": 223,
+        "name": "Glacier II"
+      },
+      {
+        "id": 158,
+        "name": "Multi-frost"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      },
+      {
+        "id": 308,
+        "name": "Ward of Steel"
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Reaper",
+    "description": "A stray Reaper of Ankou. It will not attack often, but will wreck havoc when it does.",
+    "image": "monsters/reaper.png",
+    "tier": 6,
+    "cost": 50000,
+    "stats": {
+      "attack": 2
+    }
+  },
+  {
+    "id": 58,
+    "name": "Giant Basilisk",
+    "description": "A Giant Red Basilisk. It will assist in battle by attacking often.",
+    "image": "monsters/red_basilisk.png",
+    "tier": 9,
+    "cost": 1000000,
+    "stats": {
+      "attack": 25,
+      "spell": 5
+    },
+    "skills": [
+      {
+        "id": 316,
+        "name": "Quadcut"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Snake",
+    "description": "A tamed snake. Occasionally, it can poison your opponents in battle.",
+    "image": "monsters/snake.png",
+    "tier": 2,
+    "cost": 3750,
+    "stats": {
+      "attack": 90,
+      "debuff": 25
+    },
+    "skills": [
+      {
+        "id": 61,
+        "name": "Poison"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Great Bear",
+    "description": "A very mighty bear. It can lend you its might, but at the cost of your defenses.",
+    "image": "monsters/black_bear.png",
+    "tier": 4,
+    "cost": 15000,
+    "stats": {
+      "attack": 10,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 95,
+        "name": "Bear's Might"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Bear",
+    "description": "A wild bear. It will frequently attack your enemies.",
+    "image": "monsters/bear.png",
+    "tier": 2,
+    "cost": 2500,
+    "stats": {
+      "attack": 40
+    }
+  },
+  {
+    "id": 34,
+    "name": "Gazer",
+    "description": "The storied gazer. It utilizes lightning magic in battle.",
+    "image": "monsters/gazer.png",
+    "tier": 4,
+    "cost": 20000,
+    "stats": {
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 66,
+        "name": "Spark II"
+      },
+      {
+        "id": 83,
+        "name": "Storm"
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Mighty Slime",
+    "description": "A mighty slime warrior. It will attack your foes often.",
+    "image": "monsters/mighty_slime.png",
+    "tier": 10,
+    "cost": 1000000,
+    "stats": {
+      "attack": 50
+    }
+  },
+  {
+    "id": 4,
+    "name": "Lesser Red Slime",
+    "description": "A tamed red slime. It is not very powerful, but may assist you in battle with fire magic.",
+    "image": "monsters/red_slime.png",
+    "tier": 1,
+    "cost": 1500,
+    "stats": {
+      "attack": 90,
+      "spell": 50
+    },
+    "skills": [
+      {
+        "id": 39,
+        "name": "Flame"
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Gheist",
+    "description": "A spooky gheist. It may put your opponent to sleep.",
+    "image": "monsters/gheist.png",
+    "tier": 5,
+    "cost": 50000,
+    "stats": {
+      "attack": 2,
+      "spell": 2,
+      "debuff": 23
+    },
+    "skills": [
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 169,
+        "name": "Sleep"
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Dark Dragon",
+    "description": "An ebony dragon. It can assist one in battle with dark magic.",
+    "image": "monsters/black_dragon.png",
+    "tier": 7,
+    "cost": 350000,
+    "stats": {
+      "spell": 20,
+      "debuff": 3
+    },
+    "skills": [
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 220,
+        "name": "Shadow II"
+      },
+      {
+        "id": 169,
+        "name": "Sleep"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Mimic",
+    "description": "A mimic. What it is capable of is unknown.",
+    "image": "monsters/mimic.png",
+    "tier": 3,
+    "cost": 25000,
+    "stats": {
+      "attack": 5,
+      "spell": 5,
+      "heal": 5,
+      "buff": 5,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 185,
+        "name": "Focus"
+      },
+      {
+        "id": 41,
+        "name": "Heal"
+      },
+      {
+        "id": 59,
+        "name": "Magic Boost"
+      },
+      {
+        "id": 60,
+        "name": "Magic Shield"
+      },
+      {
+        "id": 61,
+        "name": "Poison"
+      },
+      {
+        "id": 62,
+        "name": "Protection"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      },
+      {
+        "id": 67,
+        "name": "Warcry"
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Mighty Mimic",
+    "description": "The mightiest of mimics. It will cause mischief in battle while casting spells.",
+    "image": "monsters/mighty_mimic.png",
+    "tier": 10,
+    "cost": 3500000,
+    "stats": {
+      "spell": 5,
+      "buff": 100
+    },
+    "skills": [
+      {
+        "id": 372,
+        "name": "Flame VI"
+      },
+      {
+        "id": 374,
+        "name": "Frost VI"
+      },
+      {
+        "id": 103,
+        "name": "Mimic's Mischief"
+      },
+      {
+        "id": 376,
+        "name": "Spark VI"
+      },
+      {
+        "id": 377,
+        "name": "Tremor VI"
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Sluagh",
+    "description": "A shrouded Sluagh. It utilizes dark magic in battle.",
+    "image": "monsters/lesser_sluagh.png",
+    "tier": 5,
+    "cost": 62500,
+    "stats": {
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 219,
+        "name": "Shadow"
+      },
+      {
+        "id": 220,
+        "name": "Shadow II"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Gnome",
+    "description": "A gnome. It can assist you in battle with its spells.",
+    "image": "monsters/gnome.png",
+    "tier": 3,
+    "cost": 20000,
+    "stats": {
+      "spell": 20
+    },
+    "skills": [
+      {
+        "id": 39,
+        "name": "Flame"
+      },
+      {
+        "id": 52,
+        "name": "Flame II"
+      },
+      {
+        "id": 40,
+        "name": "Frost"
+      },
+      {
+        "id": 54,
+        "name": "Frost II"
+      },
+      {
+        "id": 45,
+        "name": "Spark"
+      },
+      {
+        "id": 66,
+        "name": "Spark II"
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Earthen Dragon",
+    "description": "A dragon with the power of the earth. It can imbue your weapon with earthen power and cast earthen magic.",
+    "image": "monsters/earthen_dragon.png",
+    "tier": 5,
+    "cost": 50000,
+    "stats": {
+      "spell": 10,
+      "buff": 20
+    },
+    "skills": [
+      {
+        "id": 116,
+        "name": "Imbue Earth"
+      },
+      {
+        "id": 63,
+        "name": "Quake"
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Fire Dragon",
+    "description": "A dragon with the power of the inferno. It can imbue your weapon with fire and cast fire magic.",
+    "image": "monsters/fire_dragon.png",
+    "tier": 5,
+    "cost": 50000,
+    "stats": {
+      "spell": 10,
+      "buff": 20
+    },
+    "skills": [
+      {
+        "id": 115,
+        "name": "Imbue Fire"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Finfolk",
+    "description": "A fabled finfolk of the sea.",
+    "image": "bosses/water_demon.png",
+    "tier": 7,
+    "cost": 200000,
+    "stats": {
+      "attack": 10,
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 94,
+        "name": "Tricut"
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Odok",
+    "description": "The decrepit Odok. It will frequently assist you in battle.",
+    "image": "monsters/odok2.png",
+    "tier": 5,
+    "cost": 50000,
+    "stats": {
+      "attack": 50,
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 71,
+        "name": "Doublecut"
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Guivre",
+    "description": "An elusive Great Dragon. It can assist in battle with powerful dragon spells.",
+    "image": "monsters/guivre.png",
+    "tier": 9,
+    "cost": 1750000,
+    "stats": {
+      "attack": 7,
+      "spell": 12
+    },
+    "skills": [
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 206,
+        "name": "Fireball"
+      },
+      {
+        "id": 98,
+        "name": "Flare"
+      },
+      {
+        "id": 243,
+        "name": "Meteor II"
+      },
+      {
+        "id": 215,
+        "name": "Multi-flare"
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Ortanite Golem",
+    "description": "A golem forged of Ortanite. It can assist you in battle with Ward and defensive based skills.",
+    "image": "monsters/ortanite_golem.png",
+    "tier": 10,
+    "cost": 2000000,
+    "stats": {
+      "attack": 5,
+      "spell": 10,
+      "buff": 10
+    },
+    "skills": [
+      {
+        "id": 335,
+        "name": "Guarding Strike"
+      },
+      {
+        "id": 371,
+        "name": "Ward of Ortanite"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Twilight Wisp",
+    "description": "A wisp of the night, versed in magic of both light and dark.",
+    "image": "monsters/twilight_wisp.png",
+    "tier": 7,
+    "cost": 300000,
+    "stats": {
+      "spell": 15,
+      "heal": 10
+    },
+    "skills": [
+      {
+        "id": 89,
+        "name": "Holy"
+      },
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 106,
+        "name": "Wisp's Heal"
+      },
+      {
+        "id": 193,
+        "name": "Wisp's Heal II"
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Storm Dragon",
+    "description": "A dragon with the power of the clouds above. It can imbue your weapon with lightning and cast lightning magic.",
+    "image": "monsters/storm_dragon.png",
+    "tier": 5,
+    "cost": 50000,
+    "stats": {
+      "spell": 10,
+      "buff": 20
+    },
+    "skills": [
+      {
+        "id": 113,
+        "name": "Imbue Lightning"
+      },
+      {
+        "id": 83,
+        "name": "Storm"
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Lizarr",
+    "description": "A tamed, yet aggressive lizarr warrior. It will attack your enemies in battle.",
+    "image": "monsters/lizard_warrior.png",
+    "tier": 3,
+    "cost": 7500,
+    "stats": {
+      "attack": 25
+    },
+    "skills": [
+      {
+        "id": 71,
+        "name": "Doublecut"
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Pollux",
+    "description": "Available for a limited time: the terrible twin Pollux can assist you in battle with a variety of skills.",
+    "image": "bosses/pollux.png",
+    "tier": 9,
+    "cost": 2000000,
+    "stats": {
+      "attack": 3,
+      "spell": 5,
+      "heal": 6,
+      "buff": 4,
+      "debuff": 4
+    },
+    "skills": [
+      {
+        "id": 445,
+        "name": "Arrowstorm II"
+      },
+      {
+        "id": 119,
+        "name": "Dispel"
+      },
+      {
+        "id": 53,
+        "name": "Freeze"
+      },
+      {
+        "id": 133,
+        "name": "Full Bend"
+      },
+      {
+        "id": 251,
+        "name": "Scout Weakness"
+      },
+      {
+        "id": 244,
+        "name": "Sidesteps"
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Dire Wolf",
+    "description": "A tamed dire wolf. It can assist you in battle with attack and dexterity boosting skills.",
+    "image": "monsters/direwolf.png",
+    "tier": 7,
+    "cost": 300000,
+    "stats": {
+      "attack": 2,
+      "spell": 4,
+      "buff": 7
+    },
+    "skills": [
+      {
+        "id": 182,
+        "name": "Bloodlust"
+      },
+      {
+        "id": 285,
+        "name": "Doublecut II"
+      },
+      {
+        "id": 165,
+        "name": "Quick attack"
+      },
+      {
+        "id": 244,
+        "name": "Sidesteps"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Wyvern",
+    "description": "A wild wyvern. It can occasionally breathe fire at your opponent, causing blight.",
+    "image": "monsters/wyvern.png",
+    "tier": 6,
+    "cost": 75000,
+    "stats": {
+      "attack": 25,
+      "spell": 10
+    },
+    "skills": [
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Ghost",
+    "description": "A spooky ghost. It may put your opponent to sleep.",
+    "image": "monsters/ghost.png",
+    "tier": 3,
+    "cost": 7500,
+    "stats": {
+      "attack": 5,
+      "debuff": 20
+    },
+    "skills": [
+      {
+        "id": 169,
+        "name": "Sleep"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Minotaur",
+    "description": "A certainly powerful ally.",
+    "image": "bosses/minotaur.png",
+    "tier": 6,
+    "cost": 75000,
+    "stats": {
+      "attack": 25,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 85,
+        "name": "Threaten"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Gargoyle",
+    "description": "A living gargoyle. It can assist in battle by rarely petrifying your opponent.",
+    "image": "monsters/gargoyle.png",
+    "tier": 5,
+    "cost": 37500,
+    "stats": {
+      "attack": 10,
+      "debuff": 3
+    },
+    "skills": [
+      {
+        "id": 170,
+        "name": "Petrify"
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Great Cockatrice",
+    "description": "The mighty cockatrice. It can poison or petrify an opponent, while occasionally boosting your speed in battle.",
+    "image": "bosses/great_cockatrice.png",
+    "tier": 9,
+    "cost": 1500000,
+    "stats": {
+      "attack": 7,
+      "spell": 5,
+      "buff": 5,
+      "debuff": 3
+    },
+    "skills": [
+      {
+        "id": 195,
+        "name": "Cockatrice Breath"
+      },
+      {
+        "id": 366,
+        "name": "Miasma"
+      },
+      {
+        "id": 170,
+        "name": "Petrify"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Greater Lobster",
+    "description": "A green lobster. It can cause your opponents to bleed while slightly healing you.",
+    "image": "monsters/green_lobster.png",
+    "tier": 5,
+    "cost": 75000,
+    "stats": {
+      "spell": 5,
+      "heal": 5
+    },
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 285,
+        "name": "Doublecut II"
+      },
+      {
+        "id": 459,
+        "name": "Guts"
+      },
+      {
+        "id": 77,
+        "name": "Osmostrike"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Warg",
+    "description": "A tamed warg. It will assist in battle with dark strikes.",
+    "image": "monsters/warg.png",
+    "tier": 7,
+    "cost": 200000,
+    "stats": {
+      "attack": 3,
+      "spell": 20
+    },
+    "skills": [
+      {
+        "id": 70,
+        "name": "Darkstrike"
+      },
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Death Worm",
+    "description": "The revered Death Worm of the sands. It can harden your defenses while casting Earthen magic.",
+    "image": "bosses/deathworm.png",
+    "tier": 6,
+    "cost": 150000,
+    "stats": {
+      "attack": 2,
+      "spell": 5,
+      "buff": 30
+    },
+    "skills": [
+      {
+        "id": 91,
+        "name": "Magic Shield II"
+      },
+      {
+        "id": 160,
+        "name": "Multi-tremor"
+      },
+      {
+        "id": 79,
+        "name": "Protection II"
+      },
+      {
+        "id": 273,
+        "name": "Tremor IV"
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Seer",
+    "description": "A seer of Ra. It can blind an opponent in battle.",
+    "image": "monsters/seer.png",
+    "tier": 4,
+    "cost": 20000,
+    "stats": {
+      "attack": 3,
+      "spell": 5,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 36,
+        "name": "Bolt"
+      },
+      {
+        "id": 567,
+        "name": "Flash"
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Great Yeti",
+    "description": "The greatest of the Yeti. It is a true master of defense.",
+    "image": "monsters/great_yeti.png",
+    "tier": 8,
+    "cost": 1375000,
+    "stats": {
+      "spell": 5,
+      "buff": 30
+    },
+    "skills": [
+      {
+        "id": 135,
+        "name": "Dark Wall"
+      },
+      {
+        "id": 125,
+        "name": "Earthen Wall"
+      },
+      {
+        "id": 126,
+        "name": "Fire Wall"
+      },
+      {
+        "id": 137,
+        "name": "Holy Wall"
+      },
+      {
+        "id": 127,
+        "name": "Ice Wall"
+      },
+      {
+        "id": 124,
+        "name": "Lightning Wall"
+      },
+      {
+        "id": 60,
+        "name": "Magic Shield"
+      },
+      {
+        "id": 143,
+        "name": "Mighty Charge"
+      },
+      {
+        "id": 62,
+        "name": "Protection"
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Griffin",
+    "description": "A mighty griffin. It can assist you in battle by improving your dexterity, while casting dragon magic.",
+    "image": "bosses/griffin.png",
+    "tier": 7,
+    "cost": 250000,
+    "stats": {
+      "attack": 5,
+      "spell": 5,
+      "buff": 5
+    },
+    "skills": [
+      {
+        "id": 216,
+        "name": "Blightstrike II"
+      },
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Crimson Gazer",
+    "description": "A reckless Gazer. Be careful bringing this one with you.",
+    "image": "monsters/crimson_gazer.png",
+    "tier": 9,
+    "cost": 1500000,
+    "stats": {
+      "spell": 8
+    },
+    "skills": [
+      {
+        "id": 224,
+        "name": "Cataclysm II"
+      },
+      {
+        "id": 221,
+        "name": "Fulmination II"
+      },
+      {
+        "id": 223,
+        "name": "Glacier II"
+      },
+      {
+        "id": 222,
+        "name": "Inferno II"
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Horse",
+    "description": "A trusty steed. It can assist one in battle with offensive skills and boost one's dexterity.",
+    "image": "monsters/horse.png",
+    "tier": 4,
+    "cost": 25000,
+    "stats": {
+      "spell": 5,
+      "buff": 5
+    },
+    "skills": [
+      {
+        "id": 143,
+        "name": "Mighty Charge"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      },
+      {
+        "id": 568,
+        "name": "Trample"
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Harpy",
+    "description": "A happily singing harpy. It can assist you in battle by improving your dexterity or causing an opponent to be lulled to sleep.",
+    "image": "monsters/harpy.png",
+    "tier": 6,
+    "cost": 150000,
+    "stats": {
+      "attack": 2,
+      "spell": 4,
+      "buff": 20,
+      "debuff": 7
+    },
+    "skills": [
+      {
+        "id": 71,
+        "name": "Doublecut"
+      },
+      {
+        "id": 285,
+        "name": "Doublecut II"
+      },
+      {
+        "id": 169,
+        "name": "Sleep"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Wolf",
+    "description": "A tamed wolf. It will often attack your enemies in battle.",
+    "image": "monsters/wolf.png",
+    "tier": 2,
+    "cost": 2500,
+    "stats": {
+      "attack": 50
+    }
+  },
+  {
+    "id": 73,
+    "name": "Fenrir",
+    "description": "The unrelenting Fenrir. It can assist you in battle with strong physical attacks and status effects.",
+    "image": "bosses/fenrir.png",
+    "tier": 10,
+    "cost": 2500000,
+    "stats": {
+      "attack": 2,
+      "spell": 6
+    },
+    "skills": [
+      {
+        "id": 413,
+        "name": "Omnistrikes"
+      },
+      {
+        "id": 412,
+        "name": "Osmostrikes"
+      },
+      {
+        "id": 414,
+        "name": "Quadcut II"
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Triton",
+    "description": "A brown crustacean. It can cause your opponents to bleed while slightly healing you.",
+    "image": "monsters/beige_lobster.png",
+    "tier": 8,
+    "cost": 750000,
+    "stats": {
+      "spell": 5,
+      "heal": 5
+    },
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 285,
+        "name": "Doublecut II"
+      },
+      {
+        "id": 327,
+        "name": "Drain III"
+      },
+      {
+        "id": 459,
+        "name": "Guts"
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Pegasus",
+    "description": "A beast of great myth. It can assist you in battle with powerful strikes and curative holy magic",
+    "image": "bosses/pegasus.png",
+    "tier": 10,
+    "cost": 3500000,
+    "stats": {
+      "spell": 5,
+      "heal": 12
+    },
+    "skills": [
+      {
+        "id": 119,
+        "name": "Dispel"
+      },
+      {
+        "id": 128,
+        "name": "Holy Light"
+      },
+      {
+        "id": 129,
+        "name": "Miracle"
+      },
+      {
+        "id": 523,
+        "name": "Sacreseal II"
+      },
+      {
+        "id": 524,
+        "name": "Sacrestrike II"
+      },
+      {
+        "id": 568,
+        "name": "Trample"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Lesser Slime",
+    "description": "A tamed slime. It is not very powerful, but may assist you in battle.",
+    "image": "monsters/slime.png",
+    "tier": 1,
+    "cost": 1000,
+    "stats": {
+      "attack": 90
+    }
+  },
+  {
+    "id": 11,
+    "name": "Lesser Golem",
+    "description": "A tamed golem. It will cast protection on you in battle.",
+    "image": "monsters/golem.png",
+    "tier": 2,
+    "cost": 3750,
+    "stats": {
+      "attack": 10,
+      "buff": 25
+    },
+    "skills": [
+      {
+        "id": 62,
+        "name": "Protection"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Wisp",
+    "description": "A strange floating ball of energy. It is quite proficient at healing its allies.",
+    "image": "monsters/wisp.png",
+    "tier": 4,
+    "cost": 15000,
+    "stats": {
+      "heal": 20
+    },
+    "skills": [
+      {
+        "id": 106,
+        "name": "Wisp's Heal"
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Arcane Slime",
+    "description": "A tamed slime, capable of arcane magic.",
+    "image": "monsters/arcane_slime.png",
+    "tier": 7,
+    "cost": 250000,
+    "stats": {
+      "spell": 20
+    },
+    "skills": [
+      {
+        "id": 166,
+        "name": "Arcana"
+      },
+      {
+        "id": 167,
+        "name": "Arcana II"
+      },
+      {
+        "id": 168,
+        "name": "Arcanus"
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Turul",
+    "description": "A rare Turul. It can assist one in battle by diminishing an opponent's stats.",
+    "image": "monsters/turul.png",
+    "tier": 8,
+    "cost": 625000,
+    "stats": {
+      "debuff": 4
+    },
+    "skills": [
+      {
+        "id": 328,
+        "name": "Forbid"
+      },
+      {
+        "id": 234,
+        "name": "Rebuke"
+      },
+      {
+        "id": 180,
+        "name": "Wail"
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Anubis",
+    "description": "The magical might of the Jackal god knows no bounds.",
+    "image": "bosses/anubis.png",
+    "tier": 10,
+    "cost": 4000000,
+    "stats": {
+      "spell": 7,
+      "debuff": 12
+    },
+    "skills": [
+      {
+        "id": 277,
+        "name": "Flame V"
+      },
+      {
+        "id": 328,
+        "name": "Forbid"
+      },
+      {
+        "id": 326,
+        "name": "Forbidden Art"
+      },
+      {
+        "id": 278,
+        "name": "Frost V"
+      },
+      {
+        "id": 279,
+        "name": "Spark V"
+      },
+      {
+        "id": 280,
+        "name": "Tremor V"
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Chimera",
+    "description": "A fierce Chimera. This follower can cause one to go berserk, while assisting in battle with beastly spells.",
+    "image": "monsters/chimera.png",
+    "tier": 10,
+    "cost": 3000000,
+    "stats": {
+      "attack": 3,
+      "spell": 5,
+      "buff": 20
+    },
+    "skills": [
+      {
+        "id": 140,
+        "name": "Berserk"
+      },
+      {
+        "id": 342,
+        "name": "Blightstrike III"
+      },
+      {
+        "id": 204,
+        "name": "Omnistrike III"
+      },
+      {
+        "id": 343,
+        "name": "Wyvern Strikes"
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Colossus",
+    "description": "The mighty Colossus. It can boost your defenses, while draining an opponent's HP.",
+    "image": "monsters/colossus.png",
+    "tier": 8,
+    "cost": 625000,
+    "stats": {
+      "attack": 5,
+      "spell": 10,
+      "buff": 20
+    },
+    "skills": [
+      {
+        "id": 108,
+        "name": "Blast II"
+      },
+      {
+        "id": 48,
+        "name": "Drain"
+      },
+      {
+        "id": 79,
+        "name": "Protection II"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Dog",
+    "description": "A traveler's best friend.",
+    "image": "monsters/dog.png",
+    "tier": 1,
+    "cost": 1500,
+    "stats": {
+      "attack": 50,
+      "spell": 20
+    },
+    "skills": [
+      {
+        "id": 37,
+        "name": "Charge"
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Basilisk",
+    "description": "A tamed basilisk. It is well versed at the art of poison.",
+    "image": "monsters/basilisk.png",
+    "tier": 6,
+    "cost": 150000,
+    "stats": {
+      "attack": 10,
+      "spell": 20,
+      "debuff": 20
+    },
+    "skills": [
+      {
+        "id": 37,
+        "name": "Charge"
+      },
+      {
+        "id": 42,
+        "name": "Lunge"
+      },
+      {
+        "id": 61,
+        "name": "Poison"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "name": "War Horse",
+    "description": "A mighty steed. It can assist one in battle with offensive skills and boosts to one's dexterity.",
+    "image": "monsters/warhorse.png",
+    "tier": 7,
+    "cost": 250000,
+    "stats": {
+      "spell": 7,
+      "buff": 5
+    },
+    "skills": [
+      {
+        "id": 213,
+        "name": "Onslaught"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      },
+      {
+        "id": 568,
+        "name": "Trample"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Crow",
+    "description": "A tamed crow. It has a small chance of boosting your speed in battle.",
+    "image": "monsters/crow.png",
+    "tier": 1,
+    "cost": 1500,
+    "stats": {
+      "attack": 20,
+      "buff": 5
+    },
+    "skills": [
+      {
+        "id": 82,
+        "name": "Speed"
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Great Jinn",
+    "description": "A magical Jinn. It can cast unstable magic while turning the tide of the battle.",
+    "image": "bosses/great_jinn.png",
+    "tier": 6,
+    "cost": 200000,
+    "stats": {
+      "spell": 10,
+      "debuff": 10
+    },
+    "skills": [
+      {
+        "id": 86,
+        "name": "Cataclysm"
+      },
+      {
+        "id": 242,
+        "name": "Distortion"
+      },
+      {
+        "id": 87,
+        "name": "Fulmination"
+      },
+      {
+        "id": 88,
+        "name": "Glacier"
+      },
+      {
+        "id": 90,
+        "name": "Inferno"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Yokai",
+    "description": "The storied Yokai is a master of sleep and that of nightmares.",
+    "image": "monsters/yokai.png",
+    "tier": 4,
+    "cost": 20000,
+    "stats": {
+      "attack": 10,
+      "spell": 10,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 169,
+        "name": "Sleep"
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Orichalcum Golem",
+    "description": "A golem forged of Orichalcum. It can assist you in battle with Ward and defensive based skills.",
+    "image": "monsters/orichalcum_golem.png",
+    "tier": 7,
+    "cost": 500000,
+    "stats": {
+      "buff": 9
+    },
+    "skills": [
+      {
+        "id": 125,
+        "name": "Earthen Wall"
+      },
+      {
+        "id": 126,
+        "name": "Fire Wall"
+      },
+      {
+        "id": 127,
+        "name": "Ice Wall"
+      },
+      {
+        "id": 124,
+        "name": "Lightning Wall"
+      },
+      {
+        "id": 311,
+        "name": "Mend Wall"
+      },
+      {
+        "id": 300,
+        "name": "Ward of Iron"
+      },
+      {
+        "id": 299,
+        "name": "Ward of Mythril"
+      },
+      {
+        "id": 308,
+        "name": "Ward of Steel"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Elder Gnome",
+    "description": "An experienced gnome who brings unstable magic into battle.",
+    "image": "monsters/elder_gnome.png",
+    "tier": 5,
+    "cost": 75000,
+    "stats": {
+      "spell": 20
+    },
+    "skills": [
+      {
+        "id": 87,
+        "name": "Fulmination"
+      },
+      {
+        "id": 88,
+        "name": "Glacier"
+      },
+      {
+        "id": 90,
+        "name": "Inferno"
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Imp",
+    "description": "A tamed imp. Will occasionally boost your attack.",
+    "image": "monsters/imp.png",
+    "tier": 3,
+    "cost": 7500,
+    "stats": {
+      "attack": 10,
+      "buff": 25
+    },
+    "skills": [
+      {
+        "id": 67,
+        "name": "Warcry"
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Banshee",
+    "description": "The reason one would want a banshee with them is still quite unknown.",
+    "image": "monsters/banshee.png",
+    "tier": 5,
+    "cost": 37500,
+    "stats": {
+      "attack": 5,
+      "spell": 5,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 180,
+        "name": "Wail"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Drake",
+    "description": "A tamed Drake. It will occasionally summon meteor against your enemies.",
+    "image": "monsters/drake.png",
+    "tier": 4,
+    "cost": 15000,
+    "stats": {
+      "attack": 10,
+      "spell": 5
+    },
+    "skills": [
+      {
+        "id": 75,
+        "name": "Meteor"
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Arcane Flame",
+    "description": "A flame of arcane power. It can assist one in battle with both arcane and dragon magic.",
+    "image": "monsters/arcane_flame.png",
+    "tier": 6,
+    "cost": 125000,
+    "stats": {
+      "spell": 5
+    },
+    "skills": [
+      {
+        "id": 166,
+        "name": "Arcana"
+      },
+      {
+        "id": 167,
+        "name": "Arcana II"
+      },
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Lobster",
+    "description": "A lobster. It can cause your opponents to bleed while slightly healing you.",
+    "image": "monsters/lobster.png",
+    "tier": 3,
+    "cost": 12500,
+    "stats": {
+      "spell": 5,
+      "heal": 5
+    },
+    "skills": [
+      {
+        "id": 35,
+        "name": "Bleed"
+      },
+      {
+        "id": 459,
+        "name": "Guts"
+      },
+      {
+        "id": 41,
+        "name": "Heal"
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Great Gazer",
+    "description": "A great gazer. It can lower an opponents stats, while casting offensive magic.",
+    "image": "bosses/great_gazer.png",
+    "tier": 8,
+    "cost": 875000,
+    "stats": {
+      "attack": 5,
+      "spell": 10,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 69,
+        "name": "Blizzard"
+      },
+      {
+        "id": 75,
+        "name": "Meteor"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      },
+      {
+        "id": 63,
+        "name": "Quake"
+      },
+      {
+        "id": 83,
+        "name": "Storm"
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Dark Pegasus",
+    "description": "A beast of great myth. It can assist you in battle with powerful dark strikes and debuffs.",
+    "image": "bosses/dark_pegasus.png",
+    "tier": 10,
+    "cost": 4000000,
+    "stats": {
+      "spell": 5,
+      "debuff": 8
+    },
+    "skills": [
+      {
+        "id": 328,
+        "name": "Forbid"
+      },
+      {
+        "id": 326,
+        "name": "Forbidden Art"
+      },
+      {
+        "id": 515,
+        "name": "Gloomseal"
+      },
+      {
+        "id": 525,
+        "name": "Gloomseal II"
+      },
+      {
+        "id": 516,
+        "name": "Gloomstrike"
+      },
+      {
+        "id": 526,
+        "name": "Gloomstrike II"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Fairy",
+    "description": "A magic fairy. It will heal you in battle.",
+    "image": "monsters/fairy.png",
+    "tier": 3,
+    "cost": 7500,
+    "stats": {
+      "attack": 5,
+      "heal": 25
+    },
+    "skills": [
+      {
+        "id": 41,
+        "name": "Heal"
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Cockatrice",
+    "description": "The might cockatrice. It can poison or petrify an opponent, while occasionally boosting your speed in battle.",
+    "image": "bosses/cockatrice.png",
+    "tier": 8,
+    "cost": 750000,
+    "stats": {
+      "attack": 10,
+      "spell": 5,
+      "buff": 5,
+      "debuff": 2
+    },
+    "skills": [
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 170,
+        "name": "Petrify"
+      },
+      {
+        "id": 43,
+        "name": "Poisonstrike"
+      },
+      {
+        "id": 105,
+        "name": "Wyvern Speed"
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Draugr Mage",
+    "description": "A draugr of certain magical ability.",
+    "image": "monsters/draugr_mage.png",
+    "tier": 3,
+    "cost": 15000,
+    "stats": {
+      "spell": 8
+    },
+    "skills": [
+      {
+        "id": 52,
+        "name": "Flame II"
+      },
+      {
+        "id": 54,
+        "name": "Frost II"
+      },
+      {
+        "id": 66,
+        "name": "Spark II"
+      },
+      {
+        "id": 111,
+        "name": "Tremor II"
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Camazotz",
+    "description": "The revered bat of death. It can drain HP from your opponents while improving your stats.",
+    "image": "bosses/camazotz.png",
+    "tier": 7,
+    "cost": 300000,
+    "stats": {
+      "spell": 2,
+      "heal": 12,
+      "buff": 12
+    },
+    "skills": [
+      {
+        "id": 34,
+        "name": "Battle Dance"
+      },
+      {
+        "id": 285,
+        "name": "Doublecut II"
+      },
+      {
+        "id": 239,
+        "name": "Drain II"
+      },
+      {
+        "id": 287,
+        "name": "Flurry II"
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Zu",
+    "description": "A tamed crow. It has a small chance of boosting your speed in battle.",
+    "image": "monsters/bluebird.png",
+    "tier": 3,
+    "cost": 7500,
+    "stats": {
+      "attack": 20,
+      "buff": 10
+    },
+    "skills": [
+      {
+        "id": 82,
+        "name": "Speed"
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Fafnir",
+    "description": "The great cursed Fafnir. While curing on of status ailments, it will assist you in battle with dark and dragon magic.",
+    "image": "bosses/fafnir.png",
+    "tier": 10,
+    "cost": 3500000,
+    "stats": {
+      "attack": 3,
+      "spell": 5,
+      "heal": 25
+    },
+    "skills": [
+      {
+        "id": 146,
+        "name": "Darkstrike II"
+      },
+      {
+        "id": 201,
+        "name": "Darkstrike III"
+      },
+      {
+        "id": 119,
+        "name": "Dispel"
+      },
+      {
+        "id": 97,
+        "name": "Dragon Breath"
+      },
+      {
+        "id": 128,
+        "name": "Holy Light"
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Big Cactus",
+    "description": "A giant live cactus. It can assist you in battle with barrages of needles.",
+    "image": "monsters/cactus.png",
+    "tier": 8,
+    "cost": 500000,
+    "stats": {
+      "attack": 1,
+      "spell": 6
+    },
+    "skills": [
+      {
+        "id": 134,
+        "name": "Arrowstorm"
+      },
+      {
+        "id": 445,
+        "name": "Arrowstorm II"
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Fjalar",
+    "description": "A rare Fjalar. It can assist one in battle by increasing dexterity and critical hit rate.",
+    "image": "monsters/fjalar.png",
+    "tier": 10,
+    "cost": 2500000,
+    "stats": {
+      "attack": 3,
+      "spell": 5,
+      "buff": 25
+    },
+    "skills": [
+      {
+        "id": 499,
+        "name": "Evasive Strikes"
+      },
+      {
+        "id": 414,
+        "name": "Quadcut II"
+      },
+      {
+        "id": 82,
+        "name": "Speed"
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Fae",
+    "description": "A great magic fairy. It will cure your status effects in battle",
+    "image": "monsters/great_fairy.png",
+    "tier": 4,
+    "cost": 40000,
+    "stats": {
+      "heal": 50
+    },
+    "skills": [
+      {
+        "id": 258,
+        "name": "Cure Bleeding"
+      },
+      {
+        "id": 259,
+        "name": "Cure Blindness"
+      },
+      {
+        "id": 260,
+        "name": "Cure Burn"
+      },
+      {
+        "id": 261,
+        "name": "Cure Frozen"
+      },
+      {
+        "id": 262,
+        "name": "Cure Paralysis"
+      },
+      {
+        "id": 263,
+        "name": "Cure Poison"
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Succubus",
+    "description": "A grimly singing succubus. It can assist you in battle by improving your dexterity or attack power.",
+    "image": "monsters/succubus.png",
+    "tier": 8,
+    "cost": 625000,
+    "stats": {
+      "buff": 5
+    },
+    "skills": [
+      {
+        "id": 182,
+        "name": "Bloodlust"
+      },
+      {
+        "id": 244,
+        "name": "Sidesteps"
+      },
+      {
+        "id": 180,
+        "name": "Wail"
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Undead Golem",
+    "description": "A great undead golem. It will assist you in battle by granting and restoring ward.",
+    "image": "bosses/undead_golem.png",
+    "tier": 9,
+    "cost": 1500000,
+    "stats": {
+      "spell": 8,
+      "heal": 3,
+      "buff": 5
+    },
+    "skills": [
+      {
+        "id": 292,
+        "name": "Fortify III"
+      },
+      {
+        "id": 335,
+        "name": "Guarding Strike"
+      },
+      {
+        "id": 294,
+        "name": "Mend Wall III"
+      },
+      {
+        "id": 305,
+        "name": "Rampart III"
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Cthulhu",
+    "description": "This dreaded beast of the seas can assist you in battle with status effects and HP absorption.",
+    "image": "bosses/cthulhu.png",
+    "tier": 10,
+    "cost": 3500000,
+    "stats": {
+      "attack": 2,
+      "spell": 9,
+      "buff": 9,
+      "debuff": 9
+    },
+    "skills": [
+      {
+        "id": 239,
+        "name": "Drain II"
+      },
+      {
+        "id": 171,
+        "name": "Mindblast"
+      },
+      {
+        "id": 136,
+        "name": "Prism Wall"
+      },
+      {
+        "id": 450,
+        "name": "Tidalseal"
+      },
+      {
+        "id": 448,
+        "name": "Tidalstrike"
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Ancient Jinn",
+    "description": "A magical Jinn. It can cast fey magic while granting its talents to its master.",
+    "image": "monsters/ancient_jinn.png",
+    "tier": 9,
+    "cost": 1750000,
+    "stats": {
+      "spell": 4,
+      "buff": 4
+    },
+    "skills": [
+      {
+        "id": 563,
+        "name": "Fey Flame II"
+      },
+      {
+        "id": 564,
+        "name": "Fey Frost II"
+      },
+      {
+        "id": 565,
+        "name": "Fey Spark II"
+      },
+      {
+        "id": 566,
+        "name": "Fey Tremor II"
+      },
+      {
+        "id": 102,
+        "name": "Jinn's Talent"
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Greater Yokai",
+    "description": "A tricky yokai.  It has a chance of causing an opponent one of many ailments",
+    "image": "monsters/yokai2.png",
+    "tier": 6,
+    "cost": 225000,
+    "stats": {
+      "debuff": 10
+    },
+    "skills": [
+      {
+        "id": 47,
+        "name": "Burn"
+      },
+      {
+        "id": 53,
+        "name": "Freeze"
+      },
+      {
+        "id": 61,
+        "name": "Poison"
+      },
+      {
+        "id": 64,
+        "name": "Shock"
+      },
+      {
+        "id": 169,
+        "name": "Sleep"
+      },
+      {
+        "id": 65,
+        "name": "Smoke Bomb"
+      },
+      {
+        "id": 84,
+        "name": "Stun Dart"
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Dark Slime",
+    "description": "A slime of the darkest variable. It can blind your opponent and use dark magic.",
+    "image": "monsters/dark_slime.png",
+    "tier": 5,
+    "cost": 50000,
+    "stats": {
+      "spell": 5,
+      "debuff": 5
+    },
+    "skills": [
+      {
+        "id": 92,
+        "name": "Nightmare"
+      },
+      {
+        "id": 65,
+        "name": "Smoke Bomb"
+      }
+    ]
+  }
+]

@@ -1,0 +1,385 @@
+[
+  {
+    "id": 7,
+    "name": "High Elf Dalan",
+    "tier": 3,
+    "description": "Dalan, brother to Sala, was once exalted in the ranks of the High Elves.\r\n\r\nThe High Elves once lived in great mountains, but the returned dragons have made sparse of them.\r\n\r\nSala and Dalan nurse what is left of the High Elves.",
+    "image": "npcs/high_elf.png",
+    "quests": [
+      {
+        "id": 12,
+        "name": "First Aid",
+        "tier": 3
+      },
+      {
+        "id": 13,
+        "name": "Night Slayer",
+        "tier": 3
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Knight Artifice",
+    "tier": 6,
+    "description": "Knights Artifice and Finesse journeyed to this land when Avalon fell to Balor. What Artifice lacks in finesse, he makes up for in cunning performances.",
+    "image": "npcs/artifice.png",
+    "quests": [
+      {
+        "id": 25,
+        "name": "Slayer of Artifice",
+        "tier": 6
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Gwyn",
+    "tier": 9,
+    "description": "Gwyn is the former King of Annwn. He gave the throne to return to the battlefield when Balor flourished after the falling. His swordplay may only be matched by the talented Knight Finesse.",
+    "image": "npcs/gwyn.png",
+    "quests": [
+      {
+        "id": 36,
+        "name": "Balor vs Annwn",
+        "tier": 9
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Hermes",
+    "tier": 1,
+    "description": "Once a great mercant of Annwn, Hermes still travels the land in search of health customers. Although, this inflicted world does not produce as many as it used to.",
+    "image": "npcs/merchant.png",
+    "quests": [
+      {
+        "id": 3,
+        "name": "A Handsome Trade",
+        "tier": 1
+      },
+      {
+        "id": 4,
+        "name": "Hermes' Revenge",
+        "tier": 1
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Horus",
+    "tier": 7,
+    "description": "From the skies, Horus has observed the aftermath of the falling for what seems like ages.\r\n\r\nAs the Arisen rise, hope is fleeting.\r\n\r\nCan we really end this?",
+    "image": "npcs/winged_m.png",
+    "quests": [
+      {
+        "id": 28,
+        "name": "The Arisen",
+        "tier": 7
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Legionnaire Boulder",
+    "tier": 4,
+    "description": "Boulder maintains one of the highest ranks of the Earthen Legion. His diplomacy has prevented the Inferno Knights and the Frozenguard from laying waste to this land, perhaps far more so than the falling itself.",
+    "image": "npcs/legionnaire_boulder.png",
+    "quests": [
+      {
+        "id": 18,
+        "name": "A Rocky Past",
+        "tier": 4
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Rouge",
+    "tier": 6,
+    "description": "The Crimson Archer, Rogue, is quite shrouded in mystery. Her loosed arrow never misses a mark. Some say she was a thief of Avalon, others say a Knight of Balor.",
+    "image": "npcs/rouge.png",
+    "quests": [
+      {
+        "id": 26,
+        "name": "A Hunt of Heads",
+        "tier": 6
+      },
+      {
+        "id": 27,
+        "name": "A Hunt of Heads II",
+        "tier": 6
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Borr",
+    "tier": 10,
+    "description": "Borr, the former king of the Nothren, still roams this land in search of mighty trinkets.",
+    "image": "npcs/borr.png",
+    "quests": [
+      {
+        "id": 66,
+        "name": "A Symbol of Royalty",
+        "tier": 10
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Frost Mage Boreal",
+    "tier": 4,
+    "description": "Boreal is a noble mage of the Frozenguard, and her magical prowess is hard to match.",
+    "image": "npcs/frost_mage_boreal.png",
+    "quests": [
+      {
+        "id": 17,
+        "name": "A Snowy Day",
+        "tier": 4
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Flamewalker Pyre",
+    "tier": 4,
+    "description": "Pyre is quite the infamous Inferno Knight. He fights the fallen monsters alone out of immense pride.\r\n\r\nOr maybe its because his acquaintances just can't handle his energy.",
+    "image": "npcs/pyre.png",
+    "quests": [
+      {
+        "id": 16,
+        "name": "A Candle Like No Other",
+        "tier": 4
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Cade",
+    "tier": 5,
+    "description": "Cade, the famed inventor of Avalon, was well renowned for the esoteric gadgets he produced.\r\n\r\nBut his inventions were of naught a use after the falling.\r\n\r\nPerhaps he can make something new.",
+    "image": "npcs/inventor.png",
+    "quests": [
+      {
+        "id": 20,
+        "name": "Stuff",
+        "tier": 5
+      },
+      {
+        "id": 21,
+        "name": "Things",
+        "tier": 5
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Dudley",
+    "tier": 3,
+    "description": "You don't see many dwarves anymore. Especially those as stubborn as Dudley.\r\n\r\nHe sure loves his mythril.\r\n\r\nAnd his ale.\r\n\r\n*hick*",
+    "image": "npcs/dwarf.png",
+    "quests": [
+      {
+        "id": 8,
+        "name": "A Hunt for Mythril",
+        "tier": 3
+      },
+      {
+        "id": 9,
+        "name": "A Need for Mythril",
+        "tier": 3
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Storm Knight Gale",
+    "tier": 4,
+    "description": "Gale, the mighty Storm Knight, was one of the few to establish the Stormforce.\r\n\r\nHowever, she oft strays from her posts.\r\n\r\nSome say her hope is fleeting every day.",
+    "image": "npcs/storm_knight_gale.png",
+    "quests": [
+      {
+        "id": 19,
+        "name": "A Windy Day",
+        "tier": 4
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Knight Finesse",
+    "tier": 8,
+    "description": "Knights Artifice and Finesse journeyed to his land when Avalon fell to Balor.\r\n\r\nFinesse is highly regarded as a true blademaster. Some say he carries a dozen swords at a time. Some say swords materialize in his hands, with just a thought.",
+    "image": "npcs/finesse.png",
+    "quests": [
+      {
+        "id": 32,
+        "name": "Dokkalfar Forces",
+        "tier": 8
+      },
+      {
+        "id": 33,
+        "name": "Dokkalfar Knights",
+        "tier": 8
+      },
+      {
+        "id": 34,
+        "name": "Dokkalfar Lords",
+        "tier": 8
+      },
+      {
+        "id": 35,
+        "name": "Dokkalfar Magic",
+        "tier": 8
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Master Nolan",
+    "tier": 5,
+    "description": "Nolan, the master gnome.\r\n\r\nFew have heard his name, even fewer have seen his might.",
+    "image": "npcs/master_gnome.png",
+    "quests": [
+      {
+        "id": 22,
+        "name": "A Tome of Knowledge",
+        "tier": 5
+      },
+      {
+        "id": 23,
+        "name": "Lost and Found",
+        "tier": 5
+      },
+      {
+        "id": 24,
+        "name": "Nolan's Hues",
+        "tier": 5
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Enid of Annwn",
+    "tier": 8,
+    "description": "Enid followed Gwyn to this land when Balor took reign.\r\n\r\nAs a great testament to her talents, he's never noticed.",
+    "image": "npcs/enid.png",
+    "quests": [
+      {
+        "id": 31,
+        "name": "A Hunt for a Hen",
+        "tier": 8
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Sir Balin",
+    "tier": 7,
+    "description": "From Avalon comes the Knight with Two Swords. After the falling, Sir Balin lost his dear brother to the dragons. He forever fights for revenge.",
+    "image": "npcs/balin.png",
+    "quests": [
+      {
+        "id": 29,
+        "name": "Tiamat",
+        "tier": 7
+      },
+      {
+        "id": 30,
+        "name": "Typhon",
+        "tier": 7
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Gilles",
+    "tier": 3,
+    "description": "Gilles, the wisest of Avalon scholars.\r\n\r\nHe believes he can reverse the falling with his research.\r\n\r\nBut does knowledge really keep one safe?",
+    "image": "npcs/wise_man1.png",
+    "quests": [
+      {
+        "id": 10,
+        "name": "A Monstrous Study",
+        "tier": 3
+      },
+      {
+        "id": 11,
+        "name": "A Study of Artifacts",
+        "tier": 3
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Beatrice",
+    "tier": 2,
+    "description": "Late in her years, Beatrice became a student of magic under the teaching of Merlin, the great wizard.\r\n\r\nNo one knows what became of him. Some say the forces of Balor took him captive, some say the great dragon Fafnir.\r\n\r\nShe vows to find him.",
+    "image": "npcs/magic_woman1.png",
+    "quests": [
+      {
+        "id": 6,
+        "name": "A Soul's Worth",
+        "tier": 2
+      },
+      {
+        "id": 7,
+        "name": "Eye for an Eye",
+        "tier": 2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Bard Aldon",
+    "tier": 2,
+    "description": "Poor Aldon, the famed bard of Avalon. There isn't much need for entertainers at the moment.",
+    "image": "npcs/bard.png",
+    "quests": [
+      {
+        "id": 5,
+        "name": "For the Love of Commerce",
+        "tier": 2
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "name": "Carl",
+    "tier": 1,
+    "description": "Carl, the aloof one, longed for so long to become a knight of valour.\r\n\r\nForever the target of bandits, Carl keeps hidden, with his trusty dagger at the ready.\r\n\r\nIf only he knew of combat...",
+    "image": "npcs/man1.png",
+    "quests": [
+      {
+        "id": 1,
+        "name": "Carl's Revenge",
+        "tier": 1
+      },
+      {
+        "id": 2,
+        "name": "Iron Carl",
+        "tier": 1
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "High Elf Sala",
+    "tier": 3,
+    "description": "Sala, sister to Dalan, was a great warrior of the High Elves.\r\n\r\nThe High Elves once lived in great mountains, but the returned dragons have made sparse of them.\r\n\r\nSala and Dalan nurse what is left of High Elves.",
+    "image": "npcs/high_elf_f.png",
+    "quests": [
+      {
+        "id": 14,
+        "name": "A Cure for All",
+        "tier": 3
+      },
+      {
+        "id": 15,
+        "name": "Beast of the Sea",
+        "tier": 3
+      }
+    ]
+  }
+]

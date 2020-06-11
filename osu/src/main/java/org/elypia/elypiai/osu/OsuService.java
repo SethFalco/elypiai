@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
-package org.elypia.elypiai.osu.impl;
+package org.elypia.elypiai.osu;
 
-import org.elypia.elypiai.osu.*;
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.*;
 import retrofit2.http.*;
 
 import java.util.List;
@@ -28,7 +27,7 @@ import java.util.List;
 public interface OsuService {
 
     @GET("get_user")
-    Call<Player> getPlayer(
+    Maybe<Player> getPlayer(
         @Query("u") String identifier,
         @Query("type") String type,
         @Query("m") int mode,
@@ -36,14 +35,14 @@ public interface OsuService {
     );
 
     @GET("get_beatmaps")
-    Call<List<BeatMap>> getBeatMaps(
+    Observable<List<BeatMap>> getBeatMaps(
         @Query("s") int id,
         @Query("m") int mode,
         @Query("limit") int limit
     );
 
     @GET("get_user_recent")
-    Call<List<RecentPlay>> getRecentPlays(
+    Observable<List<RecentPlay>> getRecentPlays(
         @Query("u") String identifier,
         @Query("type") String type,
         @Query("m") int mode,
@@ -51,16 +50,16 @@ public interface OsuService {
     );
 
     @GET("get_match")
-    Call<Match> getMatch(
+    Maybe<Match> getMatch(
         @Query("mp") int id
     );
 
     @GET("get_scores")
-    Call<Void> getScores();
+    Observable<Void> getScores();
 
     @GET("get_user_best")
-    Call<Void> getPlayersBest();
+    Observable<Void> getPlayersBest();
 
     @GET("get_replay")
-    Call<Void> getReplay();
+    Observable<Void> getReplay();
 }

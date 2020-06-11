@@ -16,10 +16,8 @@
 
 package org.elypia.elypiai.runescape;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.*;
 import retrofit2.http.*;
-
-import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -27,12 +25,12 @@ import java.util.List;
 public interface RuneScapeService {
 
     @GET("profile/profile")
-    Call<Player> getUser(
+    Maybe<Player> getUser(
         @Query("user") String user
     );
 
     @GET("quests")
-    Call<List<QuestStats>> getQuestStats(
+    Single<QuestStatuses> getQuestStatuses(
         @Query("user") String user
     );
 }

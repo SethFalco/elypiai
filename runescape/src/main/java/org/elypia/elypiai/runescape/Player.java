@@ -29,7 +29,8 @@ import java.util.*;
  */
 public class Player {
 
-	private static final String RANK_URL = "http://services.runescape.com/m=hiscore/compare";
+	private static final String RANK_URL = "https://services.runescape.com/m=hiscore/compare";
+	private static final String AVATAR_URL_FORMAT = "https://secure.runescape.com/m=avatar-rs/%s/chat.png";
 
 	@SerializedName("name")
 	private String username;
@@ -88,8 +89,20 @@ public class Player {
 	}
 
 	/**
-	 * @return	Returns the name of the user, or "PROFILE_PRIVATE"
-	 * 			if the users account is set to private.
+	 * <strong>This menthod creates an avatar URL based on the
+	 * hard-coded String {@link #AVATAR_URL_FORMAT}, and does not come from
+	 * the API. This method may produce broken results.</strong>
+	 *
+	 * @return The URL to the players avatar, this will
+	 * point to the default avatar if the player hasn't set one.
+	 */
+	public String getAvatarUrl() {
+		String encoded = URLEncoder.encode(username, StandardCharsets.UTF_8);
+		return String.format(AVATAR_URL_FORMAT, encoded);
+	}
+
+	/**
+	 * @return	Returns the name of the user.
 	 */
 	public String getUsername() {
 		return username;
@@ -104,11 +117,20 @@ public class Player {
 	}
 
 	/**
-	 * @return	Returns the total level with commas formatted
-	 * 			as a String.
+	 * @return	Returns the total level with thousand seperators
+	 * formatted as a String using the default system locale.
 	 */
-	public String getTotalLevelString() {
-		return String.format("%,d", totalLevel);
+	public String getTotalLevelFormatted() {
+		return getTotalLevelFormatted(Locale.getDefault());
+	}
+
+	/**
+	 * @param locale The system locale to format with.
+	 * @return	Returns the total level with thousand seperators
+	 * formatted as a String.
+	 */
+	public String getTotalLevelFormatted(Locale locale) {
+		return String.format(locale, "%,d", totalLevel);
 	}
 
 	/**
@@ -119,10 +141,19 @@ public class Player {
 	}
 
 	/**
+	 * @return	Returns the total xp formatted as a String
+	 * using the default system locale.
+	 */
+	public String getTotalXpFormatted() {
+		return getTotalXpFormatted(Locale.getDefault());
+	}
+
+	/**
+	 * @param locale The locale to use when formatting.
 	 * @return	Returns the total xp formatted as a String.
 	 */
-	public String getTotalXpString() {
-		return String.format("%,d", totalXp);
+	public String getTotalXpFormatted(Locale locale) {
+		return String.format(locale, "%,d", totalXp);
 	}
 
 	/**

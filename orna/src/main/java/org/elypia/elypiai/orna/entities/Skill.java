@@ -16,14 +16,15 @@
 
 package org.elypia.elypiai.orna.entities;
 
+import com.google.gson.annotations.SerializedName;
 import org.elypia.elypiai.orna.data.SkillType;
 
-/**
- * @author seth@elypia.org (Seth Falco)
- */
-public class Skill extends TieredEntity {
+public class Skill extends Entity {
 
+    @SerializedName("type")
     private SkillType type;
-    private String description;
-    private int manaCost;
+
+    public SkillType getType() {
+        return type;
+    }
 }

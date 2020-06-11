@@ -16,7 +16,7 @@
 
 package org.elypia.elypiai.poe;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.*;
 
 import java.util.List;
@@ -27,12 +27,12 @@ import java.util.List;
 public interface PathOfExileService {
 
     @GET("public-stash-tabs")
-    Call<StashTabs> getStashTabs(
+    Single<StashTabs> getStashTabs(
         @Query("id") String id
     );
 
     @GET("leagues")
-    Call<List<League>> getLeagues(
+    Single<List<League>> getLeagues(
         @Query("type") String type,
         @Query("realm") String realm,
         @Query("season") String season,
@@ -42,7 +42,7 @@ public interface PathOfExileService {
     );
 
     @GET("leagues/{id}")
-    Call<List<League>> getLeagues(
+    Single<List<League>> getLeagues(
         @Path("id") String id,
         @Query("realm") String realm,
         @Query("ladder") byte ladder,
@@ -52,15 +52,15 @@ public interface PathOfExileService {
     );
 
     @GET("league-rules/{id}")
-    Call<LeagueRule> getLeagueRule(
+    Single<LeagueRule> getLeagueRule(
         @Path("id") String id
     );
 
     @GET("league-rules")
-    Call<List<LeagueRule>> getLeagueRules();
+    Single<List<LeagueRule>> getLeagueRules();
 
     @GET("ladders/{id}")
-    Call<List<LadderEntry>> getLeagueLadder(
+    Single<List<LadderEntry>> getLeagueLadder(
         @Path("id") String id,
         @Query("realm") String realm,
         @Query("limit") int limit,
@@ -73,7 +73,7 @@ public interface PathOfExileService {
     );
 
     @GET("pvp-matches")
-    Call<List<PvpMatch>> getPvpMatches(
+    Single<List<PvpMatch>> getPvpMatches(
         @Query("season") String season,
         @Query("realm") String realm
     );

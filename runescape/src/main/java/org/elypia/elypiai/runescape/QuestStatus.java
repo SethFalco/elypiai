@@ -22,7 +22,7 @@ import org.elypia.elypiai.runescape.data.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class QuestStats implements Comparable<QuestStats> {
+public class QuestStatus implements Comparable<QuestStatus> {
 
 	@SerializedName("title")
 	private String title;
@@ -67,7 +67,7 @@ public class QuestStats implements Comparable<QuestStats> {
 	}
 
 	@Override
-	public int compareTo(QuestStats o) {
+	public int compareTo(QuestStatus o) {
 		return title.compareToIgnoreCase(o.title);
 	}
 }

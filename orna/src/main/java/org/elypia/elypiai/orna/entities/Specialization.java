@@ -16,9 +16,37 @@
 
 package org.elypia.elypiai.orna.entities;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
 public class Specialization extends TieredEntity {
 
+    @SerializedName("female_name")
     private String femaleName;
-    private String cost; // Should this really be a String. :thinking:
+
+    @SerializedName("cost")
+    private String cost;
+
+    @SerializedName("description")
     private String description;
+
+    @SerializedName("images")
+    private List<String> imageUrls;
+
+    public String getFemaleName() {
+        return femaleName;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
 }

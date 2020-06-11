@@ -41,17 +41,17 @@ public enum CleverTweak {
 
     private static final String TWEAK = "cb_settings_tweak";
 
-    private final int ID;
+    private final int id;
 
     CleverTweak(int id) {
-        ID = id;
+        this.id = id;
     }
 
     public int getId() {
-        return ID;
+        return id;
     }
 
     public String getName() {
-        return TWEAK + ID;
+        return TWEAK + id;
     }
 }

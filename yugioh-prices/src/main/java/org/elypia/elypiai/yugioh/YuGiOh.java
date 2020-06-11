@@ -16,19 +16,19 @@
 
 package org.elypia.elypiai.yugioh;
 
-import org.elypia.retropia.core.*;
-import org.elypia.retropia.core.extensions.WrapperExtension;
-import org.elypia.retropia.core.requests.OptionalRestAction;
-import org.elypia.retropia.gson.GsonService;
+import io.reactivex.rxjava3.core.Maybe;
+import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
-import retrofit2.*;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class YuGiOh extends ApiWrapper {
+public class YuGiOh {
 
 	private static final Logger logger = LoggerFactory.getLogger(YuGiOh.class);
 
@@ -50,19 +50,15 @@ public class YuGiOh extends ApiWrapper {
 	private YuGiOhService service;
 
 	public YuGiOh() {
-		this(new WrapperExtension[0]);
-	}
-
-	public YuGiOh(WrapperExtension... exts) {
-		this(baseUrl, exts);
+		this(baseUrl);
     }
 
-    public YuGiOh(URL url, WrapperExtension... exts) {
-		super(exts);
+    public YuGiOh(URL url) {
 		service = new Retrofit.Builder()
 			.baseUrl(url)
-			.client(RequestService.withExtensions(exts))
-			.addConverterFactory(GsonService.getInstance())
+			.client(HttpClientSingleton.getBuilder().build())
+			.addConverterFactory(GsonConverterFactory.create())
+			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()
 			.create(YuGiOhService.class);
     }
@@ -75,8 +71,7 @@ public class YuGiOh extends ApiWrapper {
 	 *
 	 * @param name The YuGiOh card to search up, must match card name exactly.
 	 */
-    public OptionalRestAction<TradingCard> getCard(String name) {
-		Call<TradingCard> call = service.getCard(name);
-		return new OptionalRestAction<>(call);
+    public Maybe<TradingCard> getCard(String name) {
+		return service.getCard(name);
 	}
 }

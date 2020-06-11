@@ -16,13 +16,13 @@
 
 package org.elypia.elypiai.orna;
 
+import io.reactivex.rxjava3.core.Single;
 import org.elypia.elypiai.orna.entities.*;
-import org.elypia.retropia.core.*;
-import org.elypia.retropia.core.extensions.WrapperExtension;
-import org.elypia.retropia.core.requests.RestAction;
-import org.elypia.retropia.gson.GsonService;
+import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
-import retrofit2.*;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
 import java.util.List;
@@ -33,7 +33,7 @@ import java.util.List;
  * @see <a href="https://orna.guide/">https://orna.guide/</a>
  * @author seth@elypia.org (Seth Falco)
  */
-public class Orna extends ApiWrapper {
+public class Orna {
 
     /** Endpoint that stores all static resources for Orna Guide. */
     private static final String RESOURCE_URL = "https://orna.guide/static/orna/img/";
@@ -58,31 +58,53 @@ public class Orna extends ApiWrapper {
     private OrnaService service;
 
     public Orna() {
-        this(new WrapperExtension[0]);
+        this(baseUrl);
     }
 
-    public Orna(WrapperExtension... exts) {
-        this(baseUrl, exts);
-    }
-
-    public Orna(URL baseUrl, WrapperExtension... exts) {
-        super(exts);
-
+    public Orna(URL baseUrl) {
         service = new Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(RequestService.withExtensions(exts))
-            .addConverterFactory(GsonService.getInstance())
+            .client(HttpClientSingleton.getBuilder().build())
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
             .create(OrnaService.class);
     }
 
-    public RestAction<List<Monster>> getMonsters() {
-        Call<List<Monster>> call = service.getMonsters();
-        return new RestAction<>(call);
+    public Single<List<Item>> getItems() {
+        return service.getItems();
+    }
+
+    public Single<List<Specialization>> getSpecializations() {
+        return service.getSpecializations();
+    }
+
+    public Single<List<SkillDetails>> getSkills() {
+        return service.getSkills();
+    }
+
+    public Single<List<Pet>> getPets() {
+        return service.getPets();
+    }
+
+    public Single<List<Monster>> getMonsters() {
+        return service.getMonsters();
+    }
+
+    public Single<List<Quest>> getQuests() {
+        return service.getQuests();
+    }
+
+    public Single<List<Achievment>> getAchievments() {
+        return service.getAchievments();
+    }
+
+    public Single<List<Npc>> getNpcs() {
+        return service.getNpcs();
     }
 
     /**
-     * @param image The image attribute of a {@link AbstractEntity}
+     * @param image The image attribute of a {@link Entity}
      * that has an image associated with it.
      * @return The URL that can display the image for this entity.
      */

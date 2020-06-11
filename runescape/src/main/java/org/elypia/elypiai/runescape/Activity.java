@@ -25,23 +25,29 @@ import java.util.Date;
  */
 public class Activity implements Comparable<Activity> {
 
+    /** @see #getDate() */
     @SerializedName("date")
     private Date date;
 
+    /** @see #getDetails() */
     @SerializedName("details")
     private String details;
 
+    /** @see #getText()  */
     @SerializedName("text")
     private String text;
 
+    /** The date that the activity occured. */
     public Date getDate() {
         return date;
     }
 
+    /** A display friendly sentence that represents the event. */
     public String getDetails() {
         return details;
     }
 
+    /** A non-descriptive string that represents the type of event. */
     public String getText() {
         return text;
     }

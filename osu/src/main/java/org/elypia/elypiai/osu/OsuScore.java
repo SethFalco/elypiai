@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.elypia.elypiai.osu.impl;
+package org.elypia.elypiai.osu;
 
 import com.google.gson.annotations.*;
 import org.elypia.retropia.gson.deserializers.BitBooleanDeserializer;

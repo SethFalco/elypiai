@@ -14,33 +14,22 @@
  * limitations under the License.
  */
 
-package org.elypia.elypiai.steam.impl;
+package org.elypia.elypiai.cleverbot;
 
-import org.elypia.elypiai.steam.*;
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.*;
-
-import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public interface SteamService {
+public interface CleverbotService {
 
-    @GET("ISteamUser/ResolveVanityURL/v0001/")
-    Call<SteamSearch> getSteamId(
-        @Query("vanityUrl") String vanityUrl
-    );
-
-    @GET("ISteamUser/GetPlayerSummaries/v0002/")
-    Call<List<SteamUser>> getUsers(
-        @Query("steamids") String steamIds
-    );
-
-    @GET("IPlayerService/GetOwnedGames/v0001/")
-    Call<List<SteamGame>> getLibrary(
-        @Query("steamid") long steamId,
-        @Query("include_played_free_games") int freeGames,
-        @Query("include_appinfo") int appInfo
+    @GET("getreply")
+    Single<CleverResponse> say(
+        @Query("input") String input,
+        @Query("cs") String cs,
+        @Query("cb_settings_tweak1") Integer tweakOne,
+        @Query("cb_settings_tweak2") Integer tweakTwo,
+        @Query("cb_settings_tweak3") Integer tweakThree
     );
 }

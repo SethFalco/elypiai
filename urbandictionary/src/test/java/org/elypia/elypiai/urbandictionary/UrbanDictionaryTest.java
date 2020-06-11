@@ -16,47 +16,25 @@
 
 package org.elypia.elypiai.urbandictionary;
 
-import okhttp3.mockwebserver.*;
-import org.elypia.retropia.test.*;
+import org.elypia.webservertestbed.junit5.*;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import java.io.IOException;
-import java.net.URL;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-@ExtendWith(MockResponseExtension.class)
 public class UrbanDictionaryTest {
 
-    @Response("define_fuck.json")
-    public static MockResponse defineFuck;
+    @RegisterExtension
+    public static final WebServerExtension serverExtension = new WebServerExtension();
 
-    @Response("define_jen.json")
-    public static MockResponse defineJen;
-
-    @Response("define_life.json")
-    public static MockResponse defineLife;
-
-    @Response("define_no-definitions.json")
-    public static MockResponse defineNoDefinitions;
-
-    private static MockWebServer server;
     private static UrbanDictionary ud;
 
     @BeforeEach
-    public void beforeEach() throws IOException {
-        server = new MockWebServer();
-        server.start();
-        ud = new UrbanDictionary(new URL("http://localhost:" + server.getPort()));
-    }
-
-    @AfterEach
-    public void afterEach() throws IOException {
-        server.close();
+    public void beforeEach() {
+        ud = new UrbanDictionary(serverExtension.getRequestUrl());
     }
 
     @Test
@@ -64,10 +42,9 @@ public class UrbanDictionaryTest {
         assertDoesNotThrow(() -> new UrbanDictionary());
     }
 
-    @Test
-    public void parseResults() throws IOException {
-        server.enqueue(defineJen);
-        DefineResult result = ud.define("jen").complete();
+    @WebServerTest("define_jen.json")
+    public void parseResults() {
+        DefineResult result = ud.getDefinitions("jen").blockingGet();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals(0, result.getSounds().size()),
@@ -78,10 +55,9 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @Test
-    public void parseDefinition() throws IOException {
-        server.enqueue(defineJen);
-        Definition definition =  ud.define("jen").complete().getDefinitions(true).get(0);
+    @WebServerTest("define_jen.json")
+    public void parseDefinition() {
+        Definition definition =  ud.getDefinitions("jen").blockingGet().getDefinitions(true).get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("Gorgeous, amazing, perfect everything. The girl who has always been my best friend, the girl who I should've been chasing this [whole time]. I love her. <[333]\r\n\r\n- [Sugarlips]", definition.getDefinitionBody()),
@@ -96,10 +72,9 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @Test
-    public void parseResultsFuck() throws IOException {
-        server.enqueue(defineFuck);
-        DefineResult result = ud.define("fuck").complete();
+    @WebServerTest("define_fuck.json")
+    public void parseResultsFuck() {
+        DefineResult result = ud.getDefinitions("fuck").blockingGet();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertFalse(result.getSounds().isEmpty()),
@@ -108,10 +83,9 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @Test
-    public void parseDefinitionWithNoExample() throws IOException {
-        server.enqueue(defineLife);
-        Definition definition =  ud.define("life").complete().getDefinitions(true).get(0);
+    @WebServerTest("define_life.json")
+    public void parseDefinitionWithNoExample() {
+        Definition definition =  ud.getDefinitions("life").blockingGet().getDefinitions(true).get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("A sexually-transmitted, [terminal disease].", definition.getDefinitionBody()),
@@ -126,13 +100,27 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @Test
-    public void parseNoResults() throws IOException {
-        server.enqueue(defineNoDefinitions);
-        DefineResult result = ud.define("iohwefiwhofhweohfowief").complete();
+    @WebServerTest("define_no-definitions.json")
+    public void parseNoResults() {
+        DefineResult result = ud.getDefinitions("iohwefiwhofhweohfowief").blockingGet();
 
         assertAll("Ensure Parsing No Result Data Correctly",
             () -> assertTrue(result.getSounds().isEmpty())
         );
+    }
+
+    @WebServerTest("define_defid_139509.json")
+    public void testDefineByIdWithResult() {
+        Definition definition = ud.getDefinitionById(139509).blockingGet();
+
+        String expected = "A sexually-transmitted, [terminal disease].";
+        String actual = definition.getDefinitionBody();
+
+        assertEquals(expected, actual);
+    }
+
+    @WebServerTest("define_defid_no-results.json")
+    public void testDefineByIdWithNoResults() {
+        assertTrue(ud.getDefinitionById(2147000000).isEmpty().blockingGet());
     }
 }

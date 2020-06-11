@@ -5,15 +5,27 @@ The [Gradle]/[Maven] import strings can be found at the maven-central badge abov
 Elypiai is a small and easy way, especially for new developers, to add ample functionality 
 or integrations to any project.  
 
+We wrap web APIs that don't provide an official binding for Java and make a module
+for each one with a consistent interface between each.
+
 ## Supported APIs
-* [Cleverbot][cleverbot]
-* [Orna Guide][orna]
-* [osu!][osu]
-* [Path of Exile][path-of-exile]
-* [RuneScape][runescape]
-* [Steam][steam]
-* [UrbanDictionary][urbandictionary]
-* [Yu-Gi-Oh! Prices][yugioh-prices]
+* [Cleverbot] - Complete
+* [Orna Guide] - WIP
+* [osu!] - WIP
+* [Path of Exile] - Complete
+* [RuneScape] - WIP
+* [Steam] - WIP
+* [UrbanDictionary] - Complete
+* [Yu-Gi-Oh! Prices] - WIP
+
+You can check the issues to see pending wrappers.
+
+### Why are these wraps in a single repository?
+Rather than making a Cleverbot4J, Orna4J, osu!4J, etc project we've opted for a submodule
+approach. The reason for this is becasue all submodules in this repository have an almost
+identical structure to them, and when we want make major alternations to how we want
+to make requests, we often want to change it for all of our wrappers. 
+Please visit the appropriate README of the module you're interested in.
 
 ## Getting Started
 In this example we'll just use the osu! API to get things going.
@@ -22,46 +34,54 @@ First you need to construct the wrapper object for the API you want to access, f
 Following this you can use the methods as you'd expect, each API method will have a few ways to make
 the request:
 
-* `complete()` - This will do a synchronous or blocking request and return an optional object.
-* `queue(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
+* `blockingGet()` - This will do a synchronous or blocking request and return an optional object.
+* `subscribe(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
 
 ```java
-class Main {
+public class Main {
  
+    private final Osu osu;
+    
+    /**
+    * Start by instantiating the wrapper to use, then call
+    * a request method. Wrappers will accept whatever they need
+    * in their constructor and can have their OkHttpClient instance
+    * updated to accomodate custom interceptors.
+    */
     public static void main(String[] args) {
-        // Construct the wrapper object.
-        Osu osu = new Osu("{{api key}}");
+        osu = new Osu("{{api key}}");
+    }
+    
+    /**
+    * RxJava is pretty flexible; you can call #subscribe
+    * with callbacks to handle the result asyncronously, 
+    * all the parameters are optional, or call #blockingGet 
+    * to handle it syncronously.
+    */
+    public static void simpleExample() {        
+        osu.getPlayer("SethX3").subscribe(
+            (player) -> System.out.println(player),
+            (ex) -> ex.printStacktrace(),
+            () -> System.out.println("That player didn't exist.")
+        );
         
-        // It's strongly recommend to use #queue, #complete should only be used if neccasary.
-        osu.getPlayer("SethX3").queue((player) -> {
-            if (player.isEmpty()) {
-                return; // If the player doesn't exist
-            }
-            
-            Player player = player.get();
-            // If the player was found
-        });
-        
-        // There are also additional request type objects to manage requests better.
-        RestLatch<Player> latch = new RestLatch<>();
-
-        // Let's collect all the RestActions we want to perform in a RestLatch
-        String[] usernames = {"SethX3", "Rheannon"};
+        Player player = osu.getPlayer("SethX3").blockingGet();
+    }
+    
+    /**
+    * It's even possible to perform batch requests!
+    */
+    public static void batchExample() {
+        List<Observable<Player>> requests = Stream.of("SethX3", "Rheannon")
+            .map(osu::getPlayer)
+            .map(Maybe::toObservable)
+            .collect(Collectors.toList());
+                                                   
+        Observable<List<Player>> singlePlayers = Observable.zip(requests, (objects) ->
+            Stream.of(objects).map((o) -> (Player)o).collect(Collectors.toList())
+        );
                 
-        for (String username : usernames)
-            latch.add(osu.getPlayer(username));
-        
-        // Perform all queued requests and perform the callback when all are finished.
-        latch.queue((results) -> {
-            for (Optional<Player> optPlayer : results) {
-                if (player.isEmpty()) {
-                    return; // If the player doesn't exist
-                }
-                
-                Player player = player.get();
-                // If the player was found
-            }
-        });
+        singlePlayers.subscribe((players) -> players.forEach(System.out::println));
     }
 }
 ```
@@ -79,14 +99,14 @@ make sure to get it sorted.
 [elypia-donate]: https://elypia.org/donate "Donate to Elypia"
 [Gradle]: https://gradle.org/ "Depend via Gradle"
 [Maven]: https://maven.apache.org/ "Depend via Maven"
-[cleverbot]: https://www.cleverbot.com/api/
-[orna]: https://orna.guide/gameplay?show=16
-[osu]: https://github.com/ppy/osu-api/wiki
-[path-of-exile]: https://www.pathofexile.com/developer/docs/api-resources
-[runescape]: http://runescape.wikia.com/wiki/Application_programming_interface
-[steam]: https://steamcommunity.com/dev
-[urbandictionary]: http://api.urbandictionary.com/v0/define?term=api
-[yugioh-prices]: http://docs.yugiohprices.apiary.io/
+[Cleverbot]: https://www.cleverbot.com/api/
+[Orna Guide]: https://orna.guide/gameplay?show=16
+[osu!]: https://github.com/ppy/osu-api/wiki
+[Path of Exile]: https://www.pathofexile.com/developer/docs/api-resources
+[RuneScape]: http://runescape.wikia.com/wiki/Application_programming_interface
+[Steam]: https://steamcommunity.com/dev
+[UrbanDictionary]: http://api.urbandictionary.com/v0/define?term=api
+[Yu-Gi-Oh! Prices]: http://docs.yugiohprices.apiary.io/
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"

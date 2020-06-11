@@ -18,40 +18,49 @@ package org.elypia.elypiai.cleverbot;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
 public class CleverResponse {
 
+	/** @see #getCs() */
 	@SerializedName("cs")
 	private String cs;
 
+	/** @see #getInteractionCount() */
 	@SerializedName("interaction_count")
 	private int interactionCount;
 
+	/** @see #getInput() */
 	@SerializedName("input")
 	private String input;
 
+	/** @see #getOutput() */
 	@SerializedName("output")
 	private String output;
 
+	/** @see #getConversationId() */
 	@SerializedName("conversation_id")
 	private String conversationId;
 
+	/** @see #getErrorLine() */
 	@SerializedName("errorline")
 	private String errorLine;
 
+	/** @see #getTimeTaken() */
 	@SerializedName("time_taken")
 	private int timeTaken;
 
+	/** @see #getTimeElapsed() */
 	@SerializedName("time_elapsed")
 	private long timeElapsed;
 
 	@SerializedName("callback")
 	private String callback;
 
+	/** @see #getInteractions() */
 	@SerializedName("interactions")
 	private List<Interaction> interactions;
 
@@ -124,19 +133,7 @@ public class CleverResponse {
 	 * @return	Get up to the past 50 interactions (input and output)
 	 * 			if available, including this current interaction.
 	 */
-	public List<Interaction> getHistory() {
+	public List<Interaction> getInteractions() {
 		return interactions;
 	}
-
-	public String getHistoryScript() {
-		String format = "User: %s\nCleverbot: %s";
-		StringJoiner joiner = new StringJoiner("\n");
-
-		interactions.forEach((interaction) -> {
-			joiner.add(String.format(format, interaction.getSay(), interaction.getResponse()));
-		});
-
-		return joiner.toString();
-	}
-
 }

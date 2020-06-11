@@ -95,34 +95,36 @@
     "skills": {
       "passives": [
         {
-          "id": 321,
-          "name": "Arcane Mastery"
-        },
-        {
-          "id": 320,
-          "name": "Eternal Light II"
-        },
-        {
           "id": 322,
           "name": "Apothecarist II"
         },
         {
           "id": 154,
           "name": "Mystic Feather"
+        },
+        {
+          "id": 320,
+          "name": "Eternal Light II"
+        },
+        {
+          "id": 321,
+          "name": "Arcane Mastery"
+        },
+        {
+          "id": 3,
+          "name": "Critical Hits"
+        },
+        {
+          "id": 189,
+          "name": "Recharge"
         }
       ],
       "learns": [
         {
-          "id": 319,
-          "name": "Arcanic Strike",
+          "id": 385,
+          "name": "No Affinity",
           "level": 175,
-          "type": "Attack"
-        },
-        {
-          "id": 312,
-          "name": "Ice Affinity",
-          "level": 175,
-          "type": "Buff"
+          "type": "Healing"
         },
         {
           "id": 313,
@@ -139,6 +141,18 @@
         {
           "id": 315,
           "name": "Lightning Affinity",
+          "level": 175,
+          "type": "Buff"
+        },
+        {
+          "id": 319,
+          "name": "Arcanic Strike",
+          "level": 175,
+          "type": "Attack"
+        },
+        {
+          "id": 312,
+          "name": "Ice Affinity",
           "level": 175,
           "type": "Buff"
         },
@@ -193,16 +207,20 @@
     "skills": {
       "passives": [
         {
-          "id": 32,
-          "name": "Beast Mode"
-        },
-        {
           "id": 289,
           "name": "Apothecarist"
         },
         {
           "id": 190,
           "name": "Life Siphon"
+        },
+        {
+          "id": 32,
+          "name": "Beast Mode"
+        },
+        {
+          "id": 382,
+          "name": "Mana Saver"
         }
       ],
       "learns": [
@@ -234,7 +252,7 @@
           "id": 193,
           "name": "Wisp's Heal II",
           "level": 165,
-          "type": "Buff"
+          "type": "Healing"
         },
         {
           "id": 194,
@@ -243,16 +261,16 @@
           "type": "Attack"
         },
         {
-          "id": 195,
-          "name": "Cockatrice Breath",
-          "level": 175,
-          "type": "Magic"
-        },
-        {
           "id": 196,
           "name": "Tiamat's Breath",
           "level": 175,
           "type": "Multi-round Magic"
+        },
+        {
+          "id": 195,
+          "name": "Cockatrice Breath",
+          "level": 175,
+          "type": "Magic"
         }
       ],
       "slots": 10
@@ -281,6 +299,10 @@
         {
           "id": 4,
           "name": "Mana Regen"
+        },
+        {
+          "id": 16,
+          "name": "Mana Step"
         }
       ],
       "learns": [
@@ -297,16 +319,16 @@
           "type": "Buff"
         },
         {
-          "id": 76,
-          "name": "Mute",
-          "level": 40,
-          "type": "Debuff"
-        },
-        {
           "id": 48,
           "name": "Drain",
           "level": 40,
           "type": "Magic"
+        },
+        {
+          "id": 76,
+          "name": "Mute",
+          "level": 40,
+          "type": "Debuff"
         },
         {
           "id": 111,
@@ -315,8 +337,8 @@
           "type": "Magic"
         },
         {
-          "id": 75,
-          "name": "Meteor",
+          "id": 69,
+          "name": "Blizzard",
           "level": 50,
           "type": "Magic"
         },
@@ -333,8 +355,8 @@
           "type": "Magic"
         },
         {
-          "id": 69,
-          "name": "Blizzard",
+          "id": 75,
+          "name": "Meteor",
           "level": 50,
           "type": "Magic"
         }
@@ -381,17 +403,15 @@
           "name": "Second Chance"
         },
         {
+          "id": 455,
+          "name": "Siphon Ward"
+        },
+        {
           "id": 365,
           "name": "Crest of Lyonesse"
         }
       ],
       "learns": [
-        {
-          "id": 335,
-          "name": "Guarding Strike",
-          "level": 175,
-          "type": "Attack"
-        },
         {
           "id": 331,
           "name": "Inferno Ward",
@@ -417,6 +437,12 @@
           "type": "Ward"
         },
         {
+          "id": 335,
+          "name": "Guarding Strike",
+          "level": 175,
+          "type": "Attack"
+        },
+        {
           "id": 336,
           "name": "Ward of Light",
           "level": 180,
@@ -438,12 +464,121 @@
           "id": 339,
           "name": "Divine Bastion",
           "level": 200,
-          "type": "Buff"
+          "type": "Ward"
         }
       ],
       "slots": 8
     },
     "learns": "Ward-based skills, Holy skills"
+  },
+  {
+    "id": 62,
+    "name": "Augur",
+    "female_name": "Augur",
+    "cost": "$9.99",
+    "description": "An alternative version of the Mystic class. Purchase this class to support the game and gain an alternative sprite.",
+    "tier": 4,
+    "images": [
+      "classes/augur/default_f.png",
+      "classes/augur/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 289,
+          "name": "Apothecarist"
+        },
+        {
+          "id": 3,
+          "name": "Critical Hits"
+        },
+        {
+          "id": 6,
+          "name": "EXP Step"
+        }
+      ],
+      "learns": [],
+      "slots": 5
+    },
+    "learns": "Basic magic, Debuffs"
+  },
+  {
+    "id": 67,
+    "name": "Bahamut",
+    "female_name": "Bahamut",
+    "cost": "7,000,000 orns",
+    "description": "One who has fused themselves with mighty dragons, learning the secrets of combining might with magic. Their offense is determined by both attack and magic stats, is immune to Dragon magic, and can wield equipment of both the warrior and mage.",
+    "tier": 9,
+    "images": [
+      "classes/bahamut/1_f.png",
+      "classes/bahamut/1_m.png",
+      "classes/bahamut/2_f.png",
+      "classes/bahamut/2_m.png",
+      "classes/bahamut/3_f.png",
+      "classes/bahamut/3_m.png",
+      "classes/bahamut/4_f.png",
+      "classes/bahamut/4_m.png",
+      "classes/bahamut/default_f.png",
+      "classes/bahamut/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 453,
+          "name": "Valhallan Strength II"
+        },
+        {
+          "id": 33,
+          "name": "Dragon Slayer"
+        },
+        {
+          "id": 189,
+          "name": "Recharge"
+        },
+        {
+          "id": 156,
+          "name": "Mana Siphon"
+        },
+        {
+          "id": 424,
+          "name": "Hybrid Monster"
+        }
+      ],
+      "learns": [
+        {
+          "id": 419,
+          "name": "Beaststrike",
+          "level": 200,
+          "type": "Attack"
+        },
+        {
+          "id": 420,
+          "name": "Lusus Naturae",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 421,
+          "name": "Beaststrike II",
+          "level": 210,
+          "type": "Attack"
+        },
+        {
+          "id": 422,
+          "name": "Lusus Naturae II",
+          "level": 215,
+          "type": "Magic"
+        },
+        {
+          "id": 423,
+          "name": "Beaststrike III",
+          "level": 220,
+          "type": "Attack"
+        }
+      ],
+      "slots": 11
+    },
+    "learns": "Secrets of dragons"
   },
   {
     "id": 31,
@@ -467,18 +602,30 @@
     "skills": {
       "passives": [
         {
-          "id": 32,
-          "name": "Beast Mode"
-        },
-        {
           "id": 156,
           "name": "Mana Siphon"
+        },
+        {
+          "id": 32,
+          "name": "Beast Mode"
         }
       ],
       "learns": [
         {
+          "id": 547,
+          "name": "Magic Sword II",
+          "level": 125,
+          "type": "Magic"
+        },
+        {
           "id": 157,
           "name": "Multi-flame",
+          "level": 125,
+          "type": "Magic"
+        },
+        {
+          "id": 548,
+          "name": "Magic Hammer II",
           "level": 125,
           "type": "Magic"
         },
@@ -492,6 +639,12 @@
           "id": 159,
           "name": "Multi-spark",
           "level": 135,
+          "type": "Magic"
+        },
+        {
+          "id": 549,
+          "name": "Magic Strikes II",
+          "level": 140,
           "type": "Magic"
         },
         {
@@ -539,16 +692,12 @@
           "name": "Apothecarist"
         },
         {
-          "id": 3,
-          "name": "Critical Hits"
-        },
-        {
           "id": 6,
           "name": "EXP Step"
         },
         {
-          "id": 5,
-          "name": "Gold Bonus"
+          "id": 3,
+          "name": "Critical Hits"
         }
       ],
       "learns": [
@@ -583,6 +732,102 @@
     "stats": [
       "Attack"
     ]
+  },
+  {
+    "id": 80,
+    "name": "Beowulf",
+    "female_name": "Bestla",
+    "cost": "15,000,000 orns",
+    "description": "A storied rank of those aligned with Dragons, this class brings the tales, poems, and stances of war into battle and favors unconventional weaponry. Their offense is determined by both attack and magic stats, is immune to Dragon magic, and can wield any piece of equipment found.",
+    "tier": 10,
+    "images": [
+      "classes/beowulf/1_f.png",
+      "classes/beowulf/1_m.png",
+      "classes/beowulf/2_f.png",
+      "classes/beowulf/2_m.png",
+      "classes/beowulf/3_f.png",
+      "classes/beowulf/3_m.png",
+      "classes/beowulf/4_f.png",
+      "classes/beowulf/4_m.png",
+      "classes/beowulf/default_f.png",
+      "classes/beowulf/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 546,
+          "name": "Hybrid Monster II"
+        },
+        {
+          "id": 189,
+          "name": "Recharge"
+        },
+        {
+          "id": 156,
+          "name": "Mana Siphon"
+        },
+        {
+          "id": 3,
+          "name": "Critical Hits"
+        },
+        {
+          "id": 545,
+          "name": "Valhallan Dissonance"
+        }
+      ],
+      "learns": [
+        {
+          "id": 537,
+          "name": "Verse",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 538,
+          "name": "Beaststrikes",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 539,
+          "name": "Gait of Kára",
+          "level": 225,
+          "type": "Buff"
+        },
+        {
+          "id": 540,
+          "name": "Gait of Eir",
+          "level": 225,
+          "type": "Buff"
+        },
+        {
+          "id": 542,
+          "name": "Gait of Gunnr",
+          "level": 230,
+          "type": "Buff"
+        },
+        {
+          "id": 543,
+          "name": "Gait of Snotra",
+          "level": 230,
+          "type": "Buff"
+        },
+        {
+          "id": 541,
+          "name": "Verse II",
+          "level": 230,
+          "type": "Attack"
+        },
+        {
+          "id": 544,
+          "name": "Verse III",
+          "level": 240,
+          "type": "Magic"
+        }
+      ],
+      "slots": 14
+    },
+    "learns": "Poems & Ballads"
   },
   {
     "id": 33,
@@ -672,24 +917,24 @@
     "skills": {
       "passives": [
         {
-          "id": 1,
-          "name": "HP Regen"
-        },
-        {
           "id": 18,
           "name": "HP Step"
+        },
+        {
+          "id": 383,
+          "name": "Centurion's Ward"
         }
       ],
       "learns": [
         {
-          "id": 68,
-          "name": "Barrier",
+          "id": 291,
+          "name": "Fortify II",
           "level": 50,
           "type": "Buff"
         },
         {
-          "id": 291,
-          "name": "Fortify II",
+          "id": 68,
+          "name": "Barrier",
           "level": 50,
           "type": "Buff"
         },
@@ -739,6 +984,160 @@
     "learns": "Holy and dark magic"
   },
   {
+    "id": 81,
+    "name": "Deity",
+    "female_name": "Deity",
+    "cost": "20,000,000 orns",
+    "description": "The ancient elves believed they could break the traditions of elemental alignment, but never quite succeeded. Deities, relics of this time, utilize unstable elemental affinities to gain both protection, and weakness, to the elements. These skilled warriors can equip any piece of equipment found.",
+    "tier": 10,
+    "images": [
+      "classes/deity/1_f.png",
+      "classes/deity/1_m.png",
+      "classes/deity/2_f.png",
+      "classes/deity/2_m.png",
+      "classes/deity/3_f.png",
+      "classes/deity/3_m.png",
+      "classes/deity/4_f.png",
+      "classes/deity/4_m.png",
+      "classes/deity/default_f.png",
+      "classes/deity/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 533,
+          "name": "Demigod"
+        },
+        {
+          "id": 534,
+          "name": "Unstable Omnimancy"
+        },
+        {
+          "id": 155,
+          "name": "Second Chance"
+        },
+        {
+          "id": 188,
+          "name": "Steadfast"
+        },
+        {
+          "id": 156,
+          "name": "Mana Siphon"
+        },
+        {
+          "id": 190,
+          "name": "Life Siphon"
+        }
+      ],
+      "learns": [
+        {
+          "id": 509,
+          "name": "Viperseal",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 512,
+          "name": "Viperstrike",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 513,
+          "name": "Sacreseal",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 514,
+          "name": "Sacrestrike",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 515,
+          "name": "Gloomseal",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 526,
+          "name": "Gloomstrike II",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 518,
+          "name": "Lostseal",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 519,
+          "name": "Loststrike",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 521,
+          "name": "Viperseal II",
+          "level": 235,
+          "type": "Magic"
+        },
+        {
+          "id": 522,
+          "name": "Viperstrike II",
+          "level": 235,
+          "type": "Attack"
+        },
+        {
+          "id": 523,
+          "name": "Sacreseal II",
+          "level": 235,
+          "type": "Magic"
+        },
+        {
+          "id": 524,
+          "name": "Sacrestrike II",
+          "level": 235,
+          "type": "Attack"
+        },
+        {
+          "id": 525,
+          "name": "Gloomseal II",
+          "level": 235,
+          "type": "Magic"
+        },
+        {
+          "id": 527,
+          "name": "Lostseal II",
+          "level": 235,
+          "type": "Magic"
+        },
+        {
+          "id": 528,
+          "name": "Loststrike II",
+          "level": 235,
+          "type": "Attack"
+        },
+        {
+          "id": 530,
+          "name": "Ultima",
+          "level": 245,
+          "type": "Attack"
+        },
+        {
+          "id": 531,
+          "name": "Ultima II",
+          "level": 250,
+          "type": "Attack"
+        }
+      ],
+      "slots": 22
+    },
+    "learns": "Secrets of the elements"
+  },
+  {
     "id": 39,
     "name": "Dragon Knight",
     "female_name": "Dragon Knightess",
@@ -768,12 +1167,8 @@
           "name": "Recharge"
         },
         {
-          "id": 18,
-          "name": "HP Step"
-        },
-        {
-          "id": 16,
-          "name": "Mana Step"
+          "id": 381,
+          "name": "Valhallan Way"
         }
       ],
       "learns": [
@@ -842,12 +1237,8 @@
           "name": "Dragon Slayer"
         },
         {
-          "id": 16,
-          "name": "Mana Step"
-        },
-        {
-          "id": 18,
-          "name": "HP Step"
+          "id": 381,
+          "name": "Valhallan Way"
         }
       ],
       "learns": [
@@ -986,7 +1377,7 @@
           "id": 106,
           "name": "Wisp's Heal",
           "level": 120,
-          "type": "Buff"
+          "type": "Healing"
         },
         {
           "id": 108,
@@ -1046,6 +1437,10 @@
         {
           "id": 189,
           "name": "Recharge"
+        },
+        {
+          "id": 156,
+          "name": "Mana Siphon"
         }
       ],
       "learns": [
@@ -1256,7 +1651,7 @@
           "id": 55,
           "name": "Great Heal",
           "level": 175,
-          "type": "Buff"
+          "type": "Healing"
         },
         {
           "id": 224,
@@ -1268,6 +1663,207 @@
       "slots": 12
     },
     "learns": "Secrets of the earth"
+  },
+  {
+    "id": 78,
+    "name": "Gilgamesh",
+    "female_name": "Gallia",
+    "cost": "15,000,000 orns",
+    "description": "A seldomly encountered warrior who specializes in using their defenses as a weapon. This clas grows stronger with Ward upkeep and can convert their defenses into damage or regenerative effect. They can wield equipment of the warrior and are immune to arcane magic while resistant to powers of the dragons.",
+    "tier": 10,
+    "images": [
+      "classes/gilgamesh/1_f.png",
+      "classes/gilgamesh/1_m.png",
+      "classes/gilgamesh/2_f.png",
+      "classes/gilgamesh/2_m.png",
+      "classes/gilgamesh/3_f.png",
+      "classes/gilgamesh/3_m.png",
+      "classes/gilgamesh/4_f.png",
+      "classes/gilgamesh/4_m.png",
+      "classes/gilgamesh/default_f.png",
+      "classes/gilgamesh/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 491,
+          "name": "Bastille"
+        },
+        {
+          "id": 456,
+          "name": "Siphon Ward II"
+        },
+        {
+          "id": 155,
+          "name": "Second Chance"
+        },
+        {
+          "id": 454,
+          "name": "Steadfast II"
+        },
+        {
+          "id": 492,
+          "name": "Guardian"
+        }
+      ],
+      "learns": [
+        {
+          "id": 510,
+          "name": "Guarding Strikes III",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 511,
+          "name": "Spiked Shield",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 517,
+          "name": "Diffuse Ward",
+          "level": 225,
+          "type": "Ward"
+        },
+        {
+          "id": 520,
+          "name": "Ward of Balor II",
+          "level": 230,
+          "type": "Ward"
+        },
+        {
+          "id": 529,
+          "name": "Spiked Shield II",
+          "level": 230,
+          "type": "Attack"
+        },
+        {
+          "id": 532,
+          "name": "Diffuse Ward II",
+          "level": 230,
+          "type": "Ward"
+        },
+        {
+          "id": 535,
+          "name": "Diffuse Ward III",
+          "level": 235,
+          "type": "Ward"
+        },
+        {
+          "id": 536,
+          "name": "Spiked Shield III",
+          "level": 240,
+          "type": "Attack"
+        }
+      ],
+      "slots": 12
+    },
+    "learns": "Ward-based skills"
+  },
+  {
+    "id": 63,
+    "name": "Gladiator",
+    "female_name": "Gladiator",
+    "cost": "$9.99",
+    "description": "An alternative version of the Adept class. Purchase this class to support the game and gain an alternative sprite.",
+    "tier": 4,
+    "images": [
+      "classes/gladiator/default_f.png",
+      "classes/gladiator/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 289,
+          "name": "Apothecarist"
+        },
+        {
+          "id": 3,
+          "name": "Critical Hits"
+        },
+        {
+          "id": 6,
+          "name": "EXP Step"
+        }
+      ],
+      "learns": [],
+      "slots": 5
+    },
+    "learns": "Advanced attacks, Buffs"
+  },
+  {
+    "id": 68,
+    "name": "Grand Ifrit",
+    "female_name": "Grand Ifrit",
+    "cost": "10,000,000 orns",
+    "description": "An elite force of smoke and ash who has truly mastered the powers of flame. It is immune to fire magic and can wield any piece of equipment they choose.",
+    "tier": 9,
+    "images": [
+      "classes/ifrit2/default_f.png",
+      "classes/ifrit2/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 155,
+          "name": "Second Chance"
+        },
+        {
+          "id": 190,
+          "name": "Life Siphon"
+        },
+        {
+          "id": 436,
+          "name": "Power of the Gods II"
+        }
+      ],
+      "learns": [
+        {
+          "id": 425,
+          "name": "Emberseal",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 426,
+          "name": "Emberstrike",
+          "level": 200,
+          "type": "Attack"
+        },
+        {
+          "id": 427,
+          "name": "Inferno III",
+          "level": 210,
+          "type": "Magic"
+        },
+        {
+          "id": 429,
+          "name": "Emberstrike II",
+          "level": 220,
+          "type": "Attack"
+        },
+        {
+          "id": 428,
+          "name": "Emberseal II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 373,
+          "name": "Multi-flame II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 430,
+          "name": "Deific Channel",
+          "level": 225,
+          "type": "Buff"
+        }
+      ],
+      "slots": 16
+    },
+    "learns": "Secrets of fire"
   },
   {
     "id": 32,
@@ -1291,20 +1887,32 @@
     "skills": {
       "passives": [
         {
-          "id": 250,
-          "name": "Crest of Annwn"
-        },
-        {
           "id": 154,
           "name": "Mystic Feather"
+        },
+        {
+          "id": 250,
+          "name": "Crest of Annwn"
         }
       ],
       "learns": [
+        {
+          "id": 551,
+          "name": "Magic Arrow II",
+          "level": 125,
+          "type": "Magic"
+        },
         {
           "id": 165,
           "name": "Quick attack",
           "level": 125,
           "type": "Attack"
+        },
+        {
+          "id": 550,
+          "name": "Magic Dagger II",
+          "level": 125,
+          "type": "Magic"
         },
         {
           "id": 166,
@@ -1338,6 +1946,304 @@
       "Mana",
       "Dexterity"
     ]
+  },
+  {
+    "id": 76,
+    "name": "Great Leviathan",
+    "female_name": "Great Leviathan",
+    "cost": "10,000,000 orns",
+    "description": "An elite force of tide and ice who has truly mastered the powers of the seas.  It is immune to water magic and can wield any piece of equipment they choose.",
+    "tier": 9,
+    "images": [
+      "classes/leviathan2/default_f.png",
+      "classes/leviathan2/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 436,
+          "name": "Power of the Gods II"
+        },
+        {
+          "id": 154,
+          "name": "Mystic Feather"
+        },
+        {
+          "id": 156,
+          "name": "Mana Siphon"
+        }
+      ],
+      "learns": [
+        {
+          "id": 448,
+          "name": "Tidalstrike",
+          "level": 200,
+          "type": "Attack"
+        },
+        {
+          "id": 450,
+          "name": "Tidalseal",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 452,
+          "name": "Glacier III",
+          "level": 210,
+          "type": "Magic"
+        },
+        {
+          "id": 451,
+          "name": "Tidalseal II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 449,
+          "name": "Tidalstrike II",
+          "level": 220,
+          "type": "Attack"
+        },
+        {
+          "id": 375,
+          "name": "Multi-frost II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 430,
+          "name": "Deific Channel",
+          "level": 225,
+          "type": "Buff"
+        }
+      ],
+      "slots": 16
+    },
+    "learns": "Secrets of water and ice"
+  },
+  {
+    "id": 77,
+    "name": "Heretic",
+    "female_name": "Hera",
+    "cost": "15,000,000 orns",
+    "description": "Once followers of Apollyon, these exiled warlocks favor the more destructive magic and become stronger as their mana fades. They have attuned themselves to the basic elements and can wield equipment of the mage.",
+    "tier": 10,
+    "images": [
+      "classes/heretic/1_f.png",
+      "classes/heretic/1_m.png",
+      "classes/heretic/2_f.png",
+      "classes/heretic/2_m.png",
+      "classes/heretic/3_f.png",
+      "classes/heretic/3_m.png",
+      "classes/heretic/4_f.png",
+      "classes/heretic/4_m.png",
+      "classes/heretic/default_f.png",
+      "classes/heretic/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 490,
+          "name": "The Heretic"
+        },
+        {
+          "id": 190,
+          "name": "Life Siphon"
+        },
+        {
+          "id": 384,
+          "name": "Mana Rush"
+        },
+        {
+          "id": 489,
+          "name": "Omnimancy II"
+        },
+        {
+          "id": 488,
+          "name": "Iconoclast"
+        }
+      ],
+      "learns": [
+        {
+          "id": 494,
+          "name": "Magic Sword IV",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 497,
+          "name": "Magic Hammer IV",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 478,
+          "name": "Fey Spark V",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 477,
+          "name": "Fey Frost V",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 476,
+          "name": "Fey Flame V",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 479,
+          "name": "Fey Tremor V",
+          "level": 225,
+          "type": "Magic"
+        },
+        {
+          "id": 500,
+          "name": "Magic Dagger IV",
+          "level": 230,
+          "type": "Magic"
+        },
+        {
+          "id": 481,
+          "name": "Multi-frost III",
+          "level": 230,
+          "type": "Magic"
+        },
+        {
+          "id": 482,
+          "name": "Multi-spark III",
+          "level": 230,
+          "type": "Magic"
+        },
+        {
+          "id": 483,
+          "name": "Multi-tremor III",
+          "level": 230,
+          "type": "Magic"
+        },
+        {
+          "id": 502,
+          "name": "Magic Arrow IV",
+          "level": 230,
+          "type": "Magic"
+        },
+        {
+          "id": 480,
+          "name": "Multi-flame III",
+          "level": 230,
+          "type": "Magic"
+        },
+        {
+          "id": 504,
+          "name": "Magic Strikes IV",
+          "level": 240,
+          "type": "Magic"
+        },
+        {
+          "id": 484,
+          "name": "Fey Inferno",
+          "level": 240,
+          "type": "Magic"
+        },
+        {
+          "id": 485,
+          "name": "Fey Glacier",
+          "level": 240,
+          "type": "Magic"
+        },
+        {
+          "id": 486,
+          "name": "Fey Fulmination",
+          "level": 240,
+          "type": "Magic"
+        },
+        {
+          "id": 487,
+          "name": "Fey Cataclysm",
+          "level": 240,
+          "type": "Magic"
+        }
+      ],
+      "slots": 16
+    },
+    "learns": "Destructive magic"
+  },
+  {
+    "id": 71,
+    "name": "High Taranis",
+    "female_name": "High Taranis",
+    "cost": "10,000,000 orns",
+    "description": "An elite force of lightning and thunder who has truly mastered the powers of the skies. It is immune to lightning magic and can wield any piece of equipment they choose.",
+    "tier": 9,
+    "images": [
+      "classes/taranis2/default_f.png",
+      "classes/taranis2/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 155,
+          "name": "Second Chance"
+        },
+        {
+          "id": 189,
+          "name": "Recharge"
+        },
+        {
+          "id": 436,
+          "name": "Power of the Gods II"
+        }
+      ],
+      "learns": [
+        {
+          "id": 438,
+          "name": "Galeseal",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 439,
+          "name": "Galestrike",
+          "level": 200,
+          "type": "Attack"
+        },
+        {
+          "id": 440,
+          "name": "Fulmination III",
+          "level": 210,
+          "type": "Magic"
+        },
+        {
+          "id": 442,
+          "name": "Galestrike II",
+          "level": 220,
+          "type": "Attack"
+        },
+        {
+          "id": 441,
+          "name": "Galeseal II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 306,
+          "name": "Multi-spark II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 430,
+          "name": "Deific Channel",
+          "level": 225,
+          "type": "Buff"
+        }
+      ],
+      "slots": 16
+    },
+    "learns": "Secrets of the storm"
   },
   {
     "id": 34,
@@ -1435,8 +2341,8 @@
     "skills": {
       "passives": [
         {
-          "id": 1,
-          "name": "HP Regen"
+          "id": 380,
+          "name": "Knight's Ward"
         }
       ],
       "learns": [
@@ -1488,7 +2394,7 @@
           "id": 41,
           "name": "Heal",
           "level": 20,
-          "type": "Buff"
+          "type": "Healing"
         },
         {
           "id": 62,
@@ -1518,7 +2424,7 @@
           "id": 55,
           "name": "Great Heal",
           "level": 50,
-          "type": "Buff"
+          "type": "Healing"
         }
       ],
       "slots": 4
@@ -1649,19 +2555,19 @@
         {
           "id": 40,
           "name": "Frost",
-          "level": 5,
+          "level": 3,
           "type": "Magic"
         },
         {
           "id": 45,
           "name": "Spark",
-          "level": 10,
+          "level": 3,
           "type": "Magic"
         },
         {
           "id": 46,
           "name": "Tremor",
-          "level": 10,
+          "level": 3,
           "type": "Magic"
         },
         {
@@ -1679,6 +2585,12 @@
         {
           "id": 66,
           "name": "Spark II",
+          "level": 25,
+          "type": "Magic"
+        },
+        {
+          "id": 111,
+          "name": "Tremor II",
           "level": 25,
           "type": "Magic"
         }
@@ -1905,16 +2817,16 @@
     "skills": {
       "passives": [
         {
-          "id": 3,
-          "name": "Critical Hits"
-        },
-        {
           "id": 289,
           "name": "Apothecarist"
         },
         {
           "id": 6,
           "name": "EXP Step"
+        },
+        {
+          "id": 382,
+          "name": "Mana Saver"
         }
       ],
       "learns": [
@@ -1955,7 +2867,7 @@
           "type": "Magic"
         }
       ],
-      "slots": 4
+      "slots": 5
     },
     "learns": "Basic magic, Debuffs",
     "stats": [
@@ -1989,16 +2901,16 @@
           "name": "Mana Siphon"
         },
         {
-          "id": 155,
-          "name": "Second Chance"
+          "id": 329,
+          "name": "Nekromancy"
         },
         {
           "id": 190,
           "name": "Life Siphon"
         },
         {
-          "id": 329,
-          "name": "Nekromancy"
+          "id": 384,
+          "name": "Mana Rush"
         }
       ],
       "learns": [
@@ -2027,10 +2939,34 @@
           "type": "Magic"
         },
         {
+          "id": 471,
+          "name": "Fey Tremor III",
+          "level": 185,
+          "type": "Magic"
+        },
+        {
+          "id": 470,
+          "name": "Fey Spark III",
+          "level": 185,
+          "type": "Magic"
+        },
+        {
           "id": 326,
           "name": "Forbidden Art",
           "level": 185,
           "type": "Multi-round Magic"
+        },
+        {
+          "id": 468,
+          "name": "Fey Flame III",
+          "level": 185,
+          "type": "Magic"
+        },
+        {
+          "id": 469,
+          "name": "Fey Frost III",
+          "level": 185,
+          "type": "Magic"
         },
         {
           "id": 184,
@@ -2048,6 +2984,370 @@
       "slots": 12
     },
     "learns": "Powers of the fallen"
+  },
+  {
+    "id": 69,
+    "name": "Noble Gaia",
+    "female_name": "Noble Gaia",
+    "cost": "10,000,000 orns",
+    "description": "An elite force of nature and balance who has truly mastered the powers of the earth below. It is immune to earthen magic and can wield any piece of equipment they choose.",
+    "tier": 9,
+    "images": [
+      "classes/gaia2/default_f.png",
+      "classes/gaia2/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 154,
+          "name": "Mystic Feather"
+        },
+        {
+          "id": 188,
+          "name": "Steadfast"
+        },
+        {
+          "id": 436,
+          "name": "Power of the Gods II"
+        }
+      ],
+      "learns": [
+        {
+          "id": 431,
+          "name": "Terraseal",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 432,
+          "name": "Terrastrike",
+          "level": 200,
+          "type": "Attack"
+        },
+        {
+          "id": 433,
+          "name": "Cataclysm III",
+          "level": 210,
+          "type": "Magic"
+        },
+        {
+          "id": 435,
+          "name": "Terrastrike II",
+          "level": 220,
+          "type": "Attack"
+        },
+        {
+          "id": 434,
+          "name": "Terraseal II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 403,
+          "name": "Multi-tremor II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 430,
+          "name": "Deific Channel",
+          "level": 225,
+          "type": "Buff"
+        }
+      ],
+      "slots": 16
+    },
+    "learns": "Secrets of the earth"
+  },
+  {
+    "id": 66,
+    "name": "Nyx",
+    "female_name": "Nyx",
+    "cost": "7,000,000 orns",
+    "description": "An elusive assassin of Balor. It is well versed in taking away enemy defenses, is immune to dark magic, and can wield the equipment of the rogue.",
+    "tier": 9,
+    "images": [
+      "classes/nyx/1_f.png",
+      "classes/nyx/1_m.png",
+      "classes/nyx/2_f.png",
+      "classes/nyx/2_m.png",
+      "classes/nyx/3_f.png",
+      "classes/nyx/3_m.png",
+      "classes/nyx/4_f.png",
+      "classes/nyx/4_m.png",
+      "classes/nyx/default_f.png",
+      "classes/nyx/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 154,
+          "name": "Mystic Feather"
+        },
+        {
+          "id": 188,
+          "name": "Steadfast"
+        },
+        {
+          "id": 418,
+          "name": "Saboteur"
+        },
+        {
+          "id": 417,
+          "name": "Dungeon Crawler"
+        },
+        {
+          "id": 190,
+          "name": "Life Siphon"
+        }
+      ],
+      "learns": [
+        {
+          "id": 411,
+          "name": "Elementless",
+          "level": 200,
+          "type": "Healing"
+        },
+        {
+          "id": 412,
+          "name": "Osmostrikes",
+          "level": 200,
+          "type": "Attack"
+        },
+        {
+          "id": 413,
+          "name": "Omnistrikes",
+          "level": 210,
+          "type": "Attack"
+        },
+        {
+          "id": 414,
+          "name": "Quadcut II",
+          "level": 215,
+          "type": "Attack"
+        },
+        {
+          "id": 415,
+          "name": "Swordplay III",
+          "level": 220,
+          "type": "Attack"
+        },
+        {
+          "id": 416,
+          "name": "Ward of Balor",
+          "level": 225,
+          "type": "Ward"
+        }
+      ],
+      "slots": 10
+    },
+    "learns": "Forgotten techniques"
+  },
+  {
+    "id": 65,
+    "name": "Omnimancer",
+    "female_name": "Omnimagus",
+    "cost": "7,000,000 orns",
+    "description": "An unorthodox magus of Avalon that has achievedtrue affinity with all four basic elements. It can cast multi-elemental spells and can occasionally resist the damage of any basic element. It wields the equipment of the mage.",
+    "tier": 9,
+    "images": [
+      "classes/omnimancer/1_f.png",
+      "classes/omnimancer/1_m.png",
+      "classes/omnimancer/2_f.png",
+      "classes/omnimancer/2_m.png",
+      "classes/omnimancer/3_f.png",
+      "classes/omnimancer/3_m.png",
+      "classes/omnimancer/4_f.png",
+      "classes/omnimancer/4_m.png",
+      "classes/omnimancer/5_f.png",
+      "classes/omnimancer/5_m.png",
+      "classes/omnimancer/default_f.png",
+      "classes/omnimancer/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 410,
+          "name": "Omnimancy"
+        },
+        {
+          "id": 557,
+          "name": "School of Avalon"
+        },
+        {
+          "id": 384,
+          "name": "Mana Rush"
+        },
+        {
+          "id": 188,
+          "name": "Steadfast"
+        },
+        {
+          "id": 156,
+          "name": "Mana Siphon"
+        }
+      ],
+      "learns": [
+        {
+          "id": 555,
+          "name": "Magic Arrow III",
+          "level": 80,
+          "type": "Magic"
+        },
+        {
+          "id": 553,
+          "name": "Magic Hammer III",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 396,
+          "name": "Frostfire",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 400,
+          "name": "Ice storm",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 401,
+          "name": "Scorched Earth",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 552,
+          "name": "Magic Sword III",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 397,
+          "name": "Heat Lightning",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 398,
+          "name": "Iced Earth",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 399,
+          "name": "Quakestorm",
+          "level": 200,
+          "type": "Magic"
+        },
+        {
+          "id": 402,
+          "name": "Arcanus II",
+          "level": 205,
+          "type": "Magic"
+        },
+        {
+          "id": 554,
+          "name": "Magic Dagger III",
+          "level": 210,
+          "type": "Magic"
+        },
+        {
+          "id": 375,
+          "name": "Multi-frost II",
+          "level": 215,
+          "type": "Magic"
+        },
+        {
+          "id": 403,
+          "name": "Multi-tremor II",
+          "level": 215,
+          "type": "Magic"
+        },
+        {
+          "id": 373,
+          "name": "Multi-flame II",
+          "level": 215,
+          "type": "Magic"
+        },
+        {
+          "id": 306,
+          "name": "Multi-spark II",
+          "level": 215,
+          "type": "Magic"
+        },
+        {
+          "id": 408,
+          "name": "Ice Storm II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 404,
+          "name": "Frostfire II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 405,
+          "name": "Heat Lightning II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 406,
+          "name": "Iced Earth II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 407,
+          "name": "Quakestorm II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 409,
+          "name": "Scorched Earth II",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 472,
+          "name": "Fey Flame IV",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 473,
+          "name": "Fey Frost IV",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 474,
+          "name": "Fey Spark IV",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 475,
+          "name": "Fey Tremor IV",
+          "level": 220,
+          "type": "Magic"
+        },
+        {
+          "id": 556,
+          "name": "Magic Strikes III",
+          "level": 225,
+          "type": "Magic"
+        }
+      ],
+      "slots": 14
+    },
+    "learns": "Mixed elemental magic"
   },
   {
     "id": 5,
@@ -2071,15 +3371,13 @@
         {
           "id": 3,
           "name": "Critical Hits"
+        },
+        {
+          "id": 381,
+          "name": "Valhallan Way"
         }
       ],
       "learns": [
-        {
-          "id": 49,
-          "name": "Earthstrike",
-          "level": 25,
-          "type": "Attack"
-        },
         {
           "id": 51,
           "name": "Firestrike",
@@ -2099,14 +3397,20 @@
           "type": "Attack"
         },
         {
-          "id": 70,
-          "name": "Darkstrike",
-          "level": 40,
+          "id": 49,
+          "name": "Earthstrike",
+          "level": 25,
           "type": "Attack"
         },
         {
           "id": 74,
           "name": "Holystrike",
+          "level": 40,
+          "type": "Attack"
+        },
+        {
+          "id": 70,
+          "name": "Darkstrike",
           "level": 40,
           "type": "Attack"
         },
@@ -2150,6 +3454,100 @@
     "learns": "Buffs"
   },
   {
+    "id": 79,
+    "name": "Realmshifter",
+    "female_name": "Realmshifter",
+    "cost": "15,000,000 orns",
+    "description": "Masters of all that is clandestine, ancient Annwn's realmshifters have the ability to always find the cutting edge in battle. They can see in the dark, are immune to the powers of light & dark, and can wield equipment of the rogue.",
+    "tier": 10,
+    "images": [
+      "classes/realmshifter/1_f.png",
+      "classes/realmshifter/1_m.png",
+      "classes/realmshifter/2_f.png",
+      "classes/realmshifter/2_m.png",
+      "classes/realmshifter/3_f.png",
+      "classes/realmshifter/3_m.png",
+      "classes/realmshifter/4_f.png",
+      "classes/realmshifter/4_m.png",
+      "classes/realmshifter/default_f.png",
+      "classes/realmshifter/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 506,
+          "name": "Recharge II"
+        },
+        {
+          "id": 154,
+          "name": "Mystic Feather"
+        },
+        {
+          "id": 507,
+          "name": "Apothecarist III"
+        },
+        {
+          "id": 418,
+          "name": "Saboteur"
+        },
+        {
+          "id": 508,
+          "name": "Realm's Light"
+        },
+        {
+          "id": 505,
+          "name": "Resurgence"
+        }
+      ],
+      "learns": [
+        {
+          "id": 493,
+          "name": "Sortie",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 495,
+          "name": "Realm Strikes",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 496,
+          "name": "Osmostrikes II",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 498,
+          "name": "Omnistrikes II",
+          "level": 225,
+          "type": "Attack"
+        },
+        {
+          "id": 501,
+          "name": "Realmshift",
+          "level": 230,
+          "type": "Buff"
+        },
+        {
+          "id": 499,
+          "name": "Evasive Strikes",
+          "level": 230,
+          "type": "Attack"
+        },
+        {
+          "id": 503,
+          "name": "Bloodshift",
+          "level": 235,
+          "type": "Buff"
+        }
+      ],
+      "slots": 12
+    },
+    "learns": "-"
+  },
+  {
     "id": 7,
     "name": "Rogue",
     "female_name": "Rogue",
@@ -2171,6 +3569,10 @@
         {
           "id": 289,
           "name": "Apothecarist"
+        },
+        {
+          "id": 3,
+          "name": "Critical Hits"
         }
       ],
       "learns": [
@@ -2181,15 +3583,21 @@
           "type": "Attack"
         },
         {
+          "id": 50,
+          "name": "Fire Arrow",
+          "level": 30,
+          "type": "Attack"
+        },
+        {
           "id": 56,
           "name": "Ice Arrow",
           "level": 30,
           "type": "Attack"
         },
         {
-          "id": 50,
-          "name": "Fire Arrow",
-          "level": 30,
+          "id": 71,
+          "name": "Doublecut",
+          "level": 40,
           "type": "Attack"
         },
         {
@@ -2199,10 +3607,10 @@
           "type": "Debuff"
         },
         {
-          "id": 71,
-          "name": "Doublecut",
-          "level": 40,
-          "type": "Attack"
+          "id": 84,
+          "name": "Stun Dart",
+          "level": 45,
+          "type": "Debuff"
         },
         {
           "id": 81,
@@ -2211,22 +3619,16 @@
           "type": "Debuff"
         },
         {
-          "id": 84,
-          "name": "Stun Dart",
-          "level": 45,
-          "type": "Debuff"
+          "id": 82,
+          "name": "Speed",
+          "level": 50,
+          "type": "Buff"
         },
         {
           "id": 73,
           "name": "Flurry",
           "level": 50,
           "type": "Attack"
-        },
-        {
-          "id": 82,
-          "name": "Speed",
-          "level": 50,
-          "type": "Buff"
         }
       ],
       "slots": 3
@@ -2285,6 +3687,37 @@
       "Defense",
       "Attack"
     ]
+  },
+  {
+    "id": 61,
+    "name": "Runeblade",
+    "female_name": "Runeblade",
+    "cost": "$9.99",
+    "description": "An alternative version of the Spellsword class. Purchase this class to support the game and gain an alternative sprite.",
+    "tier": 4,
+    "images": [
+      "classes/runeblade/default_f.png",
+      "classes/runeblade/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 16,
+          "name": "Mana Step"
+        },
+        {
+          "id": 6,
+          "name": "EXP Step"
+        },
+        {
+          "id": 380,
+          "name": "Knight's Ward"
+        }
+      ],
+      "learns": [],
+      "slots": 5
+    },
+    "learns": "Basic magic, Buffs"
   },
   {
     "id": 15,
@@ -2518,11 +3951,17 @@
           "name": "Mana Step"
         },
         {
-          "id": 4,
-          "name": "Mana Regen"
+          "id": 382,
+          "name": "Mana Saver"
         }
       ],
       "learns": [
+        {
+          "id": 91,
+          "name": "Magic Shield II",
+          "level": 50,
+          "type": "Buff"
+        },
         {
           "id": 78,
           "name": "Outwill",
@@ -2530,10 +3969,10 @@
           "type": "Debuff"
         },
         {
-          "id": 91,
-          "name": "Magic Shield II",
-          "level": 50,
-          "type": "Buff"
+          "id": 92,
+          "name": "Nightmare",
+          "level": 65,
+          "type": "Magic"
         },
         {
           "id": 89,
@@ -2542,9 +3981,9 @@
           "type": "Magic"
         },
         {
-          "id": 92,
-          "name": "Nightmare",
-          "level": 65,
+          "id": 86,
+          "name": "Cataclysm",
+          "level": 75,
           "type": "Magic"
         },
         {
@@ -2556,12 +3995,6 @@
         {
           "id": 90,
           "name": "Inferno",
-          "level": 75,
-          "type": "Magic"
-        },
-        {
-          "id": 86,
-          "name": "Cataclysm",
           "level": 75,
           "type": "Magic"
         },
@@ -2602,16 +4035,16 @@
     "skills": {
       "passives": [
         {
-          "id": 4,
-          "name": "Mana Regen"
-        },
-        {
           "id": 16,
           "name": "Mana Step"
         },
         {
           "id": 6,
           "name": "EXP Step"
+        },
+        {
+          "id": 380,
+          "name": "Knight's Ward"
         }
       ],
       "learns": [
@@ -2838,6 +4271,12 @@
       "passives": [],
       "learns": [
         {
+          "id": 459,
+          "name": "Guts",
+          "level": 3,
+          "type": "Attack"
+        },
+        {
           "id": 44,
           "name": "Slash",
           "level": 5,
@@ -2847,13 +4286,13 @@
           "id": 35,
           "name": "Bleed",
           "level": 15,
-          "type": "D.O.T."
+          "type": "Attack"
         },
         {
           "id": 38,
           "name": "First Aid",
           "level": 20,
-          "type": "Buff"
+          "type": "Healing"
         },
         {
           "id": 61,
@@ -2875,6 +4314,108 @@
       "Attack",
       "Dexterity"
     ]
+  },
+  {
+    "id": 64,
+    "name": "Titanguard",
+    "female_name": "Titanguard",
+    "cost": "7,000,000 orns",
+    "description": "A seasoned and stalwart holy warrior of Lyonesse that is strongly versed in methods of ward and survivability. It is immune to holy magic and can wield equipment of the warrior.",
+    "tier": 9,
+    "images": [
+      "classes/titan/1_f.png",
+      "classes/titan/1_m.png",
+      "classes/titan/2_f.png",
+      "classes/titan/2_m.png",
+      "classes/titan/3_f.png",
+      "classes/titan/3_m.png",
+      "classes/titan/4_f.png",
+      "classes/titan/4_m.png",
+      "classes/titan/default_f.png",
+      "classes/titan/default_m.png"
+    ],
+    "skills": {
+      "passives": [
+        {
+          "id": 365,
+          "name": "Crest of Lyonesse"
+        },
+        {
+          "id": 456,
+          "name": "Siphon Ward II"
+        },
+        {
+          "id": 454,
+          "name": "Steadfast II"
+        },
+        {
+          "id": 395,
+          "name": "Shoulders of Giants II"
+        },
+        {
+          "id": 155,
+          "name": "Second Chance"
+        }
+      ],
+      "learns": [
+        {
+          "id": 386,
+          "name": "Guarding Strikes II",
+          "level": 200,
+          "type": "Attack"
+        },
+        {
+          "id": 387,
+          "name": "Ward of Light II",
+          "level": 210,
+          "type": "Ward"
+        },
+        {
+          "id": 393,
+          "name": "Dark Facade",
+          "level": 220,
+          "type": "Ward"
+        },
+        {
+          "id": 391,
+          "name": "Storm Facade",
+          "level": 220,
+          "type": "Ward"
+        },
+        {
+          "id": 392,
+          "name": "Holy Facade",
+          "level": 220,
+          "type": "Ward"
+        },
+        {
+          "id": 389,
+          "name": "Tidal Facade",
+          "level": 220,
+          "type": "Ward"
+        },
+        {
+          "id": 388,
+          "name": "Inferno Facade",
+          "level": 220,
+          "type": "Ward"
+        },
+        {
+          "id": 390,
+          "name": "Terra Facade",
+          "level": 220,
+          "type": "Ward"
+        },
+        {
+          "id": 394,
+          "name": "Divine Bastion II",
+          "level": 225,
+          "type": "Ward"
+        }
+      ],
+      "slots": 10
+    },
+    "learns": "Ward-based skills, Holy skills"
   },
   {
     "id": 13,

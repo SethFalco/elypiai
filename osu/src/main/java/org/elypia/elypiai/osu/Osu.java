@@ -18,17 +18,16 @@ package org.elypia.elypiai.osu;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.*;
 import okhttp3.*;
 import org.elypia.elypiai.osu.data.*;
 import org.elypia.elypiai.osu.deserializers.*;
-import org.elypia.elypiai.osu.impl.OsuService;
-import org.elypia.retropia.core.*;
-import org.elypia.retropia.core.extensions.*;
-import org.elypia.retropia.core.requests.*;
+import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.gson.deserializers.DateDeserializer;
 import org.slf4j.*;
-import retrofit2.Call;
-import retrofit2.*;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
@@ -37,7 +36,7 @@ import java.util.*;
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-public class Osu extends ApiWrapper {
+public class Osu {
 
 	private static final Logger logger = LoggerFactory.getLogger(Osu.class);
 
@@ -56,12 +55,8 @@ public class Osu extends ApiWrapper {
 		}
 	}
 
-	private final String API_KEY;
+	private final String apiKey;
 	private final OsuService service;
-
-	public Osu(String apiKey) {
-		this(apiKey, new WrapperExtension[0]);
-	}
 
 	/**
 	 * Creates an osu! object for making calls to the osu API.
@@ -70,22 +65,20 @@ public class Osu extends ApiWrapper {
 	 *
 	 * @param 	apiKey	The API obtained from the osu! website.
 	 */
-	public Osu(String apiKey, WrapperExtension... exts) {
-		this(baseUrl, apiKey, exts);
+	public Osu(String apiKey) {
+		this(baseUrl, apiKey);
 	}
 
-	public Osu(URL baseUrl, String apiKey, WrapperExtension... exts) {
-		super(exts);
-		API_KEY = Objects.requireNonNull(apiKey);
+	public Osu(URL baseUrl, String apiKey) {
+		this.apiKey = Objects.requireNonNull(apiKey);
 
-		OkHttpClient client = RequestService.getBuilder()
+		OkHttpClient client = HttpClientSingleton.getBuilder()
 			.addInterceptor((chain) -> {
 				Request request = chain.request();
 				HttpUrl url = request.url().newBuilder().addQueryParameter("k", apiKey).build();
 				request = request.newBuilder().url(url).build();
 				return chain.proceed(request);
 			})
-			.addInterceptor(new ExtensionInterceptor(exts))
 			.build();
 
 		GsonBuilder gsonBuilder = new GsonBuilder()
@@ -103,23 +96,24 @@ public class Osu extends ApiWrapper {
 			.baseUrl(baseUrl)
 			.client(client)
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()
 			.create(OsuService.class);
 	}
 
-	public OptionalRestAction<Player> getPlayer(int id) {
+	public Maybe<Player> getPlayer(int id) {
 		return getPlayer(id, OsuMode.OSU);
 	}
 
-	public OptionalRestAction<Player> getPlayer(String username) {
+	public Maybe<Player> getPlayer(String username) {
 		return getPlayer(username, OsuMode.OSU);
 	}
 
-	public OptionalRestAction<Player> getPlayer(int id, OsuMode mode) {
+	public Maybe<Player> getPlayer(int id, OsuMode mode) {
 		return getPlayer(id, mode, 31);
 	}
 
-	public OptionalRestAction<Player> getPlayer(String username, OsuMode mode) {
+	public Maybe<Player> getPlayer(String username, OsuMode mode) {
 		return getPlayer(username, mode, 31);
 	}
 
@@ -130,7 +124,7 @@ public class Osu extends ApiWrapper {
 	 * @param mode The gamemode to view data for.
 	 * @param days The number of days to look back for events.
 	 */
-	public OptionalRestAction<Player> getPlayer(int id, OsuMode mode, int days) {
+	public Maybe<Player> getPlayer(int id, OsuMode mode, int days) {
 		return getPlayer(String.valueOf(id), OsuId.USER_ID, mode, days);
 	}
 
@@ -141,20 +135,19 @@ public class Osu extends ApiWrapper {
 	 * @param mode The gamemode to view data for.
 	 * @param days The number of days to look back for events.
 	 */
-	public OptionalRestAction<Player> getPlayer(String username, OsuMode mode, int days) {
+	public Maybe<Player> getPlayer(String username, OsuMode mode, int days) {
 		return getPlayer(username, OsuId.USERNAME, mode, days);
 	}
 
-	public OptionalRestAction<Player> getPlayer(String username, OsuId type, OsuMode mode, int days) {
-		Call<Player> call = service.getPlayer(username, type.getType(), mode.getId(), days);
-		return new OptionalRestAction<>(call);
+	public Maybe<Player> getPlayer(String username, OsuId type, OsuMode mode, int days) {
+		return service.getPlayer(username, type.getType(), mode.getId(), days);
 	}
 
-	public RestAction<List<BeatMap>> getBeatMaps(int id) {
+	public Observable<List<BeatMap>> getBeatMaps(int id) {
 		return getBeatMaps(id, OsuMode.OSU);
 	}
 
-	public RestAction<List<BeatMap>> getBeatMaps(int id, OsuMode mode) {
+	public Observable<List<BeatMap>> getBeatMaps(int id, OsuMode mode) {
 		return getBeatMaps(id, mode, 500);
 	}
 
@@ -163,46 +156,43 @@ public class Osu extends ApiWrapper {
 	 *
 	 * @param	id	The id of the beatmap to search grab.
 	 */
-	public RestAction<List<BeatMap>> getBeatMaps(int id, OsuMode mode, int limit) {
-		Call<List<BeatMap>> call = service.getBeatMaps(id, mode.getId(), limit);
-		return new RestAction<>(call);
+	public Observable<List<BeatMap>> getBeatMaps(int id, OsuMode mode, int limit) {
+		return service.getBeatMaps(id, mode.getId(), limit);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(int id) {
+	public Observable<List<RecentPlay>> getRecentPlays(int id) {
 		return getRecentPlays(id, OsuMode.OSU);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(String username) {
+	public Observable<List<RecentPlay>> getRecentPlays(String username) {
 		return getRecentPlays(username, OsuMode.OSU);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(int id, OsuMode mode) {
+	public Observable<List<RecentPlay>> getRecentPlays(int id, OsuMode mode) {
 		return getRecentPlays(id, mode, 50);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(String username, OsuMode mode) {
+	public Observable<List<RecentPlay>> getRecentPlays(String username, OsuMode mode) {
 		return getRecentPlays(username, mode, 50);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(int id, OsuMode mode, int limit) {
+	public Observable<List<RecentPlay>> getRecentPlays(int id, OsuMode mode, int limit) {
 		return getRecentPlays(String.valueOf(id), OsuId.USER_ID, mode, limit);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(String username, OsuMode mode, int limit) {
+	public Observable<List<RecentPlay>> getRecentPlays(String username, OsuMode mode, int limit) {
 		return getRecentPlays(username, OsuId.USERNAME, mode, limit);
 	}
 
-	public RestAction<List<RecentPlay>> getRecentPlays(String user, OsuId type, OsuMode mode, int limit) {
-		Call<List<RecentPlay>> call = service.getRecentPlays(user, type.getType(), mode.getId(), limit);
-		return new RestAction<>(call);
+	public Observable<List<RecentPlay>> getRecentPlays(String user, OsuId type, OsuMode mode, int limit) {
+		return service.getRecentPlays(user, type.getType(), mode.getId(), limit);
 	}
 
-	public OptionalRestAction<Match> getMatch(int id) {
-		Call<Match> call = service.getMatch(id);
-		return new OptionalRestAction<>(call);
+	public Maybe<Match> getMatch(int id) {
+		return service.getMatch(id);
 	}
 
 	public String getApiKey() {
-		return API_KEY;
+		return apiKey;
 	}
 }

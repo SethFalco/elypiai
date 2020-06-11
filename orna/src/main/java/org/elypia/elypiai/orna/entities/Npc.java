@@ -18,7 +18,7 @@ package org.elypia.elypiai.orna.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -28,14 +28,21 @@ public class Npc extends TieredEntity {
     @SerializedName("description")
     private String description;
 
+    @SerializedName("image")
+    private String imageUrl;
+
     @SerializedName("quests")
-    private List<Quest> quests;
+    private List<TieredEntity> quests;
 
     public String getDescription() {
         return description;
     }
 
-    public List<Quest> getQuests() {
-        return quests;
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public List<TieredEntity> getQuests() {
+        return Collections.unmodifiableList(quests);
     }
 }

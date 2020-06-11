@@ -23,6 +23,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum ItemType {
 
+    /** Represents a type of item the API might return, isn't known to Elypiai. */
     UNKNOWN(null),
 
     @SerializedName("Curative")
@@ -52,26 +53,26 @@ public enum ItemType {
     @SerializedName("Other")
     OTHER("Other");
 
-    private final String NAME;
+    private final String name;
 
     ItemType(final String name) {
-        this.NAME = name;
+        this.name = name;
     }
 
     /**
      * @return The clean human readable name for this {@link ItemType}.
      */
     public String getName() {
-        return this.NAME;
+        return this.name;
     }
 
     /**
      * @param name The case-sensitive human readable name of the {@link ItemType}.
      * @return The enum value for this type, or {@link #UNKNOWN} if no type is found.
      */
-    public static ItemType find(final String name) {
+    public static ItemType get(final String name) {
         for (ItemType type : values()) {
-            if (type.NAME.equals(name))
+            if (type.name.equals(name))
                 return type;
         }
 

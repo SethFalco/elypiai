@@ -16,65 +16,36 @@
 
 package org.elypia.elypiai.yugioh;
 
-import okhttp3.mockwebserver.*;
 import org.elypia.elypiai.yugioh.data.*;
-import org.elypia.retropia.test.*;
+import org.elypia.webservertestbed.junit5.*;
 import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.function.Executable;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.Optional;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
-@ExtendWith(MockResponseExtension.class)
 public class YuGiOhTest {
 
-    @Response("dark-magician.json")
-    public static MockResponse darkMagician;
+    @RegisterExtension
+    public static final WebServerExtension serverExtension = new WebServerExtension();
 
-    @Response("dark-magician-girl.json")
-    public static MockResponse darkMagicianGirl;
-
-    @Response("does-not-exist.json")
-    public static MockResponse doesNotExist;
-
-    @Response("mirror-force.json")
-    public static MockResponse mirrorForce;
-
-    @Response("pot-of-greed.json")
-    public static MockResponse potOfGreed;
-
-    private static MockWebServer server;
     private static YuGiOh yugioh;
 
     @BeforeEach
-    public void beforeEach() throws IOException {
-        server = new MockWebServer();
-        server.start();
-
-        yugioh = new YuGiOh(new URL("http://localhost:" + server.getPort()));
-    }
-
-    @AfterEach
-    public void afterEach() throws IOException {
-        server.close();
+    public void beforeEach() {
+        yugioh = new YuGiOh(serverExtension.getRequestUrl());
     }
 
     @Test
     public void createNormalInstance() {
-        assertDoesNotThrow((Executable)YuGiOh::new);
+        assertDoesNotThrow(() -> new YuGiOh());
     }
 
-    @Test
-    public void parseCardData() throws IOException {
-        server.enqueue(darkMagician);
-        Monster card = (Monster)yugioh.getCard("Dark Magician").complete().get();
+    @WebServerTest("dark-magician.json")
+    public void parseCardData() {
+        Monster card = (Monster)yugioh.getCard("Dark Magician").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician", card.getName()),
@@ -89,10 +60,9 @@ public class YuGiOhTest {
         );
     }
 
-    @Test
-    public void parseDarkMagianGirl() throws IOException {
-        server.enqueue(darkMagicianGirl);
-        Monster card = (Monster)yugioh.getCard("Dark Magician Girl").complete().get();
+    @WebServerTest("dark-magician-girl.json")
+    public void parseDarkMagianGirl() {
+        Monster card = (Monster)yugioh.getCard("Dark Magician Girl").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician Girl", card.getName()),
@@ -107,10 +77,9 @@ public class YuGiOhTest {
         );
     }
 
-    @Test
-    public void parsePotOfGreed() throws IOException {
-        server.enqueue(potOfGreed);
-        MagicCard card = (MagicCard)yugioh.getCard("Pot of Greed").complete().get();
+    @WebServerTest("pot-of-greed.json")
+    public void parsePotOfGreed() {
+        MagicCard card = (MagicCard)yugioh.getCard("Pot of Greed").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Pot of Greed", card.getName()),
@@ -120,10 +89,9 @@ public class YuGiOhTest {
         );
     }
 
-    @Test
-    public void parseMirrorForce() throws IOException {
-        server.enqueue(mirrorForce);
-        MagicCard card = (MagicCard)yugioh.getCard("Mirror Force").complete().get();
+    @WebServerTest("mirror-force.json")
+    public void parseMirrorForce() {
+        MagicCard card = (MagicCard)yugioh.getCard("Mirror Force").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Mirror Force", card.getName()),
@@ -133,11 +101,9 @@ public class YuGiOhTest {
         );
     }
 
-    @Test
-    public void parseInvalidCard() throws IOException {
-        server.enqueue(doesNotExist);
-        Optional<TradingCard> card = yugioh.getCard("CardThatDoesn'tExist").complete();
-        assertTrue(card.isEmpty());
+    @WebServerTest("does-not-exist.json")
+    public void parseInvalidCard() {
+        assertTrue(yugioh.getCard("CardThatDoesn'tExist").isEmpty().blockingGet());
     }
 
     @Test

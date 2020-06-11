@@ -19,12 +19,12 @@ package org.elypia.elypiai.orna.entities;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Abstract class that represents any {@link AbstractEntity}
+ * Abstract class that represents any {@link Entity}
  * which has some kind a tier associated with it.
  *
  * @author seth@elypia.org (Seth Falco)
  */
-public abstract class TieredEntity extends AbstractEntity {
+public class TieredEntity extends Entity {
 
     @SerializedName("tier")
     protected int tier;
