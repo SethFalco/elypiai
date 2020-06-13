@@ -18,7 +18,7 @@ package org.elypia.elypiai.runescape;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -27,7 +27,7 @@ public class Activity implements Comparable<Activity> {
 
     /** @see #getDate() */
     @SerializedName("date")
-    private Date date;
+    private LocalDateTime date;
 
     /** @see #getDetails() */
     @SerializedName("details")
@@ -38,7 +38,7 @@ public class Activity implements Comparable<Activity> {
     private String text;
 
     /** The date that the activity occured. */
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 

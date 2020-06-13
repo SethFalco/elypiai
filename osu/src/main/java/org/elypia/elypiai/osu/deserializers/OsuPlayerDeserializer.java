@@ -33,7 +33,7 @@ public class OsuPlayerDeserializer implements JsonDeserializer<Player> {
     }
 
     @Override
-    public Player deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Player deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonArray array = json.getAsJsonArray();
 
         if (array.size() == 0)

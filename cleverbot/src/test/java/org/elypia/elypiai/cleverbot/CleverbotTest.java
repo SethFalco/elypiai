@@ -37,7 +37,7 @@ public class CleverbotTest {
 
     @BeforeEach
     public void beforeEach() {
-        cb = new Cleverbot(serverExtension.getRequestUrl(), "api key");
+        cb = new Cleverbot("api key", serverExtension.getRequestUrl());
     }
 
     @Test

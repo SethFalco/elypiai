@@ -20,7 +20,8 @@ import com.google.gson.annotations.*;
 import org.elypia.elypiai.osu.data.OsuMod;
 import org.elypia.elypiai.osu.deserializers.OsuModDeserializer;
 
-import java.util.*;
+import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -35,7 +36,7 @@ public class RecentPlay extends OsuScore {
 	private List<OsuMod> mods;
 
 	@SerializedName("date")
-	private Date date;
+	private OffsetDateTime date;
 
 	@SerializedName("rank")
 	private String rank;
@@ -54,7 +55,7 @@ public class RecentPlay extends OsuScore {
 	/**
 	 * @return 	Date the map was last updated.
 	 */
-	public Date getDate() {
+	public OffsetDateTime getDate() {
 		return date;
 	}
 

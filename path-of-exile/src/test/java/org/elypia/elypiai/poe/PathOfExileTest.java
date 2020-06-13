@@ -128,7 +128,7 @@ public class PathOfExileTest {
             () -> assertEquals("#LeagueStandard", league.getDescription()),
             () -> assertNull(league.getRegisterAt()),
             () -> assertEquals("http://pathofexile.com/forum/view-thread/71278", league.getUrl()),
-            () -> assertEquals(1358974800000L, league.getStartDate().getTime()),
+            () -> assertEquals(1358974800000L, league.getStartDate().toEpochMilli()),
             () -> assertNull(league.getEndDate()),
             () -> assertTrue(league.isDelveEvent()),
             () -> assertTrue(league.getRules().isEmpty())
@@ -143,10 +143,10 @@ public class PathOfExileTest {
             () -> assertEquals("Synthesis", league.getId()),
             () -> assertEquals(Realm.PC, league.getRealm()),
             () -> assertEquals("#LeagueStandardSynthesis", league.getDescription()),
-            () -> assertEquals(1552066200000L, league.getRegisterAt().getTime()),
+            () -> assertEquals(1552066200000L, league.getRegisterAt().toEpochMilli()),
             () -> assertEquals("http://pathofexile.com/forum/view-thread/2452427", league.getUrl()),
-            () -> assertEquals(1552075200000L, league.getStartDate().getTime()),
-            () -> assertEquals(1559599200000L, league.getEndDate().getTime()),
+            () -> assertEquals(1552075200000L, league.getStartDate().toEpochMilli()),
+            () -> assertEquals(1559599200000L, league.getEndDate().toEpochMilli()),
             () -> assertTrue(league.getRules().isEmpty())
         );
     }
@@ -262,7 +262,7 @@ public class PathOfExileTest {
             () -> assertEquals(7617, guild.getId()),
             () -> assertEquals("DSO", guild.getName()),
             () -> assertEquals("DSO", guild.getTag()),
-            () -> assertEquals(1382576540000L, guild.getCreationDate().getTime()),
+            () -> assertEquals(1382576540000L, guild.getCreationDate().toEpochMilli()),
             () -> assertEquals("Gratz to Dragon on Mirror drop!", guild.getStatus())
         );
     }
@@ -282,14 +282,14 @@ public class PathOfExileTest {
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("EU01-73-STD Swiss", match.getId()),
             () -> assertEquals(Realm.PC, match.getRealm()),
-            () -> assertEquals(1420988400000L, match.getStartDate().getTime()),
-            () -> assertEquals(1420993440000L, match.getEndDate().getTime()),
+            () -> assertEquals(1420988400000L, match.getStartDate().toEpochMilli()),
+            () -> assertEquals(1420993440000L, match.getEndDate().toEpochMilli()),
             () -> assertEquals("http://pathofexile.com/forum/view-thread/1170447", match.getUrl()),
             () -> assertEquals("Best of Seven Low Level Dueling", match.getDescription()),
             () -> assertFalse(match.isGlickoRatings()),
             () -> assertTrue(match.isPvp()),
             () -> assertEquals(MatchStyle.SWISS, match.getStyle()),
-            () -> assertEquals(1420986600000L, match.getRegisterDate().getTime())
+            () -> assertEquals(1420986600000L, match.getRegisterDate().toEpochMilli())
         );
     }
 }

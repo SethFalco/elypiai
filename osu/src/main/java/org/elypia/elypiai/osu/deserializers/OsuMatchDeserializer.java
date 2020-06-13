@@ -33,7 +33,7 @@ public class OsuMatchDeserializer implements JsonDeserializer<Match> {
     }
 
     @Override
-    public Match deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Match deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonObject object = json.getAsJsonObject();
         JsonObject match = object.getAsJsonObject("match");
         match.add("games", object.getAsJsonArray("games"));

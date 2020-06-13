@@ -20,7 +20,8 @@ import com.google.gson.annotations.*;
 import org.elypia.elypiai.osu.data.*;
 import org.elypia.elypiai.osu.deserializers.OsuModDeserializer;
 
-import java.util.*;
+import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -31,10 +32,10 @@ public class Game {
     private int gameId;
 
     @SerializedName("start_time")
-    private Date startTime;
+    private OffsetDateTime startTime;
 
     @SerializedName("end_time")
-    private Date endTime;
+    private OffsetDateTime endTime;
 
     @SerializedName("beatmap_id")
     private int beatmapId;
@@ -59,11 +60,11 @@ public class Game {
         return gameId;
     }
 
-    public Date getStartTime() {
+    public OffsetDateTime getStartTime() {
         return startTime;
     }
 
-    public Date getEndTime() {
+    public OffsetDateTime getEndTime() {
         return endTime;
     }
 

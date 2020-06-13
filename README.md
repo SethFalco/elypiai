@@ -15,15 +15,15 @@ for each one with a consistent interface between each.
 * [Path of Exile] - Complete
 * [RuneScape] - WIP
 * [Steam] - WIP
-* [UrbanDictionary] - Complete
+* [Urban Dictionary] - Complete
 * [Yu-Gi-Oh! Prices] - WIP
 
 You can check the issues to see pending wrappers.
 
 ### Why are these wraps in a single repository?
 Rather than making a Cleverbot4J, Orna4J, osu!4J, etc project we've opted for a submodule
-approach. The reason for this is becasue all submodules in this repository have an almost
-identical structure to them, and when we want make major alternations to how we want
+approach. The reason for this is because all submodules in this repository has an almost
+identical structure to them, and when we want to make major alterations to how we want
 to make requests, we often want to change it for all of our wrappers. 
 Please visit the appropriate README of the module you're interested in.
 
@@ -35,7 +35,7 @@ Following this you can use the methods as you'd expect, each API method will hav
 the request:
 
 * `blockingGet()` - This will do a synchronous or blocking request and return an optional object.
-* `subscribe(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
+* `subscribe(success, failure)` - This will do an asynchronous request, both the success, and failure consumers are optional.
 
 ```java
 public class Main {
@@ -46,7 +46,7 @@ public class Main {
     * Start by instantiating the wrapper to use, then call
     * a request method. Wrappers will accept whatever they need
     * in their constructor and can have their OkHttpClient instance
-    * updated to accomodate custom interceptors.
+    * updated to accommodate custom interceptors.
     */
     public static void main(String[] args) {
         osu = new Osu("{{api key}}");
@@ -54,9 +54,9 @@ public class Main {
     
     /**
     * RxJava is pretty flexible; you can call #subscribe
-    * with callbacks to handle the result asyncronously, 
+    * with callbacks to handle the result asynchronously, 
     * all the parameters are optional, or call #blockingGet 
-    * to handle it syncronously.
+    * to handle it synchronously.
     */
     public static void simpleExample() {        
         osu.getPlayer("SethX3").subscribe(
@@ -105,7 +105,7 @@ make sure to get it sorted.
 [Path of Exile]: https://www.pathofexile.com/developer/docs/api-resources
 [RuneScape]: http://runescape.wikia.com/wiki/Application_programming_interface
 [Steam]: https://steamcommunity.com/dev
-[UrbanDictionary]: http://api.urbandictionary.com/v0/define?term=api
+[Urban Dictionary]: http://api.urbandictionary.com/v0/define?term=api
 [Yu-Gi-Oh! Prices]: http://docs.yugiohprices.apiary.io/
 
 [Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"

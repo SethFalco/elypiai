@@ -20,7 +20,7 @@ import com.google.gson.annotations.*;
 import org.elypia.elypiai.osu.data.*;
 import org.elypia.retropia.gson.deserializers.EmptyNullDeserializer;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -34,13 +34,13 @@ public class BeatMap {
 	private MapStatus status;
 
 	@SerializedName("submit_date")
-	private Date submitDate;
+	private OffsetDateTime submitDate;
 
 	@SerializedName("approved_date")
-	private Date approvedDate;
+	private OffsetDateTime approvedDate;
 
 	@SerializedName("last_update")
-	private Date lastUpdated;
+	private OffsetDateTime lastUpdated;
 
 	@SerializedName("artist")
 	private String artist;
@@ -112,7 +112,7 @@ public class BeatMap {
 		return status;
 	}
 
-	public Date getSubmissionDate() {
+	public OffsetDateTime getSubmissionDate() {
 		return submitDate;
 	}
 
@@ -121,7 +121,7 @@ public class BeatMap {
 	 *
 	 * @return 	Date the map was approved.
 	 */
-	public Date getApprovedDate() {
+	public OffsetDateTime getApprovedDate() {
 		return approvedDate;
 	}
 
@@ -132,7 +132,7 @@ public class BeatMap {
 	 * @return 	Date the map was last updated.
 	 */
 
-	public Date getLastUpdate() {
+	public OffsetDateTime getLastUpdate() {
 		return lastUpdated;
 	}
 

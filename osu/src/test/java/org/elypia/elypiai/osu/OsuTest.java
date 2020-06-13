@@ -34,7 +34,7 @@ public class OsuTest {
 
     @BeforeEach
     public void beforeEach() {
-        osu = new Osu(serverExtension.getRequestUrl(), "api key");
+        osu = new Osu("api key", serverExtension.getRequestUrl());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class OsuTest {
             () -> assertEquals("nathan on osu has lost first place on xi - Blue Zenith [FOUR DIMENSIONS] (osu!)", event.getMessage()),
             () -> assertEquals(658127, event.getBeatmapId()),
             () -> assertEquals(292301, event.getBeatmapSetId()),
-            () -> assertEquals(1559304704000L, event.getDate().getTime()),
+            () -> assertEquals(1559304704L, event.getDate().toEpochSecond()),
             () -> assertEquals(2, event.getEpicFactor())
         );
     }
@@ -99,9 +99,9 @@ public class OsuTest {
             () -> assertEquals("Insane", map.getVersion()),
             () -> assertEquals("c7d039de44853caa2ee7a554a22d61bc", map.getFileMd5()),
             () -> assertEquals(OsuMode.OSU, map.getMode()),
-            ()-> assertEquals(1506777413000L, map.getSubmissionDate().getTime()),
-            () -> assertEquals(1521754807000L, map.getApprovedDate().getTime()),
-            () -> assertEquals(1520937899000L, map.getLastUpdate().getTime()),
+            ()-> assertEquals(1506777413L, map.getSubmissionDate().toEpochSecond()),
+            () -> assertEquals(1521754807L, map.getApprovedDate().toEpochSecond()),
+            () -> assertEquals(1520937899L, map.getLastUpdate().toEpochSecond()),
             () -> assertEquals("TRUE", map.getArtist()),
             () -> assertEquals("BUTTERFLY EFFECTOR (TV Size)", map.getTitle()),
             () -> assertEquals("kunka", map.getCreator()),
@@ -150,7 +150,7 @@ public class OsuTest {
             () -> assertFalse(play.isPerfect()),
             () -> assertEquals(5938285, play.getUserId()),
             () -> assertEquals("F", play.getRank()),
-            () -> assertEquals(1559337639000L, play.getDate().getTime()),
+            () -> assertEquals(1559337639L, play.getDate().toEpochSecond()),
             () -> assertFalse(play.getMods().isEmpty())
         );
     }
@@ -161,7 +161,7 @@ public class OsuTest {
         assertAll("Check values of osu! match are correct.",
             () -> assertEquals(52270952, match.getMatchId()),
             () -> assertEquals("artside36's game", match.getName()),
-            () -> assertEquals(1559389072000L, match.getStartTime().getTime()),
+            () -> assertEquals(1559389072L, match.getStartTime().toEpochSecond()),
             () -> assertNull(match.getEndTime()),
             () -> assertFalse(match.getGames().isEmpty())
         );
@@ -173,8 +173,8 @@ public class OsuTest {
 
         assertAll("Check values of osu! match game entity are correct.",
             () -> assertEquals(272751073, game.getGameId()),
-            () -> assertEquals(1559389171000L, game.getStartTime().getTime()),
-            () -> assertEquals(1559389339000L, game.getEndTime().getTime()),
+            () -> assertEquals(1559389171L, game.getStartTime().toEpochSecond()),
+            () -> assertEquals(1559389339L, game.getEndTime().toEpochSecond()),
             () -> assertEquals(315553, game.getBeatmapId()),
             () -> assertEquals(OsuMode.OSU, game.getMode()),
             () -> assertEquals(OsuScoreType.SCORE, game.getScoring()),

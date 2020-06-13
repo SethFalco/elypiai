@@ -17,9 +17,9 @@
 package org.elypia.elypiai.poe;
 
 import com.google.gson.annotations.*;
-import org.elypia.retropia.gson.deserializers.EmptyNullDeserializer;
+import org.elypia.retropia.gson.deserializers.*;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -40,7 +40,8 @@ public class Guild {
     private String status;
 
     @SerializedName("createdAt")
-    private Date creationDate;
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant creationDate;
 
     public int getId() {
         return id;
@@ -58,7 +59,7 @@ public class Guild {
         return status;
     }
 
-    public Date getCreationDate() {
+    public Instant getCreationDate() {
         return creationDate;
     }
 }

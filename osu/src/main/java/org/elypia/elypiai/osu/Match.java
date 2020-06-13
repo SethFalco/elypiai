@@ -18,7 +18,8 @@ package org.elypia.elypiai.osu;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.*;
+import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -32,10 +33,10 @@ public class Match {
     private String name;
 
     @SerializedName("start_time")
-    private Date startTime;
+    private OffsetDateTime startTime;
 
     @SerializedName("end_time")
-    private Date endTime;
+    private OffsetDateTime endTime;
 
     @SerializedName("games")
     private List<Game> games;
@@ -48,11 +49,11 @@ public class Match {
         return name;
     }
 
-    public Date getStartTime() {
+    public OffsetDateTime getStartTime() {
         return startTime;
     }
 
-    public Date getEndTime() {
+    public OffsetDateTime getEndTime() {
         return endTime;
     }
 

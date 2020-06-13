@@ -20,17 +20,19 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.*;
-import okhttp3.*;
+import okhttp3.OkHttpClient;
 import org.elypia.elypiai.osu.data.*;
 import org.elypia.elypiai.osu.deserializers.*;
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.elypia.retropia.gson.deserializers.DateDeserializer;
+import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
+import org.elypia.retropia.gson.deserializers.OffsetTemporalDeserializer;
 import org.slf4j.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
+import java.time.*;
 import java.util.*;
 
 /**
@@ -66,24 +68,23 @@ public class Osu {
 	 * @param 	apiKey	The API obtained from the osu! website.
 	 */
 	public Osu(String apiKey) {
-		this(baseUrl, apiKey);
+		this(apiKey, baseUrl);
 	}
 
-	public Osu(URL baseUrl, String apiKey) {
-		this.apiKey = Objects.requireNonNull(apiKey);
+	public Osu(String apiKey, URL baseUrl) {
+		this(
+			apiKey,
+			baseUrl,
+			HttpClientSingleton.getBuilder().addInterceptor(new QueryParametersInterceptor("k", apiKey)).build()
+		);
+	}
 
-		OkHttpClient client = HttpClientSingleton.getBuilder()
-			.addInterceptor((chain) -> {
-				Request request = chain.request();
-				HttpUrl url = request.url().newBuilder().addQueryParameter("k", apiKey).build();
-				request = request.newBuilder().url(url).build();
-				return chain.proceed(request);
-			})
-			.build();
+	public Osu(String apiKey, URL baseUrl, OkHttpClient client) {
+		this.apiKey = Objects.requireNonNull(apiKey);
 
 		GsonBuilder gsonBuilder = new GsonBuilder()
 			.registerTypeAdapter(new TypeToken<List<OsuMod>>(){}.getType(), new OsuModDeserializer())
-			.registerTypeAdapter(Date.class, new DateDeserializer("yyyy-MM-dd HH:mm:ss"));
+			.registerTypeAdapter(OffsetDateTime.class, new OffsetTemporalDeserializer("yyyy-MM-dd HH:mm:ss", ZoneOffset.UTC));
 
 		Gson gson = gsonBuilder.create();
 

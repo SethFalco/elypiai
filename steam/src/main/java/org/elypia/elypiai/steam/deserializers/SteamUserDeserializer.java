@@ -36,7 +36,7 @@ public class SteamUserDeserializer implements JsonDeserializer<List<SteamUser>> 
     }
 
     @Override
-    public List<SteamUser> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public List<SteamUser> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonArray players = json.getAsJsonObject().getAsJsonObject("response").getAsJsonArray("players");
         List<SteamUser> users = gson.fromJson(players, typeOfT);
 

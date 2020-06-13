@@ -55,7 +55,7 @@ class Main {
 
 When you call `Cleverbot#say()` you'll get a `Single<CleverResponse>`; you can call:
 * `blockingGet()` - This will do a synchronous or blocking request.
-* `subscribe(success, failure)` - This will do an asynchronous request, both the sucess, and failure consumers are optional.
+* `subscribe(success, failure)` - This will do an asynchronous request, both the success, and failure consumers are optional.
 
 For more information, please see [Elypiai].
 

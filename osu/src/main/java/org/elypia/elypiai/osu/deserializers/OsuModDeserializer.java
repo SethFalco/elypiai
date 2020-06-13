@@ -28,7 +28,7 @@ import java.util.List;
 public class OsuModDeserializer implements JsonDeserializer<List<OsuMod>> {
 
     @Override
-    public List<OsuMod> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public List<OsuMod> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         long l = json.getAsLong();
         return OsuMod.get(l);
     }

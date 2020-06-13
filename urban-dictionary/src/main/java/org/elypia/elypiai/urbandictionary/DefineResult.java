@@ -65,7 +65,7 @@ public class DefineResult {
 
 	/**
 	 * @return The top resulting definition that
-	 * appears on UrbanDictionary for this search.
+	 * appears on Urban Dictionary for this search.
 	 */
 	public Definition getDefinition() {
 		return getDefinition(false);
@@ -73,7 +73,7 @@ public class DefineResult {
 
 	/**
 	 * @param random If to get the top definition or a random one.
-	 * @return An UrbanDictionary defintion entry for this word.
+	 * @return An Urban Dictionary defintion entry for this word.
 	 */
 	public Definition getDefinition(boolean random) {
 		int index = random ? ThreadLocalRandom.current().nextInt(definitions.size()) : 0;

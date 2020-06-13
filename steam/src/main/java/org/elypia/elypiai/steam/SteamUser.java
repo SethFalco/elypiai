@@ -20,7 +20,7 @@ import com.google.gson.annotations.*;
 import org.elypia.elypiai.steam.data.*;
 import org.elypia.retropia.gson.deserializers.*;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -85,8 +85,8 @@ public class SteamUser {
 	 * The last time the user was online.
 	 */
 	@SerializedName("lastlogoff")
-	@JsonAdapter(SecondsDateDeseralizer.class)
-	private Date lastLogOff;
+	@JsonAdapter(UnixSecondsInstantDeserializer.class)
+	private Instant lastLogOff;
 
 	/**
 	 * If set, indicates the profile allows public comments.
@@ -115,8 +115,8 @@ public class SteamUser {
 	 */
 
 	@SerializedName("timecreated")
-	@JsonAdapter(SecondsDateDeseralizer.class)
-	private Date timeCreated;
+	@JsonAdapter(UnixSecondsInstantDeserializer.class)
+	private Instant timeCreated;
 
 	/**
 	 * If set on the user's Steam Community profile,
@@ -202,7 +202,7 @@ public class SteamUser {
 		return hasProfile;
 	}
 
-	public Date getLastLogOff() {
+	public Instant getLastLogOff() {
 		return lastLogOff;
 	}
 
@@ -218,7 +218,7 @@ public class SteamUser {
 		return primaryClan;
 	}
 
-	public Date getTimeCreated() {
+	public Instant getTimeCreated() {
 		return timeCreated;
 	}
 

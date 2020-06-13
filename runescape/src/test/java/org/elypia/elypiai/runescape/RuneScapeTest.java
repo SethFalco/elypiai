@@ -24,6 +24,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.time.ZoneOffset;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -116,7 +117,7 @@ public class RuneScapeTest {
 	public void parseActivity() {
 		Activity activity = rs.getUser("Sethii").blockingGet().getActivities().get(0);
 		assertAll("Testing if Parsing RuneScape Player Activity Correctly",
-			() -> assertEquals(1548363000000L, activity.getDate().getTime()),
+			() -> assertEquals(1548363000, activity.getDate().toEpochSecond(ZoneOffset.UTC)),
 			() -> assertEquals("I levelled my  Farming skill, I am now level 66.", activity.getDetails()),
 			() -> assertEquals("Levelled up Farming.", activity.getText())
 		);

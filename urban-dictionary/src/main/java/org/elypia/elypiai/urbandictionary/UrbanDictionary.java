@@ -17,6 +17,7 @@
 package org.elypia.elypiai.urbandictionary;
 
 import io.reactivex.rxjava3.core.*;
+import okhttp3.OkHttpClient;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
 import retrofit2.Retrofit;
@@ -55,9 +56,13 @@ public class UrbanDictionary {
 	}
 
 	public UrbanDictionary(URL url) {
+		this(url, HttpClientSingleton.getClient());
+	}
+
+	public UrbanDictionary(URL url, OkHttpClient client) {
 		service = new Retrofit.Builder()
 			.baseUrl(url)
-			.client(HttpClientSingleton.getBuilder().build())
+			.client(client)
 			.addConverterFactory(GsonConverterFactory.create())
 			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()

@@ -16,9 +16,11 @@
 
 package org.elypia.elypiai.poe;
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
+import org.elypia.retropia.gson.deserializers.IsoDateTimeTemporalDeserializer;
 
-import java.util.*;
+import java.time.Instant;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -29,7 +31,8 @@ public class League extends CompactLeague {
 	private String description;
 
 	@SerializedName("registerAt")
-	private Date registerAt;
+	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+	private Instant registerAt;
 
 	@SerializedName("rules")
 	private List<LeagueRule> rules;
@@ -38,7 +41,7 @@ public class League extends CompactLeague {
 		return description;
 	}
 
-	public Date getRegisterAt() {
+	public Instant getRegisterAt() {
 		return registerAt;
 	}
 

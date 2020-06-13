@@ -29,7 +29,7 @@ public class CleverResponseDeserializer implements JsonDeserializer<CleverRespon
     private static final Gson GSON = new Gson();
 
     @Override
-    public CleverResponse deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public CleverResponse deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonObject object = json.getAsJsonObject();
 
         JsonArray jsonInteractions = new JsonArray();

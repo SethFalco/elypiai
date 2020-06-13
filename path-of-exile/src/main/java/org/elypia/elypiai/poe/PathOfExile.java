@@ -19,17 +19,18 @@ package org.elypia.elypiai.poe;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
 import org.elypia.elypiai.poe.data.*;
 import org.elypia.elypiai.poe.deserializers.LadderEntryDeserializer;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.exceptions.InvalidEnumException;
-import org.elypia.retropia.gson.deserializers.DateDeserializer;
 import org.slf4j.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
+import java.time.Instant;
 import java.util.*;
 
 /**
@@ -61,19 +62,21 @@ public class PathOfExile {
 	}
 
 	public PathOfExile(URL baseUrl) {
-		GsonBuilder gsonBuilder = new GsonBuilder()
-			.registerTypeAdapter(Date.class, new DateDeserializer("yyyy-MM-dd'T'HH:mm:ss'Z'"));
-
-		gsonBuilder.registerTypeAdapter(new TypeToken<List<LadderEntry>>(){}.getType(), new LadderEntryDeserializer(gsonBuilder.create()));
-
-		service = new Retrofit.Builder()
-			.baseUrl(baseUrl)
-			.client(HttpClientSingleton.getBuilder().build())
-			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-			.build()
-			.create(PathOfExileService.class);
+        this(baseUrl, HttpClientSingleton.getClient());
 	}
+
+    public PathOfExile(URL baseUrl, OkHttpClient client) {
+        GsonBuilder gsonBuilder = new GsonBuilder()
+            .registerTypeAdapter(new TypeToken<List<LadderEntry>>(){}.getType(), new LadderEntryDeserializer());
+
+        service = new Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
+            .create(PathOfExileService.class);
+    }
 
 	public Single<StashTabs> getStashTabs() {
 		return getStashTabs(null);
@@ -187,7 +190,7 @@ public class PathOfExile {
 		return getLeagueLadder(id, realm, limit, offset, type, track, accountName, difficulty, null);
 	}
 
-	public Single<List<LadderEntry>> getLeagueLadder(String id, Realm realm, int limit, int offset, LadderType type, boolean track, String accountName, LabyrinthDifficulty difficulty, Date start) {
+	public Single<List<LadderEntry>> getLeagueLadder(String id, Realm realm, int limit, int offset, LadderType type, boolean track, String accountName, LabyrinthDifficulty difficulty, Instant start) {
 		if (realm == Realm.UNKNOWN)
 			throw new InvalidEnumException(realm);
 
@@ -212,7 +215,7 @@ public class PathOfExile {
 			track,
 			accountName,
 			(difficulty != null) ? difficulty.getValue() : null,
-			(start != null) ? start.getTime() : null
+			(start != null) ? start.toEpochMilli() : null
 		);
 	}
 

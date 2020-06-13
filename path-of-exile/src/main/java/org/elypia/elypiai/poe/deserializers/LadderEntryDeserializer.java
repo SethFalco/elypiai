@@ -27,15 +27,9 @@ import java.util.List;
  */
 public class LadderEntryDeserializer implements JsonDeserializer<List<LadderEntry>> {
 
-    private final Gson gson;
-
-    public LadderEntryDeserializer(Gson gson) {
-        this.gson = gson;
-    }
-
     @Override
-    public List<LadderEntry> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public List<LadderEntry> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonArray array  = json.getAsJsonObject().getAsJsonArray("entries");
-        return gson.fromJson(array, typeOfT);
+        return new Gson().fromJson(array, typeOfT);
     }
 }

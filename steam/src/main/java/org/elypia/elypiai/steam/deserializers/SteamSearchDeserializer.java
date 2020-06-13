@@ -29,7 +29,7 @@ public class SteamSearchDeserializer implements JsonDeserializer<SteamSearch> {
     private static Gson gson = new Gson();
 
     @Override
-    public SteamSearch deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public SteamSearch deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonObject object = json.getAsJsonObject().getAsJsonObject("response");
         return gson.fromJson(object, typeOfT);
     }

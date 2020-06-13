@@ -17,9 +17,10 @@
 package org.elypia.elypiai.urbandictionary;
 
 import com.google.gson.annotations.*;
-import org.elypia.retropia.gson.deserializers.EmptyNullDeserializer;
+import org.elypia.retropia.gson.deserializers.*;
 
-import java.util.*;
+import java.time.Instant;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -52,7 +53,8 @@ public class Definition implements Comparable<Definition> {
 	private String currentVote;
 
 	@SerializedName("written_on")
-	private Date createdDate;
+	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+	private Instant createdDate;
 
 	@SerializedName("example")
 	@JsonAdapter(EmptyNullDeserializer.class)
@@ -100,7 +102,7 @@ public class Definition implements Comparable<Definition> {
 		return currentVote;
 	}
 
-	public Date getCreatedDate() {
+	public Instant getCreatedDate() {
 		return createdDate;
 	}
 

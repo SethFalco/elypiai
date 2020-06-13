@@ -41,7 +41,7 @@ public class SteamTest {
 
     @BeforeEach
     public void beforeEach() {
-        steam = new Steam(serverExtension.getRequestUrl(), "DCA56FE963FE3D2CE23DF7DF30AAA579");
+        steam = new Steam("DCA56FE963FE3D2CE23DF7DF30AAA579", serverExtension.getRequestUrl());
     }
 
     @Test
@@ -97,10 +97,10 @@ public class SteamTest {
             () -> assertEquals("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de_full.jpg", user.getAvatarHigh()),
             () -> assertEquals("https://steamcommunity.com/id/Sethiii/", user.getProfileUrl()),
             () -> assertEquals("BE", user.getCountry()),
-            () -> assertEquals(1558993223000L, user.getLastLogOff().getTime()),
+            () -> assertEquals(1558993223000L, user.getLastLogOff().toEpochMilli()),
             () -> assertEquals(PersonaState.ONLINE, user.getPersonaState()),
             () -> assertEquals(103582791429521408L, user.getPrimaryClan()),
-            () -> assertEquals(1362733966000L, user.getTimeCreated().getTime()),
+            () -> assertEquals(1362733966000L, user.getTimeCreated().toEpochMilli()),
             () -> assertTrue(user.hasProfile()),
             () -> assertTrue(user.canComment()),
             () -> assertNull(user.getCurrentlyPlaying())
@@ -122,11 +122,11 @@ public class SteamTest {
             () -> assertEquals("https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/da/da2fc3f10df50bc529f3cf3b4898eb186595e7de_full.jpg", user.getAvatarHigh()),
             () -> assertEquals("https://steamcommunity.com/id/Sethiii/", user.getProfileUrl()),
             () -> assertEquals("BE", user.getCountry()),
-            () -> assertEquals(1559119218000L, user.getLastLogOff().getTime()),
+            () -> assertEquals(1559119218000L, user.getLastLogOff().toEpochMilli()),
             () -> assertEquals(PersonaState.ONLINE, user.getPersonaState()),
             () -> assertEquals(103582791429521408L, user.getPrimaryClan()),
             () -> assertNull(user.getStateCode()),
-            () -> assertEquals(1362733966000L, user.getTimeCreated().getTime()),
+            () -> assertEquals(1362733966000L, user.getTimeCreated().toEpochMilli()),
             () -> assertTrue(user.hasProfile()),
             () -> assertTrue(user.canComment()),
             () -> assertEquals(0, user.getCityId()),

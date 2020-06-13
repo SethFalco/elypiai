@@ -60,26 +60,26 @@ public enum OsuMod {
     SCOREV2(536870912),
     LAST_MOD(1073741824);
 
-    private final long BITWISE;
-    private final OsuMod[] PARENTS;
+    private final long bitwise;
+    private final OsuMod[] parents;
 
     OsuMod(long bitwise, OsuMod... parents) {
-        BITWISE = bitwise;
-        PARENTS = parents;
+        this.bitwise = bitwise;
+        this.parents = parents;
     }
 
     public long getBitValue() {
-        return BITWISE;
+        return bitwise;
     }
 
     public static List<OsuMod> get(long bitwise) {
         List<OsuMod> mods = new ArrayList<>();
 
         for (OsuMod mod : values()) {
-            if ((mod.BITWISE & bitwise) == mod.BITWISE)
+            if ((mod.bitwise & bitwise) == mod.bitwise)
                 mods.add(mod);
 
-            for (OsuMod m : mod.PARENTS)
+            for (OsuMod m : mod.parents)
                 mods.remove(m);
         }
 

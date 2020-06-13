@@ -19,7 +19,7 @@ package org.elypia.elypiai.osu;
 import com.google.gson.annotations.*;
 import org.elypia.elypiai.osu.deserializers.OsuEventDisplayDeseralizer;
 
-import java.util.Date;
+import java.time.OffsetDateTime;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -37,7 +37,7 @@ public class OsuEvent {
     private int beatmapSetId;
 
     @SerializedName("date")
-    private Date date;
+    private OffsetDateTime date;
 
     @SerializedName("epicfactor")
     private int epicFactor;
@@ -54,7 +54,7 @@ public class OsuEvent {
         return beatmapSetId;
     }
 
-    public Date getDate() {
+    public OffsetDateTime getDate() {
         return date;
     }
 

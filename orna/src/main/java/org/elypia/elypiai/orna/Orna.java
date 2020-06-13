@@ -17,6 +17,7 @@
 package org.elypia.elypiai.orna;
 
 import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
 import org.elypia.elypiai.orna.entities.*;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
@@ -62,9 +63,13 @@ public class Orna {
     }
 
     public Orna(URL baseUrl) {
+        this(baseUrl, HttpClientSingleton.getClient());
+    }
+
+    public Orna(URL baseUrl, OkHttpClient client) {
         service = new Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(HttpClientSingleton.getBuilder().build())
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()

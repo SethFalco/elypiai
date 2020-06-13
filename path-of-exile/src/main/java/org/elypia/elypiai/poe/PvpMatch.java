@@ -16,10 +16,11 @@
 
 package org.elypia.elypiai.poe;
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
 import org.elypia.elypiai.poe.data.*;
+import org.elypia.retropia.gson.deserializers.IsoDateTimeTemporalDeserializer;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -33,10 +34,12 @@ public class PvpMatch {
 	private Realm realm;
 
 	@SerializedName("startAt")
-	private Date startAt;
+	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+	private Instant startAt;
 
 	@SerializedName("endAt")
-	private Date endAt;
+	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+	private Instant endAt;
 
 	@SerializedName("url")
 	private String url;
@@ -54,7 +57,8 @@ public class PvpMatch {
 	private MatchStyle style;
 
 	@SerializedName("registerAt")
-	private Date registerAt;
+	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+	private Instant registerAt;
 
 	public String getId() {
 		return id;
@@ -64,11 +68,11 @@ public class PvpMatch {
 		return realm;
 	}
 
-	public Date getStartDate() {
+	public Instant getStartDate() {
 		return startAt;
 	}
 
-	public Date getEndDate() {
+	public Instant getEndDate() {
 		return endAt;
 	}
 
@@ -92,7 +96,7 @@ public class PvpMatch {
 		return style;
 	}
 
-	public Date getRegisterDate() {
+	public Instant getRegisterDate() {
 		return registerAt;
 	}
 }

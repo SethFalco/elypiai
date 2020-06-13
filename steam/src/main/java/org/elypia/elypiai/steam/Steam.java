@@ -19,9 +19,10 @@ package org.elypia.elypiai.steam;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import io.reactivex.rxjava3.core.*;
-import okhttp3.*;
+import okhttp3.OkHttpClient;
 import org.elypia.elypiai.steam.deserializers.*;
 import org.elypia.retropia.core.HttpClientSingleton;
+import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
 import org.slf4j.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
@@ -68,33 +69,32 @@ public class Steam {
      */
 
     public Steam(String apiKey) {
-        this(baseUrl, apiKey);
+        this(apiKey, baseUrl);
     }
 
-    public Steam(URL baseUrl, String apiKey) {
+    public Steam(String apiKey, URL baseUrl) {
+        this(
+            apiKey,
+            baseUrl,
+            HttpClientSingleton.getBuilder().addInterceptor(new QueryParametersInterceptor("key", apiKey)).build()
+        );
+    }
+
+    public Steam(String apiKey, URL url, OkHttpClient client) {
         this.apiKey = Objects.requireNonNull(apiKey);
 
-        OkHttpClient client = HttpClientSingleton.getBuilder()
-            .addInterceptor((chain) -> {
-                Request request = chain.request();
-                HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).build();
-                request = request.newBuilder().url(url).build();
-                return chain.proceed(request);
-            })
-            .build();
-
         GsonBuilder gsonBuilder = new GsonBuilder()
-                .registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer())
-                .registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer())
-                .registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
+            .registerTypeAdapter(SteamSearch.class, new SteamSearchDeserializer())
+            .registerTypeAdapter(new TypeToken<List<SteamGame>>(){}.getType(), new SteamGameDeserializer())
+            .registerTypeAdapter(new TypeToken<List<SteamUser>>(){}.getType(), new SteamUserDeserializer(this));
 
         service = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-                .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .build()
-                .create(SteamService.class);
+            .baseUrl(url)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
+            .create(SteamService.class);
     }
 
     /**

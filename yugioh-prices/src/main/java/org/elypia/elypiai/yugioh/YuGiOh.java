@@ -17,6 +17,7 @@
 package org.elypia.elypiai.yugioh;
 
 import io.reactivex.rxjava3.core.Maybe;
+import okhttp3.OkHttpClient;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.*;
 import retrofit2.Retrofit;
@@ -54,14 +55,18 @@ public class YuGiOh {
     }
 
     public YuGiOh(URL url) {
+		this(url, HttpClientSingleton.getClient());
+    }
+
+    public YuGiOh(URL url, OkHttpClient client) {
 		service = new Retrofit.Builder()
 			.baseUrl(url)
-			.client(HttpClientSingleton.getBuilder().build())
+			.client(client)
 			.addConverterFactory(GsonConverterFactory.create())
 			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()
 			.create(YuGiOhService.class);
-    }
+	}
 
 	/**
 	 * Search the YuGiOh prices API for the YuGiOh card requested.

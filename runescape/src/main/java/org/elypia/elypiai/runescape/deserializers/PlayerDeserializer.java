@@ -35,7 +35,7 @@ public class PlayerDeserializer implements JsonDeserializer<Player> {
     }
 
     @Override
-    public Player deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public Player deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonObject object = json.getAsJsonObject();
 
         if (object.has("error")) {

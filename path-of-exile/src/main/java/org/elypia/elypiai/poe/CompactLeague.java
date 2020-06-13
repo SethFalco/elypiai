@@ -16,10 +16,11 @@
 
 package org.elypia.elypiai.poe;
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.*;
 import org.elypia.elypiai.poe.data.Realm;
+import org.elypia.retropia.gson.deserializers.IsoDateTimeTemporalDeserializer;
 
-import java.util.Date;
+import java.time.Instant;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -36,10 +37,12 @@ public class CompactLeague {
 	private String url;
 
 	@SerializedName("startAt")
-	private Date startAt;
+	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+	private Instant startAt;
 
 	@SerializedName("endAt")
-	private Date endAt;
+	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+	private Instant endAt;
 
 	@SerializedName("delveEvent")
 	private boolean delveEvent;
@@ -56,11 +59,11 @@ public class CompactLeague {
 		return url;
 	}
 
-	public Date getStartDate() {
+	public Instant getStartDate() {
 		return startAt;
 	}
 
-	public Date getEndDate() {
+	public Instant getEndDate() {
 		return endAt;
 	}
 

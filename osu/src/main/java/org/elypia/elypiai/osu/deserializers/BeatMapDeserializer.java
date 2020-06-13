@@ -27,16 +27,16 @@ import java.util.List;
  */
 public class BeatMapDeserializer implements JsonDeserializer<List<BeatMap>> {
 
-    private final Gson GSON;
+    private final Gson gson;
 
     public BeatMapDeserializer(Gson gson) {
-        this.GSON = gson;
+        this.gson = gson;
     }
 
     @Override
-    public List<BeatMap> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public List<BeatMap> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonArray array = json.getAsJsonArray();
-        List<BeatMap> maps = GSON.fromJson(array, typeOfT);
+        List<BeatMap> maps = gson.fromJson(array, typeOfT);
 
         for (int i = 0; i < maps.size(); i++) {
             JsonObject map = array.get(i).getAsJsonObject();

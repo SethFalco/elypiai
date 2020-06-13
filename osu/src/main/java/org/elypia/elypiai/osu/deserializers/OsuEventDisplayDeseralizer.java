@@ -29,7 +29,7 @@ public class OsuEventDisplayDeseralizer implements JsonDeserializer<String> {
     private static final Pattern stripper = Pattern.compile("<.+?>");
 
     @Override
-    public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         String html = json.getAsString();
         return stripper.matcher(html).replaceAll("").trim();
     }

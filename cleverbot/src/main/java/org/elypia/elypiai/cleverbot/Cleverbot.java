@@ -18,10 +18,11 @@ package org.elypia.elypiai.cleverbot;
 
 import com.google.gson.GsonBuilder;
 import io.reactivex.rxjava3.core.Single;
-import okhttp3.*;
+import okhttp3.OkHttpClient;
 import org.elypia.elypiai.cleverbot.data.CleverTweak;
 import org.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
 import org.elypia.retropia.core.HttpClientSingleton;
+import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
 import org.slf4j.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
@@ -59,7 +60,7 @@ public class Cleverbot {
 	 * @param apiKey API key recieved upon signing up.
 	 */
 	public Cleverbot(String apiKey) {
-		this(baseUrl, apiKey);
+		this(apiKey, baseUrl);
 	}
 
 	/**
@@ -67,21 +68,22 @@ public class Cleverbot {
 	 * to the cleverbot API, apikey can be obtained from
 	 * cleverbot website for free.
 	 *
-	 * @param baseUrl The URL to send HTTP requests too.
 	 * @param apiKey API key recieved upon signing up.
+	 * @param baseUrl The URL to send HTTP requests too.
 	 * @see <a href="https://www.cleverbot.com/api/">cleverbot</a>
 	 */
-	public Cleverbot(URL baseUrl, String apiKey) {
-		this.apiKey = apiKey;
+	public Cleverbot(String apiKey, URL baseUrl) {
+		this(
+			apiKey,
+			baseUrl,
+			HttpClientSingleton.getBuilder().addInterceptor(
+				new QueryParametersInterceptor(Map.of("key", apiKey,"wrapper", "Elypiai"))
+			).build()
+		);
+	}
 
-		OkHttpClient client = HttpClientSingleton.getBuilder()
-			.addInterceptor((chain) -> {
-				Request request = chain.request();
-				HttpUrl url = request.url().newBuilder().addQueryParameter("key", apiKey).addQueryParameter("wrapper", "Elypiai").build();
-				request = request.newBuilder().url(url).build();
-				return chain.proceed(request);
-			})
-			.build();
+	public Cleverbot(String apiKey, URL baseUrl, OkHttpClient client) {
+		this.apiKey = Objects.requireNonNull(apiKey);
 
 		GsonBuilder builder = new GsonBuilder()
 			.registerTypeAdapter(CleverResponse.class, new CleverResponseDeserializer());

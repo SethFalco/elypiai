@@ -18,17 +18,19 @@ package org.elypia.elypiai.runescape;
 
 import com.google.gson.GsonBuilder;
 import io.reactivex.rxjava3.core.Maybe;
+import okhttp3.OkHttpClient;
 import org.elypia.elypiai.runescape.deserializers.PlayerDeserializer;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.exceptions.FriendlyException;
-import org.elypia.retropia.gson.deserializers.DateDeserializer;
+import org.elypia.retropia.gson.deserializers.TemporalDeserializer;
 import org.slf4j.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -59,14 +61,18 @@ public class RuneScape {
 	}
 
 	public RuneScape(URL baseUrl) {
+		this(baseUrl, HttpClientSingleton.getClient());
+	}
+
+	public RuneScape(URL baseUrl, OkHttpClient client) {
 		GsonBuilder gsonBuilder = new GsonBuilder()
-			.registerTypeAdapter(Date.class, new DateDeserializer("dd-MMM-yyyy hh:mm"));
+			.registerTypeAdapter(LocalDateTime.class, new TemporalDeserializer("dd-MMM-yyyy HH:mm"));
 
 		gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
 
 		service = new Retrofit.Builder()
 			.baseUrl(baseUrl)
-			.client(HttpClientSingleton.getBuilder().build())
+			.client(client)
 			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
 			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
 			.build()

@@ -29,7 +29,7 @@ public class StashItemNameDeserializer implements JsonDeserializer<String> {
     private static Pattern STRIPPER = Pattern.compile("^(?:<<set:[MS]+>>)+");
 
     @Override
-    public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         return STRIPPER.matcher(json.getAsString()).replaceAll("");
     }
 }
