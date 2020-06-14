@@ -23,7 +23,7 @@ allprojects() {
     apply plugin: "jacoco"
 
     group = "org.elypia.elypiai"
-    version = "4.0.0"
+    version = "4.1.0"
     description = "Wrappers for various web APIs that don't provide official libraries for Java."
 
     ext {
@@ -62,7 +62,7 @@ subprojects() {
 
     dependencies {
         // Retropia (Retrofit) to Make Requests
-        implementation "org.elypia.retropia:core:${retropiaVersion}"
+        api "org.elypia.retropia:core:${retropiaVersion}"
 
         // RxJava for Handling Responses
         api "com.squareup.retrofit2:adapter-rxjava3:${retrofitVersion}"
