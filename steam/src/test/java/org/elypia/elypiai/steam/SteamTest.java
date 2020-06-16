@@ -41,15 +41,15 @@ public class SteamTest {
 
     @BeforeEach
     public void beforeEach() {
-        steam = new Steam("DCA56FE963FE3D2CE23DF7DF30AAA579", serverExtension.getRequestUrl());
+        steam = new Steam("{STEAM_API_KEY}", serverExtension.getRequestUrl());
     }
 
     @Test
     public void steamTest() {
-        Steam steam = new Steam("DCA56FE963FE3D2CE23DF7DF30AAA579");
+        Steam steam = new Steam("{STEAM_API_KEY}");
 
         assertNotNull(steam);
-        assertEquals("DCA56FE963FE3D2CE23DF7DF30AAA579", steam.getApiKey());
+        assertEquals("{STEAM_API_KEY}", steam.getApiKey());
     }
 
     @Test
