@@ -1,0 +1,12 @@
+{
+  "etag": "70682bd923a871e583adf14ef4696e097af1fdb7",
+  "kind": "registered-office-address",
+  "links": {
+    "self": "/company/12203025/registered-office-address"
+  },
+  "address_line_1": "International House",
+  "address_line_2": "24 Holborn Viaduct",
+  "country": "England",
+  "locality": "London",
+  "postal_code": "EC1A 2BN"
+}

@@ -1,0 +1,44 @@
+{
+  "items_per_page": 25,
+  "active_count": 1,
+  "links": {
+    "self": "/company/12203025/persons-with-significant-control"
+  },
+  "total_results": 1,
+  "items": [
+    {
+      "etag": "2fb2131337b5903a055cca0f06b60136a8df703c",
+      "notified_on": "2019-09-12",
+      "natures_of_control": [
+        "voting-rights-75-to-100-percent",
+        "right-to-appoint-and-remove-directors"
+      ],
+      "country_of_residence": "Belgium",
+      "name": "Mr Syed Shahzeb Hussain Shah",
+      "name_elements": {
+        "forename": "Syed",
+        "surname": "Shah",
+        "title": "Mr",
+        "middle_name": "Shahzeb Hussain"
+      },
+      "kind": "individual-person-with-significant-control",
+      "date_of_birth": {
+        "month": 1,
+        "year": 1998
+      },
+      "links": {
+        "self": "/company/12203025/persons-with-significant-control/individual/pWONr6dOPqoMcOjvDjW2OYU3PpY"
+      },
+      "nationality": "British",
+      "address": {
+        "postal_code": "EC1A 2BN",
+        "country": "England",
+        "premises": "International House",
+        "locality": "London",
+        "address_line_1": "24 Holborn Viaduct"
+      }
+    }
+  ],
+  "ceased_count": 0,
+  "start_index": 0
+}

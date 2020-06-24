@@ -14,15 +14,18 @@
  * limitations under the License.
  */
 
-rootProject.name = "elypiai"
+package org.elypia.elypiai.companieshouse.models;
 
-/** Wrappers */
-include "cleverbot"
-include "companies-house"
-include "orna"
-include "osu"
-include "path-of-exile"
-include "runescape"
-include "steam"
-include "urban-dictionary"
-include "yugioh-prices"
+public class RegisteredOfficeAddress extends Address {
+
+    private String etag;
+    private String premises;
+
+    public String getEtag() {
+        return etag;
+    }
+
+    public String getPremises() {
+        return premises;
+    }
+}

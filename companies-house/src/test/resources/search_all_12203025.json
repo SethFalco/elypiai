@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "matches": {
+        "title": [
+          1,
+          6
+        ],
+        "snippet": []
+      },
+      "title": "ELYPIA CIC",
+      "kind": "searchresults#company",
+      "address": {
+        "premises": "International House",
+        "address_line_1": "24 Holborn Viaduct",
+        "postal_code": "EC1A 2BN",
+        "locality": "London",
+        "country": "England"
+      },
+      "company_status": "active",
+      "address_snippet": "International House, 24 Holborn Viaduct, London, England, EC1A 2BN",
+      "snippet": "",
+      "description": "12203025 - Incorporated on 12 September 2019",
+      "company_type": "private-limited-guarant-nsc",
+      "description_identifier": [
+        "incorporated-on"
+      ],
+      "company_number": "12203025",
+      "date_of_creation": "2019-09-12",
+      "links": {
+        "self": "/company/12203025"
+      }
+    }
+  ],
+  "page_number": 1,
+  "items_per_page": 20,
+  "start_index": 0,
+  "kind": "search#all",
+  "total_results": 1
+}

@@ -1,0 +1,39 @@
+{
+  "active_count": 1,
+  "items_per_page": 35,
+  "kind": "officer-list",
+  "etag": "45edc89cf1cd8efaf033b0013c7950aad06b2b3e",
+  "total_results": 1,
+  "inactive_count": 0,
+  "items": [
+    {
+      "occupation": "Software Engineer",
+      "date_of_birth": {
+        "month": 1,
+        "year": 1998
+      },
+      "name": "SHAH, Syed Shahzeb Hussain",
+      "address": {
+        "locality": "London",
+        "country": "England",
+        "postal_code": "EC1A 2BN",
+        "address_line_1": "24 Holborn Viaduct",
+        "premises": "International House"
+      },
+      "nationality": "British",
+      "country_of_residence": "Belgium",
+      "appointed_on": "2019-09-12",
+      "links": {
+        "officer": {
+          "appointments": "/officers/JHIszHq0eErcApZ9k_FhzBFPF8A/appointments"
+        }
+      },
+      "officer_role": "director"
+    }
+  ],
+  "resigned_count": 0,
+  "links": {
+    "self": "/company/12203025/officers"
+  },
+  "start_index": 0
+}

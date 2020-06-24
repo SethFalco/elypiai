@@ -14,15 +14,20 @@
  * limitations under the License.
  */
 
-rootProject.name = "elypiai"
+package org.elypia.elypiai.companieshouse.models;
 
-/** Wrappers */
-include "cleverbot"
-include "companies-house"
-include "orna"
-include "osu"
-include "path-of-exile"
-include "runescape"
-include "steam"
-include "urban-dictionary"
-include "yugioh-prices"
+import java.time.YearMonth;
+
+public class OfficerSearchItem extends SearchItem {
+
+    private int appointmentCount;
+    private YearMonth dateOfBirth;
+
+    public int getAppointmentCount() {
+        return appointmentCount;
+    }
+
+    public YearMonth getDateOfBirth() {
+        return dateOfBirth;
+    }
+}

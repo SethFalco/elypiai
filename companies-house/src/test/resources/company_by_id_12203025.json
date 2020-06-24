@@ -1,0 +1,55 @@
+{
+  "links": {
+    "self": "/company/12203025",
+    "officers": "/company/12203025/officers",
+    "filing_history": "/company/12203025/filing-history",
+    "persons_with_significant_control": "/company/12203025/persons-with-significant-control"
+  },
+  "has_insolvency_history": false,
+  "etag": "e13d5166688c8aedf29799664995ac5a6fbf90db",
+  "subtype": "community-interest-company",
+  "has_charges": false,
+  "jurisdiction": "england-wales",
+  "registered_office_address": {
+    "address_line_1": "International House",
+    "country": "England",
+    "locality": "London",
+    "address_line_2": "24 Holborn Viaduct",
+    "postal_code": "EC1A 2BN"
+  },
+  "date_of_creation": "2019-09-12",
+  "type": "private-limited-guarant-nsc",
+  "company_number": "12203025",
+  "accounts": {
+    "next_made_up_to": "2020-09-30",
+    "overdue": false,
+    "next_due": "2021-06-12",
+    "last_accounts": {
+      "type": "null"
+    },
+    "accounting_reference_date": {
+      "month": "09",
+      "day": "30"
+    },
+    "next_accounts": {
+      "due_on": "2021-06-12",
+      "period_end_on": "2020-09-30",
+      "overdue": false,
+      "period_start_on": "2019-09-12"
+    }
+  },
+  "company_name": "ELYPIA CIC",
+  "is_community_interest_company": true,
+  "undeliverable_registered_office_address": false,
+  "sic_codes": [
+    "62012"
+  ],
+  "company_status": "active",
+  "registered_office_is_in_dispute": false,
+  "confirmation_statement": {
+    "next_made_up_to": "2020-09-11",
+    "overdue": false,
+    "next_due": "2020-09-25"
+  },
+  "can_file": true
+}

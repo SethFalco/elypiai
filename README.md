@@ -10,6 +10,7 @@ for each one with a consistent interface between each.
 
 ## Supported APIs
 * [Cleverbot] - Complete
+* [Companies House] - WIP
 * [Orna Guide] - WIP
 * [osu!] - WIP
 * [Path of Exile] - Complete
@@ -100,6 +101,7 @@ make sure to get it sorted.
 [Gradle]: https://gradle.org/ "Depend via Gradle"
 [Maven]: https://maven.apache.org/ "Depend via Maven"
 [Cleverbot]: https://www.cleverbot.com/api/
+[Companies House]: https://developer.companieshouse.gov.uk/api/docs/
 [Orna Guide]: https://orna.guide/gameplay?show=16
 [osu!]: https://github.com/ppy/osu-api/wiki
 [Path of Exile]: https://www.pathofexile.com/developer/docs/api-resources
@@ -108,7 +110,7 @@ make sure to get it sorted.
 [Urban Dictionary]: http://api.urbandictionary.com/v0/define?term=api
 [Yu-Gi-Oh! Prices]: http://docs.yugiohprices.apiary.io/
 
-[Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
+[Matrix]: https://img.shields.io/matrix/elypia:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/osu "Download Shield"
 [Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Documentation Shield"

@@ -1,0 +1,8 @@
+{
+  "errors": [
+    {
+      "type": "ch:service",
+      "error": "company-insolvencies-not-found"
+    }
+  ]
+}

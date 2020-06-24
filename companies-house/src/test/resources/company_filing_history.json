@@ -1,0 +1,40 @@
+{
+  "items_per_page": 25,
+  "start_index": 0,
+  "total_count": 2,
+  "items": [
+    {
+      "action_date": "2020-05-28",
+      "category": "address",
+      "date": "2020-05-28",
+      "description": "change-registered-office-address-company-with-date-old-address-new-address",
+      "description_values": {
+        "new_address": "International House 24 Holborn Viaduct London EC1A 2BN",
+        "change_date": "2020-05-28",
+        "old_address": "Elypia Cic International House 24 Holborn Viaduct London EC1A 2BN United Kingdom"
+      },
+      "links": {
+        "self": "/company/12203025/filing-history/MzI2NTk3NjU0M2FkaXF6a2N4",
+        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/lOl3xaF_2c__ceGUPqCqHTh9Txi_3iPcLZUy7b7w1wA"
+      },
+      "type": "AD01",
+      "pages": 1,
+      "barcode": "X9604T00",
+      "transaction_id": "MzI2NTk3NjU0M2FkaXF6a2N4"
+    },
+    {
+      "date": "2019-09-12",
+      "description": "incorporation-community-interest-company",
+      "category": "incorporation",
+      "type": "CICINC",
+      "links": {
+        "self": "/company/12203025/filing-history/MzI0Mzk1OTMwMGFkaXF6a2N4",
+        "document_metadata": "https://frontend-doc-api.companieshouse.gov.uk/document/9Zze9F5PeDPTexY9chaNW6gbNS0WF8gbS57pXCfbmyg"
+      },
+      "pages": 34,
+      "barcode": "X8DR8M7U",
+      "transaction_id": "MzI0Mzk1OTMwMGFkaXF6a2N4"
+    }
+  ],
+  "filing_history_status": "filing-history-available"
+}

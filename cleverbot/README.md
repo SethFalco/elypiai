@@ -76,7 +76,7 @@ make sure to get it sorted.
 [website]: https://www.cleverbot.com/ "Cleverbot Website"
 [Elypiai]: https://gitlab.com/Elypia/elypiai "Elypiai Repository"
 
-[Matrix]: https://img.shields.io/matrix/elypia-general:matrix.org?logo=matrix "Matrix Shield"
+[Matrix]: https://img.shields.io/matrix/elypia:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
 [Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/cleverbot "Download Shield"
 [Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Documentation Shield"
