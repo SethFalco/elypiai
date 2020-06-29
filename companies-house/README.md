@@ -1,18 +1,18 @@
-# Elypiai - Cleverbot [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+# Elypiai - Companies House [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
 The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
 
 ## About
-This is the [Cleverbot] module for Elypiai.
-Cleverbot is an AI powered chatbot that users can talk to on the Cleverbot [website]
-or via the Cleverbot [API][Cleverbot].
+This is the [Companies House] module for Elypiai.
+Companies House are the governing body around companies in the United Kingdom.
+They provide an official API to allow programatic access to public information
+for all companies.
 
 ## Getting Started
-**Heads Up: The Cleverbot API is a paid service.**
+First you'll have to go to the Companies House API site and make an account if you haven't already. 
+You can then make an application and receive an API key which will be used to authorize requests, 
+you may need to go to your application and whitelist your IP for making API requests.
 
-First you'll have to go to the Cleverbot API site and make an account if you haven't already.  
-Following this, you may also have to purchase a [topup package][Cleverbot].  
-
-Once you're ready, you can depend on the Cleverbot module of Elypiai.
+Once you're ready, you can depend on the Companies House module of Elypiai.
 
 **Gradle**
 ```gradle
@@ -21,7 +21,7 @@ ext {
 }
 
 dependencies {
-    implementation "org.elypia.elypiai:cleverbot:${elypiaiVersion}"
+    implementation "org.elypia.elypiai:companies-house:${elypiaiVersion}"
 }
 ```
 
@@ -29,35 +29,39 @@ dependencies {
 ```xml
 <dependency>
     <groupId>org.elypia.elypiai</groupId>
-    <artifactId>cleverbot</artifactId>
+    <artifactId>companies-house</artifactId>
     <version>x.y.z</version>
 </dependency>
 ```
 
-To use the wrapper, just instantiate the `Cleverbot` instance with your API key
-that you'll have obtained from the Cleverbot API website.
+To use the wrapper, just instantiate the `CompaniesHouse` instance with your API key
+that you'll have obtained from the Companies House website.
 
 ```java
+import org.elypia.elypiai.companieshouse.CompaniesHouse;
+
 class Main {
  
     public static void main(String[] args) {
         // Construct the wrapper object.
-        Cleverbot cb = new Cleverbot("{API_KEY}");
+        CompaniesHouse ch = new CompaniesHouse("{API_KEY}");
         
         // Queue the request we want to make with a callback.
-        cb.say("Hello").subscribe((response) -> {
-            System.out.println(response.getOutput()); // Response to "Hello"
-            System.out.println(response.getCs()); // Cleverbot state, to continue the conversation
+        ch.getRegisteredOfficeAddress("12203025").subscribe((response) -> {
+           System.out.println(response.getAddressLine1());
+           System.out.println(response.getAddressLine2());
         });
     }
 }
 ```
 
-When you call `Cleverbot#say()` you'll get a `Single<CleverResponse>`; you can call:
-* `blockingGet()` - This will do a synchronous or blocking request.
-* `subscribe(success, failure)` - This will do an asynchronous request, both the success, and failure consumers are optional.
-
 For more information, please see [Elypiai].
+
+## Contributing
+As the API returns data that's on public record, it contains a lot of personal information;
+we don't to embed that in the respository. As a result the test responses for 
+unit testing should only ever contain responses for [Elypia CIC (12203025)], or 
+of the contributor's or contributor's company.
 
 ## Support
 Should any problems occur, come visit us over on Discord! We're always around and there are
@@ -72,9 +76,9 @@ make sure to get it sorted.
 [elypia-donate]: https://elypia.org/donate "Donate to Elypia"
 [Gradle]: https://gradle.org/ "Depend via Gradle"
 [Maven]: https://maven.apache.org/ "Depend via Maven"
-[Cleverbot]: https://www.cleverbot.com/api/ "Cleverbot API"
-[website]: https://www.cleverbot.com/ "Cleverbot Website"
+[Companies House]: https://developer.companieshouse.gov.uk/api/docs/
 [Elypiai]: https://gitlab.com/Elypia/elypiai "Elypiai Repository"
+[Elypia CIC (12203025)]: https://beta.companieshouse.gov.uk/company/12203025
 
 [Matrix]: https://img.shields.io/matrix/elypia:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"

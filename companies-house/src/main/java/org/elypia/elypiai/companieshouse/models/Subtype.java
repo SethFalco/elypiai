@@ -14,16 +14,19 @@
  * limitations under the License.
  */
 
-rootProject.name = "elypiai"
+package org.elypia.elypiai.companieshouse.models;
 
-/** Wrappers */
-include "cleverbot"
-include "companies-house"
-include "orna"
-include "osu"
-include "path-of-exile"
-include "runescape"
-include "steam"
-include "urban-dictionary"
-include "yugioh-prices"
-include "weblate"
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * @author seth@elypia.org (Seth Falco)
+ * @since 4.2.2
+ */
+public enum Subtype {
+
+    @SerializedName("community-interest-company")
+    COMMUNITY_INTEREST_COMPANY,
+
+    @SerializedName("private-find-limited-partnership")
+    PRIVATE_FUN_LIMITED_PARTNERSHIP
+}

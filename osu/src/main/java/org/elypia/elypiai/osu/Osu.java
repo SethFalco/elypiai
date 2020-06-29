@@ -65,7 +65,7 @@ public class Osu {
 	 * Using this you can call information on each user, as well
 	 * as beatmaps, and recentplay data for users.
 	 *
-	 * @param 	apiKey	The API obtained from the osu! website.
+	 * @param 	apiKey	The API key obtained from the osu! website.
 	 */
 	public Osu(String apiKey) {
 		this(apiKey, baseUrl);

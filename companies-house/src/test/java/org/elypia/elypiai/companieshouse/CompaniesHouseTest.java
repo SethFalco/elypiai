@@ -16,10 +16,12 @@
 
 package org.elypia.elypiai.companieshouse;
 
-import org.elypia.elypiai.companieshouse.models.RegisteredOfficeAddress;
+import org.elypia.elypiai.companieshouse.models.*;
 import org.elypia.webservertestbed.junit5.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.RegisterExtension;
+
+import java.time.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,9 +42,59 @@ public class CompaniesHouseTest {
         assertDoesNotThrow(() -> new CompaniesHouse("Fake API Key"));
     }
 
+    @WebServerTest("company_by_id_12203025.json")
+    public void parseCompanyById() {
+        Company c = companiesHouse.getCompany("12203025").blockingGet();
+
+        assertAll("Ensure Parsing Data Correctly",
+            () -> assertEquals("e13d5166688c8aedf29799664995ac5a6fbf90db", c.getEtag()),
+            () -> assertEquals(Subtype.COMMUNITY_INTEREST_COMPANY, c.getSubtype()),
+            () -> assertEquals(Jurisdiction.ENGLAND_WALES, c.getJurisdiction()),
+            () -> assertTrue(c.canFile()),
+            () -> assertEquals(CompanyStatus.ACTIVE, c.getCompanyStatus()),
+            () -> assertFalse(c.isRegisteredOfficeInDispute()),
+            () -> assertEquals(1, c.getSicCodes().size()),
+            () -> assertFalse(c.isUndeliverableRegisteredOffice()),
+            () -> assertEquals("ELYPIA CIC", c.getCompanyName()),
+            () -> assertEquals("12203025", c.getCompanyNumber()),
+            () -> assertEquals(CompanyType.PRIVATE_LIMITED_GUARANT_NSC, c.getType()),
+            () -> assertEquals(LocalDate.of(2019, 9, 12), c.getCreationDate())
+        );
+    }
+
+    @WebServerTest("company_by_id_12203025.json")
+    public void testParsingCompanyAddress() {
+        RegisteredOfficeAddress result = companiesHouse.getCompany("12203025").blockingGet().getRegisteredOfficeAddress();
+
+        assertAll("Ensure Parsing Result Data Correctly",
+            () -> assertEquals("International House", result.getAddressLine1()),
+            () -> assertEquals("24 Holborn Viaduct", result.getAddressLine2()),
+            () -> assertEquals("England", result.getCountry()),
+            () -> assertEquals("London", result.getLocality()),
+            () -> assertEquals("EC1A 2BN", result.getPostalCode())
+        );
+    }
+
+    @WebServerTest("company_by_id_12203025.json")
+    public void testParsingConfirmationStatement() {
+        StatementDates cs = companiesHouse.getCompany("12203025").blockingGet().getConfirmationStatement();
+
+        assertAll("Ensure Parsing Data Correctly",
+            () -> assertEquals(LocalDate.of(2020, 9, 11), cs.getNextMadeUpTo()),
+            () -> assertEquals(LocalDate.of(2020, 9, 25), cs.getNextDue()),
+            () -> assertFalse(cs.isOverdue())
+        );
+    }
+
+    @WebServerTest("company_by_id_12203025.json")
+    public void testParsingCompanyAccountsReferenceDate() {
+        MonthDay ard = companiesHouse.getCompany("12203025").blockingGet().getAccounts().getAccountingReferenceDate();
+        assertEquals(MonthDay.of(9, 30), ard);
+    }
+
     @WebServerTest("registered_address_12203025.json")
-    public void parseResults() {
-        RegisteredOfficeAddress result = companiesHouse.getRegisteredOfficeAddress(12203025).blockingGet();
+    public void parseRegisteredAddress() {
+        RegisteredOfficeAddress result = companiesHouse.getRegisteredOfficeAddress("12203025").blockingGet();
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("70682bd923a871e583adf14ef4696e097af1fdb7", result.getEtag()),

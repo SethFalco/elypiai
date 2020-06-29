@@ -16,17 +16,20 @@
 
 package org.elypia.elypiai.companieshouse;
 
+import com.google.gson.*;
 import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
-import org.elypia.elypiai.companieshouse.models.RegisteredOfficeAddress;
+import org.elypia.elypiai.companieshouse.models.*;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.interceptors.BasicAuthorizationInterceptor;
+import org.elypia.retropia.gson.deserializers.TemporalDeserializer;
 import org.slf4j.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class CompaniesHouse {
@@ -55,7 +58,7 @@ public class CompaniesHouse {
      * Creates an instance of the CompaniesHouse API.
      * You can use this to get information on British companies.
      *
-     * @param 	apiKey	The API obtained from the osu! website.
+     * @param apiKey The API key obtained from the Companies House website.
      * @see <a href="https://beta.companieshouse.gov.uk/">Companies House Website</a>
      */
     public CompaniesHouse(String apiKey) {
@@ -74,19 +77,40 @@ public class CompaniesHouse {
         this.apiKey = Objects.requireNonNull(apiKey);
         Objects.requireNonNull(client);
 
+        Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDate.class, new TemporalDeserializer("yyyy-MM-dd"))
+            .create();
+
         service = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
             .create(CompaniesHouseService.class);
     }
 
-    public Single<RegisteredOfficeAddress> getRegisteredOfficeAddress(int companyId) {
-        return service.getCompanyRegisteredOffice(companyId);
+    /**
+     * @param companyNumber The company number of the organization.
+     * @return The public company profile for the specified company number.
+     */
+    public Single<Company> getCompany(String companyNumber) {
+        Objects.requireNonNull(companyNumber);
+        return service.getCompany(companyNumber);
     }
 
+    /**
+     * @param companyNumber The company number of the organization.
+     * @return The companies registered address if the company exists.
+     */
+    public Single<RegisteredOfficeAddress> getRegisteredOfficeAddress(String companyNumber) {
+        Objects.requireNonNull(companyNumber);
+        return service.getCompanyRegisteredOffice(companyNumber);
+    }
+
+    /**
+     * @return The read-only API key used for authentication requests.
+     */
     public String getApiKey() {
         return apiKey;
     }

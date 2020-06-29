@@ -23,7 +23,7 @@ allprojects() {
     apply plugin: "jacoco"
 
     group = "org.elypia.elypiai"
-    version = "4.2.0"
+    version = "4.2.2"
     description = "Wrappers for various web APIs that don't provide official libraries for Java."
 
     ext {

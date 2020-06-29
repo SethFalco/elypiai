@@ -17,7 +17,7 @@
 package org.elypia.elypiai.companieshouse;
 
 import io.reactivex.rxjava3.core.Single;
-import org.elypia.elypiai.companieshouse.models.RegisteredOfficeAddress;
+import org.elypia.elypiai.companieshouse.models.*;
 import retrofit2.http.*;
 
 /**
@@ -55,44 +55,44 @@ public interface CompaniesHouseService {
     );
 
     @GET("company/{company_number}")
-    Single<Object> getCompany(
-        @Path("company_number") int companyNumber
+    Single<Company> getCompany(
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/registered-office-address")
     Single<RegisteredOfficeAddress> getCompanyRegisteredOffice(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/officers")
     Single<Object> getCompanyOfficiers(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/filing-history")
     Single<Object> getCompanyFilingHistory(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/filing-history/{transaction_id}")
     Single<Object> getCompanyFilingHistoryTransaction(
-        @Path("company_number") int companyNumber,
+        @Path("company_number") String companyNumber,
         @Path("transaction_id") int transactionId
     );
 
     @GET("company/{company_number}/insolvency")
     Single<Object> getCompanyInsolvency(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/charges")
     Single<Object> getCompanyCharges(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/charges/{charge_id}")
     Single<Object> getCompanyCharge(
-        @Path("company_number") int companyNumber,
+        @Path("company_number") String companyNumber,
         @Path("charge_id") int chargeId
     );
 
@@ -113,56 +113,56 @@ public interface CompaniesHouseService {
 
     @GET("company/{company_number}/uk-establishments")
     Single<Object> getUkEstablishments(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/persons-with-significant-control")
     Single<Object> getCompanyPscs(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/persons-with-significant-control/individual/{psc_id}")
     Single<Object> getCompanyPsc(
-        @Path("company_number") int companyNumber,
+        @Path("company_number") String companyNumber,
         @Path("psc_id") int pscId
     );
 
     @GET("company/{company_number}/corporate-entity/{psc_id}")
     Single<Object> getCompanyCorporateEntities(
-        @Path("company_number") int companyNumber,
+        @Path("company_number") String companyNumber,
         @Path("psc_id") int pscId
     );
 
     @GET("company/{company_number}/legal-person/{psc_id}")
     Single<Object> getCompanyLegalPersons(
-        @Path("company_number") int companyNumber,
+        @Path("company_number") String companyNumber,
         @Path("psc_id") int pscId
     );
 
     @GET("company/{company_number}/persons-with-significant-control-statements")
     Single<Object> getCompanyControlStatements(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/persons-with-significant-control-statements/{statement_id}")
     Single<Object> getCompanyControlStatements(
-        @Path("company_number") int companyNumber,
+        @Path("company_number") String companyNumber,
         @Path("statement_id") int statementId
     );
 
     @GET("company/{company_number}/persons-with-significant-control/super-secure/{super_secure_id}")
     Single<Object> getCompanySecurePerson(
-        @Path("company_number") int companyNumber,
+        @Path("company_number") String companyNumber,
         @Path("super_secure_id") int superSecureId
     );
 
     @GET("company/{company_number}/registers")
     Single<Object> getCompanyRegisters(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 
     @GET("company/{company_number}/exemptions")
     Single<Object> getCompanyExemptions(
-        @Path("company_number") int companyNumber
+        @Path("company_number") String companyNumber
     );
 }

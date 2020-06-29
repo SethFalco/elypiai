@@ -18,6 +18,7 @@ for each one with a consistent interface between each.
 * [Steam] - WIP
 * [Urban Dictionary] - Complete
 * [Yu-Gi-Oh! Prices] - WIP
+* [Weblate] - WIP
 
 You can check the issues to see pending wrappers.
 
@@ -109,6 +110,7 @@ make sure to get it sorted.
 [Steam]: https://steamcommunity.com/dev
 [Urban Dictionary]: http://api.urbandictionary.com/v0/define?term=api
 [Yu-Gi-Oh! Prices]: http://docs.yugiohprices.apiary.io/
+[Weblate]: https://docs.weblate.org/en/latest/api.html
 
 [Matrix]: https://img.shields.io/matrix/elypia:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
