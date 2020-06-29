@@ -32,7 +32,7 @@ allprojects() {
         issueUrl = "${repoUrl}/issues"
         website = "https://elypia.org/"
 
-        retropiaVersion = "2.2.0"
+        retropiaVersion = "2.2.1"
         retrofitVersion = "2.9.0"
         okhttpVersion = "3.14.9"
     }
