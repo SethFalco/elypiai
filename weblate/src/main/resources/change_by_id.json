@@ -1,0 +1,14 @@
+{
+  "unit": "https://i18n.elypia.org/api/units/3515/",
+  "component": "https://i18n.elypia.org/api/components/elypia-website/website/",
+  "translation": "https://i18n.elypia.org/api/translations/elypia-website/website/fr/",
+  "glossary_term": null,
+  "user": "https://i18n.elypia.org/api/users/oupsa/",
+  "author": "https://i18n.elypia.org/api/users/oupsa/",
+  "timestamp": "2020-04-20T14:19:10.874731Z",
+  "action": 5,
+  "target": "Code guichet:",
+  "id": 66,
+  "action_name": "New translation",
+  "url": "https://i18n.elypia.org/api/changes/66/"
+}

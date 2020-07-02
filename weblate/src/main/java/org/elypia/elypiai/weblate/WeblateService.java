@@ -17,65 +17,523 @@
 package org.elypia.elypiai.weblate;
 
 import io.reactivex.rxjava3.core.Single;
-import org.elypia.elypiai.weblate.models.Statistics;
+import org.elypia.elypiai.weblate.models.*;
+import retrofit2.adapter.rxjava3.Result;
 import retrofit2.http.*;
 
+import java.util.List;
+
 /**
+ * Encapsultes all RESTful endpoints that can be called
+ * on the Weblate API.
+ *
  * @author seth@elypia.org (Seth Falco)
  * @since 4.2.2
  */
 public interface WeblateService {
 
     @GET("users")
-    Single<Object> getUsers();
+    Single<Results<WeblateUser>> getUsers();
+
+    @POST("users")
+    Single<Object> postUser();
 
     @GET("users/{username}")
-    Single<Object> getUser(
-      @Path("username") String username
+    Single<WeblateUser> getUser(
+        @Path("username") String username
+    );
+
+    @PUT("users/{username}")
+    Single<WeblateUser> putUser(
+        @Path("username") String username
+    );
+
+    @PATCH("users/{username}")
+    Single<WeblateUser> patchUser(
+        @Path("username") String username
+    );
+
+    @DELETE("users/{username}")
+    Single<Object> deleteUser(
+        @Path("username") String username
+    );
+
+    /**
+     * Associate groups with a user.
+     *
+     * @return
+     */
+    @POST("users/{username}/groups")
+    Single<Object> postUserGroup(
+        @Path("username") String username,
+        @Field("group_id") int groupId
+    );
+
+    @GET("users/{username}/notifications")
+    Single<Object> getUserNotifications(
+        @Path("username") String username
+    );
+
+    @POST("users/{username}/notifications")
+    Single<Object> postUserNotifications(
+        @Path("username") String username
+    );
+
+    @GET("users/{username}/notifications/{subscription_id}")
+    Single<Object> getUserNotificationSubsscription(
+        @Path("username") String username,
+        @Path("subscription_id") String subscriptionId
+    );
+
+    @PUT("users/{username}/notifications/{subscription_id}")
+    Single<Object> putUserNotificationSubscriptions(
+        @Path("username") String username,
+        @Path("subscription_id") String subscriptionId
+    );
+
+    @PATCH("users/{username}/notifications/{subscription_id}")
+    Single<Object> patchUserNotificationSubscription(
+        @Path("username") String username,
+        @Path("subscription_id") String subscriptionId
+    );
+
+    @DELETE("users/{username}/notifications/{subscription_id}")
+    Single<Object> deleteUserNotificationSubscription(
+        @Path("username") String username,
+        @Path("subscription_id") String subscriptionId
     );
 
     @GET("groups")
-    Single<Object> getGroups();
+    Single<Results<WeblateGroup>> getGroups();
+
+    @POST("groups")
+    Single<Object> postGroup();
+
+    @GET("groups/{group_id}")
+    Single<WeblateGroup> getGroup(
+        @Path("group_id") int groupId
+    );
+
+    @PUT("groups/{group_id}")
+    Single<Object> putGroup(
+        @Path("group_id") int groupId
+    );
+
+    @PATCH("groups/{group_id}")
+    Single<Object> patchGroup(
+        @Path("group_id") int groupId
+    );
+
+    @DELETE("groups/{group_id}")
+    Single<Object> deleteGroup(
+        @Path("group_id") int groupId
+    );
+
+    @POST("groups/{group_id}/roles")
+    Single<Object> postGroupRoles(
+        @Path("group_id") int groupId
+    );
+
+    @POST("groups/{group_id}/components")
+    Single<Object> postGroupComponents(
+        @Path("group_id") int groupId
+    );
+
+    @DELETE("groups/{group_id}/components/{component_id}")
+    Single<Object> deleteGroupComponent(
+        @Path("group_id") int groupId,
+        @Path("component_id") int componentId
+    );
+
+    @POST("groups/{group_id}/projects")
+    Single<Object> postGroupProjects(
+        @Path("group_id") int groupId
+    );
+
+    @DELETE("groups/{group_id}/projects/{project_id}")
+    Single<Object> deleteGroupProject(
+        @Path("group_id") int groupId,
+        @Path("project_id") String projectId
+    );
+
+    @POST("groups/{group_id}/languages")
+    Single<Object> postGroupLanguages(
+        @Path("group_id") int groupId
+    );
+
+    @DELETE("groups/{group_id}/languages/{language_code}")
+    Single<Object> deleteGroupLanguage(
+        @Path("group_id") int groupId,
+        @Path("language_code") String languageCode
+    );
+
+    @POST("groups/{group_id}/componentlists")
+    Single<Object> postGroupComponentLists(
+        @Path("group_id") int groupId
+    );
+
+    @DELETE("groups/{group_id}/componentlists/{component_list_id}")
+    Single<Object> deleteGroupComponentLists(
+        @Path("group_id") int groupId,
+        @Path("component_list_id") String componentListId
+    );
 
     @GET("roles")
-    Single<Object> getRoles();
+    Single<Results<WeblateRole>> getRoles();
+
+    @POST("roles")
+    Single<Object> postRoles();
+
+    @GET("roles/{role_id}")
+    Single<WeblateRole> getRole(
+        @Path("role_id") int roleId
+    );
+
+    @PUT("roles/{role_id}")
+    Single<Object> putRole(
+        @Path("role_id") int roleId
+    );
+
+    @PATCH("roles/{role_id}")
+    Single<Object> patchRole(
+        @Path("role_id") int roleId
+    );
+
+    @DELETE("roles/{role_id}")
+    Single<Object> deleteRole(
+        @Path("role_id") int roleId
+    );
+
+    @GET("languages")
+    Single<Results<Language>> getLanguages();
+
+    @POST("languages")
+    Single<Object> postLanguage();
+
+    @GET("languages/{language_code}")
+    Single<Language> getLanguage(
+        @Path("language_code") String languageCode
+    );
+
+    @PUT("roles/{language_code}")
+    Single<Object> putLanguage(
+        @Path("language_code") String languageCode
+    );
+
+    @PATCH("roles/{language_code}")
+    Single<Object> patchLanguage(
+        @Path("language_code") String languageCode
+    );
+
+    @DELETE("roles/{language_code}")
+    Single<Object> deleteLanguage(
+        @Path("language_code") String languageCode
+    );
+
+    @GET("languages/{language_code}/statistics")
+    Single<ComponentStatistics> getLanguageStatistics(
+        @Path("language_code") String languageCode
+    );
 
     @GET("projects")
-    Single<Object> getProjects();
+    Single<Results<Project>> getProjects();
 
-    @GET("projects/{project_name}/statistics")
-    Single<Statistics> getProjectStatistics(
-        @Path("project_name") String projectName
+    @POST("projects")
+    Single<Object> postProject();
+
+    @GET("projects/{project_slug}")
+    Single<Project> getProject(
+        @Path("project_slug") String projectSlug
+    );
+
+    @DELETE("projects/{project_slug}")
+    Single<Object> deleteProject(
+        @Path("project_slug") String projectSlug
+    );
+
+    @GET("projects/{project_slug}/changes")
+    Single<Results<Change>> getProjectChanges(
+        @Path("project_slug") String projectSlug
+    );
+
+    @GET("projects/{project_slug}/repository")
+    Single<WeblateRepository> getProjectRepository(
+        @Path("project_slug") String projectSlug
+    );
+
+    @POST("projects/{project_slug}/repository")
+    Single<Object> postProjectRepository(
+        @Path("project_slug") String projectSlug
+    );
+
+    @GET("projects/{project_slug}/components")
+    Single<Results<Component>> getProjectComponents(
+        @Path("project_slug") String projectSlug
+    );
+
+    @POST("projects/{project_slug}/components")
+    Single<Object> postProjectComponents(
+        @Path("project_slug") String projectSlug
+    );
+
+    @GET("projects/{project_slug}/languages")
+    Single<List<LanguageStatistics>> getProjectLanguages(
+        @Path("project_slug") String projectSlug
+    );
+
+    @GET("projects/{project_slug}/statistics")
+    Single<ComponentStatistics> getProjectStatistics(
+        @Path("project_slug") String projectSlug
     );
 
     @GET("components")
     Single<Object> getComponents();
 
+    @GET("components/{project_slug}/{component_slug}")
+    Single<Object> getComponent(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @PATCH("components/{project_slug}/{component_slug}")
+    Single<Object> patchComponent(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @PUT("components/{project_slug}/{component_slug}")
+    Single<Object> putComponent(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @DELETE("components/{project_slug}/{component_slug}")
+    Single<Object> deleteComponent(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("components/{project_slug}/{component_slug}/changes")
+    Single<Object> getComponentChanges(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("components/{project_slug}/{component_slug}/screenshots")
+    Single<Object> getComponentScreenshots(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("components/{project_slug}/{component_slug}/lock")
+    Single<Object> getComponentLock(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @POST("components/{project_slug}/{component_slug}/lock")
+    Single<Object> postComponentLock(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("components/{project_slug}/{component_slug}/repository")
+    Single<Object> getComponentRepository(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @POST("components/{project_slug}/{component_slug}/repository")
+    Single<Object> postComponentRepository(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    /**
+     * Returns a literal string of the monolingual base of the component.
+     *
+     * @param projectSlug The project's slug.
+     * @param componentSlug The component's slug.
+     * @return A literal string representation of the base language file.
+     */
+    @GET("components/{project_slug}/{component_slug}/monolingual_base")
+    Single<Object> getComponentMonolingualBase(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("components/{project_slug}/{component_slug}/new_template")
+    Single<Object> getComponentNewTemplate(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("components/{project_slug}/{component_slug}/translations")
+    Single<Object> getComponentTranslations(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @POST("components/{project_slug}/{component_slug}/translations")
+    Single<Object> postComponentTranslations(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("components/{project_slug}/{component_slug}/statistics")
+    Single<Object> getComponentStatistics(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
     @GET("translations")
     Single<Object> getTranslations();
 
-    @GET("languages")
-    Single<Object> getLanguages();
-
-    @GET("languages/{language_name}/statistics")
-    Single<Statistics> getLanguageStatistics(
-        @Path("language_name") String projectName
+    @GET("translations/{project_slug}/{component_slug}/{language_code}")
+    Single<Object> getComponentLanguage(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
     );
 
-    @GET("component-lists")
-    Single<Object> getComponentLists();
+    @DELETE("translations/{project_slug}/{component_slug}/{language_code}")
+    Single<Object> deleteComponentLanguageStatistics(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
 
-    @GET("changes")
-    Single<Object> getChanges();
+    @GET("translations/{project_slug}/{component_slug}/{language_code}/changes")
+    Single<Object> getComponentLanguageChanges(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("translations/{project_slug}/{component_slug}/{language_code}/units")
+    Single<Object> getComponentLanguageUnits(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @POST("translations/{project_slug}/{component_slug}/{language_code}/units")
+    Single<Object> postComponentLanguageUnits(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @POST("translations/{project_slug}/{component_slug}/{language_code}/autotranslate")
+    Single<Object> postComponentLanguageAutoTranslate(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("translations/{project_slug}/{component_slug}/{language_code}/file")
+    Single<Object> getComponentLanguageAutoFile(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @POST("translations/{project_slug}/{component_slug}/{language_code}/file")
+    Single<Object> postComponentLanguageAutoFile(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("translations/{project_slug}/{component_slug}/{language_code}/repository")
+    Single<Object> getComponentLanguageRepository(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @POST("translations/{project_slug}/{component_slug}/{language_code}/repository")
+    Single<Object> postComponentLanguageRepository(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @GET("translations/{project_slug}/{component_slug}/{language_code}/statistics")
+    Single<Object> getComponentLanguageStatistics(
+        @Path("project_slug") String projectSlug,
+        @Path("component_slug") String componentSlug
+    );
 
     @GET("units")
-    Single<Object> getUnits();
+    Single<Results<Unit>> getUnits();
 
     @GET("units/{unit_id}")
-    Single<Object> getUnit(
+    Single<Unit> getUnit(
         @Path("unit_id") int unitId
     );
 
+    @GET("changes")
+    Single<Result<Change>> getChanges();
+
+    @GET("changes/{change_id}")
+    Single<Change> getChange(
+        @Path("change_id") int changeId
+    );
+
     @GET("screenshots")
-    Single<Object> getScreenshots();
+    Single<Result<Screenshot>> getScreenshots();
+
+    @GET("screenshots/{screenshot_id}")
+    Single<Result<Screenshot>> getScreenshot(
+        @Path("screenshot_id") int screenshotId
+    );
+
+    @GET("screenshots/{screenshot_id}/file")
+    Single<Object> getScreenshotFile(
+        @Path("screenshot_id") int screenshotId
+    );
+
+    @POST("screenshots/{screenshot_id}/file")
+    Single<Object> postScreenshotFile(
+        @Path("screenshot_id") int screenshotId
+    );
+
+    @POST("screenshots/{screenshot_id}/units")
+    Single<Object> postScreenshotUnit(
+        @Path("screenshot_id") int screenshotId
+    );
+
+    @POST("screenshots")
+    Single<Object> postScreenshot();
+
+    @GET("component-lists")
+    Single<Results<Object>> getComponentLists();
+
+    @GET("component-lists/{component-list_slug}")
+    Single<Object> getComponentList(
+        @Path("component-list_slug") String componentListSlug
+    );
+
+    @PUT("component-lists/{component-list_slug}")
+    Single<Object> putComponentList(
+        @Path("component-list_slug") String componentListSlug
+    );
+
+    @PATCH("component-lists/{component-list_slug}")
+    Single<Object> patchComponentList(
+        @Path("component-list_slug") String componentListSlug
+    );
+
+    @DELETE("component-lists/{component-list_slug}")
+    Single<Object> deleteComponentList(
+        @Path("component-list_slug") String componentListSlug
+    );
+
+    @POST("component-lists/{component-list_slug}/components")
+    Single<Object> postComponentListComponents(
+        @Path("component-list_slug") String componentListSlug
+    );
+
+    @POST("component-lists/{component-list_slug}/components/{component_slug}")
+    Single<Object> postComponentListComponent(
+        @Path("component-list_slug") String componentListSlug,
+        @Path("component_slug") String componentSlug
+    );
+
+    @DELETE("component-lists/{component-list_slug}/components/{component_slug}")
+    Single<Object> deleteComponentListComponent(
+        @Path("component-list_slug") String componentListSlug,
+        @Path("component_slug") String componentSlug
+    );
 }

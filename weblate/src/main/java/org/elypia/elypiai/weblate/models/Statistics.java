@@ -18,25 +18,11 @@ package org.elypia.elypiai.weblate.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.time.Instant;
-
 /**
  * @author seth@elypia.org (Seth Falco)
- * @since 4.2.2
+ * @since 4.2.3
  */
 public class Statistics {
-
-    @SerializedName("name")
-    private String name;
-
-    @SerializedName("url")
-    private String url;
-
-    @SerializedName("last_change")
-    private Instant lastChange;
-
-    @SerializedName("recent_changes")
-    private int recentChanges;
 
     @SerializedName("total")
     private int totalStrings;
@@ -65,34 +51,6 @@ public class Statistics {
     @SerializedName("translated_chars_percent")
     private double translatedCharactersPercentage;
 
-    @SerializedName("fuzzy")
-    private int fuzzy;
-
-    @SerializedName("fuzzy_percent")
-    private double fuzzyPercentage;
-
-    @SerializedName("failing")
-    private int failing;
-
-    @SerializedName("failing_percent")
-    private double failingPercentage;
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public Instant getLastChange() {
-        return lastChange;
-    }
-
-    public int getRecentChanges() {
-        return recentChanges;
-    }
-
     public int getTotalStrings() {
         return totalStrings;
     }
@@ -113,7 +71,7 @@ public class Statistics {
         return translatedWords;
     }
 
-    public int getTranslatedCharcters() {
+    public int getTranslatedCharacters() {
         return translatedCharcters;
     }
 
@@ -127,21 +85,5 @@ public class Statistics {
 
     public double getTranslatedCharactersPercentage() {
         return translatedCharactersPercentage;
-    }
-
-    public int getFuzzy() {
-        return fuzzy;
-    }
-
-    public double getFuzzyPercentage() {
-        return fuzzyPercentage;
-    }
-
-    public int getFailing() {
-        return failing;
-    }
-
-    public double getFailingPercentage() {
-        return failingPercentage;
     }
 }

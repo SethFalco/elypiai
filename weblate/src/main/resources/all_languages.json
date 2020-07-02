@@ -1,0 +1,345 @@
+{
+  "count": 366,
+  "next": "https://i18n.elypia.org/api/languages/?page=2",
+  "previous": null,
+  "results": [
+    {
+      "code": "aa",
+      "name": "Afar",
+      "plural": {
+        "id": 1,
+        "source": 0,
+        "number": 2,
+        "formula": "n != 1",
+        "type": 1
+      },
+      "aliases": [
+        "aar"
+      ],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/aa/",
+      "url": "https://i18n.elypia.org/api/languages/aa/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/aa/statistics/"
+    },
+    {
+      "code": "ab",
+      "name": "Abkhazian",
+      "plural": {
+        "id": 2,
+        "source": 0,
+        "number": 2,
+        "formula": "n != 1",
+        "type": 1
+      },
+      "aliases": [
+        "abk"
+      ],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/ab/",
+      "url": "https://i18n.elypia.org/api/languages/ab/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ab/statistics/"
+    },
+    {
+      "code": "ace",
+      "name": "Acehnese",
+      "plural": {
+        "id": 3,
+        "source": 0,
+        "number": 1,
+        "formula": "0",
+        "type": 0
+      },
+      "aliases": [],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/ace/",
+      "url": "https://i18n.elypia.org/api/languages/ace/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ace/statistics/"
+    },
+    {
+      "code": "ach",
+      "name": "Acholi",
+      "plural": {
+        "id": 4,
+        "source": 0,
+        "number": 2,
+        "formula": "n > 1",
+        "type": 1
+      },
+      "aliases": [],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/ach/",
+      "url": "https://i18n.elypia.org/api/languages/ach/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ach/statistics/"
+    },
+    {
+      "code": "ady",
+      "name": "Adyghe",
+      "plural": {
+        "id": 5,
+        "source": 0,
+        "number": 2,
+        "formula": "n > 1",
+        "type": 1
+      },
+      "aliases": [],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/ady/",
+      "url": "https://i18n.elypia.org/api/languages/ady/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ady/statistics/"
+    },
+    {
+      "code": "ae",
+      "name": "Avestan",
+      "plural": {
+        "id": 6,
+        "source": 0,
+        "number": 2,
+        "formula": "n != 1",
+        "type": 1
+      },
+      "aliases": [
+        "ave"
+      ],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/ae/",
+      "url": "https://i18n.elypia.org/api/languages/ae/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ae/statistics/"
+    },
+    {
+      "code": "af",
+      "name": "Afrikaans",
+      "plural": {
+        "id": 7,
+        "source": 0,
+        "number": 2,
+        "formula": "n != 1",
+        "type": 1
+      },
+      "aliases": [
+        "afr"
+      ],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/af/",
+      "url": "https://i18n.elypia.org/api/languages/af/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/af/statistics/"
+    },
+    {
+      "code": "ak",
+      "name": "Akan",
+      "plural": {
+        "id": 8,
+        "source": 0,
+        "number": 2,
+        "formula": "n > 1",
+        "type": 1
+      },
+      "aliases": [
+        "aka"
+      ],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/ak/",
+      "url": "https://i18n.elypia.org/api/languages/ak/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ak/statistics/"
+    },
+    {
+      "code": "am",
+      "name": "Amharic",
+      "plural": {
+        "id": 9,
+        "source": 0,
+        "number": 2,
+        "formula": "n > 1",
+        "type": 1
+      },
+      "aliases": [
+        "amh"
+      ],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/am/",
+      "url": "https://i18n.elypia.org/api/languages/am/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/am/statistics/"
+    },
+    {
+      "code": "an",
+      "name": "Aragonese",
+      "plural": {
+        "id": 10,
+        "source": 0,
+        "number": 2,
+        "formula": "n != 1",
+        "type": 1
+      },
+      "aliases": [
+        "arg"
+      ],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/an/",
+      "url": "https://i18n.elypia.org/api/languages/an/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/an/statistics/"
+    },
+    {
+      "code": "anp",
+      "name": "Angika",
+      "plural": {
+        "id": 11,
+        "source": 0,
+        "number": 2,
+        "formula": "n != 1",
+        "type": 1
+      },
+      "aliases": [],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/anp/",
+      "url": "https://i18n.elypia.org/api/languages/anp/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/anp/statistics/"
+    },
+    {
+      "code": "ar",
+      "name": "Arabic",
+      "plural": {
+        "id": 12,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [
+        "arabic",
+        "ar_ar",
+        "ara"
+      ],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar/",
+      "url": "https://i18n.elypia.org/api/languages/ar/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar/statistics/"
+    },
+    {
+      "code": "ar_BH",
+      "name": "Arabic (Bahrain)",
+      "plural": {
+        "id": 13,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar_BH/",
+      "url": "https://i18n.elypia.org/api/languages/ar_BH/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar_BH/statistics/"
+    },
+    {
+      "code": "ar_DZ",
+      "name": "Arabic (Algeria)",
+      "plural": {
+        "id": 14,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar_DZ/",
+      "url": "https://i18n.elypia.org/api/languages/ar_DZ/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar_DZ/statistics/"
+    },
+    {
+      "code": "ar_EG",
+      "name": "Arabic (Egypt)",
+      "plural": {
+        "id": 15,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar_EG/",
+      "url": "https://i18n.elypia.org/api/languages/ar_EG/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar_EG/statistics/"
+    },
+    {
+      "code": "ar_KW",
+      "name": "Arabic (Kuwait)",
+      "plural": {
+        "id": 16,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar_KW/",
+      "url": "https://i18n.elypia.org/api/languages/ar_KW/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar_KW/statistics/"
+    },
+    {
+      "code": "ar_MA",
+      "name": "Arabic (Morocco)",
+      "plural": {
+        "id": 17,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar_MA/",
+      "url": "https://i18n.elypia.org/api/languages/ar_MA/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar_MA/statistics/"
+    },
+    {
+      "code": "ar_SA",
+      "name": "Arabic (Saudi Arabia)",
+      "plural": {
+        "id": 18,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar_SA/",
+      "url": "https://i18n.elypia.org/api/languages/ar_SA/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar_SA/statistics/"
+    },
+    {
+      "code": "ar_YE",
+      "name": "Arabic (Yemen)",
+      "plural": {
+        "id": 19,
+        "source": 0,
+        "number": 6,
+        "formula": "n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5",
+        "type": 3
+      },
+      "aliases": [],
+      "direction": "rtl",
+      "web_url": "https://i18n.elypia.org/languages/ar_YE/",
+      "url": "https://i18n.elypia.org/api/languages/ar_YE/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/ar_YE/statistics/"
+    },
+    {
+      "code": "arn",
+      "name": "Mapudungun",
+      "plural": {
+        "id": 20,
+        "source": 0,
+        "number": 2,
+        "formula": "n > 1",
+        "type": 1
+      },
+      "aliases": [],
+      "direction": "ltr",
+      "web_url": "https://i18n.elypia.org/languages/arn/",
+      "url": "https://i18n.elypia.org/api/languages/arn/",
+      "statistics_url": "https://i18n.elypia.org/api/languages/arn/statistics/"
+    }
+  ]
+}

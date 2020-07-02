@@ -22,15 +22,9 @@ import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
- * @since 4.2.2
+ * @since 4.2.3
  */
-public class Language {
-
-    /**
-     * @see #getCode()
-     */
-    @SerializedName("code")
-    private String code;
+public class WeblateRole {
 
     /**
      * @see #getName()
@@ -39,50 +33,16 @@ public class Language {
     private String name;
 
     /**
-     * @see #getPlural()
+     * @see #getPermissons()
      */
-    @SerializedName("plural")
-    private Plural plural;
-
-    /**
-     * @see #getAliases()
-     */
-    @SerializedName("aliases")
-    private List<String> aliases;
-
-    /**
-     * @see #getTextDirection()
-     */
-    @SerializedName("direction")
-    private TextDirection textDirection;
-
-    /**
-     * @see #getWebUrl()
-     */
-    @SerializedName("web_url")
-    private String webUrl;
-
-    public String getCode() {
-        return code;
-    }
+    @SerializedName("permissions")
+    private List<String> permissons;
 
     public String getName() {
         return name;
     }
 
-    public Plural getPlural() {
-        return plural;
-    }
-
-    public List<String> getAliases() {
-        return aliases;
-    }
-
-    public TextDirection getTextDirection() {
-        return textDirection;
-    }
-
-    public String getWebUrl() {
-        return webUrl;
+    public List<String> getPermissons() {
+        return permissons;
     }
 }

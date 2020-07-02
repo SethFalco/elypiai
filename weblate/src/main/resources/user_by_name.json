@@ -1,0 +1,14 @@
+{
+  "email": "REDACTED@elypia.org",
+  "full_name": "REDACTED REDACTED",
+  "username": "seth",
+  "groups": [
+    "https://i18n.elypia.org/api/groups/3/",
+    "https://i18n.elypia.org/api/groups/2/",
+    "https://i18n.elypia.org/api/groups/5/"
+  ],
+  "is_superuser": false,
+  "is_active": true,
+  "date_joined": "2020-04-19T15:11:46Z",
+  "url": "https://i18n.elypia.org/api/users/seth/"
+}

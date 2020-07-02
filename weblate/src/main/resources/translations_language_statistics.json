@@ -1,0 +1,21 @@
+{
+  "total": 202,
+  "total_words": 1360,
+  "last_change": null,
+  "recent_changes": 0,
+  "translated": 202,
+  "translated_words": 1360,
+  "translated_percent": 100.0,
+  "translated_words_percent": 100.0,
+  "translated_chars": 7706,
+  "translated_chars_percent": 100.0,
+  "total_chars": 7706,
+  "fuzzy": 0,
+  "fuzzy_percent": 0.0,
+  "failing": 16,
+  "failing_percent": 7.9,
+  "code": "en",
+  "name": "English",
+  "url": "https://i18n.elypia.org/projects/alexis/alexis-messages/en/",
+  "translate_url": "https://i18n.elypia.org/translate/alexis/alexis-messages/en/"
+}

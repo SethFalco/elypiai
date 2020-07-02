@@ -16,16 +16,18 @@
 
 package org.elypia.elypiai.weblate;
 
+import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
+import org.elypia.elypiai.weblate.models.*;
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.elypia.retropia.core.interceptors.TokenAuthorizationInterceptor;
+import org.elypia.retropia.core.interceptors.*;
 import org.slf4j.*;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.net.*;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author seth@elypia.org
@@ -90,7 +92,10 @@ public class Weblate {
         this(
             apiKey,
             baseUrl,
-            HttpClientSingleton.getBuilder().addInterceptor(new TokenAuthorizationInterceptor(apiKey)).build()
+            HttpClientSingleton.getBuilder()
+                .addInterceptor(new TokenAuthorizationInterceptor(apiKey))
+                .addInterceptor(new QueryParametersInterceptor("format", "json"))
+                .build()
         );
     }
 
@@ -105,5 +110,35 @@ public class Weblate {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
             .create(WeblateService.class);
+    }
+
+    public Single<Results<WeblateUser>> getUsers() {
+        return service.getUsers();
+    }
+
+    public Single<WeblateUser> getUser(final String username) {
+        Objects.requireNonNull(username, "Username is required to get single user.");
+        return service.getUser(username);
+    }
+
+    public Single<Results<WeblateGroup>> getGroups() {
+        return service.getGroups();
+    }
+
+    public Single<WeblateGroup> getGroup(final int groupId) {
+        return service.getGroup(groupId);
+    }
+
+    public Single<Results<WeblateRole>> getRoles() {
+        return service.getRoles();
+    }
+
+    public Single<WeblateRole> getRole(final int roleId) {
+        return service.getRole(roleId);
+    }
+
+    public Single<List<LanguageStatistics>> getProjectLanguageStatistics(final String projectSlug) {
+        Objects.requireNonNull(projectSlug, "Project slug must not be null.");
+        return service.getProjectLanguages(projectSlug);
     }
 }

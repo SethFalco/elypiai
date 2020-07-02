@@ -1,0 +1,22 @@
+{
+  "needs_commit": false,
+  "needs_merge": false,
+  "needs_push": true,
+  "url": "https://i18n.elypia.org/api/components/elypia-website/website/repository/",
+  "remote_commit": {
+    "revision": "685650427c27caa1a4943c6bce2f23ca8df0fafe",
+    "shortrevision": "6856504",
+    "author": "Seth Falco <seth@elypia.org>",
+    "author_name": "Seth Falco",
+    "author_email": "seth@elypia.org",
+    "authordate": "2020-06-26T10:22:08+02:00",
+    "commit": "Seth Falco <seth@elypia.org>",
+    "commit_name": "Seth Falco",
+    "commit_email": "seth@elypia.org",
+    "commitdate": "2020-06-26T10:22:08+02:00",
+    "message": "* Moved from port 4201 back to 4200 by default.\n* Moved backend port from 8081 back to 8080.\n* Fixed test imports.",
+    "summary": "* Moved from port 4201 back to 4200 by default."
+  },
+  "status": "On branch master\nYour branch is ahead of 'origin/master' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nnothing to commit, working tree clean\n",
+  "merge_failure": null
+}

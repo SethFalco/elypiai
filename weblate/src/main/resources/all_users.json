@@ -1,0 +1,131 @@
+{
+  "count": 9,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "email": "noreply@weblate.org",
+      "full_name": "Anonymous",
+      "username": "anonymous",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/1/",
+        "https://i18n.elypia.org/api/groups/2/"
+      ],
+      "is_superuser": false,
+      "is_active": false,
+      "date_joined": "2020-04-19T15:01:12.721309Z",
+      "url": "https://i18n.elypia.org/api/users/anonymous/"
+    },
+    {
+      "email": "REDACTED@elypia.org",
+      "full_name": "REDACTED REDACTED",
+      "username": "admin",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/3/",
+        "https://i18n.elypia.org/api/groups/2/"
+      ],
+      "is_superuser": true,
+      "is_active": true,
+      "date_joined": "2020-04-19T15:01:27.107799Z",
+      "url": "https://i18n.elypia.org/api/users/admin/"
+    },
+    {
+      "email": "REDACTED@elypia.org",
+      "full_name": "REDACTED REDACTED",
+      "username": "seth",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/3/",
+        "https://i18n.elypia.org/api/groups/2/",
+        "https://i18n.elypia.org/api/groups/5/"
+      ],
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2020-04-19T15:11:46Z",
+      "url": "https://i18n.elypia.org/api/users/seth/"
+    },
+    {
+      "email": "REDACTED@elypia.org",
+      "full_name": "REDACTED",
+      "username": "Vuki",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/3/",
+        "https://i18n.elypia.org/api/groups/2/",
+        "https://i18n.elypia.org/api/groups/17/"
+      ],
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2020-04-19T15:16:59Z",
+      "url": "https://i18n.elypia.org/api/users/Vuki/"
+    },
+    {
+      "email": "REDACTED@hotmail.com",
+      "full_name": "REDACTED REDACTED",
+      "username": "oupsa",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/3/",
+        "https://i18n.elypia.org/api/groups/2/",
+        "https://i18n.elypia.org/api/groups/17/"
+      ],
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2020-04-20T13:56:31Z",
+      "url": "https://i18n.elypia.org/api/users/oupsa/"
+    },
+    {
+      "email": "REDACTED@elypia.org",
+      "full_name": "REDACTED",
+      "username": "Jen",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/3/",
+        "https://i18n.elypia.org/api/groups/2/",
+        "https://i18n.elypia.org/api/groups/4/",
+        "https://i18n.elypia.org/api/groups/17/"
+      ],
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2020-04-20T17:25:05Z",
+      "url": "https://i18n.elypia.org/api/users/Jen/"
+    },
+    {
+      "email": "REDACTED@gmail.com",
+      "full_name": "REDACTED REDACTED",
+      "username": "seths_alt",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/2/",
+        "https://i18n.elypia.org/api/groups/3/"
+      ],
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2020-04-20T17:30:45Z",
+      "url": "https://i18n.elypia.org/api/users/seths_alt/"
+    },
+    {
+      "email": "REDACTED@wp.pl",
+      "full_name": "REDACTED",
+      "username": "Liental",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/3/",
+        "https://i18n.elypia.org/api/groups/2/",
+        "https://i18n.elypia.org/api/groups/17/"
+      ],
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2020-04-22T15:05:38Z",
+      "url": "https://i18n.elypia.org/api/users/Liental/"
+    },
+    {
+      "email": "REDACTED@gmail.com",
+      "full_name": "REDACTED REDACTED",
+      "username": "JoeStone",
+      "groups": [
+        "https://i18n.elypia.org/api/groups/3/",
+        "https://i18n.elypia.org/api/groups/2/",
+        "https://i18n.elypia.org/api/groups/17/"
+      ],
+      "is_superuser": false,
+      "is_active": true,
+      "date_joined": "2020-04-28T12:53:41Z",
+      "url": "https://i18n.elypia.org/api/users/JoeStone/"
+    }
+  ]
+}

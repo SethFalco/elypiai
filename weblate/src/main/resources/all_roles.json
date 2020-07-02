@@ -1,0 +1,213 @@
+{
+  "count": 14,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "name": "Add suggestion",
+      "permissions": [
+        "suggestion.add"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/1/"
+    },
+    {
+      "name": "Access repository",
+      "permissions": [
+        "vcs.access",
+        "vcs.view"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/2/"
+    },
+    {
+      "name": "Power user",
+      "permissions": [
+        "comment.add",
+        "glossary.add",
+        "glossary.edit",
+        "glossary.delete",
+        "glossary.upload",
+        "machinery.view",
+        "memory.view",
+        "suggestion.accept",
+        "suggestion.add",
+        "suggestion.delete",
+        "suggestion.vote",
+        "translation.add",
+        "unit.check",
+        "unit.edit",
+        "unit.template",
+        "upload.overwrite",
+        "upload.perform",
+        "vcs.access",
+        "vcs.view"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/3/"
+    },
+    {
+      "name": "Translate",
+      "permissions": [
+        "comment.add",
+        "machinery.view",
+        "memory.view",
+        "suggestion.accept",
+        "suggestion.add",
+        "suggestion.vote",
+        "unit.check",
+        "unit.edit",
+        "upload.overwrite",
+        "upload.perform"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/4/"
+    },
+    {
+      "name": "Edit source",
+      "permissions": [
+        "comment.add",
+        "machinery.view",
+        "memory.view",
+        "source.edit",
+        "suggestion.accept",
+        "suggestion.add",
+        "suggestion.vote",
+        "unit.check",
+        "unit.edit",
+        "unit.template",
+        "upload.overwrite",
+        "upload.perform"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/5/"
+    },
+    {
+      "name": "Manage languages",
+      "permissions": [
+        "translation.add",
+        "translation.auto",
+        "translation.delete",
+        "translation.add_more"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/6/"
+    },
+    {
+      "name": "Manage glossary",
+      "permissions": [
+        "glossary.add",
+        "glossary.edit",
+        "glossary.delete",
+        "glossary.upload"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/7/"
+    },
+    {
+      "name": "Manage translation memory",
+      "permissions": [
+        "memory.delete",
+        "memory.view",
+        "memory.edit"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/8/"
+    },
+    {
+      "name": "Manage screenshots",
+      "permissions": [
+        "screenshot.add",
+        "screenshot.edit",
+        "screenshot.delete"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/9/"
+    },
+    {
+      "name": "Review strings",
+      "permissions": [
+        "comment.add",
+        "machinery.view",
+        "memory.view",
+        "suggestion.accept",
+        "suggestion.add",
+        "suggestion.vote",
+        "unit.check",
+        "unit.edit",
+        "unit.review",
+        "unit.override",
+        "upload.overwrite",
+        "upload.perform"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/10/"
+    },
+    {
+      "name": "Manage repository",
+      "permissions": [
+        "vcs.access",
+        "vcs.commit",
+        "vcs.push",
+        "vcs.reset",
+        "vcs.view",
+        "vcs.update"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/11/"
+    },
+    {
+      "name": "Administration",
+      "permissions": [
+        "billing.view",
+        "change.download",
+        "component.edit",
+        "component.lock",
+        "comment.add",
+        "comment.delete",
+        "glossary.add",
+        "glossary.edit",
+        "glossary.delete",
+        "glossary.upload",
+        "machinery.view",
+        "memory.delete",
+        "memory.view",
+        "project.edit",
+        "project.permissions",
+        "reports.view",
+        "screenshot.add",
+        "screenshot.edit",
+        "screenshot.delete",
+        "source.edit",
+        "suggestion.accept",
+        "suggestion.add",
+        "suggestion.delete",
+        "suggestion.vote",
+        "translation.add",
+        "translation.auto",
+        "translation.delete",
+        "translation.add_more",
+        "unit.add",
+        "unit.check",
+        "unit.edit",
+        "unit.review",
+        "unit.override",
+        "unit.template",
+        "upload.authorship",
+        "upload.overwrite",
+        "upload.perform",
+        "vcs.access",
+        "vcs.commit",
+        "vcs.push",
+        "vcs.reset",
+        "vcs.view",
+        "vcs.update",
+        "memory.edit"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/12/"
+    },
+    {
+      "name": "Billing",
+      "permissions": [
+        "billing.view"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/13/"
+    },
+    {
+      "name": "Add language for translation",
+      "permissions": [
+        "translation.add"
+      ],
+      "url": "https://i18n.elypia.org/api/roles/14/"
+    }
+  ]
+}

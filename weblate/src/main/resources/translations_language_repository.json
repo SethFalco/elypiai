@@ -1,0 +1,22 @@
+{
+  "needs_commit": false,
+  "needs_merge": false,
+  "needs_push": false,
+  "url": "https://i18n.elypia.org/api/translations/alexis/alexis-messages/en/repository/",
+  "remote_commit": {
+    "revision": "fc66c66366e0c604dfaa0af3dab4004e3add4416",
+    "shortrevision": "fc66c66",
+    "author": "Seth Falco <seth@elypia.org>",
+    "author_name": "Seth Falco",
+    "author_email": "seth@elypia.org",
+    "authordate": "2020-06-24T10:40:25+02:00",
+    "commit": "Seth Falco <seth@elypia.org>",
+    "commit_name": "Seth Falco",
+    "commit_email": "seth@elypia.org",
+    "commitdate": "2020-06-24T10:40:25+02:00",
+    "message": "* Updated Issue Templates to Include Labels\n* Updated Dependencies\n* Added support for h2 database, allows for minimal configuration instance of Alexis",
+    "summary": "* Updated Issue Templates to Include Labels"
+  },
+  "status": "On branch master\nYour branch is up to date with 'origin/master'.\n\nnothing to commit, working tree clean\n",
+  "merge_failure": null
+}

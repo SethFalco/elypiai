@@ -22,7 +22,7 @@ import com.google.gson.annotations.SerializedName;
  * @author seth@elypia.org (Seth Falco)
  * @since 4.2.2
  */
-public class TranslationUnit {
+public class Unit {
 
     @SerializedName("source")
     private String source;

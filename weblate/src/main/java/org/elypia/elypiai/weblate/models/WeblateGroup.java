@@ -18,19 +18,11 @@ package org.elypia.elypiai.weblate.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
  * @author seth@elypia.org (Seth Falco)
- * @since 4.2.2
+ * @since 4.2.3
  */
-public class Language {
-
-    /**
-     * @see #getCode()
-     */
-    @SerializedName("code")
-    private String code;
+public class WeblateGroup {
 
     /**
      * @see #getName()
@@ -39,50 +31,26 @@ public class Language {
     private String name;
 
     /**
-     * @see #getPlural()
+     * @see #getProjectSelection()
      */
-    @SerializedName("plural")
-    private Plural plural;
+    @SerializedName("project_selection")
+    private int projectSelection;
 
     /**
-     * @see #getAliases()
+     * @see #getLangaugeSelection()
      */
-    @SerializedName("aliases")
-    private List<String> aliases;
-
-    /**
-     * @see #getTextDirection()
-     */
-    @SerializedName("direction")
-    private TextDirection textDirection;
-
-    /**
-     * @see #getWebUrl()
-     */
-    @SerializedName("web_url")
-    private String webUrl;
-
-    public String getCode() {
-        return code;
-    }
+    @SerializedName("language_selection")
+    private int langaugeSelection;
 
     public String getName() {
         return name;
     }
 
-    public Plural getPlural() {
-        return plural;
+    public int getProjectSelection() {
+        return projectSelection;
     }
 
-    public List<String> getAliases() {
-        return aliases;
-    }
-
-    public TextDirection getTextDirection() {
-        return textDirection;
-    }
-
-    public String getWebUrl() {
-        return webUrl;
+    public int getLangaugeSelection() {
+        return langaugeSelection;
     }
 }

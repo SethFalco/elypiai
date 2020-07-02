@@ -1,0 +1,19 @@
+{
+  "total": 784,
+  "total_words": 4465,
+  "last_change": null,
+  "recent_changes": 0,
+  "translated": 784,
+  "translated_words": 4465,
+  "translated_percent": 100.0,
+  "translated_words_percent": 100.0,
+  "translated_chars": 27014,
+  "translated_chars_percent": 100.0,
+  "total_chars": 27014,
+  "fuzzy": 0,
+  "fuzzy_percent": 0.0,
+  "failing": 72,
+  "failing_percent": 9.1,
+  "name": "English",
+  "url": "https://i18n.elypia.org/languages/en/"
+}

@@ -1,0 +1,112 @@
+{
+  "count": 3,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "name": "Elypia Website",
+      "slug": "elypia-website",
+      "id": 2,
+      "web": "https://elypia.org/",
+      "source_language": {
+        "code": "en",
+        "name": "English",
+        "plural": {
+          "id": 80,
+          "source": 0,
+          "number": 2,
+          "formula": "n != 1",
+          "type": 1
+        },
+        "aliases": [
+          "english",
+          "en_en",
+          "base",
+          "source",
+          "eng"
+        ],
+        "direction": "ltr",
+        "web_url": "https://i18n.elypia.org/languages/en/",
+        "url": "https://i18n.elypia.org/api/languages/en/",
+        "statistics_url": "https://i18n.elypia.org/api/languages/en/statistics/"
+      },
+      "web_url": "https://i18n.elypia.org/projects/elypia-website/",
+      "url": "https://i18n.elypia.org/api/projects/elypia-website/",
+      "components_list_url": "https://i18n.elypia.org/api/projects/elypia-website/components/",
+      "repository_url": "https://i18n.elypia.org/api/projects/elypia-website/repository/",
+      "statistics_url": "https://i18n.elypia.org/api/projects/elypia-website/statistics/",
+      "changes_list_url": "https://i18n.elypia.org/api/projects/elypia-website/changes/",
+      "languages_url": "https://i18n.elypia.org/api/projects/elypia-website/languages/"
+    },
+    {
+      "name": "Elypia API",
+      "slug": "elypia-api",
+      "id": 4,
+      "web": "https://elypia.org/",
+      "source_language": {
+        "code": "en",
+        "name": "English",
+        "plural": {
+          "id": 80,
+          "source": 0,
+          "number": 2,
+          "formula": "n != 1",
+          "type": 1
+        },
+        "aliases": [
+          "english",
+          "en_en",
+          "base",
+          "source",
+          "eng"
+        ],
+        "direction": "ltr",
+        "web_url": "https://i18n.elypia.org/languages/en/",
+        "url": "https://i18n.elypia.org/api/languages/en/",
+        "statistics_url": "https://i18n.elypia.org/api/languages/en/statistics/"
+      },
+      "web_url": "https://i18n.elypia.org/projects/elypia-api/",
+      "url": "https://i18n.elypia.org/api/projects/elypia-api/",
+      "components_list_url": "https://i18n.elypia.org/api/projects/elypia-api/components/",
+      "repository_url": "https://i18n.elypia.org/api/projects/elypia-api/repository/",
+      "statistics_url": "https://i18n.elypia.org/api/projects/elypia-api/statistics/",
+      "changes_list_url": "https://i18n.elypia.org/api/projects/elypia-api/changes/",
+      "languages_url": "https://i18n.elypia.org/api/projects/elypia-api/languages/"
+    },
+    {
+      "name": "Alexis",
+      "slug": "alexis",
+      "id": 5,
+      "web": "https://elypia.org/",
+      "source_language": {
+        "code": "en",
+        "name": "English",
+        "plural": {
+          "id": 80,
+          "source": 0,
+          "number": 2,
+          "formula": "n != 1",
+          "type": 1
+        },
+        "aliases": [
+          "english",
+          "en_en",
+          "base",
+          "source",
+          "eng"
+        ],
+        "direction": "ltr",
+        "web_url": "https://i18n.elypia.org/languages/en/",
+        "url": "https://i18n.elypia.org/api/languages/en/",
+        "statistics_url": "https://i18n.elypia.org/api/languages/en/statistics/"
+      },
+      "web_url": "https://i18n.elypia.org/projects/alexis/",
+      "url": "https://i18n.elypia.org/api/projects/alexis/",
+      "components_list_url": "https://i18n.elypia.org/api/projects/alexis/components/",
+      "repository_url": "https://i18n.elypia.org/api/projects/alexis/repository/",
+      "statistics_url": "https://i18n.elypia.org/api/projects/alexis/statistics/",
+      "changes_list_url": "https://i18n.elypia.org/api/projects/alexis/changes/",
+      "languages_url": "https://i18n.elypia.org/api/projects/alexis/languages/"
+    }
+  ]
+}

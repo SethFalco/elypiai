@@ -1,0 +1,35 @@
+{
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "unit": null,
+      "component": "https://i18n.elypia.org/api/components/alexis/alexis-messages/",
+      "translation": "https://i18n.elypia.org/api/translations/alexis/alexis-messages/en/",
+      "glossary_term": null,
+      "user": null,
+      "author": null,
+      "timestamp": "2020-06-17T03:34:35.404464Z",
+      "action": 0,
+      "target": "",
+      "id": 1827,
+      "action_name": "Resource update",
+      "url": "https://i18n.elypia.org/api/changes/1827/"
+    },
+    {
+      "unit": null,
+      "component": "https://i18n.elypia.org/api/components/alexis/alexis-messages/",
+      "translation": "https://i18n.elypia.org/api/translations/alexis/alexis-messages/en/",
+      "glossary_term": null,
+      "user": null,
+      "author": null,
+      "timestamp": "2020-06-26T07:37:02.044854Z",
+      "action": 0,
+      "target": "",
+      "id": 1909,
+      "action_name": "Resource update",
+      "url": "https://i18n.elypia.org/api/changes/1909/"
+    }
+  ]
+}

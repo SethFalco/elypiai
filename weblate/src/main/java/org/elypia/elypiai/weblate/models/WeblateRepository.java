@@ -20,57 +20,46 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * @author seth@elypia.org (Seth Falco)
- * @since 4.2.2
+ * @since 4.2.3
  */
-public class Plural {
+public class WeblateRepository {
 
     /**
-     * @see #getId()
+     * @see #doesNeedCommit()
      */
-    @SerializedName("id")
-    private int id;
+    @SerializedName("needs_commit")
+    private boolean doesNeedCommit;
 
     /**
-     * @see #getSource()
+     * @see #doesNeedMerge()
      */
-    @SerializedName("source")
-    private int source;
+    @SerializedName("needs_merge")
+    private boolean doesNeedMerge;
 
     /**
-     * @see #getNumber()
+     * @see #doesNeedPush()
      */
-    @SerializedName("number")
-    private int number;
+    @SerializedName("needs_push")
+    private boolean doesNeedPush;
 
     /**
-     * @see #getFormula()
+     * @return Whether there are any pending changes to commit.
      */
-    @SerializedName("formula")
-    private String formula;
-
-    /**
-     * @see #getType()
-     */
-    @SerializedName("type")
-    private int type;
-
-    public int getId() {
-        return id;
+    public boolean doesNeedCommit() {
+        return doesNeedCommit;
     }
 
-    public int getSource() {
-        return source;
+    /**
+     * @return Whether there are any upstream changes to merge.
+     */
+    public boolean doesNeedMerge() {
+        return doesNeedMerge;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public String getFormula() {
-        return formula;
-    }
-
-    public int getType() {
-        return type;
+    /**
+     * @return Whether there are any local changes to push.
+     */
+    public boolean doesNeedPush() {
+        return doesNeedPush;
     }
 }

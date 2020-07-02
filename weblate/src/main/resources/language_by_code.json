@@ -1,0 +1,22 @@
+{
+  "code": "en",
+  "name": "English",
+  "plural": {
+    "id": 80,
+    "source": 0,
+    "number": 2,
+    "formula": "n != 1",
+    "type": 1
+  },
+  "aliases": [
+    "english",
+    "en_en",
+    "base",
+    "source",
+    "eng"
+  ],
+  "direction": "ltr",
+  "web_url": "https://i18n.elypia.org/languages/en/",
+  "url": "https://i18n.elypia.org/api/languages/en/",
+  "statistics_url": "https://i18n.elypia.org/api/languages/en/statistics/"
+}

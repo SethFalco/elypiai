@@ -1,0 +1,7 @@
+{
+  "name": "Add suggestion",
+  "permissions": [
+    "suggestion.add"
+  ],
+  "url": "https://i18n.elypia.org/api/roles/1/"
+}
