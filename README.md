@@ -1,5 +1,8 @@
-# Elypiai [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
+<div align="center">
+
+# Elypiai
+[![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+</div>
 
 ## About
 Elypiai is a small and easy way, especially for new developers, to add ample functionality 
@@ -7,6 +10,8 @@ or integrations to any project.
 
 We wrap web APIs that don't provide an official binding for Java and make a module
 for each one with a consistent interface between each.
+
+The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
 
 ## Supported APIs
 * [Cleverbot] - Complete

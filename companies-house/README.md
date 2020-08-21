@@ -1,11 +1,16 @@
-# Elypiai - Companies House [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
+<div align="center">
+
+# Elypiai - Companies House
+[![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+</div>
 
 ## About
 This is the [Companies House] module for Elypiai.
 Companies House are the governing body around companies in the United Kingdom.
 They provide an official API to allow programatic access to public information
 for all companies.
+
+The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
 
 ## Getting Started
 First you'll have to go to the Companies House API site and make an account if you haven't already. 
@@ -61,7 +66,7 @@ For more information, please see [Elypiai].
 As the API returns data that's on public record, it contains a lot of personal information;
 we don't to embed that in the respository. As a result the test responses for 
 unit testing should only ever contain responses for [Elypia CIC (12203025)], or 
-of the contributor's or contributor's company.
+of the contributor or contributor's company.
 
 ## Support
 Should any problems occur, come visit us over on Discord! We're always around and there are

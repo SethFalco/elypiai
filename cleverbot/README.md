@@ -1,10 +1,15 @@
-# Elypiai - Cleverbot [![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
+<div align="center">
+
+# Elypiai - Cleverbot
+[![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
+</div>
 
 ## About
 This is the [Cleverbot] module for Elypiai.
 Cleverbot is an AI powered chatbot that users can talk to on the Cleverbot [website]
 or via the Cleverbot [API][Cleverbot].
+
+The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
 
 ## Getting Started
 **Heads Up: The Cleverbot API is a paid service.**
