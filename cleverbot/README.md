@@ -14,8 +14,8 @@ The [Gradle]/[Maven] import strings can be found at the maven-central badge abov
 ## Getting Started
 **Heads Up: The Cleverbot API is a paid service.**
 
-First you'll have to go to the Cleverbot API site and make an account if you haven't already.  
-Following this, you may also have to purchase a [topup package][Cleverbot].  
+First you'll have to go to the Cleverbot API site and make an account if you haven't already.
+Following this, you may also have to purchase a [topup package][Cleverbot].
 
 Once you're ready, you can depend on the Cleverbot module of Elypiai.
 
@@ -44,11 +44,11 @@ that you'll have obtained from the Cleverbot API website.
 
 ```java
 class Main {
- 
+
     public static void main(String[] args) {
         // Construct the wrapper object.
         Cleverbot cb = new Cleverbot("{API_KEY}");
-        
+
         // Queue the request we want to make with a callback.
         cb.say("Hello").subscribe((response) -> {
             System.out.println(response.getOutput()); // Response to "Hello"
@@ -65,7 +65,7 @@ When you call `Cleverbot#say()` you'll get a `Single<CleverResponse>`; you can c
 For more information, please see [Elypiai].
 
 ## Support
-Should any problems occur, come visit us over on Discord! We're always around and there are
+If you have any questions or need support, come visit us on Matrix! We're always around and there are
 ample developers that would be willing to help; if it's a problem with the library itself then we'll
 make sure to get it sorted.
 

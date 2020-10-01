@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,13 +23,17 @@ import org.elypia.elypiai.cleverbot.data.CleverTweak;
 import org.elypia.elypiai.cleverbot.deserializers.CleverResponseDeserializer;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
-import java.util.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author seth@elypia.org (Seth Falco)

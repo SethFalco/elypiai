@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,13 @@
 
 package org.elypia.elypiai.runescape.deserializers;
 
-import com.google.gson.*;
-import org.elypia.elypiai.runescape.Player;
-import org.elypia.elypiai.runescape.data.RuneScapeError;
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import org.elypia.elypiai.runescape.models.Player;
+import org.elypia.elypiai.runescape.models.RuneScapeError;
 import org.elypia.retropia.core.exceptions.FriendlyException;
 
 import java.lang.reflect.Type;

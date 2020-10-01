@@ -13,8 +13,8 @@ for all companies.
 The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
 
 ## Getting Started
-First you'll have to go to the Companies House API site and make an account if you haven't already. 
-You can then make an application and receive an API key which will be used to authorize requests, 
+First you'll have to go to the Companies House API site and make an account if you haven't already.
+You can then make an application and receive an API key which will be used to authorize requests,
 you may need to go to your application and whitelist your IP for making API requests.
 
 Once you're ready, you can depend on the Companies House module of Elypiai.
@@ -46,11 +46,11 @@ that you'll have obtained from the Companies House website.
 import org.elypia.elypiai.companieshouse.CompaniesHouse;
 
 class Main {
- 
+
     public static void main(String[] args) {
         // Construct the wrapper object.
         CompaniesHouse ch = new CompaniesHouse("{API_KEY}");
-        
+
         // Queue the request we want to make with a callback.
         ch.getRegisteredOfficeAddress("12203025").subscribe((response) -> {
            System.out.println(response.getAddressLine1());
@@ -64,12 +64,12 @@ For more information, please see [Elypiai].
 
 ## Contributing
 As the API returns data that's on public record, it contains a lot of personal information;
-we don't to embed that in the respository. As a result the test responses for 
-unit testing should only ever contain responses for [Elypia CIC (12203025)], or 
+we don't to embed that in the respository. As a result the test responses for
+unit testing should only ever contain responses for [Elypia CIC (12203025)], or
 of the contributor or contributor's company.
 
 ## Support
-Should any problems occur, come visit us over on Discord! We're always around and there are
+If you have any questions or need support, come visit us on Matrix! We're always around and there are
 ample developers that would be willing to help; if it's a problem with the library itself then we'll
 make sure to get it sorted.
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,34 @@
 
 package org.elypia.elypiai.osu;
 
-import org.elypia.elypiai.osu.data.*;
-import org.elypia.webservertestbed.junit5.*;
-import org.junit.jupiter.api.*;
+import org.elypia.elypiai.osu.models.BeatMap;
+import org.elypia.elypiai.osu.models.Game;
+import org.elypia.elypiai.osu.models.GameScore;
+import org.elypia.elypiai.osu.models.MapDifficulty;
+import org.elypia.elypiai.osu.models.MapGenre;
+import org.elypia.elypiai.osu.models.MapLanguage;
+import org.elypia.elypiai.osu.models.MapStatus;
+import org.elypia.elypiai.osu.models.Match;
+import org.elypia.elypiai.osu.models.OsuEvent;
+import org.elypia.elypiai.osu.models.OsuMode;
+import org.elypia.elypiai.osu.models.OsuScoreType;
+import org.elypia.elypiai.osu.models.OsuTeamType;
+import org.elypia.elypiai.osu.models.Player;
+import org.elypia.elypiai.osu.models.RecentPlay;
+import org.elypia.webservertestbed.junit5.WebServerExtension;
+import org.elypia.webservertestbed.junit5.WebServerTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OsuTest {
 

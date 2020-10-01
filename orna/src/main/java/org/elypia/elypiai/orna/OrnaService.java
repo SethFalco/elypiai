@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,14 @@
 package org.elypia.elypiai.orna;
 
 import io.reactivex.rxjava3.core.Single;
-import org.elypia.elypiai.orna.entities.*;
+import org.elypia.elypiai.orna.entities.Achievment;
+import org.elypia.elypiai.orna.entities.Item;
+import org.elypia.elypiai.orna.entities.Monster;
+import org.elypia.elypiai.orna.entities.Npc;
+import org.elypia.elypiai.orna.entities.Pet;
+import org.elypia.elypiai.orna.entities.Quest;
+import org.elypia.elypiai.orna.entities.SkillDetails;
+import org.elypia.elypiai.orna.entities.Specialization;
 import retrofit2.http.POST;
 
 import java.util.List;

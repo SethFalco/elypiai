@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,21 @@
 
 package org.elypia.elypiai.yugioh.deserializers;
 
-import com.google.gson.*;
-import org.elypia.elypiai.yugioh.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import org.elypia.elypiai.yugioh.MagicCard;
+import org.elypia.elypiai.yugioh.Monster;
+import org.elypia.elypiai.yugioh.TradingCard;
 import org.elypia.elypiai.yugioh.data.CardType;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Type;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**

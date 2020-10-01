@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,38 @@
 
 package org.elypia.elypiai.osu;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.*;
 import okhttp3.OkHttpClient;
-import org.elypia.elypiai.osu.data.*;
-import org.elypia.elypiai.osu.deserializers.*;
+import org.elypia.elypiai.osu.deserializers.BeatMapDeserializer;
+import org.elypia.elypiai.osu.deserializers.OsuMatchDeserializer;
+import org.elypia.elypiai.osu.deserializers.OsuModDeserializer;
+import org.elypia.elypiai.osu.deserializers.OsuPlayerDeserializer;
+import org.elypia.elypiai.osu.models.BeatMap;
+import org.elypia.elypiai.osu.models.Match;
+import org.elypia.elypiai.osu.models.OsuId;
+import org.elypia.elypiai.osu.models.OsuMod;
+import org.elypia.elypiai.osu.models.OsuMode;
+import org.elypia.elypiai.osu.models.Player;
+import org.elypia.elypiai.osu.models.RecentPlay;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
 import org.elypia.retropia.gson.deserializers.OffsetTemporalDeserializer;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
-import java.time.*;
-import java.util.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * @author seth@elypia.org (Seth Falco)

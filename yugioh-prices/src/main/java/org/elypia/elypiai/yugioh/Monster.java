@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,12 @@
 package org.elypia.elypiai.yugioh;
 
 import com.google.gson.annotations.SerializedName;
-import org.elypia.elypiai.yugioh.data.*;
+import org.elypia.elypiai.yugioh.data.Attribute;
+import org.elypia.elypiai.yugioh.data.MonsterType;
+import org.elypia.elypiai.yugioh.data.Race;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,10 @@
 
 package org.elypia.elypiai.urbandictionary;
 
-import com.google.gson.annotations.*;
-import org.elypia.retropia.gson.deserializers.*;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import org.elypia.retropia.gson.deserializers.EmptyNullDeserializer;
+import org.elypia.retropia.gson.deserializers.IsoDateTimeTemporalDeserializer;
 
 import java.time.Instant;
 import java.util.List;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,19 @@
 
 package org.elypia.elypiai.urbandictionary;
 
-import io.reactivex.rxjava3.core.*;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -102,5 +106,15 @@ public class UrbanDictionary {
 	public Maybe<Definition> getDefinitionById(int id) {
 		Maybe<DefineResult> call = service.getDefinitionById(id);
 		return call.mapOptional((results) -> (results.hasDefinitions()) ? Optional.of(results.getDefinition()) : Optional.empty());
+	}
+
+	/**
+	 * @param term The term to get the Urban Dictionary tooltip for.
+	 * @return A tooltip string which is displayed on the Urban Dictionary website
+	 * when hovering over linked words in definitions.
+	 */
+	public Single<Object> getWordTooltip(final String term) {
+		Objects.requireNonNull(term, "Must provide ");
+		return service.getTooltip(term);
 	}
 }

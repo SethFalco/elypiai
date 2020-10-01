@@ -5,8 +5,8 @@
 </div>
 
 ## About
-Elypiai is a small and easy way, especially for new developers, to add ample functionality 
-or integrations to any project.  
+Elypiai is a small and easy way, especially for new developers, to add ample functionality
+or integrations to any project.
 
 We wrap web APIs that don't provide an official binding for Java and make a module
 for each one with a consistent interface between each.
@@ -16,6 +16,7 @@ The [Gradle]/[Maven] import strings can be found at the maven-central badge abov
 ## Supported APIs
 * [Cleverbot] - Complete
 * [Companies House] - WIP
+* [Mojang] - WIP
 * [Orna Guide] - WIP
 * [osu!] - WIP
 * [Path of Exile] - Complete
@@ -31,7 +32,7 @@ You can check the issues to see pending wrappers.
 Rather than making a Cleverbot4J, Orna4J, osu!4J, etc project we've opted for a submodule
 approach. The reason for this is because all submodules in this repository has an almost
 identical structure to them, and when we want to make major alterations to how we want
-to make requests, we often want to change it for all of our wrappers. 
+to make requests, we often want to change it for all of our wrappers.
 Please visit the appropriate README of the module you're interested in.
 
 ## Getting Started
@@ -46,9 +47,9 @@ the request:
 
 ```java
 public class Main {
- 
+
     private final Osu osu;
-    
+
     /**
     * Start by instantiating the wrapper to use, then call
     * a request method. Wrappers will accept whatever they need
@@ -58,23 +59,23 @@ public class Main {
     public static void main(String[] args) {
         osu = new Osu("{{api key}}");
     }
-    
+
     /**
     * RxJava is pretty flexible; you can call #subscribe
-    * with callbacks to handle the result asynchronously, 
-    * all the parameters are optional, or call #blockingGet 
+    * with callbacks to handle the result asynchronously,
+    * all the parameters are optional, or call #blockingGet
     * to handle it synchronously.
     */
-    public static void simpleExample() {        
+    public static void simpleExample() {
         osu.getPlayer("SethX3").subscribe(
             (player) -> System.out.println(player),
             (ex) -> ex.printStacktrace(),
             () -> System.out.println("That player didn't exist.")
         );
-        
+
         Player player = osu.getPlayer("SethX3").blockingGet();
     }
-    
+
     /**
     * It's even possible to perform batch requests!
     */
@@ -83,18 +84,18 @@ public class Main {
             .map(osu::getPlayer)
             .map(Maybe::toObservable)
             .collect(Collectors.toList());
-                                                   
+
         Observable<List<Player>> singlePlayers = Observable.zip(requests, (objects) ->
             Stream.of(objects).map((o) -> (Player)o).collect(Collectors.toList())
         );
-                
+
         singlePlayers.subscribe((players) -> players.forEach(System.out::println));
     }
 }
 ```
 
 ## Support
-Should any problems occur, come visit us over on Discord! We're always around and there are
+If you have any questions or need support, come visit us on Matrix! We're always around and there are
 ample developers that would be willing to help; if it's a problem with the library itself then we'll
 make sure to get it sorted.
 
@@ -108,6 +109,7 @@ make sure to get it sorted.
 [Maven]: https://maven.apache.org/ "Depend via Maven"
 [Cleverbot]: https://www.cleverbot.com/api/
 [Companies House]: https://developer.companieshouse.gov.uk/api/docs/
+[Mojang]: https://wiki.vg/Mojang_API
 [Orna Guide]: https://orna.guide/gameplay?show=16
 [osu!]: https://github.com/ppy/osu-api/wiki
 [Path of Exile]: https://www.pathofexile.com/developer/docs/api-resources

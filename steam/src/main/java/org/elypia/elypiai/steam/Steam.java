@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,19 +18,30 @@ package org.elypia.elypiai.steam;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import io.reactivex.rxjava3.core.*;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
-import org.elypia.elypiai.steam.deserializers.*;
+import org.elypia.elypiai.steam.deserializers.SteamGameDeserializer;
+import org.elypia.elypiai.steam.deserializers.SteamSearchDeserializer;
+import org.elypia.elypiai.steam.deserializers.SteamUserDeserializer;
+import org.elypia.elypiai.steam.models.SteamGame;
+import org.elypia.elypiai.steam.models.SteamSearch;
+import org.elypia.elypiai.steam.models.SteamUser;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
-import java.util.*;
-import java.util.regex.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author seth@elypia.org (Seth Falco)

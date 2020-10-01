@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,10 @@
 
 package org.elypia.elypiai.osu.deserializers;
 
-import com.google.gson.*;
-import org.elypia.elypiai.osu.data.OsuMod;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import org.elypia.elypiai.osu.models.OsuMod;
 
 import java.lang.reflect.Type;
 import java.util.List;

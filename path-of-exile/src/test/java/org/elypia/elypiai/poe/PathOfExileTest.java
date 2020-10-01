@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,37 @@
 
 package org.elypia.elypiai.poe;
 
-import org.elypia.elypiai.poe.data.*;
-import org.elypia.webservertestbed.junit5.*;
-import org.junit.jupiter.api.*;
+import org.elypia.elypiai.poe.models.Account;
+import org.elypia.elypiai.poe.models.AscendancyClass;
+import org.elypia.elypiai.poe.models.AscendancyType;
+import org.elypia.elypiai.poe.models.Exile;
+import org.elypia.elypiai.poe.models.Guild;
+import org.elypia.elypiai.poe.models.LadderEntry;
+import org.elypia.elypiai.poe.models.LadderType;
+import org.elypia.elypiai.poe.models.League;
+import org.elypia.elypiai.poe.models.LeagueRule;
+import org.elypia.elypiai.poe.models.MatchStyle;
+import org.elypia.elypiai.poe.models.PvpMatch;
+import org.elypia.elypiai.poe.models.Realm;
+import org.elypia.elypiai.poe.models.Stash;
+import org.elypia.elypiai.poe.models.StashItem;
+import org.elypia.elypiai.poe.models.StashTabs;
+import org.elypia.elypiai.poe.models.StashType;
+import org.elypia.webservertestbed.junit5.WebServerExtension;
+import org.elypia.webservertestbed.junit5.WebServerTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Data in this has been intentionally shortended in order to

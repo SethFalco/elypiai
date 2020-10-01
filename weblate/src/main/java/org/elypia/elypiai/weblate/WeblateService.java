@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,27 @@
 package org.elypia.elypiai.weblate;
 
 import io.reactivex.rxjava3.core.Single;
-import org.elypia.elypiai.weblate.models.*;
+import org.elypia.elypiai.weblate.models.Change;
+import org.elypia.elypiai.weblate.models.Component;
+import org.elypia.elypiai.weblate.models.ComponentStatistics;
+import org.elypia.elypiai.weblate.models.Language;
+import org.elypia.elypiai.weblate.models.LanguageStatistics;
+import org.elypia.elypiai.weblate.models.Project;
+import org.elypia.elypiai.weblate.models.Results;
+import org.elypia.elypiai.weblate.models.Screenshot;
+import org.elypia.elypiai.weblate.models.Unit;
+import org.elypia.elypiai.weblate.models.WeblateGroup;
+import org.elypia.elypiai.weblate.models.WeblateRepository;
+import org.elypia.elypiai.weblate.models.WeblateRole;
+import org.elypia.elypiai.weblate.models.WeblateUser;
 import retrofit2.adapter.rxjava3.Result;
-import retrofit2.http.*;
+import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.GET;
+import retrofit2.http.PATCH;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 import java.util.List;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,10 @@
 
 package org.elypia.elypiai.urbandictionary;
 
-import io.reactivex.rxjava3.core.*;
-import retrofit2.http.*;
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -36,4 +38,9 @@ public interface UrbanDictionaryService {
 
     @GET("random")
     Single<DefineResult> getRandomDefinitions();
+
+    @GET("tooltip")
+    Single<Object> getTooltip(
+        @Query("term") String term
+    );
 }

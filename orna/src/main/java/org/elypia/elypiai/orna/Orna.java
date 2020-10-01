@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,14 +18,24 @@ package org.elypia.elypiai.orna;
 
 import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
-import org.elypia.elypiai.orna.entities.*;
+import org.elypia.elypiai.orna.entities.Achievment;
+import org.elypia.elypiai.orna.entities.Entity;
+import org.elypia.elypiai.orna.entities.Item;
+import org.elypia.elypiai.orna.entities.Monster;
+import org.elypia.elypiai.orna.entities.Npc;
+import org.elypia.elypiai.orna.entities.Pet;
+import org.elypia.elypiai.orna.entities.Quest;
+import org.elypia.elypiai.orna.entities.SkillDetails;
+import org.elypia.elypiai.orna.entities.Specialization;
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 /**

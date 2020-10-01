@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,16 +16,30 @@
 
 package org.elypia.elypiai.steam;
 
-import org.elypia.elypiai.steam.data.*;
-import org.elypia.webservertestbed.junit5.*;
-import org.junit.jupiter.api.*;
+import org.elypia.elypiai.steam.models.CommunityVisibilityState;
+import org.elypia.elypiai.steam.models.GameSession;
+import org.elypia.elypiai.steam.models.PersonaState;
+import org.elypia.elypiai.steam.models.SteamGame;
+import org.elypia.elypiai.steam.models.SteamSearch;
+import org.elypia.elypiai.steam.models.SteamUser;
+import org.elypia.webservertestbed.junit5.WebServerExtension;
+import org.elypia.webservertestbed.junit5.WebServerTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * The API keys here are fake. c;

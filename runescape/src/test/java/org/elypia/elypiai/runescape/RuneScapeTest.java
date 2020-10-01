@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,42 @@
 
 package org.elypia.elypiai.runescape;
 
-import org.elypia.elypiai.runescape.data.*;
+import org.elypia.elypiai.runescape.models.Activity;
+import org.elypia.elypiai.runescape.models.CompletionStatus;
+import org.elypia.elypiai.runescape.models.Difficulty;
+import org.elypia.elypiai.runescape.models.Equipment;
+import org.elypia.elypiai.runescape.models.ItemCategory;
+import org.elypia.elypiai.runescape.models.Player;
+import org.elypia.elypiai.runescape.models.PlayerStat;
+import org.elypia.elypiai.runescape.models.QuestStatus;
+import org.elypia.elypiai.runescape.models.QuestStatuses;
+import org.elypia.elypiai.runescape.models.Skill;
 import org.elypia.retropia.core.exceptions.FriendlyException;
-import org.elypia.webservertestbed.junit5.*;
-import org.junit.jupiter.api.*;
+import org.elypia.webservertestbed.junit5.WebServerExtension;
+import org.elypia.webservertestbed.junit5.WebServerTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.ZoneOffset;
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import static java.time.Duration.ofSeconds;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class RuneScapeTest {
 

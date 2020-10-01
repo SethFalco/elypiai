@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors
+ * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,27 @@
 
 package org.elypia.elypiai.companieshouse;
 
-import org.elypia.elypiai.companieshouse.models.*;
-import org.elypia.webservertestbed.junit5.*;
-import org.junit.jupiter.api.*;
+import org.elypia.elypiai.companieshouse.models.Company;
+import org.elypia.elypiai.companieshouse.models.CompanyStatus;
+import org.elypia.elypiai.companieshouse.models.CompanyType;
+import org.elypia.elypiai.companieshouse.models.Jurisdiction;
+import org.elypia.elypiai.companieshouse.models.RegisteredOfficeAddress;
+import org.elypia.elypiai.companieshouse.models.StatementDates;
+import org.elypia.elypiai.companieshouse.models.Subtype;
+import org.elypia.webservertestbed.junit5.WebServerExtension;
+import org.elypia.webservertestbed.junit5.WebServerTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.MonthDay;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CompaniesHouseTest {
 
