@@ -54,7 +54,7 @@ public class OrnaTest {
         assertDoesNotThrow(() -> new Orna());
     }
 
-    @WebServerTest("all_monsters.json")
+    @WebServerTest("all-monsters.json")
     public void testOrnaAllMonsters() {
         List<Monster> monsters = orna.getMonsters().blockingGet();
         Monster monster = monsters.get(0);
@@ -69,7 +69,7 @@ public class OrnaTest {
         );
     }
 
-    @WebServerTest("all_items.json")
+    @WebServerTest("all-items.json")
     public void testAllItems() {
         List<Item> items = orna.getItems().blockingGet();
         Item item = items.get(0);

@@ -71,7 +71,7 @@ public class SteamTest {
         assertThrows(NullPointerException.class, () -> new Steam(null));
     }
 
-    @WebServerTest("url-to-id_jen.json")
+    @WebServerTest("url-to-id-jen.json")
     public void idSearch() {
         SteamSearch search = steam.getIdFromVanityUrl("JenTheBluePanda").blockingGet();
 
@@ -83,7 +83,7 @@ public class SteamTest {
         );
     }
 
-    @WebServerTest("url-to-id_noone.json")
+    @WebServerTest("url-to-id-noone.json")
     public void failedIdSearch() {
         SteamSearch search = steam.getIdFromVanityUrl("BLAHBLAHBLAHBLAHBLAHBLAHBLAHBLAHBLAH").blockingGet();
 
@@ -95,7 +95,7 @@ public class SteamTest {
         );
     }
 
-    @WebServerTest({"url-to-id_seth.json", "summary_seth-no-session.json"})
+    @WebServerTest({"url-to-id-seth.json", "summary-seth-no-session.json"})
     public void parseSteamUser() {
         long id = steam.getIdFromVanityUrl("Sethiii").blockingGet().getId();
         SteamUser user = steam.getUsers(id).blockingGet().get(0);
@@ -121,7 +121,7 @@ public class SteamTest {
         );
     }
 
-    @WebServerTest("summary_seth-with-session.json")
+    @WebServerTest("summary-seth-with-session.json")
     public void parseUserWithSession() {
         SteamUser user = steam.getUsers(76561198085657484L).blockingGet().get(0);
 
@@ -148,7 +148,7 @@ public class SteamTest {
         );
     }
 
-    @WebServerTest("summary_seth-with-session.json")
+    @WebServerTest("summary-seth-with-session.json")
     public void parseGameSessionData() {
         GameSession session = steam.getUsers(76561198085657484L).blockingGet().get(0).getCurrentlyPlaying();
 
@@ -158,7 +158,7 @@ public class SteamTest {
         );
     }
 
-    @WebServerTest({"url-to-id_seth.json", "library_seth.json"})
+    @WebServerTest({"url-to-id-seth.json", "library-seth.json"})
     public void parseLibrary() {
         long id = steam.getIdFromVanityUrl("Sethiii").blockingGet().getId();
         List<SteamGame> library = steam.getLibrary(id).blockingGet();
@@ -178,7 +178,7 @@ public class SteamTest {
         );
     }
 
-    @WebServerTest("library_toasty.json")
+    @WebServerTest("library-toasty.json")
     public void parseLibraryWithRecentPlay() {
         List<SteamGame> library = steam.getLibrary(76561198012145255L).blockingGet();
         Collections.sort(library);

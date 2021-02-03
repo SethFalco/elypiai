@@ -64,7 +64,7 @@ public class OsuTest {
         assertEquals("api key", osu.getApiKey());
     }
 
-    @WebServerTest("player_nathan-on-osu.json")
+    @WebServerTest("player-nathan-on-osu.json")
     public void testOsuPlayer() {
         Player user = osu.getPlayer("nathan on osu").blockingGet();
 
@@ -93,7 +93,7 @@ public class OsuTest {
         );
     }
 
-    @WebServerTest("player_nathan-on-osu.json")
+    @WebServerTest("player-nathan-on-osu.json")
     public void testOsuPlayerEvent() {
         OsuEvent event = osu.getPlayer("nathan on osu").blockingGet().getEvents().get(0);
 
@@ -106,7 +106,7 @@ public class OsuTest {
         );
     }
 
-    @WebServerTest("beatmap_675314.json")
+    @WebServerTest("beatmap-675314.json")
     public void testOsuBeapMap() {
         BeatMap map = osu.getBeatMaps(675314).blockingSingle().get(0);
 
@@ -139,7 +139,7 @@ public class OsuTest {
         );
     }
 
-    @WebServerTest("beatmap_675314.json")
+    @WebServerTest("beatmap-675314.json")
     public void testOsuMapDifficulty() {
         MapDifficulty diff = osu.getBeatMaps(675314).blockingSingle().get(0).getDifficulty();
 
@@ -152,7 +152,7 @@ public class OsuTest {
         );
     }
 
-    @WebServerTest("recent_yasha.json")
+    @WebServerTest("recent-yasha.json")
     public void testRecentPlay() {
         List<RecentPlay> plays = osu.getRecentPlays("Yasha").blockingSingle();
         RecentPlay play = plays.get(0);
@@ -175,7 +175,7 @@ public class OsuTest {
         );
     }
 
-    @WebServerTest("match_random.json")
+    @WebServerTest("match-random.json")
     public void testMatchData() {
         Match match = osu.getMatch(52270952).blockingGet();
         assertAll("Check values of osu! match are correct.",
@@ -187,7 +187,7 @@ public class OsuTest {
         );
     }
 
-    @WebServerTest("match_random.json")
+    @WebServerTest("match-random.json")
     public void testMatchGameData() {
         Game game = osu.getMatch(52270952).blockingGet().getGames().get(0);
 
@@ -204,7 +204,7 @@ public class OsuTest {
         );
     }
 
-    @WebServerTest("match_random.json")
+    @WebServerTest("match-random.json")
     public void testMatchGameScoreData() {
         GameScore score = osu.getMatch(52270952).blockingGet().getGames().get(0).getScores().get(0);
 

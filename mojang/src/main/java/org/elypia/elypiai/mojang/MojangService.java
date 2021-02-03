@@ -17,6 +17,8 @@
 package org.elypia.elypiai.mojang;
 
 import io.reactivex.rxjava3.core.Single;
+import org.elypia.elypiai.mojang.models.MinecraftUser;
+import org.elypia.elypiai.mojang.models.Status;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -27,27 +29,27 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-import java.time.Instant;
-import java.util.UUID;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  * @since 4.3.0
  */
-public interface MojangApiService {
+public interface MojangService {
 
-    @GET("check")
-    Single<Object> getStatus();
+    @POST()
+    Single<Status> status();
 
     @GET("users/profiles/minecraft/{username}")
-    Single<Object> getUuidAtTime(
+    Single<MinecraftUser> getUuidAtTime(
         @Path("username") String username,
-        @Query("at") Instant timestamp
+        @Query("at") Long timestamp
     );
 
     @GET("user/profiles/{uuid}/names")
     Single<Object> getNameHistory(
-        @Path("uuid") UUID uuid
+        @Path("uuid") String uuid
     );
 
     /**
@@ -55,19 +57,8 @@ public interface MojangApiService {
      * @return The information for all users, omitting users that don't exist.
      */
     @POST("profiles/minecraft")
-    Single<Object> getUuidsAndExtra(
-        @Body String[] usernames
-    );
-
-    /**
-     * @param uuid The {@link UUID} of the player.
-     * @param unsigned If the response should include a signature.
-     * @return Profile information on the player, including textures.
-     */
-    @GET("session/minecraft/profile/{uuid}")
-    Single<Object> getProfile(
-        @Path("uuid") final String uuid,
-        @Query("unsigned") final boolean unsigned
+    Single<List<MinecraftUser>> getUuidsAndExtra(
+        @Body Collection<String> usernames
     );
 
     @POST("user/profile/{uuid}/skin")
@@ -102,9 +93,6 @@ public interface MojangApiService {
     Single<Object> answerSecurityChallenges(
         @Body Object answers
     );
-
-    @GET("blockedservers")
-    Single<Object> getBlockedServers();
 
     @POST("orders/statistics")
     Single<Object> getSalesStatistics(

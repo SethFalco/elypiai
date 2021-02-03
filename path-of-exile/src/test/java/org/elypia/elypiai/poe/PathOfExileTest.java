@@ -71,7 +71,7 @@ public class PathOfExileTest {
         assertDoesNotThrow(() -> new PathOfExile());
     }
 
-    @WebServerTest("public-stash-tabs_single.json")
+    @WebServerTest("public-stash-tabs-single.json")
     public void parsePartialStashTabs() {
         StashTabs stashtabs = poe.getStashTabs().blockingGet();
 
@@ -81,7 +81,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("public-stash-tabs_single.json")
+    @WebServerTest("public-stash-tabs-single.json")
     public void parseSingleStash() {
         Stash stash = poe.getStashTabs(null).blockingGet().getStashes().get(0);
 
@@ -96,7 +96,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("public-stash-tabs_single.json")
+    @WebServerTest("public-stash-tabs-single.json")
     public void parseSingleStashNonNull() {
         Stash stash = poe.getStashTabs(null).blockingGet().getStashes().get(3);
 
@@ -112,7 +112,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("public-stash-tabs_single.json")
+    @WebServerTest("public-stash-tabs-single.json")
     public void parseSingleStashItem() {
         StashItem item = poe.getStashTabs().blockingGet().getStashes().get(3).getItems().get(0);
 
@@ -135,13 +135,13 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("leagues_default.json")
+    @WebServerTest("leagues-default.json")
     public void parseMultipleLeagues() {
         List<League> leagues = poe.getLeagues().blockingGet();
         assertFalse(leagues.isEmpty());
     }
 
-    @WebServerTest("leagues_default.json")
+    @WebServerTest("leagues-default.json")
     public void parseSingleLeague() {
         League league = poe.getLeagues().blockingGet().get(0);
 
@@ -158,7 +158,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("leagues_default.json")
+    @WebServerTest("leagues-default.json")
     public void parseSingleLeagueWithEndDate() {
         League league = poe.getLeagues().blockingGet().get(4);
 
@@ -174,7 +174,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("leagues_default.json")
+    @WebServerTest("leagues-default.json")
     public void parseRulesFromLeague() {
         LeagueRule rule = poe.getLeagues().blockingGet().get(1).getRules().get(0);
 
@@ -185,7 +185,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("rule_hardcore.json")
+    @WebServerTest("rule-hardcore.json")
     public void getSingleRule() {
         LeagueRule rule = poe.getRule("Hardcore").blockingGet();
 
@@ -202,7 +202,7 @@ public class PathOfExileTest {
         assertFalse(rule.isEmpty());
     }
 
-    @WebServerTest("ladders_standard.json")
+    @WebServerTest("ladders-standard.json")
     public void parseLadderEntry() {
         LadderEntry entry = poe.getLeagueLadder("Standard").blockingGet().get(0);
 
@@ -215,7 +215,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("ladders_standard.json")
+    @WebServerTest("ladders-standard.json")
     public void parseLadderEntryWithChallenges() {
         LadderEntry entry = poe.getLeagueLadder("Standard").blockingGet().get(3);
 
@@ -228,7 +228,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("ladders_standard.json")
+    @WebServerTest("ladders-standard.json")
     public void parseExileFromLadderEntryWithChallenges() {
         Exile exile = poe.getLeagueLadder("Standard").blockingGet().get(3).getExile();
 
@@ -242,7 +242,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("ladders_standard.json")
+    @WebServerTest("ladders-standard.json")
     public void parseAccountFromLadderEntryWithChallenges() {
         Account account = poe.getLeagueLadder("Standard").blockingGet().get(3).getAccount();
 
@@ -255,7 +255,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("ladders_standard.json")
+    @WebServerTest("ladders-standard.json")
     public void parseLadderEntryUserWithSubClass() {
         Exile exile = poe.getLeagueLadder("Standard").blockingGet().get(6).getExile();
 
@@ -269,7 +269,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("ladders_standard-lab-norm-pc.json")
+    @WebServerTest("ladders-standard-lab-norm-pc.json")
     public void parseLadderEntryWithGuild() {
         Account account = poe.getLeagueLadder("Standard", Realm.PC, 200, 0, LadderType.LABYRINTH).blockingGet().get(0).getAccount();
 
@@ -277,7 +277,7 @@ public class PathOfExileTest {
         assertNotNull(account.getGuild());
     }
 
-    @WebServerTest("ladders_standard-lab-norm-pc.json")
+    @WebServerTest("ladders-standard-lab-norm-pc.json")
     public void parseGuildOfLadderEntryWithGuild() {
         Guild guild = poe.getLeagueLadder("Standard", Realm.PC, 200, 0, LadderType.LABYRINTH).blockingGet().get(0).getAccount().getGuild();
 
@@ -290,7 +290,7 @@ public class PathOfExileTest {
         );
     }
 
-    @WebServerTest("pvp-matches_eupvpseason1.json")
+    @WebServerTest("pvp-matches-eupvpseason1.json")
     public void parsePvpMatches() {
         List<PvpMatch> matches = poe.getPvpMatches("EUPvPSeason1").blockingGet();
 
@@ -298,7 +298,7 @@ public class PathOfExileTest {
         assertFalse(matches.isEmpty());
     }
 
-    @WebServerTest("pvp-matches_eupvpseason1.json")
+    @WebServerTest("pvp-matches-eupvpseason1.json")
     public void parsePvpMatch() {
         PvpMatch match = poe.getPvpMatches("EUPvPSeason1").blockingGet().get(0);
 

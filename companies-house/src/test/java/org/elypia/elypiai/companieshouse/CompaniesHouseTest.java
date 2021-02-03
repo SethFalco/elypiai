@@ -55,7 +55,7 @@ public class CompaniesHouseTest {
         assertDoesNotThrow(() -> new CompaniesHouse("Fake API Key"));
     }
 
-    @WebServerTest("company_by_id_12203025.json")
+    @WebServerTest("company-by-id-12203025.json")
     public void parseCompanyById() {
         Company c = companiesHouse.getCompany("12203025").blockingGet();
 
@@ -75,7 +75,7 @@ public class CompaniesHouseTest {
         );
     }
 
-    @WebServerTest("company_by_id_12203025.json")
+    @WebServerTest("company-by-id-12203025.json")
     public void testParsingCompanyAddress() {
         RegisteredOfficeAddress result = companiesHouse.getCompany("12203025").blockingGet().getRegisteredOfficeAddress();
 
@@ -88,7 +88,7 @@ public class CompaniesHouseTest {
         );
     }
 
-    @WebServerTest("company_by_id_12203025.json")
+    @WebServerTest("company-by-id-12203025.json")
     public void testParsingConfirmationStatement() {
         StatementDates cs = companiesHouse.getCompany("12203025").blockingGet().getConfirmationStatement();
 
@@ -99,13 +99,13 @@ public class CompaniesHouseTest {
         );
     }
 
-    @WebServerTest("company_by_id_12203025.json")
+    @WebServerTest("company-by-id-12203025.json")
     public void testParsingCompanyAccountsReferenceDate() {
         MonthDay ard = companiesHouse.getCompany("12203025").blockingGet().getAccounts().getAccountingReferenceDate();
         assertEquals(MonthDay.of(9, 30), ard);
     }
 
-    @WebServerTest("registered_address_12203025.json")
+    @WebServerTest("registered-address-12203025.json")
     public void parseRegisteredAddress() {
         RegisteredOfficeAddress result = companiesHouse.getRegisteredOfficeAddress("12203025").blockingGet();
 

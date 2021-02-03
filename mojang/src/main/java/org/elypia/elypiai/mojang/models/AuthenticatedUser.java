@@ -14,8 +14,12 @@
  * limitations under the License.
  */
 
-dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+package org.elypia.elypiai.mojang.models;
 
-    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+/**
+ * @author seth@elypia.org (Seth Falco)
+ * @since 4.3.0
+ */
+public class AuthenticatedUser extends Authorizable {
+
 }

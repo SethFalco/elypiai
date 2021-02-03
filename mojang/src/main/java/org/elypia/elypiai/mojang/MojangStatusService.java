@@ -14,8 +14,21 @@
  * limitations under the License.
  */
 
-dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+package org.elypia.elypiai.mojang;
 
-    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+import io.reactivex.rxjava3.core.Single;
+import org.elypia.elypiai.mojang.models.MojangServer;
+import org.elypia.elypiai.mojang.models.ServerStatus;
+import retrofit2.http.GET;
+
+import java.util.Map;
+
+/**
+ * @author seth@elypia.org (Seth Falco)
+ * @since 4.3.0
+ */
+public interface MojangStatusService {
+
+    @GET("check")
+    Single<Map<MojangServer, ServerStatus>> getServerStatuses();
 }

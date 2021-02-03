@@ -16,24 +16,15 @@
 
 package org.elypia.elypiai.mojang.models;
 
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import org.elypia.elypiai.mojang.deserializers.UuidDeserializer;
 
-import java.util.UUID;
+import java.time.Instant;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  * @since 4.3.0
  */
-public class MinecraftUser implements Identifiable {
-
-    /**
-     * @see #getUuid()
-     */
-    @JsonAdapter(UuidDeserializer.class)
-    @SerializedName("id")
-    private UUID uuid;
+public class UsernameHistoryItem implements Comparable<UsernameHistoryItem> {
 
     /**
      * @see #getName()
@@ -42,42 +33,30 @@ public class MinecraftUser implements Identifiable {
     private String name;
 
     /**
-     * @see #isLegacy
+     * @see #getChangedToAt()
      */
-    @SerializedName("legacy")
-    private boolean isLegacy;
+    @SerializedName("changedToAt")
+    private Instant changedToAt;
 
     /**
-     * @see #isDemo()
-     */
-    @SerializedName("demo")
-    private boolean isDemo;
-
-    /**
-     * @return The accounts UUID.
-     */
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    /**
-     * @return The username of the account.
+     * @return The name the user has at the time specified in
+     * {@link #getChangedToAt()}, or creating their account with if
+     * {@link #getChangedToAt()} is null.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return If the account hasn't migrated to a Mojang account.
+     * @return The time this username came into effect, or null
+     * if this is the first username the user had.
      */
-    public boolean isLegacy() {
-        return isLegacy;
+    public Instant getChangedToAt() {
+        return changedToAt;
     }
 
-    /**
-     * @return If this is an unpaid account.
-     */
-    public boolean isDemo() {
-        return isDemo;
+    @Override
+    public int compareTo(UsernameHistoryItem o) {
+        return this.changedToAt.compareTo(o.changedToAt);
     }
 }

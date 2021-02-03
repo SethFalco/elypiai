@@ -83,7 +83,7 @@ make sure to get it sorted.
 [Maven]: https://maven.apache.org/ "Depend via Maven"
 [Companies House]: https://developer.companieshouse.gov.uk/api/docs/
 [Elypiai]: https://gitlab.com/Elypia/elypiai "Elypiai Repository"
-[Elypia CIC (12203025)]: https://beta.companieshouse.gov.uk/company/12203025
+[Elypia CIC (12203025)]: https://find-and-update.company-information.service.gov.uk/company/12203025
 
 [Matrix]: https://img.shields.io/matrix/elypia:matrix.org?logo=matrix "Matrix Shield"
 [Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"

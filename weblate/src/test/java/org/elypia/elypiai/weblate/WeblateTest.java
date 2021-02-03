@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import org.elypia.elypiai.weblate.Weblate;
+package org.elypia.elypiai.weblate;
+
 import org.elypia.elypiai.weblate.models.LanguageStatistics;
 import org.elypia.webservertestbed.junit5.WebServerExtension;
 import org.elypia.webservertestbed.junit5.WebServerTest;
@@ -54,13 +55,13 @@ public class WeblateTest {
         assertDoesNotThrow(() -> new Weblate("{FAKE_API_KEY}"));
     }
 
-    @WebServerTest("project_languages.json")
+    @WebServerTest("project-languages.json")
     public void testParseProjectLanguages() {
         List<LanguageStatistics> l = weblate.getProjectLanguageStatistics("alexis").blockingGet();
         assertEquals(8, l.size());
     }
 
-    @WebServerTest("project_languages.json")
+    @WebServerTest("project-languages.json")
     public void testParseProjectLanguageStatistic() {
         List<LanguageStatistics> l = weblate.getProjectLanguageStatistics("alexis").blockingGet();
         LanguageStatistics s = l.get(0);

@@ -14,8 +14,21 @@
  * limitations under the License.
  */
 
-dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+package org.elypia.elypiai.mojang.models;
 
-    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+import java.util.UUID;
+
+/**
+ * Given to all entities all models that contain an
+ * identifiable element by {@link UUID}.
+ *
+ * @author seth@elypia.org (Seth Falco)
+ * @since 4.3.0
+ */
+public interface Identifiable {
+
+    /**
+     * @return The UUID of the entity.
+     */
+    UUID getUuid();
 }

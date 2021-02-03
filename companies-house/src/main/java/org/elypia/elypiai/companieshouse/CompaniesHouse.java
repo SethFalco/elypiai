@@ -63,10 +63,11 @@ public class CompaniesHouse {
      * You can use this to get information on British companies.
      *
      * @param apiKey The API key obtained from the Companies House website.
-     * @see <a href="https://beta.companieshouse.gov.uk/">Companies House Website</a>
+     * @see <a href="https://find-and-update.company-information.service.gov.uk/">Companies House Website</a>
      */
     public CompaniesHouse(String apiKey) {
         this(apiKey, baseUrl);
+
     }
 
     public CompaniesHouse(String apiKey, URL baseUrl) {

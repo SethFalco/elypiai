@@ -24,6 +24,18 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum MojangServer {
 
+    /**
+     * A generic value if a server is returned that isn't recognized by Elypiai.
+     * This may occur if a server address is renamed, or a new server is added
+     * which Elypiai hasn't been updated to recognize yet.
+     *
+     * <small>
+     *     Developer Notes: If this is ever returned due to a
+     *     missing server address, please consider doing a PR to update this enum!
+     * </small>
+     */
+    UNKNOWN(null),
+
     @SerializedName("minecraft.net")
     MINECRAFT("minecraft.net"),
 
@@ -62,5 +74,16 @@ public enum MojangServer {
 
     public String getDomain() {
         return domain;
+    }
+
+    public static MojangServer get(final String domain) {
+        for (MojangServer property : values()) {
+            final String propertyDomain = property.domain;
+
+            if (propertyDomain != null && propertyDomain.equals(domain))
+                return property;
+        }
+
+        return UNKNOWN;
     }
 }

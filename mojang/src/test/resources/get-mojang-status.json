@@ -1,0 +1,26 @@
+[
+  {
+    "minecraft.net": "red"
+  },
+  {
+    "session.minecraft.net": "green"
+  },
+  {
+    "account.mojang.com": "green"
+  },
+  {
+    "authserver.mojang.com": "green"
+  },
+  {
+    "sessionserver.mojang.com": "red"
+  },
+  {
+    "api.mojang.com": "green"
+  },
+  {
+    "textures.minecraft.net": "green"
+  },
+  {
+    "mojang.com": "red"
+  }
+]

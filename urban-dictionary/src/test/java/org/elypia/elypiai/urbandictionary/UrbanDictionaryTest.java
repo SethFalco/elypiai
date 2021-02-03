@@ -49,7 +49,7 @@ public class UrbanDictionaryTest {
         assertDoesNotThrow(() -> new UrbanDictionary());
     }
 
-    @WebServerTest("define_jen.json")
+    @WebServerTest("define-jen.json")
     public void parseResults() {
         DefineResult result = ud.getDefinitions("jen").blockingGet();
 
@@ -62,7 +62,7 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @WebServerTest("define_jen.json")
+    @WebServerTest("define-jen.json")
     public void parseDefinition() {
         Definition definition =  ud.getDefinitions("jen").blockingGet().getDefinitions(true).get(0);
 
@@ -79,7 +79,7 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @WebServerTest("define_fuck.json")
+    @WebServerTest("define-fuck.json")
     public void parseResultsFuck() {
         DefineResult result = ud.getDefinitions("fuck").blockingGet();
 
@@ -90,7 +90,7 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @WebServerTest("define_life.json")
+    @WebServerTest("define-life.json")
     public void parseDefinitionWithNoExample() {
         Definition definition =  ud.getDefinitions("life").blockingGet().getDefinitions(true).get(0);
 
@@ -107,7 +107,7 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @WebServerTest("define_no-definitions.json")
+    @WebServerTest("define-no-definitions.json")
     public void parseNoResults() {
         DefineResult result = ud.getDefinitions("iohwefiwhofhweohfowief").blockingGet();
 
@@ -116,7 +116,7 @@ public class UrbanDictionaryTest {
         );
     }
 
-    @WebServerTest("define_defid_139509.json")
+    @WebServerTest("define-defid-139509.json")
     public void testDefineByIdWithResult() {
         Definition definition = ud.getDefinitionById(139509).blockingGet();
 
@@ -126,7 +126,7 @@ public class UrbanDictionaryTest {
         assertEquals(expected, actual);
     }
 
-    @WebServerTest("define_defid_no-results.json")
+    @WebServerTest("define-defid-no-results.json")
     public void testDefineByIdWithNoResults() {
         assertTrue(ud.getDefinitionById(2147000000).isEmpty().blockingGet());
     }

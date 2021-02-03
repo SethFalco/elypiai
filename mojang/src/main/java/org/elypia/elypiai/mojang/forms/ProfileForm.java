@@ -14,26 +14,21 @@
  * limitations under the License.
  */
 
-package org.elypia.elypiai.mojang.models;
+package org.elypia.elypiai.mojang.forms;
 
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import org.elypia.elypiai.mojang.deserializers.UuidDeserializer;
-
-import java.util.UUID;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  * @since 4.3.0
  */
-public class MinecraftUser implements Identifiable {
+public class ProfileForm {
 
     /**
-     * @see #getUuid()
+     * @see #getId()
      */
-    @JsonAdapter(UuidDeserializer.class)
     @SerializedName("id")
-    private UUID uuid;
+    private String id;
 
     /**
      * @see #getName()
@@ -41,43 +36,19 @@ public class MinecraftUser implements Identifiable {
     @SerializedName("name")
     private String name;
 
-    /**
-     * @see #isLegacy
-     */
-    @SerializedName("legacy")
-    private boolean isLegacy;
-
-    /**
-     * @see #isDemo()
-     */
-    @SerializedName("demo")
-    private boolean isDemo;
-
-    /**
-     * @return The accounts UUID.
-     */
-    public UUID getUuid() {
-        return uuid;
+    public String getId() {
+        return id;
     }
 
-    /**
-     * @return The username of the account.
-     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    /**
-     * @return If the account hasn't migrated to a Mojang account.
-     */
-    public boolean isLegacy() {
-        return isLegacy;
-    }
-
-    /**
-     * @return If this is an unpaid account.
-     */
-    public boolean isDemo() {
-        return isDemo;
+    public void setName(String name) {
+        this.name = name;
     }
 }

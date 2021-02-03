@@ -71,7 +71,7 @@ public class RuneScapeTest {
 		assertNotNull(rs);
 	}
 
-	@WebServerTest("profile_sethii.json")
+	@WebServerTest("profile-sethii.json")
 	public void parseUser() {
 		Player user = rs.getUser("Sethii").blockingGet();
 
@@ -95,7 +95,7 @@ public class RuneScapeTest {
 		);
 	}
 
-	@WebServerTest({"profile_sethii.json", "profile_los.json"})
+	@WebServerTest({"profile-sethii.json", "profile-los.json"})
 	public void parseUserLeaderboards() {
 		Player user1 = rs.getUser("Sethii").blockingGet();
 		Player user2 = rs.getUser("Los").blockingGet();
@@ -108,7 +108,7 @@ public class RuneScapeTest {
 		);
 	}
 
-	@WebServerTest("profile_sethii.json")
+	@WebServerTest("profile-sethii.json")
 	public void parseUsersSkills() {
 		Player user = rs.getUser("Sethii").blockingGet();
 		PlayerStat stat = user.getStat(Skill.SLAYER);
@@ -121,21 +121,21 @@ public class RuneScapeTest {
 		);
 	}
 
-	@WebServerTest("profile_no-profile.json")
+	@WebServerTest("profile-no-profile.json")
 	public void parsePrivateUser() {
         assertThrows(FriendlyException.class, () ->
             rs.getUser("Zezima").blockingGet()
         );
 	}
 
-	@WebServerTest("profile_no-profile.json")
+	@WebServerTest("profile-no-profile.json")
 	public void userDoesntExist() {
 		assertThrows(FriendlyException.class, () ->
 			rs.getUser("random user that doesn't exist").blockingGet()
 		);
 	}
 
-	@WebServerTest("profile_sethii.json")
+	@WebServerTest("profile-sethii.json")
 	public void parseActivity() {
 		Activity activity = rs.getUser("Sethii").blockingGet().getActivities().get(0);
 		assertAll("Testing if Parsing RuneScape Player Activity Correctly",
@@ -145,7 +145,7 @@ public class RuneScapeTest {
 		);
 	}
 
-	@WebServerTest("quests_sethii.json")
+	@WebServerTest("quests-sethii.json")
 	public void parseQuest() {
 		QuestStatuses quests = rs.getQuestStatuses("Sethii").blockingGet();
 		QuestStatus stats = quests.getQuestStatuses().stream().filter(o -> o.getStatus() == CompletionStatus.STARTED).findFirst().get();
@@ -160,7 +160,7 @@ public class RuneScapeTest {
 		);
 	}
 
-	@WebServerTest("quests_sethii.json")
+	@WebServerTest("quests-sethii.json")
 	public void sortQuests() {
 		QuestStatuses quests = rs.getQuestStatuses("Sethii").blockingGet();
 		List<QuestStatus> statuses = new ArrayList<>(quests.getQuestStatuses());
@@ -183,7 +183,7 @@ public class RuneScapeTest {
 	 *
 	 * @throws InterruptedException If the timeout occurs before we get the value.
 	 */
-	@WebServerTest("profile_private.json")
+	@WebServerTest("profile-private.json")
 	public void parsePrivateUserAsync() throws InterruptedException {
 		CountDownLatch latch = new CountDownLatch(1);
 
@@ -201,7 +201,7 @@ public class RuneScapeTest {
 		latch.await(8, TimeUnit.SECONDS);
 	}
 
-	@WebServerTest("quests_private.json")
+	@WebServerTest("quests-private.json")
 	public void parseNoQuests() {
 		assertTrue(rs.getQuestStatuses("Zezima").isEmpty().blockingGet());
 	}

@@ -51,7 +51,7 @@ public class CleverbotTest {
         assertEquals("api key", cb.getApiKey());
     }
 
-    @WebServerTest("reply_hello.json")
+    @WebServerTest("reply-hello.json")
     public void parseResponse() {
         CleverResponse response = cb.say("Hello, world!").blockingGet();
 
@@ -68,7 +68,7 @@ public class CleverbotTest {
         );
     }
 
-    @WebServerTest("reply_wack0-attent100.json")
+    @WebServerTest("reply-wack0-attent100.json")
     public void makeRequestWithTweak() {
         Map<CleverTweak, Integer> tweaks = new HashMap<>();
         tweaks.put(CleverTweak.WACKY, 0);

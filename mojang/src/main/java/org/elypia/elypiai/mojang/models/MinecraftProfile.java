@@ -16,7 +16,9 @@
 
 package org.elypia.elypiai.mojang.models;
 
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import org.elypia.elypiai.mojang.deserializers.UuidDeserializer;
 
 import java.util.UUID;
 
@@ -24,11 +26,12 @@ import java.util.UUID;
  * @author seth@elypia.org (Seth Falco)
  * @since 4.3.0
  */
-public class MinecraftProfile {
+public class MinecraftProfile implements Identifiable {
 
     /**
      * @see #getUuid()
      */
+    @JsonAdapter(UuidDeserializer.class)
     @SerializedName("id")
     private UUID uuid;
 

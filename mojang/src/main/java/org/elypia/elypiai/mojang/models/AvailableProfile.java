@@ -14,8 +14,16 @@
  * limitations under the License.
  */
 
-dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+package org.elypia.elypiai.mojang.models;
 
-    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+import com.google.gson.annotations.SerializedName;
+
+public class AvailableProfile extends Profile {
+
+    @SerializedName("agent")
+    private String agent;
+
+    public String getAgent() {
+        return agent;
+    }
 }

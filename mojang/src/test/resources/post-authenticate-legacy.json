@@ -1,0 +1,20 @@
+{
+  "user": {
+    "username": "mattipuss3000",
+    "id": "26135535"
+  },
+  "accessToken": "{{REDACTED}}",
+  "clientToken": "{{REDACTED}}",
+  "selectedProfile": {
+    "legacy": true,
+    "name": "mattipuss3000",
+    "id": "56c66aa5f4d047c8affb51310dee5899"
+  },
+  "availableProfiles": [
+    {
+      "legacy": true,
+      "name": "mattipuss3000",
+      "id": "56c66aa5f4d047c8affb51310dee5899"
+    }
+  ]
+}

@@ -14,8 +14,25 @@
  * limitations under the License.
  */
 
-dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+package org.elypia.elypiai.mojang.models;
 
-    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+import java.util.Iterator;
+import java.util.List;
+
+public class UsernameHistory implements Iterable<UsernameHistoryItem> {
+
+    private List<UsernameHistoryItem> history;
+
+    public String getFirstName() {
+        return history.get(0).getName();
+    }
+
+    public String getCurrentName() {
+        return history.get(history.size() - 1).getName();
+    }
+
+    @Override
+    public Iterator<UsernameHistoryItem> iterator() {
+        return history.iterator();
+    }
 }

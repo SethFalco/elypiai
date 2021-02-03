@@ -14,8 +14,35 @@
  * limitations under the License.
  */
 
-dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+package org.elypia.elypiai.mojang.forms;
 
-    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+import com.google.gson.annotations.SerializedName;
+
+/**
+ * @author seth@elypia.org (Seth Falco)
+ * @since 4.3.0
+ */
+public class AgentForm {
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("version")
+    private int version;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
 }

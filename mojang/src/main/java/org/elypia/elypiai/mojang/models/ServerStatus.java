@@ -27,27 +27,36 @@ import java.awt.Color;
 public enum ServerStatus {
 
     /**
+     * Not an official status from the API.
+     * This is a status that's used to refer to a status returned that doesn't match
+     * any known status in this wrapper.
+     */
+    UNKNOWN("unknown", "Unknown", Color.DARK_GRAY),
+
+    /**
      * No known issues.
      */
     @SerializedName("green")
-    GREEN("Green", Color.GREEN),
+    GREEN("green", "Green", Color.GREEN),
 
     /**
      * Some known issues.
      */
     @SerializedName("yellow")
-    YELLOW("Yellow", Color.YELLOW),
+    YELLOW("yellow", "Yellow", Color.YELLOW),
 
     /**
      * Service not available whatsoever.
      */
     @SerializedName("red")
-    RED("Red", Color.RED);
+    RED("red", "Red", Color.RED);
 
+    private final String id;
     private final String friendlyName;
     private final Color color;
 
-    ServerStatus(final String friendlyName, final Color color) {
+    ServerStatus(final String id, final String friendlyName, final Color color) {
+        this.id = id;
         this.friendlyName = friendlyName;
         this.color = color;
     }
@@ -58,5 +67,14 @@ public enum ServerStatus {
 
     public Color getColor() {
         return color;
+    }
+
+    public static ServerStatus get(final String id) {
+        for (ServerStatus property : values()) {
+            if (property.id.equals(id))
+                return property;
+        }
+
+        return UNKNOWN;
     }
 }
