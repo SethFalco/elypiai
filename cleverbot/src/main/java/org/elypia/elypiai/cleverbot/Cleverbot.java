@@ -81,7 +81,7 @@ public class Cleverbot {
 			apiKey,
 			baseUrl,
 			HttpClientSingleton.getBuilder().addInterceptor(
-				new QueryParametersInterceptor(Map.of("key", apiKey,"wrapper", "Elypiai"))
+				new QueryParametersInterceptor(Map.of("key", apiKey, "wrapper", "Elypiai"))
 			).build()
 		);
 	}
