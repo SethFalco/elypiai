@@ -16,18 +16,6 @@
 
 package org.elypia.elypiai.mojang;
 
-import io.reactivex.rxjava3.core.Single;
-import okhttp3.OkHttpClient;
-import org.elypia.elypiai.mojang.models.Identifiable;
-import org.elypia.elypiai.mojang.models.MinecraftUser;
-import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Instant;
@@ -36,6 +24,23 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.function.Predicate;
+
+import org.elypia.elypiai.mojang.deserializers.InstantDeserializer;
+import org.elypia.elypiai.mojang.models.Identifiable;
+import org.elypia.elypiai.mojang.models.MinecraftUser;
+import org.elypia.retropia.core.HttpClientSingleton;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * The portion of the Mojang API that connects to the
@@ -84,11 +89,15 @@ public class MojangApi {
         Objects.requireNonNull(baseUrl);
         Objects.requireNonNull(client);
 
+        Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Instant.class, new InstantDeserializer())
+            .create();
+
         service = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build().create(MojangService.class);
     }
@@ -130,7 +139,7 @@ public class MojangApi {
      * </p>
      *
      * @param uuid The UUID of the user.
-     * @return A list of previous usernames with timestamps on when the change occured.
+     * @return A list of previous usernames with timestamps on when the change occurred.
      * @see <a href="https://help.minecraft.net/hc/en-us/articles/360034636712-Minecraft-Usernames">Minecraft Usernames</a>
      */
     public Single<Object> getNameHistory(final UUID uuid) {

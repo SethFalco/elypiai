@@ -16,22 +16,28 @@
 
 package org.elypia.elypiai.mojang;
 
-import io.reactivex.rxjava3.core.Single;
-import okhttp3.OkHttpClient;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.Instant;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
+
+import org.elypia.elypiai.mojang.deserializers.InstantDeserializer;
 import org.elypia.elypiai.mojang.models.MinecraftProfile;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
 /**
  * The portion of the Mojang API that connects to the
@@ -79,11 +85,15 @@ public class MojangSessionApi {
     public MojangSessionApi(URL baseUrl, OkHttpClient client) {
         Objects.requireNonNull(client);
 
+        Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Instant.class, new InstantDeserializer())
+            .create();
+
         service = new Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(client)
             .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
             .create(MojangSessionService.class);

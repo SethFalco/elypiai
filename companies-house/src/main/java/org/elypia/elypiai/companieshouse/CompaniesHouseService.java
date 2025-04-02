@@ -16,9 +16,10 @@
 
 package org.elypia.elypiai.companieshouse;
 
-import io.reactivex.rxjava3.core.Single;
 import org.elypia.elypiai.companieshouse.models.Company;
 import org.elypia.elypiai.companieshouse.models.RegisteredOfficeAddress;
+
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -68,7 +69,7 @@ public interface CompaniesHouseService {
     );
 
     @GET("company/{company_number}/officers")
-    Single<Object> getCompanyOfficiers(
+    Single<Object> getCompanyOfficers(
         @Path("company_number") String companyNumber
     );
 

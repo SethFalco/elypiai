@@ -16,10 +16,13 @@
 
 package org.elypia.elypiai.companieshouse;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import io.reactivex.rxjava3.core.Single;
-import okhttp3.OkHttpClient;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.time.MonthDay;
+import java.util.Objects;
+
+import org.elypia.elypiai.companieshouse.deserializers.MonthDayDeserializer;
 import org.elypia.elypiai.companieshouse.models.Company;
 import org.elypia.elypiai.companieshouse.models.RegisteredOfficeAddress;
 import org.elypia.retropia.core.HttpClientSingleton;
@@ -27,14 +30,15 @@ import org.elypia.retropia.core.interceptors.BasicAuthorizationInterceptor;
 import org.elypia.retropia.gson.deserializers.TemporalDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.Objects;
 
 public class CompaniesHouse {
 
@@ -67,7 +71,6 @@ public class CompaniesHouse {
      */
     public CompaniesHouse(String apiKey) {
         this(apiKey, baseUrl);
-
     }
 
     public CompaniesHouse(String apiKey, URL baseUrl) {
@@ -83,6 +86,7 @@ public class CompaniesHouse {
         Objects.requireNonNull(client);
 
         Gson gson = new GsonBuilder()
+            .registerTypeAdapter(MonthDay.class, new MonthDayDeserializer())
             .registerTypeAdapter(LocalDate.class, new TemporalDeserializer("yyyy-MM-dd"))
             .create();
 
