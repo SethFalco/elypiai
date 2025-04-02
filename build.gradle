@@ -14,12 +14,7 @@
  * limitations under the License.
  */
 
-plugins {
-    id "com.jfrog.bintray" version "1.8.5" apply false
-}
-
 allprojects() {
-    apply plugin: "idea"
     apply plugin: "jacoco"
 
     group = "org.elypia.elypiai"
@@ -27,57 +22,48 @@ allprojects() {
     description = "Wrappers for various web APIs that don't provide official libraries for Java."
 
     ext {
-        repoUrl = "https://gitlab.com/Elypia/elypiai"
-        gitUrl = "${repoUrl}.git"
-        issueUrl = "${repoUrl}/issues"
-        website = "https://elypia.org/"
-
         retropiaVersion = "2.2.1"
         retrofitVersion = "2.9.0"
         okhttpVersion = "3.14.9"
     }
 
     repositories {
-        jcenter()
+        mavenCentral()
 
         // Local System
         mavenLocal()
     }
 
     jacoco {
-        toolVersion = "0.8.6"
+        toolVersion = "0.8.8"
     }
 }
 
 subprojects() {
     apply plugin: "java-library"
-    apply plugin: "maven-publish"
-    apply plugin: "com.jfrog.bintray"
 
-    sourceCompatibility = 11
-    targetCompatibility = 11
+    sourceCompatibility = 17
+    targetCompatibility = 17
 
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
     dependencies {
         // Retropia (Retrofit) to Make Requests
-        api "org.elypia.retropia:core:${retropiaVersion}"
+        api("org.elypia.retropia:core:${retropiaVersion}")
 
         // RxJava for Handling Responses
-        api "com.squareup.retrofit2:adapter-rxjava3:${retrofitVersion}"
+        api("com.squareup.retrofit2:adapter-rxjava3:${retrofitVersion}")
 
         // Logging
-        implementation "org.slf4j:slf4j-api:1.7.30"
-        testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
+        implementation("org.slf4j:slf4j-api:1.7.31")
+        testRuntimeOnly("ch.qos.logback:logback-classic:1.2.3")
 
         // Testing
-        testImplementation "org.junit.jupiter:junit-jupiter:5.7.0"
-        testImplementation "org.elypia.webserver-testbed:junit5:1.1.0"
-        testImplementation "com.squareup.okhttp3:mockwebserver:${okhttpVersion}"
+        testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
+        testImplementation("org.elypia.webserver-testbed:junit5:1.0.1")
     }
 
     /** Testing */
-
     test {
         useJUnitPlatform()
         finalizedBy jacocoTestReport
@@ -88,133 +74,10 @@ subprojects() {
     }
 
     /** Code Coverage */
-
     jacocoTestReport {
         reports {
             html.enabled = false
             xml.enabled = false
         }
-    }
-
-    /** Upload to Bintray */
-
-    jar {
-        manifest {
-            attributes "Implementation-Title": this.name + project.path.replace(':', '-'),
-                       "Implementation-Version": archiveVersion
-        }
-    }
-
-    task sourcesJar(type: Jar) {
-        from sourceSets.main.allSource
-        archiveClassifier = 'sources'
-    }
-
-    task javadocJar(type: Jar) {
-        from javadoc
-        archiveClassifier = 'javadoc'
-
-        javadoc {
-            options {
-                links += [
-                    "https://docs.oracle.com/en/java/javase/13/docs/api/"
-                ]
-            }
-        }
-    }
-
-    artifacts {
-        archives sourcesJar
-        archives javadocJar
-    }
-
-    bintray {
-        user = System.getenv("BINTRAY_USER")
-        key = System.getenv("BINTRAY_KEY")
-        publications = ['mavenJava']
-        publish = true
-        pkg {
-            repo = this.name
-            name = project.path.substring(1).replace(':', '-')
-            desc = project.description
-            userOrg = "elypia"
-            websiteUrl = website
-            licenses = ["Apache-2.0"]
-            vcsUrl = gitUrl
-            issueTrackerUrl = issueUrl
-            publicDownloadNumbers = true
-            version {
-                name = project.version
-                desc = project.description
-                vcsTag = project.version
-                released = new Date()
-            }
-        }
-    }
-
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                artifactId project.path.substring(1).replace(':', '-')
-                groupId project.group
-                version project.version
-                from components.java
-                artifact sourcesJar
-                artifact javadocJar
-
-                pom {
-                    name = this.name
-                    description = project.description
-                    url = website
-                    licenses {
-                        license {
-                            name = "The Apache License, Version 2.0"
-                            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                        }
-                    }
-                    developers {
-                        developer {
-                            id = "Seth"
-                            name = "Seth"
-                            email = "seth@elypia.org"
-                        }
-                    }
-                    scm {
-                        url = gitUrl
-                    }
-                }
-            }
-        }
-    }
-}
-
-/** Generate Global JavaDocs for GitLab Pages */
-
-task globalJavadoc(type: Javadoc) {
-    source = subprojects.collect { it.sourceSets.main.allJava }
-    classpath = files(subprojects.collect { it.sourceSets.main.compileClasspath })
-    destinationDir = file("${buildDir}/docs/javadoc")
-}
-
-/** Combine and ouput code coverage. */
-
-task jacocoMerge(type: JacocoMerge) {
-    executionData = files(subprojects.jacocoTestReport.executionData.findAll {it.asList() })
-
-    doFirst {
-        executionData = files(executionData.findAll {
-            it.exists()
-        })
-    }
-}
-
-task jacocoReport(type: JacocoReport, dependsOn: jacocoMerge) {
-    sourceDirectories.from = files(subprojects.sourceSets.main.allSource.srcDirs.findAll { it.asList() })
-    classDirectories.from = files(subprojects.sourceSets.main.output.findAll { it.asList() })
-    executionData.from = files(jacocoMerge.destinationFile)
-
-    reports {
-        html.enabled = true
-        xml.enabled = false
     }
 }
