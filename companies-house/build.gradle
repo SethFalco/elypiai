@@ -15,5 +15,5 @@
  */
 
 dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+    implementation("org.elypia.retropia:gson:${retropiaVersion}")
 }

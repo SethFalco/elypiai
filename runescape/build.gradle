@@ -15,7 +15,7 @@
  */
 
 dependencies {
-    implementation "org.elypia.retropia:gson:${retropiaVersion}"
+    implementation("org.elypia.retropia:gson:${retropiaVersion}")
 
-    implementation "com.squareup.retrofit2:converter-scalars:${retrofitVersion}"
+    implementation("com.squareup.retrofit2:converter-scalars:${retrofitVersion}")
 }
