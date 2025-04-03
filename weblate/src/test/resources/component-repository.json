@@ -6,13 +6,13 @@
   "remote_commit": {
     "revision": "fc66c66366e0c604dfaa0af3dab4004e3add4416",
     "shortrevision": "fc66c66",
-    "author": "Seth Falco <seth@elypia.org>",
+    "author": "Seth Falco <seth@falco.fun>",
     "author_name": "Seth Falco",
-    "author_email": "seth@elypia.org",
+    "author_email": "seth@falco.fun",
     "authordate": "2020-06-24T10:40:25+02:00",
-    "commit": "Seth Falco <seth@elypia.org>",
+    "commit": "Seth Falco <seth@falco.fun>",
     "commit_name": "Seth Falco",
-    "commit_email": "seth@elypia.org",
+    "commit_email": "seth@falco.fun",
     "commitdate": "2020-06-24T10:40:25+02:00",
     "message": "* Updated Issue Templates to Include Labels\n* Updated Dependencies\n* Added support for h2 database, allows for minimal configuration instance of Alexis",
     "summary": "* Updated Issue Templates to Include Labels"
