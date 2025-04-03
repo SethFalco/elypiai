@@ -93,6 +93,7 @@ public class DefineResult {
     public List<String> getSounds() {
         return definitions.stream()
             .map(Definition::getSoundUrls)
+            .filter((sound) -> sound != null)
             .flatMap(List::stream)
             .collect(Collectors.toUnmodifiableList());
     }
