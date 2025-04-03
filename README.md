@@ -10,7 +10,7 @@ Elypiai is a collection of unofficial wrappers for web-based APIs. Each wrapper 
 
 * [Cleverbot](https://www.cleverbot.com/api/)
 * [Companies House](https://developer.companieshouse.gov.uk/api/docs/)
-* [Mojang](https://wiki.vg/Mojang_API)
+* [Mojang](https://minecraft.wiki/w/Mojang_API)
 * [Orna Guide](https://orna.guide/gameplay?show=16)
 * [osu!](https://osu.ppy.sh/docs/index.html)
 * [Path of Exile](https://www.pathofexile.com/developer/docs/api-resources)
