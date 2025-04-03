@@ -4,7 +4,7 @@
 
 If you've found a bug with Elypiai, [create an issue](https://gitlab.com/SethFalco/elypiai/-/issues) on GitLab.
 
-If you haven't found a bug, but need help using Elypiai in your project, consider asking on [Stack Overflow](https://stackoverflow.com/questions/tagged/svgo), you may get help faster there. You can still create an issue if the confusion stemmed from a lack of documentation.
+If you haven't found a bug, but need help using Elypiai in your project, consider asking on [Stack Overflow](https://stackoverflow.com/questions), you may get help faster there. You can still create an issue if the confusion stemmed from a lack of documentation.
 
 ## Development
 
