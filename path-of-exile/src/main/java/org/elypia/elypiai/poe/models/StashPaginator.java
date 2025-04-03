@@ -41,8 +41,9 @@ public class StashPaginator {
         StashTabs stashtabs = poe.getStashTabs(cursor).blockingGet();
         List<Stash> stashes = stashtabs.getStashes();
 
-        if (stashes.isEmpty())
+        if (stashes.isEmpty()) {
             return null;
+        }
 
         cursor = stashtabs.getCursor();
         return stashes;

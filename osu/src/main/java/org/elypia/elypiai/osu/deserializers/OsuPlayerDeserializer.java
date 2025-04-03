@@ -41,8 +41,9 @@ public class OsuPlayerDeserializer implements JsonDeserializer<Player> {
     public Player deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
         JsonArray array = json.getAsJsonArray();
 
-        if (array.size() == 0)
+        if (array.size() == 0) {
             return null;
+        }
 
         JsonObject object = array.get(0).getAsJsonObject();
         return gson.fromJson(object, typeOfT);

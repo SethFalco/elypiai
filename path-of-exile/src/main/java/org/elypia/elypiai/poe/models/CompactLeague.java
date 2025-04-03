@@ -27,47 +27,47 @@ import java.time.Instant;
  */
 public class CompactLeague {
 
-	@SerializedName("id")
-	private String id;
+    @SerializedName("id")
+    private String id;
 
-	@SerializedName("realm")
-	private Realm realm;
+    @SerializedName("realm")
+    private Realm realm;
 
-	@SerializedName("url")
-	private String url;
+    @SerializedName("url")
+    private String url;
 
-	@SerializedName("startAt")
-	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
-	private Instant startAt;
+    @SerializedName("startAt")
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant startAt;
 
-	@SerializedName("endAt")
-	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
-	private Instant endAt;
+    @SerializedName("endAt")
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant endAt;
 
-	@SerializedName("delveEvent")
-	private boolean delveEvent;
+    @SerializedName("delveEvent")
+    private boolean delveEvent;
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Realm getRealm() {
-		return realm;
-	}
+    public Realm getRealm() {
+        return realm;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public Instant getStartDate() {
-		return startAt;
-	}
+    public Instant getStartDate() {
+        return startAt;
+    }
 
-	public Instant getEndDate() {
-		return endAt;
-	}
+    public Instant getEndDate() {
+        return endAt;
+    }
 
-	public boolean isDelveEvent() {
-		return delveEvent;
-	}
+    public boolean isDelveEvent() {
+        return delveEvent;
+    }
 }

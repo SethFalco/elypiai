@@ -16,135 +16,131 @@
 
 package org.elypia.elypiai.runescape;
 
-import com.google.gson.GsonBuilder;
-import io.reactivex.rxjava3.core.Maybe;
-import okhttp3.OkHttpClient;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import org.elypia.elypiai.runescape.deserializers.PlayerDeserializer;
 import org.elypia.elypiai.runescape.models.Player;
 import org.elypia.elypiai.runescape.models.QuestStatuses;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.exceptions.FriendlyException;
 import org.elypia.retropia.gson.deserializers.TemporalDeserializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import com.google.gson.GsonBuilder;
+
+import io.reactivex.rxjava3.core.Maybe;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 /**
  * @author seth@elypia.org (Seth Falco)
  */
 public class RuneScape {
 
-	private static final Logger logger = LoggerFactory.getLogger(RuneScape.class);
+    /**
+     * Default URL we call to.
+     */
+    private static URL baseUrl;
 
-	/**
-	 * The default URL we call too. <br>
-	 * Should never throw {@link MalformedURLException} as this
-	 * is a manually hardcoded URL.
-	 */
-	private static URL baseUrl;
+    static {
+        try {
+            baseUrl = new URL("https://apps.runescape.com/runemetrics/");
+        } catch (MalformedURLException ex) {}
+    }
 
-	static {
-		try {
-			baseUrl = new URL("https://apps.runescape.com/runemetrics/");
-		} catch (MalformedURLException ex) {
-			logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-		}
-	}
+    private RuneScapeService service;
 
-	private RuneScapeService service;
+    public RuneScape() {
+        this(baseUrl);
+    }
 
-	public RuneScape() {
-		this(baseUrl);
-	}
+    public RuneScape(URL baseUrl) {
+        this(baseUrl, HttpClientSingleton.getClient());
+    }
 
-	public RuneScape(URL baseUrl) {
-		this(baseUrl, HttpClientSingleton.getClient());
-	}
+    public RuneScape(URL baseUrl, OkHttpClient client) {
+        GsonBuilder gsonBuilder = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new TemporalDeserializer("dd-MMM-yyyy HH:mm"));
 
-	public RuneScape(URL baseUrl, OkHttpClient client) {
-		GsonBuilder gsonBuilder = new GsonBuilder()
-			.registerTypeAdapter(LocalDateTime.class, new TemporalDeserializer("dd-MMM-yyyy HH:mm"));
+        gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
 
-		gsonBuilder.registerTypeAdapter(Player.class, new PlayerDeserializer(gsonBuilder.create()));
-
-		service = new Retrofit.Builder()
-			.baseUrl(baseUrl)
-			.client(client)
-			.addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
-			.addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-			.build()
-			.create(RuneScapeService.class);
-	}
-
-	/**
-	 * Return the RuneScape player with the username provided.
-	 * Possible null, if user doesn't exist. If the user does exist
-	 * it may throw a the consumer may throw a {@link FriendlyException}
-	 * in the failure consumer.
-	 *
-	 * @param username The username of the player to get.
-	 * @return A rest action represeting this HTTP request.
-	 */
-	public Maybe<Player> getUser(String username) {
-		return service.getUser(username);
-	}
-
-	public Maybe<QuestStatuses> getQuestStatuses(String user) {
-		return service.getQuestStatuses(user)
-			.mapOptional((result) -> result.getQuestStatuses().isEmpty() ? Optional.empty() : Optional.of(result));
-	}
+        service = new Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
+            .create(RuneScapeService.class);
+    }
 
     /**
-     * Convert XP to the level equivilent.
+     * Return the RuneScape player with the username provided. Possible null,
+     * if user doesn't exist. If the user does exist it may throw a the consumer
+     * may throw a {@link FriendlyException} in the failure consumer.
      *
-     * @param	xp      The xp to convert to level.
-     * @return	        The level a player would be with the XP provided.
+     * @param username Username of the player to get.
+     * @return REST action representing this HTTP request.
      */
-	public static int getLevelFromXp(long xp) {
-		if (xp < 0)
-			throw new IllegalArgumentException("XP can not be of a negative value.");
+    public Maybe<Player> getUser(String username) {
+        return service.getUser(username);
+    }
 
-		int level = 1;
-		long result;
+    public Maybe<QuestStatuses> getQuestStatuses(String user) {
+        return service.getQuestStatuses(user)
+            .mapOptional((result) -> result.getQuestStatuses().isEmpty() ? Optional.empty() : Optional.of(result));
+    }
 
-		while (xp >= (result = getXpFromLevel(level + 1))) {
-			if (result == -1)
-				break;
+    /**
+     * Convert XP to the level equivalent.
+     *
+     * @param xp XP to convert to level.
+     * @return Level a player would be with the XP provided.
+     */
+    public static int getLevelFromXp(long xp) {
+        if (xp < 0) {
+            throw new IllegalArgumentException("XP can not be of a negative value.");
+        }
 
-			level++;
-		}
+        int level = 1;
+        long result;
 
-		return level;
-	}
+        while (xp >= (result = getXpFromLevel(level + 1))) {
+            if (result == -1) {
+                break;
+            }
 
-	/**
-	 * Convert a level, or virtual level to the XP equivilent using
-	 * RuneScapes XP formula. <br>
-	 * Note: Returns -1 if the level is too high.
-	 *
-	 * @param   level	The level to convert to XP.
-	 * @return			The XP required to attain this level.
-	 */
-	public static long getXpFromLevel(int level) {
-		if (level < 1)
-			throw new IllegalArgumentException("Level can not be zero or a negative value.");
+            level++;
+        }
 
-		double xp = 0;
+        return level;
+    }
 
-		for (int count = 1; count < level; count++) {
-			xp += (long)(count + 300 * Math.pow(2, (double)count / 7));
+    /**
+     * Convert a level, or virtual level to the XP equivalent using RuneScapes
+     * XP formula.
+     *
+     * @param level Level to convert to XP.
+     * @return XP required to attain this level, or -1 if level is too high.
+     */
+    public static long getXpFromLevel(int level) {
+        if (level < 1) {
+            throw new IllegalArgumentException("Level can not be zero or a negative value.");
+        }
 
-			if (xp >= (double)Long.MAX_VALUE * 4)
-				return -1;
-		}
+        double xp = 0;
 
-		return (long)(xp / 4);
-	}
+        for (int count = 1; count < level; count++) {
+            xp += (long) (count + 300 * Math.pow(2, (double) count / 7));
+
+            if (xp >= (double) Long.MAX_VALUE * 4) {
+                return -1;
+            }
+        }
+
+        return (long) (xp / 4);
+    }
 }

@@ -23,83 +23,84 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum AscendancyClass {
 
-	UNKNOWN(AscendancyType.UNKNOWN, "Unknown"),
+    UNKNOWN(AscendancyType.UNKNOWN, "Unknown"),
 
-	@SerializedName("Slayer")
-	SLAYER(AscendancyType.DUELIST, "Slayer"),
+    @SerializedName("Slayer")
+    SLAYER(AscendancyType.DUELIST, "Slayer"),
 
-	@SerializedName("Gladiator")
-	GLADIATOR(AscendancyType.DUELIST, "Gladiator"),
+    @SerializedName("Gladiator")
+    GLADIATOR(AscendancyType.DUELIST, "Gladiator"),
 
-	@SerializedName("Champion")
-	CHAMPION(AscendancyType.DUELIST, "Champion"),
+    @SerializedName("Champion")
+    CHAMPION(AscendancyType.DUELIST, "Champion"),
 
-	@SerializedName("Assassin")
-	ASSASSIN(AscendancyType.SHADOW, "Assassin"),
+    @SerializedName("Assassin")
+    ASSASSIN(AscendancyType.SHADOW, "Assassin"),
 
-	@SerializedName("Saboteur")
-	SABOTEUR(AscendancyType.SHADOW, "Saboteur"),
+    @SerializedName("Saboteur")
+    SABOTEUR(AscendancyType.SHADOW, "Saboteur"),
 
-	@SerializedName("Trickster")
-	TRICKSTER(AscendancyType.SHADOW, "Trickster"),
+    @SerializedName("Trickster")
+    TRICKSTER(AscendancyType.SHADOW, "Trickster"),
 
-	@SerializedName("Juggernaut")
-	JUGGERNAUT(AscendancyType.MARAUDER, "Juggernaut"),
+    @SerializedName("Juggernaut")
+    JUGGERNAUT(AscendancyType.MARAUDER, "Juggernaut"),
 
-	@SerializedName("Berserker")
-	BERSERKER(AscendancyType.MARAUDER, "Berserker"),
+    @SerializedName("Berserker")
+    BERSERKER(AscendancyType.MARAUDER, "Berserker"),
 
-	@SerializedName("Chieftain")
-	CHIEFTAIN(AscendancyType.MARAUDER, "Chieftain"),
+    @SerializedName("Chieftain")
+    CHIEFTAIN(AscendancyType.MARAUDER, "Chieftain"),
 
-	@SerializedName("Necromancer")
-	NERCROMANCER(AscendancyType.WITCH, "Nercromancer"),
+    @SerializedName("Necromancer")
+    NECROMANCER(AscendancyType.WITCH, "Necromancer"),
 
-	@SerializedName("Occultist")
-	OCCULTIST(AscendancyType.WITCH, "Occultist"),
+    @SerializedName("Occultist")
+    OCCULTIST(AscendancyType.WITCH, "Occultist"),
 
-	@SerializedName("Elementalist")
-	ELEMENTALIST(AscendancyType.WITCH, "Elementalist"),
+    @SerializedName("Elementalist")
+    ELEMENTALIST(AscendancyType.WITCH, "Elementalist"),
 
-	@SerializedName("Deadeye")
-	DEADEYE(AscendancyType.RANGER, "Deadeye"),
+    @SerializedName("Deadeye")
+    DEADEYE(AscendancyType.RANGER, "Deadeye"),
 
-	@SerializedName("Raider")
-	RAIDER(AscendancyType.RANGER, "Raider"),
+    @SerializedName("Raider")
+    RAIDER(AscendancyType.RANGER, "Raider"),
 
-	@SerializedName("Pathfinder")
-	PATHFINDER(AscendancyType.RANGER, "Pathfinder"),
+    @SerializedName("Pathfinder")
+    PATHFINDER(AscendancyType.RANGER, "Pathfinder"),
 
-	@SerializedName("Inquisitor")
-	INQUISITOR(AscendancyType.TEMPLAR, "Inquistitor"),
+    @SerializedName("Inquisitor")
+    INQUISITOR(AscendancyType.TEMPLAR, "Inquisitor"),
 
-	@SerializedName("Hierophant")
-	HIEROPHANT(AscendancyType.TEMPLAR, "Hierophant"),
+    @SerializedName("Hierophant")
+    HIEROPHANT(AscendancyType.TEMPLAR, "Hierophant"),
 
-	@SerializedName("Guardian")
-	GUARDIAN(AscendancyType.TEMPLAR, "Guardian"),
+    @SerializedName("Guardian")
+    GUARDIAN(AscendancyType.TEMPLAR, "Guardian"),
 
-	@SerializedName("Ascendant")
-	ASCENDANT(AscendancyType.SCION, "Ascendant");
+    @SerializedName("Ascendant")
+    ASCENDANT(AscendancyType.SCION, "Ascendant");
 
-	private final AscendancyType TYPE;
-	private final String NAME;
+    private final AscendancyType TYPE;
+    private final String NAME;
 
-	AscendancyClass(AscendancyType type, String name) {
-		TYPE = type;
-		NAME = name;
-	}
+    AscendancyClass(AscendancyType type, String name) {
+        TYPE = type;
+        NAME = name;
+    }
 
-	public AscendancyType getType() {
-		return TYPE;
-	}
+    public AscendancyType getType() {
+        return TYPE;
+    }
 
-	public static AscendancyClass get(String name) {
-		for (AscendancyClass ascendancy : AscendancyClass.values()) {
-			if (ascendancy.NAME.equals(name))
-				return ascendancy;
-		}
+    public static AscendancyClass get(String name) {
+        for (AscendancyClass ascendancy : AscendancyClass.values()) {
+            if (ascendancy.NAME.equals(name)) {
+                return ascendancy;
+            }
+        }
 
-		return UNKNOWN;
-	}
+        return UNKNOWN;
+    }
 }

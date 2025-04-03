@@ -45,21 +45,21 @@ public class Accounts {
     private PreviousAccounts previousAccounts;
 
     /**
-     * @return The Accounting Reference Date (ARD) of the company.
+     * @return Accounting Reference Date (ARD) of the company.
      */
     public MonthDay getAccountingReferenceDate() {
         return accountingReferenceDate;
     }
 
     /**
-     * @return The next company accounts filed.
+     * @return Next company accounts filed.
      */
     public NextAccounts getNextAccounts() {
         return nextAccounts;
     }
 
     /**
-     * @return The last company accounts filed.
+     * @return Last company accounts filed.
      */
     public PreviousAccounts getPreviousAccounts() {
         return previousAccounts;

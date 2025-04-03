@@ -50,20 +50,21 @@ public enum Spawn {
     }
 
     /**
-     * @return The clean human readable name for this spawn type.
+     * @return Clean human readable name for this spawn type.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * @param name The case-sensitive human readable name of the {@link Spawn}.
-     * @return The enum value for this spawn, or {@link #UNKNOWN} if no type is found.
+     * @param name Case-sensitive human readable name of the {@link Spawn}.
+     * @return Enum value for this spawn, or {@link #UNKNOWN} if no type is found.
      */
     public static Spawn find(final String name) {
         for (Spawn spawn : values()) {
-            if (spawn.name.equals(name))
+            if (spawn.name.equals(name)) {
                 return spawn;
+            }
         }
 
         return Spawn.UNKNOWN;

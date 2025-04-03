@@ -71,8 +71,9 @@ public enum ServerStatus {
 
     public static ServerStatus get(final String id) {
         for (ServerStatus property : values()) {
-            if (property.id.equals(id))
+            if (property.id.equals(id)) {
                 return property;
+            }
         }
 
         return UNKNOWN;

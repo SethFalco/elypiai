@@ -16,25 +16,6 @@
 
 package org.elypia.elypiai.steam;
 
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import io.reactivex.rxjava3.core.Maybe;
-import io.reactivex.rxjava3.core.Single;
-import okhttp3.OkHttpClient;
-import org.elypia.elypiai.steam.deserializers.SteamGameDeserializer;
-import org.elypia.elypiai.steam.deserializers.SteamSearchDeserializer;
-import org.elypia.elypiai.steam.deserializers.SteamUserDeserializer;
-import org.elypia.elypiai.steam.models.SteamGame;
-import org.elypia.elypiai.steam.models.SteamSearch;
-import org.elypia.elypiai.steam.models.SteamUser;
-import org.elypia.retropia.core.HttpClientSingleton;
-import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -43,38 +24,50 @@ import java.util.StringJoiner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.elypia.elypiai.steam.deserializers.SteamGameDeserializer;
+import org.elypia.elypiai.steam.deserializers.SteamSearchDeserializer;
+import org.elypia.elypiai.steam.deserializers.SteamUserDeserializer;
+import org.elypia.elypiai.steam.models.SteamGame;
+import org.elypia.elypiai.steam.models.SteamSearch;
+import org.elypia.elypiai.steam.models.SteamUser;
+import org.elypia.retropia.core.HttpClientSingleton;
+import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
+
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import io.reactivex.rxjava3.core.Maybe;
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 /**
  * @author seth@elypia.org (Seth Falco)
  */
 public class Steam {
 
-    /** A regular expression that matches against profile urls and returns the username or id. */
+    /** Regular expression that matches against profile URLs and returns the username or ID. */
     private static final Pattern VANITY_URL = Pattern.compile("^(?:https?://)?steamcommunity\\.com/id/([^/]+)/?$");
 
-    private static final Logger logger = LoggerFactory.getLogger(Steam.class);
-
     /**
-     * The default URL we call too. <br>
-     * Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.
+     * Default URL we call to.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("http://api.steampowered.com/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
     private final String apiKey;
     private final SteamService service;
 
     /**
-     * The Steam API allows calls to basic Steam information
-     * as well as user information such as query the inventory
-     * or obtaining stats.
+     * Steam API allows calls to basic Steam information as well as user
+     * information such as query the inventory or obtaining stats.
      *
      * @param apiKey API key obtained from Steam.
      */
@@ -109,8 +102,8 @@ public class Steam {
     }
 
     /**
-     * @param vanityUrl The custom url entirely, or custom url route after id.
-     * @return The search result of if a user was found or not.
+     * @param vanityUrl Custom URL entirely, or custom URL route after ID.
+     * @return Search result for if a user was found or not.
      */
     public Single<SteamSearch> getIdFromVanityUrl(String vanityUrl) {
         String name = getUsernameFromUrl(vanityUrl);
@@ -118,34 +111,35 @@ public class Steam {
     }
 
     /**
-     * Returns a list of steam players that are returned based on the IDs
+     * Gets a list of steam players that are returned based on the IDs
      * provided.
      *
-     * @param ids The IDs of all steam players to return.
-     * @return A request action which will return the results, never null.
+     * @param ids IDs of all steam players to return.
+     * @return REST action which will return the results, never null.
      */
     public Single<List<SteamUser>> getUsers(long... ids) {
-        if (ids == null || ids.length == 0)
+        if (ids == null || ids.length == 0) {
             throw new IllegalArgumentException("Must specify at least one user to fetch.");
+        }
 
         StringJoiner joiner = new StringJoiner(",");
 
-        for (long id : ids)
+        for (long id : ids) {
             joiner.add(String.valueOf(id));
+        }
 
         return service.getUsers(joiner.toString());
     }
 
     /**
-     * Get the Steam users Library, do note the first time
-     * the method is called for each SteamProfile; it consumes
-     * another API call, the Library is cached however upon
-     * method call. This contains a list of games the steam user owns
-     * (or has played for free games) sorted from RecentPlaytime, and
-     * when RecentPlaytime is 0, from TotalPlaytime.
+     * Gets the Steam users Library, do note the first time the method is called
+     * for each SteamProfile; it consumes another API call, the Library is
+     * cached however upon method call. This contains a list of games the Steam
+     * user owns (or has played, for free games) sorted from by recent playtime,
+     * and when RecentPlaytime is 0, by total playtime.
      *
      * @param id Steam user to obtain library for.
-     * @return An rest action which will return a list of steam games.
+     * @return REST action which will return a list of steam games.
      */
     public Maybe<List<SteamGame>> getLibrary(long id) {
         return getLibrary(id, true);
@@ -160,9 +154,9 @@ public class Steam {
     }
 
     /**
-     * @param vanityUrl The URL to a users stream profile.
-     * @return The identifying portion of the URL which represents
-     * the users custom URL.
+     * @param vanityUrl URL to a users stream profile.
+     * @return
+     *     Identifying portion of the URL which represents the users custom URL.
      */
     public static String getUsernameFromUrl(String vanityUrl) {
         Matcher matcher = VANITY_URL.matcher(vanityUrl);

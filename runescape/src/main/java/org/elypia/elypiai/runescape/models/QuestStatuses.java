@@ -38,8 +38,8 @@ public class QuestStatuses implements Iterable<QuestStatus> {
     private boolean isLoggedIn;
 
     /**
-     * @param status The quests completion status to collate.
-     * @return A unmodifiable list which contains all quests with this completion status.
+     * @param status Quests completion status to collate.
+     * @return List which contains all quests with this completion status.
      */
     public List<QuestStatus> getByCompletionStatus(CompletionStatus status) {
         return questStatuses.stream()
@@ -51,7 +51,7 @@ public class QuestStatuses implements Iterable<QuestStatus> {
         return Collections.unmodifiableList(questStatuses);
     }
 
-    private boolean isLoggedIn() {
+    public boolean isLoggedIn() {
         return isLoggedIn;
     }
 

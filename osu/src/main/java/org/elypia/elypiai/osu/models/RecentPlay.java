@@ -28,38 +28,38 @@ import java.util.List;
  */
 public class RecentPlay extends OsuScore {
 
-	@SerializedName("beatmap_id")
-	private int beatmapId;
+    @SerializedName("beatmap_id")
+    private int beatmapId;
 
-	@SerializedName("enabled_mods")
-	@JsonAdapter(OsuModDeserializer.class)
-	private List<OsuMod> mods;
+    @SerializedName("enabled_mods")
+    @JsonAdapter(OsuModDeserializer.class)
+    private List<OsuMod> mods;
 
-	@SerializedName("date")
-	private OffsetDateTime date;
+    @SerializedName("date")
+    private OffsetDateTime date;
 
-	@SerializedName("rank")
-	private String rank;
+    @SerializedName("rank")
+    private String rank;
 
-	/**
-	 * @return	The beatmap id of the recentplay.
-	 */
-	public int getBeatMapId() {
-		return beatmapId;
-	}
+    /**
+     * @return Beatmap ID of the recent play.
+     */
+    public int getBeatMapId() {
+        return beatmapId;
+    }
 
-	public List<OsuMod> getMods() {
-		return mods;
-	}
+    public List<OsuMod> getMods() {
+        return mods;
+    }
 
-	/**
-	 * @return 	Date the map was last updated.
-	 */
-	public OffsetDateTime getDate() {
-		return date;
-	}
+    /**
+     * @return Date the map was last updated.
+     */
+    public OffsetDateTime getDate() {
+        return date;
+    }
 
-	public String getRank() {
-		return rank;
-	}
+    public String getRank() {
+        return rank;
+    }
 }

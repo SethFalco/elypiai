@@ -19,7 +19,7 @@ package org.elypia.elypiai.companieshouse.models;
 import java.time.LocalDate;
 
 /**
- * The next company accounts filed.
+ * Next company accounts filed.
  *
  * @author seth@elypia.org (Seth Falco)
  * @since 4.2.2
@@ -37,7 +37,7 @@ public class NextAccounts extends AccountingPeriod {
     private boolean isOverdue;
 
     /**
-     * @return The date the next company accounts are due.
+     * @return Date the next company accounts are due.
      */
     public LocalDate getDueDate() {
         return dueDate;

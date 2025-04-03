@@ -16,25 +16,25 @@
 
 package org.elypia.elypiai.mojang;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import io.reactivex.rxjava3.core.Single;
-import okhttp3.OkHttpClient;
-import org.elypia.elypiai.mojang.deserializers.ServerStatusDeserializer;
-import org.elypia.elypiai.mojang.models.MojangServer;
-import org.elypia.elypiai.mojang.models.ServerStatus;
-import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 import java.util.Objects;
+
+import org.elypia.elypiai.mojang.deserializers.ServerStatusDeserializer;
+import org.elypia.elypiai.mojang.models.MojangServer;
+import org.elypia.elypiai.mojang.models.ServerStatus;
+import org.elypia.retropia.core.HttpClientSingleton;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @author seth@elypia.org (Seth Falco)
@@ -42,24 +42,18 @@ import java.util.Objects;
  */
 public class MojangStatusApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(MojangStatusApi.class);
-
     /**
-     * <p>The default URL we call too.</p>
-     * <p>Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.</p>
+     * Default URL we call too.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("https://status.mojang.com/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
-    /** The {@link Retrofit} wrapper around the API. */
+    /** {@link Retrofit} wrapper around the API. */
     private final MojangStatusService service;
 
     /**
@@ -93,15 +87,16 @@ public class MojangStatusApi {
     }
 
     /**
-     * @return The status of all Mojang servers.
+     * @return Status of all Mojang servers.
      */
     public Single<Map<MojangServer, ServerStatus>> getServerStatuses() {
         return service.getServerStatuses();
     }
 
     /**
-     * @return The default base URL. This may not be the same as the base URL
-     * that was passed to this class on construction.
+     * @return
+     *     Default base URL. This may not be the same as the base URL that was
+     *     passed to this class on construction.
      */
     public static URL getDefaultBaseUrl() {
         return baseUrl;

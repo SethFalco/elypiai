@@ -51,7 +51,7 @@ public enum MagicType {
     COUNTER("Counter", false, true);
 
     /**
-     * The name of this property.
+     * Name of this property.
      */
     private final String name;
 
@@ -85,8 +85,9 @@ public enum MagicType {
 
     public static MagicType get(String name) {
         for (MagicType property : values()) {
-            if (property.name.equals(name))
+            if (property.name.equals(name)) {
                 return property;
+            }
         }
 
         return UNKNOWN;

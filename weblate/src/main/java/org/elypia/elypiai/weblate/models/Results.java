@@ -21,8 +21,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * @param <T> The type of Weblate entity this represents results for.
  * @author seth@elypia.org (Seth Falco)
+ * @param <T> Type of Weblate entity this represents results for.
  * @since 4.2.3
  */
 public class Results<T> {

@@ -37,23 +37,21 @@ public abstract class TradingCard {
     protected CardType type;
 
     /**
-     * @return	The name of the monster.
+     * @return Name of the monster.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return	The text on the card with the effect
-     * 			if the monster has one.
+     * @return Text on the card with the effect if the monster has one.
      */
     public String getText() {
         return text;
     }
 
     /**
-     * @return	Return what kind of this card this is,
-     * 			can be a Spell, Trap, or Monster.
+     * @return Kind of this card this is, can be a Spell, Trap, or Monster.
      */
     public CardType getType() {
         return type;

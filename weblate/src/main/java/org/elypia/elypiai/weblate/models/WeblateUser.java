@@ -70,14 +70,14 @@ public class WeblateUser {
     }
 
     /**
-     * @return The user name.
+     * @return User name.
      */
     public String getFullName() {
         return fullName;
     }
 
     /**
-     * @return The users username.
+     * @return User's username.
      */
     public String getUsername() {
         return username;

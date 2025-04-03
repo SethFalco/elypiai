@@ -25,9 +25,8 @@ import java.util.UUID;
 
 import org.elypia.elypiai.mojang.deserializers.InstantDeserializer;
 import org.elypia.elypiai.mojang.models.MinecraftProfile;
+import org.elypia.elypiai.mojang.models.MojangServer;
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,32 +39,26 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
- * The portion of the Mojang API that connects to the
- * {@link org.elypia.elypiai.mojang.models.MojangServer#SESSIONSERVER_MOJANG session server}.
+ * Portion of the Mojang API that connects to the
+ * {@link MojangServer#SESSIONSERVER_MOJANG session server}.
  *
  * @author seth@elypia.org (Seth Falco)
  * @since 4.3.0
  */
 public class MojangSessionApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(MojangSessionApi.class);
-
     /**
-     * <p>The default URL we call too.</p>
-     * <p>Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.</p>
+     * Default URL we call too.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("https://sessionserver.mojang.com/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
-    /** The {@link Retrofit} wrapper around the API. */
+    /** {@link Retrofit} wrapper around the API. */
     private final MojangSessionService service;
 
     /**
@@ -100,19 +93,22 @@ public class MojangSessionApi {
     }
 
     /**
-     * This has a much stricter rate limit: You can request the same profile
-     * once per minute, however you can send as many unique requests as you like.
+     * Has a much stricter rate limit: You can request the same profile once per
+     * minute, however you can send as many unique requests as you like.
      *
-     * @param uuid The players UUID.
-     * @return The player's username plus any additional information about them (e.g. skins)
+     * @param uuid Players UUID.
+     * @return
+     *     Player's username plus any additional information about them (e.g.
+     *     skins)
      */
     public Single<MinecraftProfile> getMinecraftProfile(final UUID uuid) {
         return service.getMinecraftProfile(uuid, true);
     }
 
     /**
-     * @return A list of SHA1 hashes used to check server
-     * addresses against when the client tries to connect.
+     * @return
+     *     SHA1 hashes used to check server addresses against when the client
+     *     tries to connect.
      */
     public Single<List<String>> getBlockedServerList() {
         return service.getBlockedServers().map((response) -> {
@@ -122,8 +118,9 @@ public class MojangSessionApi {
     }
 
     /**
-     * @return The default base URL. This may not be the same as the base URL
-     * that was passed to this class on construction.
+     * @return
+     *     Default base URL. This may not be the same as the base URL that was
+     *     passed to this class on construction.
      */
     public static URL getDefaultBaseUrl() {
         return baseUrl;

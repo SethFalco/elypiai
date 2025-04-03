@@ -1,0 +1,48 @@
+<!DOCTYPE module PUBLIC
+  "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+  "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<module name="Checker">
+  <module name="TreeWalker">
+    <module name="AvoidStarImport"/>
+    <module name="NeedBraces">
+      <property name="allowEmptyLoopBody" value="false"/>
+      <property name="allowSingleLineStatement" value="false"/>
+    </module>
+    <module name="RedundantImport"/>
+    <module name="UnusedImports"/>
+    <module name="AtclauseOrder"/>
+    <module name="InvalidJavadocPosition"/>
+    <module name="JavadocContentLocation"/>
+    <module name="JavadocTagContinuationIndentation"/>
+    <module name="RequireEmptyLineBeforeBlockTagGroup"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="AvoidEscapedUnicodeCharacters"/>
+    <module name="NoCodeInFile"/>
+    <module name="OuterTypeFilename"/>
+    <module name="TodoComment"/>
+    <module name="GenericWhitespace"/>
+    <module name="NoWhitespaceAfter"/>
+    <module name="NoWhitespaceBefore"/>
+    <module name="ParenPad"/>
+    <module name="SingleSpaceSeparator"/>
+    <module name="TypecastParenPad"/>
+    <module name="WhitespaceAfter"/>
+    <module name="ModifierOrder"/>
+    <module name="JavadocStyle"/>
+    <module name="JavadocParagraph"/>
+    <module name="Regexp">
+      <property name="format" value="@(param [A-Za-z\d&gt;&lt;]+|return) ([Tt]he|[Aa]n?|[Aa]ll|[Tt]his) "/>
+      <property name="illegalPattern" value="true"/>
+      <property name="message" value="Don't start Javadocs with terms like &quot;the&quot;, &quot;a&quot;, or &quot;all&quot;, use the noun instead."/>
+    </module>
+    <module name="Regexp">
+      <property name="format" value="@return ([Rr]eturn|[Gg]et)s? "/>
+      <property name="illegalPattern" value="true"/>
+      <property name="message" value="Don't start @return with &quot;return&quot;."/>
+    </module>
+  </module>
+  <module name="FileTabCharacter"/>
+  <module name="NewlineAtEndOfFile"/>
+  <module name="OrderedProperties"/>
+  <module name="UniqueProperties"/>
+</module>

@@ -33,8 +33,9 @@ public class UuidDeserializer implements JsonDeserializer<UUID> {
 
     @Override
     public UUID deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        if (!json.isJsonPrimitive())
+        if (!json.isJsonPrimitive()) {
             throw new JsonParseException("Expected JSON primitive");
+        }
 
         final String value = json.getAsString();
         return MinecraftUtils.trimmedUuidToUuid(value);

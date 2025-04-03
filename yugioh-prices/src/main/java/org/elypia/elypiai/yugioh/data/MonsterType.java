@@ -54,8 +54,9 @@ public enum MonsterType {
 
     public static MonsterType get(String name) {
         for (MonsterType type : values()) {
-            if (type.NAME.equals(name))
+            if (type.NAME.equals(name)) {
                 return type;
+            }
         }
 
         return UNKNOWN;

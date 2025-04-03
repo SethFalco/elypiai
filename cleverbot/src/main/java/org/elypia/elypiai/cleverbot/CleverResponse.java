@@ -25,115 +25,133 @@ import java.util.List;
  */
 public class CleverResponse {
 
-	/** @see #getCs() */
-	@SerializedName("cs")
-	private String cs;
+    /**
+     * @see #getCs()
+     */
+    @SerializedName("cs")
+    private String cs;
 
-	/** @see #getInteractionCount() */
-	@SerializedName("interaction_count")
-	private int interactionCount;
+    /**
+     * @see #getInteractionCount()
+     */
+    @SerializedName("interaction_count")
+    private int interactionCount;
 
-	/** @see #getInput() */
-	@SerializedName("input")
-	private String input;
+    /**
+     * @see #getInput()
+     */
+    @SerializedName("input")
+    private String input;
 
-	/** @see #getOutput() */
-	@SerializedName("output")
-	private String output;
+    /**
+     * @see #getOutput()
+     */
+    @SerializedName("output")
+    private String output;
 
-	/** @see #getConversationId() */
-	@SerializedName("conversation_id")
-	private String conversationId;
+    /**
+     * @see #getConversationId()
+     */
+    @SerializedName("conversation_id")
+    private String conversationId;
 
-	/** @see #getErrorLine() */
-	@SerializedName("errorline")
-	private String errorLine;
+    /**
+     * @see #getErrorLine()
+     */
+    @SerializedName("errorline")
+    private String errorLine;
 
-	/** @see #getTimeTaken() */
-	@SerializedName("time_taken")
-	private int timeTaken;
+    /**
+     * @see #getTimeTaken()
+     */
+    @SerializedName("time_taken")
+    private int timeTaken;
 
-	/** @see #getTimeElapsed() */
-	@SerializedName("time_elapsed")
-	private long timeElapsed;
+    /**
+     * @see #getTimeElapsed()
+     */
+    @SerializedName("time_elapsed")
+    private long timeElapsed;
 
-	@SerializedName("callback")
-	private String callback;
+    @SerializedName("callback")
+    private String callback;
 
-	/** @see #getInteractions() */
-	@SerializedName("interactions")
-	private List<Interaction> interactions;
+    /**
+     * @see #getInteractions()
+     */
+    @SerializedName("interactions")
+    private List<Interaction> interactions;
 
-	/**
-	 * @return 	The state of the conversation so far, this
-	 * 			is used to track your conversation. On the next
-	 * 			request this should be sent back in order to keep
-	 * 			the flow of the conversation going.
-	 */
-	public String getCs() {
-		return cs;
-	}
+    /**
+     * @return     The state of the conversation so far, this
+     *             is used to track your conversation. On the next
+     *             request this should be sent back in order to keep
+     *             the flow of the conversation going.
+     */
+    public String getCs() {
+        return cs;
+    }
 
-	/**
-	 * @return	How many pairs of interactions this conversation has had
-	 * 			so far, one interaction is user to bot, then bot to user.
-	 */
-	public int getInteractionCount() {
-		return interactionCount;
-	}
+    /**
+     * @return    How many pairs of interactions this conversation has had
+     *             so far, one interaction is user to bot, then bot to user.
+     */
+    public int getInteractionCount() {
+        return interactionCount;
+    }
 
-	/**
-	 * @return	What the user said this interaction, will return an empty
-	 * 			String if user said nothing.
-	 */
-	public String getInput() {
-		return input;
-	}
+    /**
+     * @return    What the user said this interaction, will return an empty
+     *             String if user said nothing.
+     */
+    public String getInput() {
+        return input;
+    }
 
-	/**
-	 * @return	What the bot responded this interaction.
-	 */
-	public String getOutput() {
-		return output;
-	}
+    /**
+     * @return    What the bot responded this interaction.
+     */
+    public String getOutput() {
+        return output;
+    }
 
-	/**
-	 * @return	The conversation ID for this conversation.
-	 */
-	public String getConversationId() {
-		return conversationId;
-	}
+    /**
+     * @return    The conversation ID for this conversation.
+     */
+    public String getConversationId() {
+        return conversationId;
+    }
 
-	/**
-	 * @return	Any error information from Cleverbot, this
-	 * 			is not the same as error codes.
-	 */
-	public String getErrorLine() {
-		return errorLine;
-	}
+    /**
+     * @return    Any error information from Cleverbot, this
+     *             is not the same as error codes.
+     */
+    public String getErrorLine() {
+        return errorLine;
+    }
 
-	/**
-	 * @return	Time taken to process the response in MS.
-	 * 			This is the time taken from when they received
-	 * 			the request to when they processed it.
-	 */
-	public int getTimeTaken() {
-		return timeTaken;
-	}
+    /**
+     * @return    Time taken to process the response in MS.
+     *             This is the time taken from when they received
+     *             the request to when they processed it.
+     */
+    public int getTimeTaken() {
+        return timeTaken;
+    }
 
-	/**
-	 * @return	The time in seconds it has been since the first
-	 * 			interaction of this conversation.
-	 */
-	public long getTimeElapsed() {
-		return timeElapsed;
-	}
+    /**
+     * @return    The time in seconds it has been since the first
+     *             interaction of this conversation.
+     */
+    public long getTimeElapsed() {
+        return timeElapsed;
+    }
 
-	/**
-	 * @return	Get up to the past 50 interactions (input and output)
-	 * 			if available, including this current interaction.
-	 */
-	public List<Interaction> getInteractions() {
-		return interactions;
-	}
+    /**
+     * @return    Get up to the past 50 interactions (input and output)
+     *             if available, including this current interaction.
+     */
+    public List<Interaction> getInteractions() {
+        return interactions;
+    }
 }

@@ -35,14 +35,14 @@ public class AccountingPeriod {
     private LocalDate periodEnd;
 
     /**
-     * @return The first day of the accounting period.
+     * @return First day of the accounting period.
      */
     public LocalDate getPeriodStart() {
         return periodStart;
     }
 
     /**
-     * @return The last day of the accounting period.
+     * @return Last day of the accounting period.
      */
     public LocalDate getPeriodEnd() {
         return periodEnd;

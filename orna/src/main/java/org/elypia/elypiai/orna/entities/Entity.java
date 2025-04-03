@@ -19,44 +19,47 @@ package org.elypia.elypiai.orna.entities;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Generic class which has what <strong>every</strong>
- * Orna Guide entity holds.
+ * Generic class which has what <strong>every</strong> Orna Guide entity holds.
  *
- * This may also be used when an {@link Entity} references
- * another {@link Entity} as a nested property.
+ * <p>May also be used when an {@link Entity} references another {@link Entity}
+ * as a nested property.</p>
  *
  * @author seth@elypia.org (Seth Falco)
  */
 public class Entity implements Comparable<Entity> {
 
-    /** @see #getId() */
+    /**
+     * @see #getId()
+     */
     @SerializedName("id")
     protected int id;
 
-    /** @see #getName() */
+    /**
+     * @see #getName()
+     */
     @SerializedName("name")
     protected String name;
 
     /**
-     * @return The internal Orna Guide ID for this entity.
+     * @return Internal Orna Guide ID for this entity.
      */
     public int getId() {
         return id;
     }
 
     /**
-     * @return The name of this entity.
+     * @return Name of this entity.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Sort all abstract entities by order of ID, this is a small and
-     * quick sort to provide items in a consistent order if required.
+     * Sort all abstract entities by order of ID, this is a small and quick sort
+     * to provide items in a consistent order if required.
      *
      * @param o {@link Entity} to compare to.
-     * @return A positive value if o is larger, or negative value if o is smaller.
+     * @return Positive value if o is larger, or negative value if o is smaller.
      */
     @Override
     public int compareTo(Entity o) {

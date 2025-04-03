@@ -27,76 +27,76 @@ import java.time.Instant;
  */
 public class PvpMatch {
 
-	@SerializedName("id")
-	private String id;
+    @SerializedName("id")
+    private String id;
 
-	@SerializedName("realm")
-	private Realm realm;
+    @SerializedName("realm")
+    private Realm realm;
 
-	@SerializedName("startAt")
-	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
-	private Instant startAt;
+    @SerializedName("startAt")
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant startAt;
 
-	@SerializedName("endAt")
-	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
-	private Instant endAt;
+    @SerializedName("endAt")
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant endAt;
 
-	@SerializedName("url")
-	private String url;
+    @SerializedName("url")
+    private String url;
 
-	@SerializedName("description")
-	private String description;
+    @SerializedName("description")
+    private String description;
 
-	@SerializedName("glickoRatings")
-	private boolean glickoRatings;
+    @SerializedName("glickoRatings")
+    private boolean glickoRatings;
 
-	@SerializedName("pvp")
-	private boolean pvp;
+    @SerializedName("pvp")
+    private boolean pvp;
 
-	@SerializedName("style")
-	private MatchStyle style;
+    @SerializedName("style")
+    private MatchStyle style;
 
-	@SerializedName("registerAt")
-	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
-	private Instant registerAt;
+    @SerializedName("registerAt")
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant registerAt;
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public Realm getRealm() {
-		return realm;
-	}
+    public Realm getRealm() {
+        return realm;
+    }
 
-	public Instant getStartDate() {
-		return startAt;
-	}
+    public Instant getStartDate() {
+        return startAt;
+    }
 
-	public Instant getEndDate() {
-		return endAt;
-	}
+    public Instant getEndDate() {
+        return endAt;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public boolean isGlickoRatings() {
-		return glickoRatings;
-	}
+    public boolean isGlickoRatings() {
+        return glickoRatings;
+    }
 
-	public boolean isPvp() {
-		return pvp;
-	}
+    public boolean isPvp() {
+        return pvp;
+    }
 
-	public MatchStyle getStyle() {
-		return style;
-	}
+    public MatchStyle getStyle() {
+        return style;
+    }
 
-	public Instant getRegisterDate() {
-		return registerAt;
-	}
+    public Instant getRegisterDate() {
+        return registerAt;
+    }
 }

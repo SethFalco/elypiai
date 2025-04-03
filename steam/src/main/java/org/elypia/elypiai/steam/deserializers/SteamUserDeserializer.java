@@ -52,8 +52,9 @@ public class SteamUserDeserializer implements JsonDeserializer<List<SteamUser>> 
 
             JsonObject player = players.get(i).getAsJsonObject();
 
-            if (player.has("gameextrainfo"))
+            if (player.has("gameextrainfo")) {
                 users.get(i).setCurrentlyPlaying(gson.fromJson(player, GameSession.class));
+            }
         }
 
         return users;

@@ -60,20 +60,21 @@ public enum ItemType {
     }
 
     /**
-     * @return The clean human readable name for this {@link ItemType}.
+     * @return Clean human readable name for this {@link ItemType}.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * @param name The case-sensitive human readable name of the {@link ItemType}.
-     * @return The enum value for this type, or {@link #UNKNOWN} if no type is found.
+     * @param name Case-sensitive human readable name of the {@link ItemType}.
+     * @return Enum value for this type, or {@link #UNKNOWN} if no type is found.
      */
     public static ItemType get(final String name) {
         for (ItemType type : values()) {
-            if (type.name.equals(name))
+            if (type.name.equals(name)) {
                 return type;
+            }
         }
 
         return ItemType.UNKNOWN;

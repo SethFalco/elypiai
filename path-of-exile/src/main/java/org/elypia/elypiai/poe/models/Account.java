@@ -25,40 +25,40 @@ import org.elypia.retropia.gson.deserializers.NestedDeserializer;
  */
 public class Account {
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("realm")
-	private Realm realm;
+    @SerializedName("realm")
+    private Realm realm;
 
-	@SerializedName("challenges")
-	@JsonAdapter(NestedDeserializer.class)
-	private int challenges;
+    @SerializedName("challenges")
+    @JsonAdapter(NestedDeserializer.class)
+    private int challenges;
 
-	@SerializedName("guild")
-	private Guild guild;
+    @SerializedName("guild")
+    private Guild guild;
 
-	@SerializedName("twitch")
-	@JsonAdapter(NestedDeserializer.class)
-	private String twitch;
+    @SerializedName("twitch")
+    @JsonAdapter(NestedDeserializer.class)
+    private String twitch;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Realm getRealm() {
-		return realm;
-	}
+    public Realm getRealm() {
+        return realm;
+    }
 
-	public int getChallenges() {
-		return challenges;
-	}
+    public int getChallenges() {
+        return challenges;
+    }
 
-	public Guild getGuild() {
-		return guild;
-	}
+    public Guild getGuild() {
+        return guild;
+    }
 
-	public String getTwitch() {
-		return twitch;
-	}
+    public String getTwitch() {
+        return twitch;
+    }
 }

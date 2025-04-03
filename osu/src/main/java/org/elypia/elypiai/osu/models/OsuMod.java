@@ -41,7 +41,7 @@ public enum OsuMod {
     AUTOPLAY(2048),
     SPUN_OUT(4096),
 
-    /** AKA Relax2 */
+    /** Also known as Relax2. */
     AUTOPILOT(8192),
 
     PERFECT(16384, OsuMod.SUDDEN_DEATH),
@@ -78,11 +78,13 @@ public enum OsuMod {
         List<OsuMod> mods = new ArrayList<>();
 
         for (OsuMod mod : values()) {
-            if ((mod.bitwise & bitwise) == mod.bitwise)
+            if ((mod.bitwise & bitwise) == mod.bitwise) {
                 mods.add(mod);
+            }
 
-            for (OsuMod m : mod.parents)
+            for (OsuMod m : mod.parents) {
                 mods.remove(m);
+            }
         }
 
         return Collections.unmodifiableList(mods);

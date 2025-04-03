@@ -69,8 +69,9 @@ public class TradingCardDeserializer implements JsonDeserializer<TradingCard> {
 
                 JsonArray array = new JsonArray();
 
-                while (itTypes.hasNext())
+                while (itTypes.hasNext()) {
                     array.add(itTypes.next());
+                }
 
                 data.add("types", array);
 

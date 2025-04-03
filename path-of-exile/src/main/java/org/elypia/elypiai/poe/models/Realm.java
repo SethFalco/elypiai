@@ -46,8 +46,9 @@ public enum Realm {
 
     public static Realm get(String name) {
         for (Realm realm : values()) {
-            if (realm.NAME.equals(name))
+            if (realm.NAME.equals(name)) {
                 return realm;
+            }
         }
 
         return UNKNOWN;

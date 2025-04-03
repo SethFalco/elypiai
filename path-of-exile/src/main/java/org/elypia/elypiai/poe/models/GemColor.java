@@ -25,42 +25,43 @@ import java.awt.Color;
  */
 public enum GemColor {
 
-	UNKNOWN(null, null),
+    UNKNOWN(null, null),
 
-	@SerializedName("R")
-	RED("R", Color.RED),
+    @SerializedName("R")
+    RED("R", Color.RED),
 
-	@SerializedName("B")
-	BLUE("B", Color.BLUE),
+    @SerializedName("B")
+    BLUE("B", Color.BLUE),
 
-	@SerializedName("G")
-	GREEN("G", Color.GREEN),
+    @SerializedName("G")
+    GREEN("G", Color.GREEN),
 
-	@SerializedName("W")
-	WHITE("W", Color.WHITE);
+    @SerializedName("W")
+    WHITE("W", Color.WHITE);
 
-	private final String NAME;
-	private final Color COLOR;
+    private final String NAME;
+    private final Color COLOR;
 
-	GemColor(String name, Color color) {
-		NAME = name;
-		COLOR = color;
-	}
+    GemColor(String name, Color color) {
+        NAME = name;
+        COLOR = color;
+    }
 
-	public String getName() {
-		return NAME;
-	}
+    public String getName() {
+        return NAME;
+    }
 
-	public Color getColor() {
-		return COLOR;
-	}
+    public Color getColor() {
+        return COLOR;
+    }
 
-	public static GemColor get(String name) {
-		for (GemColor color : GemColor.values()) {
-			if (color.NAME.equals(name))
-				return color;
-		}
+    public static GemColor get(String name) {
+        for (GemColor color : GemColor.values()) {
+            if (color.NAME.equals(name)) {
+                return color;
+            }
+        }
 
-		return UNKNOWN;
-	}
+        return UNKNOWN;
+    }
 }

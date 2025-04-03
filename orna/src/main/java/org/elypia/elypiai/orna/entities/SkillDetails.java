@@ -60,9 +60,9 @@ public class SkillDetails extends Skill {
     }
 
     /**
-     * This is always 0 if the {@link SkillType} is {@link SkillType#PASSIVE}.
+     * Always 0 if the {@link SkillType} is {@link SkillType#PASSIVE}.
      *
-     * @return The mana it costs to perform this skill.
+     * @return Mana it costs to perform this skill.
      */
     public int getManaCost() {
         return manaCost;

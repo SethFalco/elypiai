@@ -42,7 +42,7 @@ public class MinecraftUser implements Identifiable {
     private String name;
 
     /**
-     * @see #isLegacy
+     * @see #isLegacy()
      */
     @SerializedName("legacy")
     private boolean isLegacy;
@@ -54,14 +54,14 @@ public class MinecraftUser implements Identifiable {
     private boolean isDemo;
 
     /**
-     * @return The accounts UUID.
+     * @return Accounts UUID.
      */
     public UUID getUuid() {
         return uuid;
     }
 
     /**
-     * @return The username of the account.
+     * @return Username of the account.
      */
     public String getName() {
         return name;

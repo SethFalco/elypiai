@@ -29,93 +29,94 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum Race {
 
-	UNKNOWN("Unknown"),
+    UNKNOWN("Unknown"),
 
-	@SerializedName("Dragon")
-	DRAGON("Dragon"),
+    @SerializedName("Dragon")
+    DRAGON("Dragon"),
 
-	@SerializedName("Spellcaster")
-	SPELLCASTER("Spellcaster"),
+    @SerializedName("Spellcaster")
+    SPELLCASTER("Spellcaster"),
 
-	@SerializedName("Zombie")
-	ZOMBIE("Zombie"),
+    @SerializedName("Zombie")
+    ZOMBIE("Zombie"),
 
-	@SerializedName("Warrior")
-	WARRIOR("Warrior"),
+    @SerializedName("Warrior")
+    WARRIOR("Warrior"),
 
-	@SerializedName("Beast-Warrior")
-	BEAST_WARRIOR("Beast-Warrior"),
+    @SerializedName("Beast-Warrior")
+    BEAST_WARRIOR("Beast-Warrior"),
 
-	@SerializedName("Beast")
-	BEAST("Beast"),
+    @SerializedName("Beast")
+    BEAST("Beast"),
 
-	@SerializedName("Winged Beast")
-	WINGED_BEAST("Winged Beast"),
+    @SerializedName("Winged Beast")
+    WINGED_BEAST("Winged Beast"),
 
-	@SerializedName("Fiend")
-	FIEND("Fiend"),
+    @SerializedName("Fiend")
+    FIEND("Fiend"),
 
-	@SerializedName("Fairy")
-	FAIRY("Fairy"),
+    @SerializedName("Fairy")
+    FAIRY("Fairy"),
 
-	@SerializedName("Insect")
-	INSECT("Insect"),
+    @SerializedName("Insect")
+    INSECT("Insect"),
 
-	@SerializedName("Dinosaur")
-	DINOSAUR("Dinosaur"),
+    @SerializedName("Dinosaur")
+    DINOSAUR("Dinosaur"),
 
-	@SerializedName("Reptile")
-	REPTILE("Reptile"),
+    @SerializedName("Reptile")
+    REPTILE("Reptile"),
 
-	@SerializedName("Fish")
-	FISH("Fish"),
+    @SerializedName("Fish")
+    FISH("Fish"),
 
-	@SerializedName("Sea Serpent")
-	SEA_SERPENT("Sea Serpent"),
+    @SerializedName("Sea Serpent")
+    SEA_SERPENT("Sea Serpent"),
 
-	@SerializedName("Machine")
-	MACHINE("Machine"),
+    @SerializedName("Machine")
+    MACHINE("Machine"),
 
-	@SerializedName("Thunder")
-	THUNDER("Thunder"),
+    @SerializedName("Thunder")
+    THUNDER("Thunder"),
 
-	@SerializedName("Aqua")
-	AQUA("Aqua"),
+    @SerializedName("Aqua")
+    AQUA("Aqua"),
 
-	@SerializedName("Pyro")
-	PYRO("Pyro"),
+    @SerializedName("Pyro")
+    PYRO("Pyro"),
 
-	@SerializedName("Rock")
-	ROCK("Rock"),
+    @SerializedName("Rock")
+    ROCK("Rock"),
 
-	@SerializedName("Plant")
-	PLANT("Plant"),
+    @SerializedName("Plant")
+    PLANT("Plant"),
 
-	@SerializedName("Psychic")
-	PSYCHIC("Psychic"),
+    @SerializedName("Psychic")
+    PSYCHIC("Psychic"),
 
-	@SerializedName("Divine-Beast")
-	DIVINE_BEAST("Divine-Beast"),
+    @SerializedName("Divine-Beast")
+    DIVINE_BEAST("Divine-Beast"),
 
-	@SerializedName("WYRM")
-	WYRM("WYRM");
+    @SerializedName("WYRM")
+    WYRM("WYRM");
 
-	private final String NAME;
+    private final String NAME;
 
-	Race(final String name) {
-		NAME = name;
-	}
+    Race(final String name) {
+        NAME = name;
+    }
 
-	public String getName() {
-		return NAME;
-	}
+    public String getName() {
+        return NAME;
+    }
 
-	public static Race get(String name) {
-		for (Race attribute : values()) {
-			if (attribute.NAME.equals(name))
-				return attribute;
-		}
+    public static Race get(String name) {
+        for (Race attribute : values()) {
+            if (attribute.NAME.equals(name)) {
+                return attribute;
+            }
+        }
 
-		return UNKNOWN;
-	}
+        return UNKNOWN;
+    }
 }

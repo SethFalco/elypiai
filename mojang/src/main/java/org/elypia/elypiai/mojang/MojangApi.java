@@ -28,9 +28,8 @@ import java.util.function.Predicate;
 import org.elypia.elypiai.mojang.deserializers.InstantDeserializer;
 import org.elypia.elypiai.mojang.models.Identifiable;
 import org.elypia.elypiai.mojang.models.MinecraftUser;
+import org.elypia.elypiai.mojang.models.MojangServer;
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -43,32 +42,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
- * The portion of the Mojang API that connects to the
- * {@link org.elypia.elypiai.mojang.models.MojangServer#API_MOJANG API server}.
+ * Portion of the Mojang API that connects to {@link MojangServer#API_MOJANG}.
  *
  * @author seth@elypia.org (Seth Falco)
  * @since 4.3.0
  */
 public class MojangApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(MojangApi.class);
-
     /**
-     * <p>The default URL we call too.</p>
-     * <p>Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.</p>
+     * Default URL we call to.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("https://api.mojang.com/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
-    /** The {@link Retrofit} wrapper around the API. */
+    /** {@link Retrofit} wrapper around the API. */
     private final MojangService service;
 
     /**
@@ -103,22 +95,22 @@ public class MojangApi {
     }
 
     /**
-     * Calls {@link #getUuidAtTime(String, Instant)} with the timestamp set to null.
-     *
-     * @param username The username of the user to get.
-     * @return The Minecraft user that had the username at the time, or the username
-     * currently if no timestamp was specified.
-     * @see #getUuidAtTime(String, Instant)
+     * @param username Username of the user to get.
+     * @return
+     *     Minecraft user that had the username at the time, or the username
+     *     currently if no timestamp was specified.
+     * @see #getUuidAtTime()
      */
     public Single<MinecraftUser> getUuid(final String username) {
         return service.getUuidAtTime(username, null);
     }
 
     /**
-     * @param username The username of the user to get.
-     * @param timestamp A timestamp to control at what time they had this username.
-     * @return The Minecraft user that had the username at the time, or the username
-     * currently if no timestamp was specified.
+     * @param username Username of the user to get.
+     * @param timestamp Timestamp to control at what time they had this username.
+     * @return
+     *     Minecraft user that had the username at the time, or the username
+     *     currently if no timestamp was specified.
      */
     public Single<MinecraftUser> getUuidAtTime(final String username, final Instant timestamp) {
         final Long at = (timestamp != null) ? timestamp.getEpochSecond() : null;
@@ -130,16 +122,14 @@ public class MojangApi {
     }
 
     /**
-     * <p>Get all known usernames that the user with this UUID has had.</p>
+     * Get all known usernames that the user with this UUID has had.
      *
-     * <p>
-     *  It may not include every name that user has ever had, for example if they
-     *  requested certain historical usernames be deleted under the right to forget
-     *  if they contained personal information.
-     * </p>
+     * <p>It may not include every name that user has ever had, for example if
+     * they requested certain historical usernames be deleted under the right to
+     * forget if they contained personal information.</p>
      *
-     * @param uuid The UUID of the user.
-     * @return A list of previous usernames with timestamps on when the change occurred.
+     * @param uuid UUID of the user.
+     * @return Previous usernames with timestamps on when the change occurred.
      * @see <a href="https://help.minecraft.net/hc/en-us/articles/360034636712-Minecraft-Usernames">Minecraft Usernames</a>
      */
     public Single<Object> getNameHistory(final UUID uuid) {
@@ -147,9 +137,10 @@ public class MojangApi {
     }
 
     /**
-     * @param usernames The minecraft users to request.
-     * @return The UUID and some extra information for all valid users specified.
-     * Users that don't exist will be omitted from the result.
+     * @param usernames Minecraft users to request.
+     * @return
+     *     UUID and some extra information for all valid users specified. Users
+     *     that don't exist will be omitted from the result.
      * @see #getUuids(Collection)
      */
     public Single<List<MinecraftUser>> getUuids(final String[] usernames) {
@@ -160,26 +151,31 @@ public class MojangApi {
      * Get the UUID and other information for up to 10 users at once.
      * See {@link #getUuidAtTime(String, Instant)} to get only a single user.
      *
-     * @param usernames The minecraft users to request.
-     * @return The UUID and some extra information for all valid users specified.
-     * Users that don't exist will be omitted from the result.
+     * @param usernames Minecraft users to request.
+     * @return
+     *     UUID and some extra information for all valid users specified. Users
+     *     that don't exist will be omitted from the result.
      */
     public Single<List<MinecraftUser>> getUuids(final Collection<String> usernames) {
-        if (usernames.size() == 0)
+        if (usernames.size() == 0) {
             throw new IllegalArgumentException("No usernames specified");
+        }
 
-        if (usernames.size() > 10)
+        if (usernames.size() > 10) {
             throw new IllegalArgumentException("Can only request up to 10 usernames at a time");
+        }
 
-        if (usernames.stream().anyMatch(Predicate.not(MinecraftUtils::isUsernameValid)))
+        if (usernames.stream().anyMatch(Predicate.not(MinecraftUtils::isUsernameValid))) {
             throw new IllegalArgumentException("Username list contains invalid usernames");
+        }
 
         return service.getUuidsAndExtra(usernames);
     }
 
     /**
-     * @return The default base URL. This may not be the same as the base URL
-     * that was passed to this class on construction.
+     * @return
+     *     Default base URL. This may not be the same as the base URL that was
+     *     passed to this class on construction.
      */
     public static URL getDefaultBaseUrl() {
         return baseUrl;

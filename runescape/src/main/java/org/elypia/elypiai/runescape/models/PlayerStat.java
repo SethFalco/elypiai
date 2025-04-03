@@ -26,60 +26,58 @@ import org.slf4j.LoggerFactory;
  */
 public class PlayerStat {
 
-	private static final Logger logger = LoggerFactory.getLogger(PlayerStat.class);
+    private static final Logger logger = LoggerFactory.getLogger(PlayerStat.class);
 
-	@SerializedName("id")
-	private Skill skill;
+    @SerializedName("id")
+    private Skill skill;
 
-	@SerializedName("level")
-	private int level;
+    @SerializedName("level")
+    private int level;
 
-	@SerializedName("xp")
-	private int xp;
+    @SerializedName("xp")
+    private int xp;
 
-	@SerializedName("rank")
-	private int rank;
+    @SerializedName("rank")
+    private int rank;
 
-	public int getVirtualLevel() {
-		if (skill.isElite()) {
-			logger.warn("Formula for elite skills is unknown, returning original level.");
-			return level;
-		}
+    public int getVirtualLevel() {
+        if (skill.isElite()) {
+            logger.warn("Formula for elite skills is unknown, returning original level.");
+            return level;
+        }
 
-		return RuneScape.getLevelFromXp(getXp());
-	}
+        return RuneScape.getLevelFromXp(getXp());
+    }
 
-	/**
-	 * @return	The RuneScapeSkill this object contains
-	 * 			the stats on.
-	 */
+    /**
+     * @return Skill this object contains the stats for.
+     */
 
-	public Skill getSkill() {
-		return skill;
-	}
+    public Skill getSkill() {
+        return skill;
+    }
 
-	/**
-	 * @return	The users current level in this skill.
-	 */
+    /**
+     * @return Users current level in this skill.
+     */
 
-	public int getLevel() {
-		return level;
-	}
+    public int getLevel() {
+        return level;
+    }
 
-	/**
-	 * @return	The users current xp in this skill.
-	 */
+    /**
+     * @return Users current xp in this skill.
+     */
 
-	public int getXp() {
-		return xp / 10;
-	}
+    public int getXp() {
+        return xp / 10;
+    }
 
-	/**
-	 * @return	The users current leaderboard rank
-	 * 			for this skill.
-	 */
+    /**
+     * @return Users current leaderboard rank for this skill.
+     */
 
-	public int getRank() {
-		return rank;
-	}
+    public int getRank() {
+        return rank;
+    }
 }

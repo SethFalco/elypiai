@@ -33,7 +33,7 @@ public class LadderEntryDeserializer implements JsonDeserializer<List<LadderEntr
 
     @Override
     public List<LadderEntry> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
-        JsonArray array  = json.getAsJsonObject().getAsJsonArray("entries");
+        JsonArray array = json.getAsJsonObject().getAsJsonArray("entries");
         return new Gson().fromJson(array, typeOfT);
     }
 }

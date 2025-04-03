@@ -23,29 +23,30 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum MatchStyle {
 
-	UNKNOWN("Unknown"),
+    UNKNOWN("Unknown"),
 
-	@SerializedName("Swiss")
-	SWISS("Swiss"),
+    @SerializedName("Swiss")
+    SWISS("Swiss"),
 
-	@SerializedName("Arena")
-	ARENA("Arena"),
+    @SerializedName("Arena")
+    ARENA("Arena"),
 
-	@SerializedName("Blitz")
-	BLITZ("Blitz");
+    @SerializedName("Blitz")
+    BLITZ("Blitz");
 
-	private final String NAME;
+    private final String NAME;
 
-	MatchStyle(String name) {
-		NAME = name;
-	}
+    MatchStyle(String name) {
+        NAME = name;
+    }
 
-	public static MatchStyle get(String name) {
-		for (MatchStyle style : MatchStyle.values()) {
-			if (style.NAME.equals(name))
-				return style;
-		}
+    public static MatchStyle get(String name) {
+        for (MatchStyle style : MatchStyle.values()) {
+            if (style.NAME.equals(name)) {
+                return style;
+            }
+        }
 
-		return UNKNOWN;
-	}
+        return UNKNOWN;
+    }
 }

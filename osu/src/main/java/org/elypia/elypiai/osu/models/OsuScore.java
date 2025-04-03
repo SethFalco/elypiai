@@ -57,66 +57,68 @@ public abstract class OsuScore {
     protected int userId;
 
     /**
-     * @return	The score the user got.
+     * @return Score the user got.
      */
     public long getScore() {
         return score;
     }
 
     /**
-     * @return	The bigget combo the player received.
+     * @return Largest combo the player received.
      */
     public int getMaxCombo() {
         return maxCombo;
     }
 
     /**
-     * @return	The total number of 50s the player hit.
+     * @return Total number of 50s the player hit.
      */
     public int getCount50() {
         return count50;
     }
 
     /**
-     * @return	The total number of 100s the player hit.
+     * @return Total number of 100s the player hit.
      */
     public int getCount100() {
         return count100;
     }
 
     /**
-     * @return	The total number of 300s the player hit.
+     * @return Total number of 300s the player hit.
      */
     public int getCount300() {
         return count300;
     }
 
     /**
-     * @return	The total number of notes missed.
+     * @return Total number of notes missed.
      */
     public int getCountMiss() {
         return countMiss;
     }
 
     /**
-     * @return	The total number of katus in the play.
-     * 			(A set of notes/streams with 100s or above only.)
+     * @return
+     *     Total number of katus in the play. (A set of notes/streams with 100s
+     *     or above only.)
      */
     public int getCountKatu() {
         return countKatu;
     }
 
     /**
-     * @return	The total number of gekis in the play.
-     * 			(A set of notes/stream with all 300s.)
+     * @return
+     *     Total number of gekis in the play. (A set of notes/stream with all
+     *     300s.)
      */
     public int getCountGeki() {
         return countGeki;
     }
 
     /**
-     * @return	If the player achieved the maximum combo possible
-     * 			for the beatmap.
+     * @return
+     *     If the player achieved the maximum combo possible for the beatmap.
      */
     public boolean isPerfect() {
         return perfect;
@@ -124,7 +126,7 @@ public abstract class OsuScore {
 
 
     /**
-     * @return	The users id.
+     * @return Users id.
      */
     public int getUserId() {
         return userId;

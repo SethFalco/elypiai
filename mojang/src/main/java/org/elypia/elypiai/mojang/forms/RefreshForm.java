@@ -38,8 +38,9 @@ public class RefreshForm extends Authorizable {
     private boolean requestUser;
 
     /**
-     * @param accessToken The provided access token will get invalidated
-     * once the request has gone through.
+     * @param accessToken
+     *     Provided access token will get invalidated once the request has gone
+     *     through.
      */
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;

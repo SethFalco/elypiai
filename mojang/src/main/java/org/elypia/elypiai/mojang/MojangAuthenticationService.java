@@ -32,15 +32,16 @@ import retrofit2.http.POST;
 public interface MojangAuthenticationService {
 
     /**
-     * @return A detailed status of the server.
+     * @return Detailed status of the server.
      */
     @POST()
     Single<Status> status();
 
     /**
-     * @param form The payload to authenticate as a user.
-     * @return A new access token for the user, along with the user
-     * data if {@link AuthenticateForm#isRequestUser()} is true.
+     * @param form Payload to authenticate as a user.
+     * @return
+     *     New access token for the user, along with the user data if
+     *     {@link AuthenticateForm#isRequestUser()} is true.
      */
     @POST("authenticate")
     Single<AuthenticatedUser> authenticate(
@@ -64,7 +65,7 @@ public interface MojangAuthenticationService {
 
     /**
      * @param authorizable Any type that extends {@link Authorizable}.
-     * @return An object to execute or queue the the request.
+     * @return Object to execute or queue the the request.
      */
     @POST("invalidate")
     Single<Void> invalidate(

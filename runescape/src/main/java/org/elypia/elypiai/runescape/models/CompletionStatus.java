@@ -23,14 +23,14 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum CompletionStatus {
 
-	UNKNOWN,
+    UNKNOWN,
 
-	@SerializedName("NOT_STARTED")
-	NOT_STARTED,
+    @SerializedName("NOT_STARTED")
+    NOT_STARTED,
 
-	@SerializedName("STARTED")
-	STARTED,
+    @SerializedName("STARTED")
+    STARTED,
 
-	@SerializedName("COMPLETED")
-	COMPLETED
+    @SerializedName("COMPLETED")
+    COMPLETED
 }

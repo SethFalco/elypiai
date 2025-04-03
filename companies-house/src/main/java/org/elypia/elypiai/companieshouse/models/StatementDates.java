@@ -53,21 +53,21 @@ public class StatementDates {
     private boolean isOverdue;
 
     /**
-     * @return The date to which the company last made a confirmation statement.
+     * @return Date to which the company last made a confirmation statement.
      */
     public LocalDate getLastMadeUpTo() {
         return lastMadeUpTo;
     }
 
     /**
-     * @return The date by which the next confimation statement must be received.
+     * @return Date by which the next confirmation statement must be received.
      */
     public LocalDate getNextDue() {
         return nextDue;
     }
 
     /**
-     * @return The date to which the company must next make a confirmation statement.
+     * @return Date to which the company must next make a confirmation statement.
      */
     public LocalDate getNextMadeUpTo() {
         return nextMadeUpTo;

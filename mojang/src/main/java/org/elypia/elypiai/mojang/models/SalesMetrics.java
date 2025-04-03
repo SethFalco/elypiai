@@ -43,21 +43,21 @@ public class SalesMetrics {
     private double salesPerSecond;
 
     /**
-     * @return The total number of sales.
+     * @return Total number of sales.
      */
     public int getTotalSales() {
         return totalSales;
     }
 
     /**
-     * @return The number of sales in the past 24 hours.
+     * @return Number of sales in the past 24 hours.
      */
     public int getRecentSales() {
         return recentSales;
     }
 
     /**
-     * @return The sales velocity per second.
+     * @return Sales velocity per second.
      */
     public double getSalesPerSecond() {
         return salesPerSecond;

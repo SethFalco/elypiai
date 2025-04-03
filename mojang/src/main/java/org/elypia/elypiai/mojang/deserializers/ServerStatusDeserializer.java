@@ -38,23 +38,25 @@ public class ServerStatusDeserializer implements JsonDeserializer<Map<MojangServ
 
     @Override
     public Map<MojangServer, ServerStatus> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-        if (!json.isJsonArray())
+        if (!json.isJsonArray()) {
             throw new JsonParseException("Expecting json to be array");
+        }
 
         final Map<MojangServer, ServerStatus> result = new EnumMap<>(MojangServer.class);
-
         final JsonArray array = json.getAsJsonArray();
 
         for (JsonElement element : array) {
-            if (!element.isJsonObject())
+            if (!element.isJsonObject()) {
                 throw new JsonParseException("Expecting only JsonObjects inside of JsonArray");
+            }
 
             JsonObject object = element.getAsJsonObject();
 
             Set<Map.Entry<String, JsonElement>> entrySet = object.entrySet();
 
-            if (entrySet.size() != 1)
+            if (entrySet.size() != 1) {
                 throw new JsonParseException("Expecting JsonObject to have only 1 JsonElement inside");
+            }
 
             Map.Entry<String, JsonElement> entry = entrySet.iterator().next();
 

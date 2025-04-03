@@ -20,48 +20,48 @@ import com.google.gson.annotations.SerializedName;
 import org.elypia.elypiai.yugioh.Monster;
 
 /**
- * The family is the first attribute displayed on any
- * {@link Monster}
+ * Family is the first attribute displayed on any {@link Monster}.
  *
  * @author seth@elypia.org (Seth Falco)
  */
 public enum Attribute {
 
-	UNKNOWN("Unknown"),
+    UNKNOWN("Unknown"),
 
-	@SerializedName("light")
-	LIGHT("light"),
+    @SerializedName("light")
+    LIGHT("light"),
 
-	@SerializedName("dark")
-	DARK("dark"),
+    @SerializedName("dark")
+    DARK("dark"),
 
-	@SerializedName("earth")
-	EARTH("earth"),
+    @SerializedName("earth")
+    EARTH("earth"),
 
-	@SerializedName("wind")
-	WIND("wind"),
+    @SerializedName("wind")
+    WIND("wind"),
 
-	@SerializedName("fire")
-	FIRE("fire"),
+    @SerializedName("fire")
+    FIRE("fire"),
 
-	@SerializedName("water")
-	WATER("water"),
+    @SerializedName("water")
+    WATER("water"),
 
-	@SerializedName("divine")
-	DIVINE("divine");
+    @SerializedName("divine")
+    DIVINE("divine");
 
-	private final String NAME;
+    private final String NAME;
 
-	Attribute(final String name) {
-		NAME = name;
-	}
+    Attribute(final String name) {
+        NAME = name;
+    }
 
-	public static Attribute get(String name) {
-		for (Attribute attribute : values()) {
-			if (attribute.NAME.equals(name))
-				return attribute;
-		}
+    public static Attribute get(String name) {
+        for (Attribute attribute : values()) {
+            if (attribute.NAME.equals(name)) {
+                return attribute;
+            }
+        }
 
-		return UNKNOWN;
-	}
+        return UNKNOWN;
+    }
 }

@@ -59,20 +59,21 @@ public enum Element {
     }
 
     /**
-     * @return The clean human readable name for this {@link Element}.
+     * @return Clean human readable name for this {@link Element}.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * @param name The case-sensitive human readable name of the {@link Element}.
-     * @return The enum value for this element, or {@link #UNKNOWN} if no type is found.
+     * @param name Case-sensitive human readable name of the {@link Element}.
+     * @return Enum value for this element, or {@link #UNKNOWN} if no type is found.
      */
     public static Element find(final String name) {
         for (Element element : values()) {
-            if (element.name.equals(name))
+            if (element.name.equals(name)) {
                 return element;
+            }
         }
 
         return Element.UNKNOWN;

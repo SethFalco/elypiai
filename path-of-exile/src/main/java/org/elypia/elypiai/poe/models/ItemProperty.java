@@ -25,31 +25,31 @@ import java.util.List;
  */
 public class ItemProperty {
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("values")
-	private List<List<String>> value;
+    @SerializedName("values")
+    private List<List<String>> value;
 
-	@SerializedName("displayMode")
-	private int displayMode;
+    @SerializedName("displayMode")
+    private int displayMode;
 
-	@SerializedName("type")
-	private int type;
+    @SerializedName("type")
+    private int type;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public List<List<String>> getValues() {
-		return value;
-	}
+    public List<List<String>> getValues() {
+        return value;
+    }
 
-	public int getDisplayMode() {
-		return displayMode;
-	}
+    public int getDisplayMode() {
+        return displayMode;
+    }
 
-	public int getType() {
-		return type;
-	}
+    public int getType() {
+        return type;
+    }
 }

@@ -31,7 +31,6 @@ public enum OrnaClassType {
     @SerializedName("Thief")
     THIEF("Thief"),
 
-    /** Damage Over Time */
     @SerializedName("Warrior")
     WARRIOR("Warrior");
 
@@ -42,20 +41,21 @@ public enum OrnaClassType {
     }
 
     /**
-     * @return The clean human readable name for this {@link OrnaClassType}.
+     * @return Clean human readable name for this {@link OrnaClassType}.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * @param name The case-sensitive human readable name of the {@link OrnaClassType}.
-     * @return The enum value for this class, or {@link #UNKNOWN} if no class is found.
+     * @param name Case-sensitive human readable name of the {@link OrnaClassType}.
+     * @return Enum value for this class, or {@link #UNKNOWN} if no class is found.
      */
     public static OrnaClassType find(final String name) {
         for (OrnaClassType type : values()) {
-            if (type.name.equals(name))
+            if (type.name.equals(name)) {
                 return type;
+            }
         }
 
         return OrnaClassType.UNKNOWN;

@@ -370,9 +370,9 @@ public interface WeblateService {
     /**
      * Returns a literal string of the monolingual base of the component.
      *
-     * @param projectSlug The project's slug.
-     * @param componentSlug The component's slug.
-     * @return A literal string representation of the base language file.
+     * @param projectSlug Project's slug.
+     * @param componentSlug Component's slug.
+     * @return Base language file.
      */
     @GET("components/{project_slug}/{component_slug}/monolingual_base")
     Single<Object> getComponentMonolingualBase(

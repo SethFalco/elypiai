@@ -28,8 +28,6 @@ import org.elypia.elypiai.companieshouse.models.RegisteredOfficeAddress;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.interceptors.BasicAuthorizationInterceptor;
 import org.elypia.retropia.gson.deserializers.TemporalDeserializer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -42,21 +40,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CompaniesHouse {
 
-    private static final Logger logger = LoggerFactory.getLogger(CompaniesHouse.class);
-
     /**
-     * The default URL we call too. <br>
-     * Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.
+     * Default URL we call to.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("https://api.companieshouse.gov.uk/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
     private final String apiKey;
@@ -66,7 +58,7 @@ public class CompaniesHouse {
      * Creates an instance of the CompaniesHouse API.
      * You can use this to get information on British companies.
      *
-     * @param apiKey The API key obtained from the Companies House website.
+     * @param apiKey API key obtained from the Companies House website.
      * @see <a href="https://find-and-update.company-information.service.gov.uk/">Companies House Website</a>
      */
     public CompaniesHouse(String apiKey) {
@@ -100,8 +92,8 @@ public class CompaniesHouse {
     }
 
     /**
-     * @param companyNumber The company number of the organization.
-     * @return The public company profile for the specified company number.
+     * @param companyNumber Company number of the organization.
+     * @return Public company profile for the specified company number.
      */
     public Single<Company> getCompany(String companyNumber) {
         Objects.requireNonNull(companyNumber);
@@ -109,8 +101,8 @@ public class CompaniesHouse {
     }
 
     /**
-     * @param companyNumber The company number of the organization.
-     * @return The companies registered address if the company exists.
+     * @param companyNumber Company number of the organization.
+     * @return Companies registered address if the company exists.
      */
     public Single<RegisteredOfficeAddress> getRegisteredOfficeAddress(String companyNumber) {
         Objects.requireNonNull(companyNumber);
@@ -118,7 +110,7 @@ public class CompaniesHouse {
     }
 
     /**
-     * @return The read-only API key used for authentication requests.
+     * @return Read-only API key used for authentication requests.
      */
     public String getApiKey() {
         return apiKey;

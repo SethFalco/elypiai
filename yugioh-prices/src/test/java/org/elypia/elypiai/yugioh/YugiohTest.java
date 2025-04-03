@@ -54,7 +54,7 @@ public class YugiohTest {
 
     @WebServerTest("dark-magician.json")
     public void parseCardData() {
-        Monster card = (Monster)yugioh.getCard("Dark Magician").blockingGet();
+        Monster card = (Monster) yugioh.getCard("Dark Magician").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician", card.getName()),
@@ -71,7 +71,7 @@ public class YugiohTest {
 
     @WebServerTest("dark-magician-girl.json")
     public void parseDarkMagianGirl() {
-        Monster card = (Monster)yugioh.getCard("Dark Magician Girl").blockingGet();
+        Monster card = (Monster) yugioh.getCard("Dark Magician Girl").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Dark Magician Girl", card.getName()),
@@ -88,7 +88,7 @@ public class YugiohTest {
 
     @WebServerTest("pot-of-greed.json")
     public void parsePotOfGreed() {
-        MagicCard card = (MagicCard)yugioh.getCard("Pot of Greed").blockingGet();
+        MagicCard card = (MagicCard) yugioh.getCard("Pot of Greed").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Pot of Greed", card.getName()),
@@ -100,7 +100,7 @@ public class YugiohTest {
 
     @WebServerTest("mirror-force.json")
     public void parseMirrorForce() {
-        MagicCard card = (MagicCard)yugioh.getCard("Mirror Force").blockingGet();
+        MagicCard card = (MagicCard) yugioh.getCard("Mirror Force").blockingGet();
 
         assertAll("Assert Yu-Gi-Oh! Card Data is Parsed",
             () -> assertEquals("Mirror Force", card.getName()),

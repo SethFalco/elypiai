@@ -67,7 +67,7 @@ public class AuthenticateForm {
     }
 
     /**
-     * @param username The username or email address of the user.
+     * @param username Username or email address of the user.
      */
     public void setUsername(String username) {
         this.username = username;
@@ -77,7 +77,7 @@ public class AuthenticateForm {
      * <strong>Do not store the password, once finished
      * you should store the access token.</strong>
      *
-     * @return The password used to authenticate this user.
+     * @return Password used to authenticate this user.
      */
     public String getPassword() {
         return password;
@@ -87,27 +87,29 @@ public class AuthenticateForm {
      * <strong>Do not store the password, once finished
      * you should store the access token.</strong>
      *
-     * @param password The password of the Mojang account.
+     * @param password Password of the Mojang account.
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
-     * @return The optional client token, this should be specified
-     * and identical for every request.
+     * @return
+     *     Optional client token, this should be specified and identical for
+     *     every request.
      */
     public String getClientToken() {
         return clientToken;
     }
 
     /**
-     * Sets the client token or client identifier of the request.
-     * This should be identical to the client token given to any other
-     * request by your application.
+     * Sets the client token or client identifier of the request. Should be
+     * identical to the client token given to any other request by your
+     * application.
      *
-     * @param clientToken A client token or identifier to give for this request.
-     * This should be the same for all requests by the same application.
+     * @param clientToken
+     *     Client token or identifier to give for this request. This should be
+     *     the same for all requests by the same application.
      */
     public void setClientToken(String clientToken) {
         this.clientToken = clientToken;

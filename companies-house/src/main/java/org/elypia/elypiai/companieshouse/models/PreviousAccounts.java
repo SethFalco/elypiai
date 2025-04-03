@@ -14,7 +14,7 @@ public class PreviousAccounts extends AccountingPeriod {
     private AccountsType accountsType;
 
     /**
-     * @return The type of the last company accounts filed.
+     * @return Type of the last company accounts filed.
      */
     public AccountsType getAccountsType() {
         return accountsType;

@@ -26,59 +26,45 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum AccountsType {
 
-    /** Null */
     @SerializedName("null")
     NULL("Null"),
 
-    /** Full */
     @SerializedName("full")
     FULL("Full"),
 
-    /** Small */
     @SerializedName("small")
     SMALL("Small"),
 
-    /** Medium */
     @SerializedName("medium")
     MEDIUM("Medium"),
 
-    /** Group */
     @SerializedName("group")
     GROUP("Group"),
 
-    /** Dormant */
     @SerializedName("dormant")
     DORMANT("Dormant"),
 
-    /** Interim */
     @SerializedName("interim")
     INTERIM("Interim"),
 
-    /** Initial */
     @SerializedName("initial")
     INITIAL("Inital"),
 
-    /** Total Exemption Full */
     @SerializedName("total-exemption-full")
     TOTAL_EXEMPTION_FULL("Total Exemption Full"),
 
-    /** Total Exception Small */
     @SerializedName("total-exemption-small")
     TOTAL_EXEMPTION_SMALL("Total Exemption Small"),
 
-    /** Partial Excemption */
     @SerializedName("partial-exemption")
     PARTIAL_EXEMPTION("Partial Exemption"),
 
-    /** Audit Exemption Subsidiary */
     @SerializedName("audit-exemption-subsidiary")
     AUDIT_EXEMPTION_SUBSIDIARY("Audit Exemption Subsidiary"),
 
-    /** Filing Exemption Subsidiary */
     @SerializedName("filing-exemption-subsidiary")
     FILLING_EXEMPTION_SUBSIDIARY("Filing Exemption Subsidiary"),
 
-    /** Micro Entity */
     @SerializedName("micro-entity")
     MICRO_ENTITY("Micro Entity");
 

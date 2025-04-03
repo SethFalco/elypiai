@@ -16,8 +16,10 @@
 
 package org.elypia.elypiai.orna;
 
-import io.reactivex.rxjava3.core.Single;
-import okhttp3.OkHttpClient;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+
 import org.elypia.elypiai.orna.entities.Achievment;
 import org.elypia.elypiai.orna.entities.Entity;
 import org.elypia.elypiai.orna.entities.Item;
@@ -28,42 +30,33 @@ import org.elypia.elypiai.orna.entities.Quest;
 import org.elypia.elypiai.orna.entities.SkillDetails;
 import org.elypia.elypiai.orna.entities.Specialization;
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-
 /**
  * Unofficial API wrapper for Java for Orna Guide.
  *
- * @see <a href="https://orna.guide/">https://orna.guide/</a>
  * @author seth@elypia.org (Seth Falco)
+ * @see <a href="https://orna.guide/">https://orna.guide/</a>
  */
 public class Orna {
 
     /** Endpoint that stores all static resources for Orna Guide. */
     private static final String RESOURCE_URL = "https://orna.guide/static/orna/img/";
 
-    private static final Logger logger = LoggerFactory.getLogger(Orna.class);
-
     /**
-     * The default URL we call too. <br>
-     * Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.
+     * Default URL we call to.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("https://orna.guide/api/v1/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
     private OrnaService service;
@@ -119,9 +112,10 @@ public class Orna {
     }
 
     /**
-     * @param image The image attribute of a {@link Entity}
-     * that has an image associated with it.
-     * @return The URL that can display the image for this entity.
+     * @param image
+     *     Image attribute of a {@link Entity} that has an image associated with
+     *     it.
+     * @return URL that can display the image for this entity.
      */
     public static String getStaticResource(String image) {
         return RESOURCE_URL + image;

@@ -16,8 +16,11 @@
 
 package org.elypia.elypiai.weblate;
 
-import io.reactivex.rxjava3.core.Single;
-import okhttp3.OkHttpClient;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.Objects;
+
 import org.elypia.elypiai.weblate.models.LanguageStatistics;
 import org.elypia.elypiai.weblate.models.Results;
 import org.elypia.elypiai.weblate.models.WeblateGroup;
@@ -26,16 +29,12 @@ import org.elypia.elypiai.weblate.models.WeblateUser;
 import org.elypia.retropia.core.HttpClientSingleton;
 import org.elypia.retropia.core.interceptors.QueryParametersInterceptor;
 import org.elypia.retropia.core.interceptors.TokenAuthorizationInterceptor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import io.reactivex.rxjava3.core.Single;
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author seth@elypia.org
@@ -43,21 +42,15 @@ import java.util.Objects;
  */
 public class Weblate {
 
-    private static final Logger logger = LoggerFactory.getLogger(Weblate.class);
-
     /**
-     * <p>The default URL we call too.</p>
-     * <p>Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.</p>
+     * Default URL we call to.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("https://hosted.weblate.org/api/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
     /** The users API key, or null if we're consuming the API through unauthenticated requests. */
@@ -76,13 +69,14 @@ public class Weblate {
     }
 
     /**
-     * Creates an instance of the Weblate API.
-     * You can use this to get information on translation projects on Weblate.
-     * This defaults the the baseUrl to the public hosted instance availabe at
+     * Creates an instance of the Weblate API. You can use this to get
+     * information on translation projects on Weblate. This defaults the the
+     * baseUrl to the public hosted instance available at
      * {@link #baseUrl https://hosted.weblate.org/api/}.
      *
-     * @param apiKey The API key obtained from your Weblate profile page,
-     * or null for unauthenticated access.
+     * @param apiKey
+     *     API key obtained from your Weblate profile page, or null for
+     *     unauthenticated access.
      * @see <a href="https://docs.weblate.org/en/latest/api.html#authentication-and-generic-parameters">Unauthenticated Access to Weblate API</a>
      */
     public Weblate(String apiKey) {
@@ -93,8 +87,8 @@ public class Weblate {
      * Creates an instance of the Weblate API for a given host.
      *
      *
-     * @param apiKey The API key, or null for unauthenticated access to the API.
-     * @param baseUrl The instance base URL, in a format like {@link #baseUrl https://hosted.weblate.org/api/}.
+     * @param apiKey API key, or null for unauthenticated access to the API.
+     * @param baseUrl Instance base URL, in a format like {@link #baseUrl https://hosted.weblate.org/api/}.
      */
     public Weblate(String apiKey, URL baseUrl) {
         this(

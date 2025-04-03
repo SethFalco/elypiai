@@ -29,97 +29,112 @@ import java.util.List;
  */
 public class Definition implements Comparable<Definition> {
 
-	@SerializedName("definition")
-	private String definitionBody;
+    @SerializedName("definition")
+    private String definitionBody;
 
-	@SerializedName("permalink")
-	private String permalink;
+    @SerializedName("permalink")
+    private String permalink;
 
-	@SerializedName("thumbs_up")
-	private int thumbsUp;
+    @SerializedName("thumbs_up")
+    private int thumbsUp;
 
-	@SerializedName("sound_urls")
-	private List<String> soundUrls;
+    @SerializedName("sound_urls")
+    private List<String> soundUrls;
 
-	@SerializedName("author")
-	private String author;
+    @SerializedName("author")
+    private String author;
 
-	@SerializedName("word")
-	private String word;
+    @SerializedName("word")
+    private String word;
 
-	@SerializedName("defid")
-	private int definitionId;
+    @SerializedName("defid")
+    private int definitionId;
 
-	@SerializedName("current_vote")
-	@JsonAdapter(EmptyNullDeserializer.class)
-	private String currentVote;
+    @SerializedName("current_vote")
+    @JsonAdapter(EmptyNullDeserializer.class)
+    private String currentVote;
 
-	@SerializedName("written_on")
-	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
-	private Instant createdDate;
+    @SerializedName("written_on")
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant createdDate;
 
-	@SerializedName("example")
-	@JsonAdapter(EmptyNullDeserializer.class)
-	private String example;
+    @SerializedName("example")
+    @JsonAdapter(EmptyNullDeserializer.class)
+    private String example;
 
-	@SerializedName("thumbs_down")
-	private int thumbsDown;
+    @SerializedName("thumbs_down")
+    private int thumbsDown;
 
-	/** @return The definition of the word. */
-	public String getDefinitionBody() {
-		return definitionBody;
-	}
+    /**
+     * @return Definition of the word.
+     */
+    public String getDefinitionBody() {
+        return definitionBody;
+    }
 
-	/** @return	A permanent URL that will always link to this defintion. */
-	public String getPermaLink() {
-		return permalink;
-	}
+    /**
+     * @return Permanent URL that will always link to this definition.
+     */
+    public String getPermaLink() {
+        return permalink;
+    }
 
-	/** @return	The total number of thumbs up the definition has. */
-	public int getThumbsUp() {
-		return thumbsUp;
-	}
+    /**
+     * @return Total number of thumbs up the definition has.
+     */
+    public int getThumbsUp() {
+        return thumbsUp;
+    }
 
-	public List<String> getSoundUrls() {
-		return soundUrls;
-	}
+    public List<String> getSoundUrls() {
+        return soundUrls;
+    }
 
-	/** @return	The name of the author of this definition. */
-	public String getAuthor() {
-		return author;
-	}
+    /**
+     * @return Name of the author of this definition.
+     */
+    public String getAuthor() {
+        return author;
+    }
 
-	/** @return	The word that was defined. */
-	public String getWord() {
-		return word;
-	}
+    /**
+     * @return Word that was defined.
+     */
+    public String getWord() {
+        return word;
+    }
 
-	/** @return	The unique id of this definition. */
-	public int getDefinitionId() {
-		return definitionId;
-	}
+    /**
+     * @return Unique ID of this definition.
+     */
+    public int getDefinitionId() {
+        return definitionId;
+    }
 
-	/** @return	I have no idea. ^-^' */
-	public String getCurrentVote() {
-		return currentVote;
-	}
+    public String getCurrentVote() {
+        return currentVote;
+    }
 
-	public Instant getCreatedDate() {
-		return createdDate;
-	}
+    public Instant getCreatedDate() {
+        return createdDate;
+    }
 
-	/** @return	A demonstration of how the word is used. */
-	public String getExample() {
-		return example;
-	}
+    /**
+     * @return Demonstration of how the word is used.
+     */
+    public String getExample() {
+        return example;
+    }
 
-	/** @return	The total number of down votes the definition has gotten. */
-	public int getThumbsDown() {
-		return thumbsDown;
-	}
+    /**
+     * @return Total number of down votes the definition has gotten.
+     */
+    public int getThumbsDown() {
+        return thumbsDown;
+    }
 
-	@Override
-	public int compareTo(Definition o) {
-		return o.thumbsUp - thumbsUp;
-	}
+    @Override
+    public int compareTo(Definition o) {
+        return o.thumbsUp - thumbsUp;
+    }
 }

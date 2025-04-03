@@ -53,8 +53,8 @@ public interface MojangService {
     );
 
     /**
-     * @param usernames An array of up to 10 usernames.
-     * @return The information for all users, omitting users that don't exist.
+     * @param usernames Array of up to 10 usernames.
+     * @return Information for all users, omitting users that don't exist.
      */
     @POST("profiles/minecraft")
     Single<List<MinecraftUser>> getUuidsAndExtra(

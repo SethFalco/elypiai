@@ -19,8 +19,8 @@ package org.elypia.elypiai.mojang.models;
 import java.util.UUID;
 
 /**
- * Given to all entities all models that contain an
- * identifiable element by {@link UUID}.
+ * Given to all entities all models that contain an identifiable element by
+ * {@link UUID}.
  *
  * @author seth@elypia.org (Seth Falco)
  * @since 4.3.0
@@ -28,7 +28,7 @@ import java.util.UUID;
 public interface Identifiable {
 
     /**
-     * @return The UUID of the entity.
+     * @return UUID of the entity.
      */
     UUID getUuid();
 }

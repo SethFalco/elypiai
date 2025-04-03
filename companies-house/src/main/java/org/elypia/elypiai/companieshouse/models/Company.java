@@ -53,7 +53,7 @@ public class Company {
     private Collection<PreviousCompanyName> previousCompanyNames;
 
     /**
-     * @see #hasBeenLiquidated
+     * @see #isHasBeenLiquidated()
      */
     @SerializedName("has_been_liquidated")
     private boolean hasBeenLiquidated;
@@ -167,59 +167,60 @@ public class Company {
     private Accounts accounts;
 
     /**
-     * @return The ETag of the resource.
+     * @return ETag of the resource.
      */
     public String getEtag() {
         return etag;
     }
 
     /**
-     * <strong>The company number can begin with letters or padded zeros.</strong>
+     * <strong>Company number can begin with letters or padded zeros.</strong>
      *
-     * @return The number of the company.
+     * @return Number of the company.
      */
     public String getCompanyNumber() {
         return companyNumber;
     }
 
     /**
-     * @return The name of the company.
+     * @return Name of the company.
      */
     public String getCompanyName() {
         return companyName;
     }
 
     /**
-     * @return The previous names of this company.
+     * @return Previous names of this company.
      */
     public Collection<PreviousCompanyName> getPreviousCompanyNames() {
         return previousCompanyNames;
     }
 
     /**
-     * @return The flag indicating if the company has been liquidated in the past.
+     * @return Flag indicating if the company has been liquidated in the past.
      */
     public boolean isHasBeenLiquidated() {
         return hasBeenLiquidated;
     }
 
     /**
-     * @return The date which the company was converted / closed or dissolved.
-     * Please refer to {@link #getCompanyStatus()} to determine which.
+     * @return
+     *     Date which the company was converted / closed or dissolved. Refer to
+     *     {@link #getCompanyStatus()} to determine which.
      */
     public LocalDate getCessationDate() {
         return cessationDate;
     }
 
     /**
-     * @return The date when the company was created.
+     * @return Date when the company was created.
      */
     public LocalDate getCreationDate() {
         return creationDate;
     }
 
     /**
-     * @return The number given by an external registration body.
+     * @return Number given by an external registration body.
      */
     public String getExternalRegistrationNumber() {
         return externalRegistrationNumber;
@@ -233,7 +234,7 @@ public class Company {
     }
 
     /**
-     * @return The status of the company.
+     * @return Status of the company.
      */
     public CompanyStatus getCompanyStatus() {
         return companyStatus;
@@ -254,17 +255,19 @@ public class Company {
     }
 
     /**
-     * @return Annual return information. This member is only returned if a
-     * confirmation statement has not be filed.
+     * @return
+     *     Annual return information. This member is only returned if a
+     *     confirmation statement has not be filed.
      */
     public StatementDates getAnnualReturn() {
         return annualReturn;
     }
 
     /**
-     * This can also be obtained with {@link CompaniesHouse#getRegisteredOfficeAddress(String)}.
+     * Can also be obtained with
+     * {@link CompaniesHouse#getRegisteredOfficeAddress(String)}.
      *
-     * @return The address of the company's registered office.
+     * @return Address of the company's registered office.
      */
     public RegisteredOfficeAddress getRegisteredOfficeAddress() {
         return registeredOfficeAddress;
@@ -278,7 +281,7 @@ public class Company {
     }
 
     /**
-     * <p>SIC stands for Standard Industrial Classification</p>
+     * SIC stands for Standard Industrial Classification.
      *
      * @return SIC codes for this company.
      * @see <a href="https://resources.companieshouse.gov.uk/sic/">Nature of business: Standard Industrial Classification (SIC) codes</a>
@@ -288,14 +291,14 @@ public class Company {
     }
 
     /**
-     * @return The subtype of the company.
+     * @return Subtype of the company.
      */
     public Subtype getSubtype() {
         return subtype;
     }
 
     /**
-     * @return The type of the company.
+     * @return Type of the company.
      */
     public CompanyType getType() {
         return type;
@@ -309,21 +312,21 @@ public class Company {
     }
 
     /**
-     * @return Returned if Companies House is not the primary source of data for this company.
+     * @return If Companies House is not the primary source of data for this company.
      */
     public PartialDataAvailableType getPartialDataAvailable() {
         return partialDataAvailable;
     }
 
     /**
-     * @return The date of last full members list update.
+     * @return Date of last full members list update.
      */
     public LocalDate getLastFullMembersListData() {
         return lastFullMembersListData;
     }
 
     /**
-     * @return The jurisdiction specifies the political body responsible for the company.
+     * @return Jurisdiction specifies the political body responsible for the company.
      */
     public Jurisdiction getJurisdiction() {
         return jurisdiction;

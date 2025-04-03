@@ -86,21 +86,21 @@ public class Monster extends TieredEntity {
     }
 
     /**
-     * @return The items this {@link Monster} is able to drop.
+     * @return Items this {@link Monster} is able to drop.
      */
     public List<Entity> getDrops() {
         return Collections.unmodifiableList(drops);
     }
 
     /**
-     * @return The skills this {@link Monster} is able to perform.
+     * @return Skills this {@link Monster} is able to perform.
      */
     public List<Entity> getSkills() {
         return Collections.unmodifiableList(skills);
     }
 
     /**
-     * @return The quests this {@link Monster} may be involved in.
+     * @return Quests this {@link Monster} may be involved in.
      */
     public List<Entity> getQuests() {
         return Collections.unmodifiableList(quests);

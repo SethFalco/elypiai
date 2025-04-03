@@ -131,7 +131,7 @@ public class OsuTest {
             () -> assertEquals("opening hinaroji hinalogic from luck & logic kunkakunkakunkakunka", map.getTags()),
             () -> assertEquals(MapGenre.ANIME, map.getGenre()),
             () -> assertEquals(MapLanguage.JAPANESE, map.getLanguage()),
-            () -> assertEquals(53, map.getFavouriteCount()),
+            () -> assertEquals(53, map.getFavoriteCount()),
             () -> assertEquals(43632, map.getPlayCount()),
             () -> assertEquals(3987, map.getPassCount()),
             () -> assertEquals(546, map.getMaxCombo()),

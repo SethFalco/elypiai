@@ -64,7 +64,7 @@ public class UrbanDictionaryTest {
 
     @WebServerTest("define-jen.json")
     public void parseDefinition() {
-        Definition definition =  ud.getDefinitions("jen").blockingGet().getDefinitions(true).get(0);
+        Definition definition = ud.getDefinitions("jen").blockingGet().getDefinitions(true).get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("Gorgeous, amazing, perfect everything. The girl who has always been my best friend, the girl who I should've been chasing this [whole time]. I love her. <[333]\r\n\r\n- [Sugarlips]", definition.getDefinitionBody()),
@@ -92,7 +92,7 @@ public class UrbanDictionaryTest {
 
     @WebServerTest("define-life.json")
     public void parseDefinitionWithNoExample() {
-        Definition definition =  ud.getDefinitions("life").blockingGet().getDefinitions(true).get(0);
+        Definition definition = ud.getDefinitions("life").blockingGet().getDefinitions(true).get(0);
 
         assertAll("Ensure Parsing Result Data Correctly",
             () -> assertEquals("A sexually-transmitted, [terminal disease].", definition.getDefinitionBody()),

@@ -80,8 +80,9 @@ public enum MojangServer {
         for (MojangServer property : values()) {
             final String propertyDomain = property.domain;
 
-            if (propertyDomain != null && propertyDomain.equals(domain))
+            if (propertyDomain != null && propertyDomain.equals(domain)) {
                 return property;
+            }
         }
 
         return UNKNOWN;

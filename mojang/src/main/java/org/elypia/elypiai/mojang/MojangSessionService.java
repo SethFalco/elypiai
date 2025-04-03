@@ -31,7 +31,7 @@ import java.util.UUID;
 public interface MojangSessionService {
 
     /**
-     * @param uuid The {@link UUID} of the player.
+     * @param uuid UUID of the player.
      * @param unsigned If the response should include a signature.
      * @return Profile information on the player, including textures.
      */

@@ -53,14 +53,14 @@ public class MinecraftProfile implements Identifiable {
     private boolean isLegacy;
 
     /**
-     * @return The UUID of the user.
+     * @return UUID of the user.
      */
     public UUID getUuid() {
         return uuid;
     }
 
     /**
-     * @return The current display name or username of the user.
+     * @return Current display name or username of the user.
      */
     public String getName() {
         return name;

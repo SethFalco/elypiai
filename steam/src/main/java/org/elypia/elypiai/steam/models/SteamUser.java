@@ -29,218 +29,219 @@ import java.time.Instant;
  */
 public class SteamUser {
 
-	private Steam steam;
+    private Steam steam;
 
-	/**
-	 * 64bit SteamID of the user
-	 */
-	@SerializedName("steamid")
-	private long id;
+    /**
+     * 64bit SteamID of the user.
+     */
+    @SerializedName("steamid")
+    private long id;
 
-	/**
-	 * The player's persona name (display name)
-	 */
-	@SerializedName("personaname")
-	private String username;
+    /**
+     * Player's persona name (display name).
+     */
+    @SerializedName("personaname")
+    private String username;
 
-	/**
-	 * The full URL of the player's Steam Community profile.
-	 */
-	@SerializedName("profileurl")
-	private String url;
+    /**
+     * Full URL of the player's Steam Community profile.
+     */
+    @SerializedName("profileurl")
+    private String url;
 
-	@SerializedName("avatar")
-	private String avatarLow;
+    @SerializedName("avatar")
+    private String avatarLow;
 
-	/**
-	 * The full URL of the player's 184x184px avatar.
-	 * If the user hasn't configured an avatar,
-	 * this will be the default ? avatar.
-	 */
-	@SerializedName("avatarmedium")
-	private String avatarMedium;
+    /**
+     * Full URL of the player's 184x184px avatar. If the user hasn't configured
+     * an avatar, this will be the default ? avatar.
+     */
+    @SerializedName("avatarmedium")
+    private String avatarMedium;
 
-	@SerializedName("avatarfull")
-	private String avatarHigh;
+    @SerializedName("avatarfull")
+    private String avatarHigh;
 
-	/**
-	 * The user's current status. If the player's profile is private,
-	 * this will always be "0".
-	 */
-	@SerializedName("personastate")
-	private PersonaState state;
+    /**
+     * User's current status. If the player's profile is private,
+     * this will always be "0".
+     */
+    @SerializedName("personastate")
+    private PersonaState state;
 
-	/**
-	 * This represents whether the profile is visible or not.
-	 */
-	@SerializedName("communityvisibilitystate")
-	private CommunityVisibilityState communityVisibilityState;
+    /**
+     * Whether the profile is visible or not.
+     */
+    @SerializedName("communityvisibilitystate")
+    private CommunityVisibilityState communityVisibilityState;
 
-	/**
-	 * Indicates the user has a community profile configured.
-	 */
-	@SerializedName("profilestate")
-	@JsonAdapter(BitBooleanDeserializer.class)
-	private boolean hasProfile;
+    /**
+     * Indicates the user has a community profile configured.
+     */
+    @SerializedName("profilestate")
+    @JsonAdapter(BitBooleanDeserializer.class)
+    private boolean hasProfile;
 
-	/**
-	 * The last time the user was online.
-	 */
-	@SerializedName("lastlogoff")
-	@JsonAdapter(UnixSecondsInstantDeserializer.class)
-	private Instant lastLogOff;
+    /**
+     * Last time the user was online.
+     */
+    @SerializedName("lastlogoff")
+    @JsonAdapter(UnixSecondsInstantDeserializer.class)
+    private Instant lastLogOff;
 
-	/**
-	 * If set, indicates the profile allows public comments.
-	 */
-	@SerializedName("commentpermission")
-	@JsonAdapter(BitBooleanDeserializer.class)
-	private boolean canComment;
+    /**
+     * Indicates the profile allows public comments.
+     */
+    @SerializedName("commentpermission")
+    @JsonAdapter(BitBooleanDeserializer.class)
+    private boolean canComment;
 
-	/**
-	 * <strong>Only non-null if profile is not private.</strong><br>
-	 * The player's "Real Name", if they have set it.
-	 */
-	@SerializedName("realname")
-	private String realName;
+    /**
+     * Player's "Real Name", if they have set it, or {@code null} if the profile
+     * is private.
+     */
+    @SerializedName("realname")
+    private String realName;
 
-	/**
-	 * <strong>Only non-null if profile is not private.</strong><br>
-	 * The player's primary group, as configured in their Steam Community profile.
-	 */
-	@SerializedName("primaryclanid")
-	private long primaryClan;
+    /**
+     * Player's primary group, as configured in their Steam Community profile,
+     * or {@code null} if the profile is private.
+     */
+    @SerializedName("primaryclanid")
+    private long primaryClan;
 
-	/**
-	 * <strong>Only non-null if profile is not private.</strong><br>
-	 * The time the player's account was created.
-	 */
+    /**
+     * The time the player's account was created, or {@code null} if the profile
+     * is private.
+     */
+    @SerializedName("timecreated")
+    @JsonAdapter(UnixSecondsInstantDeserializer.class)
+    private Instant timeCreated;
 
-	@SerializedName("timecreated")
-	@JsonAdapter(UnixSecondsInstantDeserializer.class)
-	private Instant timeCreated;
+    /**
+     * If set on the user's Steam Community profile, the user's country of
+     * residence, 2-character ISO country code.
+     */
+    @SerializedName("loccountrycode")
+    private String countryCode;
 
-	/**
-	 * If set on the user's Steam Community profile,
-	 * The user's country of residence, 2-character ISO country code
-	 */
-	@SerializedName("loccountrycode")
-	private String countryCode;
+    /**
+     * If set on the user's Steam Community profile, The user's state of
+     * residence.
+     */
+    @SerializedName("locstatecode")
+    private String stateCode;
 
-	/**
-	 * If set on the user's Steam Community profile, The user's state of residence
-	 */
-	@SerializedName("locstatecode")
-	private String stateCode;
+    @SerializedName("loccityid")
+    private int cityId;
 
-	@SerializedName("loccityid")
-	private int cityId;
+    private GameSession currentlyPlaying;
 
-	private GameSession currentlyPlaying;
+    public Steam getSteam() {
+        return steam;
+    }
 
-	public Steam getSteam() {
-		return steam;
-	}
+    public void setSteam(Steam steam) {
+        this.steam = steam;
+    }
 
-	public void setSteam(Steam steam) {
-		this.steam = steam;
-	}
+    /**
+     * @return
+     *     ID of the user. See {@link #getUsername()} for name of the user
+     *     instead.
+     */
+    public long getId() {
+        return id;
+    }
 
-	/**
-	 * @return	Returns the ID of the user. See {@link #getUsername()}
-	 * 			for name of the user instead.
-	 */
-	public long getId() {
-		return id;
-	}
+    /**
+     * @return Name of the user as displayed on their Steam profile.
+     */
+    public String getUsername() {
+        return username;
+    }
 
-	/**
-	 * @return	Returns the name of the user as displayed
-	 * 			on their Steam profile.
-	 */
-	public String getUsername() {
-		return username;
-	}
+    /**
+     * @return    Return the Url to their steam profile.
+     */
+    public String getProfileUrl() {
+        return url;
+    }
 
-	/**
-	 * @return	Return the Url to their steam profile.
-	 */
-	public String getProfileUrl() {
-		return url;
-	}
+    public String getAvatarLow() {
+        return avatarLow;
+    }
 
-	public String getAvatarLow() {
-		return avatarLow;
-	}
+    public String getAvatarMedium() {
+        return avatarMedium;
+    }
 
-	public String getAvatarMedium() {
-		return avatarMedium;
-	}
+    /**
+     * @return
+     *     Full URL of the player's 184x184px avatar. If the user hasn't
+     *     configured an avatar, this will be the default ? avatar.
+     */
+    public String getAvatarHigh() {
+        return avatarHigh;
+    }
 
-	/**
-	 * @return	The full URL of the player's 184x184px avatar.
-	 * 			If the user hasn't configured an avatar, this will be the default ? avatar.
-	 */
-	public String getAvatarHigh() {
-		return avatarHigh;
-	}
+    /**
+     * @return
+     *     Users personal state/status.
+     * @see PersonaState
+     */
+    public PersonaState getPersonaState() {
+        return state;
+    }
 
-	/**
-	 * @return	The users personal state/status. Eg, Online, Offline,
-	 * 			Busy, Away etcetc. See {@link PersonaState}.
-	 */
-	public PersonaState getPersonaState() {
-		return state;
-	}
+    /**
+     * @return Users community visible state.
+     */
+    public CommunityVisibilityState getCommunityVisibilityState() {
+        return communityVisibilityState;
+    }
 
-	/**
-	 * @return The users community visible state.
-	 */
-	public CommunityVisibilityState getCommunityVisibilityState() {
-		return communityVisibilityState;
-	}
+    public boolean hasProfile() {
+        return hasProfile;
+    }
 
-	public boolean hasProfile() {
-		return hasProfile;
-	}
+    public Instant getLastLogOff() {
+        return lastLogOff;
+    }
 
-	public Instant getLastLogOff() {
-		return lastLogOff;
-	}
+    public boolean canComment() {
+        return canComment;
+    }
 
-	public boolean canComment() {
-		return canComment;
-	}
+    public String getRealName() {
+        return realName;
+    }
 
-	public String getRealName() {
-		return realName;
-	}
+    public long getPrimaryClan() {
+        return primaryClan;
+    }
 
-	public long getPrimaryClan() {
-		return primaryClan;
-	}
+    public Instant getTimeCreated() {
+        return timeCreated;
+    }
 
-	public Instant getTimeCreated() {
-		return timeCreated;
-	}
+    public String getCountry() {
+        return countryCode;
+    }
 
-	public String getCountry() {
-		return countryCode;
-	}
+    public String getStateCode() {
+        return stateCode;
+    }
 
-	public String getStateCode() {
-		return stateCode;
-	}
+    public int getCityId() {
+        return cityId;
+    }
 
-	public int getCityId() {
-		return cityId;
-	}
+    public GameSession getCurrentlyPlaying() {
+        return currentlyPlaying;
+    }
 
-	public GameSession getCurrentlyPlaying() {
-		return currentlyPlaying;
-	}
-
-	public void setCurrentlyPlaying(GameSession currentlyPlaying) {
-		this.currentlyPlaying = currentlyPlaying;
-	}
+    public void setCurrentlyPlaying(GameSession currentlyPlaying) {
+        this.currentlyPlaying = currentlyPlaying;
+    }
 }

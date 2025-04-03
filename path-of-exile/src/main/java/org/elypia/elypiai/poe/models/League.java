@@ -28,25 +28,25 @@ import java.util.List;
  */
 public class League extends CompactLeague {
 
-	@SerializedName("description")
-	private String description;
+    @SerializedName("description")
+    private String description;
 
-	@SerializedName("registerAt")
-	@JsonAdapter(IsoDateTimeTemporalDeserializer.class)
-	private Instant registerAt;
+    @SerializedName("registerAt")
+    @JsonAdapter(IsoDateTimeTemporalDeserializer.class)
+    private Instant registerAt;
 
-	@SerializedName("rules")
-	private List<LeagueRule> rules;
+    @SerializedName("rules")
+    private List<LeagueRule> rules;
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public Instant getRegisterAt() {
-		return registerAt;
-	}
+    public Instant getRegisterAt() {
+        return registerAt;
+    }
 
-	public List<LeagueRule> getRules() {
-		return rules;
-	}
+    public List<LeagueRule> getRules() {
+        return rules;
+    }
 }

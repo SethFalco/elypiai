@@ -23,33 +23,34 @@ import com.google.gson.annotations.SerializedName;
  */
 public enum LadderType {
 
-	UNKNOWN("Unknown"),
+    UNKNOWN("Unknown"),
 
-	@SerializedName("league")
-	LEAGUE("league"),
+    @SerializedName("league")
+    LEAGUE("league"),
 
-	@SerializedName("pvp")
-	PVP("pvp"),
+    @SerializedName("pvp")
+    PVP("pvp"),
 
-	@SerializedName("labyrinth")
-	LABYRINTH("labyrinth");
+    @SerializedName("labyrinth")
+    LABYRINTH("labyrinth");
 
-	private final String NAME;
+    private final String NAME;
 
-	LadderType(String name) {
-		NAME = name;
-	}
+    LadderType(String name) {
+        NAME = name;
+    }
 
-	public String getName() {
-		return NAME;
-	}
+    public String getName() {
+        return NAME;
+    }
 
-	public static LadderType get(String apiName) {
-		for (LadderType type : LadderType.values()) {
-			if (type.NAME.equals(apiName))
-				return type;
-		}
+    public static LadderType get(String apiName) {
+        for (LadderType type : LadderType.values()) {
+            if (type.NAME.equals(apiName)) {
+                return type;
+            }
+        }
 
-		return UNKNOWN;
-	}
+        return UNKNOWN;
+    }
 }

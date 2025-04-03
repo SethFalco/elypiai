@@ -16,18 +16,17 @@
 
 package org.elypia.elypiai.mojang;
 
-import okhttp3.OkHttpClient;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Objects;
+
 import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Objects;
 
 /**
  * The portion of the Mojang API that connects to the
@@ -38,21 +37,15 @@ import java.util.Objects;
  */
 public class MojangAuthenticationApi {
 
-    private static final Logger logger = LoggerFactory.getLogger(MojangAuthenticationApi.class);
-
     /**
-     * <p>The default URL we call too.</p>
-     * <p>Should never throw {@link MalformedURLException} as this
-     * is a manually hardcoded URL.</p>
+     * Default URL we call to.
      */
     private static URL baseUrl;
 
     static {
         try {
             baseUrl = new URL("https://authserver.mojang.com/");
-        } catch (MalformedURLException ex) {
-            logger.error("Hardcoded URL is malformed, please specify a valid URL as a parameter.", ex);
-        }
+        } catch (MalformedURLException ex) {}
     }
 
     /** The {@link Retrofit} wrapper around the API. */
@@ -86,8 +79,9 @@ public class MojangAuthenticationApi {
     }
 
     /**
-     * @return The default base URL. This may not be the same as the base URL
-     * that was passed to this class on construction.
+     * @return
+     *     Default base URL. This may not be the same as the base URL that was
+     *     passed to this class on construction.
      */
     public static URL getDefaultBaseUrl() {
         return baseUrl;

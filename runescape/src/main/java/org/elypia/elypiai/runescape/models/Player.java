@@ -32,192 +32,189 @@ import java.util.Locale;
  */
 public class Player {
 
-	private static final String RANK_URL = "https://services.runescape.com/m=hiscore/compare";
-	private static final String AVATAR_URL_FORMAT = "https://secure.runescape.com/m=avatar-rs/%s/chat.png";
+    private static final String RANK_URL = "https://services.runescape.com/m=hiscore/compare";
+    private static final String AVATAR_URL_FORMAT = "https://secure.runescape.com/m=avatar-rs/%s/chat.png";
 
-	@SerializedName("name")
-	private String username;
+    @SerializedName("name")
+    private String username;
 
-	@SerializedName("totalskill")
-	private int totalLevel;
+    @SerializedName("totalskill")
+    private int totalLevel;
 
-	@SerializedName("totalxp")
-	private long totalXp;
+    @SerializedName("totalxp")
+    private long totalXp;
 
-	@SerializedName("questscomplete")
-	private int questsComplete;
+    @SerializedName("questscomplete")
+    private int questsComplete;
 
-	@SerializedName("questsstarted")
-	private int questsStarted;
+    @SerializedName("questsstarted")
+    private int questsStarted;
 
-	@SerializedName("questsnotstarted")
-	private int questsNotStarted;
+    @SerializedName("questsnotstarted")
+    private int questsNotStarted;
 
-	@SerializedName("rank")
-	@JsonAdapter(UkFormattedNumberDeserializer.class)
-	private int rank;
+    @SerializedName("rank")
+    @JsonAdapter(UkFormattedNumberDeserializer.class)
+    private int rank;
 
-	@SerializedName("combatlevel")
-	private int combatLevel;
+    @SerializedName("combatlevel")
+    private int combatLevel;
 
-	@SerializedName("loggedIn")
-	private boolean loggedIn;
+    @SerializedName("loggedIn")
+    private boolean loggedIn;
 
-	@SerializedName("activities")
-	private List<Activity> activities;
+    @SerializedName("activities")
+    private List<Activity> activities;
 
-	@SerializedName("skillvalues")
-	private Collection<PlayerStat> stats;
+    @SerializedName("skillvalues")
+    private Collection<PlayerStat> stats;
 
-	/**
-	 * @return	Get the leaderboard ranking url for this user.
-	 */
-	public String getLeaderboardUrl() {
-		String encoded = URLEncoder.encode(username, StandardCharsets.UTF_8);
-		return RANK_URL + "?user1=" + encoded;
-	}
+    /**
+     * @return Leaderboard ranking URL for this user.
+     */
+    public String getLeaderboardUrl() {
+        String encoded = URLEncoder.encode(username, StandardCharsets.UTF_8);
+        return RANK_URL + "?user1=" + encoded;
+    }
 
-	/**
-	 * @param username Get the leaderboard url if this player was compared to another player.
-	 * @return	Get the leaderboard ranking url for this user
-	 * 			compared to the username provided.
-	 */
-	public String getLeaderboardUrl(String username) {
-		if (username.equalsIgnoreCase(this.username))
-			return getLeaderboardUrl();
+    /**
+     * @param username Name of a RuneScape user.
+     * @return
+     *     Leaderboard ranking url for this user compared to the username
+     *     provided.
+     */
+    public String getLeaderboardUrl(String username) {
+        if (username.equalsIgnoreCase(this.username)) {
+            return getLeaderboardUrl();
+        }
 
-		String encoded = URLEncoder.encode(username, StandardCharsets.UTF_8);
+        String encoded = URLEncoder.encode(username, StandardCharsets.UTF_8);
+        return getLeaderboardUrl() + "&user2=" + encoded;
+    }
 
-		return getLeaderboardUrl() + "&user2=" + encoded;
-	}
+    /**
+     * @return
+     *     URL to the player's avatar, or the default avatar if the player
+     *     hasn't set one.
+     */
+    public String getAvatarUrl() {
+        String encoded = URLEncoder.encode(username, StandardCharsets.UTF_8);
+        return String.format(AVATAR_URL_FORMAT, encoded);
+    }
 
-	/**
-	 * <strong>This menthod creates an avatar URL based on the
-	 * hard-coded String {@link #AVATAR_URL_FORMAT}, and does not come from
-	 * the API. This method may produce broken results.</strong>
-	 *
-	 * @return The URL to the players avatar, this will
-	 * point to the default avatar if the player hasn't set one.
-	 */
-	public String getAvatarUrl() {
-		String encoded = URLEncoder.encode(username, StandardCharsets.UTF_8);
-		return String.format(AVATAR_URL_FORMAT, encoded);
-	}
+    /**
+     * @return Name of the user.
+     */
+    public String getUsername() {
+        return username;
+    }
 
-	/**
-	 * @return	Returns the name of the user.
-	 */
-	public String getUsername() {
-		return username;
-	}
+    /**
+     * @return Total level of the user. (Every skill level added together.)
+     */
+    public int getTotalLevel() {
+        return totalLevel;
+    }
 
-	/**
-	 * @return	The total level of the user.
-	 * 			(Every single skills level added together.
-	 */
-	public int getTotalLevel() {
-		return totalLevel;
-	}
+    /**
+     * @return
+     *     Total level with thousand separators formatted as a string using the
+     *     system locale.
+     */
+    public String getTotalLevelFormatted() {
+        return getTotalLevelFormatted(Locale.getDefault());
+    }
 
-	/**
-	 * @return	Returns the total level with thousand seperators
-	 * formatted as a String using the default system locale.
-	 */
-	public String getTotalLevelFormatted() {
-		return getTotalLevelFormatted(Locale.getDefault());
-	}
+    /**
+     * @param locale Locale to format with.
+     * @return Total level with thousand separators formatted as a String.
+     */
+    public String getTotalLevelFormatted(Locale locale) {
+        return String.format(locale, "%,d", totalLevel);
+    }
 
-	/**
-	 * @param locale The system locale to format with.
-	 * @return	Returns the total level with thousand seperators
-	 * formatted as a String.
-	 */
-	public String getTotalLevelFormatted(Locale locale) {
-		return String.format(locale, "%,d", totalLevel);
-	}
+    /**
+     * @return Total amount of XP the user has.
+     */
+    public long getTotalXp() {
+        return totalXp;
+    }
 
-	/**
-	 * @return	The total amount of XP the user has.
-	 */
-	public long getTotalXp() {
-		return totalXp;
-	}
+    /**
+     * @return Total xp formatted as a String using the default system locale.
+     */
+    public String getTotalXpFormatted() {
+        return getTotalXpFormatted(Locale.getDefault());
+    }
 
-	/**
-	 * @return	Returns the total xp formatted as a String
-	 * using the default system locale.
-	 */
-	public String getTotalXpFormatted() {
-		return getTotalXpFormatted(Locale.getDefault());
-	}
+    /**
+     * @param locale Locale to use when formatting.
+     * @return Total XP formatted as a String.
+     */
+    public String getTotalXpFormatted(Locale locale) {
+        return String.format(locale, "%,d", totalXp);
+    }
 
-	/**
-	 * @param locale The locale to use when formatting.
-	 * @return	Returns the total xp formatted as a String.
-	 */
-	public String getTotalXpFormatted(Locale locale) {
-		return String.format(locale, "%,d", totalXp);
-	}
+    /**
+     * @return Total number of completed quests.
+     */
+    public int getQuestsComplete() {
+        return questsComplete;
+    }
 
-	/**
-	 * @return	The total number of completed quests.
-	 */
-	public int getQuestsComplete() {
-		return questsComplete;
-	}
+    /**
+     * @return Total number of quests started but incomplete.
+     */
+    public int getQuestsStarted() {
+        return questsStarted;
+    }
 
-	/**
-	 * @return	The total number of quests started but incomplete.
-	 */
-	public int getQuestsStarted() {
-		return questsStarted;
-	}
+    /**
+     * @return Total number of quested not even started.
+     */
+    public int getQuestsNotStarted() {
+        return questsNotStarted;
+    }
 
-	/**
-	 * @return	The total number of quested not even started.
-	 */
-	public int getQuestsNotStarted() {
-		return questsNotStarted;
-	}
+    /**
+     * @return Overall leaderboard ranking for this user.
+     */
+    public int getRank() {
+        return rank;
+    }
 
-	/**
-	 * @return	Get the overall leaderboard ranking for this user.
-	 */
-	public int getRank() {
-		return rank;
-	}
+    /**
+     * @return Combat level of the player.
+     */
+    public int getCombatLevel() {
+        return combatLevel;
+    }
 
-	/**
-	 * @return	Get the combat level of the player.
-	 */
-	public int getCombatLevel() {
-		return combatLevel;
-	}
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
 
-	public boolean isLoggedIn() {
-		return loggedIn;
-	}
+    public List<Activity> getActivities() {
+        return activities;
+    }
 
-	public List<Activity> getActivities() {
-		return activities;
-	}
+    /**
+     * HashMap of Skills to Stats. Stats containing the players level, XP and
+     * rank in the skill.
+     *
+     * @return Map of skills to stats.
+     */
+    public Collection<PlayerStat> getStats() {
+        return Collections.unmodifiableCollection(stats);
+    }
 
-	/**
-	 * Returns a HashMap of Skills to Stats. Stats containing
-	 * The players level, xp and rank in the skill.
-	 *
-	 * @return	Returns a Map of skills to stats.
-	 */
-	public Collection<PlayerStat> getStats() {
-		return Collections.unmodifiableCollection(stats);
-	}
+    public PlayerStat getStat(Skill skill) {
+        for (PlayerStat stat : stats) {
+            if (stat.getSkill() == skill) {
+                return stat;
+            }
+        }
 
-	public PlayerStat getStat(Skill skill) {
-		for (PlayerStat stat : stats) {
-			if (stat.getSkill() == skill)
-				return stat;
-		}
-
-		return null;
-	}
+        return null;
+    }
 }

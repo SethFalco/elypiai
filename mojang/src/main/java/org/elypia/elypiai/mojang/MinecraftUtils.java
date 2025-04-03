@@ -29,48 +29,48 @@ import java.util.regex.Pattern;
  */
 public final class MinecraftUtils {
 
-    /** Pattern to match if a string is a valid non-hyphanated UUID. */
+    /** Pattern to match if a string is a valid non-hyphenated UUID. */
     private static final Pattern TRIMMED_UUID_PATTERN = Pattern.compile("[a-f\\d]{32}");
 
     /**
      * Pattern to verify if a Minecraft username is valid.
      *
-     * @implNote The page states that it's no longer possible to create usernames with
-     * less than three characters. This suggests that previously accounts were created with
-     * under 3, so these are allowed despite the fact that new accounts can't do this.
+     * @implNote
+     *     Page states that it's no longer possible to create usernames with
+     *     less than three characters. This suggests that previously accounts
+     *     were created with under 3, so these are allowed despite the fact that
+     *     new accounts can't do this.
      * @see <a href="https://help.minecraft.net/hc/en-us/articles/360034636712-Minecraft-Usernames">Minecraft Usernames</a>
      */
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[A-Za-z\\d_]{0,16}");
 
     /**
-     * Don't construct this class.
-     * You should only use it through it's public static methods.
+     * Don't construct this class. You should only use it through the public
+     * static methods.
      */
     private MinecraftUtils() {
         // Do nothing!
     }
 
     /**
-     * It's preferred to use {@link #getDefaultSkin(UUID)} if possible.
-     * This is just for convinience if you have a String and know for certain it's
-     * a valid UUID.
+     * It's preferred to use {@link #getDefaultSkin(UUID)} if possible. This is
+     * just for convenience if you have a String and know for certain it's a
+     * valid UUID.
      *
-     * Calls {@link #hyphanateUuid(String)} if the uuidString provided
-     * doesn't contain hyphens.
-     *
-     * @param uuidString The UUID to check.
-     * @return The {@link DefaultSkin} a player with this UUID would have.
-     * @throws  IllegalArgumentException If uuidString does not confirm to a UUID.
+     * @param uuidString UUID to check.
+     * @return Default skin a player with this UUID would have.
+     * @throws IllegalArgumentException
+     *     If uuidString does not confirm to a UUID.
      */
     public static DefaultSkin getDefaultSkin(final String uuidString) {
-        final String uuidStringToCheck = (uuidString.contains("-")) ? uuidString : hyphanateUuid(uuidString);
+        final String uuidStringToCheck = (uuidString.contains("-")) ? uuidString : hyphenateUuid(uuidString);
         final UUID uuid = UUID.fromString(uuidStringToCheck);
         return getDefaultSkin(uuid);
     }
 
     /**
-     * @param uuid The UUID to check.
-     * @return The {@link DefaultSkin} a player with this UUID would have.
+     * @param uuid UUID to check.
+     * @return Default skin a player with this UUID would have.
      */
     public static DefaultSkin getDefaultSkin(final UUID uuid) {
         final boolean isAlex = (uuid.hashCode() & 1) != 0;
@@ -78,20 +78,23 @@ public final class MinecraftUtils {
     }
 
     /**
-     * Convert a non-hyphanated UUID string to a UUID string with
-     * hyphans. If the input already contains hyphens, nothing happens.
+     * Convert a non-hyphenated UUID string to a UUID string with hyphens. If
+     * the input already contains hyphens, nothing happens.
      *
-     * @param trimmedUuid The UUID without hyphans.
-     * @return The same UUID, but with hyphens inserted.
-     * @throws IllegalArgumentException If the trimmedUuid doens't
-     * look like a valid UUID that can have hyphens inserted.
+     * @param trimmedUuid UUID without hyphens.
+     * @return Same UUID, but with hyphens inserted.
+     * @throws IllegalArgumentException
+     *     If the trimmedUuid doesn't look like a valid UUID that can have
+     *     hyphens inserted.
      */
-    public static String hyphanateUuid(final String trimmedUuid) {
-        if (trimmedUuid.contains("-"))
+    public static String hyphenateUuid(final String trimmedUuid) {
+        if (trimmedUuid.contains("-")) {
             return trimmedUuid;
+        }
 
-        if (!TRIMMED_UUID_PATTERN.matcher(trimmedUuid).matches())
+        if (!TRIMMED_UUID_PATTERN.matcher(trimmedUuid).matches()) {
             throw new IllegalArgumentException("trimmedUuid isn't a valid trimmed UUID string");
+        }
 
         List<String> sections = List.of(
             trimmedUuid.substring(0, 8),
@@ -105,18 +108,19 @@ public final class MinecraftUtils {
     }
 
     /**
-     * @param trimmedUuid The UUID without hyphans.
-     * @return The UUID parsed as a {@link UUID} object.
-     * @throws IllegalArgumentException If the trimmedUuid doens't
-     * look like a valid UUID that can have hyphens inserted.
+     * @param trimmedUuid UUID without hyphans.
+     * @return UUID parsed as a {@link UUID} object.
+     * @throws IllegalArgumentException
+     *     If the trimmedUuid doesn't look like a valid UUID that can have
+     *     hyphens inserted.
      */
     public static UUID trimmedUuidToUuid(final String trimmedUuid) {
-        return UUID.fromString(hyphanateUuid(trimmedUuid));
+        return UUID.fromString(hyphenateUuid(trimmedUuid));
     }
 
     /**
-     * @param uuid A valid UUID, can not be null.
-     * @return A string version of this UUID, with all hyphens removed.
+     * @param uuid Valid UUID, can not be null.
+     * @return String version of this UUID, with all hyphens removed.
      */
     public static String trimUuid(final UUID uuid) {
         Objects.requireNonNull(uuid);
@@ -124,7 +128,7 @@ public final class MinecraftUtils {
     }
 
     /**
-     * @param username A username which may or may not be of a Minecraft user.
+     * @param username Username which may or may not be of a Minecraft user.
      * @return If the username appears to be a valid Minecraft username.
      */
     public static boolean isUsernameValid(final String username) {

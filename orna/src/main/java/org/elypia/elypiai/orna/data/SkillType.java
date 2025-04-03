@@ -31,7 +31,7 @@ public enum SkillType {
     @SerializedName("Buff")
     BUFF("Buff"),
 
-    /** Damage Over Time */
+    /** D.O.T. stands for Damage Over Time. */
     @SerializedName("D.O.T.")
     DOT("D.O.T."),
 
@@ -57,20 +57,21 @@ public enum SkillType {
     }
 
     /**
-     * @return The clean human readable name for this {@link SkillType}.
+     * @return Clean human readable name for this {@link SkillType}.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * @param name The case-sensitive human readable name of the {@link SkillType}.
-     * @return The enum value for this type, or {@link #UNKNOWN} if no type is found.
+     * @param name Case-sensitive human readable name of the {@link SkillType}.
+     * @return Enum value for this type, or {@link #UNKNOWN} if no type is found.
      */
     public static SkillType find(final String name) {
         for (SkillType type : values()) {
-            if (type.name.equals(name))
+            if (type.name.equals(name)) {
                 return type;
+            }
         }
 
         return SkillType.UNKNOWN;

@@ -23,11 +23,15 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Interaction {
 
-    /** @see #getSay() */
+    /**
+     * @see #getSay()
+     */
     @SerializedName("say")
     private String say;
 
-    /** @see #getResponse() */
+    /**
+     * @see #getResponse()
+     */
     @SerializedName("response")
     private String response;
 

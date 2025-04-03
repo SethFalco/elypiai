@@ -21,27 +21,27 @@ package org.elypia.elypiai.poe.models;
  */
 public enum LeagueType {
 
-	UNKNOWN("Unknown"),
+    UNKNOWN("Unknown"),
 
-	/**
-	 * Refers to only the main leagues,
-	 * these are displayed in teh character screen.
-	 */
-	MAIN("main"),
+    /**
+     * Refers to only the main leagues, these are displayed in the character
+     * screen.
+     */
+    MAIN("main"),
 
-	/** Refers to event leagues. */
-	EVENT("event"),
+    /** Refers to event leagues. */
+    EVENT("event"),
 
-	/** Refers to league in a particular season. */
-	SEASON("season");
+    /** Refers to league in a particular season. */
+    SEASON("season");
 
-	private final String NAME;
+    private final String NAME;
 
-	LeagueType(String name) {
-		NAME = name;
-	}
+    LeagueType(String name) {
+        NAME = name;
+    }
 
-	public String getName() {
-		return NAME;
-	}
+    public String getName() {
+        return NAME;
+    }
 }

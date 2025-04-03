@@ -39,17 +39,18 @@ public class UsernameHistoryItem implements Comparable<UsernameHistoryItem> {
     private Instant changedToAt;
 
     /**
-     * @return The name the user has at the time specified in
-     * {@link #getChangedToAt()}, or creating their account with if
-     * {@link #getChangedToAt()} is null.
+     * @return
+     *     Name the user has at the time specified in {@link #getChangedToAt},
+     *     or creating their account with if {@link #getChangedToAt} is null.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return The time this username came into effect, or null
-     * if this is the first username the user had.
+     * @return
+     *     Time this username came into effect, or null if this is the first
+     *     username the user had.
      */
     public Instant getChangedToAt() {
         return changedToAt;

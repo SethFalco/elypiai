@@ -24,11 +24,15 @@ import com.google.gson.annotations.SerializedName;
  */
 public class AccountingRequirements {
 
-    /** @see #getForeignAccountType() */
+    /**
+     * @see #getForeignAccountType()
+     */
     @SerializedName("foreign_account_type")
     private ForeignAccountType foreignAccountType;
 
-    /** @see #getAccountPublicationTerms() */
+    /**
+     * @see #getAccountPublicationTerms()
+     */
     @SerializedName("terms_of_account_publication")
     private AccountPublicationTerms accountPublicationTerms;
 

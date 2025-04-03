@@ -24,26 +24,32 @@ import java.time.LocalDate;
  */
 public class PreviousCompanyName {
 
-    /** @see #getName()  */
+    /**
+     * @see #getName()
+     */
     private String name;
 
-    /** @see #getCeasedOn()  */
+    /**
+     * @see #getCeasedOn()
+     */
     private LocalDate ceasedOn;
 
-    /** @see #getEffectiveFrom() */
+    /**
+     * @see #getEffectiveFrom()
+     */
     private LocalDate effectiveFrom;
 
-    /** The previous company name. */
+    /** Previous company name. */
     public String getName() {
         return name;
     }
 
-    /** The date on which the company name ceased. */
+    /** Date on which the company name ceased. */
     public LocalDate getCeasedOn() {
         return ceasedOn;
     }
 
-    /** The date from which the company name was effective. */
+    /** Date from which the company name was effective. */
     public LocalDate getEffectiveFrom() {
         return effectiveFrom;
     }

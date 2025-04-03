@@ -25,29 +25,35 @@ import java.time.LocalDateTime;
  */
 public class Activity implements Comparable<Activity> {
 
-    /** @see #getDate() */
+    /**
+     * @see #getDate()
+     */
     @SerializedName("date")
     private LocalDateTime date;
 
-    /** @see #getDetails() */
+    /**
+     * @see #getDetails()
+     */
     @SerializedName("details")
     private String details;
 
-    /** @see #getText()  */
+    /**
+     * @see #getText()
+     */
     @SerializedName("text")
     private String text;
 
-    /** The date that the activity occured. */
+    /** Date that the activity occurred. */
     public LocalDateTime getDate() {
         return date;
     }
 
-    /** A display friendly sentence that represents the event. */
+    /** Display friendly sentence that represents the event. */
     public String getDetails() {
         return details;
     }
 
-    /** A non-descriptive string that represents the type of event. */
+    /** Non-descriptive string that represents the type of event. */
     public String getText() {
         return text;
     }

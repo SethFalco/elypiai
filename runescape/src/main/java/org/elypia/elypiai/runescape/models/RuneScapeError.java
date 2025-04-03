@@ -51,8 +51,9 @@ public enum RuneScapeError {
 
     public static RuneScapeError get(String name) {
         for (RuneScapeError error : values()) {
-            if (error.name.equals(name))
+            if (error.name.equals(name)) {
                 return error;
+            }
         }
 
         return UNKNOWN;

@@ -23,38 +23,38 @@ import com.google.gson.annotations.SerializedName;
  */
 public class LadderEntry {
 
-	@SerializedName("rank")
-	private int rank;
+    @SerializedName("rank")
+    private int rank;
 
-	@SerializedName("dead")
-	private boolean dead;
+    @SerializedName("dead")
+    private boolean dead;
 
-	@SerializedName("online")
-	private boolean online;
+    @SerializedName("online")
+    private boolean online;
 
-	@SerializedName("character")
-	private Exile exile;
+    @SerializedName("character")
+    private Exile exile;
 
-	@SerializedName("account")
-	private Account account;
+    @SerializedName("account")
+    private Account account;
 
-	public int getRank() {
-		return rank;
-	}
+    public int getRank() {
+        return rank;
+    }
 
-	public boolean isDead() {
-		return dead;
-	}
+    public boolean isDead() {
+        return dead;
+    }
 
-	public boolean isOnline() {
-		return online;
-	}
+    public boolean isOnline() {
+        return online;
+    }
 
-	public Exile getExile() {
-		return exile;
-	}
+    public Exile getExile() {
+        return exile;
+    }
 
-	public Account getAccount() {
-		return account;
-	}
+    public Account getAccount() {
+        return account;
+    }
 }
