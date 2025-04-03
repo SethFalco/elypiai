@@ -3,7 +3,7 @@ package org.elypia.elypiai.companieshouse.models;
 /**
  * The last company accounts filed.
  *
- * @author seth@elypia.org (Seth Falco)
+ * @author seth@falco.fun (Seth Falco)
  * @since 4.2.2
  */
 public class PreviousAccounts extends AccountingPeriod {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
+ * Copyright 2019-2025 Seth Falco and Elypiai Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +45,7 @@ import java.util.List;
  * Encapsultes all RESTful endpoints that can be called
  * on the Weblate API.
  *
- * @author seth@elypia.org (Seth Falco)
+ * @author seth@falco.fun (Seth Falco)
  * @since 4.2.2
  */
 public interface WeblateService {

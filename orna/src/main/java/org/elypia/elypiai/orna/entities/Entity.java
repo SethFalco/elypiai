@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 Elypia CIC and Contributors (https://gitlab.com/Elypia/elypiai/-/graphs/master)
+ * Copyright 2019-2025 Seth Falco and Elypiai Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import com.google.gson.annotations.SerializedName;
  * <p>May also be used when an {@link Entity} references another {@link Entity}
  * as a nested property.</p>
  *
- * @author seth@elypia.org (Seth Falco)
+ * @author seth@falco.fun (Seth Falco)
  */
 public class Entity implements Comparable<Entity> {
 
