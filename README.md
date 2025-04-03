@@ -86,7 +86,7 @@ All the wrappers include Javadocs, read them to learn what functions are availab
 
 ## Interested in other web service wrappers?
 
-There are countless web services, and countless Java wrappers available for them. If you liked this project, you may be interested in some of these packages maintained by other developers too:
+There are countless web services, and countless Java wrappers available for them. If you liked this project, you may be interested in some of these packages maintained by others too:
 
 * [JDA (Java Discord API)](https://github.com/discord-jda/JDA) — Discord
 * [GitLab4J](https://github.com/gitlab4j/gitlab4j-api) ­— GitLab
