@@ -18,7 +18,7 @@ allprojects() {
     apply plugin: "checkstyle"
     apply plugin: "jacoco"
 
-    group = "org.elypia.elypiai"
+    group = "fun.falco.elypiai"
     version = "4.3.0"
     description = "Wrappers for various web APIs that don't provide official libraries for Java."
 

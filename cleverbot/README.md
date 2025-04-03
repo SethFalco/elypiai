@@ -1,6 +1,6 @@
 # Elypiai: Cleverbot
 
-[![](https://img.shields.io/maven-central/v/org.elypia.elypiai/cleverbot)](https://search.maven.org/artifact/org.elypia.elypiai/cleverbot) [![](https://gitlab.com/SethFalco/elypiai/badges/main/pipeline.svg)](https://gitlab.com/SethFalco/elypiai)
+[![](https://img.shields.io/maven-central/v/fun.falco.elypiai/cleverbot)](https://search.maven.org/artifact/fun.falco.elypiai/cleverbot) [![](https://gitlab.com/SethFalco/elypiai/badges/main/pipeline.svg)](https://gitlab.com/SethFalco/elypiai)
 
 ## About
 
@@ -14,7 +14,7 @@ First you must go to the Cleverbot API site and create an account. Following thi
 
 ### Import
 
-Visit [Elypiai on Maven Central](https://search.maven.org/artifact/org.elypia.elypiai/cleverbot), and follow the instructions for your build system of choice to add the Cleverbot wrapper to your project.
+Visit [Elypiai on Maven Central](https://search.maven.org/artifact/fun.falco.elypiai/cleverbot), and follow the instructions for your build system of choice to add the Cleverbot wrapper to your project.
 
 
 ### Fetching Data

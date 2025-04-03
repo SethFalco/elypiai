@@ -1,6 +1,6 @@
 # Elypiai
 
-[![](https://img.shields.io/maven-central/v/org.elypia.elypiai/osu)](https://search.maven.org/search?q=g:org.elypia.elypiai) [![](https://gitlab.com/SethFalco/elypiai/badges/main/pipeline.svg)](https://gitlab.com/SethFalco/elypiai)
+[![](https://img.shields.io/maven-central/v/fun.falco.elypiai/osu)](https://search.maven.org/search?q=g:fun.falco.elypiai) [![](https://gitlab.com/SethFalco/elypiai/badges/main/pipeline.svg)](https://gitlab.com/SethFalco/elypiai)
 
 ## About
 
@@ -28,7 +28,7 @@ Rather than having separate repositories for Cleverbot4J, Orna4J, osu!4J, and so
 
 ### Import
 
-Visit [Elypiai on Maven Central](https://search.maven.org/search?q=g:org.elypia.elypiai), and follow the instructions for your build system of choice to add the respective service wrapper to your project.
+Visit [Elypiai on Maven Central](https://search.maven.org/search?q=g:fun.falco.elypiai), and follow the instructions for your build system of choice to add the respective service wrapper to your project.
 
 ### Fetching Data
 
