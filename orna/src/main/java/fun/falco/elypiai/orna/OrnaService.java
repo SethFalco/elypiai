@@ -18,7 +18,7 @@ package fun.falco.elypiai.orna;
 
 import java.util.List;
 
-import fun.falco.elypiai.orna.entities.Achievment;
+import fun.falco.elypiai.orna.entities.Achievement;
 import fun.falco.elypiai.orna.entities.Item;
 import fun.falco.elypiai.orna.entities.Monster;
 import fun.falco.elypiai.orna.entities.Npc;
@@ -59,7 +59,7 @@ public interface OrnaService {
     Single<List<Quest>> getQuests();
 
     @POST("achievement")
-    Single<List<Achievment>> getAchievments();
+    Single<List<Achievement>> getAchievements();
 
     @POST("npc")
     Single<List<Npc>> getNpcs();

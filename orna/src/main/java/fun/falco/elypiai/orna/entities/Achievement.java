@@ -21,7 +21,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * @author seth@falco.fun (Seth Falco)
  */
-public class Achievment extends TieredEntity {
+public class Achievement extends TieredEntity {
 
     @SerializedName("requirement")
     private String requirement;

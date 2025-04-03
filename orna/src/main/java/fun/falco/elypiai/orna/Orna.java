@@ -22,7 +22,7 @@ import java.util.List;
 
 import org.elypia.retropia.core.HttpClientSingleton;
 
-import fun.falco.elypiai.orna.entities.Achievment;
+import fun.falco.elypiai.orna.entities.Achievement;
 import fun.falco.elypiai.orna.entities.Entity;
 import fun.falco.elypiai.orna.entities.Item;
 import fun.falco.elypiai.orna.entities.Monster;
@@ -103,8 +103,8 @@ public class Orna {
         return service.getQuests();
     }
 
-    public Single<List<Achievment>> getAchievments() {
-        return service.getAchievments();
+    public Single<List<Achievement>> getAchievements() {
+        return service.getAchievements();
     }
 
     public Single<List<Npc>> getNpcs() {
