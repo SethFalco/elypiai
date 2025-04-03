@@ -83,3 +83,11 @@ public class Main {
 ### Read the Javadocs
 
 All the wrappers include Javadocs, read them to learn what functions are available. If you're using a modern code editor or IDE, the code completion will display them as you access the service objects.
+
+## Interested in other web service wrappers?
+
+There are countless web services, and countless Java wrappers available for them. If you liked this project, you may be interested in some of these packages maintained by other developers too:
+
+* [JDA (Java Discord API)](https://github.com/discord-jda/JDA) — Discord
+* [GitLab4J](https://github.com/gitlab4j/gitlab4j-api) ­— GitLab
+* [Twitch4J](https://twitch4j.github.io/) — Twitch
