@@ -16,20 +16,17 @@
 
 package org.elypia.elypiai.mojang;
 
-import okhttp3.OkHttpClient;
-import org.elypia.retropia.core.HttpClientSingleton;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Objects;
+
+import org.elypia.retropia.core.HttpClientSingleton;
+
+import okhttp3.OkHttpClient;
 
 /**
  * @author seth@falco.fun (Seth Falco)
  * @since 4.3.0
  */
 public class Mojang {
-
-    private static final Logger logger = LoggerFactory.getLogger(Mojang.class);
 
     private final MojangApi mojangApi;
     private final MojangSessionApi mojangSessionApi;

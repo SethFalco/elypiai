@@ -42,7 +42,7 @@ public class PlayerStat {
 
     public int getVirtualLevel() {
         if (skill.isElite()) {
-            logger.warn("Formula for elite skills is unknown, returning original level.");
+            logger.warn("Formula for elite skills is unknown, using regular level formula.");
             return level;
         }
 

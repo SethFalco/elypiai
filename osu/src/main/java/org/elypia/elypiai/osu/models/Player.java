@@ -16,18 +16,14 @@
 
 package org.elypia.elypiai.osu.models;
 
-import com.google.gson.annotations.SerializedName;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.List;
+
+import com.google.gson.annotations.SerializedName;
 
 /**
  * @author seth@falco.fun (Seth Falco)
  */
 public class Player {
-
-    private static final Logger logger = LoggerFactory.getLogger(Player.class);
 
     /**
      * The identifier for the user, this will never change.

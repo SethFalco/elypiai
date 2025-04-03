@@ -1,128 +1,85 @@
-<div align="center">
-
 # Elypiai
-[![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-</div>
+
+[![](https://img.shields.io/maven-central/v/org.elypia.elypiai/osu)](https://search.maven.org/search?q=g:org.elypia.elypiai) [![](https://gitlab.com/SethFalco/elypiai/badges/main/pipeline.svg)](https://gitlab.com/SethFalco/elypiai)
 
 ## About
-Elypiai is a small and easy way, especially for new developers, to add ample functionality
-or integrations to any project.
 
-We wrap web APIs that don't provide an official binding for Java and make a module
-for each one with a consistent interface between each.
+Elypiai is a collection of unofficial wrappers for web-based APIs. Each wrapper uses the same libraries and structure, so the interface is very consistent between them.
 
-The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
+### Supported Services
 
-## Supported APIs
-* [Cleverbot] - Complete
-* [Companies House] - WIP
-* [Mojang] - WIP
-* [Orna Guide] - WIP
-* [osu!] - WIP
-* [Path of Exile] - Complete
-* [RuneScape] - WIP
-* [Steam] - WIP
-* [Urban Dictionary] - Complete
-* [Yu-Gi-Oh! Prices] - WIP
-* [Weblate] - WIP
+* [Cleverbot](https://www.cleverbot.com/api/)
+* [Companies House](https://developer.companieshouse.gov.uk/api/docs/)
+* [Mojang](https://wiki.vg/Mojang_API)
+* [Orna Guide](https://orna.guide/gameplay?show=16)
+* [osu!](https://osu.ppy.sh/docs/index.html)
+* [Path of Exile](https://www.pathofexile.com/developer/docs/api-resources)
+* [RuneScape](http://runescape.wikia.com/wiki/Application_programming_interface)
+* [Steam](https://steamcommunity.com/dev)
+* [Urban Dictionary](https://api.urbandictionary.com/v0/define?term=api)
+* [Yu-Gi-Oh! Prices](https://yugiohprices.docs.apiary.io/)
+* [Weblate](https://docs.weblate.org/en/latest/api.html)
 
-You can check the issues to see pending wrappers.
+### Why a monorepo?
 
-### Why are these wraps in a single repository?
-Rather than making a Cleverbot4J, Orna4J, osu!4J, etc project we've opted for a submodule
-approach. The reason for this is because all submodules in this repository has an almost
-identical structure to them, and when we want to make major alterations to how we want
-to make requests, we often want to change it for all of our wrappers.
-Please visit the appropriate README of the module you're interested in.
+Rather than having separate repositories for Cleverbot4J, Orna4J, osu!4J, and so on, this creates a submodule as each wrapper has an almost identical structure. In the instance we want to do major alterations in design, it usually applies to all wrappers.
 
 ## Getting Started
-In this example we'll just use the osu! API to get things going.
 
-First you need to construct the wrapper object for the API you want to access, for example.
-Following this you can use the methods as you'd expect, each API method will have a few ways to make
-the request:
+### Import
 
-* `blockingGet()` - This will do a synchronous or blocking request and return an optional object.
-* `subscribe(success, failure)` - This will do an asynchronous request, both the success, and failure consumers are optional.
+Visit [Elypiai on Maven Central](https://search.maven.org/search?q=g:org.elypia.elypiai), and follow the instructions for your build system of choice to add the respective service wrapper to your project.
+
+### Fetching Data
+
+In this example we'll use the Urban Dictionary API, but every module in Elypiai works more or less the same.
 
 ```java
 public class Main {
 
-    private final Osu osu;
-
-    /**
-    * Start by instantiating the wrapper to use, then call
-    * a request method. Wrappers will accept whatever they need
-    * in their constructor and can have their OkHttpClient instance
-    * updated to accommodate custom interceptors.
-    */
     public static void main(String[] args) {
-        osu = new Osu("{{api key}}");
+        UrbanDictionary ud = new UrbanDictionary();
+        fetchDefinitions(ud);
+        fetchDefinitionsBatched(ud);
     }
 
     /**
-    * RxJava is pretty flexible; you can call #subscribe
-    * with callbacks to handle the result asynchronously,
-    * all the parameters are optional, or call #blockingGet
-    * to handle it synchronously.
-    */
-    public static void simpleExample() {
-        osu.getPlayer("SethX3").subscribe(
-            (player) -> System.out.println(player),
-            (ex) -> ex.printStacktrace(),
-            () -> System.out.println("That player didn't exist.")
+     * Invoke a REST action through the service class. You can follow-up with
+     * one of the following methods:
+     * 
+     * #subscribe — Asynchronous request, both the success, and failure
+     *              consumers are optional.
+     * #blockingGet — Synchronous (blocking) request that returns the result.
+     */
+    public void fetchDefinitions(UrbanDictionary ud) {
+        ud.getDefinitions("foobar").subscribe(
+            (result) -> System.out.println(result),
+            Throwable::printStackTrace
         );
 
-        Player player = osu.getPlayer("SethX3").blockingGet();
+        DefineResult result = ud.getDefinitions("foobar").blockingGet();
     }
 
     /**
-    * It's even possible to perform batch requests!
-    */
-    public static void batchExample() {
-        List<Observable<Player>> requests = Stream.of("SethX3", "Rheannon")
-            .map(osu::getPlayer)
-            .map(Maybe::toObservable)
+     * You can batch requests too.
+     */
+    public static void fetchDefinitionsBatched(UrbanDictionary ud) {
+        var requests = Stream.of("foobar", "xkcd")
+            .map(ud::getDefinitions)
+            .map(Single::toObservable)
             .collect(Collectors.toList());
 
-        Observable<List<Player>> singlePlayers = Observable.zip(requests, (objects) ->
-            Stream.of(objects).map((o) -> (Player)o).collect(Collectors.toList())
+        var batch = Observable.zip(requests, (objects) ->
+            Stream.of(objects).map((o) -> (DefineResult) o).collect(Collectors.toList())
         );
 
-        singlePlayers.subscribe((players) -> players.forEach(System.out::println));
+        batch.subscribe(
+            (results) -> results.forEach(System.out::println)
+        );
     }
 }
 ```
 
-## Support
-If you have any questions or need support, come visit us on Matrix! We're always around and there are
-ample developers that would be willing to help; if it's a problem with the library itself then we'll
-make sure to get it sorted.
+### Read the Javadocs
 
-[matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
-[discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
-[maven-page]: https://search.maven.org/search?q=g:org.elypia.elypiai "Maven Central"
-[documentation]: https://elypia.gitlab.io/elypiai "Documentation"
-[gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
-[elypia-donate]: https://elypia.org/donate "Donate to Elypia"
-[Gradle]: https://gradle.org/ "Depend via Gradle"
-[Maven]: https://maven.apache.org/ "Depend via Maven"
-[Cleverbot]: https://www.cleverbot.com/api/
-[Companies House]: https://developer.companieshouse.gov.uk/api/docs/
-[Mojang]: https://wiki.vg/Mojang_API
-[Orna Guide]: https://orna.guide/gameplay?show=16
-[osu!]: https://github.com/ppy/osu-api/wiki
-[Path of Exile]: https://www.pathofexile.com/developer/docs/api-resources
-[RuneScape]: http://runescape.wikia.com/wiki/Application_programming_interface
-[Steam]: https://steamcommunity.com/dev
-[Urban Dictionary]: http://api.urbandictionary.com/v0/define?term=api
-[Yu-Gi-Oh! Prices]: http://docs.yugiohprices.apiary.io/
-[Weblate]: https://docs.weblate.org/en/latest/api.html
-
-[Matrix]: https://img.shields.io/matrix/elypia:matrix.org?logo=matrix "Matrix Shield"
-[Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/osu "Download Shield"
-[Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Documentation Shield"
-[Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
-[Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
-[Donate]: https://img.shields.io/badge/donate-elypia-blueviolet "Donate Shield"
+All the wrappers include Javadocs, read them to learn what functions are available. If you're using a modern code editor or IDE, the code completion will display them as you access the service objects.

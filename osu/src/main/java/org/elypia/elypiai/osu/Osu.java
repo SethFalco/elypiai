@@ -130,7 +130,7 @@ public class Osu {
      * Calls the osu! API for the a player by id.
      *
      * @param id Players username.
-     * @param mode Gamemode to view data for.
+     * @param mode Game mode to view data for.
      * @param days Number of days to look back for events.
      */
     public Maybe<Player> getPlayer(int id, OsuMode mode, int days) {
@@ -141,7 +141,7 @@ public class Osu {
      * Calls the osu! API for the a player by username.
      *
      * @param username Players username.
-     * @param mode Gamemode to view data for.
+     * @param mode Game mode to view data for.
      * @param days Number of days to look back for events.
      */
     public Maybe<Player> getPlayer(String username, OsuMode mode, int days) {

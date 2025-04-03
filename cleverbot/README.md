@@ -1,90 +1,50 @@
-<div align="center">
+# Elypiai: Cleverbot
 
-# Elypiai - Cleverbot
-[![Matrix]][matrix-community] [![Discord]][discord-guild] [![Maven Central]][maven-page] [![Docs]][documentation] [![Build]][gitlab] [![Coverage]][gitlab] [![Donate]][elypia-donate]
-</div>
+[![](https://img.shields.io/maven-central/v/org.elypia.elypiai/cleverbot)](https://search.maven.org/artifact/org.elypia.elypiai/cleverbot) [![](https://gitlab.com/SethFalco/elypiai/badges/main/pipeline.svg)](https://gitlab.com/SethFalco/elypiai)
 
 ## About
-This is the [Cleverbot] module for Elypiai.
-Cleverbot is an AI powered chatbot that users can talk to on the Cleverbot [website]
-or via the Cleverbot [API][Cleverbot].
 
-The [Gradle]/[Maven] import strings can be found at the maven-central badge above!
+The [Cleverbot](https://www.cleverbot.com/api/) module of Elypiai. Cleverbot is an AI-powered chatbot that users can talk to.
 
 ## Getting Started
-**Heads Up: The Cleverbot API is a paid service.**
 
-First you'll have to go to the Cleverbot API site and make an account if you haven't already.
-Following this, you may also have to purchase a [topup package][Cleverbot].
+### Register for Cleverbot
 
-Once you're ready, you can depend on the Cleverbot module of Elypiai.
+First you must go to the Cleverbot API site and create an account. Following this, you'll have to purchase one of their top-up packages.
 
-**Gradle**
-```gradle
-ext {
-    elypiaiVersion = "x.y.z"
-}
+### Import
 
-dependencies {
-    implementation "org.elypia.elypiai:cleverbot:${elypiaiVersion}"
-}
-```
+Visit [Elypiai on Maven Central](https://search.maven.org/artifact/org.elypia.elypiai/cleverbot), and follow the instructions for your build system of choice to add the Cleverbot wrapper to your project.
 
-**Maven**
-```xml
-<dependency>
-    <groupId>org.elypia.elypiai</groupId>
-    <artifactId>cleverbot</artifactId>
-    <version>x.y.z</version>
-</dependency>
-```
 
-To use the wrapper, just instantiate the `Cleverbot` instance with your API key
-that you'll have obtained from the Cleverbot API website.
+### Fetching Data
+
+Read the general documentation for [Elypiai](../README.md), for an overview of how every supported service can be consumed.
 
 ```java
-class Main {
+public class Main {
 
     public static void main(String[] args) {
-        // Construct the wrapper object.
         Cleverbot cb = new Cleverbot("{API_KEY}");
+        chat(cb);
+    }
 
-        // Queue the request we want to make with a callback.
-        cb.say("Hello").subscribe((response) -> {
-            System.out.println(response.getOutput()); // Response to "Hello"
-            System.out.println(response.getCs()); // Cleverbot state, to continue the conversation
-        });
+    public void chat(Cleverbot cb) {
+        cb.say("Hello").subscribe(
+          (result) -> {
+              // Response from Cleverbot
+              String output = result.getOutput();
+
+              // Cleverbot State, can be given as an argument in the next
+              // invocation of Cleverbot#say to continue the conversation.
+              String cs = result.getCs();
+          },
+          Throwable::printStackTrace;
+        );
     }
 }
 ```
 
-When you call `Cleverbot#say()` you'll get a `Single<CleverResponse>`; you can call:
-* `blockingGet()` - This will do a synchronous or blocking request.
-* `subscribe(success, failure)` - This will do an asynchronous request, both the success, and failure consumers are optional.
+### Read the Javadocs
 
-For more information, please see [Elypiai].
-
-## Support
-If you have any questions or need support, come visit us on Matrix! We're always around and there are
-ample developers that would be willing to help; if it's a problem with the library itself then we'll
-make sure to get it sorted.
-
-[matrix-community]: https://matrix.to/#/+elypia:matrix.org "Matrix Invite"
-[discord-guild]: https://discord.gg/hprGMaM "Discord Invite"
-[maven-page]: https://search.maven.org/artifact/org.elypia.elypiai/cleverbot "Maven Central"
-[documentation]: https://elypia.gitlab.io/elypiai/com/elypia/elypiai/cleverbot/package-summary.html "Documentation"
-[gitlab]: https://gitlab.com/Elypia/elypiai/commits/master "Repository on GitLab"
-[elypia-donate]: https://elypia.org/donate "Donate to Elypia"
-[Gradle]: https://gradle.org/ "Depend via Gradle"
-[Maven]: https://maven.apache.org/ "Depend via Maven"
-[Cleverbot]: https://www.cleverbot.com/api/ "Cleverbot API"
-[website]: https://www.cleverbot.com/ "Cleverbot Website"
-[Elypiai]: https://gitlab.com/Elypia/elypiai "Elypiai Repository"
-
-[Matrix]: https://img.shields.io/matrix/elypia:matrix.org?logo=matrix "Matrix Shield"
-[Discord]: https://discord.com/api/guilds/184657525990359041/widget.png "Discord Shield"
-[Maven Central]: https://img.shields.io/maven-central/v/org.elypia.elypiai/cleverbot "Download Shield"
-[Docs]: https://img.shields.io/badge/docs-elypiai-blue.svg "Documentation Shield"
-[Build]: https://gitlab.com/Elypia/elypiai/badges/master/pipeline.svg "GitLab Build Shield"
-[Coverage]: https://gitlab.com/Elypia/elypiai/badges/master/coverage.svg "GitLab Coverage Shield"
-[Donate]: https://img.shields.io/badge/donate-elypia-blueviolet "Donate Shield"
+Read the Javadocs to learn what functions are available. If you're using a modern code editor or IDE, the code completion will display them as you access the service objects.
