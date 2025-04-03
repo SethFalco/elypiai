@@ -26,10 +26,39 @@ import java.util.UUID;
 public class MinecraftTextures {
 
     private Instant timestamp;
-
     private UUID uuid;
-
     private String name;
-
     private boolean isSignatureRequired;
+
+    public Instant getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Instant timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isSignatureRequired() {
+        return isSignatureRequired;
+    }
+
+    public void setSignatureRequired(boolean isSignatureRequired) {
+        this.isSignatureRequired = isSignatureRequired;
+    }
 }

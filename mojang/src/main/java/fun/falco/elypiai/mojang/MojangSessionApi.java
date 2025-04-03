@@ -30,7 +30,6 @@ import com.google.gson.GsonBuilder;
 
 import fun.falco.elypiai.mojang.deserializers.InstantDeserializer;
 import fun.falco.elypiai.mojang.models.MinecraftProfile;
-import fun.falco.elypiai.mojang.models.MojangServer;
 import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -39,8 +38,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
- * Portion of the Mojang API that connects to the
- * {@link MojangServer#SESSIONSERVER_MOJANG session server}.
+ * Portion of the Mojang API that connects to the Mojang's session server.
  *
  * @author seth@falco.fun (Seth Falco)
  * @since 4.3.0

@@ -20,7 +20,6 @@ import java.util.Collection;
 import java.util.List;
 
 import fun.falco.elypiai.mojang.models.MinecraftUser;
-import fun.falco.elypiai.mojang.models.Status;
 import io.reactivex.rxjava3.core.Single;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -30,7 +29,6 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * @author seth@falco.fun (Seth Falco)
@@ -38,13 +36,9 @@ import retrofit2.http.Query;
  */
 public interface MojangService {
 
-    @POST()
-    Single<Status> status();
-
     @GET("users/profiles/minecraft/{username}")
-    Single<MinecraftUser> getUuidAtTime(
-        @Path("username") String username,
-        @Query("at") Long timestamp
+    Single<MinecraftUser> getUuid(
+        @Path("username") String username
     );
 
     @GET("user/profiles/{uuid}/names")
@@ -92,10 +86,5 @@ public interface MojangService {
     @POST("user/security/location")
     Single<Object> answerSecurityChallenges(
         @Body Object answers
-    );
-
-    @POST("orders/statistics")
-    Single<Object> getSalesStatistics(
-        @Part("metricKeys") String[] keys
     );
 }

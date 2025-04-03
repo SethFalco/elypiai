@@ -33,7 +33,6 @@ import com.google.gson.GsonBuilder;
 import fun.falco.elypiai.mojang.deserializers.InstantDeserializer;
 import fun.falco.elypiai.mojang.models.Identifiable;
 import fun.falco.elypiai.mojang.models.MinecraftUser;
-import fun.falco.elypiai.mojang.models.MojangServer;
 import io.reactivex.rxjava3.core.Single;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -42,7 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
- * Portion of the Mojang API that connects to {@link MojangServer#API_MOJANG}.
+ * Portion of the Mojang API that connects to Mojang's API server.
  *
  * @author seth@falco.fun (Seth Falco)
  * @since 4.3.0
@@ -96,25 +95,10 @@ public class MojangApi {
 
     /**
      * @param username Username of the user to get.
-     * @return
-     *     Minecraft user that had the username at the time, or the username
-     *     currently if no timestamp was specified.
-     * @see #getUuidAtTime()
+     * @return UUID of the Minecraft user that currently has username.
      */
     public Single<MinecraftUser> getUuid(final String username) {
-        return service.getUuidAtTime(username, null);
-    }
-
-    /**
-     * @param username Username of the user to get.
-     * @param timestamp Timestamp to control at what time they had this username.
-     * @return
-     *     Minecraft user that had the username at the time, or the username
-     *     currently if no timestamp was specified.
-     */
-    public Single<MinecraftUser> getUuidAtTime(final String username, final Instant timestamp) {
-        final Long at = (timestamp != null) ? timestamp.getEpochSecond() : null;
-        return service.getUuidAtTime(username, at);
+        return service.getUuid(username);
     }
 
     public Single<Object> getNameHistory(final Identifiable identifiable) {
