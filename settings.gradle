@@ -16,7 +16,6 @@
 
 rootProject.name = "elypiai"
 
-/** Wrappers */
 include "cleverbot"
 include "companies-house"
 include "mojang"

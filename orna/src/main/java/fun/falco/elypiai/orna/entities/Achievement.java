@@ -14,27 +14,26 @@
  * limitations under the License.
  */
 
-package fun.falco.elypiai.mojang.models;
+package fun.falco.elypiai.orna.entities;
 
 import com.google.gson.annotations.SerializedName;
 
 /**
  * @author seth@falco.fun (Seth Falco)
- * @since 4.3.0
  */
-public class Authorizable {
+public class Achievement extends TieredEntity {
 
-    @SerializedName("accessToken")
-    protected String accessToken;
+    @SerializedName("requirement")
+    private String requirement;
 
-    @SerializedName("clientToken")
-    protected String clientToken;
+    @SerializedName("reward")
+    private int reward;
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getRequirement() {
+        return requirement;
     }
 
-    public String getClientToken() {
-        return clientToken;
+    public int getReward() {
+        return reward;
     }
 }

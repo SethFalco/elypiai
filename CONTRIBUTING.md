@@ -1,42 +1,50 @@
-# Contributing to Elypiai
-## About
-This will cover how to contribute to Elypiai and what guidelines to follow
-when creating additional wrappers.
+# Contributing
 
-First you'll need to have a basic understanding of the following libraries, you can do
-independent research on the below, or just go through the Elypiai wraps and use them as
-referable examples:
+## Reporting Bugs
 
-* [Retrofit] and [OkHttp] - These are the core HTTP libraries for making requests.
-* [RxJava] - We have all API methods respond with RxJava classes for it's fluent API.
-* [Retropia] - We made a small extension for Retrofit to for some utilities and standardised classes.
-* [WebServer TestBed] - We made a small library for cleaner testing when using [MockWebServer].
-* [Gson] - Retrofit uses this for deserializing RESTful responses.
+If you've found a bug with Elypiai, [create an issue](https://gitlab.com/SethFalco/elypiai/-/issues) on GitLab.
 
-## Guide Lines
-We would like to be as consistent as possible between all wraps that appear in this
-repository, this means we'll be trying to pull logic into [Retropia] and [WebServer TestBed]
-where possible, and then adhere to a set of guide lines for how the interface in this
-repository should look to consumers of the libraries.
+If you haven't found a bug, but need help using Elypiai in your project, consider asking on [Stack Overflow](https://stackoverflow.com/questions/tagged/svgo), you may get help faster there. You can still create an issue if the confusion stemmed from a lack of documentation.
 
-### Utilize RxJava
-For the most part you can just use [Retrofit] as usual, but as we're using RxJava,
-it's important to ensure or service methods don't return a `Call` but instead an RxJava
-type like, `Maybe`, `Single`, or `Obervable`. This is becasue the RxJava API is very fluent
-and provides a lot of control both for us to handle special cases with API objects and
-for consumers of the library.
+## Development
 
-### Overridable Base URL
-The wrapper should always take a first parameter of `URL` with a hard-coded
-`baseUrl` property. This is because for testing we want to be able to replace
-this `URL` with a custom one. There are also cases, especially with self-hostable services,
-where we want to be able to override the server address.
+### Requirements
 
-[Retrofit]: https://github.com/square/retrofit "Retrofit on GitHub"
-[OkHttp]: https://github.com/square/okhttp "OkHttp on GitHub"
-[RxJava]: https://github.com/ReactiveX/RxJava "RxJava on GitHub"
-[Retropia]: https://gitlab.com/Elypia/retropia "Retropia on GitLab"
-[WebServer TestBed]: https://gitlab.com/Elypia/webserver-testbed "WebServer TestBed on GitLab"
-[MockWebServer]: https://github.com/square/okhttp/tree/master/mockwebserver "MockWebServer on GitHub"
-[Gson]: https://github.com/google/gson "Gson on GitHub"
-[Urban Dictionary]: https://www.urbandictionary.com "Urban Dictionary"
+* [Git](https://git-scm.com)
+* Java 17
+* [Gradle 7](https://gradle.org)
+
+### Getting Started
+
+Clone the repository with Git.
+
+```sh
+git clone https://gitlab.com/SethFalco/elypiai.git
+```
+
+This is a Java project and uses Gradle for package management. Run the `check` task ensure tests are passing before you start development, this will also install all package dependencies.
+
+```sh
+./gradlew check
+```
+
+## New Service Wrappers
+
+Service wrappers must always have a constructor that accepts a `URL`, with another constructor that uses a hard-coded URL. This is for testing, and to be able to replace the base URL with another service that has a compatible API, especially relevant for self-hostable applications or Open Source frontends.
+
+## Writing Tests
+
+In this project, tests for each module are structured in one of two ways.
+
+* We mock the API, by downloading a response manually and putting it in the test classpath. Then overriding the base URL of the service class use a mock webserver.
+* We query the real API. This means "unit tests" that do real IO!
+
+Given the nature of this project, the latter is preferred, so we know as soon as possible if upstream changes break our wrapper. This will not happen often as fortunately most APIs are very stable and avoid breaking changes, but sometimes things break in unexpected ways.
+
+Allowing IO means that we have to be considerate when writing tests to avoid spamming services, and to be aware that tests could fail spontaneously in the case of a service outage. These are worthwhile trade offs to avoid a false sense of security in testing against archived API responses that are updated infrequently, instead of live API responses.
+
+## Funding
+
+Sponsoring the project or any of the maintainers/contributors helps keep the project sustainable.
+
+* [Seth Falco on GitHub Sponsors](https://github.com/SethFalco)

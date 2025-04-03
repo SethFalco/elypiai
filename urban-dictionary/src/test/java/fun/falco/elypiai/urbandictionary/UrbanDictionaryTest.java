@@ -17,116 +17,78 @@
 package fun.falco.elypiai.urbandictionary;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.elypia.webservertestbed.junit5.WebServerExtension;
-import org.elypia.webservertestbed.junit5.WebServerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * @author seth@falco.fun (Seth Falco)
  */
 public class UrbanDictionaryTest {
 
-    @RegisterExtension
-    public static final WebServerExtension serverExtension = new WebServerExtension();
-
     private static UrbanDictionary ud;
 
     @BeforeEach
     public void beforeEach() {
-        ud = new UrbanDictionary(serverExtension.getRequestUrl());
+        ud = new UrbanDictionary();
     }
 
     @Test
-    public void createNormalInstance() {
-        assertDoesNotThrow(() -> new UrbanDictionary());
-    }
-
-    @WebServerTest("define-jen.json")
     public void parseResults() {
-        DefineResult result = ud.getDefinitions("jen").blockingGet();
-
-        assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertEquals(0, result.getSounds().size()),
-            () -> assertEquals(7768484, result.getDefinition(false).getDefinitionId()),
-            () -> assertEquals(7768484, result.getDefinition().getDefinitionId()),
+        DefineResult result = ud.getDefinitions("foobar").blockingGet();
+        assertAll("Assert that we fetch and pass data without throwing",
+            () -> assertNotNull(result.getSounds().size()),
+            () -> assertNotNull(result.getDefinition(false).getDefinitionId()),
+            () -> assertNotNull(result.getDefinition().getDefinitionId()),
             () -> assertFalse(result.getDefinitions().isEmpty()),
-            () -> assertEquals(0, result.getSounds(5).size())
+            () -> assertNotNull(result.getSounds(5).size())
         );
     }
 
-    @WebServerTest("define-jen.json")
-    public void parseDefinition() {
-        Definition definition = ud.getDefinitions("jen").blockingGet().getDefinitions(true).get(0);
+    @ParameterizedTest
+    @ValueSource(strings = {"xkcd", "uwu"})
+    public void parseDefinition(final String term) {
+        Definition definition = ud.getDefinitions(term).blockingGet().getDefinitions(true).get(0);
 
-        assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertEquals("Gorgeous, amazing, perfect everything. The girl who has always been my best friend, the girl who I should've been chasing this [whole time]. I love her. <[333]\r\n\r\n- [Sugarlips]", definition.getDefinitionBody()),
-            () -> assertEquals("http://jen.urbanup.com/1859201", definition.getPermaLink()),
-            () -> assertEquals(2274, definition.getThumbsUp()),
-            () -> assertEquals("mikev²", definition.getAuthor()),
-            () -> assertEquals("Jen", definition.getWord()),
-            () -> assertEquals(1859201, definition.getDefinitionId()),
-            () -> assertNull(definition.getCurrentVote()),
-            () -> assertEquals("Jen was always my friend, then [best friend], then [lover], now [my love].", definition.getExample()),
-            () -> assertEquals(1161, definition.getThumbsDown())
+        assertAll("Assert that required fields in definition are not null",
+            () -> assertNotNull(definition.getDefinitionBody()),
+            () -> assertNotNull(definition.getPermaLink()),
+            () -> assertNotNull(definition.getThumbsUp()),
+            () -> assertNotNull(definition.getAuthor()),
+            () -> assertNotNull(definition.getWord()),
+            () -> assertNotNull(definition.getDefinitionId()),
+            () -> assertNotNull(definition.getExample()),
+            () -> assertNotNull(definition.getThumbsDown())
         );
     }
 
-    @WebServerTest("define-fuck.json")
-    public void parseResultsFuck() {
-        DefineResult result = ud.getDefinitions("fuck").blockingGet();
-
-        assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertFalse(result.getSounds().isEmpty()),
-            () -> assertFalse(result.getDefinitions().isEmpty()),
-            () -> assertEquals(5, result.getSounds(5).size())
-        );
-    }
-
-    @WebServerTest("define-life.json")
-    public void parseDefinitionWithNoExample() {
-        Definition definition = ud.getDefinitions("life").blockingGet().getDefinitions(true).get(0);
-
-        assertAll("Ensure Parsing Result Data Correctly",
-            () -> assertEquals("A sexually-transmitted, [terminal disease].", definition.getDefinitionBody()),
-            () -> assertEquals("http://life.urbanup.com/139509", definition.getPermaLink()),
-            () -> assertEquals(26417, definition.getThumbsUp()),
-            () -> assertEquals("Anonymous", definition.getAuthor()),
-            () -> assertEquals("life", definition.getWord()),
-            () -> assertEquals(139509, definition.getDefinitionId()),
-            () -> assertNull(definition.getCurrentVote()),
-            () -> assertNull(definition.getExample()),
-            () -> assertEquals(1958, definition.getThumbsDown())
-        );
-    }
-
-    @WebServerTest("define-no-definitions.json")
+    @Test
     public void parseNoResults() {
-        DefineResult result = ud.getDefinitions("iohwefiwhofhweohfowief").blockingGet();
+        DefineResult result = ud.getDefinitions("ifsomeoneaddsadefinitionforthisiwillbecomeveryupset").blockingGet();
 
-        assertAll("Ensure Parsing No Result Data Correctly",
+        assertAll("Assert that that no results is handled correctly",
+            () -> assertFalse(result.hasDefinitions()),
             () -> assertTrue(result.getSounds().isEmpty())
         );
     }
 
-    @WebServerTest("define-defid-139509.json")
+    @Test
     public void testDefineByIdWithResult() {
-        Definition definition = ud.getDefinitionById(139509).blockingGet();
+        Definition definition = ud.getDefinitionById(11483496).blockingGet();
 
-        String expected = "A sexually-transmitted, [terminal disease].";
+        String expected = "Basic info:\r\n[owo] is an emoticon used in chat rooms similar to [o.o] but the 'w' Is supposed to make it cute.\n\nWhat does it mean?\r\nowo means, [a blank] stare, but in a cute way.\n\nOther similar emote(s).\r\n[OwO] o.o";
         String actual = definition.getDefinitionBody();
 
         assertEquals(expected, actual);
     }
 
-    @WebServerTest("define-defid-no-results.json")
+    @Test
     public void testDefineByIdWithNoResults() {
         assertTrue(ud.getDefinitionById(2147000000).isEmpty().blockingGet());
     }

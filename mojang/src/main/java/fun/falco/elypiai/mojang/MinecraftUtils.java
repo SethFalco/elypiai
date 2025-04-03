@@ -108,7 +108,7 @@ public final class MinecraftUtils {
     }
 
     /**
-     * @param trimmedUuid UUID without hyphans.
+     * @param trimmedUuid UUID without hyphens.
      * @return UUID parsed as a {@link UUID} object.
      * @throws IllegalArgumentException
      *     If the trimmedUuid doesn't look like a valid UUID that can have

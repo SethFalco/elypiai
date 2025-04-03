@@ -16,17 +16,14 @@
 
 package fun.falco.elypiai.mojang;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.UUID;
 
-import org.elypia.webservertestbed.junit5.WebServerExtension;
-import org.elypia.webservertestbed.junit5.WebServerTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.RegisterExtension;
 
 import fun.falco.elypiai.mojang.models.MinecraftProfile;
 
@@ -36,24 +33,16 @@ import fun.falco.elypiai.mojang.models.MinecraftProfile;
  */
 public class MojangSessionApiTest {
 
-    @RegisterExtension
-    public static final WebServerExtension serverExtension = new WebServerExtension();
-
     private static MojangSessionApi mojangSessionApi;
 
     @BeforeEach
     public void beforeEach() {
-        mojangSessionApi = new MojangSessionApi(serverExtension.getRequestUrl());
+        mojangSessionApi = new MojangSessionApi();
     }
 
     @Test
-    public void createNormalInstance() {
-        assertDoesNotThrow(() -> new MojangSessionApi());
-    }
-
-    @WebServerTest("get-profile-skin-cape.json")
     public void testGetMinecraftProfile() {
-        UUID uuid = MinecraftUtils.trimmedUuidToUuid("069a79f444e94726a5befca90e38aaf5");
+        UUID uuid = UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5");
         MinecraftProfile minecraftProfile = mojangSessionApi.getMinecraftProfile(uuid).blockingGet();
 
         final String expected = "Notch";
@@ -62,13 +51,9 @@ public class MojangSessionApiTest {
         assertEquals(expected, actual);
     }
 
-    @WebServerTest("get-blocked-servers.txt")
+    @Test
     public void testBlockedServerList() {
         List<String> blockedServers = mojangSessionApi.getBlockedServerList().blockingGet();
-
-        final String expected = "72fd29f430c91c583bb7216fe673191dc25a7e18";
-        final String actual = blockedServers.get(0);
-
-        assertEquals(expected, actual);
+        assertFalse(blockedServers.isEmpty());
     }
 }

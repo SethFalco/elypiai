@@ -30,8 +30,6 @@ public class Mojang {
 
     private final MojangApi mojangApi;
     private final MojangSessionApi mojangSessionApi;
-    private final MojangStatusApi mojangStatusApi;
-    private final MojangAuthenticationApi mojangAuthenticationApi;
 
     /**
      * Creates an instance of the Mojang API.
@@ -45,8 +43,6 @@ public class Mojang {
 
         mojangApi = new MojangApi(MojangApi.getDefaultBaseUrl(), client);
         mojangSessionApi = new MojangSessionApi(MojangSessionApi.getDefaultBaseUrl(), client);
-        mojangStatusApi = new MojangStatusApi(MojangStatusApi.getDefaultBaseUrl(), client);
-        mojangAuthenticationApi = new MojangAuthenticationApi(MojangAuthenticationApi.getDefaultBaseUrl(), client);
     }
 
     public MojangApi getMojangApi() {
@@ -55,13 +51,5 @@ public class Mojang {
 
     public MojangSessionApi getMojangSessionApi() {
         return mojangSessionApi;
-    }
-
-    public MojangStatusApi getMojangStatusApi() {
-        return mojangStatusApi;
-    }
-
-    public MojangAuthenticationApi getMojangAuthenticationApi() {
-        return mojangAuthenticationApi;
     }
 }
