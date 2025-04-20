@@ -162,7 +162,7 @@ public class SteamUser {
     }
 
     /**
-     * @return    Return the Url to their steam profile.
+     * @return URL to their steam profile.
      */
     public String getProfileUrl() {
         return url;

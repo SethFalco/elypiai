@@ -117,7 +117,7 @@ public class ForeignCompanyDetails {
     }
 
     /**
-     * @return Company origin informations.
+     * @return Company origin information.
      */
     public OriginatingRegistry getOriginatingRegistry() {
         return originatingRegistry;

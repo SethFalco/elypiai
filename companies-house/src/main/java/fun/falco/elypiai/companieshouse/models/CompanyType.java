@@ -21,8 +21,8 @@ import com.google.gson.annotations.SerializedName;
 public enum CompanyType {
 
     /**
-     * Not part of the API, this is returned when a type
-     * not known to this wrapper is returned.
+     * Not part of the API. This is returned when a type not known to this
+     * wrapper is returned.
      */
     UNKNOWN,
 
@@ -114,7 +114,7 @@ public enum CompanyType {
     CHARITABLE_INCORPORATED_ORGANIZATION,
 
     @SerializedName("scottish-charitable-incorporated-organisation")
-    SCOTTISH_CHARITABLE_INCORPORTATED_ORGANIZATION,
+    SCOTTISH_CHARITABLE_INCORPORATED_ORGANIZATION,
 
     @SerializedName("further-education-or-sixth-form-college-corporation")
     FURTHER_EDUCATION_OR_SIXTH_FORM_COLLEGE_CORPORATION

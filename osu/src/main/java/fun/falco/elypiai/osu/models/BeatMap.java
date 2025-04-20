@@ -257,7 +257,7 @@ public class BeatMap {
     }
 
     /**
-     * @return    Number of times this beatmap was played.
+     * @return Number of times this beatmap was played.
      */
     public int getPlayCount() {
         return playcount;

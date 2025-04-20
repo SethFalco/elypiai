@@ -59,7 +59,9 @@ public class ForeignAccounts {
     }
 
     /**
-     * @return Time allowed from period end for disclosure of accounts under parent law.
+     * @return
+     *     Time allowed from period end for disclosure of accounts under parent
+     *     law.
      */
     public int getMonthsToFileWithin() {
         return monthsToFileWithin;

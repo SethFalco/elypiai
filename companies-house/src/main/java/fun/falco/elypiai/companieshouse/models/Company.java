@@ -175,9 +175,12 @@ public class Company {
     }
 
     /**
-     * <strong>Company number can begin with letters or padded zeros.</strong>
+     * Company number stored by Companies House.
      *
-     * @return Number of the company.
+     * <p>Is it stored as a string as the company number can begin with letters
+     *  or padded zeros.</p>
+     *
+     * @return Company number of the registered company.
      */
     public String getCompanyNumber() {
         return companyNumber;
@@ -265,8 +268,7 @@ public class Company {
     }
 
     /**
-     * Can also be obtained with
-     * {@link CompaniesHouse#getRegisteredOfficeAddress(String)}.
+     * Can also be obtained with {@link CompaniesHouse#getRegisteredOfficeAddress}.
      *
      * @return Address of the company's registered office.
      */
@@ -306,14 +308,18 @@ public class Company {
     }
 
     /**
-     * @return Flag indicating whether post can be delivered to the registered office.
+     * @return
+     *     Flag indicating whether post can be delivered to the registered
+     *     office.
      */
     public boolean isUndeliverableRegisteredOffice() {
         return isUndeliverableRegisteredOffice;
     }
 
     /**
-     * @return If Companies House is not the primary source of data for this company.
+     * @return
+     *     If Companies House is not the primary source of data for this
+     *     company.
      */
     public PartialDataAvailableType getPartialDataAvailable() {
         return partialDataAvailable;
@@ -327,7 +333,9 @@ public class Company {
     }
 
     /**
-     * @return Jurisdiction specifies the political body responsible for the company.
+     * @return
+     *     Jurisdiction specifies the political body responsible for the
+     *     company.
      */
     public Jurisdiction getJurisdiction() {
         return jurisdiction;

@@ -55,8 +55,8 @@ public class CompaniesHouse {
     private final CompaniesHouseService service;
 
     /**
-     * Creates an instance of the CompaniesHouse API.
-     * You can use this to get information on British companies.
+     * Creates an instance of the Companies House API. Companies House allows
+     * you to query information on registered companies in Britain.
      *
      * @param apiKey API key obtained from the Companies House website.
      * @see <a href="https://find-and-update.company-information.service.gov.uk/">Companies House Website</a>
